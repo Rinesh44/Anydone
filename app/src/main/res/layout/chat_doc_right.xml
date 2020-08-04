@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dimen_2x4">
+
+    <View
+        android:id="@+id/spacing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10x1"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_message_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spacing"
+        android:paddingTop="@dimen/dimen_2x1">
+
+        <TextView
+            android:id="@+id/tv_sent_at"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10x2"
+            android:gravity="center"
+            android:text="16th may at 8:pm"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/rl_message_holder_aligned"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sent_at"
+            android:layout_marginStart="@dimen/dimens_11x"
+            android:descendantFocusability="blocksDescendants">
+
+
+            <RelativeLayout
+                android:id="@+id/rl_doc_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/chat_bg_outgoing"
+                android:paddingStart="@dimen/dimen_10x1"
+                android:paddingTop="@dimen/dimen_10x1"
+                android:paddingEnd="@dimen/dimen_10x2"
+                android:paddingBottom="@dimen/dimen_10x1"
+                android:visibility="visible">
+
+
+                <ProgressBar
+                    android:id="@+id/pb_doc"
+                    android:layout_width="@dimen/dimen_10x3"
+                    android:layout_height="@dimen/dimen_10x3"
+                    android:layout_centerInParent="true"
+                    android:elevation="@dimen/dimen_2x2"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/iv_doc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/dimen_10x1"
+                    android:src="@drawable/ic_doc" />
+
+
+                <TextView
+                    android:id="@+id/tv_doc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/iv_doc"
+                    android:text="filename"
+                    android:textColor="@color/black"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/tv_doc_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_doc_name"
+                    android:layout_toEndOf="@+id/iv_doc"
+                    android:text="23 kb"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/tv_resend_doc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@+id/iv_doc"
+                    android:drawableEnd="@drawable/ic_upload"
+                    android:drawablePadding="@dimen/dimen_2x1"
+                    android:padding="@dimen/dimen_2x4"
+                    android:text="Retry"
+                    android:textColor="@color/black"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_not_delivered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_doc_holder"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dimen_2x2"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:drawableEnd="@drawable/ic_not_delivered"
+                android:drawablePadding="@dimen/dimen_2x2"
+                android:text="@string/not_delivered"
+                android:textColor="@color/red"
+                android:textSize="@dimen/material_text_caption"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_sent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_message_holder"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dimen_2x2"
+        android:layout_marginEnd="@dimen/dimens_1x"
+        android:text="@string/sent"
+        android:textSize="@dimen/material_text_caption"
+        android:visibility="gone" />
+</RelativeLayout>

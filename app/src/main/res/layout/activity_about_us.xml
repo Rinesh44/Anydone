@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimens_2x">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_anydone_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x4"
+            android:padding="@dimen/dimen_10x2"
+            app:cardCornerRadius="@dimen/dimen_10x2"
+            app:cardElevation="@dimen/dimen_10x1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_10x1">
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logo_mark" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_anydone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mcv_anydone_logo"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Anydone"
+            android:textColor="@color/black"
+            android:textSize="@dimen/material_text_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x4"
+            android:text="@string/anydone_desc"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x4"
+            android:text="Privacy Policy"
+            android:textColor="#3A5090"
+            android:textSize="@dimen/material_text_body2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_terms_n_conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:text="Terms and Conditions"
+            android:textColor="#3A5090"
+            android:textSize="@dimen/material_text_body2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_open_src_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:text="Open source library"
+            android:textColor="#3A5090"
+            android:textSize="@dimen/material_text_body2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Follow us at"
+            android:textColor="@color/black"
+            android:textSize="@dimen/material_text_subhead"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimens_2x"
+                android:src="@drawable/ic_facebook" />
+
+           <!-- <ImageView
+                android:id="@+id/iv_twitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimens_2x"
+                android:src="@drawable/ic_twitter" />
+
+            <ImageView
+                android:id="@+id/iv_pininterest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimens_2x"
+                android:src="@drawable/ic_pininterest" />
+
+            <ImageView
+                android:id="@+id/iv_linkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimens_2x"
+                android:src="@drawable/ic_linked_in" />-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

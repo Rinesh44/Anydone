@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_2x4">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_full_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimens_1x"
+            android:hint="@string/full_name"
+            android:visibility="visible"
+            app:startIconDrawable="@drawable/ic_user">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="45"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+   <!--     <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_address"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimens_1x"
+            android:hint="@string/address"
+            app:startIconDrawable="@drawable/ic_location">
+
+            <AutoCompleteTextView
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textVisiblePassword"
+                android:maxLength="30"
+                android:padding="@dimen/dimens_2x"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_gender"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimens_1x"
+                android:hint="@string/gender"
+                android:paddingBottom="@dimen/dimen_5x1"
+                app:startIconDrawable="@drawable/ic_gender">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sp_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dimen_10x6"
+                android:layout_marginEnd="@dimen/dimen_2x4"
+                android:elevation="@dimen/dimen_2x1" />
+
+
+        </RelativeLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_margin="@dimen/dimens_1x"
+            android:background="@color/green"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

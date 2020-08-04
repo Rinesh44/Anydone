@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--   <color name="colorPrimary">#6200EE</color>
+       <color name="colorPrimaryDark">#3700B3</color>
+       <color name="colorAccent">#03DAC5</color>-->
+
+    <color name="colorPrimary">#3A5090</color>
+    <color name="colorPrimaryDark">#0A2470</color>
+    <color name="colorAccent">#3A5090</color>
+
+
+    <color name="bluePurple">#05376C</color>
+    <color name="white">@android:color/white</color>
+    <color name="black">@android:color/black</color>
+    <color name="charcoal">#525252</color>
+
+    <color name="primary_text">#525252</color>
+    <color name="secondary_text">#181818</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+    <color name="grey_light">#e0e0e0</color>
+    <color name="grey">#C4C4C4</color>
+    <color name="grey_dark">#7F7F7F</color>
+    <color name="grey_shade">#EEEEEE</color>
+    <color name="green_light">#00e676</color>
+    <color name="green">#47D476</color>
+
+    <color name="blueButton">#2EB7FC</color>
+    <color name="blueButtonSelected">#4A90E2</color>
+    <color name="red">#E74C3C</color>
+    <color name="blue_dull">#105093</color>
+
+    <color name="azureRadiance">#0076FF</color>
+    <color name="orange_old">#FF9800</color>
+    <color name="purple_dark">#115194</color>
+    <color name="transparent">#00000000</color>
+    <color name="translucent">#30000000</color>
+
+    <color name="color_account_name">#484848</color>
+    <color name="color_secondary_text">#B0B0B0</color>
+    <color name="selector_disabled">#999999</color>
+
+    <color name="service_status_yellow">#FFBB24</color>
+    <color name="service_status_green">#01CB5B</color>
+    <color name="service_status_red">#E74C3C</color>
+    <color name="service_status_blue">#1890FF</color>
+
+    <color name="service_info_text_color">#666666</color>
+
+
+    <color name="rating_color">#FFDB56</color>
+    <color name="description_bg">#F6F6F6</color>
+
+
+</resources>

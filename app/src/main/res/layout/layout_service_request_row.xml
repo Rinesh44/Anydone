@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srl_service_req1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:dragEdge="right"
+    app:mode="normal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/ib_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#FA3939"
+            android:padding="@dimen/dimen_10x2"
+            android:src="@drawable/ic_close_blue"
+            android:tint="@color/white" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_layout_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:selectableItemBackground"
+                android:paddingTop="@dimen/dimen_10x1">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_text_holder1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_service_name_holder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/dimens_2x"
+                        android:paddingEnd="@dimen/dimens_2x">
+
+                        <TextView
+                            android:id="@+id/tv_service_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:text="Plumber Service"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/dimen_10x1"
+                            android:layout_toEndOf="@+id/tv_service_name"
+                            android:src="@drawable/ic_remote_tag"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_problem_stat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:ellipsize="end"
+                        android:paddingStart="@dimen/dimens_2x"
+                        android:paddingEnd="@dimen/dimens_2x"
+                        android:singleLine="true"
+                        android:text="Bathroom pipe broken"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/material_text_body2"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:drawableStart="@drawable/ic_location_nows"
+                        android:drawablePadding="@dimen/dimen_10x1"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/dimens_2x"
+                        android:paddingEnd="@dimen/dimens_2x"
+                        android:singleLine="true"
+                        android:text="New Baneshwor, ktm, 525555"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/material_text_body2"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:drawableStart="@drawable/ic_date_nows"
+                        android:drawablePadding="@dimen/dimen_10x1"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/dimens_2x"
+                        android:paddingEnd="@dimen/dimens_2x"
+                        android:paddingBottom="12dp"
+                        android:singleLine="true"
+                        android:text="2:30 pm"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/material_text_body2"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:paddingStart="@dimen/dimens_2x"
+                    android:paddingEnd="@dimen/dimens_2x"
+                    android:text="Pending"
+                    android:textColor="@color/service_status_yellow" />
+
+                <View
+                    android:id="@+id/view_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#E7E7E7" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

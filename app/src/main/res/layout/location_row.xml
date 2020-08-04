@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srl_location"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimens_10x"
+    app:dragEdge="right"
+    app:mode="normal">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="@dimen/dimens_16x"
+            android:layout_height="@dimen/dimens_10x"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dimen_2x2"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="12dp"
+            android:weightSum="2">
+
+            <ImageButton
+                android:id="@+id/ib_primary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#FFE247"
+                android:src="@drawable/ic_primary" />
+
+            <ImageButton
+                android:id="@+id/ib_delete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#FF4A4A"
+                android:src="@drawable/ic_delete" />
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_location_holder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_10x"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingStart="@dimen/dimens_2x"
+            android:src="@drawable/ic_location_blue"
+            android:tint="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/dimen_6x1"
+            android:layout_toEndOf="@+id/iv_location">
+
+            <TextView
+                android:id="@+id/tv_location_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_2x"
+                android:text="Home"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_toEndOf="@+id/tv_location_type"
+                android:src="@drawable/ic_default"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_location_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_location_type"
+                android:layout_marginStart="@dimen/dimens_2x"
+                android:ellipsize="end"
+                android:paddingEnd="@dimen/dimens_2x"
+                android:singleLine="true"
+                android:text="Kathmandu, Nepal"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#E7E7E7" />
+
+    </RelativeLayout>
+
+
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

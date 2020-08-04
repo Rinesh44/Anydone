@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dimen_2x2"
+    android:paddingBottom="@dimen/dimen_10x2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_dot"
+        android:drawablePadding="@dimen/dimen_2x4"
+        android:text="Completed"
+        android:textColor="@color/green"
+        android:textStyle="bold" />
+
+</LinearLayout>

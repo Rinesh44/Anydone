@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_requested_by_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_timeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_marker"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_5x1"
+            android:padding="@dimen/dimen_2x1"
+            android:src="@drawable/ic_dot_blue" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="1.5dp"
+            android:layout_height="@dimen/dimens_1x"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/grey_light" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimens_2x"
+        android:layout_margin="@dimen/dimen_2x2"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:text="2020/04/02"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_date"
+        android:layout_margin="@dimen/dimen_2x4"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:text="@string/service_requested_by"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_filed1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginStart="@dimen/dimen_6x1"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_field1"
+            android:layout_width="@dimen/dimens_3x"
+            android:layout_height="@dimen/dimens_3x"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_profile_icon" />
+
+        <TextView
+            android:id="@+id/tv_field1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:text="ram prasad asjdhf sdhfkjhs ksdfhk"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_field2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_filed1"
+        android:layout_marginStart="@dimen/dimen_6x1"
+        android:layout_marginTop="@dimen/dimen_2x4"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="@dimen/dimens_3x"
+            android:layout_height="@dimen/dimens_3x"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/dimen_2x2"
+            android:src="@drawable/ic_location_new_big" />
+
+        <TextView
+            android:id="@+id/tv_field2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_6x1"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:gravity="center_vertical"
+            android:text="ram prasad"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_datetime_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_field2"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/dimen_6x1"
+        android:layout_marginTop="@dimen/dimen_6x1"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimens_3x"
+            android:layout_height="@dimen/dimens_3x"
+            android:layout_gravity="center"
+            android:padding="@dimen/dimen_2x1"
+            android:layout_marginEnd="@dimen/dimen_2x2"
+            android:src="@drawable/ic_from_date_big" />
+
+        <TextView
+            android:id="@+id/tv_field3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/dimen_6x1"
+            android:text="ram prasad"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</RelativeLayout>

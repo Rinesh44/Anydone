@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "12805055476",
+    "firebase_url": "https://anydoneandroid.firebaseio.com",
+    "project_id": "anydoneandroid",
+    "storage_bucket": "anydoneandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12805055476:android:effde4842aa577a5c7cfa1",
+        "android_client_info": {
+          "package_name": "com.treeleaf.anydone.serviceprovider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12805055476-rnte0gaut7qll87jfg6ja5sgo4p81cj4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.treeleaf.anydone.serviceprovider",
+            "certificate_hash": "f5610f04714a939bf3d28811c3fc621622b339ce"
+          }
+        },
+        {
+          "client_id": "12805055476-oda185i17b5gluft5l27vo252gnt5mcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_juz7CGZ3W2DoOkIG8jFpd_07r55gqtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12805055476-oda185i17b5gluft5l27vo252gnt5mcp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

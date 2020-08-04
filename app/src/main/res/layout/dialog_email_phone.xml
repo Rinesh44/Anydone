@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_10x2">
+
+    <RelativeLayout
+        android:id="@+id/rl_phone_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/country_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimen_2x6"
+            android:elevation="2dp"
+            android:paddingTop="@dimen/dimen_2x2"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_showNameCode="false"
+            app:ccp_showPhoneCode="false" />
+
+        <TextView
+            android:id="@+id/tv_country_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimens_1x"
+            android:layout_toEndOf="@+id/country_picker"
+            android:paddingTop="@dimen/dimen_5x1"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_phone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimens_1x"
+            android:hint="@string/phone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone|number"
+                android:maxLength="30"
+                android:paddingStart="@dimen/dimens_17x"
+                android:singleLine="true"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/il_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_2x4"
+        android:hint="@string/email"
+        android:visibility="gone"
+        app:startIconContentDescription="@string/email_phone"
+        app:startIconDrawable="@drawable/ic_mail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:maxLength="45"
+            android:singleLine="true"
+            android:textSize="@dimen/material_text_body1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_verify"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10x6"
+        android:layout_margin="@dimen/dimen_2x4"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/add"
+        android:textAllCaps="true"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_10x1">
+
+    <LinearLayout
+        android:id="@+id/ll_service_doers_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_6x1"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:id="@+id/tv_service_doer_names"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_service_doers_holder"
+        android:gravity="center"
+        android:text="Ram and laxmi were added"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
+
+</RelativeLayout>

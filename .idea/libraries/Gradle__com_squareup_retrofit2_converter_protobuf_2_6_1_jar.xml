@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.retrofit2:converter-protobuf:2.6.1@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-protobuf/2.6.1/3b3b8897db342fdff0bb06e691152dbb9a76e14a/converter-protobuf-2.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-protobuf/2.6.1/4786b9178f82c7cacbee39903d383b8da1c61977/converter-protobuf-2.6.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-protobuf/2.6.1/a084643f7ff54444e26f371d687289e239df7b44/converter-protobuf-2.6.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

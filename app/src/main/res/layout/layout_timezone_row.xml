@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_timezone_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="@dimen/dimens_2x"
+    android:paddingTop="@dimen/dimen_10x1"
+    android:paddingEnd="@dimen/dimen_10x1"
+    android:paddingBottom="@dimen/dimen_10x1">
+
+    <TextView
+        android:id="@+id/tv_zone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kathmandu"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_timezone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_zone"
+        android:text="secondary text for timeline ( GMT +5:45)" />
+
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/et_search_timezone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_rounded"
+        android:ellipsize="end"
+        android:layout_margin="@dimen/dimens_2x"
+        android:hint="Search time zone"
+        android:inputType="textVisiblePassword"
+        android:padding="@dimen/dimens_2x"
+        android:textSize="@dimen/material_text_body1" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_timezone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        tools:listitem="@layout/layout_timezone_row" />
+
+</LinearLayout>

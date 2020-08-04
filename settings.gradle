@@ -1,0 +1,3 @@
+include ':treeleaf-webrtc-library'
+rootProject.name='AnydoneServiceProviderApp'
+include ':app'

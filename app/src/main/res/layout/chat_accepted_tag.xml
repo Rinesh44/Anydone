@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dimen_10x1">
+
+    <TextView
+        android:id="@+id/tv_accpeted_by_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dimens_2x"
+        android:layout_marginEnd="@dimen/dimens_2x"
+        android:layout_marginBottom="@dimen/dimen_10x1"
+        android:background="@drawable/et_rounded_fill"
+        android:elevation="1dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dimen_10x1"
+        android:paddingTop="@dimen/dimen_2x4"
+        android:paddingEnd="@dimen/dimen_10x1"
+        android:paddingBottom="@dimen/dimen_2x4"
+        android:text="Request Accepted by" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:background="#BDBDBD" />
+
+</RelativeLayout>

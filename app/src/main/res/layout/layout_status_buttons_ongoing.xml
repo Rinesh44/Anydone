@@ -1,0 +1,60 @@
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rg_status"
+    android:layout_width="wrap_content"
+    android:layout_height="35dp"
+    android:layout_marginTop="@dimen/dimens_2x"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/btn_started"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="@string/started"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_pending"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="@string/pending"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_ongoing"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="@string/accepted"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_complete"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="@string/completed"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+</RadioGroup>

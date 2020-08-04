@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:padding="@dimen/dimens_2x">
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_close_blue"
+        android:tint="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Rate us"
+        android:textColor="@color/black"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dimen_10x2"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:layout_marginEnd="@dimen/dimen_10x2"
+        android:text="Tell others what do you think about our services."
+        android:textColor="@color/black" />
+
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dimen_10x2"
+        android:numStars="5"
+        android:progressTint="@color/rating_color" />
+
+    <EditText
+        android:id="@+id/tv_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_14x"
+        android:background="@color/description_bg"
+        android:gravity="top"
+        android:hint="Say something about our service?"
+        android:maxLines="4"
+        android:padding="@dimen/dimen_10x1"
+        android:textSize="@dimen/material_text_body1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10x6"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/iv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dimens_2x"
+        android:src="@drawable/ic_location_circle" />
+
+    <RelativeLayout
+        android:id="@+id/rl_loation_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dimens_2x"
+        android:layout_toEndOf="@+id/iv_location">
+
+        <TextView
+            android:id="@+id/tv_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kathmandu"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_primary"
+            android:text="kathmandu, lalitpur" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_loation_holder"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:background="#E7E7E7" />
+
+</RelativeLayout>

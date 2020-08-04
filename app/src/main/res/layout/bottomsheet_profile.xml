@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="@dimen/dimen_10x2"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_10x2"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profile_user_image"
+        android:layout_width="@dimen/dimens_17x"
+        android:layout_height="@dimen/dimens_17x"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_profile_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_10x2"
+        android:text="Sujata Dongol"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/material_text_subhead"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:gravity="center">
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:progressTint="@color/rating_color" />
+
+        <TextView
+            android:id="@+id/tv_rate_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/rating"
+            android:text="(4.4)"
+            android:textColor="@color/secondary_text" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_location_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_locations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/rv_locations"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/tv_add_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:drawableStart="@drawable/ic_add_black"
+            android:drawablePadding="@dimen/dimen_10x1"
+            android:gravity="center_vertical"
+            android:text="Add Location"
+            android:textColor="@color/secondary_text"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_no_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10x1"
+            android:src="@drawable/ic_no_location_found" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_no_location"
+            android:layout_margin="@dimen/dimen_10x1"
+            android:gravity="center"
+            android:text="No location added yet"
+            android:textColor="#B0B0B0"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_location"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10x6"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dimens_2x"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/add_location"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

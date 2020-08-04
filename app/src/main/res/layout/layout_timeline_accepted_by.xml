@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_accepted_by_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_timeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_marker"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_5x1"
+            android:padding="@dimen/dimen_2x1"
+            android:src="@drawable/ic_dot_blue" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dimens_1x"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/grey_light" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimens_2x"
+        android:layout_margin="@dimen/dimen_2x2"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:text="2020/04/02"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_date"
+        android:layout_margin="@dimen/dimen_2x4"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:text="Service Accepted By: "
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_accepted_by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_margin="@dimen/dimen_6x1"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_accepted_by"
+            android:layout_width="@dimen/dimens_3x"
+            android:layout_height="@dimen/dimens_3x"
+            android:src="@drawable/ic_profile_icon" />
+
+        <TextView
+            android:id="@+id/tv_accepted_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:gravity="center"
+            android:text="ram prasad"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+</RelativeLayout>

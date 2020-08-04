@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_10x2">
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Delete"
+        android:textColor="@color/black"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:text="Are you sure you want to delete?"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_margin="@dimen/dimen_10x1"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/material_text_caption"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_margin="@dimen/dimen_10x1"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Ok"
+            android:textAllCaps="false"
+            android:textSize="@dimen/material_text_caption"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_task_assigned"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_timeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_marker"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_5x1"
+            android:padding="@dimen/dimen_2x1"
+            android:src="@drawable/ic_dot_blue" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dimens_1x"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/grey_light" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_assigend_date"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimens_2x"
+        android:layout_margin="@dimen/dimen_2x2"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:gravity="center_vertical"
+        android:text="2020/04/02"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tv_task_assigned_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_assigend_date"
+        android:layout_margin="@dimen/dimen_2x4"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:text="Task Assigned To:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/ll_assigned_employees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_task_assigned_to"
+        android:layout_marginStart="@dimen/dimen_2x4"
+        android:layout_toEndOf="@+id/ll_timeline"
+        android:orientation="vertical" />
+
+</RelativeLayout>

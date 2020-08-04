@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="dimens_1x">16dp</dimen>
+    <dimen name="dimens_2x">32dp</dimen>
+    <dimen name="dimens_3x">48dp</dimen>
+    <dimen name="dimens_4x">64dp</dimen>
+    <dimen name="dimens_5x">80dp</dimen>
+    <dimen name="dimens_6x">96dp</dimen>
+    <dimen name="dimens_8x">128dp</dimen>
+    <dimen name="dimens_9x">144dp</dimen>
+    <dimen name="dimens_10x">160dp</dimen>
+    <dimen name="dimens_11x">176dp</dimen>
+    <dimen name="dimens_12x">192dp</dimen>
+    <dimen name="dimens_13x">208dp</dimen>
+    <dimen name="dimens_15x">256dp</dimen>
+    <dimen name="dimens_16x">224dp</dimen>
+    <dimen name="dimens_17x">272dp</dimen>
+    <dimen name="dimens_18x">288dp</dimen>
+    <dimen name="dimens_19x">304dp</dimen>
+    <dimen name="dimens_20x">320dp</dimen>
+
+    <!--material design typography text sizes-->
+    <dimen name="material_text_caption">12sp</dimen>
+    <dimen name="material_text_body1">14sp</dimen>
+    <dimen name="material_text_body2">13sp</dimen>
+    <dimen name="material_text_subhead">16sp</dimen>
+    <dimen name="material_text_title">20sp</dimen>
+    <dimen name="material_text_headline">24sp</dimen>
+    <dimen name="material_text_display1">34sp</dimen>
+
+
+</resources>

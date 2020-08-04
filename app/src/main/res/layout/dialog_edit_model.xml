@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_model_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:gravity="center"
+        android:text="@string/edit_problem_statement"
+        android:textColor="@color/black"
+        android:textSize="@dimen/material_text_subhead"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/ll_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_2x"
+        android:layout_marginTop="@dimen/dimen_10x2"
+        android:layout_marginEnd="@dimen/dimens_2x"
+        android:layout_marginBottom="@dimen/dimens_2x"
+        android:weightSum="10">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="9">
+
+            <AutoCompleteTextView
+                android:id="@+id/et_model"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_rounded_blue"
+                android:inputType="textVisiblePassword"
+                android:paddingEnd="@dimen/dimen_10x4"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:src="@drawable/ic_close_blue"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_send"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_10x3"
+                android:src="@drawable/ic_next"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

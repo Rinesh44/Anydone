@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/dimens_2x">
+
+    <RelativeLayout
+        android:id="@+id/rl_use_camera2"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/dimens_2x"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_use_camera2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/use_camera_2"
+            android:textColor="@color/secondary_text" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cb_use_camera2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_video_resolution"
+        android:layout_width="match_parent"
+        android:text="@string/video_resolution"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_camera_fps"
+        android:layout_width="match_parent"
+        android:text="@string/camera_fps"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_max_video_bitrate"
+        android:layout_width="match_parent"
+        android:text="@string/maximum_video_bitrate_setting"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_encoder_bitrate"
+        android:layout_width="match_parent"
+        android:text="@string/video_encoder_maximum_bitrate"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_def_video_codec"
+        android:layout_width="match_parent"
+        android:text="@string/default_video_codec"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_audio_bitrate"
+        android:layout_width="match_parent"
+        android:text="@string/audio_bitrate_setting"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_audio_codec_bitrate"
+        android:layout_width="match_parent"
+        android:text="@string/audio_codec_bitrate"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_def_audio_codec"
+        android:layout_width="match_parent"
+        android:text="@string/default_audio_codec"
+        android:padding="@dimen/dimens_2x"
+        android:textColor="@color/secondary_text"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/rl_disable_audio_processing"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/dimens_2x"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_disable_audio_processing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/disable_audio_processing"
+            android:textColor="@color/secondary_text" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cb_disable_audio_processing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dimen_6x1"
+    app:cardElevation="@dimen/dimen_2x2">
+
+    <RelativeLayout
+        android:id="@+id/rl_service_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dimens_2x">
+
+        <ImageView
+            android:id="@+id/iv_service_icon"
+            android:layout_width="@dimen/dimens_8x"
+            android:layout_height="@dimen/dimens_8x"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:src="@drawable/ic_mechanic_icon" />
+
+        <TextView
+            android:id="@+id/tv_service_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_service_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:text="Mechanic"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
