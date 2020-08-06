@@ -4,10 +4,11 @@ import androidx.annotation.NonNull;
 
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ConsumerRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
@@ -86,7 +87,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                         Hawk.put(Constants.SELECTED_LANGUAGE, loginResponse.getLoginResponse().
                                 getUser().getConsumer().getAccount().getLanguage());
 
-                        checkAccountStatus(loginResponse);
+                        checkLoginType(loginResponse);
                     }
 
                     @Override
@@ -103,8 +104,57 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
         );
     }
 
+    private void checkLoginType(AuthRpcProto.AuthBaseResponse loginResponse) {
+        if (!loginResponse.getLoginResponse().getUser().getConsumer().getAccount().getAccountId().isEmpty()) {
+            getView().onLoginFail("Please login from consumer app");
+            return;
+        }
+
+        if (!loginResponse.getLoginResponse().getUser().getEmployee().getAccount()
+                .getAccountId().isEmpty()) {
+            //todo direct user to reset password screen if first login
+
+            EmployeeRepo.getInstance().saveEmployee(loginResponse.getLoginResponse(),
+                    new Repo.Callback() {
+                        @Override
+                        public void success(Object o) {
+                            GlobalUtils.showLog(TAG, "employee saved");
+                        }
+
+                        @Override
+                        public void fail() {
+                            GlobalUtils.showLog(TAG, "failed to save employee");
+                        }
+                    });
+
+            AccountRepo.getInstance().saveAccount(loginResponse.getLoginResponse(), true,
+                    new Repo.Callback() {
+                        @Override
+                        public void success(Object o) {
+                            GlobalUtils.showLog(TAG, "employee account saved");
+                            Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
+                            Hawk.put(Constants.LOGGED_IN, true);
+                            getView().onLoginSuccess();
+                        }
+
+                        @Override
+                        public void fail() {
+                            GlobalUtils.showLog(TAG, "failed to save employee account");
+                        }
+                    });
+            return;
+        }
+
+        if (!loginResponse.getLoginResponse().getUser().getServiceProvider()
+                .getAccount().getAccountId().isEmpty()) {
+            checkAccountStatus(loginResponse);
+        }
+
+
+    }
+
     private void checkAccountStatus(AuthRpcProto.AuthBaseResponse loginResponse) {
-        switch (loginResponse.getLoginResponse().getUser().getConsumer().getAccount().getStatus()) {
+        switch (loginResponse.getLoginResponse().getUser().getServiceProvider().getAccount().getStatus()) {
             case ACCOUNT_DELETED:
                 getView().onLoginFail("Your account has been deleted");
                 break;
@@ -118,34 +168,33 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                 break;
 
             case ACCOUNT_VERIFIED:
-                Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
-                Hawk.put(Constants.LOGGED_IN, true);
-
-                ConsumerRepo.getInstance().saveConsumer(loginResponse.getLoginResponse(),
+                ServiceProviderRepo.getInstance().saveServiceProvider(loginResponse.getLoginResponse(),
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {
-                                GlobalUtils.showLog(TAG, "Consumer saved");
+                                GlobalUtils.showLog(TAG, "Service provider saved");
                             }
 
                             @Override
                             public void fail() {
-                                GlobalUtils.showLog(TAG, "Failed to save consumer");
+                                GlobalUtils.showLog(TAG, "Failed to save service provider");
 
                             }
                         });
 
-                AccountRepo.getInstance().saveAccount(loginResponse.getLoginResponse(),
+                AccountRepo.getInstance().saveAccount(loginResponse.getLoginResponse(), false,
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {
-                                GlobalUtils.showLog(TAG, "Account saved");
+                                GlobalUtils.showLog(TAG, "Service provider Account saved");
+                                Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
+                                Hawk.put(Constants.LOGGED_IN, true);
                                 getView().onLoginSuccess();
                             }
 
                             @Override
                             public void fail() {
-                                GlobalUtils.showLog(TAG, "Failed to save account");
+                                GlobalUtils.showLog(TAG, "Failed to save service provider account");
                             }
                         });
 

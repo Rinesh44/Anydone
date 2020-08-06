@@ -4,13 +4,16 @@ import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.ServiceProto;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceAttributes;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,28 +73,50 @@ public final class ProtoMapper {
         return serviceAttributesList;
     }
 
+    public static Customer transformCustomer(TicketProto.Customer customerPb) {
+        Customer customer1 = new Customer();
+        customer1.setCustomerId(customerPb.getCustomerId());
+        customer1.setFullName(customerPb.getFullName());
+        customer1.setProfilePic(customerPb.getProfilePic());
+        return customer1;
+    }
+
     public static ServiceProvider transformServiceProvider
-            (OrderServiceProto.ServiceOrder serviceOrder) {
+            (UserProto.ServiceProviderProfile serviceProviderProfile) {
         ServiceProvider serviceProvider = new ServiceProvider();
-        serviceProvider.setAccountId(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setAccountId(serviceProviderProfile
                 .getAccount().getAccountId());
-        serviceProvider.setEmail(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setEmail(serviceProviderProfile
                 .getAccount().getEmail());
-        serviceProvider.setFullName(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setFullName(serviceProviderProfile
                 .getAccount().getFullName());
-        serviceProvider.setPhone(serviceOrder.getServiceProviderAccount().getAccount().getPhone());
-        serviceProvider.setProfileId(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setPhone(serviceProviderProfile.getAccount().getPhone());
+        serviceProvider.setProfileId(serviceProviderProfile
                 .getServiceProviderProfileId());
-        serviceProvider.setProfilePic(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setProfilePic(serviceProviderProfile
                 .getAccount().getProfilePic());
-        serviceProvider.setType(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setType(serviceProviderProfile
                 .getServiceProviderType().name());
-        serviceProvider.setNoOfRating(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setNoOfRating(serviceProviderProfile
                 .getNumberOfRating());
-        serviceProvider.setAvgRating(serviceOrder.getServiceProviderAccount()
+        serviceProvider.setAvgRating(serviceProviderProfile
                 .getAverageRating());
 
         return serviceProvider;
+    }
+
+    public static RealmList<Tags> transformTags(List<TicketProto.TicketTag> tagListPb) {
+        RealmList<Tags> tagsRealmList = new RealmList<>();
+        for (TicketProto.TicketTag ticketTagPb : tagListPb
+        ) {
+            Tags tags = new Tags();
+            tags.setTagId(ticketTagPb.getTagId());
+            tags.setCreatedBy(ticketTagPb.getCreatedBy().getAccount().getAccountId());
+            tags.setDescription(ticketTagPb.getDescription());
+            tags.setLabel(ticketTagPb.getLabel());
+            tagsRealmList.add(tags);
+        }
+        return tagsRealmList;
     }
 
     public static RealmList<Conversation> transformConversation

@@ -96,7 +96,7 @@ public class ServiceRequestRepo extends Repo {
             serviceRequest.setRemote(orderPb.getRemote());
             GlobalUtils.showLog(TAG, "service provider rating checK: " +
                     orderPb.getServiceProviderAccount().getAverageRating());
-            serviceRequest.setServiceProvider(ProtoMapper.transformServiceProvider(orderPb));
+            serviceRequest.setServiceProvider(ProtoMapper.transformServiceProvider(orderPb.getServiceProviderAccount()));
             serviceRequest.setAttributeList(ProtoMapper.getServiceAttributes(orderPb.getService()));
             serviceRequestList.add(serviceRequest);
         }

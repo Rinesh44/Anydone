@@ -12,13 +12,16 @@ import android.widget.Spinner;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
-import com.treeleaf.anydone.serviceprovider.realm.model.Consumer;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ConsumerRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -45,7 +48,8 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
     TextInputEditText etGender;
 
     private Account userAccount;
-    private Consumer consumer;
+    private Employee employee;
+    private ServiceProvider serviceProvider;
     private ProgressDialog progress;
 
     @Override
@@ -77,11 +81,20 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
 
         btnSave.setOnClickListener(v -> {
             hideKeyBoard();
-            consumer = ConsumerRepo.getInstance().getConsumerByAccountId
-                    (userAccount.getAccountId());
-            presenter.editProfile(consumer.getConsumerId(), userAccount.getAccountId(),
-                    UiUtils.getString(etFullName),
-                    (String) spnGender.getSelectedItem());
+            if (userAccount.getAccountType().equalsIgnoreCase(AnydoneProto.AccountType.EMPLOYEE.name())) {
+                employee = EmployeeRepo.getInstance().getEmployeeByAccountId
+                        (userAccount.getAccountId());
+                presenter.editEmployeeProfile(employee.getEmployeeId(), userAccount.getAccountId(),
+                        UiUtils.getString(etFullName),
+                        (String) spnGender.getSelectedItem());
+            } else {
+                serviceProvider = ServiceProviderRepo.getInstance().getServiceProviderByAccountId(
+                        (userAccount.getAccountId()));
+                presenter.editServiceProviderProfile(serviceProvider.getServiceProviderId(), userAccount.getAccountId(),
+                        UiUtils.getString(etFullName),
+                        (String) spnGender.getSelectedItem());
+            }
+
         });
     }
 

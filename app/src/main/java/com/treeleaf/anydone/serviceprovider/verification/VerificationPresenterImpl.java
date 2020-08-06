@@ -5,10 +5,11 @@ import androidx.annotation.NonNull;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ConsumerRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
@@ -212,33 +213,33 @@ public class VerificationPresenterImpl extends BasePresenter<VerificationContrac
         Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
         Hawk.put(Constants.LOGGED_IN, true);
 
-        ConsumerRepo.getInstance().saveConsumer(loginResponse.getLoginResponse(),
+        ServiceProviderRepo.getInstance().saveServiceProvider(loginResponse.getLoginResponse(),
                 new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                GlobalUtils.showLog(TAG, "Consumer saved");
-            }
+                    @Override
+                    public void success(Object o) {
+                        GlobalUtils.showLog(TAG, "Service provider saved");
+                    }
 
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "Failed to save consumer");
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG, "Failed to save service provider");
 
-            }
-        });
+                    }
+                });
 
-        AccountRepo.getInstance().saveAccount(loginResponse.getLoginResponse(),
+        AccountRepo.getInstance().saveAccount(loginResponse.getLoginResponse(), false,
                 new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                GlobalUtils.showLog(TAG, "Account saved");
-                getView().onLoginSuccess();
-            }
+                    @Override
+                    public void success(Object o) {
+                        GlobalUtils.showLog(TAG, "Service provider Account saved");
+                        getView().onLoginSuccess();
+                    }
 
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "Failed to save account");
-            }
-        });
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG, "Failed to save service provider account");
+                    }
+                });
     }
 
 

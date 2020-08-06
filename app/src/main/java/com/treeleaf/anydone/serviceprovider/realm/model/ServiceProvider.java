@@ -5,7 +5,9 @@ import androidx.room.PrimaryKey;
 import io.realm.RealmObject;
 
 public class ServiceProvider extends RealmObject {
+    public static final String SERVICE_PROVIDER_ID = "serviceProviderId";
     @PrimaryKey
+    private String serviceProviderId;
     private String accountId;
     private String email;
     private String phone;
@@ -17,6 +19,14 @@ public class ServiceProvider extends RealmObject {
     private float avgRating;
 
     public ServiceProvider() {
+    }
+
+    public String getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(String serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
     }
 
     public int getNoOfRating() {

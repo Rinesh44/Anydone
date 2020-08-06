@@ -72,10 +72,15 @@ public interface AnyDoneService {
     changePassword(@Header(AUTHORIZATION) String token,
                    @Body UserProto.PasswordChangeRequest passwordChangeRequest);
 
-    @PATCH("consumer")
+    @PATCH("employee")
     Observable<UserRpcProto.UserBaseResponse>
-    editProfile(@Header(AUTHORIZATION) String token,
-                @Body UserProto.ConsumerProfile consumerProfile);
+    editEmployeeProfile(@Header(AUTHORIZATION) String token,
+                        @Body UserProto.EmployeeProfile employeeProfile);
+
+    @PATCH("serviceprovider")
+    Observable<UserRpcProto.UserBaseResponse>
+    editServiceProviderProfile(@Header(AUTHORIZATION) String token,
+                               @Body UserProto.ServiceProviderProfile serviceProviderProfile);
 
     @PATCH("phone")
     Observable<UserRpcProto.UserBaseResponse>
@@ -88,8 +93,7 @@ public interface AnyDoneService {
     @Multipart
     @POST("upload/dp")
     Observable<UserRpcProto.UserBaseResponse>
-    uploadImage(@Header(AUTHORIZATION) String authorization,
-                @Part MultipartBody.Part image);
+    uploadImage(@Header(AUTHORIZATION) String authorization, @Part MultipartBody.Part image);
 
     @POST("service/parse/search")
     Observable<SearchServiceRpcProto.SearchServiceBaseResponse>
@@ -115,8 +119,7 @@ public interface AnyDoneService {
 
     @GET
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
-    filterServiceRequests(@Header(AUTHORIZATION) String token,
-                          @Url String url);
+    filterServiceRequests(@Header(AUTHORIZATION) String token, @Url String url);
 
     @GET("service/order/consumer")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>

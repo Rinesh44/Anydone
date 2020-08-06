@@ -23,6 +23,7 @@ public class Account extends RealmObject {
     private boolean isEmailVerified;
     private boolean isPhoneVerified;
     private boolean isKycVerified;
+    private boolean isFirstLogin;
     private long createdAt;
     private long updatedAt;
     private RealmList<Location> locationRealmList;
@@ -172,5 +173,13 @@ public class Account extends RealmObject {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public boolean isFirstLogin() {
+        return isFirstLogin;
+    }
+
+    public void setFirstLogin(boolean firstLogin) {
+        isFirstLogin = firstLogin;
     }
 }

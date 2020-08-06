@@ -32,15 +32,15 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
     }
 
     @Override
-    public void editProfile(@NonNull String consumerProfileId,
-                            @NonNull String accountId,
-                            @NonNull String fullName,
-                            @NonNull String gender) {
+    public void editEmployeeProfile(@NonNull String employeeProfileId,
+                                    @NonNull String accountId,
+                                    @NonNull String fullName,
+                                    @NonNull String gender) {
         Preconditions.checkNotNull(getView(), "View is not attached");
         Preconditions.checkNotNull(fullName, "FullName cannot be null");
 //        Preconditions.checkNotNull(address, "Address cannot be null");
-        Preconditions.checkNotNull(consumerProfileId,
-                "Consumer profile id cannot be null");
+        Preconditions.checkNotNull(employeeProfileId,
+                "Employee profile id cannot be null");
         Preconditions.checkNotNull(accountId, "Account id cannot be null");
         Preconditions.checkNotNull(gender, "Gender cannot be null");
 
@@ -53,9 +53,9 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
         GlobalUtils.showLog(TAG, "gender: " + gender);
         AnydoneProto.Gender selectedGender = GlobalUtils.getGender(gender);
 
-        UserProto.ConsumerProfile consumerProfile = setDataToEntity(consumerProfileId, accountId,
+        UserProto.EmployeeProfile employeeProfile = setEmployeeDataToEntity(employeeProfileId, accountId,
                 fullName, selectedGender);
-        editProfileObservable = editProfileRepository.editProfile(consumerProfile);
+        editProfileObservable = editProfileRepository.editEmployeeProfile(employeeProfile);
 
         addSubscription(editProfileObservable
                 .subscribeOn(Schedulers.io())
@@ -77,8 +77,8 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
                             return;
                         }
 
-                        AccountRepo.getInstance().editAccount(accountId,
-                                editProfileResponse.getConsumer(), new Repo.Callback() {
+                        AccountRepo.getInstance().editEmployeeAccount(accountId,
+                                editProfileResponse.getEmployee(), new Repo.Callback() {
                                     @Override
                                     public void success(Object o) {
                                         GlobalUtils.showLog(TAG, "account edited");
@@ -106,6 +106,83 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
                 }));
     }
 
+    @Override
+    public void editServiceProviderProfile(@NonNull String serviceProviderProfileId,
+                                           @NonNull String accountId,
+                                           @NonNull String fullName,
+                                           @NonNull String gender) {
+        Preconditions.checkNotNull(getView(), "View is not attached");
+        Preconditions.checkNotNull(fullName, "FullName cannot be null");
+//        Preconditions.checkNotNull(address, "Address cannot be null");
+        Preconditions.checkNotNull(serviceProviderProfileId,
+                "Service provider profile id cannot be null");
+        Preconditions.checkNotNull(accountId, "Account id cannot be null");
+        Preconditions.checkNotNull(gender, "Gender cannot be null");
+
+        if (!validateCredentials(fullName, gender)) {
+            return;
+        }
+
+        getView().showProgressBar("Please wait...");
+        Observable<UserRpcProto.UserBaseResponse> editProfileObservable;
+        GlobalUtils.showLog(TAG, "gender: " + gender);
+        AnydoneProto.Gender selectedGender = GlobalUtils.getGender(gender);
+
+        UserProto.ServiceProviderProfile serviceProviderProfile =
+                setServiceProviderDataToEntity(serviceProviderProfileId, accountId,
+                        fullName, selectedGender);
+        editProfileObservable = editProfileRepository.editServiceProviderProfile(serviceProviderProfile);
+
+        addSubscription(editProfileObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                    @Override
+                    public void onNext(UserRpcProto.UserBaseResponse editProfileResponse) {
+                        GlobalUtils.showLog(TAG, "edit profile response: " +
+                                editProfileResponse);
+
+                        getView().hideProgressBar();
+                        if (editProfileResponse == null) {
+                            getView().onEditProfileFail("Edit profile failed");
+                            return;
+                        }
+
+                        if (editProfileResponse.getError()) {
+                            getView().onEditProfileFail(editProfileResponse.getMsg());
+                            return;
+                        }
+
+                        AccountRepo.getInstance().editServiceProviderAccount(accountId,
+                                editProfileResponse.getServiceProvider(), new Repo.Callback() {
+                                    @Override
+                                    public void success(Object o) {
+                                        GlobalUtils.showLog(TAG, "account edited");
+                                        getView().onEditProfileSuccess();
+                                    }
+
+                                    @Override
+                                    public void fail() {
+                                        GlobalUtils.showLog(TAG,
+                                                "account edit failed");
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+
+    }
+
     private boolean validateCredentials(String fullName, String gender) {
 
         if (ValidationUtils.isEmpty(fullName)) {
@@ -121,10 +198,10 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
         return true;
     }
 
-    private UserProto.ConsumerProfile setDataToEntity(@NonNull String consumerProfileId,
-                                                      @NonNull String accountId,
-                                                      @NonNull String fullName,
-                                                      @NonNull AnydoneProto.Gender gender) {
+    private UserProto.EmployeeProfile setEmployeeDataToEntity(@NonNull String employeeProfileId,
+                                                              @NonNull String accountId,
+                                                              @NonNull String fullName,
+                                                              @NonNull AnydoneProto.Gender gender) {
 
         UserProto.Account account = UserProto.Account.newBuilder()
                 .setFullName(fullName)
@@ -132,15 +209,38 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
                 .setCountryCode(Hawk.get(Constants.COUNTRY_CODE))
                 .build();
 
-        UserProto.ConsumerProfile consumerProfile = UserProto.ConsumerProfile.newBuilder()
-                .setConsumerProfileId(consumerProfileId)
+        UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
+                .setEmployeeProfileId(employeeProfileId)
                 .setGender(gender)
                 .setAccount(account)
                 .setUpdatedAt(System.currentTimeMillis())
                 .build();
 
-        GlobalUtils.showLog(TAG, "edit profile check: " + consumerProfile);
+        GlobalUtils.showLog(TAG, "edit profile check: " + employeeProfile);
 
-        return consumerProfile;
+        return employeeProfile;
+    }
+
+    private UserProto.ServiceProviderProfile setServiceProviderDataToEntity(@NonNull String serviceProviderProfileId,
+                                                                            @NonNull String accountId,
+                                                                            @NonNull String fullName,
+                                                                            @NonNull AnydoneProto.Gender gender) {
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setFullName(fullName)
+                .setAccountId(accountId)
+                .setCountryCode(Hawk.get(Constants.COUNTRY_CODE))
+                .build();
+
+        UserProto.ServiceProviderProfile serviceProviderProfile = UserProto.ServiceProviderProfile.newBuilder()
+                .setServiceProviderProfileId(serviceProviderProfileId)
+//                .setGender(gender)
+                .setAccount(account)
+                .setUpdatedAt(System.currentTimeMillis())
+                .build();
+
+        GlobalUtils.showLog(TAG, "edit profile check: " + serviceProviderProfile);
+
+        return serviceProviderProfile;
     }
 }

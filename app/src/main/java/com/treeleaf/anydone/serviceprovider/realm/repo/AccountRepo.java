@@ -6,9 +6,7 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
-
 import java.util.List;
-
 import io.realm.Realm;
 import io.realm.RealmList;
 
@@ -23,12 +21,17 @@ public class AccountRepo extends Repo {
         return accountRepo;
     }
 
-    public void saveAccount(final AuthProto.LoginResponse loginResponse, final Callback callback) {
+    public void saveAccount(final AuthProto.LoginResponse loginResponse, boolean employee,
+                            final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
 
         try {
             realm.executeTransaction(realm1 -> {
-                Account account = setAccount(loginResponse.getUser().getConsumer(), realm1);
+                Account account;
+                if (employee)
+                    account = setEmployeeAccount(loginResponse.getUser().getEmployee(), realm1);
+                else
+                    account = setServiceProviderAccount(loginResponse.getUser().getServiceProvider(), realm1);
                 realm1.copyToRealmOrUpdate(account);
                 callback.success(null);
             });
@@ -41,17 +44,26 @@ public class AccountRepo extends Repo {
         }
     }
 
-    private Account setAccount(UserProto.ConsumerProfile accountPb, Realm realm) {
+    private Account setEmployeeAccount(UserProto.EmployeeProfile accountPb, Realm realm) {
         Account account = realm.where(Account.class)
                 .equalTo(Account.ACCOUNT_ID, accountPb.getAccount().getAccountId())
                 .findFirst();
         if (account != null) return account;
-        return transformAccount(realm.createObject(Account.class, accountPb.getAccount()
+        return transformEmployeeAccount(realm.createObject(Account.class, accountPb.getAccount()
                 .getAccountId()), accountPb, realm);
     }
 
-    public void editAccount(String accountId, UserProto.ConsumerProfile accountPb,
-                            final Callback callback) {
+    private Account setServiceProviderAccount(UserProto.ServiceProviderProfile accountPb, Realm realm) {
+        Account account = realm.where(Account.class)
+                .equalTo(Account.ACCOUNT_ID, accountPb.getAccount().getAccountId())
+                .findFirst();
+        if (account != null) return account;
+        return transformServiceProviderAccount(realm.createObject(Account.class, accountPb.getAccount()
+                .getAccountId()), accountPb, realm);
+    }
+
+    public void editEmployeeAccount(String accountId, UserProto.EmployeeProfile accountPb,
+                                    final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
 
         try {
@@ -60,7 +72,7 @@ public class AccountRepo extends Repo {
                         .equalTo(Account.ACCOUNT_ID, accountId)
                         .findFirst();
                 if (account != null) {
-                    Account accountModel = mapEditedAccount(account, accountPb);
+                    Account accountModel = mapEditedEmployeeAccount(account, accountPb);
                     realm1.insertOrUpdate(accountModel);
                     callback.success(null);
                 }
@@ -72,7 +84,30 @@ public class AccountRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
 
+    public void editServiceProviderAccount(String accountId, UserProto.ServiceProviderProfile accountPb,
+                                           final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+
+        try {
+            realm.executeTransaction(realm1 -> {
+                Account account = realm.where(Account.class)
+                        .equalTo(Account.ACCOUNT_ID, accountId)
+                        .findFirst();
+                if (account != null) {
+                    Account accountModel = mapEditedServiceProviderAccount(account, accountPb);
+                    realm1.insertOrUpdate(accountModel);
+                    callback.success(null);
+                }
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
     }
 
     public void addProfilePicUrl(String profilePicUrl, final Callback callback) {
@@ -181,7 +216,7 @@ public class AccountRepo extends Repo {
     }
 
 
-    private Account transformAccount(Account account, UserProto.ConsumerProfile accountPb, Realm
+    private Account transformEmployeeAccount(Account account, UserProto.EmployeeProfile accountPb, Realm
             realm) {
         account.setAccountType(accountPb.getAccount().getAccountType().name());
         account.setCountryCode(accountPb.getAccount().getCountryCode());
@@ -191,6 +226,29 @@ public class AccountRepo extends Repo {
         account.setPhone(accountPb.getAccount().getPhone());
         account.setFullName(accountPb.getAccount().getFullName());
         account.setGender(accountPb.getGender().name());
+        account.setEmailVerified(accountPb.getAccount().getIsEmailVerified());
+        account.setPhoneVerified(accountPb.getAccount().getIsPhoneVerified());
+        account.setKycVerified(accountPb.getAccount().getIsKycVerified());
+        account.setProfilePic(accountPb.getAccount().getProfilePic());
+        account.setStatus(accountPb.getAccount().getStatus().name());
+        account.setTimezone(accountPb.getAccount().getTimezone());
+        account.setAddress(accountPb.getAccount().getAddress());
+        account.setCurrencyCode(accountPb.getAccount().getCurrencyCode());
+        account.setLocationRealmList(getLocations(realm,
+                accountPb.getAccount().getLocationsList()));
+        return account;
+    }
+
+    private Account transformServiceProviderAccount(Account account, UserProto.ServiceProviderProfile accountPb, Realm
+            realm) {
+        account.setAccountType(accountPb.getAccount().getAccountType().name());
+        account.setCountryCode(accountPb.getAccount().getCountryCode());
+        account.setCreatedAt(accountPb.getCreatedAt());
+        account.setUpdatedAt(accountPb.getUpdatedAt());
+        account.setEmail(accountPb.getAccount().getEmail());
+        account.setPhone(accountPb.getAccount().getPhone());
+        account.setFullName(accountPb.getAccount().getFullName());
+//        account.setGender(accountPb.getGender().name());
         account.setEmailVerified(accountPb.getAccount().getIsEmailVerified());
         account.setPhoneVerified(accountPb.getAccount().getIsPhoneVerified());
         account.setKycVerified(accountPb.getAccount().getIsKycVerified());
@@ -219,13 +277,25 @@ public class AccountRepo extends Repo {
         return locationRealmList;
     }
 
-    private Account mapEditedAccount(Account account, UserProto.ConsumerProfile accountPb) {
+    private Account mapEditedEmployeeAccount(Account account, UserProto.EmployeeProfile accountPb) {
         account.setAccountType(accountPb.getAccount().getAccountType().name());
         account.setCountryCode(accountPb.getAccount().getCountryCode());
         account.setCreatedAt(accountPb.getCreatedAt());
         account.setUpdatedAt(accountPb.getUpdatedAt());
         account.setFullName(accountPb.getAccount().getFullName());
         account.setGender(accountPb.getGender().name());
+        account.setAddress(accountPb.getAccount().getAddress());
+        account.setStatus(accountPb.getAccount().getStatus().name());
+        return account;
+    }
+
+    private Account mapEditedServiceProviderAccount(Account account, UserProto.ServiceProviderProfile accountPb) {
+        account.setAccountType(accountPb.getAccount().getAccountType().name());
+        account.setCountryCode(accountPb.getAccount().getCountryCode());
+        account.setCreatedAt(accountPb.getCreatedAt());
+        account.setUpdatedAt(accountPb.getUpdatedAt());
+        account.setFullName(accountPb.getAccount().getFullName());
+//        account.setGender(accountPb.getGender().name());
         account.setAddress(accountPb.getAccount().getAddress());
         account.setStatus(accountPb.getAccount().getStatus().name());
         return account;

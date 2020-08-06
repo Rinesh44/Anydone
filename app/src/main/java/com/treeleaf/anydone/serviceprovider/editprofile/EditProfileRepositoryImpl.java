@@ -18,8 +18,12 @@ public class EditProfileRepositoryImpl implements EditProfileRepository {
     }
 
     @Override
-    public Observable<UserRpcProto.UserBaseResponse> editProfile
-            (@NonNull UserProto.ConsumerProfile consumerProfile) {
-        return service.editProfile(Hawk.get(Constants.TOKEN), consumerProfile);
+    public Observable<UserRpcProto.UserBaseResponse> editEmployeeProfile(@NonNull UserProto.EmployeeProfile employeeProfile) {
+        return service.editEmployeeProfile(Hawk.get(Constants.TOKEN), employeeProfile);
+    }
+
+    @Override
+    public Observable<UserRpcProto.UserBaseResponse> editServiceProviderProfile(@NonNull UserProto.ServiceProviderProfile serviceProviderProfile) {
+        return service.editServiceProviderProfile(Hawk.get(Constants.TOKEN), serviceProviderProfile);
     }
 }

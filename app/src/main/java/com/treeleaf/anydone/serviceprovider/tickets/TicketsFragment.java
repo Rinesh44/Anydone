@@ -35,8 +35,8 @@ import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
-import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.tickets.alltickets.AllTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.alltickets.OnAllTicketsListener;
@@ -69,7 +69,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @BindView(R.id.pb_search)
     ProgressBar pbSearch;
 
-    private List<ServiceRequest> serviceRequests;
+    private List<Tickets> ticketsList;
     private String statusValue = "null";
     private SubscribeTicketListListener subscribeTicketListListener;
     private AllTicketsListListener allTicketsListListener;
@@ -104,18 +104,15 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-  /*      serviceRequests = ServiceRequestRepo
-                .getInstance().getAllServiceRequests();
+        ticketsList = TicketRepo.getInstance().getAllTickets();
         createFilterBottomSheet();
-        if (CollectionUtils.isEmpty(serviceRequests)) {
-            presenter.getServiceRequests(true);
+        if (CollectionUtils.isEmpty(ticketsList)) {
+            presenter.getTickets(true);
         } else {
             ivFilter.setVisibility(View.VISIBLE);
             int fragmentIndex = mViewpager.getCurrentItem();
-            presenter.separateOngoingAndClosedRequests(serviceRequests, fragmentIndex, filter);
-            //to set service name for filter autocomplete
-            presenter.getServiceNames(serviceRequests);
-        }*/
+            presenter.separateSubscribeAndAllTickets(ticketsList, fragmentIndex, filter);
+        }
 
         setupViewPager(mViewpager);
         mTabs.setupWithViewPager(mViewpager);
@@ -190,7 +187,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @OnClick(R.id.iv_filter)
     void filterRequests() {
-        if (!CollectionUtils.isEmpty(serviceRequests)) {
+        if (!CollectionUtils.isEmpty(ticketsList)) {
             int fragmentIndex = mViewpager.getCurrentItem();
             if (fragmentIndex == 0) {
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()

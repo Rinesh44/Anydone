@@ -68,7 +68,6 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
         checkRequiredPermissions();
         configureGoogleSignIn();
         addTextInputListeners();
-
     }
 
     private void addTextInputListeners() {

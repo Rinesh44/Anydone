@@ -5,7 +5,7 @@
     android:id="@+id/rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".serviceprovider.landing.LandingActivity">
+    tools:context=".landing.LandingActivity">
 
     <!--    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -35,6 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:itemIconTint="@drawable/bottom_navigation_bck"
+            app:itemTextAppearanceActive="@style/BottomNavigationView"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
             app:itemTextColor="@drawable/bottom_navigation_bck"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_main" />

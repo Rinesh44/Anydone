@@ -8,7 +8,10 @@ import com.treeleaf.anydone.rpc.UserRpcProto;
 import io.reactivex.Observable;
 
 public interface EditProfileRepository {
-    Observable<UserRpcProto.UserBaseResponse> editProfile(
-            @NonNull UserProto.ConsumerProfile consumerProfile);
+    Observable<UserRpcProto.UserBaseResponse> editEmployeeProfile(
+            @NonNull UserProto.EmployeeProfile consumerProfile);
+
+    Observable<UserRpcProto.UserBaseResponse> editServiceProviderProfile(
+            @NonNull UserProto.ServiceProviderProfile serviceProviderProfile);
 
 }

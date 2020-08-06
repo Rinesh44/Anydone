@@ -23,10 +23,15 @@ public class EditProfileContract {
     }
 
     public interface EditProfilePresenter extends Presenter<EditProfileView> {
-        void editProfile(@NonNull String consumerProfileId,
-                         @NonNull String accountId,
-                         @NonNull String fullName,
-                         @NonNull String gender);
+        void editEmployeeProfile(@NonNull String employeeProfileId,
+                                 @NonNull String accountId,
+                                 @NonNull String fullName,
+                                 @NonNull String gender);
+
+        void editServiceProviderProfile(@NonNull String serviceProviderProfileId,
+                                        @NonNull String accountId,
+                                        @NonNull String fullName,
+                                        @NonNull String gender);
 
     }
 }
