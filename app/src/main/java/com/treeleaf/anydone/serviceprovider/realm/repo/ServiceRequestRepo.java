@@ -117,4 +117,34 @@ public class ServiceRequestRepo extends Repo {
             close(realm);
         }
     }
+
+    public List<ServiceRequest> getOpenServiceRequests() {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            return new ArrayList<>(realm.where(ServiceRequest.class)
+                    .equalTo("status",
+                            OrderServiceProto.ServiceOrderState.PENDING_SERVICE_ORDER.name())
+                    .sort("createdAt", Sort.DESCENDING).findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<ServiceRequest> getAcceptedServiceRequests() {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            return new ArrayList<>(realm.where(ServiceRequest.class)
+                    .notEqualTo("status",
+                            OrderServiceProto.ServiceOrderState.PENDING_SERVICE_ORDER.name())
+                    .sort("createdAt", Sort.DESCENDING).findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
 }

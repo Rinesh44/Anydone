@@ -24,6 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
+import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -225,6 +226,14 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     @Override
     public void onLoginFail(String msg) {
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onEmployeeFirstLogin(String oldPassword) {
+        Intent i = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+        i.putExtra("employee_first_login", true);
+        i.putExtra("old_password", oldPassword);
+        startActivity(i);
     }
 
     @Override

@@ -18,7 +18,9 @@ public class TicketsContract {
 
         void onSubscribeTicketsSeparated(List<Tickets> subscribeTicketList);
 
-        void onAllTicketsSeparated(List<Tickets> allTicketList);
+        void onAssignedTicketsSeparated(List<Tickets> assignedTicketList);
+
+        void onClosedTicketsSeparated(List<Tickets> closedTicketList);
 
     }
 
@@ -26,7 +28,7 @@ public class TicketsContract {
 
         void getTickets(boolean showProgress);
 
-        void separateSubscribeAndAllTickets(List<Tickets> ticketsList, int fragmentIndex,
-                                            boolean filter);
+        void separateAssignedAndClosedTickets(List<Tickets> ticketsList, int fragmentIndex,
+                                              boolean filter);
     }
 }

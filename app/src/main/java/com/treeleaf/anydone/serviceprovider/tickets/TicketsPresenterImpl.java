@@ -77,8 +77,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
     @Override
-    public void separateSubscribeAndAllTickets(List<Tickets> ticketsList, int fragmentIndex,
-                                               boolean filter) {
+    public void separateAssignedAndClosedTickets(List<Tickets> ticketsList, int fragmentIndex, boolean filter) {
 
     }
+
 }

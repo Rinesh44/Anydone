@@ -39,10 +39,10 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.model.FilterObject;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceRequestRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequests.closed.ClosedRequestFragment;
-import com.treeleaf.anydone.serviceprovider.servicerequests.closed.OnClosedFragmentListener;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ongoing.OnOngoingFragmentReadyListener;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ongoing.OngoingRequestFragment;
+import com.treeleaf.anydone.serviceprovider.servicerequests.open.OpenRequestFragment;
+import com.treeleaf.anydone.serviceprovider.servicerequests.open.OnOpenFragmentListener;
+import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRequestFragment;
+import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.OnAcceptedFragmentReadyListener;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -57,7 +57,7 @@ import butterknife.OnClick;
 
 public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenterImpl>
         implements ServiceRequestContract.ServiceRequestView, OnSwipeListener,
-        OnOngoingFragmentReadyListener, OnClosedFragmentListener {
+        OnAcceptedFragmentReadyListener, OnOpenFragmentListener {
     private static final String TAG = "ServiceRequestFragment";
     @BindView(R.id.tabs)
     TabLayout mTabs;
@@ -70,10 +70,11 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
     @BindView(R.id.pb_search)
     ProgressBar pbSearch;
 
-    private List<ServiceRequest> serviceRequests;
+    private List<ServiceRequest> acceptedServiceRequests;
+    private List<ServiceRequest> openServiceRequests;
     private String statusValue = "null";
-    private OngoingListListener ongoingListListener;
-    private ClosedListListener closedListListener;
+    private AcceptedListListener acceptedListListener;
+    private OpenListListener openListListener;
     private List<ServiceRequest> ongoingRequests;
     private List<ServiceRequest> closedRequests;
     private RadioGroup rgStatus;
@@ -105,17 +106,17 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        serviceRequests = ServiceRequestRepo
-                .getInstance().getAllServiceRequests();
+        acceptedServiceRequests = ServiceRequestRepo
+                .getInstance().getAcceptedServiceRequests();
+        openServiceRequests = ServiceRequestRepo
+                .getInstance().getOpenServiceRequests();
         createFilterBottomSheet();
-        if (CollectionUtils.isEmpty(serviceRequests)) {
-            presenter.getServiceRequests(true);
-        } else {
-            ivFilter.setVisibility(View.VISIBLE);
-            int fragmentIndex = mViewpager.getCurrentItem();
-            presenter.separateOngoingAndClosedRequests(serviceRequests, fragmentIndex, filter);
-            //to set service name for filter autocomplete
-            presenter.getServiceNames(serviceRequests);
+        if (CollectionUtils.isEmpty(acceptedServiceRequests)) {
+            presenter.getAcceptedServiceRequests(true);
+        }
+
+        if (CollectionUtils.isEmpty(openServiceRequests)) {
+            presenter.getOpenServiceRequests(true);
         }
 
         setupViewPager(mViewpager);
@@ -144,7 +145,12 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
             hideKeyBoard();
 
             Hawk.put(Constants.SELECTED_FILTER_STATUS, -1);
-            presenter.getServiceRequests(true);
+            if (mViewpager.getCurrentItem() == 0) {
+                presenter.getAcceptedServiceRequests(true);
+            } else {
+                presenter.getOpenServiceRequests(true);
+            }
+
         });
 
         etServiceName.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
@@ -191,9 +197,9 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
 
     @OnClick(R.id.iv_filter)
     void filterRequests() {
-        if (!CollectionUtils.isEmpty(serviceRequests)) {
-            int fragmentIndex = mViewpager.getCurrentItem();
-            if (fragmentIndex == 0) {
+        int fragmentIndex = mViewpager.getCurrentItem();
+        if (fragmentIndex == 0) {
+            if (!CollectionUtils.isEmpty(acceptedServiceRequests)) {
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
                         .inflate(R.layout.layout_status_buttons_ongoing, null);
                 rgStatus = statusView.findViewById(R.id.rg_status);
@@ -216,7 +222,9 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
 
                 hsvStatusContainer.removeAllViews();
                 hsvStatusContainer.addView(rgStatus);
-            } else {
+            }
+        } else {
+            if (!CollectionUtils.isEmpty(openServiceRequests)) {
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
                         .inflate(R.layout.layout_status_button_closed, null);
                 rgStatus = statusView.findViewById(R.id.rg_status);
@@ -241,12 +249,8 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
                 hsvStatusContainer.removeAllViews();
                 hsvStatusContainer.addView(rgStatus);
             }
-            GlobalUtils.showLog(TAG, "fragment index: " + fragmentIndex);
-        } else {
-            UiUtils.showSnackBar(getContext(), Objects.requireNonNull(getActivity()).getWindow()
-                            .getDecorView().getRootView(),
-                    "No service requests found to filter");
         }
+        GlobalUtils.showLog(TAG, "fragment index: " + fragmentIndex);
         toggleBottomSheet();
     }
 
@@ -339,23 +343,22 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
     }
 
     @Override
-    public void getServiceRequestSuccess() {
-        serviceRequests = ServiceRequestRepo.getInstance().getAllServiceRequests();
-        GlobalUtils.showLog(TAG, "service requests size: " + serviceRequests.size());
-        int fragmentIndex = mViewpager.getCurrentItem();
-        presenter.separateOngoingAndClosedRequests(serviceRequests, fragmentIndex, filter);
-        //to set service name for filter autocomplete
-        presenter.getServiceNames(serviceRequests);
+    public void getAcceptedServiceRequestSuccess() {
+        acceptedServiceRequests = ServiceRequestRepo.getInstance().getAcceptedServiceRequests();
+        GlobalUtils.showLog(TAG, "accepted service requests size: " + acceptedServiceRequests.size());
 
-        if (CollectionUtils.isEmpty(serviceRequests)) {
+        if (CollectionUtils.isEmpty(acceptedServiceRequests)) {
             ivFilter.setVisibility(View.GONE);
         } else {
             ivFilter.setVisibility(View.VISIBLE);
+            if (acceptedListListener != null)
+                acceptedListListener.showAcceptedRequests(acceptedServiceRequests);
+            else GlobalUtils.showLog(TAG, "accepted listener is null");
         }
     }
 
     @Override
-    public void getServiceRequestFail(String msg) {
+    public void getAcceptedServiceRequestFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
@@ -366,8 +369,37 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
         List<ServiceRequest> emptyList = new ArrayList<>();
-        ongoingListListener.showOngoingRequests(emptyList);
-        closedListListener.showClosedRequests(emptyList);
+        acceptedListListener.showAcceptedRequests(emptyList);
+    }
+
+    @Override
+    public void getOpenServiceRequestSuccess() {
+        openServiceRequests = ServiceRequestRepo.getInstance().getOpenServiceRequests();
+        GlobalUtils.showLog(TAG, "service requests size: " + openServiceRequests.size());
+
+        if (CollectionUtils.isEmpty(openServiceRequests)) {
+            ivFilter.setVisibility(View.GONE);
+        } else {
+            ivFilter.setVisibility(View.VISIBLE);
+            if (openListListener != null)
+                openListListener.showOpenRequests(openServiceRequests);
+            else GlobalUtils.showLog(TAG, "open request listener is null");
+        }
+    }
+
+    @Override
+    public void getOpenServiceRequestFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+        List<ServiceRequest> emptyList = new ArrayList<>();
+        openListListener.showOpenRequests(emptyList);
     }
 
     @Override
@@ -406,24 +438,6 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
 
     }
 
-    @Override
-    public void onOngoingRequestTypeSeparated(List<ServiceRequest> onGoingRequestList) {
-        GlobalUtils.showLog(TAG, "ongoing request count: " + onGoingRequestList.size());
-        ongoingRequests = onGoingRequestList;
-        if (ongoingListListener != null)
-            ongoingListListener.showOngoingRequests(ongoingRequests);
-        else GlobalUtils.showLog(TAG, "ongiong listener is null");
-    }
-
-    @Override
-    public void onClosedRequestTypeSeparated(List<ServiceRequest> closedRequestList) {
-        GlobalUtils.showLog(TAG, "closed request count: " + closedRequestList.size());
-        closedRequests = closedRequestList;
-        if (closedListListener != null)
-            closedListListener.showClosedRequests(closedRequests);
-        else GlobalUtils.showLog(TAG, "closed listener is null");
-    }
-
     private void hideKeyBoard() {
         final InputMethodManager imm = (InputMethodManager)
                 Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -459,33 +473,38 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        viewPagerAdapter.addFragment(new OngoingRequestFragment(), "On going");
-        viewPagerAdapter.addFragment(new ClosedRequestFragment(), "Closed");
+        viewPagerAdapter.addFragment(new AcceptedRequestFragment(), "Accepted");
+        viewPagerAdapter.addFragment(new OpenRequestFragment(), "Open");
         viewPager.setAdapter(viewPagerAdapter);
     }
 
     @Override
     public void onSwipeRefresh() {
         GlobalUtils.showLog(TAG, "swipe implemented");
-        presenter.getServiceRequests(false);
+        if (mViewpager.getCurrentItem() == 0) {
+            presenter.getAcceptedServiceRequests(false);
+        } else {
+            presenter.getOpenServiceRequests(false);
+        }
+
     }
 
 
     @Override
-    public void onClosedFragmentsCreated() {
+    public void onOpenFragmentCreated() {
         GlobalUtils.showLog(TAG, "on closed created called");
-        if (closedListListener != null)
-            closedListListener.showClosedRequests(closedRequests);
-        else GlobalUtils.showLog(TAG, "closed listener is null");
+        if (openListListener != null)
+            openListListener.showOpenRequests(openServiceRequests);
+        else GlobalUtils.showLog(TAG, "open listener is null");
     }
 
     @Override
-    public void onOngoingFragmentsCreated() {
+    public void onAcceptedFragmentsCreated() {
         GlobalUtils.showLog(TAG, "on ongoing created called");
 
-        if (ongoingListListener != null)
-            ongoingListListener.showOngoingRequests(ongoingRequests);
-        else GlobalUtils.showLog(TAG, "ongiong listener is null");
+        if (acceptedListListener != null)
+            acceptedListListener.showAcceptedRequests(acceptedServiceRequests);
+        else GlobalUtils.showLog(TAG, "accepted listener is null");
 
     }
 
@@ -519,19 +538,19 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
         }
     }
 
-    public interface OngoingListListener {
-        void showOngoingRequests(List<ServiceRequest> onGoingRequestList);
+    public interface AcceptedListListener {
+        void showAcceptedRequests(List<ServiceRequest> acceptedRequestList);
     }
 
-    public void setOngoingListListener(OngoingListListener listener) {
-        ongoingListListener = listener;
+    public void setAcceptedListListener(AcceptedListListener listener) {
+        acceptedListListener = listener;
     }
 
-    public interface ClosedListListener {
-        void showClosedRequests(List<ServiceRequest> closedRequestList);
+    public interface OpenListListener {
+        void showOpenRequests(List<ServiceRequest> openRequestList);
     }
 
-    public void setClosedListListener(ClosedListListener listener) {
-        closedListListener = listener;
+    public void setOpenListListener(OpenListListener listener) {
+        openListListener = listener;
     }
 }

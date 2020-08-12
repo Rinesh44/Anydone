@@ -1,9 +1,9 @@
-package com.treeleaf.anydone.serviceprovider.servicerequests.ongoing;
+package com.treeleaf.anydone.serviceprovider.servicerequests.accepted;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
-public class OngoingRequestContract {
+public class AcceptedRequestContract {
     public interface OngoingView extends BaseView {
         void onOrderCancelSuccess();
 

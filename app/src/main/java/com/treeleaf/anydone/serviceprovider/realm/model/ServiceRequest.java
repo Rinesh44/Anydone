@@ -13,6 +13,7 @@ public class ServiceRequest extends RealmObject {
     private String language;
     private String status;
     private String serviceIconUrl;
+    private String type;
     private long createdAt;
     private long acceptedAt;
     private long startedAt;
@@ -23,6 +24,14 @@ public class ServiceRequest extends RealmObject {
     private RealmList<ServiceAttributes> attributeList;
 
     public ServiceRequest() {
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public boolean isRemote() {

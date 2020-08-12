@@ -23,6 +23,8 @@ public class LoginContract {
 
         void onLoginFail(String msg);
 
+        void onEmployeeFirstLogin(String oldPassword);
+
     }
 
     public interface LoginPresenter extends Presenter<LoginView> {

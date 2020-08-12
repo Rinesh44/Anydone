@@ -3,8 +3,8 @@ package com.treeleaf.anydone.serviceprovider.login;
 import androidx.annotation.NonNull;
 
 import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
+import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -87,7 +87,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                         Hawk.put(Constants.SELECTED_LANGUAGE, loginResponse.getLoginResponse().
                                 getUser().getConsumer().getAccount().getLanguage());
 
-                        checkLoginType(loginResponse);
+                        checkLoginType(loginResponse, password);
                     }
 
                     @Override
@@ -104,52 +104,60 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
         );
     }
 
-    private void checkLoginType(AuthRpcProto.AuthBaseResponse loginResponse) {
-        if (!loginResponse.getLoginResponse().getUser().getConsumer().getAccount().getAccountId().isEmpty()) {
+    private void checkLoginType(AuthRpcProto.AuthBaseResponse loginResponse, String password) {
+        //check for consumer login case
+        if (!loginResponse.getLoginResponse().getUser().getConsumer().getAccount()
+                .getAccountId().isEmpty()) {
             getView().onLoginFail("Please login from consumer app");
             return;
         }
 
+        //check for employee login case
         if (!loginResponse.getLoginResponse().getUser().getEmployee().getAccount()
                 .getAccountId().isEmpty()) {
-            //todo direct user to reset password screen if first login
 
-            EmployeeRepo.getInstance().saveEmployee(loginResponse.getLoginResponse(),
-                    new Repo.Callback() {
-                        @Override
-                        public void success(Object o) {
-                            GlobalUtils.showLog(TAG, "employee saved");
-                        }
+            if (loginResponse.getLoginResponse().getUser().getEmployee().getPasswordChanged()) {
+                EmployeeRepo.getInstance().saveEmployee(loginResponse.getLoginResponse(),
+                        new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                GlobalUtils.showLog(TAG, "employee saved");
+                            }
 
-                        @Override
-                        public void fail() {
-                            GlobalUtils.showLog(TAG, "failed to save employee");
-                        }
-                    });
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to save employee");
+                            }
+                        });
 
-            AccountRepo.getInstance().saveAccount(loginResponse.getLoginResponse(), true,
-                    new Repo.Callback() {
-                        @Override
-                        public void success(Object o) {
-                            GlobalUtils.showLog(TAG, "employee account saved");
-                            Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
-                            Hawk.put(Constants.LOGGED_IN, true);
-                            getView().onLoginSuccess();
-                        }
+                AccountRepo.getInstance().saveAccount(loginResponse.getLoginResponse(), true,
+                        new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                GlobalUtils.showLog(TAG, "employee account saved");
+                                Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
+                                Hawk.put(Constants.LOGGED_IN, true);
+                                getView().onLoginSuccess();
+                            }
 
-                        @Override
-                        public void fail() {
-                            GlobalUtils.showLog(TAG, "failed to save employee account");
-                        }
-                    });
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to save employee account");
+                            }
+                        });
+            } else {
+                Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
+                getView().onEmployeeFirstLogin(password);
+            }
+
             return;
         }
 
+        //check for service provider login case
         if (!loginResponse.getLoginResponse().getUser().getServiceProvider()
                 .getAccount().getAccountId().isEmpty()) {
             checkAccountStatus(loginResponse);
         }
-
 
     }
 
@@ -171,7 +179,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                 ServiceProviderRepo.getInstance().saveServiceProvider(loginResponse.getLoginResponse(),
                         new Repo.Callback() {
                             @Override
-                            public void success(Object o) {
+                            public void success(Object o    ) {
                                 GlobalUtils.showLog(TAG, "Service provider saved");
                             }
 

@@ -16,18 +16,17 @@ public class ServiceRequestContract {
 
         void setTillDateTime(long tillTime);
 
-        void getServiceRequestSuccess();
+        void getAcceptedServiceRequestSuccess();
 
-        void getServiceRequestFail(String msg);
+        void getAcceptedServiceRequestFail(String msg);
+
+        void getOpenServiceRequestSuccess();
+
+        void getOpenServiceRequestFail(String msg);
 
         void onFilterRequestsSuccess(List<ServiceRequest> filteredServiceRequests);
 
         void onFilterRequestsFail(String msg);
-
-        void onOngoingRequestTypeSeparated(List<ServiceRequest> onGoingRequestList);
-
-        void onClosedRequestTypeSeparated(List<ServiceRequest> closedRequestList);
-
     }
 
     public interface ServiceRequestPresenter extends Presenter<ServiceRequestView> {
@@ -37,7 +36,9 @@ public class ServiceRequestContract {
 
         void getTillDateTime(String tillDate);
 
-        void getServiceRequests(boolean showProgress);
+        void getAcceptedServiceRequests(boolean showProgress);
+
+        void getOpenServiceRequests(boolean showProgress);
 
         void filterServiceRequests(String serviceName, long from, long to, String status);
 

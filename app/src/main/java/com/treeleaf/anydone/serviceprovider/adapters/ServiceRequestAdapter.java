@@ -101,6 +101,7 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter
         if (!service.getStatus().equalsIgnoreCase
                 (OrderServiceProto.ServiceOrderState.PENDING_SERVICE_ORDER.name())) {
             viewBinderHelper.lockSwipe(String.valueOf(service.getServiceOrderId()));
+            holder.ibDelete.setVisibility(View.GONE);
         }
         holder.ibDelete.setOnClickListener(v -> {
             if (deleteListener != null) {
@@ -247,10 +248,12 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter
                 int position = getAdapterPosition();
 
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(serviceList.get(position));
+                ServiceRequest serviceRequest = serviceList.get(position);
+                if (listener != null && position != RecyclerView.NO_POSITION &&
+                        !serviceRequest.getStatus().equalsIgnoreCase
+                                (OrderServiceProto.ServiceOrderState.PENDING_SERVICE_ORDER.name())) {
+                    listener.onItemClick(serviceRequest);
                 }
-
             });
         }
     }

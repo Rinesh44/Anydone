@@ -1,14 +1,14 @@
-package com.treeleaf.anydone.serviceprovider.servicerequests.ongoing;
+package com.treeleaf.anydone.serviceprovider.servicerequests.accepted;
 
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 
 import io.reactivex.Observable;
 
-public class OngoingRepositoryImpl implements OngoingRepository {
+public class AcceptedRepositoryImpl implements AcceptedRepository {
     AnyDoneService anyDoneService;
 
-    public OngoingRepositoryImpl(AnyDoneService anyDoneService) {
+    public AcceptedRepositoryImpl(AnyDoneService anyDoneService) {
         this.anyDoneService = anyDoneService;
     }
 

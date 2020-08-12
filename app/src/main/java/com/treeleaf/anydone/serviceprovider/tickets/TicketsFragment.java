@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,8 +39,10 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
-import com.treeleaf.anydone.serviceprovider.tickets.alltickets.AllTicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.alltickets.OnAllTicketsListener;
+import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.OnAssignedTicketsListener;
+import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.OnClosedTicketsListener;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.OnSubscribeTicketsListener;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -56,7 +59,7 @@ import butterknife.OnClick;
 
 public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         implements TicketsContract.TicketsView, OnSwipeListener,
-        OnSubscribeTicketsListener, OnAllTicketsListener {
+        OnSubscribeTicketsListener, OnAssignedTicketsListener, OnClosedTicketsListener {
     private static final String TAG = "ServiceRequestFragment";
     @BindView(R.id.tabs)
     TabLayout mTabs;
@@ -68,13 +71,17 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     ImageView ivFilter;
     @BindView(R.id.pb_search)
     ProgressBar pbSearch;
+    @BindView(R.id.btn_add_ticket)
+    MaterialButton btnAddTicket;
 
     private List<Tickets> ticketsList;
     private String statusValue = "null";
     private SubscribeTicketListListener subscribeTicketListListener;
-    private AllTicketsListListener allTicketsListListener;
+    private AssignedTicketListListener assignedTicketListListener;
+    private ClosedTicketListListener closedTicketListListener;
     private List<Tickets> subscribeTickets;
-    private List<Tickets> allTickets;
+    private List<Tickets> assignedTickets;
+    private List<Tickets> closedTickets;
     private RadioGroup rgStatus;
     private boolean filter = false;
     private BottomSheetDialog filterBottomSheet;
@@ -111,7 +118,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         } else {
             ivFilter.setVisibility(View.VISIBLE);
             int fragmentIndex = mViewpager.getCurrentItem();
-            presenter.separateSubscribeAndAllTickets(ticketsList, fragmentIndex, filter);
+            presenter.separateAssignedAndClosedTickets(ticketsList, fragmentIndex, filter);
         }
 
         setupViewPager(mViewpager);
@@ -184,6 +191,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         });
     }
 
+    @OnClick(R.id.btn_add_ticket)
+    void addTicket() {
+        Toast.makeText(getContext(), "Add ticket clicked", Toast.LENGTH_SHORT).show();
+    }
 
     @OnClick(R.id.iv_filter)
     void filterRequests() {
@@ -362,8 +373,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        viewPagerAdapter.addFragment(new SubscribeTicketsFragment(), "Subscribe");
-        viewPagerAdapter.addFragment(new AllTicketsFragment(), "All");
+        viewPagerAdapter.addFragment(new AssignedTicketsFragment(), "Assigned");
+        viewPagerAdapter.addFragment(new SubscribeTicketsFragment(), "Subscribed");
+        viewPagerAdapter.addFragment(new ClosedTicketsFragment(), "Closed/Resolved");
         viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -403,20 +415,21 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     }
 
     @Override
-    public void onAllTicketsSeparated(List<Tickets> allTicketList) {
-        GlobalUtils.showLog(TAG, "all tickets count: " + allTicketList.size());
-        allTickets = allTicketList;
-        if (allTicketsListListener != null)
-            allTicketsListListener.showAllTickets(allTickets);
-        else GlobalUtils.showLog(TAG, "all ticket listener is null");
+    public void onAssignedTicketsSeparated(List<Tickets> assignedTicketList) {
+        GlobalUtils.showLog(TAG, "all tickets count: " + assignedTicketList.size());
+        assignedTickets = assignedTicketList;
+        if (assignedTicketListListener != null)
+            assignedTicketListListener.showAssignedTickets(assignedTickets);
+        else GlobalUtils.showLog(TAG, "assigned ticket listener is null");
     }
 
     @Override
-    public void onAllTicketsCreated() {
-        GlobalUtils.showLog(TAG, "on all ticket fragment created called");
-        if (allTicketsListListener != null)
-            allTicketsListListener.showAllTickets(allTickets);
-        else GlobalUtils.showLog(TAG, "all ticket listener is null");
+    public void onClosedTicketsSeparated(List<Tickets> closedTicketList) {
+        GlobalUtils.showLog(TAG, "closed tickets count: " + closedTicketList.size());
+        closedTickets = closedTicketList;
+        if (closedTicketListListener != null)
+            closedTicketListListener.showClosedTicketList(closedTickets);
+        else GlobalUtils.showLog(TAG, "closed ticket listener is null");
     }
 
     @Override
@@ -425,6 +438,22 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         if (subscribeTicketListListener != null)
             subscribeTicketListListener.showSubscribeTickets(subscribeTickets);
         else GlobalUtils.showLog(TAG, "subscribe ticket listener is null");
+    }
+
+    @Override
+    public void onAssignedTicketsCreated() {
+        GlobalUtils.showLog(TAG, "on assigned ticket fragment created called");
+        if (assignedTicketListListener != null)
+            assignedTicketListListener.showAssignedTickets(assignedTickets);
+        else GlobalUtils.showLog(TAG, "assinged ticket listener is null");
+    }
+
+    @Override
+    public void onClosedTicketsCreated() {
+        GlobalUtils.showLog(TAG, "on closed ticket fragment created called");
+        if (closedTicketListListener != null)
+            closedTicketListListener.showClosedTicketList(closedTickets);
+        else GlobalUtils.showLog(TAG, "closed ticket listener is null");
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -465,14 +494,21 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         subscribeTicketListListener = listener;
     }
 
-    public interface AllTicketsListListener {
-        void showAllTickets(List<Tickets> allTicketsList);
+    public interface AssignedTicketListListener {
+        void showAssignedTickets(List<Tickets> assignedTicketList);
     }
 
-    public void setAllTicketListListener(AllTicketsListListener listener) {
-        allTicketsListListener = listener;
+    public void setAssignedTicketListener(AssignedTicketListListener listener) {
+        assignedTicketListListener = listener;
     }
 
+    public interface ClosedTicketListListener {
+        void showClosedTicketList(List<Tickets> closedTicketList);
+    }
+
+    public void setClosedTicketListener(ClosedTicketListListener listener) {
+        closedTicketListListener = listener;
+    }
 
 }
 

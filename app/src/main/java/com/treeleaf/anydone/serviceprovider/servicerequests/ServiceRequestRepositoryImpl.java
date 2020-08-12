@@ -12,9 +12,15 @@ public class ServiceRequestRepositoryImpl implements ServiceRequestRepository {
         this.service = service;
     }
 
+
     @Override
-    public Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getOrderService(String token) {
-        return service.getOrderService(token);
+    public Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getOpenOrderService(String token) {
+        return service.getOpenServices(token);
+    }
+
+    @Override
+    public Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getAcceptedOrderService(String token) {
+        return service.getAcceptedServices(token);
     }
 
     @Override

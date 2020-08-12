@@ -1,4 +1,4 @@
-package com.treeleaf.anydone.serviceprovider.servicerequests.ongoing;
+package com.treeleaf.anydone.serviceprovider.servicerequests.accepted;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -35,19 +35,19 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
-public class OngoingRequestFragment extends BaseFragment<OngoingPresenterImpl> implements
-        OngoingRequestContract.OngoingView,
-        ServiceRequestFragment.OngoingListListener {
-    private static final String TAG = "OngoingRequestFragment";
-    @BindView(R.id.rv_ongoing_requests)
-    RecyclerView rvOngoingRequests;
+public class AcceptedRequestFragment extends BaseFragment<AcceptedPresenterImpl> implements
+        AcceptedRequestContract.OngoingView,
+        ServiceRequestFragment.AcceptedListListener {
+    private static final String TAG = "AcceptedRequestFragment";
+    @BindView(R.id.rv_accepted_requests)
+    RecyclerView rvAcceptedRequests;
     @BindView(R.id.swipe_refresh_ongoing)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     private ServiceRequestAdapter adapter;
     private OnSwipeListener swipeListener;
-    private OnOngoingFragmentReadyListener onFragmentsReadyListener;
+    private OnAcceptedFragmentReadyListener onFragmentsReadyListener;
     private ProgressDialog progress;
 
     @Override
@@ -56,12 +56,12 @@ public class OngoingRequestFragment extends BaseFragment<OngoingPresenterImpl> i
 
         ServiceRequestFragment mFragment = (ServiceRequestFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setOngoingListListener(this);
+        mFragment.setAcceptedListListener(this);
     }
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_ongoing_requests;
+        return R.layout.fragment_accepted_requests;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class OngoingRequestFragment extends BaseFragment<OngoingPresenterImpl> i
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        GlobalUtils.showLog(TAG, "onview created for ongoing");
+        GlobalUtils.showLog(TAG, "onview created for accepted");
         /*
          * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
          * performs a swipe-to-refresh gesture.
@@ -102,16 +102,16 @@ public class OngoingRequestFragment extends BaseFragment<OngoingPresenterImpl> i
         );
 
         if (onFragmentsReadyListener != null)
-            onFragmentsReadyListener.onOngoingFragmentsCreated();
+            onFragmentsReadyListener.onAcceptedFragmentsCreated();
 
     }
 
     private void setUpRecyclerView(List<ServiceRequest> serviceList) {
         GlobalUtils.showLog(TAG, "setUpRecyclerview called");
         if (!CollectionUtils.isEmpty(serviceList)) {
-            rvOngoingRequests.setVisibility(View.VISIBLE);
+            rvAcceptedRequests.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            rvOngoingRequests.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvAcceptedRequests.setLayoutManager(new LinearLayoutManager(getContext()));
             adapter = new ServiceRequestAdapter(serviceList, getContext());
             adapter.setOnDeleteListener((id, pos) -> showCancelRequestDialog(id));
 
@@ -124,9 +124,9 @@ public class OngoingRequestFragment extends BaseFragment<OngoingPresenterImpl> i
                         service.getServiceProvider().getProfilePic());
                 startActivity(i);
             });
-            rvOngoingRequests.setAdapter(adapter);
+            rvAcceptedRequests.setAdapter(adapter);
         } else {
-            rvOngoingRequests.setVisibility(View.GONE);
+            rvAcceptedRequests.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
         }
     }
@@ -171,8 +171,8 @@ public class OngoingRequestFragment extends BaseFragment<OngoingPresenterImpl> i
     }
 
     @Override
-    public void showOngoingRequests(List<ServiceRequest> onGoingRequestList) {
-        setUpRecyclerView(onGoingRequestList);
+    public void showAcceptedRequests(List<ServiceRequest> acceptedRequestList) {
+        setUpRecyclerView(acceptedRequestList);
     }
 
 
@@ -180,7 +180,7 @@ public class OngoingRequestFragment extends BaseFragment<OngoingPresenterImpl> i
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         swipeListener = (OnSwipeListener) getParentFragment();
-        onFragmentsReadyListener = (OnOngoingFragmentReadyListener) getParentFragment();
+        onFragmentsReadyListener = (OnAcceptedFragmentReadyListener) getParentFragment();
     }
 
     @Override

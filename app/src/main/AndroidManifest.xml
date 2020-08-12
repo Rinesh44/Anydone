@@ -26,6 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".addticket.AddTicketActivity"></activity>
+        <activity android:name=".tickets.UnSubscribedTicketsActivity" />
         <activity
             android:name=".weblink.WebLinkActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -58,41 +60,40 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".profile.ProfileActivity"
-            android:theme="@style/FormTheme"
-            android:configChanges="locale"/>
+            android:configChanges="locale"
+            android:theme="@style/FormTheme" />
         <activity
             android:name=".verification.VerificationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".landing.LandingActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="locale"/>
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".forgotpassword.ForgotPasswordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".editprofile.EditProfileActivity"
-            android:theme="@style/FormTheme"
-            android:configChanges="locale"/>
+            android:configChanges="locale"
+            android:theme="@style/FormTheme" />
         <activity
             android:name=".changepassword.ChangePasswordActivity"
-            android:theme="@style/FormTheme"
-            android:configChanges="locale"/>
+            android:configChanges="locale"
+            android:theme="@style/FormTheme" />
         <activity
             android:name=".setting.SettingsActivity"
-            android:theme="@style/FormTheme"
-            android:configChanges="locale"/>
+            android:configChanges="locale"
+            android:theme="@style/FormTheme" />
         <activity
             android:name=".forgotpassword.resetpassword.ResetPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".forgotpassword.verifyCode.VerifyCodeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <!--
  <activity

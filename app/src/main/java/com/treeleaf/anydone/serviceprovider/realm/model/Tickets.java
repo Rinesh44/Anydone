@@ -14,8 +14,19 @@ public class Tickets extends RealmObject {
     String ticketSource;
     RealmList<Tags> tagsRealmList;
     String serviceId;
+    String customerType;
+    String ticketType;
+    RealmList<Employee> assignedEmployee;
 
     public Tickets() {
+    }
+
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
     }
 
     public Tickets(long ticketId) {
@@ -84,5 +95,21 @@ public class Tickets extends RealmObject {
 
     public void setServiceId(String serviceId) {
         this.serviceId = serviceId;
+    }
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
+    }
+
+    public RealmList<Employee> getAssignedEmployee() {
+        return assignedEmployee;
+    }
+
+    public void setAssignedEmployee(RealmList<Employee> assignedEmployee) {
+        this.assignedEmployee = assignedEmployee;
     }
 }

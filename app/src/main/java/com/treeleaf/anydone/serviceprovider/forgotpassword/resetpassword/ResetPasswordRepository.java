@@ -14,4 +14,8 @@ public interface ResetPasswordRepository {
                                                             @NonNull String code);
 
     Observable<UserRpcProto.UserBaseResponse> resendCode(@NonNull String emailPhone);
+
+    Observable<UserRpcProto.UserBaseResponse> changePassword(@NonNull String token,
+                                                             @NonNull String oldPassword,
+                                                             @NonNull String NewPassword);
 }

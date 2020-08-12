@@ -1,7 +1,8 @@
-package com.treeleaf.anydone.serviceprovider.assignedtickets.closedresolvedtickets;
+package com.treeleaf.anydone.serviceprovider.servicerequests.open;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,10 +19,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketFragment;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.adapters.ServiceRequestAdapter;
+import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
+import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity
+        .ServiceRequestDetailActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
-import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.OnSubscribeTicketsListener;
+import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.List;
@@ -30,36 +33,37 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ClosedTicketsFragment extends Fragment implements
-        AssignedTicketFragment.ClosedTicketsListListener {
-    private static final String TAG = "ClosedTicketsFragment";
-    @BindView(R.id.rv_closed_tickets)
-    RecyclerView rvClosedTickets;
-    @BindView(R.id.swipe_refresh_closed_tickets)
+public class OpenRequestFragment extends Fragment implements
+        ServiceRequestFragment.OpenListListener {
+    private static final String TAG = "ClosedRequestFragment";
+    @BindView(R.id.rv_open_requests)
+    RecyclerView rvOpenRequests;
+    @BindView(R.id.swipe_refresh_closed)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     private Unbinder unbinder;
+    private ServiceRequestAdapter adapter;
     private OnSwipeListener swipeListener;
-    private OnClosedTicketsListener onClosedTicketsListener;
+    private OnOpenFragmentListener onOpenFragmentListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AssignedTicketFragment mFragment = (AssignedTicketFragment) getParentFragment();
+        ServiceRequestFragment mFragment = (ServiceRequestFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setClosedTicketListListener(this);
+        mFragment.setOpenListListener(this);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_closed_tickets, container,
+        View view = inflater.inflate(R.layout.fragment_open_requests, container,
                 false);
         unbinder = ButterKnife.bind(this, view);
+
         return view;
     }
 
@@ -74,22 +78,27 @@ public class ClosedTicketsFragment extends Fragment implements
         unbinder.unbind();
     }
 
-    private void setUpRecyclerView(List<Tickets> ticketsList) {
-        rvClosedTickets.setLayoutManager(new LinearLayoutManager(getContext()));
-        if (!CollectionUtils.isEmpty(ticketsList)) {
-            rvClosedTickets.setVisibility(View.VISIBLE);
+    private void setUpRecyclerView(List<ServiceRequest> serviceList) {
+        rvOpenRequests.setLayoutManager(new LinearLayoutManager(getContext()));
+        if (!CollectionUtils.isEmpty(serviceList)) {
+            rvOpenRequests.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-      /*      adapter = new ServiceRequestAdapter(ticketsList, getContext());
+            adapter = new ServiceRequestAdapter(serviceList, getContext());
             adapter.setOnItemClickListener(service -> {
                 Intent i = new Intent(getActivity(), ServiceRequestDetailActivity.class);
                 i.putExtra("selected_service_id", service.getServiceOrderId());
                 startActivity(i);
             });
-            rvClosedRequests.setAdapter(adapter);*/
+            rvOpenRequests.setAdapter(adapter);
         } else {
-            rvClosedTickets.setVisibility(View.GONE);
+            rvOpenRequests.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void showOpenRequests(List<ServiceRequest> openRequestList) {
+        setUpRecyclerView(openRequestList);
     }
 
     @Override
@@ -117,8 +126,8 @@ public class ClosedTicketsFragment extends Fragment implements
                 }
         );
 
-        if (onClosedTicketsListener != null) {
-            onClosedTicketsListener.onClosedTicketsCreated();
+        if (onOpenFragmentListener != null) {
+            onOpenFragmentListener.onOpenFragmentCreated();
         }
     }
 
@@ -126,14 +135,8 @@ public class ClosedTicketsFragment extends Fragment implements
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         swipeListener = (OnSwipeListener) getParentFragment();
-        onClosedTicketsListener = (OnClosedTicketsListener) getParentFragment();
+        onOpenFragmentListener = (OnOpenFragmentListener) getParentFragment();
     }
 
-
-    @Override
-    public void showClosedTickets(List<Tickets> closedTicketList) {
-        setUpRecyclerView(closedTicketList);
-    }
 }
-
 

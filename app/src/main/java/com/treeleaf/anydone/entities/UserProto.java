@@ -3614,6 +3614,11 @@ public final class UserProto {
      * <code>optional int32 numberOfRating = 11;</code>
      */
     int getNumberOfRating();
+
+    /**
+     * <code>optional bool passwordChanged = 12;</code>
+     */
+    boolean getPasswordChanged();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.EmployeeProfile}
@@ -4192,6 +4197,29 @@ public final class UserProto {
       numberOfRating_ = 0;
     }
 
+    public static final int PASSWORDCHANGED_FIELD_NUMBER = 12;
+    private boolean passwordChanged_;
+    /**
+     * <code>optional bool passwordChanged = 12;</code>
+     */
+    public boolean getPasswordChanged() {
+      return passwordChanged_;
+    }
+    /**
+     * <code>optional bool passwordChanged = 12;</code>
+     */
+    private void setPasswordChanged(boolean value) {
+      
+      passwordChanged_ = value;
+    }
+    /**
+     * <code>optional bool passwordChanged = 12;</code>
+     */
+    private void clearPasswordChanged() {
+      
+      passwordChanged_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (account_ != null) {
@@ -4226,6 +4254,9 @@ public final class UserProto {
       }
       if (numberOfRating_ != 0) {
         output.writeInt32(11, numberOfRating_);
+      }
+      if (passwordChanged_ != false) {
+        output.writeBool(12, passwordChanged_);
       }
     }
 
@@ -4277,6 +4308,10 @@ public final class UserProto {
       if (numberOfRating_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(11, numberOfRating_);
+      }
+      if (passwordChanged_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(12, passwordChanged_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -4852,6 +4887,29 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional bool passwordChanged = 12;</code>
+       */
+      public boolean getPasswordChanged() {
+        return instance.getPasswordChanged();
+      }
+      /**
+       * <code>optional bool passwordChanged = 12;</code>
+       */
+      public Builder setPasswordChanged(boolean value) {
+        copyOnWrite();
+        instance.setPasswordChanged(value);
+        return this;
+      }
+      /**
+       * <code>optional bool passwordChanged = 12;</code>
+       */
+      public Builder clearPasswordChanged() {
+        copyOnWrite();
+        instance.clearPasswordChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EmployeeProfile)
     }
     protected final Object dynamicMethod(
@@ -4893,6 +4951,8 @@ public final class UserProto {
               other.averageRating_ != 0F, other.averageRating_);
           numberOfRating_ = visitor.visitInt(numberOfRating_ != 0, numberOfRating_,
               other.numberOfRating_ != 0, other.numberOfRating_);
+          passwordChanged_ = visitor.visitBoolean(passwordChanged_ != false, passwordChanged_,
+              other.passwordChanged_ != false, other.passwordChanged_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4991,6 +5051,11 @@ public final class UserProto {
                 case 88: {
 
                   numberOfRating_ = input.readInt32();
+                  break;
+                }
+                case 96: {
+
+                  passwordChanged_ = input.readBool();
                   break;
                 }
               }

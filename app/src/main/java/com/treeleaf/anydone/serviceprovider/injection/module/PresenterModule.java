@@ -2,8 +2,6 @@ package com.treeleaf.anydone.serviceprovider.injection.module;
 
 import com.treeleaf.anydone.serviceprovider.account.AccountRepository;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketRepository;
-import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepository;
@@ -29,8 +27,8 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestd
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestRepository;
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ongoing.OngoingRepository;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ongoing.OngoingRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRepository;
+import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.currency.CurrencyRepository;
 import com.treeleaf.anydone.serviceprovider.setting.currency.CurrencyRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.language.LanguageRepository;
@@ -127,8 +125,8 @@ public class PresenterModule {
     }
 
     @Provides
-    OngoingRepository getOngoingRepository(AnyDoneService anyDoneService) {
-        return new OngoingRepositoryImpl(anyDoneService);
+    AcceptedRepository getOngoingRepository(AnyDoneService anyDoneService) {
+        return new AcceptedRepositoryImpl(anyDoneService);
     }
 
     @Provides
@@ -161,9 +159,5 @@ public class PresenterModule {
         return new TicketsRepositoryImpl(anyDoneService);
     }
 
-    @Provides
-    AssignedTicketRepository getAssignedTicketRepository(AnyDoneService anyDoneService) {
-        return new AssignedTicketRepositoryImpl(anyDoneService);
-    }
 }
 

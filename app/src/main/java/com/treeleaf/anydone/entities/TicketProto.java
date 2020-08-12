@@ -93,6 +93,194 @@ public final class TicketProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.TicketSource)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.TicketState}
+   */
+  public enum TicketState
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_STATE = 0;</code>
+     */
+    UNKNOWN_STATE(0),
+    /**
+     * <code>TICKET_CREATED = 1;</code>
+     */
+    TICKET_CREATED(1),
+    /**
+     * <code>TICKET_ASSIGNED = 2;</code>
+     */
+    TICKET_ASSIGNED(2),
+    /**
+     * <code>TICKET_STARTED = 3;</code>
+     */
+    TICKET_STARTED(3),
+    /**
+     * <code>TICKET_COMPLETED = 4;</code>
+     */
+    TICKET_COMPLETED(4),
+    /**
+     * <code>TICKET_CLOSED = 5;</code>
+     */
+    TICKET_CLOSED(5),
+    /**
+     * <code>TICKET_REOPENED = 6;</code>
+     */
+    TICKET_REOPENED(6),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_STATE = 0;</code>
+     */
+    public static final int UNKNOWN_STATE_VALUE = 0;
+    /**
+     * <code>TICKET_CREATED = 1;</code>
+     */
+    public static final int TICKET_CREATED_VALUE = 1;
+    /**
+     * <code>TICKET_ASSIGNED = 2;</code>
+     */
+    public static final int TICKET_ASSIGNED_VALUE = 2;
+    /**
+     * <code>TICKET_STARTED = 3;</code>
+     */
+    public static final int TICKET_STARTED_VALUE = 3;
+    /**
+     * <code>TICKET_COMPLETED = 4;</code>
+     */
+    public static final int TICKET_COMPLETED_VALUE = 4;
+    /**
+     * <code>TICKET_CLOSED = 5;</code>
+     */
+    public static final int TICKET_CLOSED_VALUE = 5;
+    /**
+     * <code>TICKET_REOPENED = 6;</code>
+     */
+    public static final int TICKET_REOPENED_VALUE = 6;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static TicketState valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static TicketState forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_STATE;
+        case 1: return TICKET_CREATED;
+        case 2: return TICKET_ASSIGNED;
+        case 3: return TICKET_STARTED;
+        case 4: return TICKET_COMPLETED;
+        case 5: return TICKET_CLOSED;
+        case 6: return TICKET_REOPENED;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<TicketState>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        TicketState> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<TicketState>() {
+            public TicketState findValueByNumber(int number) {
+              return TicketState.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private TicketState(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.TicketState)
+  }
+
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.CustomerType}
+   */
+  public enum CustomerType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_TYPE = 0;</code>
+     */
+    UNKNOWN_TYPE(0),
+    /**
+     * <code>ANYDONE_CONSUMER = 1;</code>
+     */
+    ANYDONE_CONSUMER(1),
+    /**
+     * <code>EXTERNAL_CUSTOMER = 2;</code>
+     */
+    EXTERNAL_CUSTOMER(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_TYPE_VALUE = 0;
+    /**
+     * <code>ANYDONE_CONSUMER = 1;</code>
+     */
+    public static final int ANYDONE_CONSUMER_VALUE = 1;
+    /**
+     * <code>EXTERNAL_CUSTOMER = 2;</code>
+     */
+    public static final int EXTERNAL_CUSTOMER_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static CustomerType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static CustomerType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_TYPE;
+        case 1: return ANYDONE_CONSUMER;
+        case 2: return EXTERNAL_CUSTOMER;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<CustomerType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        CustomerType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<CustomerType>() {
+            public CustomerType findValueByNumber(int number) {
+              return CustomerType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private CustomerType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.CustomerType)
+  }
+
   public interface CustomerOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Customer)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -2123,6 +2311,60 @@ public final class TicketProto {
      * <code>optional int64 updatedAt = 11;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+     */
+    int getTicketStateValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+     */
+    TicketState getTicketState();
+
+    /**
+     * <pre>
+     *ticket closed remark
+     * </pre>
+     *
+     * <code>optional string closedRemark = 13;</code>
+     */
+    String getClosedRemark();
+    /**
+     * <pre>
+     *ticket closed remark
+     * </pre>
+     *
+     * <code>optional string closedRemark = 13;</code>
+     */
+    com.google.protobuf.ByteString
+        getClosedRemarkBytes();
+
+    /**
+     * <pre>
+     *ticket reopened remark
+     * </pre>
+     *
+     * <code>optional string reopenedRemark = 15;</code>
+     */
+    String getReopenedRemark();
+    /**
+     * <pre>
+     *ticket reopened remark
+     * </pre>
+     *
+     * <code>optional string reopenedRemark = 15;</code>
+     */
+    com.google.protobuf.ByteString
+        getReopenedRemarkBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+     */
+    int getCustomerTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+     */
+    CustomerType getCustomerType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Ticket}
@@ -2137,6 +2379,8 @@ public final class TicketProto {
       description_ = "";
       assignedTo_ = emptyProtobufList();
       tags_ = emptyProtobufList();
+      closedRemark_ = "";
+      reopenedRemark_ = "";
     }
     private int bitField0_;
     public static final int TICKETID_FIELD_NUMBER = 1;
@@ -2791,6 +3035,216 @@ public final class TicketProto {
       updatedAt_ = 0L;
     }
 
+    public static final int TICKETSTATE_FIELD_NUMBER = 12;
+    private int ticketState_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+     */
+    public int getTicketStateValue() {
+      return ticketState_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+     */
+    public TicketState getTicketState() {
+      TicketState result = TicketState.forNumber(ticketState_);
+      return result == null ? TicketState.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+     */
+    private void setTicketStateValue(int value) {
+        ticketState_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+     */
+    private void setTicketState(TicketState value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      ticketState_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+     */
+    private void clearTicketState() {
+      
+      ticketState_ = 0;
+    }
+
+    public static final int CLOSEDREMARK_FIELD_NUMBER = 13;
+    private String closedRemark_;
+    /**
+     * <pre>
+     *ticket closed remark
+     * </pre>
+     *
+     * <code>optional string closedRemark = 13;</code>
+     */
+    public String getClosedRemark() {
+      return closedRemark_;
+    }
+    /**
+     * <pre>
+     *ticket closed remark
+     * </pre>
+     *
+     * <code>optional string closedRemark = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClosedRemarkBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(closedRemark_);
+    }
+    /**
+     * <pre>
+     *ticket closed remark
+     * </pre>
+     *
+     * <code>optional string closedRemark = 13;</code>
+     */
+    private void setClosedRemark(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      closedRemark_ = value;
+    }
+    /**
+     * <pre>
+     *ticket closed remark
+     * </pre>
+     *
+     * <code>optional string closedRemark = 13;</code>
+     */
+    private void clearClosedRemark() {
+      
+      closedRemark_ = getDefaultInstance().getClosedRemark();
+    }
+    /**
+     * <pre>
+     *ticket closed remark
+     * </pre>
+     *
+     * <code>optional string closedRemark = 13;</code>
+     */
+    private void setClosedRemarkBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      closedRemark_ = value.toStringUtf8();
+    }
+
+    public static final int REOPENEDREMARK_FIELD_NUMBER = 15;
+    private String reopenedRemark_;
+    /**
+     * <pre>
+     *ticket reopened remark
+     * </pre>
+     *
+     * <code>optional string reopenedRemark = 15;</code>
+     */
+    public String getReopenedRemark() {
+      return reopenedRemark_;
+    }
+    /**
+     * <pre>
+     *ticket reopened remark
+     * </pre>
+     *
+     * <code>optional string reopenedRemark = 15;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReopenedRemarkBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(reopenedRemark_);
+    }
+    /**
+     * <pre>
+     *ticket reopened remark
+     * </pre>
+     *
+     * <code>optional string reopenedRemark = 15;</code>
+     */
+    private void setReopenedRemark(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      reopenedRemark_ = value;
+    }
+    /**
+     * <pre>
+     *ticket reopened remark
+     * </pre>
+     *
+     * <code>optional string reopenedRemark = 15;</code>
+     */
+    private void clearReopenedRemark() {
+      
+      reopenedRemark_ = getDefaultInstance().getReopenedRemark();
+    }
+    /**
+     * <pre>
+     *ticket reopened remark
+     * </pre>
+     *
+     * <code>optional string reopenedRemark = 15;</code>
+     */
+    private void setReopenedRemarkBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      reopenedRemark_ = value.toStringUtf8();
+    }
+
+    public static final int CUSTOMERTYPE_FIELD_NUMBER = 16;
+    private int customerType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+     */
+    public int getCustomerTypeValue() {
+      return customerType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+     */
+    public CustomerType getCustomerType() {
+      CustomerType result = CustomerType.forNumber(customerType_);
+      return result == null ? CustomerType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+     */
+    private void setCustomerTypeValue(int value) {
+        customerType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+     */
+    private void setCustomerType(CustomerType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      customerType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+     */
+    private void clearCustomerType() {
+      
+      customerType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ticketId_ != 0L) {
@@ -2825,6 +3279,18 @@ public final class TicketProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(11, updatedAt_);
+      }
+      if (ticketState_ != TicketState.UNKNOWN_STATE.getNumber()) {
+        output.writeEnum(12, ticketState_);
+      }
+      if (!closedRemark_.isEmpty()) {
+        output.writeString(13, getClosedRemark());
+      }
+      if (!reopenedRemark_.isEmpty()) {
+        output.writeString(15, getReopenedRemark());
+      }
+      if (customerType_ != CustomerType.UNKNOWN_TYPE.getNumber()) {
+        output.writeEnum(16, customerType_);
       }
     }
 
@@ -2876,6 +3342,22 @@ public final class TicketProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(11, updatedAt_);
+      }
+      if (ticketState_ != TicketState.UNKNOWN_STATE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(12, ticketState_);
+      }
+      if (!closedRemark_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(13, getClosedRemark());
+      }
+      if (!reopenedRemark_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(15, getReopenedRemark());
+      }
+      if (customerType_ != CustomerType.UNKNOWN_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(16, customerType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3526,6 +4008,200 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+       */
+      public int getTicketStateValue() {
+        return instance.getTicketStateValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+       */
+      public Builder setTicketStateValue(int value) {
+        copyOnWrite();
+        instance.setTicketStateValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+       */
+      public TicketState getTicketState() {
+        return instance.getTicketState();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+       */
+      public Builder setTicketState(TicketState value) {
+        copyOnWrite();
+        instance.setTicketState(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState ticketState = 12;</code>
+       */
+      public Builder clearTicketState() {
+        copyOnWrite();
+        instance.clearTicketState();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *ticket closed remark
+       * </pre>
+       *
+       * <code>optional string closedRemark = 13;</code>
+       */
+      public String getClosedRemark() {
+        return instance.getClosedRemark();
+      }
+      /**
+       * <pre>
+       *ticket closed remark
+       * </pre>
+       *
+       * <code>optional string closedRemark = 13;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClosedRemarkBytes() {
+        return instance.getClosedRemarkBytes();
+      }
+      /**
+       * <pre>
+       *ticket closed remark
+       * </pre>
+       *
+       * <code>optional string closedRemark = 13;</code>
+       */
+      public Builder setClosedRemark(
+          String value) {
+        copyOnWrite();
+        instance.setClosedRemark(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *ticket closed remark
+       * </pre>
+       *
+       * <code>optional string closedRemark = 13;</code>
+       */
+      public Builder clearClosedRemark() {
+        copyOnWrite();
+        instance.clearClosedRemark();
+        return this;
+      }
+      /**
+       * <pre>
+       *ticket closed remark
+       * </pre>
+       *
+       * <code>optional string closedRemark = 13;</code>
+       */
+      public Builder setClosedRemarkBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClosedRemarkBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *ticket reopened remark
+       * </pre>
+       *
+       * <code>optional string reopenedRemark = 15;</code>
+       */
+      public String getReopenedRemark() {
+        return instance.getReopenedRemark();
+      }
+      /**
+       * <pre>
+       *ticket reopened remark
+       * </pre>
+       *
+       * <code>optional string reopenedRemark = 15;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReopenedRemarkBytes() {
+        return instance.getReopenedRemarkBytes();
+      }
+      /**
+       * <pre>
+       *ticket reopened remark
+       * </pre>
+       *
+       * <code>optional string reopenedRemark = 15;</code>
+       */
+      public Builder setReopenedRemark(
+          String value) {
+        copyOnWrite();
+        instance.setReopenedRemark(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *ticket reopened remark
+       * </pre>
+       *
+       * <code>optional string reopenedRemark = 15;</code>
+       */
+      public Builder clearReopenedRemark() {
+        copyOnWrite();
+        instance.clearReopenedRemark();
+        return this;
+      }
+      /**
+       * <pre>
+       *ticket reopened remark
+       * </pre>
+       *
+       * <code>optional string reopenedRemark = 15;</code>
+       */
+      public Builder setReopenedRemarkBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setReopenedRemarkBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+       */
+      public int getCustomerTypeValue() {
+        return instance.getCustomerTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+       */
+      public Builder setCustomerTypeValue(int value) {
+        copyOnWrite();
+        instance.setCustomerTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+       */
+      public CustomerType getCustomerType() {
+        return instance.getCustomerType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+       */
+      public Builder setCustomerType(CustomerType value) {
+        copyOnWrite();
+        instance.setCustomerType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerType customerType = 16;</code>
+       */
+      public Builder clearCustomerType() {
+        copyOnWrite();
+        instance.clearCustomerType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Ticket)
     }
     protected final Object dynamicMethod(
@@ -3565,6 +4241,12 @@ public final class TicketProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          ticketState_ = visitor.visitInt(ticketState_ != 0, ticketState_,    other.ticketState_ != 0, other.ticketState_);
+          closedRemark_ = visitor.visitString(!closedRemark_.isEmpty(), closedRemark_,
+              !other.closedRemark_.isEmpty(), other.closedRemark_);
+          reopenedRemark_ = visitor.visitString(!reopenedRemark_.isEmpty(), reopenedRemark_,
+              !other.reopenedRemark_.isEmpty(), other.reopenedRemark_);
+          customerType_ = visitor.visitInt(customerType_ != 0, customerType_,    other.customerType_ != 0, other.customerType_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3678,6 +4360,30 @@ public final class TicketProto {
                 case 88: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 96: {
+                  int rawValue = input.readEnum();
+
+                  ticketState_ = rawValue;
+                  break;
+                }
+                case 106: {
+                  String s = input.readStringRequireUtf8();
+
+                  closedRemark_ = s;
+                  break;
+                }
+                case 122: {
+                  String s = input.readStringRequireUtf8();
+
+                  reopenedRemark_ = s;
+                  break;
+                }
+                case 128: {
+                  int rawValue = input.readEnum();
+
+                  customerType_ = rawValue;
                   break;
                 }
               }

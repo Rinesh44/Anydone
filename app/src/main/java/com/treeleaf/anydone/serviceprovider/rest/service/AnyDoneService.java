@@ -2,7 +2,6 @@ package com.treeleaf.anydone.serviceprovider.rest.service;
 
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
-import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
@@ -35,10 +34,6 @@ public interface AnyDoneService {
 
     @POST("login")
     Observable<AuthRpcProto.AuthBaseResponse> login(@Body AuthProto.LoginRequest loginRequest);
-
-    @POST("signup/consumer")
-    Observable<UserRpcProto.UserBaseResponse>
-    signUp(@Body UserProto.AddConsumerProfileRequest addConsumerProfileRequest);
 
     @POST("verify")
     Observable<UserRpcProto.UserBaseResponse>
@@ -107,10 +102,6 @@ public interface AnyDoneService {
     @GET
     Observable<ResponseBody> getPlaceAutocomplete(@Url String url);
 
-    @POST("service/order")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
-    orderService(@Header(AUTHORIZATION) String token,
-                 @Body OrderServiceProto.ServiceOrderRequest serviceOrder);
 
     //    @GET("service/order/consumer?pageSize=20")
     @GET("service/order/consumer")
@@ -132,19 +123,16 @@ public interface AnyDoneService {
     @Multipart
     @POST("upload/image")
     Observable<UserRpcProto.UserBaseResponse>
-    imageUploadConversation(@Header(AUTHORIZATION) String token,
-                            @Part MultipartBody.Part image);
+    imageUploadConversation(@Header(AUTHORIZATION) String token, @Part MultipartBody.Part image);
 
     @Multipart
     @POST("upload/doc")
     Observable<UserRpcProto.UserBaseResponse>
-    docUploadConversation(@Header(AUTHORIZATION) String token,
-                          @Part MultipartBody.Part doc);
+    docUploadConversation(@Header(AUTHORIZATION) String token, @Part MultipartBody.Part doc);
 
     @GET("service/order/employee")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
-    getServiceDoers(@Header(AUTHORIZATION) String token,
-                    @Query(value = "orderId") long orderId);
+    getServiceDoers(@Header(AUTHORIZATION) String token, @Query(value = "orderId") long orderId);
 
     @GET("rtc/messages/{refId}")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
@@ -153,16 +141,6 @@ public interface AnyDoneService {
                 @Query("from") long from,
                 @Query("to") long to,
                 @Query("pageSize") int pageSize);
-
-    @POST("search/autocomplete")
-    Observable<SearchServiceRpcProto.SearchServiceBaseResponse> autocompleteService
-            (@Header(AUTHORIZATION) String token, @Body SearchServiceProto.AutoCompleteRequest
-                    autoCompleteRequest);
-
-    @POST("service/rate")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
-    rateService(@Header(AUTHORIZATION) String token,
-                @Body OrderServiceProto.ServiceRating serviceRating);
 
     @PATCH("service/order/close")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse> closeOrder(@Header(AUTHORIZATION)
@@ -214,6 +192,81 @@ public interface AnyDoneService {
     @GET("ticket")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     getAllTickets(@Header(AUTHORIZATION) String token);
+
+    @GET("service/orders")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getOpenServices(@Header(AUTHORIZATION)
+                                                                                      String token);
+
+    @GET("service/order/provider")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getAcceptedServices
+            (@Header(AUTHORIZATION) String token);
+
+    //actions on orders
+    @PATCH("service/order/accept")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> acceptOrder(@Header(AUTHORIZATION)
+                                                                                  String token);
+
+    @PATCH("service/order/cancel")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> acceptOrder(@Header(AUTHORIZATION)
+                                                                                  String token,
+                                                                          @Query("orderId") String orderId);
+
+    @PATCH("service/assign")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> assignOrder(@Header(AUTHORIZATION)
+                                                                                  String token);
+
+    @PATCH("service/order/start")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> startOrder(@Header(AUTHORIZATION)
+                                                                                 String token,
+                                                                         @Query("orderId") String orderId);
+
+    @PATCH("service/order/complete")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> completeOrder(@Header(AUTHORIZATION)
+                                                                                    String token,
+                                                                            @Query("orderId") String orderId);
+
+    @PATCH("service/order/close")
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> closeOrder(@Header(AUTHORIZATION)
+                                                                                 String token,
+                                                                         @Query("orderId") String orderId);
+
+    //actions on tickets
+    @PATCH("ticket/start/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> startTicket(@Header(AUTHORIZATION)
+                                                                             String token,
+                                                                     @Path(value = "ticketId") String ticketId);
+
+    @PATCH("ticket/complete/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> completeTicket(@Header(AUTHORIZATION)
+                                                                                String token,
+                                                                        @Path(value = "ticketId") String ticketId);
+
+    @PATCH("ticket/close/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> closeTicket(@Header(AUTHORIZATION)
+                                                                             String token,
+                                                                     @Path(value = "ticketId") String ticketId,
+                                                                     @Query("remark") String remark);
+
+    @PATCH("ticket/reopen/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> reopenTicket(@Header(AUTHORIZATION)
+                                                                              String token,
+                                                                      @Path(value = "ticketId") String ticketId,
+                                                                      @Query("remark") String remark);
+
+    @GET("ticket/assigned")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(@Header(AUTHORIZATION)
+                                                                                    String token,
+                                                                            @Query("from") long from,
+                                                                            @Query("to") long to,
+                                                                            @Query("page") int page);
+
+    @GET("ticket/subscribed")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribedTickets(@Header(AUTHORIZATION)
+                                                                                    String token,
+                                                                            @Query("from") long from,
+                                                                            @Query("to") long to,
+                                                                            @Query("page") int page);
+
 }
 
 

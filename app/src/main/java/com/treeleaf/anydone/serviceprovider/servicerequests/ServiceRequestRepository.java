@@ -6,7 +6,9 @@ import io.reactivex.Observable;
 
 public interface ServiceRequestRepository {
 
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getOrderService(String token);
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getOpenOrderService(String token);
+
+    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getAcceptedOrderService(String token);
 
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
     filterServiceRequests(String token,

@@ -1,7 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
 
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -17,16 +17,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.UnSubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class SubscribeTicketsFragment extends Fragment implements
@@ -38,6 +41,8 @@ public class SubscribeTicketsFragment extends Fragment implements
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
+    @BindView(R.id.fab_subscribe)
+    FloatingActionButton fabSubscribe;
     private Unbinder unbinder;
     private OnSwipeListener swipeListener;
     private OnSubscribeTicketsListener onSubscribeTicketsListener;
@@ -87,7 +92,7 @@ public class SubscribeTicketsFragment extends Fragment implements
             rvClosedRequests.setAdapter(adapter);*/
         } else {
             rvSubscribeTickets.setVisibility(View.GONE);
-            ivDataNotFound.setVisibility(View.VISIBLE);
+//            ivDataNotFound.setVisibility(View.VISIBLE);
         }
     }
 
@@ -131,6 +136,12 @@ public class SubscribeTicketsFragment extends Fragment implements
     @Override
     public void showSubscribeTickets(List<Tickets> subscribeTicketList) {
         setUpRecyclerView(subscribeTicketList);
+    }
+
+    @OnClick(R.id.fab_subscribe)
+    void subscribe() {
+        Intent i = new Intent(getActivity(), UnSubscribedTicketsActivity.class);
+        startActivity(i);
     }
 }
 

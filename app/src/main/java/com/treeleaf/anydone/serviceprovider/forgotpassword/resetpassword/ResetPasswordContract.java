@@ -30,6 +30,16 @@ class ResetPasswordContract {
         void startTimerCountDown();
 
         void cancelCountDownTimer();
+
+        void onChangePasswordSuccess();
+
+        void onChangePasswordFail(String msg);
+
+        void showSamePasswordError();
+
+        void showInvalidOldPasswordError();
+
+        void onInvalidOldPassword();
     }
 
     public interface ResetPasswordPresenter extends
@@ -41,5 +51,8 @@ class ResetPasswordContract {
                            @NonNull String code);
 
         void resendCode(String emailPhone);
+
+        void changePassword(@NonNull String oldPassword, @NonNull String newPassword,
+                            @NonNull String confirmPassword);
     }
 }

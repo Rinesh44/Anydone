@@ -34,6 +34,7 @@
                         android:id="@+id/toolbar_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:gravity="start"
                         android:text="Tickets"
@@ -41,11 +42,23 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_ticket"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_toStartOf="@+id/iv_filter"
+                        android:textSize="10sp"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="@string/add_ticket"
+                        android:textAllCaps="false" />
+
+
                     <ImageView
                         android:id="@+id/iv_filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:paddingStart="@dimen/dimens_2x"
                         android:src="@drawable/ic_filter" />
 

@@ -12,7 +12,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
-import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -88,11 +87,6 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
             case R.id.navigation_tickets:
 //                setActionTitle(HOME);
                 openFragment(TicketsFragment.newInstance("", ""));
-                return true;
-
-            case R.id.navigation_assigned_tickets:
-//                setActionTitle(HOME);
-                openFragment(AssignedTicketFragment.newInstance("", ""));
                 return true;
 
             case R.id.navigation_account:

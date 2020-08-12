@@ -40,4 +40,17 @@ public class ResetPasswordRepositoryImpl implements ResetPasswordRepository {
     public Observable<UserRpcProto.UserBaseResponse> resendCode(@NonNull String emailPhone) {
         return service.resendCode(emailPhone);
     }
+
+    @Override
+    public Observable<UserRpcProto.UserBaseResponse> changePassword(@NonNull String token,
+                                                                    @NonNull String oldPassword,
+                                                                    @NonNull String newPassword) {
+        UserProto.PasswordChangeRequest passwordChangeRequest =
+                UserProto.PasswordChangeRequest.newBuilder()
+                        .setOldPassword(oldPassword)
+                        .setNewPassword(newPassword)
+                        .build();
+
+        return service.changePassword(token, passwordChangeRequest);
+    }
 }

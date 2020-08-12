@@ -179,4 +179,9 @@
     <string name="tickets">Tickets</string>
     <string name="assigned_tickets">Assigned Tickets</string>
     <string name="more">More</string>
+    <string name="employee_first_login_text">It seems its your first login, please set new password to continue.</string>
+    <string name="add_ticket">Add Ticket</string>
+    <string name="assigned_to">Assigned to</string>
+    <string name="description">Description</string>
+    <string name="summary">Summary</string>
 </resources>

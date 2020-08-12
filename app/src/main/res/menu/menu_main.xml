@@ -3,19 +3,16 @@
     tools:context=".serviceprovider.landing.LandingActivity">
     <item
         android:id="@+id/navigation_tickets"
-        android:icon="@drawable/home"
+        android:icon="@drawable/ic_ticket"
         android:title="@string/tickets" />
-    <item
-        android:id="@+id/navigation_assigned_tickets"
-        android:icon="@drawable/home"
-        android:title="@string/assigned_tickets" />
+
     <item
         android:id="@+id/navigation_service_requests"
         android:icon="@drawable/request_service"
         android:title="@string/service_requests" />
     <item
         android:id="@+id/navigation_account"
-        android:icon="@drawable/account"
+        android:icon="@drawable/ic_more"
         android:title="@string/more" />
 
 </menu>

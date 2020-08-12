@@ -8,6 +8,7 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
@@ -214,4 +215,17 @@ public final class ProtoMapper {
         return locationList;
     }
 
+    public static RealmList<Employee> transformAssignedEmployee(
+            List<UserProto.EmployeeProfile> assignedToListPb) {
+        RealmList<Employee> employeeRealmList = new RealmList<>();
+        for (UserProto.EmployeeProfile employeeProfile : assignedToListPb
+        ) {
+            Employee employee = new Employee();
+            employee.setAccountId(employeeProfile.getAccount().getAccountId());
+            employee.setCreatedAt(employeeProfile.getCreatedAt());
+            employee.setEmployeeId(employeeProfile.getEmployeeProfileId());
+            employeeRealmList.add(employee);
+        }
+        return employeeRealmList;
+    }
 }

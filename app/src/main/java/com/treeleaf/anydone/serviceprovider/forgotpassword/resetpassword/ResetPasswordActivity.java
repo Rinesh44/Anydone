@@ -14,9 +14,11 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -45,10 +47,18 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
     LinearLayout llOtpTimer;
     @BindView(R.id.tv_code_expires_in)
     TextView tvCodeExpiresIn;
+    @BindView(R.id.tv_reset_password)
+    TextView tvResetPassword;
+    @BindView(R.id.il_old_password)
+    TextInputLayout ilOldPassword;
+    @BindView(R.id.et_old_password)
+    TextInputEditText etOldPassword;
+
 
     private ProgressDialog progress;
     private CountDownTimer countDownTimer;
     private int timerInSeconds = 90;
+    private boolean employeeFirstLogin;
 
     @Override
     protected int getLayout() {
@@ -62,14 +72,35 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
         String accountId = getAccountId();
         String emailPhone = getEmailPhone();
 
+        Intent i = getIntent();
+        employeeFirstLogin = i.getBooleanExtra("employee_first_login", false);
+        String oldPassword = i.getStringExtra("old_password");
+        if (employeeFirstLogin) {
+            tvResetPassword.setText(R.string.employee_first_login_text);
+            etOldPassword.setText(oldPassword);
+            etOldPassword.setFocusable(false);
+            etOldPassword.setCursorVisible(false);
+            etOldPassword.setClickable(false);
+            ilCode.setVisibility(View.GONE);
+            ilOldPassword.setVisibility(View.VISIBLE);
+            llOtpTimer.setVisibility(View.GONE);
+            llResendCode.setVisibility(View.GONE);
+        }
+
         GlobalUtils.showLog(TAG, "accountId: " + accountId);
 
         startTimerCountDown();
 
         btnReset.setOnClickListener(v -> {
             hideKeyBoard();
-            presenter.resetPassword(emailPhone, UiUtils.getString(etNewPassword),
-                    UiUtils.getString(etConfirmPassword), accountId, UiUtils.getString(etCode));
+            if (employeeFirstLogin) {
+                presenter.changePassword(UiUtils.getString(etOldPassword),
+                        UiUtils.getString(etNewPassword),
+                        UiUtils.getString(etConfirmPassword));
+            } else {
+                presenter.resetPassword(emailPhone, UiUtils.getString(etNewPassword),
+                        UiUtils.getString(etConfirmPassword), accountId, UiUtils.getString(etCode));
+            }
         });
 
         llResendCode.setOnClickListener(v -> {
@@ -115,6 +146,21 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
         ilConfirmPassword.setError("Invalid Confirm Password");
 
         onInvalidConfirmPassword();
+    }
+
+    @Override
+    public void showInvalidOldPasswordError() {
+        etOldPassword.requestFocus();
+        ilOldPassword.setErrorEnabled(true);
+        ilOldPassword.setError("Invalid Old Password");
+        ilOldPassword.setErrorIconDrawable(null);
+        onInvalidOldPassword();
+    }
+
+    @Override
+    public void onInvalidOldPassword() {
+        ilNewPassword.setErrorEnabled(false);
+        ilConfirmPassword.setErrorEnabled(false);
     }
 
     @Override
@@ -195,6 +241,31 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
     public void cancelCountDownTimer() {
         if (countDownTimer != null)
             countDownTimer.cancel();
+    }
+
+    @Override
+    public void onChangePasswordSuccess() {
+        Intent i = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
+    @Override
+    public void onChangePasswordFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.BOTTOM, 2000).show();
+    }
+
+    @Override
+    public void showSamePasswordError() {
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, "Old and New password cannot be same",
+                Banner.BOTTOM, 2000).show();
     }
 
     @Override

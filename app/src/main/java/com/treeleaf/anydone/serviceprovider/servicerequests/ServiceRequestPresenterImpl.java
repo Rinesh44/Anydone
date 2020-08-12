@@ -114,7 +114,7 @@ public class ServiceRequestPresenterImpl extends
     }
 
     @Override
-    public void getServiceRequests(boolean showProgress) {
+    public void getAcceptedServiceRequests(boolean showProgress) {
         if (showProgress) {
             getView().showProgressBar("Please wait...");
         }
@@ -122,43 +122,92 @@ public class ServiceRequestPresenterImpl extends
 
         String token = Hawk.get(Constants.TOKEN);
 
-        getServiceOrderObservable = serviceRequestRepository.getOrderService(token);
+        getServiceOrderObservable = serviceRequestRepository.getAcceptedOrderService(token);
         addSubscription(getServiceOrderObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(
                         new DisposableObserver<OrderServiceRpcProto.OrderServiceBaseResponse>() {
-                    @Override
-                    public void onNext(OrderServiceRpcProto.OrderServiceBaseResponse
-                                               getOrderServiceBaseResponse) {
-                        GlobalUtils.showLog(TAG, "get service order response: "
-                                + getOrderServiceBaseResponse);
+                            @Override
+                            public void onNext(OrderServiceRpcProto.OrderServiceBaseResponse
+                                                       getOrderServiceBaseResponse) {
+                                GlobalUtils.showLog(TAG, "get accepted service order response: "
+                                        + getOrderServiceBaseResponse);
 
-                        getView().hideProgressBar();
-                        if (getOrderServiceBaseResponse == null) {
-                            getView().getServiceRequestFail("Get Order service failed");
-                            return;
-                        }
+                                getView().hideProgressBar();
+                                if (getOrderServiceBaseResponse == null) {
+                                    getView().getAcceptedServiceRequestFail("Get accepted Orders failed");
+                                    return;
+                                }
 
-                        if (getOrderServiceBaseResponse.getError()) {
-                            getView().getServiceRequestFail(getOrderServiceBaseResponse.getMsg());
-                            return;
-                        }
+                                if (getOrderServiceBaseResponse.getError()) {
+                                    getView().getAcceptedServiceRequestFail(getOrderServiceBaseResponse.getMsg());
+                                    return;
+                                }
 
-                        saveServiceOrderToRealm(getOrderServiceBaseResponse.getServiceOrdersList());
-                    }
+                                saveAcceptedServiceOrderToRealm(getOrderServiceBaseResponse.getServiceOrdersList());
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideProgressBar();
-                        getView().getServiceRequestFail(e.getLocalizedMessage());
-                    }
+                            @Override
+                            public void onError(Throwable e) {
+                                getView().hideProgressBar();
+                                getView().getAcceptedServiceRequestFail(e.getLocalizedMessage());
+                            }
 
-                    @Override
-                    public void onComplete() {
-                        getView().hideProgressBar();
-                    }
-                })
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
+        );
+    }
+
+    @Override
+    public void getOpenServiceRequests(boolean showProgress) {
+        if (showProgress) {
+            getView().showProgressBar("Please wait...");
+        }
+        Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getServiceOrderObservable;
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        getServiceOrderObservable = serviceRequestRepository.getOpenOrderService(token);
+        addSubscription(getServiceOrderObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<OrderServiceRpcProto.OrderServiceBaseResponse>() {
+                            @Override
+                            public void onNext(OrderServiceRpcProto.OrderServiceBaseResponse
+                                                       getOrderServiceBaseResponse) {
+                                GlobalUtils.showLog(TAG, "get open service order response: "
+                                        + getOrderServiceBaseResponse);
+
+                                getView().hideProgressBar();
+                                if (getOrderServiceBaseResponse == null) {
+                                    getView().getOpenServiceRequestFail("Get open Orders failed");
+                                    return;
+                                }
+
+                                if (getOrderServiceBaseResponse.getError()) {
+                                    getView().getOpenServiceRequestFail(getOrderServiceBaseResponse.getMsg());
+                                    return;
+                                }
+
+                                saveOpenServiceOrderToRealm(getOrderServiceBaseResponse.getServiceOrdersList());
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                getView().hideProgressBar();
+                                getView().getOpenServiceRequestFail(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
         );
     }
 
@@ -178,46 +227,46 @@ public class ServiceRequestPresenterImpl extends
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(
                         new DisposableObserver<OrderServiceRpcProto.OrderServiceBaseResponse>() {
-                    @Override
-                    public void onNext(OrderServiceRpcProto.OrderServiceBaseResponse
-                                               filterServiceBaseResponse) {
-                        GlobalUtils.showLog(TAG, "filter service response: "
-                                + filterServiceBaseResponse);
+                            @Override
+                            public void onNext(OrderServiceRpcProto.OrderServiceBaseResponse
+                                                       filterServiceBaseResponse) {
+                                GlobalUtils.showLog(TAG, "filter service response: "
+                                        + filterServiceBaseResponse);
 
-                        getView().hideProgressBar();
-                        if (filterServiceBaseResponse == null) {
-                            getView().onFilterRequestsFail("Filter service failed");
-                            return;
-                        }
+                                getView().hideProgressBar();
+                                if (filterServiceBaseResponse == null) {
+                                    getView().onFilterRequestsFail("Filter service failed");
+                                    return;
+                                }
 
-                        if (filterServiceBaseResponse.getError()) {
-                            getView().onFilterRequestsFail(filterServiceBaseResponse.getMsg());
-                            return;
-                        }
+                                if (filterServiceBaseResponse.getError()) {
+                                    getView().onFilterRequestsFail(filterServiceBaseResponse.getMsg());
+                                    return;
+                                }
 
-                        if (!CollectionUtils.isEmpty(
-                                filterServiceBaseResponse.getServiceOrdersList())) {
-                            List<ServiceRequest> filteredServiceRequests = ServiceRequestRepo.
-                                    getInstance().transformServiceOrderProto
-                                    (filterServiceBaseResponse.getServiceOrdersList());
+                                if (!CollectionUtils.isEmpty(
+                                        filterServiceBaseResponse.getServiceOrdersList())) {
+                                    List<ServiceRequest> filteredServiceRequests = ServiceRequestRepo.
+                                            getInstance().transformServiceOrderProto
+                                            (filterServiceBaseResponse.getServiceOrdersList());
 
-                            getView().onFilterRequestsSuccess(filteredServiceRequests);
-                        } else {
-                            getView().onFilterRequestsFail("Not found");
-                        }
-                    }
+                                    getView().onFilterRequestsSuccess(filteredServiceRequests);
+                                } else {
+                                    getView().onFilterRequestsFail("Not found");
+                                }
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideProgressBar();
-                        getView().onFilterRequestsFail(e.getLocalizedMessage());
-                    }
+                            @Override
+                            public void onError(Throwable e) {
+                                getView().hideProgressBar();
+                                getView().onFilterRequestsFail(e.getLocalizedMessage());
+                            }
 
-                    @Override
-                    public void onComplete() {
-                        getView().hideProgressBar();
-                    }
-                })
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
         );
     }
 
@@ -283,30 +332,36 @@ public class ServiceRequestPresenterImpl extends
                     break;
             }
         }
-
-        if (filter) {
-            if (fragmentIndex == 0)
-                getView().onOngoingRequestTypeSeparated(onGoingRequests);
-            else
-                getView().onClosedRequestTypeSeparated(closedRequests);
-        } else {
-            getView().onOngoingRequestTypeSeparated(onGoingRequests);
-            getView().onClosedRequestTypeSeparated(closedRequests);
-        }
     }
 
-    private void saveServiceOrderToRealm
+    private void saveOpenServiceOrderToRealm
             (List<OrderServiceProto.ServiceOrder> serviceOrderList) {
         ServiceRequestRepo.getInstance().saveServiceRequest(serviceOrderList, new Repo.Callback() {
             @Override
             public void success(Object o) {
-                getView().getServiceRequestSuccess();
+                getView().getOpenServiceRequestSuccess();
             }
 
             @Override
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to save service order");
-                getView().getServiceRequestFail("Service order not found");
+                getView().getOpenServiceRequestFail("Service order not found");
+            }
+        });
+    }
+
+    private void saveAcceptedServiceOrderToRealm
+            (List<OrderServiceProto.ServiceOrder> serviceOrderList) {
+        ServiceRequestRepo.getInstance().saveServiceRequest(serviceOrderList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                getView().getAcceptedServiceRequestSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save service order");
+                getView().getAcceptedServiceRequestFail("Service order not found");
             }
         });
     }

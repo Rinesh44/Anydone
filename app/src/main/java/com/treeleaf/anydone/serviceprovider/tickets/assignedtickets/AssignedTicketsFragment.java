@@ -1,4 +1,4 @@
-package com.treeleaf.anydone.serviceprovider.tickets.alltickets;
+package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,36 +7,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
-import com.treeleaf.anydone.serviceprovider.servicerequests.closed.OnClosedFragmentListener;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class AllTicketsFragment extends Fragment implements
-        TicketsFragment.AllTicketsListListener {
-    private static final String TAG = "AllTicketsFragment";
-    @BindView(R.id.rv_all_tickets)
-    RecyclerView rvAllTickets;
-    @BindView(R.id.swipe_refresh_all_tickets)
+public class AssignedTicketsFragment extends Fragment implements
+        TicketsFragment.AssignedTicketListListener {
+    private static final String TAG = "OpenTicketsFragment";
+    @BindView(R.id.rv_open_tickets)
+    RecyclerView rvOpenTickets;
+    @BindView(R.id.swipe_refresh_open_tickets)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
+    @BindView(R.id.fab_assign)
+    FloatingActionButton fabAssign;
     private Unbinder unbinder;
     private OnSwipeListener swipeListener;
-    private OnAllTicketsListener onAllTicketsListener;
+    private OnAssignedTicketsListener onAssignedTicketsListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class AllTicketsFragment extends Fragment implements
 
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setAllTicketListListener(this);
+        mFragment.setAssignedTicketListener(this);
     }
 
 
@@ -52,7 +58,7 @@ public class AllTicketsFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_all_tickets, container,
+        View view = inflater.inflate(R.layout.fragment_open_tickets, container,
                 false);
         unbinder = ButterKnife.bind(this, view);
         return view;
@@ -70,9 +76,9 @@ public class AllTicketsFragment extends Fragment implements
     }
 
     private void setUpRecyclerView(List<Tickets> ticketsList) {
-        rvAllTickets.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvOpenTickets.setLayoutManager(new LinearLayoutManager(getContext()));
         if (!CollectionUtils.isEmpty(ticketsList)) {
-            rvAllTickets.setVisibility(View.VISIBLE);
+            rvOpenTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
       /*      adapter = new ServiceRequestAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(service -> {
@@ -82,8 +88,8 @@ public class AllTicketsFragment extends Fragment implements
             });
             rvClosedRequests.setAdapter(adapter);*/
         } else {
-            rvAllTickets.setVisibility(View.GONE);
-            ivDataNotFound.setVisibility(View.VISIBLE);
+            rvOpenTickets.setVisibility(View.GONE);
+//            ivDataNotFound.setVisibility(View.VISIBLE);
         }
     }
 
@@ -112,8 +118,8 @@ public class AllTicketsFragment extends Fragment implements
                 }
         );
 
-        if (onAllTicketsListener != null) {
-            onAllTicketsListener.onAllTicketsCreated();
+        if (onAssignedTicketsListener != null) {
+            onAssignedTicketsListener.onAssignedTicketsCreated();
         }
     }
 
@@ -121,11 +127,13 @@ public class AllTicketsFragment extends Fragment implements
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         swipeListener = (OnSwipeListener) getParentFragment();
-        onAllTicketsListener = (OnAllTicketsListener) getParentFragment();
+        onAssignedTicketsListener = (OnAssignedTicketsListener) getParentFragment();
     }
 
     @Override
-    public void showAllTickets(List<Tickets> allTicketsList) {
-        setUpRecyclerView(allTicketsList);
+    public void showAssignedTickets(List<Tickets> assignedTicketList) {
+        setUpRecyclerView(assignedTicketList);
     }
 }
+
+
