@@ -37,6 +37,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceRequestRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
@@ -58,8 +59,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
-        implements TicketsContract.TicketsView, OnSwipeListener,
-        OnSubscribeTicketsListener, OnAssignedTicketsListener, OnClosedTicketsListener {
+        implements TicketsContract.TicketsView, OnSwipeListener, OnAssignedTicketsListener {
     private static final String TAG = "ServiceRequestFragment";
     @BindView(R.id.tabs)
     TabLayout mTabs;
@@ -74,11 +74,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @BindView(R.id.btn_add_ticket)
     MaterialButton btnAddTicket;
 
-    private List<Tickets> ticketsList;
+    private List<Tickets> assignedTicketList;
     private String statusValue = "null";
-    private SubscribeTicketListListener subscribeTicketListListener;
     private AssignedTicketListListener assignedTicketListListener;
-    private ClosedTicketListListener closedTicketListListener;
     private List<Tickets> subscribeTickets;
     private List<Tickets> assignedTickets;
     private List<Tickets> closedTickets;
@@ -111,14 +109,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        ticketsList = TicketRepo.getInstance().getAllTickets();
+        assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
         createFilterBottomSheet();
-        if (CollectionUtils.isEmpty(ticketsList)) {
-            presenter.getTickets(true);
+        if (CollectionUtils.isEmpty(assignedTicketList)) {
+            presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
             ivFilter.setVisibility(View.VISIBLE);
-            int fragmentIndex = mViewpager.getCurrentItem();
-            presenter.separateAssignedAndClosedTickets(ticketsList, fragmentIndex, filter);
         }
 
         setupViewPager(mViewpager);
@@ -147,7 +143,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             hideKeyBoard();
 
             Hawk.put(Constants.SELECTED_FILTER_STATUS, -1);
-            presenter.getTickets(true);
+            presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
         });
 
         etServiceName.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
@@ -198,7 +194,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @OnClick(R.id.iv_filter)
     void filterRequests() {
-        if (!CollectionUtils.isEmpty(ticketsList)) {
+        if (!CollectionUtils.isEmpty(assignedTicketList)) {
             int fragmentIndex = mViewpager.getCurrentItem();
             if (fragmentIndex == 0) {
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -382,17 +378,27 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @Override
     public void onSwipeRefresh() {
         GlobalUtils.showLog(TAG, "swipe implemented");
-        presenter.getTickets(false);
+        presenter.getAssignedTickets(false, 0, System.currentTimeMillis(), 100);
     }
 
 
     @Override
-    public void getTicketsSuccess() {
+    public void getAssignedTicketSuccess() {
+        assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+        GlobalUtils.showLog(TAG, "assigned tickets size: " + assignedTickets.size());
 
+        if (CollectionUtils.isEmpty(assignedTickets)) {
+            ivFilter.setVisibility(View.GONE);
+        } else {
+            ivFilter.setVisibility(View.VISIBLE);
+            if (assignedTicketListListener != null)
+                assignedTicketListListener.showAssignedTickets(assignedTickets);
+            else GlobalUtils.showLog(TAG, "assigned listener is null");
+        }
     }
 
     @Override
-    public void getTicketsFail(String msg) {
+    public void getAssignedTicketFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
@@ -406,54 +412,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     }
 
     @Override
-    public void onSubscribeTicketsSeparated(List<Tickets> subscribeTicketList) {
-        GlobalUtils.showLog(TAG, "subsribe tickets count: " + subscribeTicketList.size());
-        subscribeTickets = subscribeTicketList;
-        if (subscribeTicketListListener != null)
-            subscribeTicketListListener.showSubscribeTickets(subscribeTickets);
-        else GlobalUtils.showLog(TAG, "subscribe listener is null");
-    }
-
-    @Override
-    public void onAssignedTicketsSeparated(List<Tickets> assignedTicketList) {
-        GlobalUtils.showLog(TAG, "all tickets count: " + assignedTicketList.size());
-        assignedTickets = assignedTicketList;
-        if (assignedTicketListListener != null)
-            assignedTicketListListener.showAssignedTickets(assignedTickets);
-        else GlobalUtils.showLog(TAG, "assigned ticket listener is null");
-    }
-
-    @Override
-    public void onClosedTicketsSeparated(List<Tickets> closedTicketList) {
-        GlobalUtils.showLog(TAG, "closed tickets count: " + closedTicketList.size());
-        closedTickets = closedTicketList;
-        if (closedTicketListListener != null)
-            closedTicketListListener.showClosedTicketList(closedTickets);
-        else GlobalUtils.showLog(TAG, "closed ticket listener is null");
-    }
-
-    @Override
-    public void onSubscribeTicketFragmentCreated() {
-        GlobalUtils.showLog(TAG, "on subscribe ticket fragment created called");
-        if (subscribeTicketListListener != null)
-            subscribeTicketListListener.showSubscribeTickets(subscribeTickets);
-        else GlobalUtils.showLog(TAG, "subscribe ticket listener is null");
-    }
-
-    @Override
     public void onAssignedTicketsCreated() {
         GlobalUtils.showLog(TAG, "on assigned ticket fragment created called");
         if (assignedTicketListListener != null)
             assignedTicketListListener.showAssignedTickets(assignedTickets);
         else GlobalUtils.showLog(TAG, "assinged ticket listener is null");
-    }
-
-    @Override
-    public void onClosedTicketsCreated() {
-        GlobalUtils.showLog(TAG, "on closed ticket fragment created called");
-        if (closedTicketListListener != null)
-            closedTicketListListener.showClosedTicketList(closedTickets);
-        else GlobalUtils.showLog(TAG, "closed ticket listener is null");
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -486,14 +449,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         }
     }
 
-    public interface SubscribeTicketListListener {
-        void showSubscribeTickets(List<Tickets> subscribeTicketList);
-    }
-
-    public void setSubscribeTicketListListener(SubscribeTicketListListener listener) {
-        subscribeTicketListListener = listener;
-    }
-
     public interface AssignedTicketListListener {
         void showAssignedTickets(List<Tickets> assignedTicketList);
     }
@@ -501,14 +456,5 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     public void setAssignedTicketListener(AssignedTicketListListener listener) {
         assignedTicketListListener = listener;
     }
-
-    public interface ClosedTicketListListener {
-        void showClosedTicketList(List<Tickets> closedTicketList);
-    }
-
-    public void setClosedTicketListener(ClosedTicketListListener listener) {
-        closedTicketListListener = listener;
-    }
-
 }
 

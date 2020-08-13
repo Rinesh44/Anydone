@@ -136,7 +136,7 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter
     }
 
     private void setDate(TextView tvDateTop, TextView tvDateBottom, long createdAt) {
-        String dateConverted = GlobalUtils.getDateForServiceReq(createdAt);
+        String dateConverted = GlobalUtils.getDateNormal(createdAt);
         String[] splitDate = dateConverted.split(",");
         String dateTop = splitDate[0].trim();
         String dateBottom = splitDate[1].trim();

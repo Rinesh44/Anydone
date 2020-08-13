@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -43,6 +45,7 @@ public class AssignedTicketsFragment extends Fragment implements
     private Unbinder unbinder;
     private OnSwipeListener swipeListener;
     private OnAssignedTicketsListener onAssignedTicketsListener;
+    private TicketsAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,13 +83,14 @@ public class AssignedTicketsFragment extends Fragment implements
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvOpenTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-      /*      adapter = new ServiceRequestAdapter(ticketsList, getContext());
+            adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(service -> {
-                Intent i = new Intent(getActivity(), ServiceRequestDetailActivity.class);
+                Toast.makeText(getContext(), "item clicked", Toast.LENGTH_SHORT).show();
+            /*    Intent i = new Intent(getActivity(), ServiceRequestDetailActivity.class);
                 i.putExtra("selected_service_id", service.getServiceOrderId());
-                startActivity(i);
+                startActivity(i);*/
             });
-            rvClosedRequests.setAdapter(adapter);*/
+            rvOpenTickets.setAdapter(adapter);
         } else {
             rvOpenTickets.setVisibility(View.GONE);
 //            ivDataNotFound.setVisibility(View.VISIBLE);

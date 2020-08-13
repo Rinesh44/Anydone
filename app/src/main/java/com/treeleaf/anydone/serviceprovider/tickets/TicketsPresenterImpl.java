@@ -1,9 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.tickets;
 
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -28,7 +30,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
     @Override
-    public void getTickets(boolean showProgress) {
+    public void getAssignedTickets(boolean showProgress, long from, long to, int page) {
         if (showProgress) {
             getView().showProgressBar("Please wait...");
         }
@@ -36,7 +38,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
         String token = Hawk.get(Constants.TOKEN);
 
-        getTicketsObservable = ticketsRepository.getTickets(token);
+        getTicketsObservable = ticketsRepository.getAssignedTickets(token, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -50,22 +52,22 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
                                 getView().hideProgressBar();
                                 if (getTicketsBaseResponse == null) {
-                                    getView().getTicketsFail("Get tickets failed");
+                                    getView().getAssignedTicketFail("Get tickets failed");
                                     return;
                                 }
 
                                 if (getTicketsBaseResponse.getError()) {
-                                    getView().getTicketsFail(getTicketsBaseResponse.getMsg());
+                                    getView().getAssignedTicketFail(getTicketsBaseResponse.getMsg());
                                     return;
                                 }
 
-//                                saveServiceOrderToRealm(getTicketsBaseResponse.getServiceOrdersList());
+                                saveAssignedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
                             }
 
                             @Override
                             public void onError(Throwable e) {
                                 getView().hideProgressBar();
-                                getView().getTicketsFail(e.getLocalizedMessage());
+                                getView().getAssignedTicketFail(e.getLocalizedMessage());
                             }
 
                             @Override
@@ -76,9 +78,20 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         );
     }
 
-    @Override
-    public void separateAssignedAndClosedTickets(List<Tickets> ticketsList, int fragmentIndex, boolean filter) {
+    private void saveAssignedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.ASSIGNED, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                getView().getAssignedTicketSuccess();
+            }
 
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save assigned tickets");
+                getView().getAssignedTicketFail("Failed to save assigned tickets");
+            }
+        });
     }
+
 
 }

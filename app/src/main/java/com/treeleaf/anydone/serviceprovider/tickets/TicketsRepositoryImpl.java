@@ -14,8 +14,11 @@ public class TicketsRepositoryImpl implements TicketsRepository {
     }
 
     @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> getTickets(String token) {
-        return service.getAllTickets(token);
+    public Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(String token,
+                                                                                   long from,
+                                                                                   long to,
+                                                                                   int page) {
+        return service.getAssignedTickets(token, from, to, page);
     }
 
     @Override

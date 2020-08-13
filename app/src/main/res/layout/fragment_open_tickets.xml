@@ -19,18 +19,6 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include layout="@layout/layout_ticket_row" />
-
-        <include layout="@layout/layout_ticket_row" />
-
-
-    </LinearLayout>
-
     <ImageView
         android:id="@+id/iv_data_not_found"
         android:layout_width="wrap_content"

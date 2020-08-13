@@ -16,6 +16,8 @@ public class Tickets extends RealmObject {
     String serviceId;
     String customerType;
     String ticketType;
+    long createdAt;
+    String ticketStatus;
     RealmList<Employee> assignedEmployee;
 
     public Tickets() {
@@ -111,5 +113,21 @@ public class Tickets extends RealmObject {
 
     public void setAssignedEmployee(RealmList<Employee> assignedEmployee) {
         this.assignedEmployee = assignedEmployee;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getTicketStatus() {
+        return ticketStatus;
+    }
+
+    public void setTicketStatus(String ticketStatus) {
+        this.ticketStatus = ticketStatus;
     }
 }

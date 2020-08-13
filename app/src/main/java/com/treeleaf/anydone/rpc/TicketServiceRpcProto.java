@@ -157,6 +157,15 @@ public final class TicketServiceRpcProto {
      * <code>optional int64 timeRangeEnd = 17;</code>
      */
     long getTimeRangeEnd();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    boolean hasTagPermission();
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -971,6 +980,58 @@ public final class TicketServiceRpcProto {
       timeRangeEnd_ = 0L;
     }
 
+    public static final int TAGPERMISSION_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission tagPermission_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    public boolean hasTagPermission() {
+      return tagPermission_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
+      return tagPermission_ == null ? com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance() : tagPermission_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    private void setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      tagPermission_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    private void setTagPermission(
+        com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
+      tagPermission_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    private void mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      if (tagPermission_ != null &&
+          tagPermission_ != com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance()) {
+        tagPermission_ =
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.newBuilder(tagPermission_).mergeFrom(value).buildPartial();
+      } else {
+        tagPermission_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     */
+    private void clearTagPermission() {  tagPermission_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1023,6 +1084,9 @@ public final class TicketServiceRpcProto {
       }
       if (timeRangeEnd_ != 0L) {
         output.writeInt64(17, timeRangeEnd_);
+      }
+      if (tagPermission_ != null) {
+        output.writeMessage(18, getTagPermission());
       }
     }
 
@@ -1103,6 +1167,10 @@ public final class TicketServiceRpcProto {
       if (timeRangeEnd_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(17, timeRangeEnd_);
+      }
+      if (tagPermission_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getTagPermission());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1892,6 +1960,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       */
+      public boolean hasTagPermission() {
+        return instance.hasTagPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
+        return instance.getTagPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       */
+      public Builder setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+        copyOnWrite();
+        instance.setTagPermission(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       */
+      public Builder setTagPermission(
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTagPermission(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       */
+      public Builder mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+        copyOnWrite();
+        instance.mergeTagPermission(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       */
+      public Builder clearTagPermission() {  copyOnWrite();
+        instance.clearTagPermission();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1940,6 +2053,7 @@ public final class TicketServiceRpcProto {
               other.timeRangeStart_ != 0L, other.timeRangeStart_);
           timeRangeEnd_ = visitor.visitLong(timeRangeEnd_ != 0L, timeRangeEnd_,
               other.timeRangeEnd_ != 0L, other.timeRangeEnd_);
+          tagPermission_ = visitor.visitMessage(tagPermission_, other.tagPermission_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2116,6 +2230,19 @@ public final class TicketServiceRpcProto {
                   timeRangeEnd_ = input.readInt64();
                   break;
                 }
+                case 146: {
+                  com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder subBuilder = null;
+                  if (tagPermission_ != null) {
+                    subBuilder = tagPermission_.toBuilder();
+                  }
+                  tagPermission_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(tagPermission_);
+                    tagPermission_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2249,6 +2376,29 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 9;</code>
      */
     int getTagsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    boolean hasTagPermission();
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.TicketProto.Customer> 
+        getCustomersList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.Customer getCustomers(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    int getCustomersCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -2262,6 +2412,7 @@ public final class TicketServiceRpcProto {
       msg_ = "";
       tickets_ = emptyProtobufList();
       tags_ = emptyProtobufList();
+      customers_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2791,6 +2942,178 @@ public final class TicketServiceRpcProto {
       tags_.remove(index);
     }
 
+    public static final int TAGPERMISSION_FIELD_NUMBER = 10;
+    private com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission tagPermission_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    public boolean hasTagPermission() {
+      return tagPermission_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
+      return tagPermission_ == null ? com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance() : tagPermission_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    private void setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      tagPermission_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    private void setTagPermission(
+        com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
+      tagPermission_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    private void mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      if (tagPermission_ != null &&
+          tagPermission_ != com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance()) {
+        tagPermission_ =
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.newBuilder(tagPermission_).mergeFrom(value).buildPartial();
+      } else {
+        tagPermission_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     */
+    private void clearTagPermission() {  tagPermission_ = null;
+      
+    }
+
+    public static final int CUSTOMERS_FIELD_NUMBER = 11;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.TicketProto.Customer> customers_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.TicketProto.Customer> getCustomersList() {
+      return customers_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.TicketProto.CustomerOrBuilder> 
+        getCustomersOrBuilderList() {
+      return customers_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    public int getCustomersCount() {
+      return customers_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.Customer getCustomers(int index) {
+      return customers_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.CustomerOrBuilder getCustomersOrBuilder(
+        int index) {
+      return customers_.get(index);
+    }
+    private void ensureCustomersIsMutable() {
+      if (!customers_.isModifiable()) {
+        customers_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(customers_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void setCustomers(
+        int index, com.treeleaf.anydone.entities.TicketProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomersIsMutable();
+      customers_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void setCustomers(
+        int index, com.treeleaf.anydone.entities.TicketProto.Customer.Builder builderForValue) {
+      ensureCustomersIsMutable();
+      customers_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void addCustomers(com.treeleaf.anydone.entities.TicketProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomersIsMutable();
+      customers_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void addCustomers(
+        int index, com.treeleaf.anydone.entities.TicketProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomersIsMutable();
+      customers_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void addCustomers(
+        com.treeleaf.anydone.entities.TicketProto.Customer.Builder builderForValue) {
+      ensureCustomersIsMutable();
+      customers_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void addCustomers(
+        int index, com.treeleaf.anydone.entities.TicketProto.Customer.Builder builderForValue) {
+      ensureCustomersIsMutable();
+      customers_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void addAllCustomers(
+        Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Customer> values) {
+      ensureCustomersIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, customers_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void clearCustomers() {
+      customers_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+     */
+    private void removeCustomers(int index) {
+      ensureCustomersIsMutable();
+      customers_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2819,6 +3142,12 @@ public final class TicketServiceRpcProto {
       }
       for (int i = 0; i < tags_.size(); i++) {
         output.writeMessage(9, tags_.get(i));
+      }
+      if (tagPermission_ != null) {
+        output.writeMessage(10, getTagPermission());
+      }
+      for (int i = 0; i < customers_.size(); i++) {
+        output.writeMessage(11, customers_.get(i));
       }
     }
 
@@ -2862,6 +3191,14 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < tags_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, tags_.get(i));
+      }
+      if (tagPermission_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, getTagPermission());
+      }
+      for (int i = 0; i < customers_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, customers_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -3401,6 +3738,148 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       */
+      public boolean hasTagPermission() {
+        return instance.hasTagPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
+        return instance.getTagPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       */
+      public Builder setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+        copyOnWrite();
+        instance.setTagPermission(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       */
+      public Builder setTagPermission(
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTagPermission(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       */
+      public Builder mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+        copyOnWrite();
+        instance.mergeTagPermission(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       */
+      public Builder clearTagPermission() {  copyOnWrite();
+        instance.clearTagPermission();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.TicketProto.Customer> getCustomersList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getCustomersList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public int getCustomersCount() {
+        return instance.getCustomersCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.Customer getCustomers(int index) {
+        return instance.getCustomers(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder setCustomers(
+          int index, com.treeleaf.anydone.entities.TicketProto.Customer value) {
+        copyOnWrite();
+        instance.setCustomers(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder setCustomers(
+          int index, com.treeleaf.anydone.entities.TicketProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomers(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder addCustomers(com.treeleaf.anydone.entities.TicketProto.Customer value) {
+        copyOnWrite();
+        instance.addCustomers(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder addCustomers(
+          int index, com.treeleaf.anydone.entities.TicketProto.Customer value) {
+        copyOnWrite();
+        instance.addCustomers(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder addCustomers(
+          com.treeleaf.anydone.entities.TicketProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.addCustomers(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder addCustomers(
+          int index, com.treeleaf.anydone.entities.TicketProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.addCustomers(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder addAllCustomers(
+          Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Customer> values) {
+        copyOnWrite();
+        instance.addAllCustomers(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder clearCustomers() {
+        copyOnWrite();
+        instance.clearCustomers();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
+       */
+      public Builder removeCustomers(int index) {
+        copyOnWrite();
+        instance.removeCustomers(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -3416,6 +3895,7 @@ public final class TicketServiceRpcProto {
         case MAKE_IMMUTABLE: {
           tickets_.makeImmutable();
           tags_.makeImmutable();
+          customers_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3436,6 +3916,8 @@ public final class TicketServiceRpcProto {
           tag_ = visitor.visitMessage(tag_, other.tag_);
           tickets_= visitor.visitList(tickets_, other.tickets_);
           tags_= visitor.visitList(tags_, other.tags_);
+          tagPermission_ = visitor.visitMessage(tagPermission_, other.tagPermission_);
+          customers_= visitor.visitList(customers_, other.customers_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3538,6 +4020,28 @@ public final class TicketServiceRpcProto {
                   }
                   tags_.add(
                       input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketTag.parser(), extensionRegistry));
+                  break;
+                }
+                case 82: {
+                  com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder subBuilder = null;
+                  if (tagPermission_ != null) {
+                    subBuilder = tagPermission_.toBuilder();
+                  }
+                  tagPermission_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(tagPermission_);
+                    tagPermission_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 90: {
+                  if (!customers_.isModifiable()) {
+                    customers_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(customers_);
+                  }
+                  customers_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.TicketProto.Customer.parser(), extensionRegistry));
                   break;
                 }
               }

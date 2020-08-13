@@ -29,8 +29,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ClosedTicketsFragment extends Fragment implements
-        TicketsFragment.ClosedTicketListListener {
+public class ClosedTicketsFragment extends Fragment /*implements
+        TicketsFragment.ClosedTicketListListener*/ {
     private static final String TAG = "ClosedTicketsFragment";
     @BindView(R.id.rv_closed_tickets)
     RecyclerView rvClosedTickets;
@@ -48,7 +48,7 @@ public class ClosedTicketsFragment extends Fragment implements
 
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setClosedTicketListener(this);
+//        mFragment.setClosedTicketListener(this);
     }
 
 
@@ -124,14 +124,14 @@ public class ClosedTicketsFragment extends Fragment implements
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        swipeListener = (OnSwipeListener) getParentFragment();
-        onClosedTicketsListener = (OnClosedTicketsListener) getParentFragment();
+        /*swipeListener = (OnSwipeListener) getParentFragment();
+        onClosedTicketsListener = (OnClosedTicketsListener) getParentFragment();*/
     }
 
-    @Override
+ /*   @Override
     public void showClosedTicketList(List<Tickets> closedTicketList) {
         setUpRecyclerView(closedTicketList);
-    }
+    }*/
 }
 
 
