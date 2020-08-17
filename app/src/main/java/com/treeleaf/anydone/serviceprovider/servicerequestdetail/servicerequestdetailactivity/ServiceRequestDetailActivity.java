@@ -40,12 +40,21 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
 import com.treeleaf.januswebrtc.ClientActivity;
+import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 
 import java.math.BigInteger;
 import java.util.Objects;
 
 import butterknife.BindView;
+
+import static com.treeleaf.januswebrtc.Const.CALLEE_NAME;
+import static com.treeleaf.januswebrtc.Const.CALLEE_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.JANUS_API_KEY;
+import static com.treeleaf.januswebrtc.Const.JANUS_API_SECRET;
+import static com.treeleaf.januswebrtc.Const.JANUS_PARTICIPANT_ID;
+import static com.treeleaf.januswebrtc.Const.JANUS_ROOM_NUMBER;
+import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 
 public class ServiceRequestDetailActivity extends MvpBaseActivity
         <ServiceRequestDetailActivityPresenterImpl> implements
@@ -77,7 +86,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     private long serviceRequestId;
 
-    Callback.HostActivityCallback hostActivityCallback;
+    Callback.HostActivityCallback hostActivityCallbackClient, hostActivityCallbackServer;
 
     private String janusBaseUrl, apiKey, apiSecret;
     private Account userAccount;
@@ -86,6 +95,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     private ClientActivity.VideoCallListener videoCallListener;
     private boolean paymentSuccess = false;
     private boolean videoBroadCastPublish = false;
+    private RestChannel.Role mRole;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,11 +143,16 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
-        hostActivityCallback = new Callback.HostActivityCallback() {
+        hostActivityCallbackClient = new Callback.HostActivityCallback() {
 
             @Override
             public void fetchJanusServerInfo() {
                 presenter.fetchJanusServerUrl(Hawk.get(Constants.TOKEN));
+            }
+
+            @Override
+            public void specifyRole(RestChannel.Role role) {
+                mRole = role;
             }
 
             @Override
@@ -177,12 +192,68 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
         };
 
+        hostActivityCallbackServer = new Callback.HostActivityCallback() {
+
+            @Override
+            public void fetchJanusServerInfo() {
+                presenter.fetchJanusServerUrl(Hawk.get(Constants.TOKEN));
+            }
+
+            @Override
+            public void specifyRole(RestChannel.Role role) {
+                mRole = role;
+            }
+
+            @Override
+            public void passJanusServerInfo(BigInteger sessionId,
+                                            BigInteger roomId, BigInteger participantId) {
+            }
+
+            @Override
+            public void onServiceProviderAudioPublished(BigInteger sessionId, BigInteger roomId, BigInteger participantId) {
+
+            }
+
+            @Override
+            public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
+                videoCallListener = callback;
+            }
+
+            @Override
+            public void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener) {
+
+            }
+
+            @Override
+            public void notifyHostHangUp() {
+            }
+
+            @Override
+            public void notifySubscriberLeft() {
+
+            }
+        };
+
     }
 
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         rtcMessageId = broadcastVideoCall.getRtcMessageId();
+        if (mRole == RestChannel.Role.SERVER) {
+            String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
+            String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
+            String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
+            String roomNumber = broadcastVideoCall.getRoomId();
+            String participantId = broadcastVideoCall.getParticipantId();
+
+            String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
+            String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+
+            ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+                    roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
+        }
+
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
@@ -261,7 +332,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     @Override
     public void onConnectionSuccess() {
         ClientActivity.launch(ServiceRequestDetailActivity.this,
-                false, hostActivityCallback,
+                false, hostActivityCallbackClient,
                 serviceName, serviceProfileUri);
     }
 

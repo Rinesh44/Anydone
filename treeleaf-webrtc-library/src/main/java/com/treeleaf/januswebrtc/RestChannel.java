@@ -726,7 +726,7 @@ public class RestChannel implements ApiHandlerCallback {
             apiHandler.clearDisposables();
     }
 
-    enum Role {
+    public enum Role {
         CLIENT, SERVER
     }
 

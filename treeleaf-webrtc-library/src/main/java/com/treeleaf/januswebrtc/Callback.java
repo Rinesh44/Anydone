@@ -80,6 +80,8 @@ public class Callback {
 
         void fetchJanusServerInfo();
 
+        void specifyRole(RestChannel.Role role);
+
     }
 
 }

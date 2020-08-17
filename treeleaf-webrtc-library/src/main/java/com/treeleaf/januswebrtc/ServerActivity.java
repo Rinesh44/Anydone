@@ -239,6 +239,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         setUpNetworkStrengthHandler();
         if (mhostActivityCallback != null) {
             mhostActivityCallback.passJoineeReceivedCallback(videoCallListener);
+            mhostActivityCallback.specifyRole(RestChannel.Role.SERVER);
         }
 
         String baseUrl = getIntent().getStringExtra(JANUS_URL);

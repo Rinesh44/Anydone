@@ -266,6 +266,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         if (mhostActivityCallback != null) {
             mhostActivityCallback.passJoineeReceivedCallback(videoCallListener);
             mhostActivityCallback.fetchJanusServerInfo();
+            mhostActivityCallback.specifyRole(RestChannel.Role.CLIENT);
         }
 
 
