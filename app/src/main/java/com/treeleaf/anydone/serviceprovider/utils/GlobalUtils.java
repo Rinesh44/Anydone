@@ -83,9 +83,9 @@ public class GlobalUtils {
         return "";
     }
 
-    public static String getDateForServiceReq(long time) {
+    public static String getDateNormal(long time) {
         try {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("d, MMM yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("d MMM, yyyy");
             return sdf.format(new Date(time));
         } catch (Exception e) {
             e.printStackTrace();

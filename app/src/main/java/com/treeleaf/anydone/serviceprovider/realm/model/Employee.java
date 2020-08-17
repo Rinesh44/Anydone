@@ -9,6 +9,7 @@ public class Employee extends RealmObject {
     private String employeeId;
     private String accountId;
     private long createdAt;
+    private String employeeImageUrl;
 
     public Employee() {
     }
@@ -35,5 +36,13 @@ public class Employee extends RealmObject {
 
     public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getEmployeeImageUrl() {
+        return employeeImageUrl;
+    }
+
+    public void setEmployeeImageUrl(String employeeImageUrl) {
+        this.employeeImageUrl = employeeImageUrl;
     }
 }

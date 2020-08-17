@@ -11,7 +11,6 @@ public class Customer extends RealmObject {
     String email;
     String profilePic;
 
-
     public Customer() {
     }
 

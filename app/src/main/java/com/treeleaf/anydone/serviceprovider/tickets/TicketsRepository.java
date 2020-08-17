@@ -7,7 +7,10 @@ import io.reactivex.Observable;
 
 public interface TicketsRepository {
 
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getTickets(String token);
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(String token,
+                                                                            long from,
+                                                                            long to,
+                                                                            int page);
 
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
     filterServiceRequests(String token,

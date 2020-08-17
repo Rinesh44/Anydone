@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "com.treeleaf.anydone.serviceprovider",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "2",
+        "outputFile": "app-debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.treeleaf.anydone.serviceprovider",
+        "split": "",
+        "minSdkVersion": "21"
+      }
+    }
+  ]
+}

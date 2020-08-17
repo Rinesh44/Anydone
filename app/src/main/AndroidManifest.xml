@@ -26,8 +26,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".addticket.AddTicketActivity"></activity>
-        <activity android:name=".tickets.UnSubscribedTicketsActivity" />
+        <activity
+            android:name=".ticketdetails.TicketDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".tickets.unassignedtickets.UnassignedTicketsActivity" />
+        <activity android:name=".addticket.AddTicketActivity" />
+        <activity android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity" />
         <activity
             android:name=".weblink.WebLinkActivity"
             android:theme="@style/AppTheme.NoActionBar" />

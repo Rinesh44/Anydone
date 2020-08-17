@@ -486,7 +486,6 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
         } else {
             presenter.getOpenServiceRequests(false);
         }
-
     }
 
 

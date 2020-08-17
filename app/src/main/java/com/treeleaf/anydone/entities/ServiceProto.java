@@ -2919,6 +2919,11 @@ public final class ServiceProto {
      * <code>optional bool isRemoteSupported = 9;</code>
      */
     boolean getIsRemoteSupported();
+
+    /**
+     * <code>optional bool isEnabled = 10;</code>
+     */
+    boolean getIsEnabled();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.AvailableService}
@@ -3262,6 +3267,29 @@ public final class ServiceProto {
       isRemoteSupported_ = false;
     }
 
+    public static final int ISENABLED_FIELD_NUMBER = 10;
+    private boolean isEnabled_;
+    /**
+     * <code>optional bool isEnabled = 10;</code>
+     */
+    public boolean getIsEnabled() {
+      return isEnabled_;
+    }
+    /**
+     * <code>optional bool isEnabled = 10;</code>
+     */
+    private void setIsEnabled(boolean value) {
+      
+      isEnabled_ = value;
+    }
+    /**
+     * <code>optional bool isEnabled = 10;</code>
+     */
+    private void clearIsEnabled() {
+      
+      isEnabled_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!availableServiceId_.isEmpty()) {
@@ -3290,6 +3318,9 @@ public final class ServiceProto {
       }
       if (isRemoteSupported_ != false) {
         output.writeBool(9, isRemoteSupported_);
+      }
+      if (isEnabled_ != false) {
+        output.writeBool(10, isEnabled_);
       }
     }
 
@@ -3333,6 +3364,10 @@ public final class ServiceProto {
       if (isRemoteSupported_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(9, isRemoteSupported_);
+      }
+      if (isEnabled_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, isEnabled_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3717,6 +3752,29 @@ public final class ServiceProto {
         return this;
       }
 
+      /**
+       * <code>optional bool isEnabled = 10;</code>
+       */
+      public boolean getIsEnabled() {
+        return instance.getIsEnabled();
+      }
+      /**
+       * <code>optional bool isEnabled = 10;</code>
+       */
+      public Builder setIsEnabled(boolean value) {
+        copyOnWrite();
+        instance.setIsEnabled(value);
+        return this;
+      }
+      /**
+       * <code>optional bool isEnabled = 10;</code>
+       */
+      public Builder clearIsEnabled() {
+        copyOnWrite();
+        instance.clearIsEnabled();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AvailableService)
     }
     protected final Object dynamicMethod(
@@ -3755,6 +3813,8 @@ public final class ServiceProto {
               !other.currency_.isEmpty(), other.currency_);
           isRemoteSupported_ = visitor.visitBoolean(isRemoteSupported_ != false, isRemoteSupported_,
               other.isRemoteSupported_ != false, other.isRemoteSupported_);
+          isEnabled_ = visitor.visitBoolean(isEnabled_ != false, isEnabled_,
+              other.isEnabled_ != false, other.isEnabled_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -3834,6 +3894,11 @@ public final class ServiceProto {
                 case 72: {
 
                   isRemoteSupported_ = input.readBool();
+                  break;
+                }
+                case 80: {
+
+                  isEnabled_ = input.readBool();
                   break;
                 }
               }

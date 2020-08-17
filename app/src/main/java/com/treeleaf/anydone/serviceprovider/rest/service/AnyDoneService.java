@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.rest.service;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
@@ -250,7 +251,7 @@ public interface AnyDoneService {
     @PATCH("ticket/reopen/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> reopenTicket(@Header(AUTHORIZATION)
                                                                               String token,
-                                                                      @Path(value = "ticketId") String ticketId,
+                                                                      @Path(value = "ticketId") long ticketId,
                                                                       @Query("remark") String remark);
 
     @GET("ticket/assigned")
@@ -262,10 +263,57 @@ public interface AnyDoneService {
 
     @GET("ticket/subscribed")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribedTickets(@Header(AUTHORIZATION)
-                                                                                    String token,
-                                                                            @Query("from") long from,
-                                                                            @Query("to") long to,
-                                                                            @Query("page") int page);
+                                                                                      String token,
+                                                                              @Query("from") long from,
+                                                                              @Query("to") long to,
+                                                                              @Query("page") int page);
+
+    @GET("ticket/inactive")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getClosedResolvedTickets(@Header(AUTHORIZATION)
+                                                                                          String token,
+                                                                                  @Query("from") long from,
+                                                                                  @Query("to") long to,
+                                                                                  @Query("page") int page);
+
+
+    @GET("ticket/assignable")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignableTickets(@Header(AUTHORIZATION)
+                                                                                      String token,
+                                                                              @Query("from") long from,
+                                                                              @Query("to") long to,
+                                                                              @Query("page") int page);
+
+    @GET("ticket/subscribable")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribeableTickets(@Header(AUTHORIZATION)
+                                                                                         String token,
+                                                                                 @Query("from") long from,
+                                                                                 @Query("to") long to,
+                                                                                 @Query("page") int page);
+
+    @PATCH("ticket/unsubscribe/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> unsubscribe(@Header(AUTHORIZATION)
+                                                                             String token,
+                                                                     @Path(value = "ticketId")
+                                                                             long ticketId);
+
+    @PATCH("ticket/subscribe/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> subscribe(@Header(AUTHORIZATION)
+                                                                           String token,
+                                                                   @Path(value = "ticketId")
+                                                                           long ticketId);
+
+    @PATCH("ticket/assign/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> assignToSelf(@Header(AUTHORIZATION)
+                                                                              String token,
+                                                                      @Path(value = "ticketId")
+                                                                              long ticketId,
+                                                                      @Body TicketProto.Ticket employeeAssigned);
+
+
+    @POST("ticket")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> createTicket(@Header(AUTHORIZATION)
+                                                                              String token,
+                                                                      TicketProto.Ticket ticket);
 
 }
 

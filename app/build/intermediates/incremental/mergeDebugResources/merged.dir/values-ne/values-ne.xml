@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="7903180715631665059" name="abc_action_bar_home_description">"गृह पृष्ठमा जानुहोस्"</string>
+    <string msgid="6794660482873516081" name="abc_action_bar_up_description">"माथि नेभिगेट गर्नुहोस्"</string>
+    <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"थप विकल्पहरू"</string>
+    <string msgid="2571498368472823490" name="abc_action_mode_done">"सम्पन्न भयो"</string>
+    <string msgid="3732416590524162402" name="abc_activity_chooser_view_see_all">"सबै हेर्नुहोस्"</string>
+    <string msgid="1798588241954930982" name="abc_activitychooserview_choose_application">"एउटा अनुप्रयोग छान्नुहोस्"</string>
+    <string msgid="3403923230105792483" name="abc_capital_off">"निष्क्रिय"</string>
+    <string msgid="7831734969929204599" name="abc_capital_on">"सक्रिय"</string>
+    <string msgid="5725160506500770567" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="944415252197684443" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="129742188101734366" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="6840127756824236027" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="4974283687810130415" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="8046416353848716905" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="3271697756921353410" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="2304645930658438191" name="abc_menu_space_shortcut_label">"space"</string>
+    <string msgid="8327365089695024394" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="3570106412128999382" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="940844115270746197" name="abc_search_hint">"खोज्नुहोस्…"</string>
+    <string msgid="1769270744562318534" name="abc_searchview_description_clear">"क्वेरी खाली गर्नुहोस्"</string>
+    <string msgid="908784302972860853" name="abc_searchview_description_query">"खोज प्रश्न"</string>
+    <string msgid="5466662225065974044" name="abc_searchview_description_search">"खोज"</string>
+    <string msgid="8203855622131699655" name="abc_searchview_description_submit">"क्वेरी पेस गर्नुहोस्"</string>
+    <string msgid="3478748990613108725" name="abc_searchview_description_voice">"आवाजमा आधारित खोजी"</string>
+    <string msgid="2650565705514630347" name="abc_shareactionprovider_share_with">"यसमार्फत आदान प्रदान गर्नुहोस्"</string>
+    <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g> मार्फत आदान प्रदान गर्नुहोस्"</string>
+    <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"संक्षिप्त गर्नुहोस्"</string>
+    <string name="about">अप्प्को बारेमा</string>
+    <string name="accepted">"अक्केप्तेद "</string>
+    <string name="account">अकाउन्ट</string>
+    <string name="action_edit_profile">प्रोफाइल सम्पादन</string>
+    <string name="action_settings">सेटिंग्स</string>
+    <string name="add">"थप्नुहोस् "</string>
+    <string name="add_a_caption">"क्याप्शन थप्नुहोस् ... "</string>
+    <string name="add_card">"कार्ड थप्नुहोस् "</string>
+    <string name="add_credit_or_debit_card">"क्रेडिट वा डेबिट कार्ड थप्नुहोस् "</string>
+    <string name="add_location">"स्थान थप्नुहोस् "</string>
+    <string name="add_payment_method">"भुक्तानी विधि थप्नुहोस् "</string>
+    <string name="address">ठेगाना</string>
+    <string name="agree_terms_and_conditions">नियम र सर्तहरू स्वीकार गर्नुहोस्</string>
+    <string name="already_have_account">पहिले नै खाता छ?</string>
+    <string name="anydone_desc">" एनिडोन सरल र प्रयोग गर्न सजिलो छ, ताकि कोहीलाई आवश्यक परेको चीज भेट्टाउन सकोस्!
+        चाहे तपाइँ कसैलाई तपाइँको पल्म्बिंगको साथ मद्दत गर्न चाहनुहुन्छ वा तपाइँ तपाइँको प्रस्ताव गर्न चाहानुहुन्छआफ्नै सेवाहरू,
+        एनेडोनले तपाईंलाई सही व्यक्ति र सही कामका साथ जडान गर्न सक्दछ।आफ्नै लागि मात्र हेर्नुहोस्!"</string>
+    <string name="app_name">AnydoneConsumerApp</string>
+    <string name="approve">"अनुमोदन गर्नुहोस् "</string>
+    <string name="audio_call">"अडियो कल "</string>
+    <string name="back_to_login">लग - इन</string>
+    <string name="billing">बिल्लिङ</string>
+    <string name="billing_address">"बिल ठेगाना "</string>
+    <string name="billings">"बिल "</string>
+    <string name="bot_text1">"नमस्ते प्रयोगकर्ता "</string>
+    <string name="bot_text2">" तपाईंको अनुरोध पठाइएको छ र पेन्डि। छ। अनुरोध स्वीकार नभएसम्म मलाई तपाईंको प्रश्नहरू सोध्नुहोस्"</string>
+    <string name="camera">"क्यामेरा "</string>
+    <string name="cancelled">क्यान्सिलद</string>
+    <string name="card_number">"कार्ड नम्बर "</string>
+    <string name="cardholder_name">"कार्डधारकको नाम "</string>
+    <string name="change_password">पासवर्ड परिवर्तन</string>
+    <string name="choose_date">"मिति छनौट गर्नुहोस् "</string>
+    <string name="city">शहर</string>
+    <string name="closed">बन्द</string>
+    <string name="code">कोड</string>
+    <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"सक्रिय गर्नुहोस्"</string>
+    <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> ले तपाईँले Google Play सेवाहरू सक्षम नगरेसम्म काम गर्दैन।"</string>
+    <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"Google Play सेवाहरू सक्षम पार्नुहोस्"</string>
+    <string msgid="9115728400623041681" name="common_google_play_services_install_button">"स्थापना गर्नुहोस्"</string>
+    <string msgid="8179894293032530091" name="common_google_play_services_install_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> Google Play services बिना सञ्चालन हुने छैन र तपाईँको यन्त्रमा Google Play services उपलब्ध छैनन्।"</string>
+    <string msgid="7442193194585196676" name="common_google_play_services_install_title">"Google Play सेवाहरू प्राप्त गर्नुहोस्"</string>
+    <string msgid="4293541511340436975" name="common_google_play_services_notification_channel_name">"Google Play सेवाको उपलब्धता"</string>
+    <string msgid="180394615667698242" name="common_google_play_services_notification_ticker">"Google Play सेवाहरूका त्रुटि"</string>
+    <string msgid="2518680582564677258" name="common_google_play_services_unknown_issue">"<ns1:g id="APP_NAME">%1$s</ns1:g> लाई Google Play services सँग सहकार्य गर्न समस्या भइरहेको छ। कृपया फेरि प्रयास गर्नुहोस्।"</string>
+    <string msgid="5501187292256987189" name="common_google_play_services_unsupported_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> Google Play services बिना सञ्चालन हुने छैन र तपाईँको यन्त्रले Google Play services लाई समर्थन गर्दैन।"</string>
+    <string msgid="8172070149091615356" name="common_google_play_services_update_button">"अद्यावधिक गर्नुहोस्"</string>
+    <string msgid="7773943415006962566" name="common_google_play_services_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> तपाईंले Google प्ले सेवाहरू अद्यावधिक नगरेसम्म सञ्चालन हुँदैन।"</string>
+    <string msgid="8706675115216073244" name="common_google_play_services_update_title">"Google Play सेवाहरू अद्यावधिक गर्नुहोस्"</string>
+    <string msgid="7894275749778928941" name="common_google_play_services_updating_text">"Google Play सेवाहरू <ns1:g id="APP_NAME">%1$s</ns1:g> बिना सञ्‍चालन हुँदैन, जुन हाल अद्यावधिक भइरहेका छन्।"</string>
+    <string msgid="2804989272736383918" name="common_google_play_services_wear_update_text">"Google Play सेवाहरूको नयाँ संस्करण आवश्यक छ। यो आफै छिट्टै नै अद्यावधिक हुनेछ।"</string>
+    <string msgid="5201977337835724196" name="common_open_on_phone">"फोनमा खोल्नुहोस्"</string>
+    <string msgid="3441753203274453993" name="common_signin_button_text">"साइन इन गर्नुहोस्"</string>
+    <string msgid="669893613918351210" name="common_signin_button_text_long">"Google मार्फत साइन‍ इन गर्नुहोस्"</string>
+    <string name="completed">कोम्प्लेतेद</string>
+    <string name="confirm">"पुष्टि गर्नुहोस् "</string>
+    <string name="confirm_password">सुनिश्चित पासवर्ड</string>
+    <string name="connect_to_internet">" इन्टरनेट  जडान छैन"</string>
+    <string name="connected">कोन्नेक्त भयो</string>
+    <string name="connecting">कोन्नेक्त हुँदै</string>
+    <string name="copy">कपि</string>
+    <string name="currency">मुद्रा</string>
+    <string name="edit_problem_statement">"समस्या वक्तव्य सम्पादन गर्नुहोस् "</string>
+    <string name="edit_profile">प्रोफाइल सम्पादन</string>
+    <string name="email">ईमेल</string>
+    <string name="email_phone">ईमेल / फोन</string>
+    <string name="enable_push_notification">सूचना सक्षम गर्नुहोस्</string>
+    <string name="enter_code">कोड राख्नु</string>
+    <string name="explain_your_problem">"तपाईंको समस्या राख्नु "</string>
+    <string name="files">फाईलहरू</string>
+    <string name="filter">"फिल्टर "</string>
+    <string name="find_services">"सेवाहरू खोज्नुहोस् "</string>
+    <string name="forgot_password">पासवर्ड भुल्नु भयो?</string>
+    <string name="full_name">पुरा नाम</string>
+    <string name="gallery">ग्यालरी</string>
+    <string name="gender">" लि .्ग"</string>
+    <string name="give_location">"हामीलाई तपाईंको स्थान दिनुहोस् "</string>
+    <string name="google">गूगल</string>
+    <string name="home">होम</string>
+    <string name="language">भाषा</string>
+    <string name="language_change_check">तपाईको पासवर्ड सफलतापूर्वक परिवर्तन </string>
+    <string name="language_setting">भाषा सेटिंग</string>
+    <string name="location">स्थान</string>
+    <string name="location_not_found">"स्थान फेला परेन। फेरि प्रयास गर्नुहोस् "</string>
+    <string name="location_type">"स्थान प्रकार "</string>
+    <string name="login">लग - इन</string>
+    <string name="login_here">लग - इन</string>
+    <string name="logo">लोगो</string>
+    <string name="logout">लग आउट</string>
+    <string name="mark_as_complete">सम्पन्न गर्नुहोस्</string>
+    <string name="mention_issue">" तपाइँको समस्या यहाँ उल्लेख गर्नुहोस्।"</string>
+    <string name="model_no">"मोडेल न "</string>
+    <string name="month">महिना</string>
+    <string name="name">नाम</string>
+    <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"माथि नेभिगेट गर्नुहोस्"</string>
+    <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
+    <string name="new_password">नया पासवर्ड</string>
+    <string name="next">अर्को</string>
+    <string name="no_account">खाता छैन?</string>
+    <string name="not_connected">कोन्नेक्त भएको छैन</string>
+    <string name="not_delivered">"वितरित भएको छैन "</string>
+    <string name="notification">सूचना</string>
+    <string name="notification_settings">सूचना सेटिंग्स</string>
+    <string name="old_password">पुरानो पासवर्ड</string>
+    <string name="ongoing">ओन गोइङ</string>
+    <string name="open_camera">क्यामेरा</string>
+    <string name="or_connect_with">वा</string>
+    <string name="password">पासवर्ड</string>
+    <string name="password_changed">पासवर्ड परिवर्तन भयो</string>
+    <string name="payment_method">भुक्तानी विधि</string>
+    <string name="pending">पेन्दिङ</string>
+    <string name="phone">फोन</string>
+    <string name="phone_number">फोन</string>
+    <string name="pick_date_range">"मिति दायरा छान्नुहोस् "</string>
+    <string name="pick_from_gallery">"ग्यालरीबाट छान्नुहोस् "</string>
+    <string name="pick_specific_date">"विशिष्ट मिति छान्नुहोस् "</string>
+    <string name="pick_time">"समय छान्नुहोस् "</string>
+    <string name="previous">अघिल्लो</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="profile">प्रोफाइल</string>
+    <string name="recorder">रेकर्डर</string>
+    <string name="register">रेजिस्टर</string>
+    <string name="register_here">यहाँ दर्ता गर्नुहोस्</string>
+    <string name="remember_me">मलाई याद गर</string>
+    <string name="remove">हटाउनुहोस्</string>
+    <string name="resend_code">"कोड पुन: पठाउनुहोस् "</string>
+    <string name="resend_code_msg">कोड प्राप्त भएन ?</string>
+    <string name="resend_otp_in">ओटिपी पठाउनुहोस्</string>
+    <string name="save">सकियो</string>
+    <string name="save_card_as_primary">कार्डलाई प्राथमिक बनाउनु</string>
+    <string name="search">"खोज्नुहोस् "</string>
+    <string name="search_location">"स्थान खोज्नुहोस् "</string>
+    <string msgid="730395136688082741" name="search_menu_title">"खोज"</string>
+    <string name="search_services">सेवाहरू खोज्नुहोस्</string>
+    <string name="seen">"देखियो "</string>
+    <string name="send_reset_code">"रिसेट कोड पठाउनुहोस् "</string>
+    <string name="sent">पठाइयो</string>
+    <string name="service_requested_by">अनुरोध गर्नुभएको</string>
+    <string name="service_requests">"सेवा अनुरोधहरू "</string>
+    <string name="set_address">"ठेगाना थप्नुहोस् "</string>
+    <string name="set_email">"ईमेल थप्नुहोस् "</string>
+    <string name="set_name">"नाम थप्नुहोस् "</string>
+    <string name="set_phone">"फोन थप्नुहोस् "</string>
+    <string name="setting">सेटिंग्स</string>
+    <string name="started">स्टार्टएद</string>
+    <string name="state">"राज्य "</string>
+    <string msgid="8106346172024741305" name="status_bar_notification_info_overflow">"९९९+"</string>
+    <string name="street_address">"सडक ठेगाना "</string>
+    <string name="terms_of_use">प्रयोगका सर्तहरू</string>
+    <string name="timezone">"समय क्षेत्र "</string>
+    <string name="transactions">लेनदेन</string>
+    <string name="type_a_message">"टाइप गर्नुहोस् "</string>
+    <string name="verification_code">"प्रमाणिकरण कोड "</string>
+    <string name="verification_msg">प्रमाणिकरण कोड टाइप गर्नुहोस्</string>
+    <string name="verify">प्रमाणित गर्नुहोस्</string>
+    <string name="version_1_0">"संस्करण १.० "</string>
+    <string name="video_call">"भिडियो कल "</string>
+    <string name="video_settings">"भिडियो सेटिंग्स "</string>
+    <string name="year">"बर्ष "</string>
+    <string name="your_password_has_been_changed_successfully">तपाईको पासवर्ड सफलतापूर्वक परिवर्तन गरिएको छ</string>
+</resources>

@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.tickets;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +19,6 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,16 +34,14 @@ import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.OnAssignedTicketsListener;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.OnClosedTicketsListener;
-import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.OnSubscribeTicketsListener;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -59,7 +57,7 @@ import butterknife.OnClick;
 
 public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         implements TicketsContract.TicketsView, OnSwipeListener,
-        OnSubscribeTicketsListener, OnAssignedTicketsListener, OnClosedTicketsListener {
+        ClosedTicketsFragment.FetchAssignedTicketListener {
     private static final String TAG = "ServiceRequestFragment";
     @BindView(R.id.tabs)
     TabLayout mTabs;
@@ -74,14 +72,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @BindView(R.id.btn_add_ticket)
     MaterialButton btnAddTicket;
 
-    private List<Tickets> ticketsList;
-    private String statusValue = "null";
-    private SubscribeTicketListListener subscribeTicketListListener;
-    private AssignedTicketListListener assignedTicketListListener;
-    private ClosedTicketListListener closedTicketListListener;
-    private List<Tickets> subscribeTickets;
-    private List<Tickets> assignedTickets;
-    private List<Tickets> closedTickets;
+    private List<Tickets> assignedTicketList;
+    String statusValue = null;
     private RadioGroup rgStatus;
     private boolean filter = false;
     private BottomSheetDialog filterBottomSheet;
@@ -111,15 +103,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        ticketsList = TicketRepo.getInstance().getAllTickets();
+        assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
         createFilterBottomSheet();
-        if (CollectionUtils.isEmpty(ticketsList)) {
-            presenter.getTickets(true);
-        } else {
-            ivFilter.setVisibility(View.VISIBLE);
-            int fragmentIndex = mViewpager.getCurrentItem();
-            presenter.separateAssignedAndClosedTickets(ticketsList, fragmentIndex, filter);
-        }
 
         setupViewPager(mViewpager);
         mTabs.setupWithViewPager(mViewpager);
@@ -147,7 +132,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             hideKeyBoard();
 
             Hawk.put(Constants.SELECTED_FILTER_STATUS, -1);
-            presenter.getTickets(true);
         });
 
         etServiceName.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
@@ -193,12 +177,13 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @OnClick(R.id.btn_add_ticket)
     void addTicket() {
-        Toast.makeText(getContext(), "Add ticket clicked", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getActivity(), AddTicketActivity.class);
+        startActivity(i);
     }
 
     @OnClick(R.id.iv_filter)
     void filterRequests() {
-        if (!CollectionUtils.isEmpty(ticketsList)) {
+        if (!CollectionUtils.isEmpty(assignedTicketList)) {
             int fragmentIndex = mViewpager.getCurrentItem();
             if (fragmentIndex == 0) {
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -382,78 +367,13 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @Override
     public void onSwipeRefresh() {
         GlobalUtils.showLog(TAG, "swipe implemented");
-        presenter.getTickets(false);
-    }
-
-
-    @Override
-    public void getTicketsSuccess() {
-
     }
 
     @Override
-    public void getTicketsFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getContext(), msg);
-            onAuthorizationFailed(getContext());
-            return;
-        }
-
-        hideKeyBoard();
-        UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
-    }
-
-    @Override
-    public void onSubscribeTicketsSeparated(List<Tickets> subscribeTicketList) {
-        GlobalUtils.showLog(TAG, "subsribe tickets count: " + subscribeTicketList.size());
-        subscribeTickets = subscribeTicketList;
-        if (subscribeTicketListListener != null)
-            subscribeTicketListListener.showSubscribeTickets(subscribeTickets);
-        else GlobalUtils.showLog(TAG, "subscribe listener is null");
-    }
-
-    @Override
-    public void onAssignedTicketsSeparated(List<Tickets> assignedTicketList) {
-        GlobalUtils.showLog(TAG, "all tickets count: " + assignedTicketList.size());
-        assignedTickets = assignedTicketList;
-        if (assignedTicketListListener != null)
-            assignedTicketListListener.showAssignedTickets(assignedTickets);
-        else GlobalUtils.showLog(TAG, "assigned ticket listener is null");
-    }
-
-    @Override
-    public void onClosedTicketsSeparated(List<Tickets> closedTicketList) {
-        GlobalUtils.showLog(TAG, "closed tickets count: " + closedTicketList.size());
-        closedTickets = closedTicketList;
-        if (closedTicketListListener != null)
-            closedTicketListListener.showClosedTicketList(closedTickets);
-        else GlobalUtils.showLog(TAG, "closed ticket listener is null");
-    }
-
-    @Override
-    public void onSubscribeTicketFragmentCreated() {
-        GlobalUtils.showLog(TAG, "on subscribe ticket fragment created called");
-        if (subscribeTicketListListener != null)
-            subscribeTicketListListener.showSubscribeTickets(subscribeTickets);
-        else GlobalUtils.showLog(TAG, "subscribe ticket listener is null");
-    }
-
-    @Override
-    public void onAssignedTicketsCreated() {
-        GlobalUtils.showLog(TAG, "on assigned ticket fragment created called");
-        if (assignedTicketListListener != null)
-            assignedTicketListListener.showAssignedTickets(assignedTickets);
-        else GlobalUtils.showLog(TAG, "assinged ticket listener is null");
-    }
-
-    @Override
-    public void onClosedTicketsCreated() {
-        GlobalUtils.showLog(TAG, "on closed ticket fragment created called");
-        if (closedTicketListListener != null)
-            closedTicketListListener.showClosedTicketList(closedTickets);
-        else GlobalUtils.showLog(TAG, "closed ticket listener is null");
+    public void onTicketReopened() {
+      /*  AssignedTicketsFragment fragment = (AssignedTicketsFragment) getChildFragmentManager()
+                .findFragmentById(R.id.fragment_open);
+        fragment.reFetchList();*/
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -485,30 +405,5 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             return mFragmentTitleList.get(position);
         }
     }
-
-    public interface SubscribeTicketListListener {
-        void showSubscribeTickets(List<Tickets> subscribeTicketList);
-    }
-
-    public void setSubscribeTicketListListener(SubscribeTicketListListener listener) {
-        subscribeTicketListListener = listener;
-    }
-
-    public interface AssignedTicketListListener {
-        void showAssignedTickets(List<Tickets> assignedTicketList);
-    }
-
-    public void setAssignedTicketListener(AssignedTicketListListener listener) {
-        assignedTicketListListener = listener;
-    }
-
-    public interface ClosedTicketListListener {
-        void showClosedTicketList(List<Tickets> closedTicketList);
-    }
-
-    public void setClosedTicketListener(ClosedTicketListListener listener) {
-        closedTicketListListener = listener;
-    }
-
 }
 

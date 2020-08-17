@@ -22,13 +22,13 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
-import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.entities.OrderServiceProto;
-import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;

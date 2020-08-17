@@ -103,6 +103,7 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter
             viewBinderHelper.lockSwipe(String.valueOf(service.getServiceOrderId()));
             holder.ibDelete.setVisibility(View.GONE);
         }
+
         holder.ibDelete.setOnClickListener(v -> {
             if (deleteListener != null) {
                 deleteListener.onDeleteClicked(String.valueOf(service.getServiceOrderId()),
@@ -136,7 +137,7 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter
     }
 
     private void setDate(TextView tvDateTop, TextView tvDateBottom, long createdAt) {
-        String dateConverted = GlobalUtils.getDateForServiceReq(createdAt);
+        String dateConverted = GlobalUtils.getDateNormal(createdAt);
         String[] splitDate = dateConverted.split(",");
         String dateTop = splitDate[0].trim();
         String dateBottom = splitDate[1].trim();

@@ -12,23 +12,9 @@ public class TicketsContract {
 
     public interface TicketsView extends BaseView {
 
-        void getTicketsSuccess();
-
-        void getTicketsFail(String msg);
-
-        void onSubscribeTicketsSeparated(List<Tickets> subscribeTicketList);
-
-        void onAssignedTicketsSeparated(List<Tickets> assignedTicketList);
-
-        void onClosedTicketsSeparated(List<Tickets> closedTicketList);
-
     }
 
     public interface TicketsPresenter extends Presenter<TicketsView> {
 
-        void getTickets(boolean showProgress);
-
-        void separateAssignedAndClosedTickets(List<Tickets> ticketsList, int fragmentIndex,
-                                              boolean filter);
     }
 }
