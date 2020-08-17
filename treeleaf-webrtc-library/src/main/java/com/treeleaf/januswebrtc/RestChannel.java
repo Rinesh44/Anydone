@@ -31,6 +31,7 @@ public class RestChannel implements ApiHandlerCallback {
     private Callback.ApiCallback apiCallback;
     ApiHandler apiHandler;
     private BigInteger publisherHandleId;
+    private Role role;
 
     public RestChannel(Context context, String janusServerUrl, String apiKey, String apiSecret) {
         apiHandler = new ApiHandler(context, this, janusServerUrl, apiKey);
@@ -38,10 +39,13 @@ public class RestChannel implements ApiHandlerCallback {
     }
 
     public void initConnection(String client) {
-        if (client.equals(CLIENT))
+        if (client.equals(CLIENT)) {
             createSession();
-        else
-            createSessionForServer();
+            role = Role.CLIENT;
+        } else {
+            createSession();
+            role = Role.SERVER;
+        }
     }
 
     @Override
@@ -102,6 +106,7 @@ public class RestChannel implements ApiHandlerCallback {
                      */
                     Log.d(TAG, "hangup occured");
                     String reasonForHangup = jo.optString("reason");
+                    apiCallback.onHangUp();
                 } else {
                     JanusHandle handle = handles.get(new BigInteger(jo.optString("sender")));
                     if (handle == null) {
@@ -110,20 +115,28 @@ public class RestChannel implements ApiHandlerCallback {
                         JSONObject plugin = jo.optJSONObject("plugindata").optJSONObject("data");
                         if (plugin.optString("videoroom").equals("joined")) {
                             mParticipantId = new BigInteger(plugin.optString("id"));
-                            handle.onJoined.onJoined(handle);
+                            if (handle.onJoined != null)
+                                handle.onJoined.onJoined(handle);
                         }
 
-                        JSONArray publishers = plugin.optJSONArray("publishers");
-                        if (publishers != null && publishers.length() > 0) {
-                            for (int i = 0, size = publishers.length(); i <= size - 1; i++) {
-                                JSONObject publisher = publishers.optJSONObject(i);
-                                BigInteger feed = new BigInteger(publisher.optString("id"));
-                                String display = publisher.optString("display");
+                        /**
+                         * when some one active new publisher joins the room
+                         */
+                        if (plugin.optString("videoroom").equals("event")) {
+                            JSONArray publishers = plugin.optJSONArray("publishers");
+                            if (publishers != null && publishers.length() > 0) {
+                                for (int i = 0, size = publishers.length(); i <= size - 1; i++) {
+                                    JSONObject publisher = publishers.optJSONObject(i);
+                                    BigInteger feed = new BigInteger(publisher.optString("id"));
+                                    String display = publisher.optString("display");
+                                    apiCallback.onRoomJoined(apiCallback.getRoomNumber(), feed.toString());
+                                }
                             }
                         }
 
                         String configured = plugin.optString("configured");
                         if (!TextUtils.isEmpty(configured) && configured.equals("ok")) {
+                            apiCallback.onParticipantCreated(mParticipantId);
                             apiCallback.janusServerConfigurationSuccess(mSessionId, mRoomId, mParticipantId);
                             apiCallback.showVideoCallStartView(false);
                         }
@@ -207,36 +220,7 @@ public class RestChannel implements ApiHandlerCallback {
         apiHandler.createSession(msg.toString(), jt);
     }
 
-    private void createSessionForServer() {
-        String transaction = generateTransactionString(12);
-        JanusTransaction jt = new JanusTransaction();
-        jt.tid = transaction;
-        jt.success = new TransactionCallbackSuccess() {
-            @Override
-            public void success(JSONObject jo) {
-                mSessionId = new BigInteger(jo.optJSONObject("data").optString("id"));
-                apiHandler.pollRequest(mSessionId);
-                subscriberCreateHandle();//TODO: uncomment this later
-            }
-        };
-        jt.error = new TransactionCallbackError() {
-            @Override
-            public void error(JSONObject jo) {
-            }
-        };
-        transactions.put(transaction, jt);
-        JSONObject msg = new JSONObject();
-        try {
-            msg.putOpt("janus", "create");
-            msg.putOpt("apisecret", API_SECRET);
-            msg.putOpt("transaction", transaction);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        apiHandler.createSession(msg.toString(), jt);
-    }
-
-    private void publisherCreateHandle() {
+    public void publisherCreateHandle() {
         String transaction = generateTransactionString(12);
         JanusTransaction jt = new JanusTransaction();
         jt.tid = transaction;
@@ -245,7 +229,50 @@ public class RestChannel implements ApiHandlerCallback {
             public void success(JSONObject jo) {
                 BigInteger handleId = new BigInteger(jo.optJSONObject("data").optString("id"));
                 publisherHandleId = handleId;
-                publisherCreateRoom(handleId);
+                if (role == Role.CLIENT){
+                    /**
+                     * client has to create room it self
+                     * and server just has to join
+                     */
+                    publisherCreateRoom(handleId);
+                }
+                else {
+                    apiCallback.startCreatingOffer(publisherHandleId);
+                    JanusHandle janusHandle = new JanusHandle();
+                    janusHandle.handleId = publisherHandleId;
+                    janusHandle.onJoined = new OnJoined() {
+                        @Override
+                        public void onJoined(JanusHandle jh) {
+                            /**
+                             * gets called when publihsher is joined
+                             */
+                            apiCallback.onRoomCreated(getRoomNumber());
+                            apiCallback.onRoomJoined(getRoomNumber(), null);
+                        }
+                    };
+                    janusHandle.onRemoteJsep = new OnRemoteJsep() {
+                        /**
+                         * janus server's response to "publish" or "confiure" request
+                         * and it is accompanied by JSEP SDP offer describing the publisher's media streams
+                         * @param jh
+                         * @param jsep
+                         */
+
+                        @Override
+                        public void onRemoteJsep(JanusHandle jh, JSONObject jsep) {
+                            /**
+                             * gets called when
+                             * {"videoroom": "event",
+                             *       "room": 1234,
+                             *       "configured": "ok",} this event is sent from server
+                             *       this event also sends jsep object from server
+                             */
+                            delegate.onPublisherRemoteJsep(jh.handleId, jsep);
+                        }
+                    };
+                    handles.put(janusHandle.handleId, janusHandle);
+                    publisherJoinRoom(janusHandle);
+                }
             }
         };
         jt.error = new TransactionCallbackError() {
@@ -306,7 +333,7 @@ public class RestChannel implements ApiHandlerCallback {
                          * gets called when publihsher is joined
                          */
                         apiCallback.onRoomCreated(getRoomNumber());
-                        delegate.onPublisherJoined(jh.handleId);
+//                        delegate.onPublisherJoined(jh.handleId);
                     }
                 };
                 janusHandle.onRemoteJsep = new OnRemoteJsep() {
@@ -419,6 +446,25 @@ public class RestChannel implements ApiHandlerCallback {
             apiHandler.unpublishRoom(msg.toString(), publisherHandleId, mSessionId);
     }
 
+    public void subscriberLeave() {
+        JSONObject msg = new JSONObject();
+        JSONObject body = new JSONObject();
+        try {
+            body.putOpt("request", "leave");//or you can put "leave"
+            body.putOpt("room", getRoomNumber());
+
+            msg.putOpt("janus", "message");
+            msg.putOpt("apisecret", API_SECRET);
+            msg.putOpt("body", body);
+            msg.putOpt("transaction", generateTransactionString(12));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (mSessionId != null && publisherHandleId != null)
+            apiHandler.unpublishRoom(msg.toString(), publisherHandleId, mSessionId);
+    }
+
     public void detachPlugin() {
         JSONObject msg = new JSONObject();
         try {
@@ -491,7 +537,7 @@ public class RestChannel implements ApiHandlerCallback {
         }
     }
 
-    private void subscriberCreateHandle() {
+    public void subscriberCreateHandle(String participantId) {
         String transaction = generateTransactionString(12);
         JanusTransaction jt = new JanusTransaction();
         jt.tid = transaction;
@@ -499,7 +545,7 @@ public class RestChannel implements ApiHandlerCallback {
             @Override
             public void success(JSONObject jo) {
                 BigInteger handleId = new BigInteger(jo.optJSONObject("data").optString("id"));
-                listParticipants(handleId);
+                listParticipants(handleId, participantId);
             }
         };
         jt.error = new TransactionCallbackError() {
@@ -521,7 +567,7 @@ public class RestChannel implements ApiHandlerCallback {
         apiHandler.subscriberCreateHandle(msg.toString(), jt, mSessionId);
     }
 
-    private void listParticipants(final BigInteger handleId) {
+    private void listParticipants(final BigInteger handleId, String participantId) {
         String transaction = generateTransactionString(12);
         JanusTransaction jt = new JanusTransaction();
         jt.tid = transaction;
@@ -543,10 +589,16 @@ public class RestChannel implements ApiHandlerCallback {
                         for (int i = 0, size = participants.length(); i <= size - 1; i++) {
                             JSONObject participant = participants.optJSONObject(i);
                             Boolean publisher = participant.optBoolean("publisher");
-                            if (publisher) {
+                            String mParticipantId = participant.optString("id");
+                            /**
+                             * check if participant id matches with one we got from mqtt event
+                             */
+                            if ((participantId != null) ||
+                                    (mParticipantId.equals(apiCallback.getParticipantId().toString()) && publisher)) {
                                 JanusHandle janusHandle = new JanusHandle();
                                 janusHandle.handleId = handleId;
-                                janusHandle.feedId = new BigInteger(participant.optString("id"));
+                                janusHandle.feedId = (participantId == null) ? (new BigInteger(participant.optString("id")))
+                                        : (new BigInteger(participantId));
                                 janusHandle.onRemoteJsep = new OnRemoteJsep() {
                                     @Override
                                     public void onRemoteJsep(JanusHandle jh, JSONObject jsep) {
@@ -556,6 +608,13 @@ public class RestChannel implements ApiHandlerCallback {
                                         delegate.subscriberHandleRemoteJsep(jh.handleId, jsep);
                                     }
                                 };
+                                janusHandle.onJoined = new OnJoined() {
+                                    @Override
+                                    public void onJoined(JanusHandle jh) {
+                                        apiCallback.startCreatingOffer(handleId);
+                                    }
+                                };
+
                                 janusHandle.onLeaving = new OnJoined() {
                                     @Override
                                     public void onJoined(JanusHandle jh) {
@@ -665,6 +724,10 @@ public class RestChannel implements ApiHandlerCallback {
     public void clearPendingApiCalls() {
         if (apiHandler != null)
             apiHandler.clearDisposables();
+    }
+
+    enum Role {
+        CLIENT, SERVER
     }
 
 }

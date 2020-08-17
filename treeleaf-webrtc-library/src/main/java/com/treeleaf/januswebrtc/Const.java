@@ -15,6 +15,8 @@ public class Const {
     public static final String CALLEE_NAME = "callee_name";
     public static final String CALLEE_PROFILE_URL = "callee_profile_url";
     public static final String JANUS_CREDENTIALS_SET = "janus_credentials_set";
+    public static final String JANUS_ROOM_NUMBER = "janus_room_number";
+    public static final String JANUS_PARTICIPANT_ID = "janus_participant_id";
 
 
     public static void setRoomNumber(BigInteger roomNumber) {

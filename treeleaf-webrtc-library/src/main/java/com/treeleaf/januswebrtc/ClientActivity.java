@@ -1,6 +1,8 @@
 package com.treeleaf.januswebrtc;
 
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -53,8 +55,9 @@ import static com.treeleaf.januswebrtc.Const.JANUS_CREDENTIALS_SET;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.TRUE;
+import static com.treeleaf.januswebrtc.Const.SERVER;
 
-public class ClientActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback, PeerConnectionEvents, Callback.IceConnectionChangeEvents {
+public class ClientActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback, PeerConnectionEvents, Callback.ConnectionEvents {
     private static final String TAG = ClientActivity.class.getSimpleName();
 
     private PeerConnectionClient peerConnectionClient;
@@ -64,7 +67,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private VideoCapturer videoCapturer;
     private EglBase rootEglBase;
     private RestChannel mRestChannel;
-    private TextView tvRoomNumber;
+    private TextView tvRoomNumber, tvParticipantNumber;
     private ProgressDialog progressDialog;
     private View layoutDraw;
     private ImageView fabStartDraw;
@@ -98,6 +101,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Runnable runnable;
     private int timerDelay = 10000;
     private Boolean credentialsReceived;
+    private String roomNumber;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -126,12 +130,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
         tvRoomNumber = findViewById(R.id.tv_room_number);
+        tvParticipantNumber = findViewById(R.id.tv_participant_number);
         layoutDraw = findViewById(R.id.layout_draw);
         fabStartDraw = findViewById(R.id.fab_start_draw);
         fabDiscardDraw = findViewById(R.id.fab_discard_draw);
         imageViewCaptureImageLocal = findViewById(R.id.iv_captured_image_local);
         treeleafDrawPadViewLocal = findViewById(R.id.treeleaf_draw_pad_local);
-        localRender = (SurfaceViewRenderer) findViewById(R.id.local_video_view);
+        localRender = findViewById(R.id.local_video_view);
         clCallSettings = findViewById(R.id.cl_call_setting);
         clCallOtions = findViewById(R.id.cl_call_options);
         imageVideoToggle = findViewById(R.id.image_video);
@@ -249,6 +254,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             public void onVideoViewReady() {
                 showVideoCallStartView(false);
             }
+
+            @Override
+            public void onSubscriberAudioPublished(BigInteger roomId, BigInteger participantId) {
+                roomNumber = String.valueOf(roomId);
+            }
+
         };
         setUpRecyclerView();
         setUpNetworkStrengthHandler();
@@ -277,6 +288,24 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             onPermissionGranted();
         }
         loadCallNameAndProfileIcon(calleeName, calleeProfile);
+        tvRoomNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyClipData(tvRoomNumber);
+            }
+        });
+        tvParticipantNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyClipData(tvParticipantNumber);
+            }
+        });
+    }
+
+    private void copyClipData(TextView view) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("new clip data", view.getText().toString());
+        clipboard.setPrimaryClip(clip);
     }
 
     private void setUpNetworkStrengthHandler() {
@@ -464,7 +493,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private void offerPeerConnection(BigInteger handleId) {
         if (!callTerminated) {
             videoCapturer = createVideoCapturer();
-            peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), localRender, videoCapturer, handleId, "client");
+            peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), localRender, videoCapturer,
+                    handleId, "client", true);
             peerConnectionClient.createOffer(handleId);
         }
 
@@ -496,6 +526,14 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void subscriberHandleRemoteJsep(BigInteger handleId, JSONObject jsep) {
+        /**
+         * after subscriber is joined.
+         */
+
+        videoCapturer = createVideoCapturer();
+        peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), null, videoCapturer,
+                handleId, SERVER, false);
+
         SessionDescription.Type type = SessionDescription.Type.fromCanonicalForm(jsep.optString("type"));
         String sdp = jsep.optString("sdp");
         SessionDescription sessionDescription = new SessionDescription(type, sdp);
@@ -512,13 +550,34 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tvRoomNumber.setText("Room number: " + roomNumber);
+                ClientActivity.this.roomNumber = roomNumber.toString();
+                tvRoomNumber.setText(roomNumber.toString());
             }
         });
     }
 
     @Override
+    public void onParticipantCreated(BigInteger participantId) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvParticipantNumber.setText(participantId.toString());
+            }
+        });
+    }
+
+    @Override
+    public void onRoomJoined(BigInteger roomNumber, String participantId) {
+        mRestChannel.subscriberCreateHandle(participantId);
+    }
+
+    @Override
     public BigInteger getRoomNumber() {
+        return new BigInteger(roomNumber);
+    }
+
+    @Override
+    public BigInteger getParticipantId() {
         return null;
     }
 
@@ -589,11 +648,25 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     @Override
+    public void onHangUp() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ClientActivity.this, "Connection hung up!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        /**
+         * no need to terminate broadcast in ClientActivity in case of hung up
+         */
+//        terminateBroadCast();
+    }
+
+    @Override
     public void onRemoteRender(final JanusConnection connection) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+//                connection.videoTrack.addRenderer(new VideoRenderer(remoteRender));
             }
         });
     }
@@ -660,6 +733,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     @Override
     public void iceConnectionChangeEvent(String event) {
         updateProgressMessage("IceConnection event: " + event);
+    }
+
+    @Override
+    public void onRemoteVideoTrackAdded() {
     }
 
     View.OnClickListener startDrawClickListener = new View.OnClickListener() {
@@ -862,6 +939,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         void onJanusCredentialsFailure();
 
         void onVideoViewReady();
+
+        void onSubscriberAudioPublished(BigInteger roomId, BigInteger participantId);
 
     }
 

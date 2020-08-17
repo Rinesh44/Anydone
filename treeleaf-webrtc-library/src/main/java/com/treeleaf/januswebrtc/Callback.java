@@ -25,7 +25,13 @@ public class Callback {
 
         void onRoomCreated(BigInteger roomNumber);
 
+        void onParticipantCreated(BigInteger participantId);
+
+        void onRoomJoined(BigInteger roomNumber, String participantId);
+
         BigInteger getRoomNumber();
+
+        BigInteger getParticipantId();
 
         void showProgressBar(String message);
 
@@ -45,12 +51,16 @@ public class Callback {
 
         void onSlowLink();
 
+        void onHangUp();
+
     }
 
 
-    interface IceConnectionChangeEvents {
+    interface ConnectionEvents {
 
         void iceConnectionChangeEvent(String event);
+
+        void onRemoteVideoTrackAdded();
 
     }
 
@@ -58,9 +68,15 @@ public class Callback {
 
         void passJanusServerInfo(BigInteger sessionId, BigInteger roomId, BigInteger participantId);
 
+        void onServiceProviderAudioPublished(BigInteger sessionId, BigInteger roomId, BigInteger participantId);
+
         void passJoineeReceivedCallback(ClientActivity.VideoCallListener videoCallListener);
 
+        void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener);
+
         void notifyHostHangUp();
+
+        void notifySubscriberLeft();
 
         void fetchJanusServerInfo();
 

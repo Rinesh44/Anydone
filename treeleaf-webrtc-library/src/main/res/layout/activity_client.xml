@@ -31,14 +31,6 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_room_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:visibility="gone" />
-
     <ImageView
         android:id="@+id/iv_signal_strength"
         android:layout_width="52dp"
@@ -52,10 +44,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_call_setting"
         android:layout_width="wrap_content"
-        android:layout_marginRight="5dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_signal_strength"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp">
 
         <ImageView
             android:id="@+id/image_video"
@@ -145,10 +137,10 @@
         android:id="@+id/rl_joinee_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="6dp"
         android:layout_marginLeft="6dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="6dp"
+        android:layout_marginBottom="6dp"
         android:padding="7dp"
         android:visibility="gone">
 
@@ -171,6 +163,26 @@
     <include
         android:id="@+id/view_video_call_start"
         layout="@layout/video_call_start"
+        android:visibility="visible" />
+
+    <!--TODO: set these two textviews visibility to gone later-->
+
+    <TextView
+        android:id="@+id/tv_room_number"
+        android:layout_width="wrap_content"
+        android:textColor="@color/color_white"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:textColor="@color/color_white"
+        android:id="@+id/tv_participant_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_room_number"
+        android:layout_margin="20dp"
         android:visibility="visible" />
 
 </RelativeLayout>

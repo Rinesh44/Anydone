@@ -1,26 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ServerActivity">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_server"
+    <LinearLayout
+        android:id="@+id/cPreview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:keepScreenOn="true"
-        android:orientation="vertical"
-        tools:context="com.treeleaf.januswebrtc.ClientActivity">
-
-        <org.webrtc.SurfaceViewRenderer
-            android:id="@+id/local_video_view"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp" />
-
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <org.webrtc.SurfaceViewRenderer
             android:id="@+id/remote_video_view"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp" />
-    </LinearLayout>
-</ScrollView>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_screenshot_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_screenshot_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_room_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_signal_strength"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="5dp"
+        android:padding="6dp"
+        android:src="@drawable/ic_good_signal" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_call_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_signal_strength"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:id="@+id/image_mic"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="4dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_open_mic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_screenshot"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="4dp"
+            android:foreground="?selectableItemBackground"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_screenshot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_mic" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_call_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/fab_start_draw"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginRight="40dp"
+            android:foreground="?selectableItemBackground"
+            android:padding="6dp"
+            android:src="@drawable/ic_draw"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_end_call"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_end_call"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:foreground="?selectableItemBackground"
+            android:padding="6dp"
+            android:src="@drawable/ic_end_call"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fab_start_draw" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/layout_draw"
+        layout="@layout/layout_draw"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_joinee_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="6dp"
+        android:padding="7dp"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_joinee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/ib_toggle_joinee_list"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/rv_joinee"
+            android:src="@drawable/ic_down_arrow"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/view_video_call_start"
+        layout="@layout/video_call_accept"
+        android:visibility="gone" />
+
+</RelativeLayout>

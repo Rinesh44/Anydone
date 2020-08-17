@@ -92,11 +92,12 @@ public class PeerConnectionClient {
     private RtpSender localVideoSender;
     // enableAudio is set to true if audio should be sent.
     private boolean enableAudio;
+    private boolean enableVideo;
     private AudioTrack localAudioTrack;
-    private Callback.IceConnectionChangeEvents iceConnectionChangeEvents;
+    private Callback.ConnectionEvents connectionEvents;
 
-    public void setIceConnectionChangeEventNotifier(Callback.IceConnectionChangeEvents iceConnectionChangeEvents) {
-        this.iceConnectionChangeEvents = iceConnectionChangeEvents;
+    public void setIceConnectionChangeEventNotifier(Callback.ConnectionEvents connectionEvents) {
+        this.connectionEvents = connectionEvents;
     }
 
 
@@ -232,13 +233,20 @@ public class PeerConnectionClient {
 
     public void createPeerConnection(final EglBase.Context renderEGLContext,
                                      final VideoRenderer.Callbacks localRender,
-                                     final VideoCapturer videoCapturer, final BigInteger handleId, final String client) {
+                                     final VideoCapturer videoCapturer, final BigInteger handleId,
+                                     final String client, boolean videoEnabled) {
         if (peerConnectionParameters == null) {
             Log.e(TAG, "Creating peer connection without initializing factory.");
             return;
         }
+        this.enableVideo = videoEnabled;
         this.localRender = localRender;
-        this.videoCapturer = videoCapturer;
+        /**
+         * in order to avoid reinitialize videoCapturer upon
+         * new peer connection is created
+         */
+        if (this.videoCapturer == null)
+            this.videoCapturer = videoCapturer;
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -339,9 +347,12 @@ public class PeerConnectionClient {
                 new MediaConstraints.KeyValuePair(DTLS_SRTP_KEY_AGREEMENT_CONSTRAINT, "true"));
 
         // Create video constraints if video call is enabled.
-        videoWidth = DEFAULT_VIDEO_WIDTH;
-        videoHeight = DEFAULT_VIDEO_HEIGHT;
-        videoFps = 30;
+        if (enableVideo) {
+            videoWidth = DEFAULT_VIDEO_WIDTH;
+            videoHeight = DEFAULT_VIDEO_HEIGHT;
+            videoFps = 30;
+        }
+
         Logging.d(TAG, "Capturing format: " + videoWidth + "x" + videoHeight + "@" + videoFps);
 
         // Create audio constraints.
@@ -363,7 +374,7 @@ public class PeerConnectionClient {
         sdpMediaConstraints.mandatory.add(
                 new MediaConstraints.KeyValuePair("OfferToReceiveAudio", "true"));
         sdpMediaConstraints.mandatory.add(
-                new MediaConstraints.KeyValuePair("OfferToReceiveVideo", "true"));
+                new MediaConstraints.KeyValuePair("OfferToReceiveVideo", enableVideo ? "true" : "false"));
     }
 
     private PeerConnection createPeerConnection(BigInteger handleId, boolean type) {
@@ -376,6 +387,7 @@ public class PeerConnectionClient {
         rtcConfig.bundlePolicy = PeerConnection.BundlePolicy.MAXBUNDLE;
         rtcConfig.rtcpMuxPolicy = PeerConnection.RtcpMuxPolicy.REQUIRE;
         rtcConfig.continualGatheringPolicy = PeerConnection.ContinualGatheringPolicy.GATHER_CONTINUALLY;
+        rtcConfig.iceTransportsType = PeerConnection.IceTransportsType.ALL;//TODO: added this for remote video not displaying
         // Use ECDSA encryption.
         rtcConfig.keyType = PeerConnection.KeyType.ECDSA;
 
@@ -406,15 +418,18 @@ public class PeerConnectionClient {
         Log.d(TAG, "PCConstraints: " + pcConstraints.toString());
 
         Log.d(TAG, "EGLContext: " + renderEGLContext);
-        factory.setVideoHwAccelerationOptions(renderEGLContext, renderEGLContext);
+        if (enableVideo)
+            factory.setVideoHwAccelerationOptions(renderEGLContext, renderEGLContext);
 
         if (client.equals("client")) {
             PeerConnection peerConnection = createPeerConnection(handleId, true);
             mediaStream = factory.createLocalMediaStream("ARDAMS");
-            mediaStream.addTrack(createVideoTrack(videoCapturer));
+            if (enableVideo)
+                mediaStream.addTrack(createVideoTrack(videoCapturer));
             mediaStream.addTrack(createAudioTrack());
             peerConnection.addStream(mediaStream);
-            findVideoSender(handleId);
+            if (enableVideo)
+                findVideoSender(handleId);
         }
     }
 
@@ -570,6 +585,16 @@ public class PeerConnectionClient {
             @Override
             public void run() {
                 PeerConnection peerConnection = createPeerConnection(handleId, false);
+                //for displaying local video and audio of subscriber
+//                mediaStream = factory.createLocalMediaStream("ARDAMS");
+//                mediaStream.addTrack(createVideoTrack(videoCapturer));
+//                if (localVideoTrack != null)
+//                    mediaStream.addTrack(localVideoTrack);
+//                mediaStream.addTrack(createAudioTrack());
+//                peerConnection.addStream(mediaStream);
+                findVideoSender(handleId);
+
+
                 SDPObserver sdpObserver = peerConnectionMap.get(handleId).sdpObserver;
                 if (peerConnection == null || isError) {
                     return;
@@ -733,13 +758,13 @@ public class PeerConnectionClient {
                 @Override
                 public void run() {
                     Log.d(TAG, "IceConnectionState: " + newState);
-                    iceConnectionChangeEvents.iceConnectionChangeEvent(newState.toString());
+                    connectionEvents.iceConnectionChangeEvent(newState.toString());
                     if (newState == IceConnectionState.CONNECTED) {
                         events.onIceConnected();
                     } else if (newState == IceConnectionState.DISCONNECTED) {
                         events.onIceDisconnected();
                     } else if (newState == IceConnectionState.FAILED) {
-                        reportError("ICE connection failed.");
+                        Log.d(TAG, "Peerconnection error: ICE connection failed");
                     }
                 }
             });
@@ -769,6 +794,7 @@ public class PeerConnectionClient {
                         remoteVideoTrack.setEnabled(true);
                         connection.videoTrack = remoteVideoTrack;
                         events.onRemoteRender(connection);
+                        connectionEvents.onRemoteVideoTrackAdded();
                     }
                 }
             });

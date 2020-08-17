@@ -40,6 +40,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
 import com.treeleaf.januswebrtc.ClientActivity;
+import com.treeleaf.januswebrtc.ServerActivity;
 
 import java.math.BigInteger;
 import java.util.Objects;
@@ -150,14 +151,29 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
 
             @Override
+            public void onServiceProviderAudioPublished(BigInteger sessionId, BigInteger roomId, BigInteger participantId) {
+
+            }
+
+            @Override
             public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
                 videoCallListener = callback;
+            }
+
+            @Override
+            public void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener) {
+
             }
 
             @Override
             public void notifyHostHangUp() {
                 presenter.publishHostHangUpEvent(accountId, accountName, accountPicture,
                         serviceRequestId, rtcMessageId, videoBroadCastPublish);
+            }
+
+            @Override
+            public void notifySubscriberLeft() {
+
             }
         };
 
