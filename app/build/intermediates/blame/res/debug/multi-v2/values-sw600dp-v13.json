@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "/home/treeleaf/AndroidStudioProjects/anydone_service_provider_android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/a823382cde3a6823cf2c68b1a0d2d55b/material-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/da7c53e8de7b377da02ff3a72535c169/appcompat-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "100,169,238,308,382,458,517,588",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "164,233,303,377,453,512,583,651"
+                    }
+                },
+                {
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/a823382cde3a6823cf2c68b1a0d2d55b/material-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/values-sw600dp/dimens.xml",
+                    "source": "/home/treeleaf/AndroidStudioProjects/anydone_service_provider_android/app/src/main/res/values-sw600dp/dimens.xml",
                     "from": {
                         "startLines": "32,31,11,12,13,14,15,16,17,18,19,3,20,4,5,6,7,8,9,10,24,25,23,29,28,26,27",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -37,23 +54,6 @@
                         "startOffsets": "656,748,1395,1438,1481,1524,1567,1610,1653,1696,1739,1782,1823,1866,1907,1948,1989,2030,2071,2113,2155,2206,2257,2310,2364,2418,2471",
                         "endColumns": "91,84,42,42,42,42,42,42,42,42,42,40,42,40,40,40,40,40,41,41,50,50,52,53,53,52,50",
                         "endOffsets": "743,828,1433,1476,1519,1562,1605,1648,1691,1734,1777,1818,1861,1902,1943,1984,2025,2066,2108,2150,2201,2252,2305,2359,2413,2466,2517"
-                    }
-                },
-                {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/da7c53e8de7b377da02ff3a72535c169/appcompat-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,124,193,263,337,413,472,543",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "119,188,258,332,408,467,538,606"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "100,169,238,308,382,458,517,588",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "164,233,303,377,453,512,583,651"
                     }
                 }
             ]

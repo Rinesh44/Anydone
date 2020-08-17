@@ -1,44 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ca/values-ca.xml",
+            "outputFile": "/home/treeleaf/AndroidStudioProjects/anydone_service_provider_android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ca/values-ca.xml",
             "map": [
                 {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/res/values-ca/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,348,532,657,764,973,1098,1247,1380,1610,1717,1907,2036,2259,2443,2534,2628",
-                        "endColumns": "102,183,124,106,208,124,148,132,229,106,189,128,222,183,90,93,111",
-                        "endOffsets": "347,531,656,763,972,1097,1246,1379,1609,1716,1906,2035,2258,2442,2533,2627,2739"
-                    },
-                    "to": {
-                        "startLines": "29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2825,2932,3116,3245,3356,3565,3694,3847,4178,4408,4519,4709,4842,5065,5253,5348,5446",
-                        "endColumns": "106,183,128,110,208,128,152,136,229,110,189,132,222,187,94,97,115",
-                        "endOffsets": "2927,3111,3240,3351,3560,3689,3842,3979,4403,4514,4704,4837,5060,5248,5343,5441,5557"
-                    }
-                },
-                {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/fdf4c253d5440b8aa89aefeeb92f752f/core-1.1.0/res/values-ca/values-ca.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "61",
-                        "startColumns": "4",
-                        "startOffsets": "7122",
-                        "endColumns": "100",
-                        "endOffsets": "7218"
-                    }
-                },
-                {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/da7c53e8de7b377da02ff3a72535c169/appcompat-1.1.0/res/values-ca/values-ca.xml",
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/da7c53e8de7b377da02ff3a72535c169/appcompat-1.1.0/res/values-ca/values-ca.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,24 +21,24 @@
                     }
                 },
                 {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/0a9497c70be4de543ce7f3bf8520ef14/jetified-mapbox-android-sdk-9.0.0/res/values-ca/values-ca.xml",
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/res/values-ca/values.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,211,287,365,437,526,604,738,868,1029,1147",
-                        "endColumns": "155,75,77,71,88,77,133,129,160,117,153",
-                        "endOffsets": "206,282,360,432,521,599,733,863,1024,1142,1296"
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,348,532,657,764,973,1098,1247,1380,1610,1717,1907,2036,2259,2443,2534,2628",
+                        "endColumns": "102,183,124,106,208,124,148,132,229,106,189,128,222,183,90,93,111",
+                        "endOffsets": "347,531,656,763,972,1097,1246,1379,1609,1716,1906,2035,2258,2442,2533,2627,2739"
                     },
                     "to": {
-                        "startLines": "47,48,49,50,51,52,53,54,55,56,57",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "5562,5718,5794,5872,5944,6033,6111,6245,6375,6536,6654",
-                        "endColumns": "155,75,77,71,88,77,133,129,160,117,153",
-                        "endOffsets": "5713,5789,5867,5939,6028,6106,6240,6370,6531,6649,6803"
+                        "startLines": "29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2825,2932,3116,3245,3356,3565,3694,3847,4178,4408,4519,4709,4842,5065,5253,5348,5446",
+                        "endColumns": "106,183,128,110,208,128,152,136,229,110,189,132,222,187,94,97,115",
+                        "endOffsets": "2927,3111,3240,3351,3560,3689,3842,3979,4403,4514,4704,4837,5060,5248,5343,5441,5557"
                     }
                 },
                 {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/res/values-ca/values.xml",
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/res/values-ca/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -89,7 +55,41 @@
                     }
                 },
                 {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/c8c6a792a0f7c3969a8af11eec8dcd4d/navigation-ui-2.2.1/res/values-ca/values-ca.xml",
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/fdf4c253d5440b8aa89aefeeb92f752f/core-1.1.0/res/values-ca/values-ca.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "61",
+                        "startColumns": "4",
+                        "startOffsets": "7122",
+                        "endColumns": "100",
+                        "endOffsets": "7218"
+                    }
+                },
+                {
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/0a9497c70be4de543ce7f3bf8520ef14/jetified-mapbox-android-sdk-9.0.0/res/values-ca/values-ca.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,211,287,365,437,526,604,738,868,1029,1147",
+                        "endColumns": "155,75,77,71,88,77,133,129,160,117,153",
+                        "endOffsets": "206,282,360,432,521,599,733,863,1024,1142,1296"
+                    },
+                    "to": {
+                        "startLines": "47,48,49,50,51,52,53,54,55,56,57",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "5562,5718,5794,5872,5944,6033,6111,6245,6375,6536,6654",
+                        "endColumns": "155,75,77,71,88,77,133,129,160,117,153",
+                        "endOffsets": "5713,5789,5867,5939,6028,6106,6240,6370,6531,6649,6803"
+                    }
+                },
+                {
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/c8c6a792a0f7c3969a8af11eec8dcd4d/navigation-ui-2.2.1/res/values-ca/values-ca.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

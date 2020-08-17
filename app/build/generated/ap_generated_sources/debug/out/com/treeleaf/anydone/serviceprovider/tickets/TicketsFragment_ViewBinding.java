@@ -20,9 +20,9 @@ import java.lang.Override;
 public class TicketsFragment_ViewBinding implements Unbinder {
   private TicketsFragment target;
 
-  private View view7f0901bf;
+  private View view7f0901c0;
 
-  private View view7f0900a0;
+  private View view7f09009f;
 
   @UiThread
   public TicketsFragment_ViewBinding(final TicketsFragment target, View source) {
@@ -34,7 +34,7 @@ public class TicketsFragment_ViewBinding implements Unbinder {
     target.llBottomSheet = Utils.findRequiredViewAsType(source, R.id.bottom_sheet, "field 'llBottomSheet'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.iv_filter, "field 'ivFilter' and method 'filterRequests'");
     target.ivFilter = Utils.castView(view, R.id.iv_filter, "field 'ivFilter'", ImageView.class);
-    view7f0901bf = view;
+    view7f0901c0 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -44,7 +44,7 @@ public class TicketsFragment_ViewBinding implements Unbinder {
     target.pbSearch = Utils.findRequiredViewAsType(source, R.id.pb_search, "field 'pbSearch'", ProgressBar.class);
     view = Utils.findRequiredView(source, R.id.btn_add_ticket, "field 'btnAddTicket' and method 'addTicket'");
     target.btnAddTicket = Utils.castView(view, R.id.btn_add_ticket, "field 'btnAddTicket'", MaterialButton.class);
-    view7f0900a0 = view;
+    view7f09009f = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -67,9 +67,9 @@ public class TicketsFragment_ViewBinding implements Unbinder {
     target.pbSearch = null;
     target.btnAddTicket = null;
 
-    view7f0901bf.setOnClickListener(null);
-    view7f0901bf = null;
-    view7f0900a0.setOnClickListener(null);
-    view7f0900a0 = null;
+    view7f0901c0.setOnClickListener(null);
+    view7f0901c0 = null;
+    view7f09009f.setOnClickListener(null);
+    view7f09009f = null;
   }
 }

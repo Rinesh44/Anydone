@@ -58,7 +58,6 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity"
@@ -156,9 +155,13 @@
         <service android:name="org.eclipse.paho.android.service.MqttService" />
 
         <activity android:name="com.treeleaf.januswebrtc.ChooseActivity" />
-        <activity android:name="com.treeleaf.januswebrtc.ServerActivity" />
         <activity
             android:name="com.treeleaf.januswebrtc.ClientActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.treeleaf.januswebrtc.ServerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />

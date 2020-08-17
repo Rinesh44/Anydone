@@ -2739,6 +2739,7 @@ drawable ic_upload
 drawable ic_user
 drawable ic_verified
 drawable ic_video
+drawable ic_video_call_accept
 drawable ic_video_setting
 drawable ic_visacard_icon
 drawable ic_waiter_icon
@@ -2991,7 +2992,6 @@ id action_text
 id action_video_call
 id actions
 id activity_chooser_view_content
-id activity_server
 id add
 id adjust_height
 id adjust_width
@@ -3071,6 +3071,7 @@ id civ_cam
 id civ_field
 id civ_field1
 id civ_sender
+id cl_call_accept_options
 id cl_call_options
 id cl_call_setting
 id cl_capture_view
@@ -3276,6 +3277,7 @@ id invisible
 id italic
 id item_touch_helper_previous_elevation
 id iv_about
+id iv_accept_call
 id iv_arrow1
 id iv_arrow3
 id iv_arrow5
@@ -3734,6 +3736,7 @@ id tv_change_password
 id tv_closed
 id tv_code
 id tv_code_expires_in
+id tv_connecting
 id tv_connection_status
 id tv_count_additional_joinees
 id tv_country_code
@@ -3787,6 +3790,7 @@ id tv_not_delivered
 id tv_on_remote
 id tv_on_site
 id tv_open_src_library
+id tv_participant_number
 id tv_phone
 id tv_place_name
 id tv_primary
@@ -4166,6 +4170,7 @@ layout ucrop_fragment_photobox
 layout ucrop_layout_rotate_wheel
 layout ucrop_layout_scale_wheel
 layout ucrop_view
+layout video_call_accept
 layout video_call_start
 layout warning
 menu menu_activity_profile

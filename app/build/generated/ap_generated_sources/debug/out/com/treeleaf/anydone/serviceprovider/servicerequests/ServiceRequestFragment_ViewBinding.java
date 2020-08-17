@@ -19,7 +19,7 @@ import java.lang.Override;
 public class ServiceRequestFragment_ViewBinding implements Unbinder {
   private ServiceRequestFragment target;
 
-  private View view7f0901bf;
+  private View view7f0901c0;
 
   @UiThread
   public ServiceRequestFragment_ViewBinding(final ServiceRequestFragment target, View source) {
@@ -31,7 +31,7 @@ public class ServiceRequestFragment_ViewBinding implements Unbinder {
     target.llBottomSheet = Utils.findRequiredViewAsType(source, R.id.bottom_sheet, "field 'llBottomSheet'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.iv_filter, "field 'ivFilter' and method 'filterRequests'");
     target.ivFilter = Utils.castView(view, R.id.iv_filter, "field 'ivFilter'", ImageView.class);
-    view7f0901bf = view;
+    view7f0901c0 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -54,7 +54,7 @@ public class ServiceRequestFragment_ViewBinding implements Unbinder {
     target.ivFilter = null;
     target.pbSearch = null;
 
-    view7f0901bf.setOnClickListener(null);
-    view7f0901bf = null;
+    view7f0901c0.setOnClickListener(null);
+    view7f0901c0 = null;
   }
 }

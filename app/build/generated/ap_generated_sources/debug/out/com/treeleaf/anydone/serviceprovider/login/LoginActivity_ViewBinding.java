@@ -17,7 +17,7 @@ import java.lang.Override;
 public class LoginActivity_ViewBinding implements Unbinder {
   private LoginActivity target;
 
-  private View view7f090218;
+  private View view7f090219;
 
   @UiThread
   public LoginActivity_ViewBinding(LoginActivity target) {
@@ -35,7 +35,7 @@ public class LoginActivity_ViewBinding implements Unbinder {
     target.ilEmailPhone = Utils.findRequiredViewAsType(source, R.id.il_email_phone, "field 'ilEmailPhone'", TextInputLayout.class);
     target.ilPassword = Utils.findRequiredViewAsType(source, R.id.il_password, "field 'ilPassword'", TextInputLayout.class);
     view = Utils.findRequiredView(source, R.id.loginButton, "method 'login'");
-    view7f090218 = view;
+    view7f090219 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -57,7 +57,7 @@ public class LoginActivity_ViewBinding implements Unbinder {
     target.ilEmailPhone = null;
     target.ilPassword = null;
 
-    view7f090218.setOnClickListener(null);
-    view7f090218 = null;
+    view7f090219.setOnClickListener(null);
+    view7f090219 = null;
   }
 }

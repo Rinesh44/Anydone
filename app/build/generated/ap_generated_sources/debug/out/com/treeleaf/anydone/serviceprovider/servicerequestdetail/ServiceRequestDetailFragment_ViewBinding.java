@@ -23,25 +23,25 @@ import java.lang.Override;
 public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
   private ServiceRequestDetailFragment target;
 
-  private View view7f0901d7;
-
-  private View view7f0901b1;
-
-  private View view7f09028b;
-
-  private View view7f09028e;
-
-  private View view7f090387;
-
-  private View view7f090365;
-
-  private View view7f0903ab;
-
-  private View view7f0901a8;
-
   private View view7f0901d8;
 
-  private View view7f09038d;
+  private View view7f0901b2;
+
+  private View view7f09028c;
+
+  private View view7f09028f;
+
+  private View view7f090389;
+
+  private View view7f090366;
+
+  private View view7f0903ae;
+
+  private View view7f0901a9;
+
+  private View view7f0901d9;
+
+  private View view7f09038f;
 
   @UiThread
   public ServiceRequestDetailFragment_ViewBinding(final ServiceRequestDetailFragment target,
@@ -52,7 +52,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     target.llSearchContainer = Utils.findRequiredViewAsType(source, R.id.ll_search_container, "field 'llSearchContainer'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.iv_send, "field 'ivSend' and method 'sendMessageClick'");
     target.ivSend = Utils.castView(view, R.id.iv_send, "field 'ivSend'", ImageView.class);
-    view7f0901d7 = view;
+    view7f0901d8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,7 +62,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     target.etMessage = Utils.findRequiredViewAsType(source, R.id.et_message, "field 'etMessage'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.iv_clear, "field 'ivClear' and method 'clearText'");
     target.ivClear = Utils.castView(view, R.id.iv_clear, "field 'ivClear'", ImageView.class);
-    view7f0901b1 = view;
+    view7f0901b2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,7 +73,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     target.llBottomSheetMessage = Utils.findRequiredViewAsType(source, R.id.bottom_sheet, "field 'llBottomSheetMessage'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.rl_copy_holder, "field 'ivCopy' and method 'copyMessage'");
     target.ivCopy = Utils.castView(view, R.id.rl_copy_holder, "field 'ivCopy'", RelativeLayout.class);
-    view7f09028b = view;
+    view7f09028c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -82,7 +82,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.rl_delete_holder, "field 'ivDelete' and method 'deleteMessage'");
     target.ivDelete = Utils.castView(view, R.id.rl_delete_holder, "field 'ivDelete'", RelativeLayout.class);
-    view7f09028e = view;
+    view7f09028f = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -92,7 +92,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     target.llAttachOptions = Utils.findRequiredViewAsType(source, R.id.ll_attach_options, "field 'llAttachOptions'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.tv_files, "field 'tvFiles' and method 'openFiles'");
     target.tvFiles = Utils.castView(view, R.id.tv_files, "field 'tvFiles'", TextView.class);
-    view7f090387 = view;
+    view7f090389 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -101,7 +101,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.tv_camera, "field 'tvCamera' and method 'initCamera'");
     target.tvCamera = Utils.castView(view, R.id.tv_camera, "field 'tvCamera'", TextView.class);
-    view7f090365 = view;
+    view7f090366 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -110,7 +110,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.tv_recorder, "field 'tvGallery' and method 'initRecorder'");
     target.tvGallery = Utils.castView(view, R.id.tv_recorder, "field 'tvGallery'", TextView.class);
-    view7f0903ab = view;
+    view7f0903ae = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -119,7 +119,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.iv_attachment, "field 'ivAttachment' and method 'showAttachmentOptions'");
     target.ivAttachment = Utils.castView(view, R.id.iv_attachment, "field 'ivAttachment'", ImageView.class);
-    view7f0901a8 = view;
+    view7f0901a9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -130,7 +130,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     target.ivCaptureView = Utils.findRequiredViewAsType(source, R.id.iv_capture_view, "field 'ivCaptureView'", ImageView.class);
     view = Utils.findRequiredView(source, R.id.iv_send_desc, "field 'ivSendImage' and method 'sendImage'");
     target.ivSendImage = Utils.castView(view, R.id.iv_send_desc, "field 'ivSendImage'", ImageView.class);
-    view7f0901d8 = view;
+    view7f0901d9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -146,7 +146,7 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     target.pbLoadData = Utils.findRequiredViewAsType(source, R.id.pb_load_data, "field 'pbLoadData'", ProgressBar.class);
     target.llBotReplying = Utils.findRequiredViewAsType(source, R.id.ll_bot_replying, "field 'llBotReplying'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.tv_gallery, "method 'showGallery'");
-    view7f09038d = view;
+    view7f09038f = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -187,25 +187,25 @@ public class ServiceRequestDetailFragment_ViewBinding implements Unbinder {
     target.pbLoadData = null;
     target.llBotReplying = null;
 
-    view7f0901d7.setOnClickListener(null);
-    view7f0901d7 = null;
-    view7f0901b1.setOnClickListener(null);
-    view7f0901b1 = null;
-    view7f09028b.setOnClickListener(null);
-    view7f09028b = null;
-    view7f09028e.setOnClickListener(null);
-    view7f09028e = null;
-    view7f090387.setOnClickListener(null);
-    view7f090387 = null;
-    view7f090365.setOnClickListener(null);
-    view7f090365 = null;
-    view7f0903ab.setOnClickListener(null);
-    view7f0903ab = null;
-    view7f0901a8.setOnClickListener(null);
-    view7f0901a8 = null;
     view7f0901d8.setOnClickListener(null);
     view7f0901d8 = null;
-    view7f09038d.setOnClickListener(null);
-    view7f09038d = null;
+    view7f0901b2.setOnClickListener(null);
+    view7f0901b2 = null;
+    view7f09028c.setOnClickListener(null);
+    view7f09028c = null;
+    view7f09028f.setOnClickListener(null);
+    view7f09028f = null;
+    view7f090389.setOnClickListener(null);
+    view7f090389 = null;
+    view7f090366.setOnClickListener(null);
+    view7f090366 = null;
+    view7f0903ae.setOnClickListener(null);
+    view7f0903ae = null;
+    view7f0901a9.setOnClickListener(null);
+    view7f0901a9 = null;
+    view7f0901d9.setOnClickListener(null);
+    view7f0901d9 = null;
+    view7f09038f.setOnClickListener(null);
+    view7f09038f = null;
   }
 }

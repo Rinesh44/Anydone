@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-he/values-he.xml",
+            "outputFile": "/home/treeleaf/AndroidStudioProjects/anydone_service_provider_android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-he/values-he.xml",
             "map": [
                 {
-                    "source": "/home/rinesh/.gradle/caches/transforms-2/files-2.1/0a9497c70be4de543ce7f3bf8520ef14/jetified-mapbox-android-sdk-9.0.0/res/values-he/values-he.xml",
+                    "source": "/home/treeleaf/.gradle/caches/transforms-2/files-2.1/0a9497c70be4de543ce7f3bf8520ef14/jetified-mapbox-android-sdk-9.0.0/res/values-he/values-he.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",

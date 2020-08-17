@@ -17,7 +17,7 @@ import java.lang.Override;
 public class VerificationActivity_ViewBinding implements Unbinder {
   private VerificationActivity target;
 
-  private View view7f0903ad;
+  private View view7f0903b0;
 
   @UiThread
   public VerificationActivity_ViewBinding(VerificationActivity target) {
@@ -31,7 +31,7 @@ public class VerificationActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.tv_resend_code, "field 'tvResendCode' and method 'onClickResendCode'");
     target.tvResendCode = Utils.castView(view, R.id.tv_resend_code, "field 'tvResendCode'", TextView.class);
-    view7f0903ad = view;
+    view7f0903b0 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -59,7 +59,7 @@ public class VerificationActivity_ViewBinding implements Unbinder {
     target.tvUserEmailPhone = null;
     target.etPin = null;
 
-    view7f0903ad.setOnClickListener(null);
-    view7f0903ad = null;
+    view7f0903b0.setOnClickListener(null);
+    view7f0903b0 = null;
   }
 }
