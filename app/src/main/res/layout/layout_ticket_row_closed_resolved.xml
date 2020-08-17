@@ -1,200 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srl_tickets"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:dragEdge="right"
+    app:mode="normal">
 
     <LinearLayout
-        android:id="@+id/ll_ticket_view"
-        android:layout_width="90dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="@dimen/dimens_2x"
-        android:layout_marginTop="@dimen/dimens_2x"
-        android:background="@drawable/blue_round_bg"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/dimen_10x1"
-        android:paddingBottom="@dimen/dimen_10x1">
-
-        <TextView
-            android:id="@+id/date1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/dimen_6x1"
-            android:layout_marginEnd="@dimen/dimen_6x1"
-            android:text="12"
-            android:textColor="@color/white"
-            android:textSize="@dimen/material_text_title" />
-
-        <TextView
-            android:id="@+id/date2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/dimen_6x1"
-            android:layout_marginEnd="@dimen/dimen_6x1"
-            android:text="Nov, 2020"
-            android:textColor="@color/white"
-            android:textSize="@dimen/material_text_caption" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_6x1"
-            android:layout_marginTop="@dimen/dimen_2x2"
-            android:layout_marginBottom="@dimen/dimen_2x2"
-            android:background="@drawable/dotted_line" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_6x1"
-            android:layout_marginEnd="@dimen/dimen_6x1"
-            android:text="@string/assigned_to"
-            android:textColor="@color/white"
-            android:textSize="@dimen/material_text_caption" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/dimen_2x2"
-            android:src="@drawable/circle_user" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginStart="@dimen/dimen_10x1"
-        android:layout_marginTop="@dimen/dimens_2x"
-        android:layout_toEndOf="@+id/ll_ticket_view"
+        android:id="@+id/ll_swipe_reopen"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#01CB5B"
         android:gravity="center"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_reopen" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_ticket_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/ll_ticket_view"
+            android:layout_width="90dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimens_2x"
+            android:background="@drawable/blue_round_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dimen_10x1"
+            android:paddingBottom="@dimen/dimen_10x1">
 
             <TextView
-                android:id="@+id/tv_ticket_id"
+                android:id="@+id/date1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ticket ID : "
-                android:textColor="@color/service_info_text_color" />
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dimen_6x1"
+                android:layout_marginEnd="@dimen/dimen_6x1"
+                android:text="12"
+                android:textColor="@color/white"
+                android:textSize="@dimen/material_text_title" />
+
+            <TextView
+                android:id="@+id/date2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dimen_6x1"
+                android:layout_marginEnd="@dimen/dimen_6x1"
+                android:text="Nov, 2020"
+                android:textColor="@color/white"
+                android:textSize="@dimen/material_text_caption" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_6x1"
+                android:layout_marginTop="@dimen/dimen_2x2"
+                android:layout_marginBottom="@dimen/dimen_2x2"
+                android:background="@drawable/dotted_line" />
+
+            <TextView
+                android:id="@+id/tv_assigned_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_6x1"
+                android:layout_marginEnd="@dimen/dimen_6x1"
+                android:text="@string/assigned_to"
+                android:textColor="@color/white"
+                android:textSize="@dimen/material_text_caption" />
+
+            <LinearLayout
+                android:id="@+id/ll_assinged_employee_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_2x2"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginTop="@dimen/dimens_2x"
+            android:layout_toEndOf="@+id/ll_ticket_view"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_ticket_id_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/tv_ticket_id"
+                android:layout_gravity="start"
                 android:text="#124568"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_summary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10x1"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="Broken tv, fallen from tv stand"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10x1">
 
             <TextView
-                android:id="@+id/tv_customer"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_summary"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Customer: "
-                android:textColor="@color/service_info_text_color" />
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:ellipsize="end"
+                android:paddingEnd="@dimen/dimen_10x2"
+                android:singleLine="true"
+                android:text="Broken tv, fallen from tv stand"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_customer_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/tv_customer"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/dimen_10x1"
                 android:text="Ram prasad yadav"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
-        </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_tags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10x1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_10x1"
-                android:background="@drawable/tag_bg"
-                android:paddingStart="@dimen/dimen_10x1"
-                android:paddingTop="@dimen/dimen_2x2"
-                android:paddingEnd="@dimen/dimen_10x1"
-                android:paddingBottom="@dimen/dimen_2x2"
-                android:text="Billing"
-                android:textColor="@color/service_info_text_color"
-                android:textSize="@dimen/material_text_caption" />
+                android:scrollbars="none">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_10x1"
-                android:background="@drawable/tag_bg"
-                android:paddingStart="@dimen/dimen_10x1"
-                android:paddingTop="@dimen/dimen_2x2"
-                android:paddingEnd="@dimen/dimen_10x1"
-                android:paddingBottom="@dimen/dimen_2x2"
-                android:text="Technical"
-                android:textColor="@color/service_info_text_color"
-                android:textSize="@dimen/material_text_caption" />
+                <LinearLayout
+                    android:id="@+id/ll_tags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_10x1"
-                android:background="@drawable/tag_bg"
-                android:paddingStart="@dimen/dimen_10x1"
-                android:paddingTop="@dimen/dimen_2x2"
-                android:paddingEnd="@dimen/dimen_10x1"
-                android:paddingBottom="@dimen/dimen_2x2"
-                android:text="Marketing"
-                android:textColor="@color/service_info_text_color"
-                android:textSize="@dimen/material_text_caption" />
+                </LinearLayout>
+
+            </HorizontalScrollView>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_ticket_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:background="@drawable/resolved_bg"
+            android:paddingStart="@dimen/dimen_10x1"
+            android:paddingTop="@dimen/dimen_6x1"
+            android:paddingEnd="@dimen/dimen_10x1"
+            android:paddingBottom="@dimen/dimen_6x1"
+            android:text="Started"
+            android:textAllCaps="true"
+            android:textColor="#239F15"
+            android:textSize="10sp" />
 
-    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/ll_ticket_view"
+            android:layout_marginTop="@dimen/dimens_2x"
+            android:background="#e7e7e7"
+            android:paddingTop="@dimen/dimen_10x1" />
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/dimen_10x2"
-        android:layout_marginEnd="@dimen/dimen_10x2"
-        android:background="@drawable/started_resolved_bg"
-        android:paddingStart="@dimen/dimen_10x1"
-        android:paddingTop="@dimen/dimen_6x1"
-        android:paddingEnd="@dimen/dimen_10x1"
-        android:paddingBottom="@dimen/dimen_6x1"
-        android:text="Started"
-        android:textAllCaps="true"
-        android:textColor="#239F15"
-        android:textSize="10sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/ll_ticket_view"
-        android:layout_marginTop="@dimen/dimens_2x"
-        android:background="#e7e7e7"
-        android:paddingTop="@dimen/dimen_10x1" />
-</RelativeLayout>
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

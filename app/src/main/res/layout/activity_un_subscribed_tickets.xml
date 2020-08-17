@@ -8,15 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_data_not_found"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include layout="@layout/layout_ticket_row_assigned" />
-
-        <include layout="@layout/layout_ticket_row_assigned" />
-
-    </LinearLayout>
+        android:layout_centerInParent="true"
+        android:paddingBottom="@dimen/dimen_10x6"
+        android:src="@drawable/ic_not_found"
+        android:visibility="gone" />
 
 </RelativeLayout>

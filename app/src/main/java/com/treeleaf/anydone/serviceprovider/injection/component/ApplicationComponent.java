@@ -10,6 +10,9 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragmen
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRequestFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 
 import javax.inject.Singleton;
 
@@ -35,5 +38,11 @@ public interface ApplicationComponent {
     void inject(AcceptedRequestFragment acceptedRequestFragment);
 
     void inject(ServiceRequestFragment serviceRequestFragment);
+
+    void inject(AssignedTicketsFragment assignedTicketsFragment);
+
+    void inject(SubscribeTicketsFragment subscribeTicketsFragment);
+
+    void inject(ClosedTicketsFragment closedTicketsFragment);
 
 }

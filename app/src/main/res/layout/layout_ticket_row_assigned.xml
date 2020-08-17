@@ -60,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_2x2"
+            android:gravity="center"
             android:orientation="horizontal" />
 
     </LinearLayout>
@@ -88,6 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10x1"
             android:ellipsize="end"
+            android:paddingEnd="@dimen/dimen_10x2"
             android:singleLine="true"
             android:text="Broken tv, fallen from tv stand"
             android:textColor="@color/black"
@@ -99,7 +101,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="@dimen/dimen_10x1"
-            android:layout_toEndOf="@id/tv_customer"
             android:text="Ram prasad yadav"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -128,7 +129,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/dimen_10x2"
         android:layout_marginEnd="@dimen/dimen_10x2"
-        android:background="@drawable/started_resolved_bg"
+        android:background="@drawable/resolved_bg"
         android:paddingStart="@dimen/dimen_10x1"
         android:paddingTop="@dimen/dimen_6x1"
         android:paddingEnd="@dimen/dimen_10x1"

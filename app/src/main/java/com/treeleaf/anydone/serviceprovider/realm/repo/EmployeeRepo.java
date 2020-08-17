@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
@@ -57,5 +58,17 @@ public class EmployeeRepo extends Repo {
         return realm.where(Employee.class)
                 .equalTo("accountId", accountId)
                 .findFirst();
+    }
+
+    public Employee getEmployee() {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            return realm.where(Employee.class).findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
     }
 }

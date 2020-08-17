@@ -39,8 +39,21 @@ import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLo
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepository;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepository;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnsubscribedTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnsubscribedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationRepository;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationRepositoryImpl;
 
@@ -157,6 +170,36 @@ public class PresenterModule {
     @Provides
     TicketsRepository getTicketsRepository(AnyDoneService anyDoneService) {
         return new TicketsRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    AssignedTicketRepository getAssignedTicketRepository(AnyDoneService anyDoneService) {
+        return new AssignedTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    SubscribeTicketRepository getSubscribedTicketRepository(AnyDoneService anyDoneService) {
+        return new SubscribeTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ClosedTicketRepository getClosedTicketRepository(AnyDoneService anyDoneService) {
+        return new ClosedTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    UnassignedTicketRepository getAssignableTicketRepository(AnyDoneService anyDoneService) {
+        return new UnassignedTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    UnsubscribedTicketRepository getSubscribeableRepository(AnyDoneService anyDoneService) {
+        return new UnsubscribedTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    TicketDetailsRepository getTicketDetailRepository(AnyDoneService anyDoneService) {
+        return new TicketDetailsRepositoryImpl(anyDoneService);
     }
 
 }

@@ -216,15 +216,15 @@ public final class ProtoMapper {
     }
 
     public static RealmList<Employee> transformAssignedEmployee(
-            List<UserProto.EmployeeProfile> assignedToListPb) {
+            List<TicketProto.EmployeeAssigned> assignedToListPb) {
         RealmList<Employee> employeeRealmList = new RealmList<>();
-        for (UserProto.EmployeeProfile employeeProfile : assignedToListPb
+        for (TicketProto.EmployeeAssigned employeeProfile : assignedToListPb
         ) {
             Employee employee = new Employee();
-            employee.setAccountId(employeeProfile.getAccount().getAccountId());
-            employee.setCreatedAt(employeeProfile.getCreatedAt());
-            employee.setEmployeeId(employeeProfile.getEmployeeProfileId());
-//            employee.setEmployeeImageUrl(employeeProfile.getEmployeeImageUrl);
+            employee.setAccountId(employeeProfile.getAssignedTo().getAccount().getAccountId());
+            employee.setCreatedAt(employeeProfile.getAssignedAt());
+            employee.setEmployeeId(employeeProfile.getAssignedTo().getEmployeeProfileId());
+            employee.setEmployeeImageUrl(employeeProfile.getAssignedTo().getAccount().getProfilePic());
             employeeRealmList.add(employee);
         }
         return employeeRealmList;

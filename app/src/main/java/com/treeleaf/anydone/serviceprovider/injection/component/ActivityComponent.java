@@ -18,6 +18,9 @@ import com.treeleaf.anydone.serviceprovider.setting.language.LanguagesActivity;
 import com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.SelectTimezoneActivity;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
+import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
 
 import dagger.Subcomponent;
@@ -43,7 +46,6 @@ public interface ActivityComponent {
 
     void inject(ResetPasswordActivity resetPasswordActivity);
 
-
     void inject(ServiceRequestDetailActivity serviceRequestActivity);
 
     void inject(AddLocationActivity addLocationActivity);
@@ -57,4 +59,10 @@ public interface ActivityComponent {
     void inject(PickLocationActivity pickLocationActivity);
 
     void inject(LanguagesActivity languagesActivity);
+
+    void inject(UnassignedTicketsActivity unassignedTicketsActivity);
+
+    void inject(UnSubscribedTicketsActivity unSubscribedTicketsActivity);
+
+    void inject(TicketDetailsActivity ticketDetailsActivity);
 }

@@ -42,5 +42,8 @@ public class Constants {
     public static final String CLOSED_RESOLVED = "CLOSED_RESOLVED";
     public static final String ASSIGNABLE = "ASSIGNABLE";
     public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
+    public static final String FETCH_SUBSCRIBEABLE_LIST = "fetch_subscribeable_list";
+    public static final String FETCH_SUBSCRIBED_LIST = "fetch_subscribed_list";
+    public static final String FETCH__ASSIGNED_LIST = "fetch_assigned_list";
 
 }

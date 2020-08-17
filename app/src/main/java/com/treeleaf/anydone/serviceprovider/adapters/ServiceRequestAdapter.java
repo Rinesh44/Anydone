@@ -103,6 +103,7 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter
             viewBinderHelper.lockSwipe(String.valueOf(service.getServiceOrderId()));
             holder.ibDelete.setVisibility(View.GONE);
         }
+
         holder.ibDelete.setOnClickListener(v -> {
             if (deleteListener != null) {
                 deleteListener.onDeleteClicked(String.valueOf(service.getServiceOrderId()),
