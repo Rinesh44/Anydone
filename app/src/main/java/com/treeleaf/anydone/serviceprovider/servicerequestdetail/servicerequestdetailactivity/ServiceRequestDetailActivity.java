@@ -48,14 +48,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
-import static com.treeleaf.januswebrtc.Const.CALLEE_NAME;
-import static com.treeleaf.januswebrtc.Const.CALLEE_PROFILE_URL;
-import static com.treeleaf.januswebrtc.Const.JANUS_API_KEY;
-import static com.treeleaf.januswebrtc.Const.JANUS_API_SECRET;
-import static com.treeleaf.januswebrtc.Const.JANUS_PARTICIPANT_ID;
-import static com.treeleaf.januswebrtc.Const.JANUS_ROOM_NUMBER;
-import static com.treeleaf.januswebrtc.Const.JANUS_URL;
-
 public class ServiceRequestDetailActivity extends MvpBaseActivity
         <ServiceRequestDetailActivityPresenterImpl> implements
         ServiceRequestDetailActivityContract.ServiceRequestDetailActivityView,
@@ -162,7 +154,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                 presenter.publishVideoBroadCastMessage(accountId, accountName, accountPicture,
                         serviceRequestId, String.valueOf(sessionId), String.valueOf(roomId),
                         String.valueOf(participantId), janusBaseUrl, apiSecret, apiKey);
-//                videoCallListener.onVideoViewReady();
+
             }
 
             @Override
@@ -196,7 +188,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             @Override
             public void fetchJanusServerInfo() {
-                presenter.fetchJanusServerUrl(Hawk.get(Constants.TOKEN));
+
             }
 
             @Override
@@ -368,14 +360,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     public Context getContext() {
         return this;
     }
-
-
-
-/*    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }*/
 
     private class ViewPagerAdapter extends FragmentStateAdapter {
         public ViewPagerAdapter(@NonNull FragmentManager fragmentManager,
