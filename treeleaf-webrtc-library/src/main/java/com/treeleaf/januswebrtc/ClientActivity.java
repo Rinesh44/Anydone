@@ -350,6 +350,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         });
     }
 
+    @Override
+    public void onPublisherVideoStarted() {
+    }
+
     private void setUpRecyclerView() {
         joineeListAdapter = new JoineeListAdapter(this);
         joineeListAdapter.setJoineeListToggleUpdate(new JoineeListAdapter.JoineeListToggleUpdate() {

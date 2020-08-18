@@ -139,6 +139,7 @@ public class RestChannel implements ApiHandlerCallback {
                             apiCallback.onParticipantCreated(mParticipantId);
                             apiCallback.janusServerConfigurationSuccess(mSessionId, mRoomId, mParticipantId);
                             apiCallback.showVideoCallStartView(false);
+                            apiCallback.onPublisherVideoStarted();
                         }
 
                         String started = plugin.optString("started");

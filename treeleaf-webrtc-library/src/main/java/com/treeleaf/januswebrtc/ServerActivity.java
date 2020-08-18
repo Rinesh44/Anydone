@@ -507,6 +507,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         });
     }
 
+    @Override
+    public void onPublisherVideoStarted() {
+        mhostActivityCallback.onPublisherVideoStarted();
+    }
+
     private void setUpRecyclerView() {
         joineeListAdapter = new JoineeListAdapter(this);
         joineeListAdapter.setJoineeListToggleUpdate(new JoineeListAdapter.JoineeListToggleUpdate() {
@@ -824,8 +829,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             mRestChannel.clearPendingApiCalls();
             mRestChannel = null;
         }
-//        if (localRender != null)
-//            localRender.release();
         if (remoteRender != null)
             remoteRender.release();
         if (peerConnectionClient != null) {

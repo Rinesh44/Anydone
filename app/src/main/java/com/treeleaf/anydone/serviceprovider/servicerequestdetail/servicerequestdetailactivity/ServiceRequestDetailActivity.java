@@ -106,9 +106,10 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.action_video_call:
+                //TODO: will be needed later
+           /* case R.id.action_video_call:
                 presenter.checkConnection(TreeleafMqttClient.mqttClient);
-                return true;
+                return true;*/
         }
         return false;
     }
@@ -145,6 +146,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             @Override
             public void specifyRole(RestChannel.Role role) {
                 mRole = role;
+            }
+
+            @Override
+            public void onPublisherVideoStarted() {
+
             }
 
             @Override
@@ -222,7 +228,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             @Override
             public void notifySubscriberLeft() {
+                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, serviceRequestId);
+            }
 
+            @Override
+            public void onPublisherVideoStarted() {
+                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
         };
 
@@ -232,7 +243,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         rtcMessageId = broadcastVideoCall.getRtcMessageId();
-        if (mRole == RestChannel.Role.SERVER) {
             String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
             String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
             String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
@@ -244,7 +254,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
                     roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
-        }
 
     }
 

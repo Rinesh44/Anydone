@@ -32,6 +32,12 @@ public class ServiceRequestDetailActivityContract {
 
         void publishHostHangUpEvent(String userAccountId, String accountName, String accountPicture, long orderId, String rtcMesssageId, boolean videoBroadCastPublish);
 
+        void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
+                                        long orderId);
+
+        void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
+                                         long orderId);
+
     }
 
 }

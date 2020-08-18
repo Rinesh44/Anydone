@@ -29,6 +29,8 @@ public class Callback {
 
         void onRoomJoined(BigInteger roomNumber, String participantId);
 
+        void onPublisherVideoStarted();
+
         BigInteger getRoomNumber();
 
         BigInteger getParticipantId();
@@ -81,6 +83,8 @@ public class Callback {
         void fetchJanusServerInfo();
 
         void specifyRole(RestChannel.Role role);
+
+        void onPublisherVideoStarted();
 
     }
 
