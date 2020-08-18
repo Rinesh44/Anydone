@@ -106,7 +106,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             case android.R.id.home:
                 onBackPressed();
                 return true;
-                //TODO: will be needed later
+            //TODO: will be needed later
            /* case R.id.action_video_call:
                 presenter.checkConnection(TreeleafMqttClient.mqttClient);
                 return true;*/
@@ -243,17 +243,17 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         rtcMessageId = broadcastVideoCall.getRtcMessageId();
-            String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-            String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-            String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
-            String roomNumber = broadcastVideoCall.getRoomId();
-            String participantId = broadcastVideoCall.getParticipantId();
+        String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
+        String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
+        String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
+        String roomNumber = broadcastVideoCall.getRoomId();
+        String participantId = broadcastVideoCall.getParticipantId();
 
-            String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
-            String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+        String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
+        String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
 
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                    roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
+        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+                roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
 
     }
 
@@ -276,6 +276,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
         Log.d(MQTT, "onHostHangUp");
+        if (videoCallListenerServer != null)
+            videoCallListenerServer.onHostTerminateCall();
     }
 
     @Override

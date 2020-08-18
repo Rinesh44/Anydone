@@ -233,6 +233,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             public void onVideoViewReady() {
                 showVideoCallStartView(false);
             }
+
+            @Override
+            public void onHostTerminateCall() {
+                terminateBroadCast();
+            }
         };
 
         setUpRecyclerView();
@@ -889,6 +894,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         void onJoineeRemoved(String accountId);
 
         void onVideoViewReady();
+
+        void onHostTerminateCall();
 
     }
 
