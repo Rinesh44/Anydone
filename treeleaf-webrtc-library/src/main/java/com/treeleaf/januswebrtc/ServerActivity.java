@@ -509,7 +509,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void onPublisherVideoStarted() {
-        mhostActivityCallback.onPublisherVideoStarted();
+        if (mhostActivityCallback != null)
+            mhostActivityCallback.onPublisherVideoStarted();
     }
 
     private void setUpRecyclerView() {
