@@ -657,7 +657,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(ClientActivity.this, "Connection hung up!!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Connection hung up!!");
             }
         });
         /**

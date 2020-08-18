@@ -679,7 +679,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "Connection hung up!!");
+                Toast.makeText(ServerActivity.this, "Connection hung up!!", Toast.LENGTH_SHORT).show();
             }
         });
         terminateBroadCast();

@@ -174,7 +174,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_margin="20dp"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <TextView
         android:textColor="@color/color_white"
@@ -183,6 +183,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_room_number"
         android:layout_margin="20dp"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 </RelativeLayout>
