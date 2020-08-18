@@ -28,7 +28,6 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
@@ -84,7 +83,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     private Account userAccount;
     private String accountId, accountName, accountPicture, rtcMessageId;
     private String serviceName, serviceProfileUri;
-    private ClientActivity.VideoCallListener videoCallListener;
+    private ClientActivity.VideoCallListener videoCallListenerClient;
+    private ServerActivity.VideoCallListener videoCallListenerServer;
     private boolean paymentSuccess = false;
     private boolean videoBroadCastPublish = false;
     private RestChannel.Role mRole;
@@ -170,7 +170,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             @Override
             public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
-                videoCallListener = callback;
+                videoCallListenerClient = callback;
             }
 
             @Override
@@ -214,12 +214,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             @Override
             public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
-                videoCallListener = callback;
+                videoCallListenerClient = callback;
             }
 
             @Override
             public void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener) {
-
+                videoCallListenerServer = videoCallListener;
             }
 
             @Override
@@ -259,18 +259,18 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         Log.d(MQTT, "onVideoRoomJoinSuccess");
-        if (videoCallListener != null) {
+        if (videoCallListenerServer != null) {
             UserProto.Account account = videoCallJoinResponse.getSenderAccount();
-            videoCallListener.onJoineeReceived(account.getFullName(),
+            videoCallListenerServer.onJoineeReceived(account.getFullName(),
                     account.getProfilePic(), account.getAccountId());
         }
     }
 
     public void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft) {
         Log.d(MQTT, "onParticipantLeft");
-        if (videoCallListener != null) {
+        if (videoCallListenerServer != null) {
             UserProto.Account account = participantLeft.getSenderAccount();
-            videoCallListener.onJoineeRemoved(account.getAccountId());
+            videoCallListenerServer.onJoineeRemoved(account.getAccountId());
         }
     }
 
@@ -314,13 +314,13 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         Log.d(TAG, "janus server info: " + janusBaseUrl + apiKey + apiSecret);
-        videoCallListener.onJanusCredentialsReceived(janusBaseUrl, apiKey,
+        videoCallListenerClient.onJanusCredentialsReceived(janusBaseUrl, apiKey,
                 apiSecret, serviceName, serviceProfileUri);
     }
 
     @Override
     public void onUrlFetchFail(String msg) {
-        videoCallListener.onJanusCredentialsFailure();
+        videoCallListenerClient.onJanusCredentialsFailure();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
