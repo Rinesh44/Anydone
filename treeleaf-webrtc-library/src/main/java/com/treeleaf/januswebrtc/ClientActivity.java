@@ -45,6 +45,7 @@ import com.treeleaf.freedrawingdemo.freedrawing.util.GeneralUtil;
 import com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView;
 import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionParameters;
 import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionEvents;
+import com.treeleaf.januswebrtc.audio.AppRTCAudioManager;
 
 import static com.treeleaf.januswebrtc.Const.CALLEE_NAME;
 import static com.treeleaf.januswebrtc.Const.CALLEE_PROFILE_URL;
@@ -102,6 +103,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private int timerDelay = 10000;
     private Boolean credentialsReceived;
     private String roomNumber;
+    private AppRTCAudioManager audioManager;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -422,6 +424,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     public void onPermissionGranted() {
         if (credentialsReceived) {
             mRestChannel.initConnection(CLIENT);
+            audioManager = AppRTCAudioManager.create(this);
+            audioManager.start();
             createLocalRender();
             peerConnectionParameters = new PeerConnectionParameters(false, 360, 480, 20, "H264", true, 0, "opus", false, false, false, false, false);
             peerConnectionClient = PeerConnectionClient.getInstance();
@@ -886,6 +890,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         if (peerConnectionClient != null) {
             peerConnectionClient.close();
             peerConnectionClient = null;
+        }
+        if (audioManager != null) {
+            audioManager.stop();
+            audioManager = null;
         }
         finish();
     }
