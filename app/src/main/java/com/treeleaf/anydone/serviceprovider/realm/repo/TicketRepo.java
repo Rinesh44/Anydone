@@ -90,7 +90,6 @@ public class TicketRepo extends Repo {
             tickets.setServiceProvider(ProtoMapper.transformServiceProvider(ticketPb.getServiceProvider()));
             tickets.setTicketSource(ticketPb.getTicketSource().name());
             tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
-            tickets.setServiceId(ticketPb.getService().getServiceId());
             tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeesAssignedList()));
             tickets.setCustomerType(ticketPb.getCustomerType().name());
             tickets.setCreatedAt(ticketPb.getCreatedAt());
