@@ -8,6 +8,919 @@ public final class BotHousekeepingProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.IntentState}
+   */
+  public enum IntentState
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_STATE = 0;</code>
+     */
+    UNKNOWN_STATE(0),
+    /**
+     * <code>INTENT_ACTIVE = 1;</code>
+     */
+    INTENT_ACTIVE(1),
+    /**
+     * <code>INTENT_DISABLED = 2;</code>
+     */
+    INTENT_DISABLED(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_STATE = 0;</code>
+     */
+    public static final int UNKNOWN_STATE_VALUE = 0;
+    /**
+     * <code>INTENT_ACTIVE = 1;</code>
+     */
+    public static final int INTENT_ACTIVE_VALUE = 1;
+    /**
+     * <code>INTENT_DISABLED = 2;</code>
+     */
+    public static final int INTENT_DISABLED_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static IntentState valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static IntentState forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_STATE;
+        case 1: return INTENT_ACTIVE;
+        case 2: return INTENT_DISABLED;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<IntentState>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        IntentState> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<IntentState>() {
+            public IntentState findValueByNumber(int number) {
+              return IntentState.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private IntentState(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.IntentState)
+  }
+
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.BotEntityType}
+   */
+  public enum BotEntityType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_BOT_ENTITY_TYPE = 0;</code>
+     */
+    UNKNOWN_BOT_ENTITY_TYPE(0),
+    /**
+     * <code>REQUEST_ENTITY = 1;</code>
+     */
+    REQUEST_ENTITY(1),
+    /**
+     * <code>RESPONSE_ENTITY = 2;</code>
+     */
+    RESPONSE_ENTITY(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_BOT_ENTITY_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_BOT_ENTITY_TYPE_VALUE = 0;
+    /**
+     * <code>REQUEST_ENTITY = 1;</code>
+     */
+    public static final int REQUEST_ENTITY_VALUE = 1;
+    /**
+     * <code>RESPONSE_ENTITY = 2;</code>
+     */
+    public static final int RESPONSE_ENTITY_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static BotEntityType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static BotEntityType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_BOT_ENTITY_TYPE;
+        case 1: return REQUEST_ENTITY;
+        case 2: return RESPONSE_ENTITY;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<BotEntityType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        BotEntityType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<BotEntityType>() {
+            public BotEntityType findValueByNumber(int number) {
+              return BotEntityType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private BotEntityType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.BotEntityType)
+  }
+
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.BotEntityResolvePolicy}
+   */
+  public enum BotEntityResolvePolicy
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_RESOLVE_POLICY = 0;</code>
+     */
+    UNKNOWN_RESOLVE_POLICY(0),
+    /**
+     * <code>RESOLVE_BY_API_CALL = 1;</code>
+     */
+    RESOLVE_BY_API_CALL(1),
+    /**
+     * <code>RESOLVE_BY_USER_INPUT = 2;</code>
+     */
+    RESOLVE_BY_USER_INPUT(2),
+    /**
+     * <code>RESOLVE_BY_ANYDONE_DATA = 3;</code>
+     */
+    RESOLVE_BY_ANYDONE_DATA(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_RESOLVE_POLICY = 0;</code>
+     */
+    public static final int UNKNOWN_RESOLVE_POLICY_VALUE = 0;
+    /**
+     * <code>RESOLVE_BY_API_CALL = 1;</code>
+     */
+    public static final int RESOLVE_BY_API_CALL_VALUE = 1;
+    /**
+     * <code>RESOLVE_BY_USER_INPUT = 2;</code>
+     */
+    public static final int RESOLVE_BY_USER_INPUT_VALUE = 2;
+    /**
+     * <code>RESOLVE_BY_ANYDONE_DATA = 3;</code>
+     */
+    public static final int RESOLVE_BY_ANYDONE_DATA_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static BotEntityResolvePolicy valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static BotEntityResolvePolicy forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_RESOLVE_POLICY;
+        case 1: return RESOLVE_BY_API_CALL;
+        case 2: return RESOLVE_BY_USER_INPUT;
+        case 3: return RESOLVE_BY_ANYDONE_DATA;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<BotEntityResolvePolicy>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        BotEntityResolvePolicy> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<BotEntityResolvePolicy>() {
+            public BotEntityResolvePolicy findValueByNumber(int number) {
+              return BotEntityResolvePolicy.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private BotEntityResolvePolicy(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.BotEntityResolvePolicy)
+  }
+
+  public interface TrainRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TrainRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string accountId = 1;</code>
+     */
+    java.lang.String getAccountId();
+    /**
+     * <code>optional string accountId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountIdBytes();
+
+    /**
+     * <code>optional string serviceId = 2;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> 
+        getBotIntentsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntents(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    int getBotIntentsCount();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.TrainRequest}
+   */
+  public  static final class TrainRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          TrainRequest, TrainRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TrainRequest)
+      TrainRequestOrBuilder {
+    private TrainRequest() {
+      accountId_ = "";
+      serviceId_ = "";
+      botIntents_ = emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int ACCOUNTID_FIELD_NUMBER = 1;
+    private java.lang.String accountId_;
+    /**
+     * <code>optional string accountId = 1;</code>
+     */
+    public java.lang.String getAccountId() {
+      return accountId_;
+    }
+    /**
+     * <code>optional string accountId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
+    }
+    /**
+     * <code>optional string accountId = 1;</code>
+     */
+    private void setAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      accountId_ = value;
+    }
+    /**
+     * <code>optional string accountId = 1;</code>
+     */
+    private void clearAccountId() {
+      
+      accountId_ = getDefaultInstance().getAccountId();
+    }
+    /**
+     * <code>optional string accountId = 1;</code>
+     */
+    private void setAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      accountId_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 2;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 2;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 2;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 2;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 2;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int BOTINTENTS_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> botIntents_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> getBotIntentsList() {
+      return botIntents_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntentOrBuilder> 
+        getBotIntentsOrBuilderList() {
+      return botIntents_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    public int getBotIntentsCount() {
+      return botIntents_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntents(int index) {
+      return botIntents_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntentOrBuilder getBotIntentsOrBuilder(
+        int index) {
+      return botIntents_.get(index);
+    }
+    private void ensureBotIntentsIsMutable() {
+      if (!botIntents_.isModifiable()) {
+        botIntents_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(botIntents_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void setBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotIntentsIsMutable();
+      botIntents_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void setBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      ensureBotIntentsIsMutable();
+      botIntents_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void addBotIntents(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotIntentsIsMutable();
+      botIntents_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void addBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotIntentsIsMutable();
+      botIntents_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void addBotIntents(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      ensureBotIntentsIsMutable();
+      botIntents_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void addBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      ensureBotIntentsIsMutable();
+      botIntents_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void addAllBotIntents(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+      ensureBotIntentsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, botIntents_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void clearBotIntents() {
+      botIntents_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     */
+    private void removeBotIntents(int index) {
+      ensureBotIntentsIsMutable();
+      botIntents_.remove(index);
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!accountId_.isEmpty()) {
+        output.writeString(1, getAccountId());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(2, getServiceId());
+      }
+      for (int i = 0; i < botIntents_.size(); i++) {
+        output.writeMessage(3, botIntents_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!accountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getAccountId());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getServiceId());
+      }
+      for (int i = 0; i < botIntents_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, botIntents_.get(i));
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.TrainRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TrainRequest)
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string accountId = 1;</code>
+       */
+      public java.lang.String getAccountId() {
+        return instance.getAccountId();
+      }
+      /**
+       * <code>optional string accountId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountIdBytes() {
+        return instance.getAccountIdBytes();
+      }
+      /**
+       * <code>optional string accountId = 1;</code>
+       */
+      public Builder setAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 1;</code>
+       */
+      public Builder clearAccountId() {
+        copyOnWrite();
+        instance.clearAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 1;</code>
+       */
+      public Builder setAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 2;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 2;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 2;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 2;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> getBotIntentsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBotIntentsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public int getBotIntentsCount() {
+        return instance.getBotIntentsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntents(int index) {
+        return instance.getBotIntents(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder setBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.setBotIntents(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder setBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotIntents(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder addBotIntents(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.addBotIntents(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder addBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.addBotIntents(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder addBotIntents(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotIntents(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder addBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotIntents(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder addAllBotIntents(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+        copyOnWrite();
+        instance.addAllBotIntents(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder clearBotIntents() {
+        copyOnWrite();
+        instance.clearBotIntents();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       */
+      public Builder removeBotIntents(int index) {
+        copyOnWrite();
+        instance.removeBotIntents(index);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TrainRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          botIntents_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest other = (com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest) arg1;
+          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
+              !other.accountId_.isEmpty(), other.accountId_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          botIntents_= visitor.visitList(botIntents_, other.botIntents_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  accountId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 26: {
+                  if (!botIntents_.isModifiable()) {
+                    botIntents_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(botIntents_);
+                  }
+                  botIntents_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.parser(), extensionRegistry));
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TrainRequest)
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TrainRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<TrainRequest> PARSER;
+
+    public static com.google.protobuf.Parser<TrainRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface BotIntentOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.BotIntent)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -15,7 +928,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string intentId = 1;</code>
      */
-    String getIntentId();
+    java.lang.String getIntentId();
     /**
      * <code>optional string intentId = 1;</code>
      */
@@ -25,7 +938,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string intentName = 2;</code>
      */
-    String getIntentName();
+    java.lang.String getIntentName();
     /**
      * <code>optional string intentName = 2;</code>
      */
@@ -35,12 +948,12 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
-    java.util.List<TrainingPhrase>
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> 
         getTrainingPhrasesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
-    TrainingPhrase getTrainingPhrases(int index);
+    com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getTrainingPhrases(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
@@ -53,7 +966,26 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    BotResponse getBotResponse();
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse getBotResponse();
+
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    java.lang.String getLanguage();
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+     */
+    int getIntentStateValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState getIntentState();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotIntent}
@@ -67,14 +999,15 @@ public final class BotHousekeepingProto {
       intentId_ = "";
       intentName_ = "";
       trainingPhrases_ = emptyProtobufList();
+      language_ = "";
     }
     private int bitField0_;
     public static final int INTENTID_FIELD_NUMBER = 1;
-    private String intentId_;
+    private java.lang.String intentId_;
     /**
      * <code>optional string intentId = 1;</code>
      */
-    public String getIntentId() {
+    public java.lang.String getIntentId() {
       return intentId_;
     }
     /**
@@ -88,7 +1021,7 @@ public final class BotHousekeepingProto {
      * <code>optional string intentId = 1;</code>
      */
     private void setIntentId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -116,11 +1049,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int INTENTNAME_FIELD_NUMBER = 2;
-    private String intentName_;
+    private java.lang.String intentName_;
     /**
      * <code>optional string intentName = 2;</code>
      */
-    public String getIntentName() {
+    public java.lang.String getIntentName() {
       return intentName_;
     }
     /**
@@ -134,7 +1067,7 @@ public final class BotHousekeepingProto {
      * <code>optional string intentName = 2;</code>
      */
     private void setIntentName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -162,17 +1095,17 @@ public final class BotHousekeepingProto {
     }
 
     public static final int TRAININGPHRASES_FIELD_NUMBER = 3;
-    private com.google.protobuf.Internal.ProtobufList<TrainingPhrase> trainingPhrases_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> trainingPhrases_;
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
-    public java.util.List<TrainingPhrase> getTrainingPhrasesList() {
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getTrainingPhrasesList() {
       return trainingPhrases_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
-    public java.util.List<? extends TrainingPhraseOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder> 
         getTrainingPhrasesOrBuilderList() {
       return trainingPhrases_;
     }
@@ -185,13 +1118,13 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
-    public TrainingPhrase getTrainingPhrases(int index) {
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getTrainingPhrases(int index) {
       return trainingPhrases_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
-    public TrainingPhraseOrBuilder getTrainingPhrasesOrBuilder(
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder getTrainingPhrasesOrBuilder(
         int index) {
       return trainingPhrases_.get(index);
     }
@@ -206,7 +1139,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
     private void setTrainingPhrases(
-        int index, TrainingPhrase value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -217,14 +1150,14 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
     private void setTrainingPhrases(
-        int index, TrainingPhrase.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
       ensureTrainingPhrasesIsMutable();
       trainingPhrases_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
-    private void addTrainingPhrases(TrainingPhrase value) {
+    private void addTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -235,7 +1168,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
     private void addTrainingPhrases(
-        int index, TrainingPhrase value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -246,7 +1179,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
     private void addTrainingPhrases(
-        TrainingPhrase.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
       ensureTrainingPhrasesIsMutable();
       trainingPhrases_.add(builderForValue.build());
     }
@@ -254,7 +1187,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
     private void addTrainingPhrases(
-        int index, TrainingPhrase.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
       ensureTrainingPhrasesIsMutable();
       trainingPhrases_.add(index, builderForValue.build());
     }
@@ -262,7 +1195,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
      */
     private void addAllTrainingPhrases(
-        Iterable<? extends TrainingPhrase> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
       ensureTrainingPhrasesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, trainingPhrases_);
@@ -282,7 +1215,7 @@ public final class BotHousekeepingProto {
     }
 
     public static final int BOTRESPONSE_FIELD_NUMBER = 4;
-    private BotResponse botResponse_;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse botResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
@@ -292,13 +1225,13 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    public BotResponse getBotResponse() {
-      return botResponse_ == null ? BotResponse.getDefaultInstance() : botResponse_;
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse getBotResponse() {
+      return botResponse_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.getDefaultInstance() : botResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    private void setBotResponse(BotResponse value) {
+    private void setBotResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -309,18 +1242,18 @@ public final class BotHousekeepingProto {
      * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
     private void setBotResponse(
-        BotResponse.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.Builder builderForValue) {
       botResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    private void mergeBotResponse(BotResponse value) {
+    private void mergeBotResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse value) {
       if (botResponse_ != null &&
-          botResponse_ != BotResponse.getDefaultInstance()) {
+          botResponse_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.getDefaultInstance()) {
         botResponse_ =
-          BotResponse.newBuilder(botResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.newBuilder(botResponse_).mergeFrom(value).buildPartial();
       } else {
         botResponse_ = value;
       }
@@ -331,6 +1264,91 @@ public final class BotHousekeepingProto {
      */
     private void clearBotResponse() {  botResponse_ = null;
       
+    }
+
+    public static final int LANGUAGE_FIELD_NUMBER = 5;
+    private java.lang.String language_;
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    public java.lang.String getLanguage() {
+      return language_;
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(language_);
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void setLanguage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      language_ = value;
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void clearLanguage() {
+      
+      language_ = getDefaultInstance().getLanguage();
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void setLanguageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      language_ = value.toStringUtf8();
+    }
+
+    public static final int INTENTSTATE_FIELD_NUMBER = 6;
+    private int intentState_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+     */
+    public int getIntentStateValue() {
+      return intentState_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState getIntentState() {
+      com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState result = com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState.forNumber(intentState_);
+      return result == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+     */
+    private void setIntentStateValue(int value) {
+        intentState_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+     */
+    private void setIntentState(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      intentState_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+     */
+    private void clearIntentState() {
+      
+      intentState_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -346,6 +1364,12 @@ public final class BotHousekeepingProto {
       }
       if (botResponse_ != null) {
         output.writeMessage(4, getBotResponse());
+      }
+      if (!language_.isEmpty()) {
+        output.writeString(5, getLanguage());
+      }
+      if (intentState_ != com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState.UNKNOWN_STATE.getNumber()) {
+        output.writeEnum(6, intentState_);
       }
     }
 
@@ -370,64 +1394,72 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getBotResponse());
       }
+      if (!language_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getLanguage());
+      }
+      if (intentState_ != com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState.UNKNOWN_STATE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, intentState_);
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static BotIntent parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotIntent parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotIntent parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotIntent parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotIntent parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotIntent parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotIntent parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static BotIntent parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotIntent parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotIntent parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -438,7 +1470,7 @@ public final class BotHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BotIntent prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -447,9 +1479,9 @@ public final class BotHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          BotIntent, Builder> implements
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotIntent)
-        BotIntentOrBuilder {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntentOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -459,7 +1491,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string intentId = 1;</code>
        */
-      public String getIntentId() {
+      public java.lang.String getIntentId() {
         return instance.getIntentId();
       }
       /**
@@ -473,7 +1505,7 @@ public final class BotHousekeepingProto {
        * <code>optional string intentId = 1;</code>
        */
       public Builder setIntentId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntentId(value);
         return this;
@@ -499,7 +1531,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string intentName = 2;</code>
        */
-      public String getIntentName() {
+      public java.lang.String getIntentName() {
         return instance.getIntentName();
       }
       /**
@@ -513,7 +1545,7 @@ public final class BotHousekeepingProto {
        * <code>optional string intentName = 2;</code>
        */
       public Builder setIntentName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntentName(value);
         return this;
@@ -539,7 +1571,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
-      public java.util.List<TrainingPhrase> getTrainingPhrasesList() {
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getTrainingPhrasesList() {
         return java.util.Collections.unmodifiableList(
             instance.getTrainingPhrasesList());
       }
@@ -551,14 +1583,14 @@ public final class BotHousekeepingProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
-      public TrainingPhrase getTrainingPhrases(int index) {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getTrainingPhrases(int index) {
         return instance.getTrainingPhrases(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
       public Builder setTrainingPhrases(
-          int index, TrainingPhrase value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
         copyOnWrite();
         instance.setTrainingPhrases(index, value);
         return this;
@@ -567,7 +1599,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
       public Builder setTrainingPhrases(
-          int index, TrainingPhrase.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
         copyOnWrite();
         instance.setTrainingPhrases(index, builderForValue);
         return this;
@@ -575,7 +1607,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
-      public Builder addTrainingPhrases(TrainingPhrase value) {
+      public Builder addTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
         copyOnWrite();
         instance.addTrainingPhrases(value);
         return this;
@@ -584,7 +1616,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
       public Builder addTrainingPhrases(
-          int index, TrainingPhrase value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
         copyOnWrite();
         instance.addTrainingPhrases(index, value);
         return this;
@@ -593,7 +1625,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
       public Builder addTrainingPhrases(
-          TrainingPhrase.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
         copyOnWrite();
         instance.addTrainingPhrases(builderForValue);
         return this;
@@ -602,7 +1634,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
       public Builder addTrainingPhrases(
-          int index, TrainingPhrase.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
         copyOnWrite();
         instance.addTrainingPhrases(index, builderForValue);
         return this;
@@ -611,7 +1643,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 3;</code>
        */
       public Builder addAllTrainingPhrases(
-          Iterable<? extends TrainingPhrase> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
         copyOnWrite();
         instance.addAllTrainingPhrases(values);
         return this;
@@ -642,13 +1674,13 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public BotResponse getBotResponse() {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse getBotResponse() {
         return instance.getBotResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public Builder setBotResponse(BotResponse value) {
+      public Builder setBotResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse value) {
         copyOnWrite();
         instance.setBotResponse(value);
         return this;
@@ -657,7 +1689,7 @@ public final class BotHousekeepingProto {
        * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
       public Builder setBotResponse(
-          BotResponse.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.Builder builderForValue) {
         copyOnWrite();
         instance.setBotResponse(builderForValue);
         return this;
@@ -665,7 +1697,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public Builder mergeBotResponse(BotResponse value) {
+      public Builder mergeBotResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse value) {
         copyOnWrite();
         instance.mergeBotResponse(value);
         return this;
@@ -678,14 +1710,91 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public java.lang.String getLanguage() {
+        return instance.getLanguage();
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        return instance.getLanguageBytes();
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder setLanguage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLanguage(value);
+        return this;
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder clearLanguage() {
+        copyOnWrite();
+        instance.clearLanguage();
+        return this;
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLanguageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+       */
+      public int getIntentStateValue() {
+        return instance.getIntentStateValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+       */
+      public Builder setIntentStateValue(int value) {
+        copyOnWrite();
+        instance.setIntentStateValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState getIntentState() {
+        return instance.getIntentState();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+       */
+      public Builder setIntentState(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentState value) {
+        copyOnWrite();
+        instance.setIntentState(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
+       */
+      public Builder clearIntentState() {
+        copyOnWrite();
+        instance.clearIntentState();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotIntent)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new BotIntent();
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -699,14 +1808,17 @@ public final class BotHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          BotIntent other = (BotIntent) arg1;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent other = (com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent) arg1;
           intentId_ = visitor.visitString(!intentId_.isEmpty(), intentId_,
               !other.intentId_.isEmpty(), other.intentId_);
           intentName_ = visitor.visitString(!intentName_.isEmpty(), intentName_,
               !other.intentName_.isEmpty(), other.intentName_);
           trainingPhrases_= visitor.visitList(trainingPhrases_, other.trainingPhrases_);
           botResponse_ = visitor.visitMessage(botResponse_, other.botResponse_);
-          if (visitor == MergeFromVisitor
+          language_ = visitor.visitString(!language_.isEmpty(), language_,
+              !other.language_.isEmpty(), other.language_);
+          intentState_ = visitor.visitInt(intentState_ != 0, intentState_,    other.intentState_ != 0, other.intentState_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -749,20 +1861,32 @@ public final class BotHousekeepingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(trainingPhrases_);
                   }
                   trainingPhrases_.add(
-                      input.readMessage(TrainingPhrase.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.parser(), extensionRegistry));
                   break;
                 }
                 case 34: {
-                  BotResponse.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.Builder subBuilder = null;
                   if (botResponse_ != null) {
                     subBuilder = botResponse_.toBuilder();
                   }
-                  botResponse_ = input.readMessage(BotResponse.parser(), extensionRegistry);
+                  botResponse_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(botResponse_);
                     botResponse_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  language_ = s;
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  intentState_ = rawValue;
                   break;
                 }
               }
@@ -780,7 +1904,7 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (BotIntent.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -794,13 +1918,13 @@ public final class BotHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotIntent)
-    private static final BotIntent DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotIntent();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static BotIntent getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -818,7 +1942,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string phraseId = 1;</code>
      */
-    String getPhraseId();
+    java.lang.String getPhraseId();
     /**
      * <code>optional string phraseId = 1;</code>
      */
@@ -828,7 +1952,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string text = 2;</code>
      */
-    String getText();
+    java.lang.String getText();
     /**
      * <code>optional string text = 2;</code>
      */
@@ -837,57 +1961,57 @@ public final class BotHousekeepingProto {
 
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
     int getEntityParamCount();
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
     boolean containsEntityParam(
-            String key);
+        java.lang.String key);
     /**
      * Use {@link #getEntityParamMap()} instead.
      */
-    @Deprecated
-    java.util.Map<String, BotEntity>
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam>
     getEntityParam();
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
-    java.util.Map<String, BotEntity>
+    java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam>
     getEntityParamMap();
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
 
-    BotEntity getEntityParamOrDefault(
-            String key,
-            BotEntity defaultValue);
+    com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getEntityParamOrDefault(
+        java.lang.String key,
+        com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam defaultValue);
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
 
-    BotEntity getEntityParamOrThrow(
-            String key);
+    com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getEntityParamOrThrow(
+        java.lang.String key);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TrainingPhrase}
@@ -903,11 +2027,11 @@ public final class BotHousekeepingProto {
     }
     private int bitField0_;
     public static final int PHRASEID_FIELD_NUMBER = 1;
-    private String phraseId_;
+    private java.lang.String phraseId_;
     /**
      * <code>optional string phraseId = 1;</code>
      */
-    public String getPhraseId() {
+    public java.lang.String getPhraseId() {
       return phraseId_;
     }
     /**
@@ -921,7 +2045,7 @@ public final class BotHousekeepingProto {
      * <code>optional string phraseId = 1;</code>
      */
     private void setPhraseId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -949,11 +2073,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int TEXT_FIELD_NUMBER = 2;
-    private String text_;
+    private java.lang.String text_;
     /**
      * <code>optional string text = 2;</code>
      */
-    public String getText() {
+    public java.lang.String getText() {
       return text_;
     }
     /**
@@ -967,7 +2091,7 @@ public final class BotHousekeepingProto {
      * <code>optional string text = 2;</code>
      */
     private void setText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -997,22 +2121,22 @@ public final class BotHousekeepingProto {
     public static final int ENTITYPARAM_FIELD_NUMBER = 3;
     private static final class EntityParamDefaultEntryHolder {
       static final com.google.protobuf.MapEntryLite<
-          String, BotEntity> defaultEntry =
+          java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> defaultEntry =
               com.google.protobuf.MapEntryLite
-              .<String, BotEntity>newDefaultInstance(
+              .<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam>newDefaultInstance(
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  BotEntity.getDefaultInstance());
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.getDefaultInstance());
     }
     private com.google.protobuf.MapFieldLite<
-        String, BotEntity> entityParam_ =
+        java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> entityParam_ =
             com.google.protobuf.MapFieldLite.emptyMapField();
-    private com.google.protobuf.MapFieldLite<String, BotEntity>
+    private com.google.protobuf.MapFieldLite<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam>
     internalGetEntityParam() {
       return entityParam_;
     }
-    private com.google.protobuf.MapFieldLite<String, BotEntity>
+    private com.google.protobuf.MapFieldLite<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam>
     internalGetMutableEntityParam() {
       if (!entityParam_.isMutable()) {
         entityParam_ = entityParam_.mutableCopy();
@@ -1025,78 +2149,78 @@ public final class BotHousekeepingProto {
     }
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
 
     public boolean containsEntityParam(
-        String key) {
-      if (key == null) { throw new NullPointerException(); }
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
       return internalGetEntityParam().containsKey(key);
     }
     /**
      * Use {@link #getEntityParamMap()} instead.
      */
-    @Deprecated
-    public java.util.Map<String, BotEntity> getEntityParam() {
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> getEntityParam() {
       return getEntityParamMap();
     }
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
 
-    public java.util.Map<String, BotEntity> getEntityParamMap() {
+    public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> getEntityParamMap() {
       return java.util.Collections.unmodifiableMap(
           internalGetEntityParam());
     }
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
 
-    public BotEntity getEntityParamOrDefault(
-        String key,
-        BotEntity defaultValue) {
-      if (key == null) { throw new NullPointerException(); }
-      java.util.Map<String, BotEntity> map =
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getEntityParamOrDefault(
+        java.lang.String key,
+        com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> map =
           internalGetEntityParam();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
 
-    public BotEntity getEntityParamOrThrow(
-        String key) {
-      if (key == null) { throw new NullPointerException(); }
-      java.util.Map<String, BotEntity> map =
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getEntityParamOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> map =
           internalGetEntityParam();
       if (!map.containsKey(key)) {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
     /**
      * <pre>
-     * key = paramName , value = BotEntity
+     * key = paramName , value = IntentParam
      * </pre>
      *
-     * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
      */
-    private java.util.Map<String, BotEntity>
+    private java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam>
     getMutableEntityParamMap() {
       return internalGetMutableEntityParam();
     }
@@ -1109,7 +2233,7 @@ public final class BotHousekeepingProto {
       if (!text_.isEmpty()) {
         output.writeString(2, getText());
       }
-      for (java.util.Map.Entry<String, BotEntity> entry
+      for (java.util.Map.Entry<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> entry
            : internalGetEntityParam().entrySet()) {
         EntityParamDefaultEntryHolder.defaultEntry.serializeTo(
             output, 3, entry.getKey(), entry.getValue());
@@ -1129,7 +2253,7 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getText());
       }
-      for (java.util.Map.Entry<String, BotEntity> entry
+      for (java.util.Map.Entry<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> entry
            : internalGetEntityParam().entrySet()) {
         size += EntityParamDefaultEntryHolder.defaultEntry.computeMessageSize(
           3, entry.getKey(), entry.getValue());
@@ -1138,60 +2262,60 @@ public final class BotHousekeepingProto {
       return size;
     }
 
-    public static TrainingPhrase parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TrainingPhrase parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TrainingPhrase parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TrainingPhrase parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TrainingPhrase parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TrainingPhrase parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TrainingPhrase parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TrainingPhrase parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TrainingPhrase parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TrainingPhrase parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1202,7 +2326,7 @@ public final class BotHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TrainingPhrase prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1211,9 +2335,9 @@ public final class BotHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TrainingPhrase, Builder> implements
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TrainingPhrase)
-        TrainingPhraseOrBuilder {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1223,7 +2347,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string phraseId = 1;</code>
        */
-      public String getPhraseId() {
+      public java.lang.String getPhraseId() {
         return instance.getPhraseId();
       }
       /**
@@ -1237,7 +2361,7 @@ public final class BotHousekeepingProto {
        * <code>optional string phraseId = 1;</code>
        */
       public Builder setPhraseId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPhraseId(value);
         return this;
@@ -1263,7 +2387,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string text = 2;</code>
        */
-      public String getText() {
+      public java.lang.String getText() {
         return instance.getText();
       }
       /**
@@ -1277,7 +2401,7 @@ public final class BotHousekeepingProto {
        * <code>optional string text = 2;</code>
        */
       public Builder setText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -1306,15 +2430,15 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = BotEntity
+       * key = paramName , value = IntentParam
        * </pre>
        *
-       * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
        */
 
       public boolean containsEntityParam(
-          String key) {
-        if (key == null) { throw new NullPointerException(); }
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
         return instance.getEntityParamMap().containsKey(key);
       }
 
@@ -1325,15 +2449,15 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = BotEntity
+       * key = paramName , value = IntentParam
        * </pre>
        *
-       * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
        */
 
       public Builder removeEntityParam(
-          String key) {
-        if (key == null) { throw new NullPointerException(); }
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
         copyOnWrite();
         instance.getMutableEntityParamMap().remove(key);
         return this;
@@ -1341,80 +2465,80 @@ public final class BotHousekeepingProto {
       /**
        * Use {@link #getEntityParamMap()} instead.
        */
-      @Deprecated
-      public java.util.Map<String, BotEntity> getEntityParam() {
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> getEntityParam() {
         return getEntityParamMap();
       }
       /**
        * <pre>
-       * key = paramName , value = BotEntity
+       * key = paramName , value = IntentParam
        * </pre>
        *
-       * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
        */
-      public java.util.Map<String, BotEntity> getEntityParamMap() {
+      public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> getEntityParamMap() {
         return java.util.Collections.unmodifiableMap(
             instance.getEntityParamMap());
       }
       /**
        * <pre>
-       * key = paramName , value = BotEntity
+       * key = paramName , value = IntentParam
        * </pre>
        *
-       * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
        */
 
-      public BotEntity getEntityParamOrDefault(
-          String key,
-          BotEntity defaultValue) {
-        if (key == null) { throw new NullPointerException(); }
-        java.util.Map<String, BotEntity> map =
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getEntityParamOrDefault(
+          java.lang.String key,
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> map =
             instance.getEntityParamMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <pre>
-       * key = paramName , value = BotEntity
+       * key = paramName , value = IntentParam
        * </pre>
        *
-       * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
        */
 
-      public BotEntity getEntityParamOrThrow(
-          String key) {
-        if (key == null) { throw new NullPointerException(); }
-        java.util.Map<String, BotEntity> map =
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getEntityParamOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> map =
             instance.getEntityParamMap();
         if (!map.containsKey(key)) {
-          throw new IllegalArgumentException();
+          throw new java.lang.IllegalArgumentException();
         }
         return map.get(key);
       }
       /**
        * <pre>
-       * key = paramName , value = BotEntity
+       * key = paramName , value = IntentParam
        * </pre>
        *
-       * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
        */
       public Builder putEntityParam(
-          String key,
-          BotEntity value) {
-        if (key == null) { throw new NullPointerException(); }
-        if (value == null) { throw new NullPointerException(); }
+          java.lang.String key,
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
         copyOnWrite();
         instance.getMutableEntityParamMap().put(key, value);
         return this;
       }
       /**
        * <pre>
-       * key = paramName , value = BotEntity
+       * key = paramName , value = IntentParam
        * </pre>
        *
-       * <code>map&lt;string, .treeleaf.anydone.entities.BotEntity&gt; entityParam = 3;</code>
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; entityParam = 3;</code>
        */
       public Builder putAllEntityParam(
-          java.util.Map<String, BotEntity> values) {
+          java.util.Map<java.lang.String, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> values) {
         copyOnWrite();
         instance.getMutableEntityParamMap().putAll(values);
         return this;
@@ -1423,11 +2547,11 @@ public final class BotHousekeepingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TrainingPhrase)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TrainingPhrase();
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1441,14 +2565,14 @@ public final class BotHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TrainingPhrase other = (TrainingPhrase) arg1;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase other = (com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase) arg1;
           phraseId_ = visitor.visitString(!phraseId_.isEmpty(), phraseId_,
               !other.phraseId_.isEmpty(), other.phraseId_);
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           entityParam_ = visitor.visitMap(
               entityParam_, other.internalGetEntityParam());
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1506,7 +2630,7 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TrainingPhrase.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1520,13 +2644,13 @@ public final class BotHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TrainingPhrase)
-    private static final TrainingPhrase DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TrainingPhrase();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TrainingPhrase getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1544,12 +2668,12 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
-    java.util.List<IntentResponse>
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse> 
         getIntentResponseList();
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
-    IntentResponse getIntentResponse(int index);
+    com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse getIntentResponse(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
@@ -1558,16 +2682,26 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
-    java.util.List<IntentParam>
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> 
         getIntentParamList();
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
-    IntentParam getIntentParam(int index);
+    com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getIntentParam(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
     int getIntentParamCount();
+
+    /**
+     * <code>optional string botResponseId = 3;</code>
+     */
+    java.lang.String getBotResponseId();
+    /**
+     * <code>optional string botResponseId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotResponseIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotResponse}
@@ -1580,19 +2714,21 @@ public final class BotHousekeepingProto {
     private BotResponse() {
       intentResponse_ = emptyProtobufList();
       intentParam_ = emptyProtobufList();
+      botResponseId_ = "";
     }
+    private int bitField0_;
     public static final int INTENTRESPONSE_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<IntentResponse> intentResponse_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse> intentResponse_;
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
-    public java.util.List<IntentResponse> getIntentResponseList() {
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse> getIntentResponseList() {
       return intentResponse_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
-    public java.util.List<? extends IntentResponseOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponseOrBuilder> 
         getIntentResponseOrBuilderList() {
       return intentResponse_;
     }
@@ -1605,13 +2741,13 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
-    public IntentResponse getIntentResponse(int index) {
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse getIntentResponse(int index) {
       return intentResponse_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
-    public IntentResponseOrBuilder getIntentResponseOrBuilder(
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponseOrBuilder getIntentResponseOrBuilder(
         int index) {
       return intentResponse_.get(index);
     }
@@ -1626,7 +2762,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
     private void setIntentResponse(
-        int index, IntentResponse value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1637,14 +2773,14 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
     private void setIntentResponse(
-        int index, IntentResponse.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.Builder builderForValue) {
       ensureIntentResponseIsMutable();
       intentResponse_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
-    private void addIntentResponse(IntentResponse value) {
+    private void addIntentResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1655,7 +2791,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
     private void addIntentResponse(
-        int index, IntentResponse value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1666,7 +2802,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
     private void addIntentResponse(
-        IntentResponse.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.Builder builderForValue) {
       ensureIntentResponseIsMutable();
       intentResponse_.add(builderForValue.build());
     }
@@ -1674,7 +2810,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
     private void addIntentResponse(
-        int index, IntentResponse.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.Builder builderForValue) {
       ensureIntentResponseIsMutable();
       intentResponse_.add(index, builderForValue.build());
     }
@@ -1682,7 +2818,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
      */
     private void addAllIntentResponse(
-        Iterable<? extends IntentResponse> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse> values) {
       ensureIntentResponseIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, intentResponse_);
@@ -1702,17 +2838,17 @@ public final class BotHousekeepingProto {
     }
 
     public static final int INTENTPARAM_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<IntentParam> intentParam_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> intentParam_;
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
-    public java.util.List<IntentParam> getIntentParamList() {
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> getIntentParamList() {
       return intentParam_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
-    public java.util.List<? extends IntentParamOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParamOrBuilder> 
         getIntentParamOrBuilderList() {
       return intentParam_;
     }
@@ -1725,13 +2861,13 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
-    public IntentParam getIntentParam(int index) {
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getIntentParam(int index) {
       return intentParam_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
-    public IntentParamOrBuilder getIntentParamOrBuilder(
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParamOrBuilder getIntentParamOrBuilder(
         int index) {
       return intentParam_.get(index);
     }
@@ -1746,7 +2882,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
     private void setIntentParam(
-        int index, IntentParam value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1757,14 +2893,14 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
     private void setIntentParam(
-        int index, IntentParam.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.Builder builderForValue) {
       ensureIntentParamIsMutable();
       intentParam_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
-    private void addIntentParam(IntentParam value) {
+    private void addIntentParam(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1775,7 +2911,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
     private void addIntentParam(
-        int index, IntentParam value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1786,7 +2922,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
     private void addIntentParam(
-        IntentParam.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.Builder builderForValue) {
       ensureIntentParamIsMutable();
       intentParam_.add(builderForValue.build());
     }
@@ -1794,7 +2930,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
     private void addIntentParam(
-        int index, IntentParam.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.Builder builderForValue) {
       ensureIntentParamIsMutable();
       intentParam_.add(index, builderForValue.build());
     }
@@ -1802,7 +2938,7 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
      */
     private void addAllIntentParam(
-        Iterable<? extends IntentParam> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> values) {
       ensureIntentParamIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, intentParam_);
@@ -1821,6 +2957,52 @@ public final class BotHousekeepingProto {
       intentParam_.remove(index);
     }
 
+    public static final int BOTRESPONSEID_FIELD_NUMBER = 3;
+    private java.lang.String botResponseId_;
+    /**
+     * <code>optional string botResponseId = 3;</code>
+     */
+    public java.lang.String getBotResponseId() {
+      return botResponseId_;
+    }
+    /**
+     * <code>optional string botResponseId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotResponseIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botResponseId_);
+    }
+    /**
+     * <code>optional string botResponseId = 3;</code>
+     */
+    private void setBotResponseId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botResponseId_ = value;
+    }
+    /**
+     * <code>optional string botResponseId = 3;</code>
+     */
+    private void clearBotResponseId() {
+      
+      botResponseId_ = getDefaultInstance().getBotResponseId();
+    }
+    /**
+     * <code>optional string botResponseId = 3;</code>
+     */
+    private void setBotResponseIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botResponseId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < intentResponse_.size(); i++) {
@@ -1828,6 +3010,9 @@ public final class BotHousekeepingProto {
       }
       for (int i = 0; i < intentParam_.size(); i++) {
         output.writeMessage(2, intentParam_.get(i));
+      }
+      if (!botResponseId_.isEmpty()) {
+        output.writeString(3, getBotResponseId());
       }
     }
 
@@ -1844,64 +3029,68 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, intentParam_.get(i));
       }
+      if (!botResponseId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getBotResponseId());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static BotResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static BotResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1912,7 +3101,7 @@ public final class BotHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BotResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1921,9 +3110,9 @@ public final class BotHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          BotResponse, Builder> implements
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotResponse)
-        BotResponseOrBuilder {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1933,7 +3122,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
-      public java.util.List<IntentResponse> getIntentResponseList() {
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse> getIntentResponseList() {
         return java.util.Collections.unmodifiableList(
             instance.getIntentResponseList());
       }
@@ -1945,14 +3134,14 @@ public final class BotHousekeepingProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
-      public IntentResponse getIntentResponse(int index) {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse getIntentResponse(int index) {
         return instance.getIntentResponse(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
       public Builder setIntentResponse(
-          int index, IntentResponse value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse value) {
         copyOnWrite();
         instance.setIntentResponse(index, value);
         return this;
@@ -1961,7 +3150,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
       public Builder setIntentResponse(
-          int index, IntentResponse.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.Builder builderForValue) {
         copyOnWrite();
         instance.setIntentResponse(index, builderForValue);
         return this;
@@ -1969,7 +3158,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
-      public Builder addIntentResponse(IntentResponse value) {
+      public Builder addIntentResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse value) {
         copyOnWrite();
         instance.addIntentResponse(value);
         return this;
@@ -1978,7 +3167,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
       public Builder addIntentResponse(
-          int index, IntentResponse value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse value) {
         copyOnWrite();
         instance.addIntentResponse(index, value);
         return this;
@@ -1987,7 +3176,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
       public Builder addIntentResponse(
-          IntentResponse.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.Builder builderForValue) {
         copyOnWrite();
         instance.addIntentResponse(builderForValue);
         return this;
@@ -1996,7 +3185,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
       public Builder addIntentResponse(
-          int index, IntentResponse.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.Builder builderForValue) {
         copyOnWrite();
         instance.addIntentResponse(index, builderForValue);
         return this;
@@ -2005,7 +3194,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentResponse intentResponse = 1;</code>
        */
       public Builder addAllIntentResponse(
-          Iterable<? extends IntentResponse> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse> values) {
         copyOnWrite();
         instance.addAllIntentResponse(values);
         return this;
@@ -2030,7 +3219,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
-      public java.util.List<IntentParam> getIntentParamList() {
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> getIntentParamList() {
         return java.util.Collections.unmodifiableList(
             instance.getIntentParamList());
       }
@@ -2042,14 +3231,14 @@ public final class BotHousekeepingProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
-      public IntentParam getIntentParam(int index) {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getIntentParam(int index) {
         return instance.getIntentParam(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
       public Builder setIntentParam(
-          int index, IntentParam value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam value) {
         copyOnWrite();
         instance.setIntentParam(index, value);
         return this;
@@ -2058,7 +3247,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
       public Builder setIntentParam(
-          int index, IntentParam.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.Builder builderForValue) {
         copyOnWrite();
         instance.setIntentParam(index, builderForValue);
         return this;
@@ -2066,7 +3255,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
-      public Builder addIntentParam(IntentParam value) {
+      public Builder addIntentParam(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam value) {
         copyOnWrite();
         instance.addIntentParam(value);
         return this;
@@ -2075,7 +3264,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
       public Builder addIntentParam(
-          int index, IntentParam value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam value) {
         copyOnWrite();
         instance.addIntentParam(index, value);
         return this;
@@ -2084,7 +3273,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
       public Builder addIntentParam(
-          IntentParam.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.Builder builderForValue) {
         copyOnWrite();
         instance.addIntentParam(builderForValue);
         return this;
@@ -2093,7 +3282,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
       public Builder addIntentParam(
-          int index, IntentParam.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.Builder builderForValue) {
         copyOnWrite();
         instance.addIntentParam(index, builderForValue);
         return this;
@@ -2102,7 +3291,7 @@ public final class BotHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.IntentParam intentParam = 2;</code>
        */
       public Builder addAllIntentParam(
-          Iterable<? extends IntentParam> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam> values) {
         copyOnWrite();
         instance.addAllIntentParam(values);
         return this;
@@ -2124,14 +3313,54 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional string botResponseId = 3;</code>
+       */
+      public java.lang.String getBotResponseId() {
+        return instance.getBotResponseId();
+      }
+      /**
+       * <code>optional string botResponseId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotResponseIdBytes() {
+        return instance.getBotResponseIdBytes();
+      }
+      /**
+       * <code>optional string botResponseId = 3;</code>
+       */
+      public Builder setBotResponseId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotResponseId(value);
+        return this;
+      }
+      /**
+       * <code>optional string botResponseId = 3;</code>
+       */
+      public Builder clearBotResponseId() {
+        copyOnWrite();
+        instance.clearBotResponseId();
+        return this;
+      }
+      /**
+       * <code>optional string botResponseId = 3;</code>
+       */
+      public Builder setBotResponseIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotResponseIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new BotResponse();
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2146,11 +3375,14 @@ public final class BotHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          BotResponse other = (BotResponse) arg1;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse other = (com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse) arg1;
           intentResponse_= visitor.visitList(intentResponse_, other.intentResponse_);
           intentParam_= visitor.visitList(intentParam_, other.intentParam_);
-          if (visitor == MergeFromVisitor
+          botResponseId_ = visitor.visitString(!botResponseId_.isEmpty(), botResponseId_,
+              !other.botResponseId_.isEmpty(), other.botResponseId_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -2179,7 +3411,7 @@ public final class BotHousekeepingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(intentResponse_);
                   }
                   intentResponse_.add(
-                      input.readMessage(IntentResponse.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.parser(), extensionRegistry));
                   break;
                 }
                 case 18: {
@@ -2188,7 +3420,13 @@ public final class BotHousekeepingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(intentParam_);
                   }
                   intentParam_.add(
-                      input.readMessage(IntentParam.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.parser(), extensionRegistry));
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  botResponseId_ = s;
                   break;
                 }
               }
@@ -2206,7 +3444,7 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (BotResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2220,13 +3458,13 @@ public final class BotHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotResponse)
-    private static final BotResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static BotResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2244,7 +3482,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string intentResponseId = 1;</code>
      */
-    String getIntentResponseId();
+    java.lang.String getIntentResponseId();
     /**
      * <code>optional string intentResponseId = 1;</code>
      */
@@ -2252,14 +3490,14 @@ public final class BotHousekeepingProto {
         getIntentResponseIdBytes();
 
     /**
-     * <code>optional string botIntentResponse = 2;</code>
+     * <code>optional string response = 2;</code>
      */
-    String getBotIntentResponse();
+    java.lang.String getResponse();
     /**
-     * <code>optional string botIntentResponse = 2;</code>
+     * <code>optional string response = 2;</code>
      */
     com.google.protobuf.ByteString
-        getBotIntentResponseBytes();
+        getResponseBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.IntentResponse}
@@ -2271,14 +3509,14 @@ public final class BotHousekeepingProto {
       IntentResponseOrBuilder {
     private IntentResponse() {
       intentResponseId_ = "";
-      botIntentResponse_ = "";
+      response_ = "";
     }
     public static final int INTENTRESPONSEID_FIELD_NUMBER = 1;
-    private String intentResponseId_;
+    private java.lang.String intentResponseId_;
     /**
      * <code>optional string intentResponseId = 1;</code>
      */
-    public String getIntentResponseId() {
+    public java.lang.String getIntentResponseId() {
       return intentResponseId_;
     }
     /**
@@ -2292,7 +3530,7 @@ public final class BotHousekeepingProto {
      * <code>optional string intentResponseId = 1;</code>
      */
     private void setIntentResponseId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2319,50 +3557,50 @@ public final class BotHousekeepingProto {
       intentResponseId_ = value.toStringUtf8();
     }
 
-    public static final int BOTINTENTRESPONSE_FIELD_NUMBER = 2;
-    private String botIntentResponse_;
+    public static final int RESPONSE_FIELD_NUMBER = 2;
+    private java.lang.String response_;
     /**
-     * <code>optional string botIntentResponse = 2;</code>
+     * <code>optional string response = 2;</code>
      */
-    public String getBotIntentResponse() {
-      return botIntentResponse_;
+    public java.lang.String getResponse() {
+      return response_;
     }
     /**
-     * <code>optional string botIntentResponse = 2;</code>
+     * <code>optional string response = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getBotIntentResponseBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(botIntentResponse_);
+        getResponseBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(response_);
     }
     /**
-     * <code>optional string botIntentResponse = 2;</code>
+     * <code>optional string response = 2;</code>
      */
-    private void setBotIntentResponse(
-        String value) {
+    private void setResponse(
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      botIntentResponse_ = value;
+      response_ = value;
     }
     /**
-     * <code>optional string botIntentResponse = 2;</code>
+     * <code>optional string response = 2;</code>
      */
-    private void clearBotIntentResponse() {
+    private void clearResponse() {
       
-      botIntentResponse_ = getDefaultInstance().getBotIntentResponse();
+      response_ = getDefaultInstance().getResponse();
     }
     /**
-     * <code>optional string botIntentResponse = 2;</code>
+     * <code>optional string response = 2;</code>
      */
-    private void setBotIntentResponseBytes(
+    private void setResponseBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      botIntentResponse_ = value.toStringUtf8();
+      response_ = value.toStringUtf8();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -2370,8 +3608,8 @@ public final class BotHousekeepingProto {
       if (!intentResponseId_.isEmpty()) {
         output.writeString(1, getIntentResponseId());
       }
-      if (!botIntentResponse_.isEmpty()) {
-        output.writeString(2, getBotIntentResponse());
+      if (!response_.isEmpty()) {
+        output.writeString(2, getResponse());
       }
     }
 
@@ -2384,68 +3622,68 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getIntentResponseId());
       }
-      if (!botIntentResponse_.isEmpty()) {
+      if (!response_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getBotIntentResponse());
+          .computeStringSize(2, getResponse());
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static IntentResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntentResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntentResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntentResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntentResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntentResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntentResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static IntentResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntentResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntentResponse parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2456,7 +3694,7 @@ public final class BotHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(IntentResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2465,9 +3703,9 @@ public final class BotHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          IntentResponse, Builder> implements
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntentResponse)
-        IntentResponseOrBuilder {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2477,7 +3715,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string intentResponseId = 1;</code>
        */
-      public String getIntentResponseId() {
+      public java.lang.String getIntentResponseId() {
         return instance.getIntentResponseId();
       }
       /**
@@ -2491,7 +3729,7 @@ public final class BotHousekeepingProto {
        * <code>optional string intentResponseId = 1;</code>
        */
       public Builder setIntentResponseId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntentResponseId(value);
         return this;
@@ -2515,53 +3753,53 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>optional string botIntentResponse = 2;</code>
+       * <code>optional string response = 2;</code>
        */
-      public String getBotIntentResponse() {
-        return instance.getBotIntentResponse();
+      public java.lang.String getResponse() {
+        return instance.getResponse();
       }
       /**
-       * <code>optional string botIntentResponse = 2;</code>
+       * <code>optional string response = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getBotIntentResponseBytes() {
-        return instance.getBotIntentResponseBytes();
+          getResponseBytes() {
+        return instance.getResponseBytes();
       }
       /**
-       * <code>optional string botIntentResponse = 2;</code>
+       * <code>optional string response = 2;</code>
        */
-      public Builder setBotIntentResponse(
-          String value) {
+      public Builder setResponse(
+          java.lang.String value) {
         copyOnWrite();
-        instance.setBotIntentResponse(value);
+        instance.setResponse(value);
         return this;
       }
       /**
-       * <code>optional string botIntentResponse = 2;</code>
+       * <code>optional string response = 2;</code>
        */
-      public Builder clearBotIntentResponse() {
+      public Builder clearResponse() {
         copyOnWrite();
-        instance.clearBotIntentResponse();
+        instance.clearResponse();
         return this;
       }
       /**
-       * <code>optional string botIntentResponse = 2;</code>
+       * <code>optional string response = 2;</code>
        */
-      public Builder setBotIntentResponseBytes(
+      public Builder setResponseBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setBotIntentResponseBytes(value);
+        instance.setResponseBytes(value);
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntentResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new IntentResponse();
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2574,12 +3812,12 @@ public final class BotHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          IntentResponse other = (IntentResponse) arg1;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse other = (com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse) arg1;
           intentResponseId_ = visitor.visitString(!intentResponseId_.isEmpty(), intentResponseId_,
               !other.intentResponseId_.isEmpty(), other.intentResponseId_);
-          botIntentResponse_ = visitor.visitString(!botIntentResponse_.isEmpty(), botIntentResponse_,
-              !other.botIntentResponse_.isEmpty(), other.botIntentResponse_);
-          if (visitor == MergeFromVisitor
+          response_ = visitor.visitString(!response_.isEmpty(), response_,
+              !other.response_.isEmpty(), other.response_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2612,7 +3850,7 @@ public final class BotHousekeepingProto {
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  botIntentResponse_ = s;
+                  response_ = s;
                   break;
                 }
               }
@@ -2630,7 +3868,7 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (IntentResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2644,13 +3882,13 @@ public final class BotHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntentResponse)
-    private static final IntentResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntentResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static IntentResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2668,7 +3906,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string entityId = 1;</code>
      */
-    String getEntityId();
+    java.lang.String getEntityId();
     /**
      * <code>optional string entityId = 1;</code>
      */
@@ -2678,7 +3916,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string entityName = 2;</code>
      */
-    String getEntityName();
+    java.lang.String getEntityName();
     /**
      * <code>optional string entityName = 2;</code>
      */
@@ -2688,7 +3926,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string possibleValue = 3;</code>
      */
-    String getPossibleValue();
+    java.lang.String getPossibleValue();
     /**
      * <code>optional string possibleValue = 3;</code>
      */
@@ -2696,13 +3934,13 @@ public final class BotHousekeepingProto {
         getPossibleValueBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
      */
-    int getEntityTypeValue();
+    int getEntityDataTypeValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
      */
-    ServiceProto.ServiceAttributeType getEntityType();
+    com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType getEntityDataType();
 
     /**
      * <code>repeated string synonyms = 5;</code>
@@ -2716,12 +3954,40 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated string synonyms = 5;</code>
      */
-    String getSynonyms(int index);
+    java.lang.String getSynonyms(int index);
     /**
      * <code>repeated string synonyms = 5;</code>
      */
     com.google.protobuf.ByteString
         getSynonymsBytes(int index);
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+     */
+    int getResolvePolicyValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy getResolvePolicy();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+     */
+    int getEntityTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType getEntityType();
+
+    /**
+     * <code>optional string lang = 8;</code>
+     */
+    java.lang.String getLang();
+    /**
+     * <code>optional string lang = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getLangBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotEntity}
@@ -2736,14 +4002,15 @@ public final class BotHousekeepingProto {
       entityName_ = "";
       possibleValue_ = "";
       synonyms_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      lang_ = "";
     }
     private int bitField0_;
     public static final int ENTITYID_FIELD_NUMBER = 1;
-    private String entityId_;
+    private java.lang.String entityId_;
     /**
      * <code>optional string entityId = 1;</code>
      */
-    public String getEntityId() {
+    public java.lang.String getEntityId() {
       return entityId_;
     }
     /**
@@ -2757,7 +4024,7 @@ public final class BotHousekeepingProto {
      * <code>optional string entityId = 1;</code>
      */
     private void setEntityId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2785,11 +4052,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int ENTITYNAME_FIELD_NUMBER = 2;
-    private String entityName_;
+    private java.lang.String entityName_;
     /**
      * <code>optional string entityName = 2;</code>
      */
-    public String getEntityName() {
+    public java.lang.String getEntityName() {
       return entityName_;
     }
     /**
@@ -2803,7 +4070,7 @@ public final class BotHousekeepingProto {
      * <code>optional string entityName = 2;</code>
      */
     private void setEntityName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2831,11 +4098,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int POSSIBLEVALUE_FIELD_NUMBER = 3;
-    private String possibleValue_;
+    private java.lang.String possibleValue_;
     /**
      * <code>optional string possibleValue = 3;</code>
      */
-    public String getPossibleValue() {
+    public java.lang.String getPossibleValue() {
       return possibleValue_;
     }
     /**
@@ -2849,7 +4116,7 @@ public final class BotHousekeepingProto {
      * <code>optional string possibleValue = 3;</code>
      */
     private void setPossibleValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2876,43 +4143,43 @@ public final class BotHousekeepingProto {
       possibleValue_ = value.toStringUtf8();
     }
 
-    public static final int ENTITYTYPE_FIELD_NUMBER = 4;
-    private int entityType_;
+    public static final int ENTITYDATATYPE_FIELD_NUMBER = 4;
+    private int entityDataType_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
      */
-    public int getEntityTypeValue() {
-      return entityType_;
+    public int getEntityDataTypeValue() {
+      return entityDataType_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
      */
-    public ServiceProto.ServiceAttributeType getEntityType() {
-      ServiceProto.ServiceAttributeType result = ServiceProto.ServiceAttributeType.forNumber(entityType_);
-      return result == null ? ServiceProto.ServiceAttributeType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType getEntityDataType() {
+      com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType result = com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.forNumber(entityDataType_);
+      return result == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
      */
-    private void setEntityTypeValue(int value) {
-        entityType_ = value;
+    private void setEntityDataTypeValue(int value) {
+        entityDataType_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
      */
-    private void setEntityType(ServiceProto.ServiceAttributeType value) {
+    private void setEntityDataType(com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType value) {
       if (value == null) {
         throw new NullPointerException();
       }
       
-      entityType_ = value.getNumber();
+      entityDataType_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
      */
-    private void clearEntityType() {
+    private void clearEntityDataType() {
       
-      entityType_ = 0;
+      entityDataType_ = 0;
     }
 
     public static final int SYNONYMS_FIELD_NUMBER = 5;
@@ -2932,7 +4199,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated string synonyms = 5;</code>
      */
-    public String getSynonyms(int index) {
+    public java.lang.String getSynonyms(int index) {
       return synonyms_.get(index);
     }
     /**
@@ -2953,7 +4220,7 @@ public final class BotHousekeepingProto {
      * <code>repeated string synonyms = 5;</code>
      */
     private void setSynonyms(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2964,7 +4231,7 @@ public final class BotHousekeepingProto {
      * <code>repeated string synonyms = 5;</code>
      */
     private void addSynonyms(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2975,7 +4242,7 @@ public final class BotHousekeepingProto {
      * <code>repeated string synonyms = 5;</code>
      */
     private void addAllSynonyms(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureSynonymsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, synonyms_);
@@ -2999,6 +4266,130 @@ public final class BotHousekeepingProto {
       synonyms_.add(value.toStringUtf8());
     }
 
+    public static final int RESOLVEPOLICY_FIELD_NUMBER = 6;
+    private int resolvePolicy_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+     */
+    public int getResolvePolicyValue() {
+      return resolvePolicy_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy getResolvePolicy() {
+      com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy result = com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy.forNumber(resolvePolicy_);
+      return result == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+     */
+    private void setResolvePolicyValue(int value) {
+        resolvePolicy_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+     */
+    private void setResolvePolicy(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      resolvePolicy_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+     */
+    private void clearResolvePolicy() {
+      
+      resolvePolicy_ = 0;
+    }
+
+    public static final int ENTITYTYPE_FIELD_NUMBER = 7;
+    private int entityType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+     */
+    public int getEntityTypeValue() {
+      return entityType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType getEntityType() {
+      com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType result = com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType.forNumber(entityType_);
+      return result == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+     */
+    private void setEntityTypeValue(int value) {
+        entityType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+     */
+    private void setEntityType(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      entityType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+     */
+    private void clearEntityType() {
+      
+      entityType_ = 0;
+    }
+
+    public static final int LANG_FIELD_NUMBER = 8;
+    private java.lang.String lang_;
+    /**
+     * <code>optional string lang = 8;</code>
+     */
+    public java.lang.String getLang() {
+      return lang_;
+    }
+    /**
+     * <code>optional string lang = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLangBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(lang_);
+    }
+    /**
+     * <code>optional string lang = 8;</code>
+     */
+    private void setLang(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      lang_ = value;
+    }
+    /**
+     * <code>optional string lang = 8;</code>
+     */
+    private void clearLang() {
+      
+      lang_ = getDefaultInstance().getLang();
+    }
+    /**
+     * <code>optional string lang = 8;</code>
+     */
+    private void setLangBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      lang_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!entityId_.isEmpty()) {
@@ -3010,11 +4401,20 @@ public final class BotHousekeepingProto {
       if (!possibleValue_.isEmpty()) {
         output.writeString(3, getPossibleValue());
       }
-      if (entityType_ != ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
-        output.writeEnum(4, entityType_);
+      if (entityDataType_ != com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
+        output.writeEnum(4, entityDataType_);
       }
       for (int i = 0; i < synonyms_.size(); i++) {
         output.writeString(5, synonyms_.get(i));
+      }
+      if (resolvePolicy_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy.UNKNOWN_RESOLVE_POLICY.getNumber()) {
+        output.writeEnum(6, resolvePolicy_);
+      }
+      if (entityType_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType.UNKNOWN_BOT_ENTITY_TYPE.getNumber()) {
+        output.writeEnum(7, entityType_);
+      }
+      if (!lang_.isEmpty()) {
+        output.writeString(8, getLang());
       }
     }
 
@@ -3035,9 +4435,9 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(3, getPossibleValue());
       }
-      if (entityType_ != ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
+      if (entityDataType_ != com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, entityType_);
+          .computeEnumSize(4, entityDataType_);
       }
       {
         int dataSize = 0;
@@ -3048,64 +4448,76 @@ public final class BotHousekeepingProto {
         size += dataSize;
         size += 1 * getSynonymsList().size();
       }
+      if (resolvePolicy_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy.UNKNOWN_RESOLVE_POLICY.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, resolvePolicy_);
+      }
+      if (entityType_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType.UNKNOWN_BOT_ENTITY_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(7, entityType_);
+      }
+      if (!lang_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getLang());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static BotEntity parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotEntity parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotEntity parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotEntity parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotEntity parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotEntity parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotEntity parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static BotEntity parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotEntity parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotEntity parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3116,7 +4528,7 @@ public final class BotHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BotEntity prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3125,9 +4537,9 @@ public final class BotHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          BotEntity, Builder> implements
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotEntity)
-        BotEntityOrBuilder {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3137,7 +4549,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string entityId = 1;</code>
        */
-      public String getEntityId() {
+      public java.lang.String getEntityId() {
         return instance.getEntityId();
       }
       /**
@@ -3151,7 +4563,7 @@ public final class BotHousekeepingProto {
        * <code>optional string entityId = 1;</code>
        */
       public Builder setEntityId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setEntityId(value);
         return this;
@@ -3177,7 +4589,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string entityName = 2;</code>
        */
-      public String getEntityName() {
+      public java.lang.String getEntityName() {
         return instance.getEntityName();
       }
       /**
@@ -3191,7 +4603,7 @@ public final class BotHousekeepingProto {
        * <code>optional string entityName = 2;</code>
        */
       public Builder setEntityName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setEntityName(value);
         return this;
@@ -3217,7 +4629,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string possibleValue = 3;</code>
        */
-      public String getPossibleValue() {
+      public java.lang.String getPossibleValue() {
         return instance.getPossibleValue();
       }
       /**
@@ -3231,7 +4643,7 @@ public final class BotHousekeepingProto {
        * <code>optional string possibleValue = 3;</code>
        */
       public Builder setPossibleValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPossibleValue(value);
         return this;
@@ -3255,39 +4667,39 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
        */
-      public int getEntityTypeValue() {
-        return instance.getEntityTypeValue();
+      public int getEntityDataTypeValue() {
+        return instance.getEntityDataTypeValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
        */
-      public Builder setEntityTypeValue(int value) {
+      public Builder setEntityDataTypeValue(int value) {
         copyOnWrite();
-        instance.setEntityTypeValue(value);
+        instance.setEntityDataTypeValue(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
        */
-      public ServiceProto.ServiceAttributeType getEntityType() {
-        return instance.getEntityType();
+      public com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType getEntityDataType() {
+        return instance.getEntityDataType();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
        */
-      public Builder setEntityType(ServiceProto.ServiceAttributeType value) {
+      public Builder setEntityDataType(com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType value) {
         copyOnWrite();
-        instance.setEntityType(value);
+        instance.setEntityDataType(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityType = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 4;</code>
        */
-      public Builder clearEntityType() {
+      public Builder clearEntityDataType() {
         copyOnWrite();
-        instance.clearEntityType();
+        instance.clearEntityDataType();
         return this;
       }
 
@@ -3308,7 +4720,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated string synonyms = 5;</code>
        */
-      public String getSynonyms(int index) {
+      public java.lang.String getSynonyms(int index) {
         return instance.getSynonyms(index);
       }
       /**
@@ -3322,7 +4734,7 @@ public final class BotHousekeepingProto {
        * <code>repeated string synonyms = 5;</code>
        */
       public Builder setSynonyms(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setSynonyms(index, value);
         return this;
@@ -3331,7 +4743,7 @@ public final class BotHousekeepingProto {
        * <code>repeated string synonyms = 5;</code>
        */
       public Builder addSynonyms(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addSynonyms(value);
         return this;
@@ -3340,7 +4752,7 @@ public final class BotHousekeepingProto {
        * <code>repeated string synonyms = 5;</code>
        */
       public Builder addAllSynonyms(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllSynonyms(values);
         return this;
@@ -3363,14 +4775,128 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+       */
+      public int getResolvePolicyValue() {
+        return instance.getResolvePolicyValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+       */
+      public Builder setResolvePolicyValue(int value) {
+        copyOnWrite();
+        instance.setResolvePolicyValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy getResolvePolicy() {
+        return instance.getResolvePolicy();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+       */
+      public Builder setResolvePolicy(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityResolvePolicy value) {
+        copyOnWrite();
+        instance.setResolvePolicy(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityResolvePolicy resolvePolicy = 6;</code>
+       */
+      public Builder clearResolvePolicy() {
+        copyOnWrite();
+        instance.clearResolvePolicy();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+       */
+      public int getEntityTypeValue() {
+        return instance.getEntityTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+       */
+      public Builder setEntityTypeValue(int value) {
+        copyOnWrite();
+        instance.setEntityTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType getEntityType() {
+        return instance.getEntityType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+       */
+      public Builder setEntityType(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityType value) {
+        copyOnWrite();
+        instance.setEntityType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntityType entityType = 7;</code>
+       */
+      public Builder clearEntityType() {
+        copyOnWrite();
+        instance.clearEntityType();
+        return this;
+      }
+
+      /**
+       * <code>optional string lang = 8;</code>
+       */
+      public java.lang.String getLang() {
+        return instance.getLang();
+      }
+      /**
+       * <code>optional string lang = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLangBytes() {
+        return instance.getLangBytes();
+      }
+      /**
+       * <code>optional string lang = 8;</code>
+       */
+      public Builder setLang(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLang(value);
+        return this;
+      }
+      /**
+       * <code>optional string lang = 8;</code>
+       */
+      public Builder clearLang() {
+        copyOnWrite();
+        instance.clearLang();
+        return this;
+      }
+      /**
+       * <code>optional string lang = 8;</code>
+       */
+      public Builder setLangBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLangBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotEntity)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new BotEntity();
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3384,16 +4910,20 @@ public final class BotHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          BotEntity other = (BotEntity) arg1;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity other = (com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity) arg1;
           entityId_ = visitor.visitString(!entityId_.isEmpty(), entityId_,
               !other.entityId_.isEmpty(), other.entityId_);
           entityName_ = visitor.visitString(!entityName_.isEmpty(), entityName_,
               !other.entityName_.isEmpty(), other.entityName_);
           possibleValue_ = visitor.visitString(!possibleValue_.isEmpty(), possibleValue_,
               !other.possibleValue_.isEmpty(), other.possibleValue_);
-          entityType_ = visitor.visitInt(entityType_ != 0, entityType_,    other.entityType_ != 0, other.entityType_);
+          entityDataType_ = visitor.visitInt(entityDataType_ != 0, entityDataType_,    other.entityDataType_ != 0, other.entityDataType_);
           synonyms_= visitor.visitList(synonyms_, other.synonyms_);
-          if (visitor == MergeFromVisitor
+          resolvePolicy_ = visitor.visitInt(resolvePolicy_ != 0, resolvePolicy_,    other.resolvePolicy_ != 0, other.resolvePolicy_);
+          entityType_ = visitor.visitInt(entityType_ != 0, entityType_,    other.entityType_ != 0, other.entityType_);
+          lang_ = visitor.visitString(!lang_.isEmpty(), lang_,
+              !other.lang_.isEmpty(), other.lang_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3439,7 +4969,7 @@ public final class BotHousekeepingProto {
                 case 32: {
                   int rawValue = input.readEnum();
 
-                  entityType_ = rawValue;
+                  entityDataType_ = rawValue;
                   break;
                 }
                 case 42: {
@@ -3449,6 +4979,24 @@ public final class BotHousekeepingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(synonyms_);
                   }
                   synonyms_.add(s);
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  resolvePolicy_ = rawValue;
+                  break;
+                }
+                case 56: {
+                  int rawValue = input.readEnum();
+
+                  entityType_ = rawValue;
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  lang_ = s;
                   break;
                 }
               }
@@ -3466,7 +5014,7 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (BotEntity.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3480,13 +5028,13 @@ public final class BotHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotEntity)
-    private static final BotEntity DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotEntity();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static BotEntity getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3504,7 +5052,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string intentParamId = 1;</code>
      */
-    String getIntentParamId();
+    java.lang.String getIntentParamId();
     /**
      * <code>optional string intentParamId = 1;</code>
      */
@@ -3514,7 +5062,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string defaultValue = 3;</code>
      */
-    String getDefaultValue();
+    java.lang.String getDefaultValue();
     /**
      * <code>optional string defaultValue = 3;</code>
      */
@@ -3533,7 +5081,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated string prompts = 4;</code>
      */
-    String getPrompts(int index);
+    java.lang.String getPrompts(int index);
     /**
      * <code>repeated string prompts = 4;</code>
      */
@@ -3543,7 +5091,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string validationRule = 5;</code>
      */
-    String getValidationRule();
+    java.lang.String getValidationRule();
     /**
      * <code>optional string validationRule = 5;</code>
      */
@@ -3553,7 +5101,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string iconUrl = 6;</code>
      */
-    String getIconUrl();
+    java.lang.String getIconUrl();
     /**
      * <code>optional string iconUrl = 6;</code>
      */
@@ -3572,7 +5120,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
      */
-    BotEntity getBotEntity();
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity();
 
     /**
      * <code>optional bool required = 9;</code>
@@ -3582,7 +5130,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string paramName = 10;</code>
      */
-    String getParamName();
+    java.lang.String getParamName();
     /**
      * <code>optional string paramName = 10;</code>
      */
@@ -3592,7 +5140,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional string resolvedValue = 11;</code>
      */
-    String getResolvedValue();
+    java.lang.String getResolvedValue();
     /**
      * <code>optional string resolvedValue = 11;</code>
      */
@@ -3618,11 +5166,11 @@ public final class BotHousekeepingProto {
     }
     private int bitField0_;
     public static final int INTENTPARAMID_FIELD_NUMBER = 1;
-    private String intentParamId_;
+    private java.lang.String intentParamId_;
     /**
      * <code>optional string intentParamId = 1;</code>
      */
-    public String getIntentParamId() {
+    public java.lang.String getIntentParamId() {
       return intentParamId_;
     }
     /**
@@ -3636,7 +5184,7 @@ public final class BotHousekeepingProto {
      * <code>optional string intentParamId = 1;</code>
      */
     private void setIntentParamId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3664,11 +5212,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int DEFAULTVALUE_FIELD_NUMBER = 3;
-    private String defaultValue_;
+    private java.lang.String defaultValue_;
     /**
      * <code>optional string defaultValue = 3;</code>
      */
-    public String getDefaultValue() {
+    public java.lang.String getDefaultValue() {
       return defaultValue_;
     }
     /**
@@ -3682,7 +5230,7 @@ public final class BotHousekeepingProto {
      * <code>optional string defaultValue = 3;</code>
      */
     private void setDefaultValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3726,7 +5274,7 @@ public final class BotHousekeepingProto {
     /**
      * <code>repeated string prompts = 4;</code>
      */
-    public String getPrompts(int index) {
+    public java.lang.String getPrompts(int index) {
       return prompts_.get(index);
     }
     /**
@@ -3747,7 +5295,7 @@ public final class BotHousekeepingProto {
      * <code>repeated string prompts = 4;</code>
      */
     private void setPrompts(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3758,7 +5306,7 @@ public final class BotHousekeepingProto {
      * <code>repeated string prompts = 4;</code>
      */
     private void addPrompts(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3769,7 +5317,7 @@ public final class BotHousekeepingProto {
      * <code>repeated string prompts = 4;</code>
      */
     private void addAllPrompts(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensurePromptsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, prompts_);
@@ -3794,11 +5342,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int VALIDATIONRULE_FIELD_NUMBER = 5;
-    private String validationRule_;
+    private java.lang.String validationRule_;
     /**
      * <code>optional string validationRule = 5;</code>
      */
-    public String getValidationRule() {
+    public java.lang.String getValidationRule() {
       return validationRule_;
     }
     /**
@@ -3812,7 +5360,7 @@ public final class BotHousekeepingProto {
      * <code>optional string validationRule = 5;</code>
      */
     private void setValidationRule(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3840,11 +5388,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int ICONURL_FIELD_NUMBER = 6;
-    private String iconUrl_;
+    private java.lang.String iconUrl_;
     /**
      * <code>optional string iconUrl = 6;</code>
      */
-    public String getIconUrl() {
+    public java.lang.String getIconUrl() {
       return iconUrl_;
     }
     /**
@@ -3858,7 +5406,7 @@ public final class BotHousekeepingProto {
      * <code>optional string iconUrl = 6;</code>
      */
     private void setIconUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3909,7 +5457,7 @@ public final class BotHousekeepingProto {
     }
 
     public static final int BOTENTITY_FIELD_NUMBER = 8;
-    private BotEntity botEntity_;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity botEntity_;
     /**
      * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
      */
@@ -3919,13 +5467,13 @@ public final class BotHousekeepingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
      */
-    public BotEntity getBotEntity() {
-      return botEntity_ == null ? BotEntity.getDefaultInstance() : botEntity_;
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity() {
+      return botEntity_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.getDefaultInstance() : botEntity_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
      */
-    private void setBotEntity(BotEntity value) {
+    private void setBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3936,18 +5484,18 @@ public final class BotHousekeepingProto {
      * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
      */
     private void setBotEntity(
-        BotEntity.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
       botEntity_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
      */
-    private void mergeBotEntity(BotEntity value) {
+    private void mergeBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
       if (botEntity_ != null &&
-          botEntity_ != BotEntity.getDefaultInstance()) {
+          botEntity_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.getDefaultInstance()) {
         botEntity_ =
-          BotEntity.newBuilder(botEntity_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.newBuilder(botEntity_).mergeFrom(value).buildPartial();
       } else {
         botEntity_ = value;
       }
@@ -3984,11 +5532,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int PARAMNAME_FIELD_NUMBER = 10;
-    private String paramName_;
+    private java.lang.String paramName_;
     /**
      * <code>optional string paramName = 10;</code>
      */
-    public String getParamName() {
+    public java.lang.String getParamName() {
       return paramName_;
     }
     /**
@@ -4002,7 +5550,7 @@ public final class BotHousekeepingProto {
      * <code>optional string paramName = 10;</code>
      */
     private void setParamName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4030,11 +5578,11 @@ public final class BotHousekeepingProto {
     }
 
     public static final int RESOLVEDVALUE_FIELD_NUMBER = 11;
-    private String resolvedValue_;
+    private java.lang.String resolvedValue_;
     /**
      * <code>optional string resolvedValue = 11;</code>
      */
-    public String getResolvedValue() {
+    public java.lang.String getResolvedValue() {
       return resolvedValue_;
     }
     /**
@@ -4048,7 +5596,7 @@ public final class BotHousekeepingProto {
      * <code>optional string resolvedValue = 11;</code>
      */
     private void setResolvedValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4163,60 +5711,60 @@ public final class BotHousekeepingProto {
       return size;
     }
 
-    public static IntentParam parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntentParam parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntentParam parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntentParam parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntentParam parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntentParam parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntentParam parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static IntentParam parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntentParam parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntentParam parseFrom(
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4227,7 +5775,7 @@ public final class BotHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(IntentParam prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4236,9 +5784,9 @@ public final class BotHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          IntentParam, Builder> implements
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntentParam)
-        IntentParamOrBuilder {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParamOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4248,7 +5796,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string intentParamId = 1;</code>
        */
-      public String getIntentParamId() {
+      public java.lang.String getIntentParamId() {
         return instance.getIntentParamId();
       }
       /**
@@ -4262,7 +5810,7 @@ public final class BotHousekeepingProto {
        * <code>optional string intentParamId = 1;</code>
        */
       public Builder setIntentParamId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntentParamId(value);
         return this;
@@ -4288,7 +5836,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string defaultValue = 3;</code>
        */
-      public String getDefaultValue() {
+      public java.lang.String getDefaultValue() {
         return instance.getDefaultValue();
       }
       /**
@@ -4302,7 +5850,7 @@ public final class BotHousekeepingProto {
        * <code>optional string defaultValue = 3;</code>
        */
       public Builder setDefaultValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setDefaultValue(value);
         return this;
@@ -4342,7 +5890,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>repeated string prompts = 4;</code>
        */
-      public String getPrompts(int index) {
+      public java.lang.String getPrompts(int index) {
         return instance.getPrompts(index);
       }
       /**
@@ -4356,7 +5904,7 @@ public final class BotHousekeepingProto {
        * <code>repeated string prompts = 4;</code>
        */
       public Builder setPrompts(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setPrompts(index, value);
         return this;
@@ -4365,7 +5913,7 @@ public final class BotHousekeepingProto {
        * <code>repeated string prompts = 4;</code>
        */
       public Builder addPrompts(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addPrompts(value);
         return this;
@@ -4374,7 +5922,7 @@ public final class BotHousekeepingProto {
        * <code>repeated string prompts = 4;</code>
        */
       public Builder addAllPrompts(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllPrompts(values);
         return this;
@@ -4400,7 +5948,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string validationRule = 5;</code>
        */
-      public String getValidationRule() {
+      public java.lang.String getValidationRule() {
         return instance.getValidationRule();
       }
       /**
@@ -4414,7 +5962,7 @@ public final class BotHousekeepingProto {
        * <code>optional string validationRule = 5;</code>
        */
       public Builder setValidationRule(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setValidationRule(value);
         return this;
@@ -4440,7 +5988,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string iconUrl = 6;</code>
        */
-      public String getIconUrl() {
+      public java.lang.String getIconUrl() {
         return instance.getIconUrl();
       }
       /**
@@ -4454,7 +6002,7 @@ public final class BotHousekeepingProto {
        * <code>optional string iconUrl = 6;</code>
        */
       public Builder setIconUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIconUrl(value);
         return this;
@@ -4509,13 +6057,13 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
        */
-      public BotEntity getBotEntity() {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity() {
         return instance.getBotEntity();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
        */
-      public Builder setBotEntity(BotEntity value) {
+      public Builder setBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
         copyOnWrite();
         instance.setBotEntity(value);
         return this;
@@ -4524,7 +6072,7 @@ public final class BotHousekeepingProto {
        * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
        */
       public Builder setBotEntity(
-          BotEntity.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
         copyOnWrite();
         instance.setBotEntity(builderForValue);
         return this;
@@ -4532,7 +6080,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 8;</code>
        */
-      public Builder mergeBotEntity(BotEntity value) {
+      public Builder mergeBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
         copyOnWrite();
         instance.mergeBotEntity(value);
         return this;
@@ -4571,7 +6119,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string paramName = 10;</code>
        */
-      public String getParamName() {
+      public java.lang.String getParamName() {
         return instance.getParamName();
       }
       /**
@@ -4585,7 +6133,7 @@ public final class BotHousekeepingProto {
        * <code>optional string paramName = 10;</code>
        */
       public Builder setParamName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParamName(value);
         return this;
@@ -4611,7 +6159,7 @@ public final class BotHousekeepingProto {
       /**
        * <code>optional string resolvedValue = 11;</code>
        */
-      public String getResolvedValue() {
+      public java.lang.String getResolvedValue() {
         return instance.getResolvedValue();
       }
       /**
@@ -4625,7 +6173,7 @@ public final class BotHousekeepingProto {
        * <code>optional string resolvedValue = 11;</code>
        */
       public Builder setResolvedValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setResolvedValue(value);
         return this;
@@ -4651,11 +6199,11 @@ public final class BotHousekeepingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntentParam)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new IntentParam();
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4669,7 +6217,7 @@ public final class BotHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          IntentParam other = (IntentParam) arg1;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam other = (com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam) arg1;
           intentParamId_ = visitor.visitString(!intentParamId_.isEmpty(), intentParamId_,
               !other.intentParamId_.isEmpty(), other.intentParamId_);
           defaultValue_ = visitor.visitString(!defaultValue_.isEmpty(), defaultValue_,
@@ -4688,7 +6236,7 @@ public final class BotHousekeepingProto {
               !other.paramName_.isEmpty(), other.paramName_);
           resolvedValue_ = visitor.visitString(!resolvedValue_.isEmpty(), resolvedValue_,
               !other.resolvedValue_.isEmpty(), other.resolvedValue_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -4752,11 +6300,11 @@ public final class BotHousekeepingProto {
                   break;
                 }
                 case 66: {
-                  BotEntity.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder subBuilder = null;
                   if (botEntity_ != null) {
                     subBuilder = botEntity_.toBuilder();
                   }
-                  botEntity_ = input.readMessage(BotEntity.parser(), extensionRegistry);
+                  botEntity_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(botEntity_);
                     botEntity_ = subBuilder.buildPartial();
@@ -4796,7 +6344,7 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (IntentParam.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4810,13 +6358,13 @@ public final class BotHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntentParam)
-    private static final IntentParam DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntentParam();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static IntentParam getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.IntentParam getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

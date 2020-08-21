@@ -15,7 +15,7 @@ public final class TicketServiceRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class TicketServiceRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    String getStringValue();
+    java.lang.String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class TicketServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    String getStringValues(int index);
+    java.lang.String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -117,18 +117,18 @@ public final class TicketServiceRpcProto {
     com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployee();
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
     java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> 
-        getEmployeeListList();
+        getEmployeesList();
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployeeList(int index);
+    com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployees(int index);
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    int getEmployeeListCount();
+    int getEmployeesCount();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 14;</code>
@@ -159,13 +159,27 @@ public final class TicketServiceRpcProto {
     long getTimeRangeEnd();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    boolean hasTagPermission();
+    boolean hasEmployeeTag();
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission();
+    com.treeleaf.anydone.entities.TicketProto.EmployeeTag getEmployeeTag();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketTag> 
+        getTagsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketTag getTags(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    int getTagsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -179,15 +193,16 @@ public final class TicketServiceRpcProto {
       refId_ = "";
       stringValue_ = "";
       stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-      employeeList_ = emptyProtobufList();
+      employees_ = emptyProtobufList();
+      tags_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -201,7 +216,7 @@ public final class TicketServiceRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -229,11 +244,11 @@ public final class TicketServiceRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private String stringValue_;
+    private java.lang.String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public String getStringValue() {
+    public java.lang.String getStringValue() {
       return stringValue_;
     }
     /**
@@ -247,7 +262,7 @@ public final class TicketServiceRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -291,7 +306,7 @@ public final class TicketServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public String getStringValues(int index) {
+    public java.lang.String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -312,7 +327,7 @@ public final class TicketServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -323,7 +338,7 @@ public final class TicketServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -334,7 +349,7 @@ public final class TicketServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -710,124 +725,124 @@ public final class TicketServiceRpcProto {
       
     }
 
-    public static final int EMPLOYEELIST_FIELD_NUMBER = 13;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> employeeList_;
+    public static final int EMPLOYEES_FIELD_NUMBER = 13;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> employees_;
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> getEmployeeListList() {
-      return employeeList_;
+    public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> getEmployeesList() {
+      return employees_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
     public java.util.List<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfileOrBuilder> 
-        getEmployeeListOrBuilderList() {
-      return employeeList_;
+        getEmployeesOrBuilderList() {
+      return employees_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    public int getEmployeeListCount() {
-      return employeeList_.size();
+    public int getEmployeesCount() {
+      return employees_.size();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployeeList(int index) {
-      return employeeList_.get(index);
+    public com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployees(int index) {
+      return employees_.get(index);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.EmployeeProfileOrBuilder getEmployeeListOrBuilder(
+    public com.treeleaf.anydone.entities.UserProto.EmployeeProfileOrBuilder getEmployeesOrBuilder(
         int index) {
-      return employeeList_.get(index);
+      return employees_.get(index);
     }
-    private void ensureEmployeeListIsMutable() {
-      if (!employeeList_.isModifiable()) {
-        employeeList_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(employeeList_);
+    private void ensureEmployeesIsMutable() {
+      if (!employees_.isModifiable()) {
+        employees_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(employees_);
        }
     }
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void setEmployeeList(
+    private void setEmployees(
         int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureEmployeeListIsMutable();
-      employeeList_.set(index, value);
+      ensureEmployeesIsMutable();
+      employees_.set(index, value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void setEmployeeList(
+    private void setEmployees(
         int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
-      ensureEmployeeListIsMutable();
-      employeeList_.set(index, builderForValue.build());
+      ensureEmployeesIsMutable();
+      employees_.set(index, builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void addEmployeeList(com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+    private void addEmployees(com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureEmployeeListIsMutable();
-      employeeList_.add(value);
+      ensureEmployeesIsMutable();
+      employees_.add(value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void addEmployeeList(
+    private void addEmployees(
         int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureEmployeeListIsMutable();
-      employeeList_.add(index, value);
+      ensureEmployeesIsMutable();
+      employees_.add(index, value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void addEmployeeList(
+    private void addEmployees(
         com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
-      ensureEmployeeListIsMutable();
-      employeeList_.add(builderForValue.build());
+      ensureEmployeesIsMutable();
+      employees_.add(builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void addEmployeeList(
+    private void addEmployees(
         int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
-      ensureEmployeeListIsMutable();
-      employeeList_.add(index, builderForValue.build());
+      ensureEmployeesIsMutable();
+      employees_.add(index, builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void addAllEmployeeList(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
-      ensureEmployeeListIsMutable();
+    private void addAllEmployees(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+      ensureEmployeesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
-          values, employeeList_);
+          values, employees_);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void clearEmployeeList() {
-      employeeList_ = emptyProtobufList();
+    private void clearEmployees() {
+      employees_ = emptyProtobufList();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
-    private void removeEmployeeList(int index) {
-      ensureEmployeeListIsMutable();
-      employeeList_.remove(index);
+    private void removeEmployees(int index) {
+      ensureEmployeesIsMutable();
+      employees_.remove(index);
     }
 
     public static final int SERVICEPROVIDER_FIELD_NUMBER = 14;
@@ -980,56 +995,176 @@ public final class TicketServiceRpcProto {
       timeRangeEnd_ = 0L;
     }
 
-    public static final int TAGPERMISSION_FIELD_NUMBER = 18;
-    private com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission tagPermission_;
+    public static final int EMPLOYEETAG_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.TicketProto.EmployeeTag employeeTag_;
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    public boolean hasTagPermission() {
-      return tagPermission_ != null;
+    public boolean hasEmployeeTag() {
+      return employeeTag_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
-      return tagPermission_ == null ? com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance() : tagPermission_;
+    public com.treeleaf.anydone.entities.TicketProto.EmployeeTag getEmployeeTag() {
+      return employeeTag_ == null ? com.treeleaf.anydone.entities.TicketProto.EmployeeTag.getDefaultInstance() : employeeTag_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    private void setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+    private void setEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      tagPermission_ = value;
+      employeeTag_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    private void setTagPermission(
-        com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
-      tagPermission_ = builderForValue.build();
+    private void setEmployeeTag(
+        com.treeleaf.anydone.entities.TicketProto.EmployeeTag.Builder builderForValue) {
+      employeeTag_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    private void mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
-      if (tagPermission_ != null &&
-          tagPermission_ != com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance()) {
-        tagPermission_ =
-          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.newBuilder(tagPermission_).mergeFrom(value).buildPartial();
+    private void mergeEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
+      if (employeeTag_ != null &&
+          employeeTag_ != com.treeleaf.anydone.entities.TicketProto.EmployeeTag.getDefaultInstance()) {
+        employeeTag_ =
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTag.newBuilder(employeeTag_).mergeFrom(value).buildPartial();
       } else {
-        tagPermission_ = value;
+        employeeTag_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
      */
-    private void clearTagPermission() {  tagPermission_ = null;
+    private void clearEmployeeTag() {  employeeTag_ = null;
       
+    }
+
+    public static final int TAGS_FIELD_NUMBER = 19;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.TicketProto.TicketTag> tags_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketTag> getTagsList() {
+      return tags_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.TicketProto.TicketTagOrBuilder> 
+        getTagsOrBuilderList() {
+      return tags_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    public int getTagsCount() {
+      return tags_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketTag getTags(int index) {
+      return tags_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketTagOrBuilder getTagsOrBuilder(
+        int index) {
+      return tags_.get(index);
+    }
+    private void ensureTagsIsMutable() {
+      if (!tags_.isModifiable()) {
+        tags_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(tags_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void setTags(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTagsIsMutable();
+      tags_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void setTags(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+      ensureTagsIsMutable();
+      tags_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void addTags(com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTagsIsMutable();
+      tags_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void addTags(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTagsIsMutable();
+      tags_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void addTags(
+        com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+      ensureTagsIsMutable();
+      tags_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void addTags(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+      ensureTagsIsMutable();
+      tags_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void addAllTags(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketTag> values) {
+      ensureTagsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, tags_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void clearTags() {
+      tags_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+     */
+    private void removeTags(int index) {
+      ensureTagsIsMutable();
+      tags_.remove(index);
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -1070,8 +1205,8 @@ public final class TicketServiceRpcProto {
       if (employee_ != null) {
         output.writeMessage(12, getEmployee());
       }
-      for (int i = 0; i < employeeList_.size(); i++) {
-        output.writeMessage(13, employeeList_.get(i));
+      for (int i = 0; i < employees_.size(); i++) {
+        output.writeMessage(13, employees_.get(i));
       }
       if (serviceProvider_ != null) {
         output.writeMessage(14, getServiceProvider());
@@ -1085,8 +1220,11 @@ public final class TicketServiceRpcProto {
       if (timeRangeEnd_ != 0L) {
         output.writeInt64(17, timeRangeEnd_);
       }
-      if (tagPermission_ != null) {
-        output.writeMessage(18, getTagPermission());
+      if (employeeTag_ != null) {
+        output.writeMessage(18, getEmployeeTag());
+      }
+      for (int i = 0; i < tags_.size(); i++) {
+        output.writeMessage(19, tags_.get(i));
       }
     }
 
@@ -1148,9 +1286,9 @@ public final class TicketServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getEmployee());
       }
-      for (int i = 0; i < employeeList_.size(); i++) {
+      for (int i = 0; i < employees_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, employeeList_.get(i));
+          .computeMessageSize(13, employees_.get(i));
       }
       if (serviceProvider_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -1168,68 +1306,72 @@ public final class TicketServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(17, timeRangeEnd_);
       }
-      if (tagPermission_ != null) {
+      if (employeeTag_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(18, getTagPermission());
+          .computeMessageSize(18, getEmployeeTag());
+      }
+      for (int i = 0; i < tags_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, tags_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static TicketBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketBaseRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketBaseRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TicketBaseRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1240,7 +1382,7 @@ public final class TicketServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TicketBaseRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1249,9 +1391,9 @@ public final class TicketServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TicketBaseRequest, Builder> implements
+          com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.TicketBaseRequest)
-        TicketBaseRequestOrBuilder {
+        com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1261,7 +1403,7 @@ public final class TicketServiceRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1275,7 +1417,7 @@ public final class TicketServiceRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1301,7 +1443,7 @@ public final class TicketServiceRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public String getStringValue() {
+      public java.lang.String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1315,7 +1457,7 @@ public final class TicketServiceRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1355,7 +1497,7 @@ public final class TicketServiceRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public String getStringValues(int index) {
+      public java.lang.String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1369,7 +1511,7 @@ public final class TicketServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1378,7 +1520,7 @@ public final class TicketServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1387,7 +1529,7 @@ public final class TicketServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1728,99 +1870,99 @@ public final class TicketServiceRpcProto {
       }
 
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> getEmployeeListList() {
+      public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> getEmployeesList() {
         return java.util.Collections.unmodifiableList(
-            instance.getEmployeeListList());
+            instance.getEmployeesList());
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public int getEmployeeListCount() {
-        return instance.getEmployeeListCount();
+      public int getEmployeesCount() {
+        return instance.getEmployeesCount();
       }/**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployeeList(int index) {
-        return instance.getEmployeeList(index);
+      public com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployees(int index) {
+        return instance.getEmployees(index);
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder setEmployeeList(
+      public Builder setEmployees(
           int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
         copyOnWrite();
-        instance.setEmployeeList(index, value);
+        instance.setEmployees(index, value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder setEmployeeList(
+      public Builder setEmployees(
           int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
         copyOnWrite();
-        instance.setEmployeeList(index, builderForValue);
+        instance.setEmployees(index, builderForValue);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder addEmployeeList(com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+      public Builder addEmployees(com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
         copyOnWrite();
-        instance.addEmployeeList(value);
+        instance.addEmployees(value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder addEmployeeList(
+      public Builder addEmployees(
           int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
         copyOnWrite();
-        instance.addEmployeeList(index, value);
+        instance.addEmployees(index, value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder addEmployeeList(
+      public Builder addEmployees(
           com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
         copyOnWrite();
-        instance.addEmployeeList(builderForValue);
+        instance.addEmployees(builderForValue);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder addEmployeeList(
+      public Builder addEmployees(
           int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
         copyOnWrite();
-        instance.addEmployeeList(index, builderForValue);
+        instance.addEmployees(index, builderForValue);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder addAllEmployeeList(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+      public Builder addAllEmployees(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
         copyOnWrite();
-        instance.addAllEmployeeList(values);
+        instance.addAllEmployees(values);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder clearEmployeeList() {
+      public Builder clearEmployees() {
         copyOnWrite();
-        instance.clearEmployeeList();
+        instance.clearEmployees();
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeList = 13;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
-      public Builder removeEmployeeList(int index) {
+      public Builder removeEmployees(int index) {
         copyOnWrite();
-        instance.removeEmployeeList(index);
+        instance.removeEmployees(index);
         return this;
       }
 
@@ -1961,65 +2103,163 @@ public final class TicketServiceRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
        */
-      public boolean hasTagPermission() {
-        return instance.hasTagPermission();
+      public boolean hasEmployeeTag() {
+        return instance.hasEmployeeTag();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
        */
-      public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
-        return instance.getTagPermission();
+      public com.treeleaf.anydone.entities.TicketProto.EmployeeTag getEmployeeTag() {
+        return instance.getEmployeeTag();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
        */
-      public Builder setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      public Builder setEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
         copyOnWrite();
-        instance.setTagPermission(value);
+        instance.setEmployeeTag(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
        */
-      public Builder setTagPermission(
-          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
+      public Builder setEmployeeTag(
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTag.Builder builderForValue) {
         copyOnWrite();
-        instance.setTagPermission(builderForValue);
+        instance.setEmployeeTag(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
        */
-      public Builder mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      public Builder mergeEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
         copyOnWrite();
-        instance.mergeTagPermission(value);
+        instance.mergeEmployeeTag(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 18;</code>
        */
-      public Builder clearTagPermission() {  copyOnWrite();
-        instance.clearTagPermission();
+      public Builder clearEmployeeTag() {  copyOnWrite();
+        instance.clearEmployeeTag();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketTag> getTagsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getTagsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public int getTagsCount() {
+        return instance.getTagsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketTag getTags(int index) {
+        return instance.getTags(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder setTags(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+        copyOnWrite();
+        instance.setTags(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder setTags(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTags(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder addTags(com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+        copyOnWrite();
+        instance.addTags(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder addTags(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+        copyOnWrite();
+        instance.addTags(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder addTags(
+          com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTags(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder addTags(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTags(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder addAllTags(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketTag> values) {
+        copyOnWrite();
+        instance.addAllTags(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder clearTags() {
+        copyOnWrite();
+        instance.clearTags();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 19;</code>
+       */
+      public Builder removeTags(int index) {
+        copyOnWrite();
+        instance.removeTags(index);
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TicketBaseRequest();
+          return new com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           stringValues_.makeImmutable();
-          employeeList_.makeImmutable();
+          employees_.makeImmutable();
+          tags_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2027,7 +2267,7 @@ public final class TicketServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TicketBaseRequest other = (TicketBaseRequest) arg1;
+          com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest other = (com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -2046,15 +2286,16 @@ public final class TicketServiceRpcProto {
           ticket_ = visitor.visitMessage(ticket_, other.ticket_);
           tag_ = visitor.visitMessage(tag_, other.tag_);
           employee_ = visitor.visitMessage(employee_, other.employee_);
-          employeeList_= visitor.visitList(employeeList_, other.employeeList_);
+          employees_= visitor.visitList(employees_, other.employees_);
           serviceProvider_ = visitor.visitMessage(serviceProvider_, other.serviceProvider_);
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
           timeRangeStart_ = visitor.visitLong(timeRangeStart_ != 0L, timeRangeStart_,
               other.timeRangeStart_ != 0L, other.timeRangeStart_);
           timeRangeEnd_ = visitor.visitLong(timeRangeEnd_ != 0L, timeRangeEnd_,
               other.timeRangeEnd_ != 0L, other.timeRangeEnd_);
-          tagPermission_ = visitor.visitMessage(tagPermission_, other.tagPermission_);
-          if (visitor == MergeFromVisitor
+          employeeTag_ = visitor.visitMessage(employeeTag_, other.employeeTag_);
+          tags_= visitor.visitList(tags_, other.tags_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2186,11 +2427,11 @@ public final class TicketServiceRpcProto {
                   break;
                 }
                 case 106: {
-                  if (!employeeList_.isModifiable()) {
-                    employeeList_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(employeeList_);
+                  if (!employees_.isModifiable()) {
+                    employees_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(employees_);
                   }
-                  employeeList_.add(
+                  employees_.add(
                       input.readMessage(com.treeleaf.anydone.entities.UserProto.EmployeeProfile.parser(), extensionRegistry));
                   break;
                 }
@@ -2231,16 +2472,25 @@ public final class TicketServiceRpcProto {
                   break;
                 }
                 case 146: {
-                  com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder subBuilder = null;
-                  if (tagPermission_ != null) {
-                    subBuilder = tagPermission_.toBuilder();
+                  com.treeleaf.anydone.entities.TicketProto.EmployeeTag.Builder subBuilder = null;
+                  if (employeeTag_ != null) {
+                    subBuilder = employeeTag_.toBuilder();
                   }
-                  tagPermission_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.parser(), extensionRegistry);
+                  employeeTag_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.EmployeeTag.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(tagPermission_);
-                    tagPermission_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(employeeTag_);
+                    employeeTag_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 154: {
+                  if (!tags_.isModifiable()) {
+                    tags_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(tags_);
+                  }
+                  tags_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketTag.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -2258,7 +2508,7 @@ public final class TicketServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TicketBaseRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2272,13 +2522,13 @@ public final class TicketServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.TicketBaseRequest)
-    private static final TicketBaseRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TicketBaseRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2301,7 +2551,7 @@ public final class TicketServiceRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -2378,13 +2628,13 @@ public final class TicketServiceRpcProto {
     int getTagsCount();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    boolean hasTagPermission();
+    boolean hasEmployeeTag();
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission();
+    com.treeleaf.anydone.entities.TicketProto.EmployeeTag getEmployeeTag();
 
     /**
      * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
@@ -2439,11 +2689,11 @@ public final class TicketServiceRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -2457,7 +2707,7 @@ public final class TicketServiceRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2803,7 +3053,7 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Ticket tickets = 8;</code>
      */
     private void addAllTickets(
-        Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Ticket> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Ticket> values) {
       ensureTicketsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, tickets_);
@@ -2923,7 +3173,7 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 9;</code>
      */
     private void addAllTags(
-        Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketTag> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketTag> values) {
       ensureTagsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, tags_);
@@ -2942,55 +3192,55 @@ public final class TicketServiceRpcProto {
       tags_.remove(index);
     }
 
-    public static final int TAGPERMISSION_FIELD_NUMBER = 10;
-    private com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission tagPermission_;
+    public static final int EMPLOYEETAG_FIELD_NUMBER = 10;
+    private com.treeleaf.anydone.entities.TicketProto.EmployeeTag employeeTag_;
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    public boolean hasTagPermission() {
-      return tagPermission_ != null;
+    public boolean hasEmployeeTag() {
+      return employeeTag_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
-      return tagPermission_ == null ? com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance() : tagPermission_;
+    public com.treeleaf.anydone.entities.TicketProto.EmployeeTag getEmployeeTag() {
+      return employeeTag_ == null ? com.treeleaf.anydone.entities.TicketProto.EmployeeTag.getDefaultInstance() : employeeTag_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    private void setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+    private void setEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      tagPermission_ = value;
+      employeeTag_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    private void setTagPermission(
-        com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
-      tagPermission_ = builderForValue.build();
+    private void setEmployeeTag(
+        com.treeleaf.anydone.entities.TicketProto.EmployeeTag.Builder builderForValue) {
+      employeeTag_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    private void mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
-      if (tagPermission_ != null &&
-          tagPermission_ != com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.getDefaultInstance()) {
-        tagPermission_ =
-          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.newBuilder(tagPermission_).mergeFrom(value).buildPartial();
+    private void mergeEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
+      if (employeeTag_ != null &&
+          employeeTag_ != com.treeleaf.anydone.entities.TicketProto.EmployeeTag.getDefaultInstance()) {
+        employeeTag_ =
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTag.newBuilder(employeeTag_).mergeFrom(value).buildPartial();
       } else {
-        tagPermission_ = value;
+        employeeTag_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
      */
-    private void clearTagPermission() {  tagPermission_ = null;
+    private void clearEmployeeTag() {  employeeTag_ = null;
       
     }
 
@@ -3095,7 +3345,7 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
      */
     private void addAllCustomers(
-        Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Customer> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Customer> values) {
       ensureCustomersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, customers_);
@@ -3143,8 +3393,8 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < tags_.size(); i++) {
         output.writeMessage(9, tags_.get(i));
       }
-      if (tagPermission_ != null) {
-        output.writeMessage(10, getTagPermission());
+      if (employeeTag_ != null) {
+        output.writeMessage(10, getEmployeeTag());
       }
       for (int i = 0; i < customers_.size(); i++) {
         output.writeMessage(11, customers_.get(i));
@@ -3192,9 +3442,9 @@ public final class TicketServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, tags_.get(i));
       }
-      if (tagPermission_ != null) {
+      if (employeeTag_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getTagPermission());
+          .computeMessageSize(10, getEmployeeTag());
       }
       for (int i = 0; i < customers_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -3204,60 +3454,60 @@ public final class TicketServiceRpcProto {
       return size;
     }
 
-    public static TicketBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketBaseResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketBaseResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TicketBaseResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3268,7 +3518,7 @@ public final class TicketServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TicketBaseResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3277,9 +3527,9 @@ public final class TicketServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TicketBaseResponse, Builder> implements
+          com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.TicketBaseResponse)
-        TicketBaseResponseOrBuilder {
+        com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3312,7 +3562,7 @@ public final class TicketServiceRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -3326,7 +3576,7 @@ public final class TicketServiceRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -3619,7 +3869,7 @@ public final class TicketServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Ticket tickets = 8;</code>
        */
       public Builder addAllTickets(
-          Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Ticket> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Ticket> values) {
         copyOnWrite();
         instance.addAllTickets(values);
         return this;
@@ -3716,7 +3966,7 @@ public final class TicketServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 9;</code>
        */
       public Builder addAllTags(
-          Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketTag> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketTag> values) {
         copyOnWrite();
         instance.addAllTags(values);
         return this;
@@ -3739,47 +3989,47 @@ public final class TicketServiceRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
        */
-      public boolean hasTagPermission() {
-        return instance.hasTagPermission();
+      public boolean hasEmployeeTag() {
+        return instance.hasEmployeeTag();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
        */
-      public com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission getTagPermission() {
-        return instance.getTagPermission();
+      public com.treeleaf.anydone.entities.TicketProto.EmployeeTag getEmployeeTag() {
+        return instance.getEmployeeTag();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
        */
-      public Builder setTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      public Builder setEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
         copyOnWrite();
-        instance.setTagPermission(value);
+        instance.setEmployeeTag(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
        */
-      public Builder setTagPermission(
-          com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder builderForValue) {
+      public Builder setEmployeeTag(
+          com.treeleaf.anydone.entities.TicketProto.EmployeeTag.Builder builderForValue) {
         copyOnWrite();
-        instance.setTagPermission(builderForValue);
+        instance.setEmployeeTag(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
        */
-      public Builder mergeTagPermission(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission value) {
+      public Builder mergeEmployeeTag(com.treeleaf.anydone.entities.TicketProto.EmployeeTag value) {
         copyOnWrite();
-        instance.mergeTagPermission(value);
+        instance.mergeEmployeeTag(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EmployeeTagPermission tagPermission = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.EmployeeTag employeeTag = 10;</code>
        */
-      public Builder clearTagPermission() {  copyOnWrite();
-        instance.clearTagPermission();
+      public Builder clearEmployeeTag() {  copyOnWrite();
+        instance.clearEmployeeTag();
         return this;
       }
 
@@ -3858,7 +4108,7 @@ public final class TicketServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
        */
       public Builder addAllCustomers(
-          Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Customer> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.Customer> values) {
         copyOnWrite();
         instance.addAllCustomers(values);
         return this;
@@ -3883,11 +4133,11 @@ public final class TicketServiceRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TicketBaseResponse();
+          return new com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3903,7 +4153,7 @@ public final class TicketServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TicketBaseResponse other = (TicketBaseResponse) arg1;
+          com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse other = (com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -3916,9 +4166,9 @@ public final class TicketServiceRpcProto {
           tag_ = visitor.visitMessage(tag_, other.tag_);
           tickets_= visitor.visitList(tickets_, other.tickets_);
           tags_= visitor.visitList(tags_, other.tags_);
-          tagPermission_ = visitor.visitMessage(tagPermission_, other.tagPermission_);
+          employeeTag_ = visitor.visitMessage(employeeTag_, other.employeeTag_);
           customers_= visitor.visitList(customers_, other.customers_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -4023,14 +4273,14 @@ public final class TicketServiceRpcProto {
                   break;
                 }
                 case 82: {
-                  com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.Builder subBuilder = null;
-                  if (tagPermission_ != null) {
-                    subBuilder = tagPermission_.toBuilder();
+                  com.treeleaf.anydone.entities.TicketProto.EmployeeTag.Builder subBuilder = null;
+                  if (employeeTag_ != null) {
+                    subBuilder = employeeTag_.toBuilder();
                   }
-                  tagPermission_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.EmployeeTagPermission.parser(), extensionRegistry);
+                  employeeTag_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.EmployeeTag.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(tagPermission_);
-                    tagPermission_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(employeeTag_);
+                    employeeTag_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -4059,7 +4309,7 @@ public final class TicketServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TicketBaseResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4073,13 +4323,13 @@ public final class TicketServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.TicketBaseResponse)
-    private static final TicketBaseResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TicketBaseResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.TicketServiceRpcProto.TicketBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
