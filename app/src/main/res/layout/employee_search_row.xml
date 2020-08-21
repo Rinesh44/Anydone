@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_employee_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_employee"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:src="@drawable/ic_assigned_emp_placeholder" />
+
+    <TextView
+        android:id="@+id/tv_employee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/civ_employee"
+        android:text="Rinesh shakya"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/tv_employee"
+        android:layout_marginTop="@dimen/dimen_10x2"
+        android:background="#F8F8F8" />
+
+</RelativeLayout>

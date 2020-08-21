@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_employee"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:background="@color/grey_shade"
+    android:elevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suggestions"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dimen_6x1"
+            android:paddingStart="@dimen/dimen_10x1"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_self"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dimen_6x1"
+            android:paddingStart="@dimen/dimen_10x1"
+            android:paddingBottom="@dimen/dimen_6x1">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_image_self"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_assigned_emp_placeholder" />
+
+            <TextView
+                android:id="@+id/tv_name_self"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:text="RInesh shakya" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#F8F8F8"/>
+
+        <TextView
+            android:id="@+id/tv_all_users"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All Users"
+            android:paddingStart="@dimen/dimen_10x1"
+            android:paddingTop="@dimen/dimen_10x1"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_all_users"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>
+

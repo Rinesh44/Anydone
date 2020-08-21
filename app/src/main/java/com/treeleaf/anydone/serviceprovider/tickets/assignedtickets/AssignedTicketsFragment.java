@@ -1,13 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
 
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,14 +22,12 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
-import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
+import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +37,8 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresenterImpl>
-        implements AssignedTicketContract.AssignedTicketView {
+        implements AssignedTicketContract.AssignedTicketView,
+        TicketsFragment.AssignedListListener {
     private static final String TAG = "OpenTicketsFragment";
     @BindView(R.id.rv_open_tickets)
     RecyclerView rvOpenTickets;
@@ -51,36 +48,33 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     ImageView ivDataNotFound;
     @BindView(R.id.fab_assign)
     FloatingActionButton fabAssign;
-    @BindView(R.id.pb_search)
-    ProgressBar progressBar;
+    /*   @BindView(R.id.pb_search)
+       ProgressBar progressBar;*/
     private Unbinder unbinder;
-    private OnSwipeListener swipeListener;
     private TicketsAdapter adapter;
+    private ProgressDialog progressBar;
+    private List<Tickets> assignedTickets;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-     /*   TicketsFragment mFragment = (TicketsFragment) getParentFragment();
+        TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setAssignedTicketListener(this);*/
+        mFragment.setAssignedListListener(this);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        List<Tickets> assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+        assignedTickets = TicketRepo.getInstance().getAssignedTickets();
 
         if (CollectionUtils.isEmpty(assignedTickets)) {
             presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(assignedTickets);
         }
-    }
-
-    public void reFetchList() {
-        presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
     }
 
     @Override
@@ -107,6 +101,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
+                i.putExtra("ticket_desc", ticket.getTitle());
                 startActivity(i);
             });
             rvOpenTickets.setAdapter(adapter);
@@ -123,6 +118,9 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
         boolean fetchChanges = Hawk.get(Constants.FETCH__ASSIGNED_LIST, false);
         if (fetchChanges) {
             presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+        } else {
+            assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+            setUpRecyclerView(assignedTickets);
         }
     }
 
@@ -136,12 +134,9 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
          */
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
-                    GlobalUtils.showLog(TAG, "swipe refresh close called");
+                    GlobalUtils.showLog(TAG, "swipe refresh assigned called");
 
-                    // This method performs the actual data-refresh operation
-                    if (swipeListener != null) {
-                        swipeListener.onSwipeRefresh();
-                    }
+                    presenter.getAssignedTickets(false, 0, System.currentTimeMillis(), 100);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -152,12 +147,6 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
         );
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        swipeListener = (OnSwipeListener) getParentFragment();
-//        onAssignedTicketsListener = (OnAssignedTicketsListener) getParentFragment();
-    }
 
     @Override
     public void getAssignedTicketSuccess() {
@@ -178,7 +167,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void showProgressBar(String message) {
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar = ProgressDialog.show(getContext(), null, message, true);
     }
 
     @Override
@@ -189,7 +178,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     @Override
     public void hideProgressBar() {
         if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
+            progressBar.dismiss();
         }
     }
 
@@ -204,6 +193,12 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     void gotoAssignableTicketList() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void updateAssignedList(List<Tickets> ticketsList) {
+        GlobalUtils.showLog(TAG, "interface implemented");
+        setUpRecyclerView(ticketsList);
     }
 }
 

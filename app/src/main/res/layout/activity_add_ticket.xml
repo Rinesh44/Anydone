@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/dimens_2x">
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,7 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/dimens_2x">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_summary"
@@ -29,7 +29,8 @@
                     android:id="@+id/et_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:background="@null"
+                    android:inputType="textVisiblePassword"
                     android:maxLength="45"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />
@@ -50,54 +51,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:gravity="start"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textVisiblePassword"
                     android:maxLength="45"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x">
-
-                <!-- dummy view to prevent auto-focus-->
-                <LinearLayout
-                    android:layout_width="0px"
-                    android:layout_height="0px"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Service">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_service"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableEnd="@drawable/ic_dropdown"
-                        android:textColor="#666666" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/sp_service_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_10x2"
-                    android:layout_marginEnd="@dimen/dimen_2x2"
-                    android:elevation="@dimen/dimen_2x1" />
-
-            </RelativeLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_customer_name"
@@ -107,13 +66,14 @@
                 android:layout_marginBottom="@dimen/dimens_2x"
                 android:hint="@string/customer_name">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/et_customer_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_dropdown"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textVisiblePassword"
                     android:maxLength="45"
+                    android:padding="@dimen/dimens_2x"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />
 
@@ -131,7 +91,7 @@
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     android:maxLength="45"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />
@@ -151,57 +111,92 @@
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textVisiblePassword"
                     android:maxLength="45"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_assign_employee"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <include
+                layout="@layout/layout_assign_employee_result"
+                android:visibility="gone" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/assign_employee">
+                android:layout_marginTop="@dimen/dimen_6x1"
+                android:background="@drawable/et_rounded"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_assign_employee"
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/fbl_employee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_dropdown"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="45"
-                    android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
+                    android:layout_gravity="center_vertical"
+                    app:alignContent="space_around"
+                    app:alignItems="stretch"
+                    app:flexWrap="wrap"
+                    app:showDivider="beginning|middle|end">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/et_assign_employee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@android:color/transparent"
+                        android:drawableEnd="@drawable/ic_dropdown"
+                        android:hint="Assign Employee"
+                        android:imeOptions="actionDone"
+                        android:inputType="textVisiblePassword"
+                        android:maxLength="45"
+                        android:textColorHint="@color/grey_dark"
+                        android:textSize="@dimen/material_text_subhead"
+                        app:layout_flexGrow="1" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_label"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                </com.google.android.flexbox.FlexboxLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/label">
+                android:layout_marginTop="@dimen/dimen_10x2"
+                android:background="@drawable/et_rounded"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_label"
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/fbl_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_dropdown"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="45"
-                    android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
+                    android:layout_gravity="center_vertical"
+                    app:alignContent="space_around"
+                    app:alignItems="stretch"
+                    app:flexWrap="wrap"
+                    app:showDivider="beginning|middle|end">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/et_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@android:color/transparent"
+                        android:drawableEnd="@drawable/ic_dropdown"
+                        android:hint="Label"
+                        android:imeOptions="actionDone"
+                        android:inputType="textVisiblePassword"
+                        android:maxLength="45"
+                        android:textColorHint="@color/grey_dark"
+                        android:textSize="@dimen/material_text_subhead"
+                        app:layout_flexGrow="1" />
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_create_ticket"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_10x5"
+                android:layout_height="@dimen/dimen_10x6"
+                android:layout_marginTop="@dimen/dimens_2x"
                 android:text="@string/create_ticket"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

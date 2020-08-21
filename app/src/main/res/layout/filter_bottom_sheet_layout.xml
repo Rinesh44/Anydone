@@ -10,6 +10,12 @@
     android:orientation="vertical"
     android:padding="15dp">
 
+    <View
+        android:layout_width="120dp"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bottomsheet_drawer" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

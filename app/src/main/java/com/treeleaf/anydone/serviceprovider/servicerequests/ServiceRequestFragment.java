@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.servicerequests;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
@@ -44,12 +45,15 @@ import com.treeleaf.anydone.serviceprovider.servicerequests.open.OnOpenFragmentL
 import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRequestFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.OnAcceptedFragmentReadyListener;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DatePicker;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -78,6 +82,7 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
     private List<ServiceRequest> ongoingRequests;
     private List<ServiceRequest> closedRequests;
     private RadioGroup rgStatus;
+    private long fromTime, tillTime;
     private boolean filter = false;
     private BottomSheetDialog filterBottomSheet;
     private HorizontalScrollView hsvStatusContainer;
@@ -85,6 +90,7 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
     private MaterialButton btnSearch;
     private AutoCompleteTextView etServiceName;
     private TextView tvReset;
+    final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected int getLayout() {
@@ -136,6 +142,30 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
         tvReset = view.findViewById(R.id.tv_reset);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
 
+
+        DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateFromDate();
+        };
+
+        DatePickerDialog.OnDateSetListener tillDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateToDate();
+        };
+
+        etFromDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), fromDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+
+
+        etTillDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), tillDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+
         tvReset.setOnClickListener(v -> {
             toggleBottomSheet();
             etServiceName.setText("");
@@ -150,7 +180,6 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
             } else {
                 presenter.getOpenServiceRequests(true);
             }
-
         });
 
         etServiceName.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
@@ -292,6 +321,17 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
         UiUtils.hideKeyboardForced(getContext());
     }
 
+
+    @Override
+    public void setFromDateTime(long fromTimeMillis) {
+        fromTime = fromTimeMillis;
+    }
+
+    @Override
+    public void setTillDateTime(long tillTimeMillis) {
+        tillTime = tillTimeMillis;
+    }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -300,6 +340,21 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
     @Override
     protected void injectDagger(ApplicationComponent applicationComponent) {
         applicationComponent.inject(this);
+    }
+
+
+    private void updateFromDate() {
+        String myFormat = "yyyy/MM/dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etFromDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateToDate() {
+        String myFormat = "yyyy/MM/dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etTillDate.setText(sdf.format(myCalendar.getTime()));
     }
 
 
@@ -333,14 +388,6 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
         etServiceName.setAdapter(adapter);
     }
 
-
-    @Override
-    public void setFromDateTime(long fromTimeMillis) {
-    }
-
-    @Override
-    public void setTillDateTime(long tillTimeMillis) {
-    }
 
     @Override
     public void getAcceptedServiceRequestSuccess() {
@@ -457,7 +504,6 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
 
     @Override
     public void hideProgressBar() {
-
         if (pbSearch != null) {
             pbSearch.setVisibility(View.GONE);
         }

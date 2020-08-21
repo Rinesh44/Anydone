@@ -2,11 +2,14 @@ package com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets;
 
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -17,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
@@ -37,7 +41,8 @@ import butterknife.BindView;
 import butterknife.Unbinder;
 
 public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImpl>
-        implements ClosedTicketContract.ClosedTicketView {
+        implements ClosedTicketContract.ClosedTicketView,
+        TicketsFragment.ClosedListListener {
     private static final String TAG = "ClosedTicketsFragment";
     @BindView(R.id.rv_closed_tickets)
     RecyclerView rvClosedTickets;
@@ -45,18 +50,19 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.pb_search)
-    ProgressBar progressBar;
+    /*    @BindView(R.id.pb_search)
+        ProgressBar progressBar;*/
     private Unbinder unbinder;
-    private OnSwipeListener swipeListener;
-    private OnClosedTicketsListener onClosedTicketsListener;
     private TicketsAdapter adapter;
     private int reopenTicketPos;
-    private FetchAssignedTicketListener listener;
+    private OnTicketReopenListener listener;
+    private ProgressDialog progressBar;
 
-    public interface FetchAssignedTicketListener {
-        void onTicketReopened();
+    @Override
+    public void updateClosedList(List<Tickets> ticketsList) {
+        setUpRecyclerView(ticketsList);
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,13 +70,12 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
-//        mFragment.setClosedTicketListener(this);
+        mFragment.setClosedListListener(this);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         List<Tickets> closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
 
         if (CollectionUtils.isEmpty(closedTickets)) {
@@ -78,7 +83,9 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         } else {
             setUpRecyclerView(closedTickets);
         }
+
     }
+
 
     @Override
     protected int getLayout() {
@@ -104,6 +111,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
+                i.putExtra("ticket_desc", ticket.getTitle());
                 startActivity(i);
             });
 
@@ -167,10 +175,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh close called");
 
-                    // This method performs the actual data-refresh operation
-                    if (swipeListener != null) {
-                        swipeListener.onSwipeRefresh();
-                    }
+                    presenter.getClosedResolvedTickets(false, 0, System.currentTimeMillis(), 100);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -179,19 +184,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
                     }, 1000);
                 }
         );
-
-        if (onClosedTicketsListener != null) {
-            onClosedTicketsListener.onClosedTicketsCreated();
-        }
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        /*swipeListener = (OnSwipeListener) getParentFragment();
-        onClosedTicketsListener = (OnClosedTicketsListener) getParentFragment();*/
-        listener = (FetchAssignedTicketListener) getParentFragment();
-    }
 
     @Override
     public void onDetach() {
@@ -218,7 +212,9 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void onReopenSuccess() {
         adapter.deleteItem(reopenTicketPos);
-        listener.onTicketReopened();
+      /*  if (listener != null)
+            listener.ticketReopened();*/
+        Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
     }
 
     @Override
@@ -233,7 +229,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void showProgressBar(String message) {
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar = ProgressDialog.show(getContext(), null, message, true);
     }
 
     @Override
@@ -244,7 +240,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void hideProgressBar() {
         if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
+            progressBar.dismiss();
         }
     }
 
@@ -259,6 +255,19 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void showClosedTicketList(List<Tickets> closedTicketList) {
         setUpRecyclerView(closedTicketList);
     }*/
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        // check if parent Fragment implements listener
+        if (getParentFragment() instanceof OnTicketReopenListener) {
+            listener = (OnTicketReopenListener) getParentFragment();
+        } else {
+            throw new RuntimeException("The parent fragment must implement OnTicketReopenedListener");
+        }
+    }
 
 
 }

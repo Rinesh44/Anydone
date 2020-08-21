@@ -14,6 +14,8 @@ import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -143,6 +145,14 @@ public interface AnyDoneService {
                 @Query("to") long to,
                 @Query("pageSize") int pageSize);
 
+    @GET("rtc/messages/{ticketId}")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
+    getTicketMessages(@Header(AUTHORIZATION) String token,
+                      @Path(value = "ticketId") long refId,
+                      @Query("from") long from,
+                      @Query("to") long to,
+                      @Query("pageSize") int pageSize);
+
     @PATCH("service/order/close")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse> closeOrder(@Header(AUTHORIZATION)
                                                                                  String token,
@@ -189,6 +199,12 @@ public interface AnyDoneService {
     Observable<BotConversationRpcProto.BotConversationBaseResponse>
     getSuggestions(@Header(AUTHORIZATION) String token,
                    @Body BotConversationProto.ConversationRequest request);
+
+
+    @POST("bot/faq")
+    Observable<BotConversationRpcProto.BotConversationBaseResponse>
+    getTicketSuggestions(@Header(AUTHORIZATION) String token,
+                         @Body BotConversationProto.ConversationRequest request);
 
     @GET("ticket")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -313,7 +329,44 @@ public interface AnyDoneService {
     @POST("ticket")
     Observable<TicketServiceRpcProto.TicketBaseResponse> createTicket(@Header(AUTHORIZATION)
                                                                               String token,
-                                                                      TicketProto.Ticket ticket);
+                                                                      @Body TicketProto.Ticket ticket);
+
+    @GET("customers")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> findCustomers(@Header(AUTHORIZATION)
+                                                                               String token,
+                                                                       @Query("query") String query,
+                                                                       @Query("from") long from,
+                                                                       @Query("to") long to,
+                                                                       @Query("page") int page);
+
+    @GET("employees")
+    Observable<UserRpcProto.UserBaseResponse> findEmployees(@Header(AUTHORIZATION)
+                                                                    String token);
+
+    @GET("tag")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> findTag(@Header(AUTHORIZATION)
+                                                                         String token);
+
+    @GET("consumers")
+    Observable<UserRpcProto.UserBaseResponse> findConsumers(@Header(AUTHORIZATION)
+                                                                    String token);
+
+    @GET("ticket/{ticketId}/timeline")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(@Header(AUTHORIZATION)
+                                                                                   String token,
+                                                                           @Path(value = "ticketId")
+                                                                                   long ticketId);
+
+    @GET
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    filterTickets(@Header(AUTHORIZATION) String token, @Url String url);
+
+    @POST("ticket/assign/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> assignEmployee(@Header(AUTHORIZATION)
+                                                                                String token,
+                                                                        @Path(value = "ticketId")
+                                                                                long ticketId,
+                                                                        @Body TicketProto.Ticket employeeAssigned);
 
 }
 

@@ -169,8 +169,8 @@ public class TreeleafMqttClient {
 
     public static void subscribe(String topic, TreeleafMqttCallback callback) {
         try {
-                mqttClient.subscribe(topic, DEFAULT_QOS, callback::messageArrived);
-                mqttClient.setCallback(callback);
+            mqttClient.subscribe(topic, DEFAULT_QOS, callback::messageArrived);
+            mqttClient.setCallback(callback);
 
         } catch (MqttException e) {
             e.printStackTrace();

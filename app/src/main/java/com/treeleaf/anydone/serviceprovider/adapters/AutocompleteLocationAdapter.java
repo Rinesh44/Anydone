@@ -26,6 +26,7 @@ public class AutocompleteLocationAdapter extends ArrayAdapter<AutocompleteLocati
         locationListFull = new ArrayList<>(locationList);
     }
 
+
     @NonNull
     @Override
     public Filter getFilter() {

@@ -30,12 +30,11 @@
 
         <LinearLayout
             android:id="@+id/ll_ticket_view"
-            android:layout_width="90dp"
+            android:layout_width="75dp"
             android:layout_height="130dp"
             android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginTop="@dimen/dimens_2x"
             android:background="@drawable/blue_round_bg"
-            android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="@dimen/dimen_10x1"
             android:paddingBottom="@dimen/dimen_10x1">
@@ -63,29 +62,23 @@
                 android:textSize="@dimen/material_text_caption" />
 
             <View
+                android:id="@+id/v_dots"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_6x1"
                 android:layout_marginTop="@dimen/dimen_2x2"
                 android:layout_marginBottom="@dimen/dimen_2x2"
                 android:background="@drawable/dotted_line" />
 
-            <TextView
-                android:id="@+id/tv_assigned_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_6x1"
-                android:layout_marginEnd="@dimen/dimen_6x1"
-                android:text="@string/assigned_to"
-                android:textColor="@color/white"
-                android:textSize="@dimen/material_text_caption" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ll_assinged_employee_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_2x2"
                 android:gravity="center"
-                android:orientation="horizontal" />
+                android:layout_marginStart="@dimen/dimen_2x2"
+                android:layout_gravity="center"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="@dimen/dimen_2x2" />
 
         </LinearLayout>
 

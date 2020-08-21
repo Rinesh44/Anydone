@@ -49,6 +49,28 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public void saveTicket(final TicketProto.Ticket ticketPb,
+                           String type,
+                           final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+
+        try {
+            realm.executeTransaction(realm1 -> {
+                Tickets ticket =
+                        transformTicket(ticketPb, type);
+                realm1.copyToRealmOrUpdate(ticket);
+                callback.success(null);
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+
     public Tickets getTicketById(long ticketId) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
@@ -60,6 +82,16 @@ public class TicketRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
+
+    public void changeTicketStatusToStart(long ticketId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            String status = TicketProto.TicketState.TICKET_STARTED.name();
+            result.setString("ticketStatus", status);
+        });
     }
 
     public void closeServiceRequest(long id) {
@@ -90,16 +122,41 @@ public class TicketRepo extends Repo {
             tickets.setServiceProvider(ProtoMapper.transformServiceProvider(ticketPb.getServiceProvider()));
             tickets.setTicketSource(ticketPb.getTicketSource().name());
             tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
-            tickets.setServiceId(ticketPb.getService().getServiceId());
+//            tickets.setServiceId(ticketPb.getService().getServiceId());
             tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeesAssignedList()));
             tickets.setCustomerType(ticketPb.getCustomerType().name());
             tickets.setCreatedAt(ticketPb.getCreatedAt());
             tickets.setTicketType(type);
             tickets.setTicketStatus(ticketPb.getTicketState().name());
+            tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
+            tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
             ticketsList.add(tickets);
         }
 
         return ticketsList;
+    }
+
+    public Tickets transformTicket
+            (TicketProto.Ticket ticketPb, String type) {
+
+        Tickets tickets = new Tickets();
+        tickets.setTicketId(ticketPb.getTicketId());
+        tickets.setTitle(ticketPb.getTitle());
+        tickets.setDescription(ticketPb.getDescription());
+        tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
+        tickets.setServiceProvider(ProtoMapper.transformServiceProvider(ticketPb.getServiceProvider()));
+        tickets.setTicketSource(ticketPb.getTicketSource().name());
+        tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
+//            tickets.setServiceId(ticketPb.getService().getServiceId());
+        tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeesAssignedList()));
+        tickets.setCustomerType(ticketPb.getCustomerType().name());
+        tickets.setCreatedAt(ticketPb.getCreatedAt());
+        tickets.setTicketType(type);
+        tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
+        tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
+        tickets.setTicketStatus(ticketPb.getTicketState().name());
+
+        return tickets;
     }
 
 

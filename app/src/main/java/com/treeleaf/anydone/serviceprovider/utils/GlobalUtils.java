@@ -75,7 +75,7 @@ public class GlobalUtils {
 
     public static String getDateAlternate(long time) {
         try {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("E, d MMM");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
             return sdf.format(new Date(time));
         } catch (Exception e) {
             e.printStackTrace();
