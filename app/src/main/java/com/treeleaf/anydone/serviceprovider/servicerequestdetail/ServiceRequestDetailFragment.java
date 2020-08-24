@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
@@ -790,13 +789,10 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
                 .onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
     }
 
-    public void onImageReceivedFromConsumer() {
-        /**
-         * extract bytestring send from consumer, convert it to bitmap and load
-         */
-        ByteString byteString = null;
+    @Override
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
         ((ServiceRequestDetailActivity) getActivity())
-                .onImageReceivedFromConsumer(byteString);
+                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
     }
 
     @Override

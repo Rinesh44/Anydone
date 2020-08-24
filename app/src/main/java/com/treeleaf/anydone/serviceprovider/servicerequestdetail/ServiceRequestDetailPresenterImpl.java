@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
@@ -76,6 +77,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
+
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
 
 public class ServiceRequestDetailPresenterImpl extends
         BasePresenter<ServiceRequestDetailContract.ServiceRequestDetailView>
@@ -755,11 +758,16 @@ public class ServiceRequestDetailPresenterImpl extends
                     }
                 }
 
-                if (relayResponse.getResponseType().equals("START_DRAW_RESPONSE")) {
-
-
-
-//                    getView().onImageReceivedFromConsumer();
+                if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
+                    SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
+                    if (startDraw != null) {
+                        ByteString imageByteString = startDraw.getCapturedImage();
+                        int width = startDraw.getBitmapWidth();
+                        int height = startDraw.getBitmapHeight();
+                        long captureTime = startDraw.getCapturedTime();
+                        byte[] convertedBytes = imageByteString.toByteArray();
+                        getView().onImageReceivedFromConsumer( width, height, captureTime, convertedBytes);
+                    }
                 }
 
                 if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType

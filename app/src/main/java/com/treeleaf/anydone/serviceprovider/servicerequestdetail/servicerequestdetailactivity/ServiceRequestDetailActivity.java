@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -156,6 +157,13 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             }
 
+            /*@Override
+            public void imageReceivedSuccess() {
+                *//**
+                 * image received from consumer
+                 *//*
+            }*/
+
             @Override
             public void passJanusServerInfo(BigInteger sessionId,
                                             BigInteger roomId, BigInteger participantId) {
@@ -238,6 +246,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             public void onPublisherVideoStarted() {
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
+
+            /*@Override
+            public void imageReceivedSuccess() {
+
+            }*/
         };
 
     }
@@ -260,11 +273,23 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     }
 
-    public void onImageReceivedFromConsumer(ByteString byteString){
-        byte[] convertedBytes = byteString.toByteArray();
+//    public void onImageReceivedFromConsumer(ByteString byteString){
+//        byte[] convertedBytes = byteString.toByteArray();
+//
+//        Bitmap compressedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
+////        videoCallListenerServer.
+//    }
 
-        Bitmap compressedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
-//        videoCallListenerServer.
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (videoCallListenerServer != null){
+//                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
+                }
+            }
+        });
+
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
