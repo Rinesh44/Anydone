@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 public class DatePicker implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+    private static final String TAG = "DatePicker";
     EditText _editText;
     private int _day;
     private int _month;
@@ -19,7 +20,7 @@ public class DatePicker implements View.OnClickListener, DatePickerDialog.OnDate
 
     public DatePicker(Context context, int editTextViewID) {
         Activity act = (Activity) context;
-        this._editText = (EditText) act.findViewById(editTextViewID);
+        this._editText = act.findViewById(editTextViewID);
         this._editText.setOnClickListener(this);
         this._context = context;
     }
@@ -36,6 +37,10 @@ public class DatePicker implements View.OnClickListener, DatePickerDialog.OnDate
 
     // updates the date in the birth date EditText
     private void updateDisplay() {
+        GlobalUtils.showLog(TAG, "update display called");
+        GlobalUtils.showLog(TAG, "year" + _birthYear);
+        GlobalUtils.showLog(TAG, "month" + _month);
+        GlobalUtils.showLog(TAG, "day" + _day);
         _editText.setText(new StringBuilder()
                 // Month is 0 based so add 1
                 .append(_birthYear).append("/").append(_month + 1).append("/").append(_day).append(" "));

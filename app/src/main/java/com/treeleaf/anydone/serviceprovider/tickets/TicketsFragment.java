@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.tickets;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,39 +33,40 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.entities.OrderServiceProto;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.OnTicketReopenListener;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
-        implements TicketsContract.TicketsView, OnSwipeListener,
-        ClosedTicketsFragment.FetchAssignedTicketListener {
+        implements TicketsContract.TicketsView, OnTicketReopenListener {
     private static final String TAG = "ServiceRequestFragment";
     @BindView(R.id.tabs)
     TabLayout mTabs;
     @BindView(R.id.viewpager)
     ViewPager mViewpager;
-    @BindView(R.id.bottom_sheet)
-    LinearLayout llBottomSheet;
+    /*    @BindView(R.id.bottom_sheet)
+        LinearLayout llBottomSheet;*/
     @BindView(R.id.iv_filter)
     ImageView ivFilter;
     @BindView(R.id.pb_search)
@@ -73,6 +75,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     MaterialButton btnAddTicket;
 
     private List<Tickets> assignedTicketList;
+    private List<Tickets> subscribedTicketList;
+    private List<Tickets> closedTicketList;
     String statusValue = null;
     private RadioGroup rgStatus;
     private boolean filter = false;
@@ -80,8 +84,13 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private HorizontalScrollView hsvStatusContainer;
     private EditText etFromDate, etTillDate;
     private MaterialButton btnSearch;
-    private AutoCompleteTextView etServiceName;
+    private AutoCompleteTextView etSearchText;
     private TextView tvReset;
+    final Calendar myCalendar = Calendar.getInstance();
+    private AssignedListListener assignedListListener;
+    private SubscribedListListener subscribedListListener;
+    private ClosedListListener closedListListener;
+
 
     @Override
     protected int getLayout() {
@@ -104,6 +113,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
+        subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
+        closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
         createFilterBottomSheet();
 
         setupViewPager(mViewpager);
@@ -114,27 +125,65 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
-                .inflate(R.layout.filter_bottom_sheet_layout, null);
+                .inflate(R.layout.layout_bottomsheet_filter_tickets, null);
         filterBottomSheet.setContentView(view);
         btnSearch = view.findViewById(R.id.btn_search);
-        etServiceName = view.findViewById(R.id.et_service_name);
+        etSearchText = view.findViewById(R.id.et_search);
         etFromDate = view.findViewById(R.id.et_from_date);
         etTillDate = view.findViewById(R.id.et_till_date);
         tvReset = view.findViewById(R.id.tv_reset);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
 
+
+        DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateFromDate();
+        };
+
+        DatePickerDialog.OnDateSetListener tillDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateToDate();
+        };
+
+        etFromDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), fromDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+
+
+        etTillDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), tillDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+
         tvReset.setOnClickListener(v -> {
             toggleBottomSheet();
-            etServiceName.setText("");
+            etSearchText.setText("");
             etFromDate.setText("");
             etTillDate.setText("");
             resetStatus();
             hideKeyBoard();
 
-            Hawk.put(Constants.SELECTED_FILTER_STATUS, -1);
+            Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
+
+            if (mViewpager.getCurrentItem() == 0) {
+                if (assignedListListener != null) {
+                    assignedListListener.updateAssignedList(assignedTicketList);
+                }
+            } else if (mViewpager.getCurrentItem() == 1) {
+                if (subscribedListListener != null) {
+                    subscribedListListener.updateSubscribedList(subscribedTicketList);
+                }
+            } else {
+                if (closedListListener != null) {
+                    closedListListener.updateClosedList(closedTicketList);
+                }
+            }
         });
 
-        etServiceName.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
+        etSearchText.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
 
         btnSearch.setOnClickListener(v -> {
             filter = true;
@@ -160,19 +209,42 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 to = calendarTillDate.getTime().getTime();
             }
 
-            Hawk.put(Constants.SELECTED_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
-       /*     presenter.filterServiceRequests(etServiceName.getText().toString(), from, to,
-                    getOrderState(statusValue.toLowerCase()));*/
+            Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
+            if (mViewpager.getCurrentItem() == 0) {
+                presenter.filterAssignedTickets(etSearchText.getText().toString(), from, to,
+                        getTicketState(statusValue.toLowerCase()));
+            } else if (mViewpager.getCurrentItem() == 1) {
+                presenter.filterSubscribedTickets(etSearchText.getText().toString(), from, to,
+                        getTicketState(statusValue.toLowerCase()));
+            } else {
+                presenter.filterClosedTickets(etSearchText.getText().toString(), from, to,
+                        getTicketState(statusValue.toLowerCase()));
+            }
+
             toggleBottomSheet();
         });
 
 
-        etServiceName.setOnEditorActionListener((v, actionId, event) -> {
+        etSearchText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideKeyBoard();
             }
             return false;
         });
+    }
+
+    private void updateFromDate() {
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etFromDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateToDate() {
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etTillDate.setText(sdf.format(myCalendar.getTime()));
     }
 
     @OnClick(R.id.btn_add_ticket)
@@ -183,11 +255,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @OnClick(R.id.iv_filter)
     void filterRequests() {
-        if (!CollectionUtils.isEmpty(assignedTicketList)) {
-            int fragmentIndex = mViewpager.getCurrentItem();
-            if (fragmentIndex == 0) {
+        int fragmentIndex = mViewpager.getCurrentItem();
+        if (fragmentIndex == 0) {
+            if (!CollectionUtils.isEmpty(assignedTicketList)) {
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                        .inflate(R.layout.layout_status_buttons_ongoing, null);
+                        .inflate(R.layout.layout_status_buttons_assigned, null);
                 rgStatus = statusView.findViewById(R.id.rg_status);
 
                 rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
@@ -208,9 +280,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
                 hsvStatusContainer.removeAllViews();
                 hsvStatusContainer.addView(rgStatus);
-            } else {
+            }
+        } else if (fragmentIndex == 1) {
+            if (!CollectionUtils.isEmpty(subscribedTicketList)) {
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                        .inflate(R.layout.layout_status_button_closed, null);
+                        .inflate(R.layout.layout_status_buttons_alternate, null);
                 rgStatus = statusView.findViewById(R.id.rg_status);
 
                 rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
@@ -233,40 +307,59 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 hsvStatusContainer.removeAllViews();
                 hsvStatusContainer.addView(rgStatus);
             }
-            GlobalUtils.showLog(TAG, "fragment index: " + fragmentIndex);
         } else {
-            UiUtils.showSnackBar(getContext(), Objects.requireNonNull(getActivity()).getWindow()
-                            .getDecorView().getRootView(),
-                    "No service requests found to filter");
+            if (!CollectionUtils.isEmpty(closedTicketList)) {
+                @SuppressLint("InflateParams") View statusView = getLayoutInflater()
+                        .inflate(R.layout.layout_status_buttons_closed, null);
+                rgStatus = statusView.findViewById(R.id.rg_status);
+
+                rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
+                    RadioButton selectedRadioButton = group.findViewById(checkedId);
+
+                    //highlight selected button and disable unselected
+                    int count = group.getChildCount();
+                    for (int i = 0; i < count; i++) {
+                        RadioButton rb = (RadioButton) group.getChildAt(i);
+                        rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+                        rb.setTextColor(getResources().getColor(R.color.grey));
+                    }
+
+                    selectedRadioButton.setBackground(getResources()
+                            .getDrawable(R.drawable.round_line_active));
+                    selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    statusValue = selectedRadioButton.getText().toString().trim();
+                });
+
+                hsvStatusContainer.removeAllViews();
+                hsvStatusContainer.addView(rgStatus);
+            }
         }
-//        toggleBottomSheet();
+        GlobalUtils.showLog(TAG, "fragment index: " + fragmentIndex);
+        toggleBottomSheet();
     }
 
 
-    private String getOrderState(String statusValue) {
-        switch (statusValue) {
-            case "pending":
-                return OrderServiceProto.ServiceOrderState.PENDING_SERVICE_ORDER.name();
-
-            case "accepted":
-                return OrderServiceProto.ServiceOrderState.ACCEPTED_SERVICE_ORDER.name();
-
-            case "completed":
-                return OrderServiceProto.ServiceOrderState.COMPLETED_SERVICE_ORDER.name();
-
-            case "cancelled":
-                return OrderServiceProto.ServiceOrderState.CANCELLED_SERVICE_ORDER.name();
-
+    private int getTicketState(String statusValue) {
+        switch (statusValue.toLowerCase()) {
             case "started":
-                return OrderServiceProto.ServiceOrderState.STARTED_SERVICE_ORDER.name();
+                return TicketProto.TicketState.TICKET_STARTED.getNumber();
+
+            case "todo":
+                return TicketProto.TicketState.TICKET_CREATED.getNumber();
+
+            case "reopened":
+                return TicketProto.TicketState.TICKET_REOPENED.getNumber();
+
+            case "resolved":
+                return TicketProto.TicketState.TICKET_RESOLVED.getNumber();
 
             case "closed":
-                return OrderServiceProto.ServiceOrderState.CLOSED_SERVICE_ORDER.name();
+                return TicketProto.TicketState.TICKET_CLOSED.getNumber();
 
             default:
                 break;
         }
-        return "";
+        return -1;
     }
 
     @Override
@@ -297,7 +390,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     public void toggleBottomSheet() {
         if (filterBottomSheet.isShowing()) filterBottomSheet.hide();
         else {
-            int selectedRadioBtn = Hawk.get(Constants.SELECTED_FILTER_STATUS, -1);
+            int selectedRadioBtn = Hawk.get(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
             if (selectedRadioBtn != -1) {
                 int rgCount = rgStatus.getChildCount();
                 for (int i = 0; i < rgCount; i++) {
@@ -365,16 +458,87 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     }
 
     @Override
-    public void onSwipeRefresh() {
-        GlobalUtils.showLog(TAG, "swipe implemented");
+    public void updateAssignedTicketList(List<Tickets> ticketsList) {
+        if (assignedListListener != null) {
+            assignedListListener.updateAssignedList(ticketsList);
+        } else {
+            GlobalUtils.showLog(TAG, "assigned list listener null");
+        }
     }
 
     @Override
-    public void onTicketReopened() {
-      /*  AssignedTicketsFragment fragment = (AssignedTicketsFragment) getChildFragmentManager()
-                .findFragmentById(R.id.fragment_open);
-        fragment.reFetchList();*/
+    public void filterAssignedTicketsFailed(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+        List<Tickets> emptyList = new ArrayList<>();
+        assignedListListener.updateAssignedList(emptyList);
     }
+
+    @Override
+    public void updateSubscribedTicketList(List<Tickets> ticketsList) {
+        if (subscribedListListener != null) {
+            subscribedListListener.updateSubscribedList(ticketsList);
+        } else {
+            GlobalUtils.showLog(TAG, "subscribed list listener null");
+        }
+    }
+
+    @Override
+    public void filterSubscribedTicketFailed(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+        List<Tickets> emptyList = new ArrayList<>();
+        subscribedListListener.updateSubscribedList(emptyList);
+    }
+
+    @Override
+    public void updateClosedTicketList(List<Tickets> ticketsList) {
+        if (closedListListener != null) {
+            closedListListener.updateClosedList(ticketsList);
+        } else {
+            GlobalUtils.showLog(TAG, "closed list listener null");
+        }
+    }
+
+    @Override
+    public void filterClosedTicketFailed(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+        List<Tickets> emptyList = new ArrayList<>();
+        closedListListener.updateClosedList(emptyList);
+    }
+
+    @Override
+    public void ticketReopened() {
+        GlobalUtils.showLog(TAG, "on ticket reopened interface implemented");
+        if (assignedListListener != null) {
+            assignedListListener.updateAssignedList(assignedTicketList);
+        } else {
+            GlobalUtils.showLog(TAG, "assinged list listnner is null");
+        }
+    }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -404,6 +568,30 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    public interface AssignedListListener {
+        void updateAssignedList(List<Tickets> ticketsList);
+    }
+
+    public void setAssignedListListener(AssignedListListener listener) {
+        assignedListListener = listener;
+    }
+
+    public interface SubscribedListListener {
+        void updateSubscribedList(List<Tickets> ticketsList);
+    }
+
+    public void setSubscribedListListener(SubscribedListListener listener) {
+        subscribedListListener = listener;
+    }
+
+    public interface ClosedListListener {
+        void updateClosedList(List<Tickets> ticketsList);
+    }
+
+    public void setClosedListListener(ClosedListListener listener) {
+        closedListListener = listener;
     }
 }
 

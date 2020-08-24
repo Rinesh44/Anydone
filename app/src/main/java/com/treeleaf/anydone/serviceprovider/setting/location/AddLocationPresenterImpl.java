@@ -197,8 +197,15 @@ public class AddLocationPresenterImpl extends BasePresenter<AddLocationContract.
             double lat = locationArray.getDouble(1);
             double lng = locationArray.getDouble(0);
 
-            String[] separated = obj.getString("place_name").split(",");
-            autocompleteLocation.setSecondary(separated[0].trim() + ", " + separated[1].trim());
+            String placeName = (String) obj.get("place_name");
+            if (placeName.contains(",")) {
+                String[] separated = obj.getString("place_name").split(",");
+                GlobalUtils.showLog(TAG, "location check: " + obj.getString("place_name"));
+                if (separated[1] != null)
+                    autocompleteLocation.setSecondary(separated[0].trim() + ", " + separated[1].trim());
+            } else {
+                autocompleteLocation.setSecondary(placeName);
+            }
             autocompleteLocation.setLat(lat);
             autocompleteLocation.setLng(lng);
             placesList.add(autocompleteLocation);

@@ -6,6 +6,7 @@ import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -79,6 +80,8 @@ public final class ProtoMapper {
         customer1.setCustomerId(customerPb.getCustomerId());
         customer1.setFullName(customerPb.getFullName());
         customer1.setProfilePic(customerPb.getProfilePic());
+        customer1.setPhone(customerPb.getPhone());
+        customer1.setEmail(customerPb.getEmail());
         return customer1;
     }
 
@@ -225,8 +228,27 @@ public final class ProtoMapper {
             employee.setCreatedAt(employeeProfile.getAssignedAt());
             employee.setEmployeeId(employeeProfile.getAssignedTo().getEmployeeProfileId());
             employee.setEmployeeImageUrl(employeeProfile.getAssignedTo().getAccount().getProfilePic());
+            employee.setName(employeeProfile.getAssignedTo().getAccount().getFullName());
             employeeRealmList.add(employee);
         }
         return employeeRealmList;
     }
+
+    public static List<Employee> transformEmployee(List<UserProto.EmployeeProfile> employeeList) {
+        List<Employee> assignEmployeeList = new ArrayList<>();
+        for (UserProto.EmployeeProfile profile : employeeList
+        ) {
+            Employee employee = new Employee();
+            employee.setAccountId(profile.getAccount().getAccountId());
+            employee.setCreatedAt(profile.getCreatedAt());
+            employee.setEmail(profile.getAccount().getEmail());
+            employee.setEmployeeId(profile.getEmployeeProfileId());
+            employee.setEmployeeImageUrl(profile.getAccount().getProfilePic());
+            employee.setName(profile.getAccount().getFullName());
+            employee.setPhone(profile.getAccount().getPhone());
+            assignEmployeeList.add(employee);
+        }
+        return assignEmployeeList;
+    }
+
 }

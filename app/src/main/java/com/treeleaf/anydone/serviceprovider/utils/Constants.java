@@ -37,6 +37,7 @@ public class Constants {
     public static final String ANYDONE_BOT = "Anydone Bot";
     public static final String KGRAPH_TITLE = "kgraph_title";
     public static final String SELECTED_FILTER_STATUS = "selected_filter_status";
+    public static final String SELECTED_TICKET_FILTER_STATUS = "selected_ticket_filter_status";
     public static final String ASSIGNED = "ASSIGNED";
     public static final String SUBSCRIBED = "SUBSCRIBED";
     public static final String CLOSED_RESOLVED = "CLOSED_RESOLVED";

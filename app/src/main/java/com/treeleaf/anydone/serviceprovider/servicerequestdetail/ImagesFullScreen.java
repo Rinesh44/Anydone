@@ -29,7 +29,7 @@ public class ImagesFullScreen extends DialogFragment {
     private TextView lblCount;
     private int selectedPosition = 0;
 
-    static ImagesFullScreen newInstance() {
+    public static ImagesFullScreen newInstance() {
         return new ImagesFullScreen();
     }
 

@@ -1,10 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
-
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,13 +17,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,6 +48,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     private OnReopenListener onReopenListener;
     private OnSubscribeListener subscribeListener;
     private OnAssignListener assignListener;
+
 
     public TicketsAdapter(List<Tickets> ticketsList, Context mContext) {
         this.ticketsList = ticketsList;
@@ -115,6 +123,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     @Override
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
+        holder.setIsRecyclable(
+                false
+        );
         Tickets tickets = ticketsList.get(position);
         if (holder.swipeRevealLayout != null) {
             viewBinderHelper.bind(holder.swipeRevealLayout,
@@ -128,33 +139,36 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         holder.ticketId.setText("#" + tickets.getTicketId());
         holder.summary.setText(tickets.getDescription());
         holder.customer.setText(tickets.getCustomer().getFullName());
-        holder.ticketStatus.setText(tickets.getTicketStatus());
         GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
         switch (tickets.getTicketStatus()) {
-            case "TICKET_ASSIGNED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_assigned_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.assigned_bg));
-
+            case "TICKET_CREATED":
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_created_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.created_bg));
+                holder.ticketStatus.setText("TODO");
                 break;
 
             case "TICKET_STARTED":
                 holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_started_text));
                 holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.started_bg));
+                holder.ticketStatus.setText("STARTED");
                 break;
 
-            case "TICKET_COMPLETED":
+            case "TICKET_RESOLVED":
                 holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_resolved_text));
                 holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.resolved_bg));
+                holder.ticketStatus.setText("RESOLVED");
                 break;
 
             case "TICKET_CLOSED":
                 holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_closed_text));
                 holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.closed_bg));
+                holder.ticketStatus.setText("CLOSED");
                 break;
 
             case "TICKET_REOPENED":
                 holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_reopened_text));
                 holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.reopened_bg));
+                holder.ticketStatus.setText("REOPENED");
                 break;
         }
 
@@ -201,7 +215,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                 break;
         }
 
-
+        holder.tags.removeAllViews();
+        holder.assignedEmployeeHolder.removeAllViews();
         for (Tags tag : tickets.getTagsRealmList()
         ) {
             TextView tagView = (TextView) LayoutInflater.from(mContext)
@@ -215,20 +230,78 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             holder.tags.addView(tagView);
         }
 
-        for (Employee assignedEmployee : tickets.getAssignedEmployee()
+        GlobalUtils.showLog(TAG, "ticket id: " + tickets.getTicketId());
+     /*   GlobalUtils.showLog(TAG, "assigned Employee size: " + tickets.getAssignedEmployee().size());
+        Tickets tickets1 = TicketRepo.getInstance().getTicketById(45);
+        GlobalUtils.showLog(TAG, "assigned emp size: " + tickets1.getAssignedEmployee().size());
+        for (Employee employee : tickets1.getAssignedEmployee()
         ) {
+            GlobalUtils.showLog(TAG, "image url check: " + employee.getEmployeeImageUrl());
+
+        }*/
+
+        boolean moreLayoutInflated = false;
+        for (int i = 0; i < tickets.getAssignedEmployee().size(); i++) {
             CircleImageView employeeImage = (CircleImageView) LayoutInflater.from(mContext)
                     .inflate(R.layout.layout_assigned_employee, null);
-            if (assignedEmployee.getEmployeeImageUrl() != null) {
-                RequestOptions options = new RequestOptions()
-                        .placeholder(R.drawable.ic_assigned_emp_placeholder)
-                        .error(R.drawable.ic_assigned_emp_placeholder);
+            Random random = new Random();
+            int randomId = random.nextInt(100);
+            employeeImage.setId(randomId);
 
-                Glide.with(mContext).load(assignedEmployee.getEmployeeImageUrl())
-                        .apply(options).into(employeeImage);
+            RequestOptions options = new RequestOptions()
+                    .placeholder(R.drawable.ic_assigned_emp_placeholder)
+                    .error(R.drawable.ic_assigned_emp_placeholder);
+
+            Glide.with(mContext).load(tickets.getAssignedEmployee().get(i).getEmployeeImageUrl())
+                    .apply(options).into(employeeImage);
+
+            boolean firstEmployee = true;
+            //sequentially add images until employee count is 3
+            if (holder.assignedEmployeeHolder.getChildCount() >= 1 && holder.assignedEmployeeHolder.getChildCount() <= 2) {
+                firstEmployee = false;
+                CircleImageView prevImage = (CircleImageView) holder.assignedEmployeeHolder.getChildAt(i - 1);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.END_OF, prevImage.getId());
+                params.setMarginStart(-30);
+                employeeImage.setLayoutParams(params);
+
+                employeeImage.setElevation(4);
+                holder.assignedEmployeeHolder.addView(employeeImage);
+
+                //show remaining people layout when employee count exceeds 3
+            } else if (!moreLayoutInflated && tickets.getAssignedEmployee().size() > 3 && holder.assignedEmployeeHolder.getChildCount() != 0) {
+                int remainingPeopleCount = tickets.getAssignedEmployee().size() - 2;
+                RelativeLayout moreLayout = (RelativeLayout) LayoutInflater.from(mContext)
+                        .inflate(R.layout.more_people, null);
+                TextView remainingPeople = moreLayout.findViewById(R.id.tv_more);
+                remainingPeople.setText("+" + remainingPeopleCount);
+
+                CircleImageView prevImage = (CircleImageView) holder.assignedEmployeeHolder.getChildAt(i - 2);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.END_OF, prevImage.getId());
+                params.setMarginStart(-30);
+                moreLayout.setLayoutParams(params);
+                moreLayout.setElevation(4);
+
+                holder.assignedEmployeeHolder.addView(moreLayout);
+                moreLayoutInflated = true;
             }
 
-            holder.assignedEmployeeHolder.addView(employeeImage);
+            if (firstEmployee) holder.assignedEmployeeHolder.addView(employeeImage);
+
+        }
+
+   /*     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+                (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        params.gravity = Gravity.CENTER;
+        params.setMargins(25, 25, 25, 25);
+        holder.assignedEmployeeHolder.setLayoutParams(params);*/
+
+        //change layout design if no assigned employee found
+        if (CollectionUtils.isEmpty(tickets.getAssignedEmployee())) {
+            holder.dots.setVisibility(View.GONE);
+            holder.assignedEmployeeHolder.setVisibility(View.GONE);
+            holder.llTicketView.setGravity(Gravity.CENTER);
         }
     }
 
@@ -242,9 +315,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     class TicketHolder extends RecyclerView.ViewHolder {
         private TextView tvDate1;
         private TextView tvDate2;
-        private LinearLayout assignedEmployeeHolder;
+        private RelativeLayout assignedEmployeeHolder;
         private RelativeLayout rlTicketHolder;
-        private TextView assignedTo;
         private TextView ticketId;
         private TextView summary;
         private TextView customer;
@@ -255,6 +327,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         private LinearLayout llSubscribe;
         private LinearLayout llAssign;
         private LinearLayout llReopen;
+        private View dots;
+        private LinearLayout llTicketView;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
@@ -262,7 +336,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             tvDate1 = itemView.findViewById(R.id.date1);
             tvDate2 = itemView.findViewById(R.id.date2);
             assignedEmployeeHolder = itemView.findViewById(R.id.ll_assinged_employee_holder);
-            assignedTo = itemView.findViewById(R.id.tv_assigned_to);
             ticketId = itemView.findViewById(R.id.tv_ticket_id_value);
             summary = itemView.findViewById(R.id.tv_summary);
             customer = itemView.findViewById(R.id.tv_customer_value);
@@ -273,6 +346,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             llUnsubscribe = itemView.findViewById(R.id.ll_swipe_unsubscribe);
             llAssign = itemView.findViewById(R.id.ll_swipe_assign);
             llSubscribe = itemView.findViewById(R.id.ll_swipe_subscribe);
+            dots = itemView.findViewById(R.id.v_dots);
+            llTicketView = itemView.findViewById(R.id.ll_ticket_view);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {

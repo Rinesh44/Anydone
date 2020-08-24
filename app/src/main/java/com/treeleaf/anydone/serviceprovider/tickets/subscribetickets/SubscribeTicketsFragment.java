@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
+import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -41,7 +43,8 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresenterImpl>
-        implements SubscribeTicketContract.SubscribeTicketsView {
+        implements SubscribeTicketContract.SubscribeTicketsView,
+        TicketsFragment.SubscribedListListener {
     private static final String TAG = "SubscribeTicketsFragmen";
     @BindView(R.id.rv_subscribe_tickets)
     RecyclerView rvSubscribeTickets;
@@ -51,21 +54,22 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     ImageView ivDataNotFound;
     @BindView(R.id.fab_subscribe)
     FloatingActionButton fabSubscribe;
-    @BindView(R.id.pb_search)
-    ProgressBar progressBar;
+    /*   @BindView(R.id.pb_search)
+       ProgressBar progressBar;*/
     private Unbinder unbinder;
     private OnSwipeListener swipeListener;
     private OnSubscribeTicketsListener onSubscribeTicketsListener;
     private TicketsAdapter adapter;
     private int unsubscribedTicketPos;
+    private ProgressDialog progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-      /*  TicketsFragment mFragment = (TicketsFragment) getParentFragment();
+        TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setSubscribeTicketListListener(this);*/
+        mFragment.setSubscribedListListener(this);
     }
 
     @Override
@@ -75,6 +79,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         List<Tickets> subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
 
         if (CollectionUtils.isEmpty(subscribedTickets)) {
+            GlobalUtils.showLog(TAG, "subscribe tickets empty");
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(subscribedTickets);
@@ -105,6 +110,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
+                i.putExtra("ticket_desc", ticket.getTitle());
                 startActivity(i);
             });
 
@@ -166,12 +172,9 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
          */
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
-                    GlobalUtils.showLog(TAG, "swipe refresh close called");
+                    GlobalUtils.showLog(TAG, "swipe refresh subscribe called");
 
-                    // This method performs the actual data-refresh operation
-                    if (swipeListener != null) {
-                        swipeListener.onSwipeRefresh();
-                    }
+                    presenter.getSubscribedTickets(false, 0, System.currentTimeMillis(), 100);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -180,17 +183,11 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
                     }, 1000);
                 }
         );
-
-        if (onSubscribeTicketsListener != null) {
-            onSubscribeTicketsListener.onSubscribeTicketFragmentCreated();
-        }
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
- /*       swipeListener = (OnSwipeListener) getParentFragment();
-        onSubscribeTicketsListener = (OnSubscribeTicketsListener) getParentFragment();*/
     }
 
  /*   @Override
@@ -234,6 +231,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         super.onResume();
         boolean fetchChanges = Hawk.get(Constants.FETCH_SUBSCRIBED_LIST, false);
         if (fetchChanges) {
+            GlobalUtils.showLog(TAG, "on resume fetch");
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
         }
     }
@@ -251,7 +249,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
 
     @Override
     public void showProgressBar(String message) {
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar = ProgressDialog.show(getContext(), null, message, true);
     }
 
     @Override
@@ -262,7 +260,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     @Override
     public void hideProgressBar() {
         if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
+            progressBar.dismiss();
         }
     }
 
@@ -271,6 +269,11 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 message);
+    }
+
+    @Override
+    public void updateSubscribedList(List<Tickets> ticketsList) {
+        setUpRecyclerView(ticketsList);
     }
 }
 

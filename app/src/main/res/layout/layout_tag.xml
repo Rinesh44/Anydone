@@ -10,5 +10,5 @@
     android:paddingEnd="@dimen/dimen_10x1"
     android:paddingBottom="@dimen/dimen_2x2"
     android:text="Billing"
-    android:textColor="@color/service_info_text_color"
+    android:textColor="#505366"
     android:textSize="@dimen/material_text_caption" />

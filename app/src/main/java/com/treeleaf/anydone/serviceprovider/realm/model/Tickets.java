@@ -18,9 +18,27 @@ public class Tickets extends RealmObject {
     String ticketType;
     long createdAt;
     String ticketStatus;
+    String createdByName;
+    String createdByPic;
     RealmList<Employee> assignedEmployee;
 
     public Tickets() {
+    }
+
+    public String getCreatedByName() {
+        return createdByName;
+    }
+
+    public void setCreatedByName(String createdByName) {
+        this.createdByName = createdByName;
+    }
+
+    public String getCreatedByPic() {
+        return createdByPic;
+    }
+
+    public void setCreatedByPic(String createdByPic) {
+        this.createdByPic = createdByPic;
     }
 
     public String getTicketType() {

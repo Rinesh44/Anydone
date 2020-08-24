@@ -2,6 +2,10 @@ package com.treeleaf.anydone.serviceprovider.injection.module;
 
 import com.treeleaf.anydone.serviceprovider.account.AccountRepository;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepository;
+import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeRepository;
+import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepository;
@@ -41,6 +45,10 @@ import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepository;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepository;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationRepository;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineRepository;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketRepository;
@@ -202,5 +210,25 @@ public class PresenterModule {
         return new TicketDetailsRepositoryImpl(anyDoneService);
     }
 
+    @Provides
+    AddTicketRepository getAddTicketRepository(AnyDoneService anyDoneService) {
+        return new AddTicketRepositoryImpl(anyDoneService);
+    }
+
+
+    @Provides
+    TicketConversationRepository getTicketConversationRepository(AnyDoneService anyDoneService) {
+        return new TicketConversationRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    TicketTimelineRepository getTicketTimelineRepository(AnyDoneService anyDoneService) {
+        return new TicketTimelineRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    AssignEmployeeRepository getAssignEmployeeRepository(AnyDoneService anyDoneService) {
+        return new AssignEmployeeRepositoryImpl(anyDoneService);
+    }
 }
 
