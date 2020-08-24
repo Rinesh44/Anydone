@@ -157,6 +157,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
     /**
      * publish mqqt event notifying image is received from consumer
      * and is now ready to draw
+     *
      * @param userAccountId
      * @param accountName
      * @param accountPicture
@@ -167,35 +168,36 @@ public class ServiceRequestDetailActivityPresenterImpl extends
      */
     @Override
     public void publishImageCaptureReceivedEvent(String userAccountId, String accountName, String accountPicture,
-                                         long orderId, int bitmapWidth, int bitmapHeight,
-                                         long capturedTime) {
+                                                 long orderId, int bitmapWidth, int bitmapHeight,
+                                                 long capturedTime) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
                 .setFullName(accountName)
                 .setProfilePic(accountPicture)
                 .build();
 
-            /*SignalingProto.VideoRoomHostLeft videoRoomHostLeft = SignalingProto.VideoRoomHostLeft.newBuilder()
-                    .setSenderAccountId(userAccountId)
-                    .setClientId(clientId)
-                    .setRefId(String.valueOf(orderId))
+        SignalingProto.StartDrawAcknowledgement startDrawAcknowledgement = SignalingProto.StartDrawAcknowledgement.newBuilder()
+                .setBitmapWidth(bitmapWidth)
+                .setBitmapHeight(bitmapHeight)
+                .setCapturedTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .build();
 
-                    .setSenderAccount(account)
-                    .build();
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST)
+                .setStartDrawAckRequest(startDrawAcknowledgement)
+                .build();
 
-            RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                    .setRelayType(RtcProto.RelayRequest.RelayRequestType.VIDEO_ROOM_HOST_LEFT_REQUEST)
-                    .setVideoRoomHostLeftRequest(videoRoomHostLeft)
-                    .build();
-
-
-            TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
-                @Override
-                public void messageArrived(String topic, MqttMessage message) {
-                    GlobalUtils.showLog(TAG, "publish host left: " + message);
-                }
-            });*/
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
     }
 
     @Override
@@ -231,7 +233,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
 
     @Override
     public void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
-                                           long orderId) {
+                                            long orderId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()

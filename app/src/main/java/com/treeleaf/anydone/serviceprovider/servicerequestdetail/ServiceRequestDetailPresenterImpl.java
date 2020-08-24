@@ -78,6 +78,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
 
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
 
 public class ServiceRequestDetailPresenterImpl extends
@@ -766,7 +767,13 @@ public class ServiceRequestDetailPresenterImpl extends
                         int height = startDraw.getBitmapHeight();
                         long captureTime = startDraw.getCapturedTime();
                         byte[] convertedBytes = imageByteString.toByteArray();
-                        getView().onImageReceivedFromConsumer( width, height, captureTime, convertedBytes);
+                        getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE)) {
+                    SignalingProto.StartDrawAcknowledgement startDrawAcknowledgement = relayResponse.getStartDrawAckResponse();
+                    if (startDrawAcknowledgement != null) {
                     }
                 }
 

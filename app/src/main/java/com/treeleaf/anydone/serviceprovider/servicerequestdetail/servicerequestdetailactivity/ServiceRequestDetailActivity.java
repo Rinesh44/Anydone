@@ -267,7 +267,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             @Override
             public void imageReceivedSuccess() {
-
+                presenter.publishImageCaptureReceivedEvent(accountId, accountName, accountPicture,
+                        serviceRequestId, 0, 0, System.currentTimeMillis());
             }
 
         };
