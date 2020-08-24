@@ -3,6 +3,8 @@ package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequest
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,6 +22,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.OrderServiceProto;
@@ -255,6 +258,13 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
                 roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
 
+    }
+
+    public void onImageReceivedFromConsumer(ByteString byteString){
+        byte[] convertedBytes = byteString.toByteArray();
+
+        Bitmap compressedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
+//        videoCallListenerServer.
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {

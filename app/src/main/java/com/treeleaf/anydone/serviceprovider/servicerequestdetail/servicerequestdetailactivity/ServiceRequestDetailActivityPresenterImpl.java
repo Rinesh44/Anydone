@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequest
 
 import android.text.TextUtils;
 
+import com.google.protobuf.ByteString;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
@@ -151,6 +152,50 @@ public class ServiceRequestDetailActivityPresenterImpl extends
             });
         }
 
+    }
+
+    /**
+     * publish mqqt event notifying image is received from consumer
+     * and is now ready to draw
+     * @param userAccountId
+     * @param accountName
+     * @param accountPicture
+     * @param orderId
+     * @param bitmapWidth
+     * @param bitmapHeight
+     * @param capturedTime
+     */
+    @Override
+    public void publishImageCaptureReceivedEvent(String userAccountId, String accountName, String accountPicture,
+                                         long orderId, int bitmapWidth, int bitmapHeight,
+                                         long capturedTime) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+            /*SignalingProto.VideoRoomHostLeft videoRoomHostLeft = SignalingProto.VideoRoomHostLeft.newBuilder()
+                    .setSenderAccountId(userAccountId)
+                    .setClientId(clientId)
+                    .setRefId(String.valueOf(orderId))
+
+                    .setSenderAccount(account)
+                    .build();
+
+            RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                    .setRelayType(RtcProto.RelayRequest.RelayRequestType.VIDEO_ROOM_HOST_LEFT_REQUEST)
+                    .setVideoRoomHostLeftRequest(videoRoomHostLeft)
+                    .build();
+
+
+            TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) {
+                    GlobalUtils.showLog(TAG, "publish host left: " + message);
+                }
+            });*/
     }
 
     @Override

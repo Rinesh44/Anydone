@@ -703,6 +703,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         .parseFrom(message.getPayload());
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
+                GlobalUtils.showLog(TAG, "relay response type check: " + relayResponse.getResponseType().name());
 
                 if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                         .getKGraphResultsList())) {
@@ -752,6 +753,13 @@ public class ServiceRequestDetailPresenterImpl extends
                     if (broadcastVideoCall != null) {
                         getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
                     }
+                }
+
+                if (relayResponse.getResponseType().equals("START_DRAW_RESPONSE")) {
+
+
+
+//                    getView().onImageReceivedFromConsumer();
                 }
 
                 if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
