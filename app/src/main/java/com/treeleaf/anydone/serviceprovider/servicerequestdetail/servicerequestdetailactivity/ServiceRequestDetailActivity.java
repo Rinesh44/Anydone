@@ -157,12 +157,20 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             }
 
-            /*@Override
+            @Override
+            public void passCapturedImageFrame(Bitmap bitmap) {
+
+            }
+
+            @Override
+            public void holdDrawingUntilResponseFromServiceProvider() {
+
+            }
+
+            @Override
             public void imageReceivedSuccess() {
-                *//**
-                 * image received from consumer
-                 *//*
-            }*/
+
+            }
 
             @Override
             public void passJanusServerInfo(BigInteger sessionId,
@@ -247,10 +255,21 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
 
-            /*@Override
+            @Override
+            public void passCapturedImageFrame(Bitmap bitmap) {
+
+            }
+
+            @Override
+            public void holdDrawingUntilResponseFromServiceProvider() {
+
+            }
+
+            @Override
             public void imageReceivedSuccess() {
 
-            }*/
+            }
+
         };
 
     }
@@ -284,8 +303,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (videoCallListenerServer != null){
-//                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
+                if (videoCallListenerServer != null) {
+                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
                 }
             }
         });

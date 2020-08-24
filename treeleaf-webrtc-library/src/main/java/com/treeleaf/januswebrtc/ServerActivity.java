@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.LightingColorFilter;
 import android.os.Build;
 import android.os.Bundle;
@@ -238,6 +239,15 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onHostTerminateCall() {
                 terminateBroadCast();
+            }
+
+            @Override
+            public void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes) {
+                showHideDrawView(true);
+                Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
+                imageViewCaptureImageLocal.setImageBitmap(receivedBitmap);
+                treeleafDrawPadViewLocal.addViewToDrawOver(imageViewCaptureImageLocal);
+                mhostActivityCallback.imageReceivedSuccess();
             }
         };
 
@@ -903,6 +913,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         void onVideoViewReady();
 
         void onHostTerminateCall();
+
+        void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes);
 
     }
 
