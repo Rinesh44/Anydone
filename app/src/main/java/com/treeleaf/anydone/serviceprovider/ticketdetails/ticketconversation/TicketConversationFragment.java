@@ -92,7 +92,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class TicketConversationFragment extends BaseFragment<TicketConversationPresenterImpl>
         implements TicketConversationContract.TicketConversationView,
-        TreeleafMqttClient.OnMQTTConnected {
+        TreeleafMqttClient.OnMQTTConnected, TicketDetailsActivity.OnOutsideClickListener {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 1212;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 2323;
     public static final int PICK_FILE_REQUEST_CODE = 3434;
@@ -177,7 +177,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        TicketDetailsActivity ticketDetailsActivity = (TicketDetailsActivity) getActivity();
+        ticketDetailsActivity.setOutSideTouchListener(this);
         Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         userAccountId = userAccount.getAccountId();
         etMessage.requestFocus();
@@ -1151,7 +1152,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         });
     }
 
-/*    @Override
+    @Override
     public void onOutsideClick(MotionEvent event) {
         GlobalUtils.showLog(TAG, "on outside click first");
 
@@ -1182,7 +1183,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 profileSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         }
-    }*/
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setUpNetworkBroadCastReceiver() {
@@ -1262,4 +1263,5 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         final Handler handler = new Handler();
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
     }
+
 }
