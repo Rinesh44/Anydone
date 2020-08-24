@@ -90,9 +90,9 @@ public class Callback {
 
         void passCapturedImageFrame(Bitmap bitmap);
 
-        void holdDrawingUntilResponseFromServiceProvider();
+        void showProgressBarUntilMqttResponse();
 
-        void imageReceivedSuccess();
+        void discardDraw();
 
     }
 

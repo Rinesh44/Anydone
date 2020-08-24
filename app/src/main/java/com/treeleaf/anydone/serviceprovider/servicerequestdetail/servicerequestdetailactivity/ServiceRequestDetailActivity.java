@@ -163,12 +163,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
 
             @Override
-            public void holdDrawingUntilResponseFromServiceProvider() {
+            public void showProgressBarUntilMqttResponse() {
 
             }
 
             @Override
-            public void imageReceivedSuccess() {
+            public void discardDraw() {
 
             }
 
@@ -261,15 +261,15 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
 
             @Override
-            public void holdDrawingUntilResponseFromServiceProvider() {
+            public void showProgressBarUntilMqttResponse() {
 
             }
 
             @Override
-            public void imageReceivedSuccess() {
-                presenter.publishImageCaptureReceivedEvent(accountId, accountName, accountPicture,
-                        serviceRequestId, 0, 0, System.currentTimeMillis());
+            public void discardDraw() {
+
             }
+
 
         };
 
@@ -310,6 +310,17 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
         });
 
+    }
+
+    public void onImageDrawDiscard() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "onImageReceivedFromConsumer");
+                if (videoCallListenerServer != null)
+                    videoCallListenerServer.onImageDrawDiscard();
+            }
+        });
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {

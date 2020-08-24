@@ -770,7 +770,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             //after taking screenshot
 
             if (mhostActivityCallback != null) {
-                mhostActivityCallback.holdDrawingUntilResponseFromServiceProvider();//TODO: uncomment this later
+                mhostActivityCallback.showProgressBarUntilMqttResponse();//TODO: uncomment this later
             }
 
         }
@@ -781,6 +781,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         public void onClick(View v) {
             GeneralUtil.hideKeyboard(v.getRootView(), ClientActivity.this);
             showHideDrawView(false);
+            if (mhostActivityCallback != null) {
+                mhostActivityCallback.discardDraw();//TODO: uncomment this later
+                mhostActivityCallback.showProgressBarUntilMqttResponse();
+            }
         }
     };
 

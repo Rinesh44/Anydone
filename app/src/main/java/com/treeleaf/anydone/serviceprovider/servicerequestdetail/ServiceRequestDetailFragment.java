@@ -796,6 +796,11 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
+    public void onImageDrawDiscard() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscard();
+    }
+
+    @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
         ((ServiceRequestDetailActivity)
                 Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);

@@ -38,10 +38,6 @@ public class ServiceRequestDetailActivityContract {
         void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
                                          long orderId);
 
-        void publishImageCaptureReceivedEvent(String userAccountId, String accountName, String accountPicture,
-                                              long orderId, int bitmapWidth, int bitmapHeight,
-                                              long capturedTime);
-
     }
 
 }

@@ -154,19 +154,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
 
     }
 
-    /**
-     * publish mqqt event notifying image is received from consumer
-     * and is now ready to draw
-     *
-     * @param userAccountId
-     * @param accountName
-     * @param accountPicture
-     * @param orderId
-     * @param bitmapWidth
-     * @param bitmapHeight
-     * @param capturedTime
-     */
-    @Override
+    /*@Override
     public void publishImageCaptureReceivedEvent(String userAccountId, String accountName, String accountPicture,
                                                  long orderId, int bitmapWidth, int bitmapHeight,
                                                  long capturedTime) {
@@ -198,7 +186,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
                 GlobalUtils.showLog(TAG, "publish host left: " + message);
             }
         });
-    }
+    }*/
 
     @Override
     public void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,

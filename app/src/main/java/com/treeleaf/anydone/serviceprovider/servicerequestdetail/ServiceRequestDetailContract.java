@@ -96,6 +96,8 @@ public class ServiceRequestDetailContract {
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
         void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes);
+
+        void onImageDrawDiscard();
     }
 
     public interface ServiceRequestDetailPresenter extends Presenter<ServiceRequestDetailView> {
