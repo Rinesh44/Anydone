@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequest
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -156,6 +157,21 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
 
             @Override
+            public void passCapturedImageFrame(Bitmap bitmap) {
+
+            }
+
+            @Override
+            public void showProgressBarUntilMqttResponse() {
+
+            }
+
+            @Override
+            public void discardDraw() {
+
+            }
+
+            @Override
             public void passJanusServerInfo(BigInteger sessionId,
                                             BigInteger roomId, BigInteger participantId) {
                 videoBroadCastPublish = true;
@@ -237,6 +253,23 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             public void onPublisherVideoStarted() {
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
+
+            @Override
+            public void passCapturedImageFrame(Bitmap bitmap) {
+
+            }
+
+            @Override
+            public void showProgressBarUntilMqttResponse() {
+
+            }
+
+            @Override
+            public void discardDraw() {
+
+            }
+
+
         };
 
     }
@@ -257,6 +290,36 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
                 roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
 
+    }
+
+//    public void onImageReceivedFromConsumer(ByteString byteString){
+//        byte[] convertedBytes = byteString.toByteArray();
+//
+//        Bitmap compressedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
+////        videoCallListenerServer.
+//    }
+
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (videoCallListenerServer != null) {
+                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
+                }
+            }
+        });
+
+    }
+
+    public void onImageDrawDiscard() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "onImageReceivedFromConsumer");
+                if (videoCallListenerServer != null)
+                    videoCallListenerServer.onImageDrawDiscard();
+            }
+        });
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {

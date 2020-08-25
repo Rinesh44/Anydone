@@ -1,6 +1,8 @@
 package com.treeleaf.januswebrtc;
 
 
+import android.graphics.Bitmap;
+
 import org.json.JSONObject;
 
 import java.math.BigInteger;
@@ -85,6 +87,12 @@ public class Callback {
         void specifyRole(RestChannel.Role role);
 
         void onPublisherVideoStarted();
+
+        void passCapturedImageFrame(Bitmap bitmap);
+
+        void showProgressBarUntilMqttResponse();
+
+        void discardDraw();
 
     }
 

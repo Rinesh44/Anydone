@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.LightingColorFilter;
 import android.os.Build;
 import android.os.Bundle;
@@ -238,6 +239,20 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onHostTerminateCall() {
                 terminateBroadCast();
+            }
+
+            @Override
+            public void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes) {
+                showHideDrawView(true);
+                Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
+                imageViewCaptureImageLocal.setImageBitmap(receivedBitmap);
+                treeleafDrawPadViewLocal.addViewToDrawOver(imageViewCaptureImageLocal);
+            }
+
+            @Override
+            public void onImageDrawDiscard() {
+                GeneralUtil.hideKeyboard(findViewById(android.R.id.content).getRootView(), ServerActivity.this);
+                showHideDrawView(false);
             }
         };
 
@@ -827,28 +842,30 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     }
 
     private void terminateBroadCast() {
-        callTerminated = true;
-        if (mhostActivityCallback != null)
-            mhostActivityCallback.notifySubscriberLeft();
-        if (mRestChannel != null) {
-            mRestChannel.publisherUnpublish();
-            mRestChannel.subscriberLeave();
-            mRestChannel.detachPlugin();
-            mRestChannel.destroySession();
-            mRestChannel.clearPendingApiCalls();
-            mRestChannel = null;
+        if (!callTerminated) {
+            if (mhostActivityCallback != null)
+                mhostActivityCallback.notifySubscriberLeft();
+            if (mRestChannel != null) {
+                mRestChannel.publisherUnpublish();
+                mRestChannel.subscriberLeave();
+                mRestChannel.detachPlugin();
+                mRestChannel.destroySession();
+                mRestChannel.clearPendingApiCalls();
+                mRestChannel = null;
+            }
+            if (remoteRender != null)
+                remoteRender.release();
+            if (peerConnectionClient != null) {
+                peerConnectionClient.close();
+                peerConnectionClient = null;
+            }
+            if (audioManager != null) {
+                audioManager.stop();
+                audioManager = null;
+            }
+            callTerminated = true;
+            finish();
         }
-        if (remoteRender != null)
-            remoteRender.release();
-        if (peerConnectionClient != null) {
-            peerConnectionClient.close();
-            peerConnectionClient = null;
-        }
-        if (audioManager != null) {
-            audioManager.stop();
-            audioManager = null;
-        }
-        finish();
     }
 
     @Override
@@ -903,6 +920,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         void onVideoViewReady();
 
         void onHostTerminateCall();
+
+        void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes);
+
+        void onImageDrawDiscard();
 
     }
 

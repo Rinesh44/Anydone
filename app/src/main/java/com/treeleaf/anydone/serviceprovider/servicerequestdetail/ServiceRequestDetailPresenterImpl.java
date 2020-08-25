@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
@@ -76,6 +77,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
+
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CANCEL_DRAWING_MESSAGE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
 
 public class ServiceRequestDetailPresenterImpl extends
         BasePresenter<ServiceRequestDetailContract.ServiceRequestDetailView>
@@ -703,6 +708,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         .parseFrom(message.getPayload());
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
+                GlobalUtils.showLog(TAG, "relay response type check: " + relayResponse.getResponseType().name());
 
                 if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                         .getKGraphResultsList())) {
@@ -751,6 +757,31 @@ public class ServiceRequestDetailPresenterImpl extends
                             relayResponse.getBroadcastVideoCall();
                     if (broadcastVideoCall != null) {
                         getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
+                    SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
+                    if (startDraw != null) {
+                        ByteString imageByteString = startDraw.getCapturedImage();
+                        int width = startDraw.getBitmapWidth();
+                        int height = startDraw.getBitmapHeight();
+                        long captureTime = startDraw.getCapturedTime();
+                        byte[] convertedBytes = imageByteString.toByteArray();
+                        getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
+                    SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
+                    if (cancelDrawing != null) {
+                        getView().onImageDrawDiscard();
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE)) {
+                    SignalingProto.StartDrawAcknowledgement startDrawAcknowledgement = relayResponse.getStartDrawAckResponse();
+                    if (startDrawAcknowledgement != null) {
                     }
                 }
 

@@ -44,6 +44,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.OrderServiceProto;
@@ -788,6 +789,17 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
                                              boolean videoBroadcastPublish) {
         ((ServiceRequestDetailActivity) getActivity())
                 .onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
+    }
+
+    @Override
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+        ((ServiceRequestDetailActivity) getActivity())
+                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+    }
+
+    @Override
+    public void onImageDrawDiscard() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscard();
     }
 
     @Override

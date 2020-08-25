@@ -183,8 +183,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             ivScreenShotImage.setImageBitmap(bitmap);
                             treeleafDrawPadViewLocal.takeAndSaveScreenShot(rlScreenShotImage);
                             justScreenShot = false;
-                        } else
+                        } else {
                             imageViewCaptureImageLocal.setImageBitmap(bitmap);
+                            if (mhostActivityCallback != null)
+                                mhostActivityCallback.passCapturedImageFrame(bitmap);
+                        }
 
                         /**
                          * remove frame listener as soon as you get the captured image.
@@ -262,6 +265,15 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 roomNumber = String.valueOf(roomId);
             }
 
+            @Override
+            public void onImageDrawingReady() {
+                hideProgressBar();
+            }
+
+            @Override
+            public void holdDrawingUntilResponse() {
+                showProgressBar("Please Wait...");
+            }
         };
         setUpRecyclerView();
         setUpNetworkStrengthHandler();
@@ -706,7 +718,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void run() {
                 if (progressDialog != null)
-                    progressDialog.setMessage("Starting video call...");
+                    progressDialog.setMessage("Preparing draw...");
             }
         });
 
@@ -758,6 +770,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             treeleafDrawPadViewLocal.addViewToDrawOver(imageViewCaptureImageLocal);
             //after taking screenshot
 
+            if (mhostActivityCallback != null) {
+                mhostActivityCallback.showProgressBarUntilMqttResponse();//TODO: uncomment this later
+            }
+
         }
     };
 
@@ -766,6 +782,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         public void onClick(View v) {
             GeneralUtil.hideKeyboard(v.getRootView(), ClientActivity.this);
             showHideDrawView(false);
+            if (mhostActivityCallback != null) {
+                mhostActivityCallback.discardDraw();//TODO: uncomment this later
+                mhostActivityCallback.showProgressBarUntilMqttResponse();
+            }
         }
     };
 
@@ -875,27 +895,29 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
 
     private void terminateBroadCast() {
-        callTerminated = true;
-        if (mhostActivityCallback != null)
-            mhostActivityCallback.notifyHostHangUp();
-        if (mRestChannel != null) {
-            mRestChannel.publisherUnpublish();
-            mRestChannel.detachPlugin();
-            mRestChannel.destroySession();
-            mRestChannel.clearPendingApiCalls();
-            mRestChannel = null;
+        if (!callTerminated) {
+            if (mhostActivityCallback != null)
+                mhostActivityCallback.notifyHostHangUp();
+            if (mRestChannel != null) {
+                mRestChannel.publisherUnpublish();
+                mRestChannel.detachPlugin();
+                mRestChannel.destroySession();
+                mRestChannel.clearPendingApiCalls();
+                mRestChannel = null;
+            }
+            if (localRender != null)
+                localRender.release();
+            if (peerConnectionClient != null) {
+                peerConnectionClient.close();
+                peerConnectionClient = null;
+            }
+            if (audioManager != null) {
+                audioManager.stop();
+                audioManager = null;
+            }
+            callTerminated = true;
+            finish();
         }
-        if (localRender != null)
-            localRender.release();
-        if (peerConnectionClient != null) {
-            peerConnectionClient.close();
-            peerConnectionClient = null;
-        }
-        if (audioManager != null) {
-            audioManager.stop();
-            audioManager = null;
-        }
-        finish();
     }
 
     @Override
@@ -954,6 +976,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         void onVideoViewReady();
 
         void onSubscriberAudioPublished(BigInteger roomId, BigInteger participantId);
+
+        void onImageDrawingReady();
+
+        void holdDrawingUntilResponse();
 
     }
 
