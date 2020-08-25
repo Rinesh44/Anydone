@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -132,6 +133,21 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
             @Override
             public void onPublisherVideoStarted() {
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, ticketId);
+            }
+
+            @Override
+            public void passCapturedImageFrame(Bitmap bitmap) {
+
+            }
+
+            @Override
+            public void showProgressBarUntilMqttResponse() {
+
+            }
+
+            @Override
+            public void discardDraw() {
+
             }
         };
     }
