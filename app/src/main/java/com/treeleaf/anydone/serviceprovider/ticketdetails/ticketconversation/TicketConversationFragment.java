@@ -201,8 +201,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             }*/
 
             setUpConversationView();
-        /*    presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
-            presenter.subscribeFailMessage();*/
+            presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
+            presenter.subscribeFailMessage();
             presenter.getTicket(ticketId);
         }
 
@@ -733,13 +733,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
-        ((ServiceRequestDetailActivity) getActivity())
+        ((TicketDetailsActivity) getActivity())
                 .onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
     }
 
     @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
-        ((ServiceRequestDetailActivity)
+        ((TicketDetailsActivity)
                 Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);
         String duration = GlobalUtils.getFormattedDuration(videoRoomHostLeft.getDuration());
         String time = GlobalUtils.getTime(videoRoomHostLeft.getStartedAt());
@@ -780,13 +780,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
-        ((ServiceRequestDetailActivity) Objects.requireNonNull(getActivity()))
+        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
                 .onVideoRoomJoinSuccess(videoCallJoinResponse);
     }
 
     @Override
     public void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft) {
-        ((ServiceRequestDetailActivity) Objects.requireNonNull(getActivity()))
+        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
                 .onParticipantLeft(participantLeft);
     }
 

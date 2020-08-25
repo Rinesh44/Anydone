@@ -12,5 +12,11 @@ public class TicketDetailsContract {
 
     public interface TicketDetailsPresenter extends Presenter<TicketDetailsView> {
 
+        void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
+                                        long ticketId);
+
+        void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
+                                         long ticketId);
+
     }
 }
