@@ -1,11 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,11 +48,12 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     ImageView ivDataNotFound;
     @BindView(R.id.fab_assign)
     FloatingActionButton fabAssign;
-    /*   @BindView(R.id.pb_search)
-       ProgressBar progressBar;*/
+    @BindView(R.id.pb_search)
+    ProgressBar progressBar;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
     private Unbinder unbinder;
     private TicketsAdapter adapter;
-    private ProgressDialog progressBar;
     private List<Tickets> assignedTickets;
 
     @Override
@@ -107,7 +108,13 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             rvOpenTickets.setAdapter(adapter);
         } else {
             rvOpenTickets.setVisibility(View.GONE);
-//            ivDataNotFound.setVisibility(View.VISIBLE);
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                if (rvOpenTickets.getVisibility() != View.VISIBLE)
+                    ivDataNotFound.setVisibility(View.VISIBLE);
+                else ivDataNotFound.setVisibility(View.GONE);
+            }, 2000);
+
         }
     }
 
@@ -167,7 +174,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void showProgressBar(String message) {
-        progressBar = ProgressDialog.show(getContext(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -177,8 +184,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void hideProgressBar() {
-        if (progressBar != null) {
-            progressBar.dismiss();
+        if (progress != null) {
+            progress.setVisibility(View.GONE);
         }
     }
 

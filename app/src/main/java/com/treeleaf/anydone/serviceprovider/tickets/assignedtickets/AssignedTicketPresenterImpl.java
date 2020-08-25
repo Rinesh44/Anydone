@@ -89,7 +89,7 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
             @Override
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to save assigned tickets");
-                getView().getAssignedTicketFail("Failed to save assigned tickets");
+                getView().getAssignedTicketSuccess();
             }
         });
     }

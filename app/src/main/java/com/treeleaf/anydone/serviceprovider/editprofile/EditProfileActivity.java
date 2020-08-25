@@ -1,21 +1,21 @@
 package com.treeleaf.anydone.serviceprovider.editprofile;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
-import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
@@ -46,11 +46,12 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
     TextInputLayout ilGender;
     @BindView(R.id.et_gender)
     TextInputEditText etGender;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
     private Account userAccount;
     private Employee employee;
     private ServiceProvider serviceProvider;
-    private ProgressDialog progress;
 
     @Override
     protected int getLayout() {
@@ -209,7 +210,7 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -220,7 +221,7 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

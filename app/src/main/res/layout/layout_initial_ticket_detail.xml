@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_10x2"
+    android:layout_marginTop="@dimen/dimen_10x2"
+    android:layout_marginEnd="@dimen/dimen_10x2"
+    android:layout_marginBottom="@dimen/dimen_10x1"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_ticket_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="#1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_ticket_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_2x4"
+        android:gravity="center"
+        android:text="titcket title"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_ticket_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_2x4"
+        android:gravity="center"
+        android:text="ticket description"
+        android:textColor="@color/black" />
+
+    <HorizontalScrollView
+        android:id="@+id/scv_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x1">
+
+        <LinearLayout
+            android:id="@+id/ll_label_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" />
+
+    </HorizontalScrollView>
+</LinearLayout>

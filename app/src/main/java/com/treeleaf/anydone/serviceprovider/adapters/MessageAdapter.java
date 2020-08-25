@@ -33,6 +33,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -72,6 +73,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int MSG_BOT_SUGGESTIONS = 10;
     public static final int INITIAL_SERVICE_DETAIL = 11;
     public static final int MSG_CALLS = 12;
+    public static final int INITIAL_TICKET_DETAIL = 13;
 
     private List<Conversation> conversationList;
     private Context mContext;
@@ -217,6 +219,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .inflate(R.layout.initial_service_detail, parent, false);
                 return new InitialServiceDetailHolder(serviceDetailView);
 
+            case INITIAL_TICKET_DETAIL:
+                View ticketDetailView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_initial_ticket_detail, parent, false);
+                return new InitialTicketDetailHolder(ticketDetailView);
+
             case MSG_CALLS:
                 View callView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_calls, parent, false);
@@ -317,6 +324,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((InitialServiceDetailHolder) holder).bind(conversation);
                 break;
 
+            case INITIAL_TICKET_DETAIL:
+                ((InitialTicketDetailHolder) holder).bind(conversation);
+                break;
+
             case MSG_CALLS:
                 ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
         }
@@ -384,6 +395,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             case "INITIAL_SERVICE_DETAIL":
                 return INITIAL_SERVICE_DETAIL;
+
+            case "INITIAL_TICKET_DETAIL":
+                return INITIAL_TICKET_DETAIL;
 
             case "MSG_ACCEPTED_TAG":
                 return MSG_ACCEPTED_TAG;
@@ -1589,6 +1603,47 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .fitCenter();
 
                 Glide.with(mContext).load(serviceImage).apply(options).into(serviceIcon);
+            }
+
+        }
+    }
+
+
+    private class InitialTicketDetailHolder extends RecyclerView.ViewHolder {
+        TextView ticketId, ticketTitle, ticketDesc;
+        LinearLayout llLabels;
+
+        InitialTicketDetailHolder(@NonNull View itemView) {
+            super(itemView);
+
+            ticketId = itemView.findViewById(R.id.tv_ticket_id);
+            ticketTitle = itemView.findViewById(R.id.tv_ticket_title);
+            ticketDesc = itemView.findViewById(R.id.tv_ticket_desc);
+            llLabels = itemView.findViewById(R.id.ll_label_holder);
+        }
+
+        void bind(final Conversation conversation) {
+            ticketId.setText("#" + String.valueOf(conversation.getRefId()));
+            ticketTitle.setText(conversation.getTicketTitle());
+            if (conversation.getTicketDesc() != null && !conversation.getTicketDesc().isEmpty()) {
+                ticketDesc.setText(conversation.getTicketDesc());
+            } else {
+                ticketDesc.setVisibility(View.GONE);
+            }
+
+            if (!CollectionUtils.isEmpty(conversation.getTagsList())) {
+                for (Tags tag : conversation.getTagsList()
+                ) {
+                    LayoutInflater inflater = LayoutInflater.from(mContext);
+                    @SuppressLint("InflateParams") TextView tvTag = (TextView) inflater
+                            .inflate(R.layout.layout_tag, null);
+                    tvTag.setText(tag.getLabel());
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    params.setMarginEnd(20);
+                    tvTag.setLayoutParams(params);
+                    llLabels.addView(tvTag);
+                }
             }
 
         }

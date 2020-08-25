@@ -1,7 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
@@ -36,8 +36,9 @@ public class VerifyCodeActivity extends MvpBaseActivity<VerifyCodePresenterImpl>
     TextView tvUserEmailPhone;
     @BindView(R.id.txt_pin_entry)
     PinEntryEditText etPin;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
-    private ProgressDialog progress;
     private CountDownTimer countDownTimer;
     private int timerInSeconds = 90;
     private String emailPhone;
@@ -150,7 +151,7 @@ public class VerifyCodeActivity extends MvpBaseActivity<VerifyCodePresenterImpl>
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -161,7 +162,7 @@ public class VerifyCodeActivity extends MvpBaseActivity<VerifyCodePresenterImpl>
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

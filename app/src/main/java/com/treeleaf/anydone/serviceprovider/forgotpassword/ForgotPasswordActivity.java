@@ -1,10 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.forgotpassword;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
@@ -32,8 +33,8 @@ public class ForgotPasswordActivity extends MvpBaseActivity<ForgotPasswordPresen
     TextInputEditText etPhone;
     @BindView(R.id.btnSendResetCode)
     MaterialButton btnSendCode;
-
-    private ProgressDialog progress;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
     @Override
     protected int getLayout() {
@@ -83,7 +84,7 @@ public class ForgotPasswordActivity extends MvpBaseActivity<ForgotPasswordPresen
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -94,7 +95,7 @@ public class ForgotPasswordActivity extends MvpBaseActivity<ForgotPasswordPresen
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

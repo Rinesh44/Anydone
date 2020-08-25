@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -63,7 +70,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
                 android:hint="@string/customer_name">
 
                 <AutoCompleteTextView
@@ -79,11 +85,40 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <RelativeLayout
+                android:id="@+id/rl_customer_self_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_shade"
+                android:elevation="2dp"
+                android:padding="@dimen/dimen_10x1"
+                android:visibility="gone">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_self"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_assigned_emp_placeholder" />
+
+                <TextView
+                    android:id="@+id/tv_customer_self"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimen_10x1"
+                    android:layout_toEndOf="@+id/civ_self"
+                    android:text="My name (Me)"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_phone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginBottom="@dimen/dimens_2x"
                 android:hint="@string/phone">
 
@@ -180,7 +215,7 @@
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"
                         android:drawableEnd="@drawable/ic_dropdown"
-                        android:hint="Label"
+                        android:hint="Team"
                         android:imeOptions="actionDone"
                         android:inputType="textVisiblePassword"
                         android:maxLength="45"
@@ -206,4 +241,4 @@
         </LinearLayout>
 
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>

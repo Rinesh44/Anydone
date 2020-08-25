@@ -1,13 +1,13 @@
 package com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,9 +53,9 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
     TextInputLayout ilOldPassword;
     @BindView(R.id.et_old_password)
     TextInputEditText etOldPassword;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
-
-    private ProgressDialog progress;
     private CountDownTimer countDownTimer;
     private int timerInSeconds = 90;
     private boolean employeeFirstLogin;
@@ -270,7 +270,7 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -281,7 +281,7 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

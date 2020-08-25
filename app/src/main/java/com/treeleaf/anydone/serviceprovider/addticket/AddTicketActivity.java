@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.addticket;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -97,9 +97,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     TextInputEditText etSummary;
     @BindView(R.id.et_description)
     TextInputEditText etDesc;
+    @BindView(R.id.rl_customer_self_holder)
+    RelativeLayout rlCustomerSelfHolder;
+    @BindView(R.id.civ_self)
+    CircleImageView civSelf;
+    @BindView(R.id.tv_customer_self)
+    TextView tvCustomerSelf;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
-
-    private ProgressDialog progress;
     private List<AssignEmployee> employeeList;
     private List<Customer> customerList;
     private List<Tags> tagsList;
@@ -109,6 +115,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private CustomerSearchAdapter customerSearchAdapter;
     private Customer selectedCustomer;
     private Tags selectedTag;
+    private Employee selfEmployee;
 
     @Override
     protected int getLayout() {
@@ -126,6 +133,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         setSelfDetails();
 
+        selfEmployee = EmployeeRepo.getInstance().getEmployee();
         tagsList = TagRepo.getInstance().getAllTags();
         GlobalUtils.showLog(TAG, "tag list size: " + tagsList.size());
         tagSearchAdapter = new TagSearchAdapter(this, tagsList);
@@ -150,6 +158,49 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
 
+        etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                tvCustomerSelf.setText(selfEmployee.getName() + " (Me)");
+
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_profile_icon)
+                        .error(R.drawable.ic_profile_icon);
+
+                Glide.with(AddTicketActivity.this).load(selfEmployee.getEmployeeImageUrl())
+                        .apply(options).into(civSelf);
+
+                rlCustomerSelfHolder.setVisibility(View.VISIBLE);
+            }
+        });
+
+        rlCustomerSelfHolder.setOnClickListener(v -> {
+            selectedCustomer = new Customer();
+            GlobalUtils.showLog(TAG, "employee checkout:" + selfEmployee);
+            selectedCustomer.setCustomerId(selfEmployee.getEmployeeId());
+            selectedCustomer.setEmail(selfEmployee.getEmail());
+            selectedCustomer.setPhone(selfEmployee.getPhone());
+            selectedCustomer.setFullName(selfEmployee.getName());
+            selectedCustomer.setProfilePic(selfEmployee.getEmployeeImageUrl());
+
+            etCustomerName.setText(selectedCustomer.getFullName());
+            etCustomerName.dismissDropDown();
+            if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
+                etEmail.setText(selectedCustomer.getEmail());
+                etEmail.setFocusable(false);
+                etEmail.setEnabled(false);
+            }
+
+            if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
+                etPhone.setText(selectedCustomer.getPhone());
+                etPhone.setFocusable(false);
+                etPhone.setEnabled(false);
+            }
+
+            etCustomerName.setSelection(etCustomerName.getText().length());
+            rlCustomerSelfHolder.setVisibility(View.GONE);
+        });
+
         etCustomerName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -158,13 +209,29 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                etEmail.setEnabled(true);
-                etEmail.setFocusableInTouchMode(true);
-                etEmail.setText("");
+                if (s.length() == 0) {
+                    tvCustomerSelf.setText(selfEmployee.getName() + " (Me)");
 
-                etPhone.setEnabled(true);
-                etPhone.setFocusableInTouchMode(true);
-                etPhone.setText("");
+                    RequestOptions options = new RequestOptions()
+                            .fitCenter()
+                            .placeholder(R.drawable.ic_profile_icon)
+                            .error(R.drawable.ic_profile_icon);
+
+                    Glide.with(AddTicketActivity.this).load(selfEmployee.getEmployeeImageUrl())
+                            .apply(options).into(civSelfImage);
+
+                    rlCustomerSelfHolder.setVisibility(View.VISIBLE);
+                } else {
+                    rlCustomerSelfHolder.setVisibility(View.GONE);
+                    etEmail.setEnabled(true);
+                    etEmail.setFocusableInTouchMode(true);
+                    etEmail.setText("");
+
+                    etPhone.setEnabled(true);
+                    etPhone.setFocusableInTouchMode(true);
+                    etPhone.setText("");
+                }
+
             }
 
             @Override
@@ -273,7 +340,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private void setSelfDetails() {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
         if (employee != null) {
-            tvSelfName.setText(employee.getName());
+            tvSelfName.setText(employee.getName() + " (Me)");
 
             String profilePicUrl = employee.getEmployeeImageUrl();
             if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
@@ -493,7 +560,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
 
     }
 
@@ -505,7 +572,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.cancel();
+            progress.setVisibility(View.GONE);
         }
     }
 

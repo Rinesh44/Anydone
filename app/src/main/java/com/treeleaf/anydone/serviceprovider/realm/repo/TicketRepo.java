@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -91,6 +92,73 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_STARTED.name();
             result.setString("ticketStatus", status);
+        });
+    }
+
+    public void changeTicketStatusToClosed(long ticketId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            String status = TicketProto.TicketState.TICKET_CLOSED.name();
+            result.setString("ticketStatus", status);
+        });
+    }
+
+    public void changeTicketStatusToReopened(long ticketId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            String status = TicketProto.TicketState.TICKET_REOPENED.name();
+            result.setString("ticketStatus", status);
+        });
+    }
+
+    public void changeTicketStatusToResolved(long ticketId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            String status = TicketProto.TicketState.TICKET_RESOLVED.name();
+            result.setString("ticketStatus", status);
+        });
+    }
+
+    public void unAssignEmployee(long ticketId, String empId, final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            try {
+                Tickets tickets = getTicketById(ticketId);
+                Employee employeeToDel = null;
+                for (Employee employee : tickets.getAssignedEmployee()
+                ) {
+                    if (employee.getEmployeeId().equalsIgnoreCase(empId)) {
+                        employeeToDel = employee;
+                    }
+                }
+                tickets.getAssignedEmployee().remove(employeeToDel);
+                callback.success(null);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+                callback.fail();
+            }
+
+        });
+    }
+
+
+    public void addAssignedEmployees(long ticketId, List<Employee> employeeList, final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            try {
+                Tickets tickets = getTicketById(ticketId);
+                tickets.getAssignedEmployee().addAll(employeeList);
+                callback.success(null);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+                callback.fail();
+            }
         });
     }
 
