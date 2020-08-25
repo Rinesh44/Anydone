@@ -2,14 +2,11 @@ package com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets;
 
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -27,7 +24,6 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -50,13 +46,14 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    /*    @BindView(R.id.pb_search)
-        ProgressBar progressBar;*/
+    @BindView(R.id.pb_search)
+    ProgressBar progressBar;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
     private Unbinder unbinder;
     private TicketsAdapter adapter;
     private int reopenTicketPos;
     private OnTicketReopenListener listener;
-    private ProgressDialog progressBar;
 
     @Override
     public void updateClosedList(List<Tickets> ticketsList) {
@@ -122,7 +119,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             rvClosedTickets.setAdapter(adapter);
         } else {
             rvClosedTickets.setVisibility(View.GONE);
-//            ivDataNotFound.setVisibility(View.VISIBLE);
+            ivDataNotFound.setVisibility(View.VISIBLE);
         }
     }
 
@@ -229,7 +226,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void showProgressBar(String message) {
-        progressBar = ProgressDialog.show(getContext(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -239,8 +236,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void hideProgressBar() {
-        if (progressBar != null) {
-            progressBar.dismiss();
+        if (progress != null) {
+            progress.setVisibility(View.GONE);
         }
     }
 

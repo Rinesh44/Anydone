@@ -19,7 +19,7 @@ import java.lang.Override;
 public class TicketsFragment_ViewBinding implements Unbinder {
   private TicketsFragment target;
 
-  private View view7f0901d8;
+  private View view7f0901da;
 
   private View view7f0900a0;
 
@@ -32,7 +32,7 @@ public class TicketsFragment_ViewBinding implements Unbinder {
     target.mViewpager = Utils.findRequiredViewAsType(source, R.id.viewpager, "field 'mViewpager'", ViewPager.class);
     view = Utils.findRequiredView(source, R.id.iv_filter, "field 'ivFilter' and method 'filterRequests'");
     target.ivFilter = Utils.castView(view, R.id.iv_filter, "field 'ivFilter'", ImageView.class);
-    view7f0901d8 = view;
+    view7f0901da = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,8 +64,8 @@ public class TicketsFragment_ViewBinding implements Unbinder {
     target.pbSearch = null;
     target.btnAddTicket = null;
 
-    view7f0901d8.setOnClickListener(null);
-    view7f0901d8 = null;
+    view7f0901da.setOnClickListener(null);
+    view7f0901da = null;
     view7f0900a0.setOnClickListener(null);
     view7f0900a0 = null;
   }

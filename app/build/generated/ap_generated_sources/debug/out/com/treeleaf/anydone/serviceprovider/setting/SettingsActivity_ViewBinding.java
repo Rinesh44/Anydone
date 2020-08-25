@@ -15,15 +15,15 @@ import java.lang.Override;
 public class SettingsActivity_ViewBinding implements Unbinder {
   private SettingsActivity target;
 
-  private View view7f0902ab;
+  private View view7f0902b1;
 
-  private View view7f0902b9;
+  private View view7f0902c0;
 
-  private View view7f0902ae;
+  private View view7f0902b4;
 
-  private View view7f0902bc;
+  private View view7f0902c3;
 
-  private View view7f0902d2;
+  private View view7f0902da;
 
   @UiThread
   public SettingsActivity_ViewBinding(SettingsActivity target) {
@@ -37,7 +37,7 @@ public class SettingsActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.rl_change_password, "field 'rlChangePassword' and method 'changePassword'");
     target.rlChangePassword = Utils.castView(view, R.id.rl_change_password, "field 'rlChangePassword'", RelativeLayout.class);
-    view7f0902ab = view;
+    view7f0902b1 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class SettingsActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.rl_language, "field 'rlLanguage' and method 'languageSettings'");
     target.rlLanguage = Utils.castView(view, R.id.rl_language, "field 'rlLanguage'", RelativeLayout.class);
-    view7f0902b9 = view;
+    view7f0902c0 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class SettingsActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.rl_currency, "field 'rlCurrency' and method 'currencySettings'");
     target.rlCurrency = Utils.castView(view, R.id.rl_currency, "field 'rlCurrency'", RelativeLayout.class);
-    view7f0902ae = view;
+    view7f0902b4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,7 +64,7 @@ public class SettingsActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.rl_location, "field 'rlLocation' and method 'locationSettings'");
     target.rlLocation = Utils.castView(view, R.id.rl_location, "field 'rlLocation'", RelativeLayout.class);
-    view7f0902bc = view;
+    view7f0902c3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,7 +73,7 @@ public class SettingsActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.rl_timezone, "field 'rlTimezone' and method 'timezoneSettings'");
     target.rlTimezone = Utils.castView(view, R.id.rl_timezone, "field 'rlTimezone'", RelativeLayout.class);
-    view7f0902d2 = view;
+    view7f0902da = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -95,15 +95,15 @@ public class SettingsActivity_ViewBinding implements Unbinder {
     target.rlLocation = null;
     target.rlTimezone = null;
 
-    view7f0902ab.setOnClickListener(null);
-    view7f0902ab = null;
-    view7f0902b9.setOnClickListener(null);
-    view7f0902b9 = null;
-    view7f0902ae.setOnClickListener(null);
-    view7f0902ae = null;
-    view7f0902bc.setOnClickListener(null);
-    view7f0902bc = null;
-    view7f0902d2.setOnClickListener(null);
-    view7f0902d2 = null;
+    view7f0902b1.setOnClickListener(null);
+    view7f0902b1 = null;
+    view7f0902c0.setOnClickListener(null);
+    view7f0902c0 = null;
+    view7f0902b4.setOnClickListener(null);
+    view7f0902b4 = null;
+    view7f0902c3.setOnClickListener(null);
+    view7f0902c3 = null;
+    view7f0902da.setOnClickListener(null);
+    view7f0902da = null;
   }
 }

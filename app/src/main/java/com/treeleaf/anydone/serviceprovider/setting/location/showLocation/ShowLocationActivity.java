@@ -1,13 +1,13 @@
 package com.treeleaf.anydone.serviceprovider.setting.location.showLocation;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,9 +41,10 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
     RelativeLayout rlEmptyView;
     @BindView(R.id.tv_add_location)
     TextView tvAddLocation;
+    @BindView(R.id.pb_progress)
+    ProgressBar progressBar;
 
     private LocationAdapter adapter;
-    private ProgressDialog progressBar;
 
     @Override
     protected int getLayout() {
@@ -182,7 +183,7 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
 
     @Override
     public void showProgressBar(String message) {
-        progressBar = ProgressDialog.show(this, null, message, true);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -193,7 +194,7 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
     @Override
     public void hideProgressBar() {
         if (progressBar != null) {
-            progressBar.cancel();
+            progressBar.setVisibility(View.GONE);
         }
     }
 

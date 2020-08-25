@@ -124,6 +124,10 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/layout/layout_timeline_accepted.xml"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/layout_layout_initial_ticket_detail.xml.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/layout/layout_initial_ticket_detail.xml"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_camera.png.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_camera.png"
     },
@@ -248,6 +252,10 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/layout/other_services_row.xml"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_drop_up_blue.xml.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_drop_up_blue.xml"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_search.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_search.xml"
     },
@@ -300,8 +308,16 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_location_not_added.png.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_location_not_added.png"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_btn_rounded.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/btn_rounded.xml"
+    },
+    {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_location_not_added.png.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_location_not_added.png"
     },
     {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-xhdpi_notification.png.flat",
@@ -1312,6 +1328,10 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_not_verified.xml"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_no_ticket_found.xml.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_no_ticket_found.xml"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/layout_bottomsheet_def_location.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/layout/bottomsheet_def_location.xml"
     },
@@ -1496,6 +1516,10 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable-hdpi/camera_white.png"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_location_not_added.png.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-ldpi/ic_location_not_added.png"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_dot_yellow.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_dot_yellow.xml"
     },
@@ -1542,6 +1566,10 @@
     {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-hdpi_home_green.png.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable-hdpi/home_green.png"
+    },
+    {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_oc_drop_down_blue.xml.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_oc_drop_down_blue.xml"
     },
     {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_chat_bg_outgoing.xml.flat",
@@ -1780,12 +1808,20 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/facebook.png"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_no_service_request_found.xml.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_no_service_request_found.xml"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/layout_fragment_screen_slide_page.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/layout/fragment_screen_slide_page.xml"
     },
     {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_till_date_big.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_till_date_big.xml"
+    },
+    {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_location_not_added.png.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-mdpi/ic_location_not_added.png"
     },
     {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_reopen.xml.flat",
@@ -2408,6 +2444,10 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/layout/chat_item_left.xml"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-anydpi-v24_ic_location_not_added.xml.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-anydpi-v24/ic_location_not_added.xml"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable_ic_delete_rounded_icon.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/drawable/ic_delete_rounded_icon.xml"
     },
@@ -2596,6 +2636,10 @@
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-hdpi/ic_map_icon.png"
     },
     {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_location_not_added.png.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-hdpi/ic_location_not_added.png"
+    },
+    {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_rightside_drawer_on_services_icon.png.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_rightside_drawer_on_services_icon.png"
     },
@@ -2610,6 +2654,10 @@
     {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/layout_activity_register.xml.flat",
         "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/res/layout/activity_register.xml"
+    },
+    {
+        "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_location_not_added.png.flat",
+        "source": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_location_not_added.png"
     },
     {
         "merged": "/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_action_gender.png.flat",

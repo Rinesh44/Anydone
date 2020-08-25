@@ -66,11 +66,15 @@
         <activity
             android:name="com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity" />
+        <activity
+            android:name="com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity"
+            android:theme="@style/FormTheme" />
         <activity
             android:name="com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity"
             android:theme="@style/FormTheme" />
-        <activity android:name="com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity" />
+        <activity
+            android:name="com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
+            android:theme="@style/FormTheme" />
         <activity
             android:name="com.treeleaf.anydone.serviceprovider.weblink.WebLinkActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -1070,6 +1070,7 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color btn_disabled
 color button_material_dark
 color button_material_light
 color cardview_dark_background
@@ -2645,6 +2646,7 @@ drawable ic_dot_yellow
 drawable ic_down_arrow
 drawable ic_download
 drawable ic_draw
+drawable ic_drop_up_blue
 drawable ic_dropdown
 drawable ic_dropdown_toggle
 drawable ic_dropup
@@ -2681,6 +2683,7 @@ drawable ic_location_blue
 drawable ic_location_circle
 drawable ic_location_new
 drawable ic_location_new_big
+drawable ic_location_not_added
 drawable ic_location_nows
 drawable ic_locations
 drawable ic_mail
@@ -2702,10 +2705,13 @@ drawable ic_mute_mic
 drawable ic_navigate_next_blue
 drawable ic_next
 drawable ic_no_location_found
+drawable ic_no_service_request_found
+drawable ic_no_ticket_found
 drawable ic_not_delivered
 drawable ic_not_found
 drawable ic_not_verified
 drawable ic_nurse_icon
+drawable ic_oc_drop_down_blue
 drawable ic_onsite
 drawable ic_opacity
 drawable ic_opacity_black_24dp
@@ -3111,6 +3117,7 @@ id civ_employee
 id civ_field
 id civ_field1
 id civ_image_self
+id civ_self
 id civ_sender
 id civ_ticket_created_by
 id civ_ticket_created_date
@@ -3358,6 +3365,7 @@ id iv_doc
 id iv_dropdown_activity
 id iv_dropdown_customer
 id iv_dropdown_employee
+id iv_dropdown_status
 id iv_dropdown_ticket_details
 id iv_edit
 id iv_facebook
@@ -3438,6 +3446,7 @@ id ll_employee_holder
 id ll_field2
 id ll_filed
 id ll_filed1
+id ll_label_holder
 id ll_location_toggle
 id ll_login
 id ll_model
@@ -3446,6 +3455,7 @@ id ll_resend_code
 id ll_search_container
 id ll_self
 id ll_service_doers_holder
+id ll_status_options
 id ll_swipe_assign
 id ll_swipe_reopen
 id ll_swipe_subscribe
@@ -3531,6 +3541,7 @@ id password_toggle
 id pb_doc
 id pb_image
 id pb_load_data
+id pb_progress
 id pb_search
 id peekHeight
 id percent
@@ -3572,10 +3583,12 @@ id rlCancel
 id rlClickConsumer
 id rl_about
 id rl_accepted_by_container
+id rl_bot_reply_holder
 id rl_change_password
 id rl_container
 id rl_copy_holder
 id rl_currency
+id rl_customer_self_holder
 id rl_date
 id rl_delete_holder
 id rl_disable_audio_processing
@@ -3606,6 +3619,7 @@ id rl_query_holder
 id rl_requested_by_container
 id rl_screenshot_image
 id rl_search_holder
+id rl_selected_status
 id rl_service_holder
 id rl_service_name_holder
 id rl_setting_acc
@@ -3660,6 +3674,7 @@ id scroll_drop_shadow
 id scroll_view
 id scroll_view_results
 id scrollable
+id scv_label
 id searchHistoryResultsView
 id searchResultView
 id searchView
@@ -3794,6 +3809,7 @@ id tv_all_users
 id tv_anydone_text
 id tv_assigend_date
 id tv_assign_employee
+id tv_assigned_employee_count
 id tv_assigned_employee_dropdown
 id tv_audio_bitrate
 id tv_audio_codec_bitrate
@@ -3808,6 +3824,7 @@ id tv_cancelled
 id tv_card_no
 id tv_change_password
 id tv_chip_id
+id tv_close
 id tv_closed
 id tv_code
 id tv_code_expires_in
@@ -3822,6 +3839,7 @@ id tv_customer_dropdown
 id tv_customer_email
 id tv_customer_name
 id tv_customer_phone
+id tv_customer_self
 id tv_customer_value
 id tv_date
 id tv_date_range
@@ -3886,10 +3904,12 @@ id tv_prompt
 id tv_rate_number
 id tv_recorder
 id tv_remote
+id tv_reopen
 id tv_resend_code
 id tv_resend_doc
 id tv_reset
 id tv_reset_password
+id tv_resolve
 id tv_retry_image_upload
 id tv_room_number
 id tv_secondary
@@ -3899,6 +3919,7 @@ id tv_sent_at
 id tv_service_doer_names
 id tv_service_name
 id tv_status
+id tv_status_selected
 id tv_suggestion
 id tv_summary
 id tv_tag
@@ -3907,6 +3928,7 @@ id tv_terms_n_conditions
 id tv_text
 id tv_ticket_created_by
 id tv_ticket_created_date
+id tv_ticket_created_time
 id tv_ticket_desc
 id tv_ticket_details_dropdown
 id tv_ticket_id
@@ -3940,6 +3962,7 @@ id useLogo
 id user_location_button
 id v_dots
 id v_separator
+id v_separator1
 id video
 id view_bottom_sheet_overlay
 id view_line
@@ -4148,6 +4171,7 @@ layout layout_draw
 layout layout_full_width_code_picker
 layout layout_image_fullscreen_preview
 layout layout_image_slider
+layout layout_initial_ticket_detail
 layout layout_kgraph_row
 layout layout_picker_dialog
 layout layout_recycler_country_tile

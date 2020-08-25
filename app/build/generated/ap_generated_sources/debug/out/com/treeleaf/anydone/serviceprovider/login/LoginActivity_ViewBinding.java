@@ -2,6 +2,7 @@
 package com.treeleaf.anydone.serviceprovider.login;
 
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
@@ -17,7 +18,7 @@ import java.lang.Override;
 public class LoginActivity_ViewBinding implements Unbinder {
   private LoginActivity target;
 
-  private View view7f090239;
+  private View view7f09023d;
 
   @UiThread
   public LoginActivity_ViewBinding(LoginActivity target) {
@@ -34,8 +35,9 @@ public class LoginActivity_ViewBinding implements Unbinder {
     target.etPassword = Utils.findRequiredViewAsType(source, R.id.et_password, "field 'etPassword'", TextInputEditText.class);
     target.ilEmailPhone = Utils.findRequiredViewAsType(source, R.id.il_email_phone, "field 'ilEmailPhone'", TextInputLayout.class);
     target.ilPassword = Utils.findRequiredViewAsType(source, R.id.il_password, "field 'ilPassword'", TextInputLayout.class);
+    target.progress = Utils.findRequiredViewAsType(source, R.id.pb_progress, "field 'progress'", ProgressBar.class);
     view = Utils.findRequiredView(source, R.id.loginButton, "method 'login'");
-    view7f090239 = view;
+    view7f09023d = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,8 +58,9 @@ public class LoginActivity_ViewBinding implements Unbinder {
     target.etPassword = null;
     target.ilEmailPhone = null;
     target.ilPassword = null;
+    target.progress = null;
 
-    view7f090239.setOnClickListener(null);
-    view7f090239 = null;
+    view7f09023d.setOnClickListener(null);
+    view7f09023d = null;
   }
 }

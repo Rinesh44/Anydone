@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +19,7 @@ import java.lang.Override;
 public class AssignedTicketsFragment_ViewBinding implements Unbinder {
   private AssignedTicketsFragment target;
 
-  private View view7f090147;
+  private View view7f090148;
 
   @UiThread
   public AssignedTicketsFragment_ViewBinding(final AssignedTicketsFragment target, View source) {
@@ -30,13 +31,15 @@ public class AssignedTicketsFragment_ViewBinding implements Unbinder {
     target.ivDataNotFound = Utils.findRequiredViewAsType(source, R.id.iv_data_not_found, "field 'ivDataNotFound'", ImageView.class);
     view = Utils.findRequiredView(source, R.id.fab_assign, "field 'fabAssign' and method 'gotoAssignableTicketList'");
     target.fabAssign = Utils.castView(view, R.id.fab_assign, "field 'fabAssign'", FloatingActionButton.class);
-    view7f090147 = view;
+    view7f090148 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.gotoAssignableTicketList();
       }
     });
+    target.progressBar = Utils.findRequiredViewAsType(source, R.id.pb_search, "field 'progressBar'", ProgressBar.class);
+    target.progress = Utils.findRequiredViewAsType(source, R.id.pb_progress, "field 'progress'", ProgressBar.class);
   }
 
   @Override
@@ -50,8 +53,10 @@ public class AssignedTicketsFragment_ViewBinding implements Unbinder {
     target.swipeRefreshLayout = null;
     target.ivDataNotFound = null;
     target.fabAssign = null;
+    target.progressBar = null;
+    target.progress = null;
 
-    view7f090147.setOnClickListener(null);
-    view7f090147 = null;
+    view7f090148.setOnClickListener(null);
+    view7f090148 = null;
   }
 }

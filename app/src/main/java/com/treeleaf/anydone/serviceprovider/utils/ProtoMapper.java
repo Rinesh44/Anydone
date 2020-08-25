@@ -229,6 +229,8 @@ public final class ProtoMapper {
             employee.setEmployeeId(employeeProfile.getAssignedTo().getEmployeeProfileId());
             employee.setEmployeeImageUrl(employeeProfile.getAssignedTo().getAccount().getProfilePic());
             employee.setName(employeeProfile.getAssignedTo().getAccount().getFullName());
+            employee.setPhone(employeeProfile.getAssignedTo().getAccount().getPhone());
+            employee.setEmail(employeeProfile.getAssignedTo().getAccount().getEmail());
             employeeRealmList.add(employee);
         }
         return employeeRealmList;

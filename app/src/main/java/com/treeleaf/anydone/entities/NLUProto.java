@@ -18,9 +18,9 @@ public final class NLUProto {
      */
     UNKNOWN_REPLY(0),
     /**
-     * <code>GREET_REPLY = 1;</code>
+     * <code>CONVERSATIONAL_REPLY = 1;</code>
      */
-    GREET_REPLY(1),
+    CONVERSATIONAL_REPLY(1),
     /**
      * <code>KGRAPH_REPLY = 2;</code>
      */
@@ -33,9 +33,9 @@ public final class NLUProto {
      */
     public static final int UNKNOWN_REPLY_VALUE = 0;
     /**
-     * <code>GREET_REPLY = 1;</code>
+     * <code>CONVERSATIONAL_REPLY = 1;</code>
      */
-    public static final int GREET_REPLY_VALUE = 1;
+    public static final int CONVERSATIONAL_REPLY_VALUE = 1;
     /**
      * <code>KGRAPH_REPLY = 2;</code>
      */
@@ -57,7 +57,7 @@ public final class NLUProto {
     public static BotReplyType forNumber(int value) {
       switch (value) {
         case 0: return UNKNOWN_REPLY;
-        case 1: return GREET_REPLY;
+        case 1: return CONVERSATIONAL_REPLY;
         case 2: return KGRAPH_REPLY;
         default: return null;
       }
@@ -2937,112 +2937,85 @@ public final class NLUProto {
     }
   }
 
-  public interface GreetReplyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.GreetReply)
+  public interface ConversationalReplyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationalReply)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string text = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    String getText();
+    boolean hasIntentResult();
     /**
-     * <code>optional string text = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    com.google.protobuf.ByteString
-        getTextBytes();
-
-    /**
-     * <code>optional double score = 3;</code>
-     */
-    double getScore();
+    IntentResult getIntentResult();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.GreetReply}
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationalReply}
    */
-  public  static final class GreetReply extends
+  public  static final class ConversationalReply extends
       com.google.protobuf.GeneratedMessageLite<
-          GreetReply, GreetReply.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.GreetReply)
-      GreetReplyOrBuilder {
-    private GreetReply() {
-      text_ = "";
+          ConversationalReply, ConversationalReply.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationalReply)
+      ConversationalReplyOrBuilder {
+    private ConversationalReply() {
     }
-    public static final int TEXT_FIELD_NUMBER = 1;
-    private String text_;
+    public static final int INTENTRESULT_FIELD_NUMBER = 1;
+    private IntentResult intentResult_;
     /**
-     * <code>optional string text = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    public String getText() {
-      return text_;
-    }
-    /**
-     * <code>optional string text = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTextBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(text_);
+    public boolean hasIntentResult() {
+      return intentResult_ != null;
     }
     /**
-     * <code>optional string text = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    private void setText(
-        String value) {
+    public IntentResult getIntentResult() {
+      return intentResult_ == null ? IntentResult.getDefaultInstance() : intentResult_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
+     */
+    private void setIntentResult(IntentResult value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      text_ = value;
-    }
-    /**
-     * <code>optional string text = 1;</code>
-     */
-    private void clearText() {
+        throw new NullPointerException();
+      }
+      intentResult_ = value;
       
-      text_ = getDefaultInstance().getText();
-    }
+      }
     /**
-     * <code>optional string text = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    private void setTextBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    private void setIntentResult(
+        IntentResult.Builder builderForValue) {
+      intentResult_ = builderForValue.build();
       
-      text_ = value.toStringUtf8();
-    }
-
-    public static final int SCORE_FIELD_NUMBER = 3;
-    private double score_;
-    /**
-     * <code>optional double score = 3;</code>
-     */
-    public double getScore() {
-      return score_;
     }
     /**
-     * <code>optional double score = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    private void setScore(double value) {
+    private void mergeIntentResult(IntentResult value) {
+      if (intentResult_ != null &&
+          intentResult_ != IntentResult.getDefaultInstance()) {
+        intentResult_ =
+          IntentResult.newBuilder(intentResult_).mergeFrom(value).buildPartial();
+      } else {
+        intentResult_ = value;
+      }
       
-      score_ = value;
     }
     /**
-     * <code>optional double score = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    private void clearScore() {
+    private void clearIntentResult() {  intentResult_ = null;
       
-      score_ = 0D;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!text_.isEmpty()) {
-        output.writeString(1, getText());
-      }
-      if (score_ != 0D) {
-        output.writeDouble(3, score_);
+      if (intentResult_ != null) {
+        output.writeMessage(1, getIntentResult());
       }
     }
 
@@ -3051,72 +3024,68 @@ public final class NLUProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!text_.isEmpty()) {
+      if (intentResult_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getText());
-      }
-      if (score_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(3, score_);
+          .computeMessageSize(1, getIntentResult());
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static GreetReply parseFrom(
+    public static ConversationalReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static GreetReply parseFrom(
+    public static ConversationalReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static GreetReply parseFrom(byte[] data)
+    public static ConversationalReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static GreetReply parseFrom(
+    public static ConversationalReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static GreetReply parseFrom(java.io.InputStream input)
+    public static ConversationalReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static GreetReply parseFrom(
+    public static ConversationalReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static GreetReply parseDelimitedFrom(java.io.InputStream input)
+    public static ConversationalReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static GreetReply parseDelimitedFrom(
+    public static ConversationalReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static GreetReply parseFrom(
+    public static ConversationalReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static GreetReply parseFrom(
+    public static ConversationalReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3127,95 +3096,77 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(GreetReply prototype) {
+    public static Builder newBuilder(ConversationalReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.GreetReply}
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationalReply}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          GreetReply, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.GreetReply)
-        GreetReplyOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.NLUProto.GreetReply.newBuilder()
+          ConversationalReply, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationalReply)
+        ConversationalReplyOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.NLUProto.ConversationalReply.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional string text = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public String getText() {
-        return instance.getText();
+      public boolean hasIntentResult() {
+        return instance.hasIntentResult();
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public com.google.protobuf.ByteString
-          getTextBytes() {
-        return instance.getTextBytes();
+      public IntentResult getIntentResult() {
+        return instance.getIntentResult();
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public Builder setText(
-          String value) {
+      public Builder setIntentResult(IntentResult value) {
         copyOnWrite();
-        instance.setText(value);
+        instance.setIntentResult(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
+       */
+      public Builder setIntentResult(
+          IntentResult.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIntentResult(builderForValue);
         return this;
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public Builder clearText() {
+      public Builder mergeIntentResult(IntentResult value) {
         copyOnWrite();
-        instance.clearText();
+        instance.mergeIntentResult(value);
         return this;
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public Builder setTextBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setTextBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional double score = 3;</code>
-       */
-      public double getScore() {
-        return instance.getScore();
-      }
-      /**
-       * <code>optional double score = 3;</code>
-       */
-      public Builder setScore(double value) {
-        copyOnWrite();
-        instance.setScore(value);
-        return this;
-      }
-      /**
-       * <code>optional double score = 3;</code>
-       */
-      public Builder clearScore() {
-        copyOnWrite();
-        instance.clearScore();
+      public Builder clearIntentResult() {  copyOnWrite();
+        instance.clearIntentResult();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.GreetReply)
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationalReply)
     }
     protected final Object dynamicMethod(
         MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new GreetReply();
+          return new ConversationalReply();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3228,11 +3179,8 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          GreetReply other = (GreetReply) arg1;
-          text_ = visitor.visitString(!text_.isEmpty(), text_,
-              !other.text_.isEmpty(), other.text_);
-          score_ = visitor.visitDouble(score_ != 0D, score_,
-              other.score_ != 0D, other.score_);
+          ConversationalReply other = (ConversationalReply) arg1;
+          intentResult_ = visitor.visitMessage(intentResult_, other.intentResult_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -3258,14 +3206,16 @@ public final class NLUProto {
                   break;
                 }
                 case 10: {
-                  String s = input.readStringRequireUtf8();
+                  IntentResult.Builder subBuilder = null;
+                  if (intentResult_ != null) {
+                    subBuilder = intentResult_.toBuilder();
+                  }
+                  intentResult_ = input.readMessage(IntentResult.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(intentResult_);
+                    intentResult_ = subBuilder.buildPartial();
+                  }
 
-                  text_ = s;
-                  break;
-                }
-                case 25: {
-
-                  score_ = input.readDouble();
                   break;
                 }
               }
@@ -3283,7 +3233,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (GreetReply.class) {
+          if (PARSER == null) {    synchronized (ConversationalReply.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3296,20 +3246,20 @@ public final class NLUProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.GreetReply)
-    private static final GreetReply DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationalReply)
+    private static final ConversationalReply DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new GreetReply();
+      DEFAULT_INSTANCE = new ConversationalReply();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static GreetReply getDefaultInstance() {
+    public static ConversationalReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<GreetReply> PARSER;
+    private static volatile com.google.protobuf.Parser<ConversationalReply> PARSER;
 
-    public static com.google.protobuf.Parser<GreetReply> parser() {
+    public static com.google.protobuf.Parser<ConversationalReply> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -4734,13 +4684,13 @@ public final class NLUProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    boolean hasGreetReply();
+    boolean hasConversationalReply();
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    GreetReply getGreetReply();
+    ConversationalReply getConversationalReply();
 
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
@@ -4770,55 +4720,55 @@ public final class NLUProto {
       BotReplyOrBuilder {
     private BotReply() {
     }
-    public static final int GREETREPLY_FIELD_NUMBER = 1;
-    private GreetReply greetReply_;
+    public static final int CONVERSATIONALREPLY_FIELD_NUMBER = 1;
+    private ConversationalReply conversationalReply_;
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    public boolean hasGreetReply() {
-      return greetReply_ != null;
+    public boolean hasConversationalReply() {
+      return conversationalReply_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    public GreetReply getGreetReply() {
-      return greetReply_ == null ? GreetReply.getDefaultInstance() : greetReply_;
+    public ConversationalReply getConversationalReply() {
+      return conversationalReply_ == null ? ConversationalReply.getDefaultInstance() : conversationalReply_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    private void setGreetReply(GreetReply value) {
+    private void setConversationalReply(ConversationalReply value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      greetReply_ = value;
+      conversationalReply_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    private void setGreetReply(
-        GreetReply.Builder builderForValue) {
-      greetReply_ = builderForValue.build();
+    private void setConversationalReply(
+        ConversationalReply.Builder builderForValue) {
+      conversationalReply_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    private void mergeGreetReply(GreetReply value) {
-      if (greetReply_ != null &&
-          greetReply_ != GreetReply.getDefaultInstance()) {
-        greetReply_ =
-          GreetReply.newBuilder(greetReply_).mergeFrom(value).buildPartial();
+    private void mergeConversationalReply(ConversationalReply value) {
+      if (conversationalReply_ != null &&
+          conversationalReply_ != ConversationalReply.getDefaultInstance()) {
+        conversationalReply_ =
+          ConversationalReply.newBuilder(conversationalReply_).mergeFrom(value).buildPartial();
       } else {
-        greetReply_ = value;
+        conversationalReply_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    private void clearGreetReply() {  greetReply_ = null;
+    private void clearConversationalReply() {  conversationalReply_ = null;
       
     }
 
@@ -4915,8 +4865,8 @@ public final class NLUProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (greetReply_ != null) {
-        output.writeMessage(1, getGreetReply());
+      if (conversationalReply_ != null) {
+        output.writeMessage(1, getConversationalReply());
       }
       if (kgraphReply_ != null) {
         output.writeMessage(2, getKgraphReply());
@@ -4931,9 +4881,9 @@ public final class NLUProto {
       if (size != -1) return size;
 
       size = 0;
-      if (greetReply_ != null) {
+      if (conversationalReply_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getGreetReply());
+          .computeMessageSize(1, getConversationalReply());
       }
       if (kgraphReply_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -5030,47 +4980,47 @@ public final class NLUProto {
 
 
       /**
-       * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public boolean hasGreetReply() {
-        return instance.hasGreetReply();
+      public boolean hasConversationalReply() {
+        return instance.hasConversationalReply();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public GreetReply getGreetReply() {
-        return instance.getGreetReply();
+      public ConversationalReply getConversationalReply() {
+        return instance.getConversationalReply();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public Builder setGreetReply(GreetReply value) {
+      public Builder setConversationalReply(ConversationalReply value) {
         copyOnWrite();
-        instance.setGreetReply(value);
+        instance.setConversationalReply(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public Builder setGreetReply(
-          GreetReply.Builder builderForValue) {
+      public Builder setConversationalReply(
+          ConversationalReply.Builder builderForValue) {
         copyOnWrite();
-        instance.setGreetReply(builderForValue);
+        instance.setConversationalReply(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public Builder mergeGreetReply(GreetReply value) {
+      public Builder mergeConversationalReply(ConversationalReply value) {
         copyOnWrite();
-        instance.mergeGreetReply(value);
+        instance.mergeConversationalReply(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.GreetReply greetReply = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public Builder clearGreetReply() {  copyOnWrite();
-        instance.clearGreetReply();
+      public Builder clearConversationalReply() {  copyOnWrite();
+        instance.clearConversationalReply();
         return this;
       }
 
@@ -5177,7 +5127,7 @@ public final class NLUProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           BotReply other = (BotReply) arg1;
-          greetReply_ = visitor.visitMessage(greetReply_, other.greetReply_);
+          conversationalReply_ = visitor.visitMessage(conversationalReply_, other.conversationalReply_);
           kgraphReply_ = visitor.visitMessage(kgraphReply_, other.kgraphReply_);
           replyType_ = visitor.visitInt(replyType_ != 0, replyType_,    other.replyType_ != 0, other.replyType_);
           if (visitor == MergeFromVisitor
@@ -5205,14 +5155,14 @@ public final class NLUProto {
                   break;
                 }
                 case 10: {
-                  GreetReply.Builder subBuilder = null;
-                  if (greetReply_ != null) {
-                    subBuilder = greetReply_.toBuilder();
+                  ConversationalReply.Builder subBuilder = null;
+                  if (conversationalReply_ != null) {
+                    subBuilder = conversationalReply_.toBuilder();
                   }
-                  greetReply_ = input.readMessage(GreetReply.parser(), extensionRegistry);
+                  conversationalReply_ = input.readMessage(ConversationalReply.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(greetReply_);
-                    greetReply_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(conversationalReply_);
+                    conversationalReply_ = subBuilder.buildPartial();
                   }
 
                   break;

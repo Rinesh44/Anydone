@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,8 @@ public class ClosedTicketsFragment_ViewBinding implements Unbinder {
     target.rvClosedTickets = Utils.findRequiredViewAsType(source, R.id.rv_closed_tickets, "field 'rvClosedTickets'", RecyclerView.class);
     target.swipeRefreshLayout = Utils.findRequiredViewAsType(source, R.id.swipe_refresh_closed_tickets, "field 'swipeRefreshLayout'", SwipeRefreshLayout.class);
     target.ivDataNotFound = Utils.findRequiredViewAsType(source, R.id.iv_data_not_found, "field 'ivDataNotFound'", ImageView.class);
+    target.progressBar = Utils.findRequiredViewAsType(source, R.id.pb_search, "field 'progressBar'", ProgressBar.class);
+    target.progress = Utils.findRequiredViewAsType(source, R.id.pb_progress, "field 'progress'", ProgressBar.class);
   }
 
   @Override
@@ -35,5 +38,7 @@ public class ClosedTicketsFragment_ViewBinding implements Unbinder {
     target.rvClosedTickets = null;
     target.swipeRefreshLayout = null;
     target.ivDataNotFound = null;
+    target.progressBar = null;
+    target.progress = null;
   }
 }

@@ -123,9 +123,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     @Override
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
-        holder.setIsRecyclable(
-                false
-        );
         Tickets tickets = ticketsList.get(position);
         if (holder.swipeRevealLayout != null) {
             viewBinderHelper.bind(holder.swipeRevealLayout,
@@ -137,7 +134,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         holder.tvDate1.setText(dateSeparated[0]);
         holder.tvDate2.setText(dateSeparated[1] + " " + dateSeparated[2]);
         holder.ticketId.setText("#" + tickets.getTicketId());
-        holder.summary.setText(tickets.getDescription());
+        holder.summary.setText(tickets.getTitle());
         holder.customer.setText(tickets.getCustomer().getFullName());
         GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
         switch (tickets.getTicketStatus()) {

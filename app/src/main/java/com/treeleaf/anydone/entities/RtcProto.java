@@ -11519,6 +11519,18 @@ public final class RtcProto {
        * <code>PARTICIPANT_LEFT_REQUEST = 9;</code>
        */
       PARTICIPANT_LEFT_REQUEST(9),
+      /**
+       * <code>IMAGE_CAPTURE_MESSAGE_REQUEST = 10;</code>
+       */
+      IMAGE_CAPTURE_MESSAGE_REQUEST(10),
+      /**
+       * <code>CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST = 11;</code>
+       */
+      CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST(11),
+      /**
+       * <code>CANCEL_DRAWING_MESSAGE_REQUEST = 12;</code>
+       */
+      CANCEL_DRAWING_MESSAGE_REQUEST(12),
       UNRECOGNIZED(-1),
       ;
 
@@ -11558,6 +11570,18 @@ public final class RtcProto {
        * <code>PARTICIPANT_LEFT_REQUEST = 9;</code>
        */
       public static final int PARTICIPANT_LEFT_REQUEST_VALUE = 9;
+      /**
+       * <code>IMAGE_CAPTURE_MESSAGE_REQUEST = 10;</code>
+       */
+      public static final int IMAGE_CAPTURE_MESSAGE_REQUEST_VALUE = 10;
+      /**
+       * <code>CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST = 11;</code>
+       */
+      public static final int CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST_VALUE = 11;
+      /**
+       * <code>CANCEL_DRAWING_MESSAGE_REQUEST = 12;</code>
+       */
+      public static final int CANCEL_DRAWING_MESSAGE_REQUEST_VALUE = 12;
 
 
       public final int getNumber() {
@@ -11583,6 +11607,9 @@ public final class RtcProto {
           case 7: return VIDEO_CALL_JOIN_REQUEST;
           case 8: return VIDEO_ROOM_HOST_LEFT_REQUEST;
           case 9: return PARTICIPANT_LEFT_REQUEST;
+          case 10: return IMAGE_CAPTURE_MESSAGE_REQUEST;
+          case 11: return CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST;
+          case 12: return CANCEL_DRAWING_MESSAGE_REQUEST;
           default: return null;
         }
       }
@@ -14545,6 +14572,18 @@ public final class RtcProto {
        * <code>PARTICIPANT_LEFT_RESPONSE = 9;</code>
        */
       PARTICIPANT_LEFT_RESPONSE(9),
+      /**
+       * <code>IMAGE_CAPTURE_MESSAGE_RESPONSE = 10;</code>
+       */
+      IMAGE_CAPTURE_MESSAGE_RESPONSE(10),
+      /**
+       * <code>CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE = 11;</code>
+       */
+      CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE(11),
+      /**
+       * <code>CANCEL_DRAWING_MESSAGE_RESPONSE = 12;</code>
+       */
+      CANCEL_DRAWING_MESSAGE_RESPONSE(12),
       UNRECOGNIZED(-1),
       ;
 
@@ -14588,6 +14627,18 @@ public final class RtcProto {
        * <code>PARTICIPANT_LEFT_RESPONSE = 9;</code>
        */
       public static final int PARTICIPANT_LEFT_RESPONSE_VALUE = 9;
+      /**
+       * <code>IMAGE_CAPTURE_MESSAGE_RESPONSE = 10;</code>
+       */
+      public static final int IMAGE_CAPTURE_MESSAGE_RESPONSE_VALUE = 10;
+      /**
+       * <code>CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE = 11;</code>
+       */
+      public static final int CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE_VALUE = 11;
+      /**
+       * <code>CANCEL_DRAWING_MESSAGE_RESPONSE = 12;</code>
+       */
+      public static final int CANCEL_DRAWING_MESSAGE_RESPONSE_VALUE = 12;
 
 
       public final int getNumber() {
@@ -14614,6 +14665,9 @@ public final class RtcProto {
           case 7: return VIDEO_CALL_JOIN_RESPONSE;
           case 8: return VIDEO_ROOM_HOST_LEFT_RESPONSE;
           case 9: return PARTICIPANT_LEFT_RESPONSE;
+          case 10: return IMAGE_CAPTURE_MESSAGE_RESPONSE;
+          case 11: return CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE;
+          case 12: return CANCEL_DRAWING_MESSAGE_RESPONSE;
           default: return null;
         }
       }

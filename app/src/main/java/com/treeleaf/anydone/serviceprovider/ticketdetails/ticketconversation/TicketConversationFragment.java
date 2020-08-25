@@ -2,7 +2,6 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -92,11 +91,13 @@ import static android.app.Activity.RESULT_OK;
 
 public class TicketConversationFragment extends BaseFragment<TicketConversationPresenterImpl>
         implements TicketConversationContract.TicketConversationView,
-        TreeleafMqttClient.OnMQTTConnected {
+        TreeleafMqttClient.OnMQTTConnected, TicketDetailsActivity.OnOutsideClickListener {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 1212;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 2323;
     public static final int PICK_FILE_REQUEST_CODE = 3434;
 
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
     @BindView(R.id.ll_search_container)
     LinearLayout llSearchContainer;
     @BindView(R.id.iv_send)
@@ -150,7 +151,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
 
     public static CoordinatorLayout clCaptureView;
-    private ProgressDialog progress;
     private static final String TAG = "ServiceRequestDetailFra";
     private String currentPhotoPath = "";
     private long ticketId;
@@ -171,12 +171,18 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private String userAccountId;
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
+    private OnTicketStartListener onTicketStartListener;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        TicketDetailsActivity activity = (TicketDetailsActivity) getActivity();
+        assert activity != null;
+        activity.setOutSideTouchListener(this);
 
         Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         userAccountId = userAccount.getAccountId();
@@ -430,7 +436,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(getActivity(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -441,7 +447,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 
@@ -489,9 +495,23 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Hawk.put(Constants.SERVICE_PROVIDER_NAME, tickets.getServiceProvider()
                 .getFullName());
 
+        setInitialTicketDetail(tickets);
+        setStatusViews(tickets);
+
+   /*     if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.)) {
+            llSearchContainer.setVisibility(View.GONE);
+            tvCancelled.setVisibility(View.VISIBLE);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rvConversation.getLayoutParams();
+            params.addRule(RelativeLayout.ABOVE, R.id.tv_cancelled);
+        }*/
+//        presenter.getServiceProviderInfo(tickets);
+    }
+
+    private void setStatusViews(Tickets tickets) {
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CLOSED.name())) {
             llSearchContainer.setVisibility(View.GONE);
             tvClosed.setVisibility(View.VISIBLE);
+            tvClosed.setText("Closed");
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                     rvConversation.getLayoutParams();
             params.addRule(RelativeLayout.ABOVE, R.id.tv_closed);
@@ -506,18 +526,23 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             params.addRule(RelativeLayout.ABOVE, R.id.tv_closed);
         }
 
-        if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())) {
+        if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
+                || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
             llSearchContainer.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.VISIBLE);
+            tvClosed.setVisibility(View.GONE);
         }
+    }
 
-   /*     if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.)) {
-            llSearchContainer.setVisibility(View.GONE);
-            tvCancelled.setVisibility(View.VISIBLE);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rvConversation.getLayoutParams();
-            params.addRule(RelativeLayout.ABOVE, R.id.tv_cancelled);
-        }*/
-//        presenter.getServiceProviderInfo(tickets);
+    private void setInitialTicketDetail(Tickets tickets) {
+        Conversation conversation = new Conversation();
+        conversation.setClientId(UUID.randomUUID().toString().replace("-", ""));
+        conversation.setRefId(tickets.getTicketId());
+        conversation.setTicketTitle(tickets.getTitle());
+        conversation.setTicketDesc(tickets.getDescription());
+        conversation.setTagsList(tickets.getTagsRealmList());
+        conversation.setMessageType("INITIAL_TICKET_DETAIL");
+        adapter.setInitialData(conversation);
     }
 
 
@@ -861,6 +886,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         btnStartTask.setVisibility(View.GONE);
         llSearchContainer.setVisibility(View.VISIBLE);
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
+      /*  if (onTicketStartListener != null)
+            onTicketStartListener.onTicketStarted();*/
+        Hawk.put(Constants.TICKET_STARTED, true);
     }
 
     @Override
@@ -870,7 +898,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             onAuthorizationFailed(getActivity());
             return;
         }
-        UiUtils.showToast(getActivity(), msg);
+
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     @Override
@@ -1122,6 +1152,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         super.onDetach();
         TreeleafMqttClient.mqttClient.unregisterResources();
         unregisterReceiver();
+        onTicketStartListener = null;
     }
 
     @Override
@@ -1149,9 +1180,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             }
             return false;
         });
+
+        boolean reFetchTicket = Hawk.get(Constants.REFETCH_TICKET, false);
+        if (reFetchTicket) {
+            Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
+            setStatusViews(tickets);
+            Hawk.put(Constants.REFETCH_TICKET, false);
+        }
     }
 
-/*    @Override
+    @Override
     public void onOutsideClick(MotionEvent event) {
         GlobalUtils.showLog(TAG, "on outside click first");
 
@@ -1182,7 +1220,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 profileSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         }
-    }*/
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setUpNetworkBroadCastReceiver() {
@@ -1262,4 +1300,5 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         final Handler handler = new Handler();
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
     }
+
 }

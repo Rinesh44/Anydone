@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +61,9 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     TextView tvToolbarTitle;
     @BindView(R.id.toolbar_problem_stat)
     TextView tvToolbarProblemStat;
-    private ProgressDialog progress;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
+
     private ServiceRequest serviceRequest;
 
     public OnOutsideClickListener outsideClickListener;
@@ -347,7 +349,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -358,7 +360,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

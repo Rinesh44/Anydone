@@ -101,7 +101,7 @@
 47-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:26:22-107
 48
 49    <application
-49-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:18:5-128:19
+49-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:18:5-130:19
 50        android:name="com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication"
 50-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:19:9-58
 51        android:allowBackup="false"
@@ -138,448 +138,454 @@
 67-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:33:13-64
 68            android:theme="@style/AppTheme.NoActionBar" />
 68-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:34:13-56
-69        <activity android:name="com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity" />
-69-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:35:9-89
-69-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:35:19-86
-70        <activity
-70-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:36:9-38:48
-71            android:name="com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity"
-71-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:37:13-56
-72            android:theme="@style/FormTheme" />
-72-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:38:13-45
-73        <activity android:name="com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity" />
-73-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:39:9-93
-73-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:39:19-90
-74        <activity
-74-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:40:9-42:59
-75            android:name="com.treeleaf.anydone.serviceprovider.weblink.WebLinkActivity"
-75-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:41:13-52
-76            android:theme="@style/AppTheme.NoActionBar" />
-76-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:42:13-56
-77        <activity android:name="com.treeleaf.anydone.serviceprovider.picklocation.PickLocationActivity" />
-77-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:43:9-71
-77-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:43:19-68
-78        <activity android:name="com.treeleaf.anydone.serviceprovider.aboutus.AboutUsActivity" />
-78-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:44:9-61
-78-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:44:19-58
-79        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.timezone.SelectTimezoneActivity" />
-79-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:45:9-77
-79-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:45:19-74
-80        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneActivity" />
-80-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:46:9-71
-80-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:46:19-68
-81        <activity
-81-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:47:9-49:48
-82            android:name="com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity"
-82-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:48:13-65
-83            android:theme="@style/FormTheme" />
-83-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:49:13-45
-84        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationActivity" />
-84-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:50:9-88
-84-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:50:19-85
-85        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.currency.SelectCurrencyActivity" />
-85-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:51:9-77
-85-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:51:19-74
-86        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.currency.CurrencyActivity" />
-86-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:52:9-71
-86-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:52:19-68
-87        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.video.VideoSettingActivity" />
-87-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:53:9-72
-87-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:53:19-69
-88        <activity
-88-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:54:9-56:46
-89            android:name="com.treeleaf.anydone.serviceprovider.setting.language.LanguagesActivity"
-89-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:55:13-63
-90            android:configChanges="locale" />
-90-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:56:13-43
-91        <activity
-91-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:57:9-66:20
-92            android:name="com.treeleaf.anydone.serviceprovider.splash.SplashActivity"
-92-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:58:13-50
-93            android:label="@string/app_name"
-93-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:59:13-45
-94            android:theme="@style/AppTheme.NoActionBar" >
-94-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:60:13-56
-95            <intent-filter>
-95-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:61:13-65:29
-96                <action android:name="android.intent.action.MAIN" />
-96-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:62:17-69
-96-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:62:25-66
-97
-98                <category android:name="android.intent.category.LAUNCHER" />
-98-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:64:17-77
-98-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:64:27-74
-99            </intent-filter>
-100        </activity>
-101        <activity
-101-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:67:9-69:59
-102            android:name="com.treeleaf.anydone.serviceprovider.login.LoginActivity"
-102-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:68:13-48
-103            android:theme="@style/AppTheme.NoActionBar" />
-103-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:69:13-56
-104        <activity
-104-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:70:9-73:48
-105            android:name="com.treeleaf.anydone.serviceprovider.profile.ProfileActivity"
-105-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:71:13-52
-106            android:configChanges="locale"
-106-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:72:13-43
-107            android:theme="@style/FormTheme" />
-107-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:73:13-45
+69        <activity
+69-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:35:9-36:47
+70            android:name="com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity"
+70-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:35:19-86
+71            android:theme="@style/FormTheme" />
+71-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:36:13-45
+72        <activity
+72-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:37:9-39:48
+73            android:name="com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity"
+73-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:38:13-56
+74            android:theme="@style/FormTheme" />
+74-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:39:13-45
+75        <activity
+75-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:40:9-41:47
+76            android:name="com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
+76-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:40:19-90
+77            android:theme="@style/FormTheme" />
+77-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:41:13-45
+78        <activity
+78-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:42:9-44:59
+79            android:name="com.treeleaf.anydone.serviceprovider.weblink.WebLinkActivity"
+79-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:43:13-52
+80            android:theme="@style/AppTheme.NoActionBar" />
+80-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:44:13-56
+81        <activity android:name="com.treeleaf.anydone.serviceprovider.picklocation.PickLocationActivity" />
+81-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:45:9-71
+81-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:45:19-68
+82        <activity android:name="com.treeleaf.anydone.serviceprovider.aboutus.AboutUsActivity" />
+82-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:46:9-61
+82-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:46:19-58
+83        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.timezone.SelectTimezoneActivity" />
+83-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:47:9-77
+83-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:47:19-74
+84        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneActivity" />
+84-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:48:9-71
+84-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:48:19-68
+85        <activity
+85-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:49:9-51:48
+86            android:name="com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity"
+86-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:50:13-65
+87            android:theme="@style/FormTheme" />
+87-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:51:13-45
+88        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationActivity" />
+88-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:52:9-88
+88-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:52:19-85
+89        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.currency.SelectCurrencyActivity" />
+89-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:53:9-77
+89-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:53:19-74
+90        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.currency.CurrencyActivity" />
+90-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:54:9-71
+90-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:54:19-68
+91        <activity android:name="com.treeleaf.anydone.serviceprovider.setting.video.VideoSettingActivity" />
+91-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:55:9-72
+91-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:55:19-69
+92        <activity
+92-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:56:9-58:46
+93            android:name="com.treeleaf.anydone.serviceprovider.setting.language.LanguagesActivity"
+93-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:57:13-63
+94            android:configChanges="locale" />
+94-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:58:13-43
+95        <activity
+95-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:59:9-68:20
+96            android:name="com.treeleaf.anydone.serviceprovider.splash.SplashActivity"
+96-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:60:13-50
+97            android:label="@string/app_name"
+97-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:61:13-45
+98            android:theme="@style/AppTheme.NoActionBar" >
+98-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:62:13-56
+99            <intent-filter>
+99-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:63:13-67:29
+100                <action android:name="android.intent.action.MAIN" />
+100-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:64:17-69
+100-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:64:25-66
+101
+102                <category android:name="android.intent.category.LAUNCHER" />
+102-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:66:17-77
+102-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:66:27-74
+103            </intent-filter>
+104        </activity>
+105        <activity
+105-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:69:9-71:59
+106            android:name="com.treeleaf.anydone.serviceprovider.login.LoginActivity"
+106-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:70:13-48
+107            android:theme="@style/AppTheme.NoActionBar" />
+107-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:71:13-56
 108        <activity
-108-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:74:9-76:59
-109            android:name="com.treeleaf.anydone.serviceprovider.verification.VerificationActivity"
-109-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:75:13-62
-110            android:theme="@style/AppTheme.NoActionBar" />
-110-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:76:13-56
-111        <activity
-111-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:77:9-80:59
-112            android:name="com.treeleaf.anydone.serviceprovider.landing.LandingActivity"
-112-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:78:13-52
-113            android:configChanges="locale"
-113-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:79:13-43
+108-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:72:9-75:48
+109            android:name="com.treeleaf.anydone.serviceprovider.profile.ProfileActivity"
+109-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:73:13-52
+110            android:configChanges="locale"
+110-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:74:13-43
+111            android:theme="@style/FormTheme" />
+111-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:75:13-45
+112        <activity
+112-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:76:9-78:59
+113            android:name="com.treeleaf.anydone.serviceprovider.verification.VerificationActivity"
+113-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:77:13-62
 114            android:theme="@style/AppTheme.NoActionBar" />
-114-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:80:13-56
+114-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:78:13-56
 115        <activity
-115-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:81:9-83:59
-116            android:name="com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity"
-116-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:82:13-66
-117            android:theme="@style/AppTheme.NoActionBar" />
-117-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:83:13-56
-118        <activity
-118-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:84:9-87:48
-119            android:name="com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity"
-119-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:85:13-60
-120            android:configChanges="locale"
-120-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:86:13-43
-121            android:theme="@style/FormTheme" />
-121-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:87:13-45
+115-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:79:9-82:59
+116            android:name="com.treeleaf.anydone.serviceprovider.landing.LandingActivity"
+116-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:80:13-52
+117            android:configChanges="locale"
+117-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:81:13-43
+118            android:theme="@style/AppTheme.NoActionBar" />
+118-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:82:13-56
+119        <activity
+119-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:83:9-85:59
+120            android:name="com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity"
+120-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:84:13-66
+121            android:theme="@style/AppTheme.NoActionBar" />
+121-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:85:13-56
 122        <activity
-122-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:88:9-91:48
-123            android:name="com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity"
-123-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:89:13-66
+122-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:86:9-89:48
+123            android:name="com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity"
+123-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:87:13-60
 124            android:configChanges="locale"
-124-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:90:13-43
+124-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:88:13-43
 125            android:theme="@style/FormTheme" />
-125-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:91:13-45
+125-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:89:13-45
 126        <activity
-126-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:92:9-95:48
-127            android:name="com.treeleaf.anydone.serviceprovider.setting.SettingsActivity"
-127-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:93:13-53
+126-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:90:9-93:48
+127            android:name="com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity"
+127-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:91:13-66
 128            android:configChanges="locale"
-128-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:94:13-43
+128-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:92:13-43
 129            android:theme="@style/FormTheme" />
-129-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:95:13-45
+129-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:93:13-45
 130        <activity
-130-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:96:9-98:59
-131            android:name="com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity"
-131-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:97:13-79
-132            android:theme="@style/AppTheme.NoActionBar" />
-132-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:98:13-56
-133        <activity
-133-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:99:9-101:59
-134            android:name="com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeActivity"
-134-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:100:13-73
-135            android:theme="@style/AppTheme.NoActionBar" />
-135-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:101:13-56
-136        <activity
-136-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:102:9-106:58
-137            android:name="com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity"
-137-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:103:13-107
-138            android:configChanges="locale"
-138-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:104:13-43
-139            android:theme="@style/AppTheme.NoActionBar"
-139-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:105:13-56
-140            android:windowSoftInputMode="adjustResize" />
-140-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:106:13-55
-141        <!--
-142 <activity
-143             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-144             android:theme="@style/Base.Theme.AppCompat" />
-145        -->
-146        <activity
-146-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:112:9-115:72
-147            android:name="com.yalantis.ucrop.UCropActivity"
-147-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:113:13-60
-148            android:screenOrientation="fullSensor"
-148-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:114:13-51
-149            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-149-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:115:13-69
-150
-151        <provider
-151-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:117:9-125:20
-152            android:name="androidx.core.content.FileProvider"
-152-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:118:13-62
-153            android:authorities="com.treeleaf.anydone.serviceprovider.provider"
-153-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:119:13-80
-154            android:exported="false"
-154-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:120:13-37
-155            android:grantUriPermissions="true" >
-155-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:121:13-47
-156            <meta-data
-156-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:122:13-124:58
-157                android:name="android.support.FILE_PROVIDER_PATHS"
-157-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:123:17-67
-158                android:resource="@xml/provider_paths" />
-158-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:124:17-55
-159        </provider>
-160
-161        <service android:name="org.eclipse.paho.android.service.MqttService" />
-161-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:127:9-80
-161-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:127:18-77
-162
-163        <activity android:name="com.treeleaf.januswebrtc.ChooseActivity" />
-163-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:9-76
-163-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:19-73
-164        <activity
-164-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:9-39:55
-165            android:name="com.treeleaf.januswebrtc.ClientActivity"
-165-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-67
-166            android:screenOrientation="portrait"
-166-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-49
-167            android:theme="@style/AppTheme.NoActionBar"
-167-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-56
-168            android:windowSoftInputMode="adjustPan" />
-168-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-52
-169        <activity
-169-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:40:9-44:55
-170            android:name="com.treeleaf.januswebrtc.ServerActivity"
-170-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-67
-171            android:screenOrientation="portrait"
-171-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-49
-172            android:theme="@style/AppTheme.NoActionBar"
-172-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:13-56
-173            android:windowSoftInputMode="adjustPan" />
-173-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:13-52
-174        <activity
-174-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:10:9-14:68
-175            android:name="com.mapbox.mapboxsdk.plugins.places.autocomplete.ui.PlaceAutocompleteActivity"
-175-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:11:13-105
-176            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-176-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:12:13-122
-177            android:theme="@style/mapbox_plugins_translucent"
-177-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:13:13-62
-178            android:windowSoftInputMode="stateVisible|adjustPan" />
-178-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:14:13-65
-179        <activity
-179-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:15:9-17:125
-180            android:name="com.mapbox.mapboxsdk.plugins.places.picker.ui.PlacePickerActivity"
-180-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:16:13-93
-181            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-181-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:17:13-122
-182        <activity
-182-->[com.github.RAN3000:AndroidDraw:da6512c] /home/rinesh/.gradle/caches/transforms-2/files-2.1/9edbe08ded2e0685f721793bdbe6ff8d/jetified-AndroidDraw-da6512c/AndroidManifest.xml:12:9-14:66
-183            android:name="com.divyanshu.draw.activity.DrawingActivity"
-183-->[com.github.RAN3000:AndroidDraw:da6512c] /home/rinesh/.gradle/caches/transforms-2/files-2.1/9edbe08ded2e0685f721793bdbe6ff8d/jetified-AndroidDraw-da6512c/AndroidManifest.xml:13:13-71
-184            android:theme="@style/Theme.AppCompat.NoActionBar" />
-184-->[com.github.RAN3000:AndroidDraw:da6512c] /home/rinesh/.gradle/caches/transforms-2/files-2.1/9edbe08ded2e0685f721793bdbe6ff8d/jetified-AndroidDraw-da6512c/AndroidManifest.xml:14:13-63
-185        <activity
-185-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:12:9-16:66
-186            android:name="pub.devrel.easypermissions.AppSettingsDialogHolderActivity"
-186-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:13:13-86
-187            android:exported="false"
-187-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:14:13-37
-188            android:label=""
-188-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:15:13-29
-189            android:theme="@style/EasyPermissions.Transparent" />
-189-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:16:13-63
-190
-191        <service
-191-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:13:9-19:19
-192            android:name="com.google.firebase.components.ComponentDiscoveryService"
-192-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:14:13-84
-193            android:directBootAware="true"
-193-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
-194            android:exported="false" >
-194-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:15:13-37
-195            <meta-data
-195-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:16:13-18:85
-196                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
-196-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:17:17-115
-197                android:value="com.google.firebase.components.ComponentRegistrar" />
-197-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:18:17-82
-198            <meta-data
-198-->[com.google.android.gms:play-services-measurement-api:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/4efc02a966b654c167a09741a381168c/jetified-play-services-measurement-api-17.3.0/AndroidManifest.xml:30:13-32:85
-199                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-199-->[com.google.android.gms:play-services-measurement-api:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/4efc02a966b654c167a09741a381168c/jetified-play-services-measurement-api-17.3.0/AndroidManifest.xml:31:17-139
-200                android:value="com.google.firebase.components.ComponentRegistrar" />
-200-->[com.google.android.gms:play-services-measurement-api:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/4efc02a966b654c167a09741a381168c/jetified-play-services-measurement-api-17.3.0/AndroidManifest.xml:32:17-82
-201            <meta-data
-201-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:32:13-34:85
-202                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
-202-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:33:17-96
-203                android:value="com.google.firebase.components.ComponentRegistrar" />
-203-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:34:17-82
-204        </service>
-205        <service
-205-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:29:9-35:19
-206            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-206-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:30:13-103
-207            android:exported="false" >
-207-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:31:13-37
-208            <meta-data
-208-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:32:13-34:39
-209                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-209-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:33:17-94
-210                android:value="cct" />
-210-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:34:17-36
-211        </service>
-212        <service
-212-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:26:9-30:19
-213            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-213-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:27:13-117
-214            android:exported="false"
-214-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:28:13-37
-215            android:permission="android.permission.BIND_JOB_SERVICE" >
-215-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:29:13-69
-216        </service>
-217
-218        <receiver
-218-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:32:9-34:40
-219            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-219-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:33:13-132
-220            android:exported="false" />
-220-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:34:13-37
+130-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:94:9-97:48
+131            android:name="com.treeleaf.anydone.serviceprovider.setting.SettingsActivity"
+131-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:95:13-53
+132            android:configChanges="locale"
+132-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:96:13-43
+133            android:theme="@style/FormTheme" />
+133-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:97:13-45
+134        <activity
+134-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:98:9-100:59
+135            android:name="com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity"
+135-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:99:13-79
+136            android:theme="@style/AppTheme.NoActionBar" />
+136-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:100:13-56
+137        <activity
+137-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:101:9-103:59
+138            android:name="com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeActivity"
+138-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:102:13-73
+139            android:theme="@style/AppTheme.NoActionBar" />
+139-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:103:13-56
+140        <activity
+140-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:104:9-108:58
+141            android:name="com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity"
+141-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:105:13-107
+142            android:configChanges="locale"
+142-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:106:13-43
+143            android:theme="@style/AppTheme.NoActionBar"
+143-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:107:13-56
+144            android:windowSoftInputMode="adjustResize" />
+144-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:108:13-55
+145        <!--
+146 <activity
+147             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+148             android:theme="@style/Base.Theme.AppCompat" />
+149        -->
+150        <activity
+150-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:114:9-117:72
+151            android:name="com.yalantis.ucrop.UCropActivity"
+151-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:115:13-60
+152            android:screenOrientation="fullSensor"
+152-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:116:13-51
+153            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+153-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:117:13-69
+154
+155        <provider
+155-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:119:9-127:20
+156            android:name="androidx.core.content.FileProvider"
+156-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:120:13-62
+157            android:authorities="com.treeleaf.anydone.serviceprovider.provider"
+157-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:121:13-80
+158            android:exported="false"
+158-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:122:13-37
+159            android:grantUriPermissions="true" >
+159-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:123:13-47
+160            <meta-data
+160-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:124:13-126:58
+161                android:name="android.support.FILE_PROVIDER_PATHS"
+161-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:125:17-67
+162                android:resource="@xml/provider_paths" />
+162-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:126:17-55
+163        </provider>
+164
+165        <service android:name="org.eclipse.paho.android.service.MqttService" />
+165-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:129:9-80
+165-->/home/rinesh/Documents/Android Projects/anydone_service_provider_app/app/src/main/AndroidManifest.xml:129:18-77
+166
+167        <activity android:name="com.treeleaf.januswebrtc.ChooseActivity" />
+167-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:9-76
+167-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:19-73
+168        <activity
+168-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:9-39:55
+169            android:name="com.treeleaf.januswebrtc.ClientActivity"
+169-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-67
+170            android:screenOrientation="portrait"
+170-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-49
+171            android:theme="@style/AppTheme.NoActionBar"
+171-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-56
+172            android:windowSoftInputMode="adjustPan" />
+172-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-52
+173        <activity
+173-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:40:9-44:55
+174            android:name="com.treeleaf.januswebrtc.ServerActivity"
+174-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-67
+175            android:screenOrientation="portrait"
+175-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-49
+176            android:theme="@style/AppTheme.NoActionBar"
+176-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:13-56
+177            android:windowSoftInputMode="adjustPan" />
+177-->[:treeleaf-webrtc-library] /home/rinesh/Documents/Android Projects/anydone_service_provider_app/treeleaf-webrtc-library/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:13-52
+178        <activity
+178-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:10:9-14:68
+179            android:name="com.mapbox.mapboxsdk.plugins.places.autocomplete.ui.PlaceAutocompleteActivity"
+179-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:11:13-105
+180            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+180-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:12:13-122
+181            android:theme="@style/mapbox_plugins_translucent"
+181-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:13:13-62
+182            android:windowSoftInputMode="stateVisible|adjustPan" />
+182-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:14:13-65
+183        <activity
+183-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:15:9-17:125
+184            android:name="com.mapbox.mapboxsdk.plugins.places.picker.ui.PlacePickerActivity"
+184-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:16:13-93
+185            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+185-->[com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.11.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/95a72924764d0df92223793f01fc3275/jetified-mapbox-android-plugin-places-v9-0.11.0/AndroidManifest.xml:17:13-122
+186        <activity
+186-->[com.github.RAN3000:AndroidDraw:da6512c] /home/rinesh/.gradle/caches/transforms-2/files-2.1/9edbe08ded2e0685f721793bdbe6ff8d/jetified-AndroidDraw-da6512c/AndroidManifest.xml:12:9-14:66
+187            android:name="com.divyanshu.draw.activity.DrawingActivity"
+187-->[com.github.RAN3000:AndroidDraw:da6512c] /home/rinesh/.gradle/caches/transforms-2/files-2.1/9edbe08ded2e0685f721793bdbe6ff8d/jetified-AndroidDraw-da6512c/AndroidManifest.xml:13:13-71
+188            android:theme="@style/Theme.AppCompat.NoActionBar" />
+188-->[com.github.RAN3000:AndroidDraw:da6512c] /home/rinesh/.gradle/caches/transforms-2/files-2.1/9edbe08ded2e0685f721793bdbe6ff8d/jetified-AndroidDraw-da6512c/AndroidManifest.xml:14:13-63
+189        <activity
+189-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:12:9-16:66
+190            android:name="pub.devrel.easypermissions.AppSettingsDialogHolderActivity"
+190-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:13:13-86
+191            android:exported="false"
+191-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:14:13-37
+192            android:label=""
+192-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:15:13-29
+193            android:theme="@style/EasyPermissions.Transparent" />
+193-->[pub.devrel:easypermissions:2.0.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/75dc867873834c483bfb5144bc932b9c/jetified-easypermissions-2.0.1/AndroidManifest.xml:16:13-63
+194
+195        <service
+195-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:13:9-19:19
+196            android:name="com.google.firebase.components.ComponentDiscoveryService"
+196-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:14:13-84
+197            android:directBootAware="true"
+197-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+198            android:exported="false" >
+198-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:15:13-37
+199            <meta-data
+199-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:16:13-18:85
+200                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
+200-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:17:17-115
+201                android:value="com.google.firebase.components.ComponentRegistrar" />
+201-->[com.google.firebase:firebase-crashlytics:17.0.0-beta04] /home/rinesh/.gradle/caches/transforms-2/files-2.1/64dfdcfdacad4cd2f787484ad7534fc6/jetified-firebase-crashlytics-17.0.0-beta04/AndroidManifest.xml:18:17-82
+202            <meta-data
+202-->[com.google.android.gms:play-services-measurement-api:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/4efc02a966b654c167a09741a381168c/jetified-play-services-measurement-api-17.3.0/AndroidManifest.xml:30:13-32:85
+203                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+203-->[com.google.android.gms:play-services-measurement-api:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/4efc02a966b654c167a09741a381168c/jetified-play-services-measurement-api-17.3.0/AndroidManifest.xml:31:17-139
+204                android:value="com.google.firebase.components.ComponentRegistrar" />
+204-->[com.google.android.gms:play-services-measurement-api:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/4efc02a966b654c167a09741a381168c/jetified-play-services-measurement-api-17.3.0/AndroidManifest.xml:32:17-82
+205            <meta-data
+205-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:32:13-34:85
+206                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+206-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:33:17-96
+207                android:value="com.google.firebase.components.ComponentRegistrar" />
+207-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:34:17-82
+208        </service>
+209        <service
+209-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:29:9-35:19
+210            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+210-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:30:13-103
+211            android:exported="false" >
+211-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:31:13-37
+212            <meta-data
+212-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:32:13-34:39
+213                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+213-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:33:17-94
+214                android:value="cct" />
+214-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/01847ff6f8d2b356750be2319311f912/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:34:17-36
+215        </service>
+216        <service
+216-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:26:9-30:19
+217            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+217-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:27:13-117
+218            android:exported="false"
+218-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:28:13-37
+219            android:permission="android.permission.BIND_JOB_SERVICE" >
+219-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:29:13-69
+220        </service>
 221
-222        <provider
-222-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:18:9-22:39
-223            android:name="com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider"
-223-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:19:13-93
-224            android:authorities="com.treeleaf.anydone.serviceprovider.mapboxtelemetryinitprovider"
-224-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:20:13-79
-225            android:exported="false"
-225-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:21:13-37
-226            android:initOrder="100" />
-226-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:22:13-36
-227
-228        <service
-228-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:24:9-26:72
-229            android:name="com.mapbox.android.telemetry.crash.CrashReporterJobIntentService"
-229-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:25:13-92
-230            android:permission="android.permission.BIND_JOB_SERVICE" />
-230-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:26:13-69
+222        <receiver
+222-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:32:9-34:40
+223            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+223-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:33:13-132
+224            android:exported="false" />
+224-->[com.google.android.datatransport:transport-runtime:2.2.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/98e83af195415eb98c65bdd7164c94dc/jetified-transport-runtime-2.2.0/AndroidManifest.xml:34:13-37
+225
+226        <provider
+226-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:18:9-22:39
+227            android:name="com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider"
+227-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:19:13-93
+228            android:authorities="com.treeleaf.anydone.serviceprovider.mapboxtelemetryinitprovider"
+228-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:20:13-79
+229            android:exported="false"
+229-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:21:13-37
+230            android:initOrder="100" />
+230-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:22:13-36
 231
-232        <activity
-232-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:23:9-27:75
-233            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-233-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:24:13-93
-234            android:excludeFromRecents="true"
-234-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:25:13-46
-235            android:exported="false"
-235-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:26:13-37
-236            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-236-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:27:13-72
-237        <!--
-238            Service handling Google Sign-In user revocation. For apps that do not integrate with
-239            Google Sign-In, this service will never be started.
-240        -->
-241        <service
-241-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:33:9-36:110
-242            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-242-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:34:13-89
-243            android:exported="true"
-243-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:35:13-36
-244            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
-244-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:36:13-107
-245
-246        <receiver
-246-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:37:9-44:20
-247            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-247-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:38:13-78
-248            android:exported="true"
-248-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:39:13-36
-249            android:permission="com.google.android.c2dm.permission.SEND" >
-249-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:40:13-73
-250            <intent-filter>
-250-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:41:13-43:29
-251                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-251-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:17-81
-251-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:25-78
-252            </intent-filter>
-253        </receiver>
-254
-255        <activity
-255-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-256            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-256-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-257            android:exported="false"
-257-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-258            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-258-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-259
-260        <provider
-260-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
-261            android:name="com.google.firebase.provider.FirebaseInitProvider"
-261-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
-262            android:authorities="com.treeleaf.anydone.serviceprovider.firebaseinitprovider"
-262-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
-263            android:exported="false"
-263-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
-264            android:initOrder="100" />
-264-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
-265
-266        <receiver
-266-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:29:9-33:20
-267            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-267-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:30:13-85
-268            android:enabled="true"
-268-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:31:13-35
-269            android:exported="false" >
-269-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:32:13-37
-270        </receiver>
-271        <receiver
-271-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:34:9-42:20
-272            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
-272-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:35:13-100
-273            android:enabled="true"
-273-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:36:13-35
-274            android:exported="true"
-274-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:37:13-36
-275            android:permission="android.permission.INSTALL_PACKAGES" >
-275-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:38:13-69
-276            <intent-filter>
-276-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:39:13-41:29
-277                <action android:name="com.android.vending.INSTALL_REFERRER" />
-277-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:40:17-79
-277-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:40:25-76
-278            </intent-filter>
-279        </receiver>
-280
-281        <service
-281-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:44:9-47:40
-282            android:name="com.google.android.gms.measurement.AppMeasurementService"
-282-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:45:13-84
-283            android:enabled="true"
-283-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:46:13-35
-284            android:exported="false" />
-284-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:47:13-37
+232        <service
+232-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:24:9-26:72
+233            android:name="com.mapbox.android.telemetry.crash.CrashReporterJobIntentService"
+233-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:25:13-92
+234            android:permission="android.permission.BIND_JOB_SERVICE" />
+234-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] /home/rinesh/.gradle/caches/transforms-2/files-2.1/c6f43d397e6c6dc3caeab74645978f12/jetified-mapbox-android-telemetry-4.7.1/AndroidManifest.xml:26:13-69
+235
+236        <activity
+236-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:23:9-27:75
+237            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+237-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:24:13-93
+238            android:excludeFromRecents="true"
+238-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:25:13-46
+239            android:exported="false"
+239-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:26:13-37
+240            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+240-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:27:13-72
+241        <!--
+242            Service handling Google Sign-In user revocation. For apps that do not integrate with
+243            Google Sign-In, this service will never be started.
+244        -->
+245        <service
+245-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:33:9-36:110
+246            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+246-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:34:13-89
+247            android:exported="true"
+247-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:35:13-36
+248            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+248-->[com.google.android.gms:play-services-auth:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/86a70fce6da12c696dbc6ba7638799c3/jetified-play-services-auth-17.0.0/AndroidManifest.xml:36:13-107
+249
+250        <receiver
+250-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:37:9-44:20
+251            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+251-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:38:13-78
+252            android:exported="true"
+252-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:39:13-36
+253            android:permission="com.google.android.c2dm.permission.SEND" >
+253-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:40:13-73
+254            <intent-filter>
+254-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:41:13-43:29
+255                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+255-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:17-81
+255-->[com.google.firebase:firebase-iid:20.0.2] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3768a4b9dcca4da77577eb559d0b836d/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:25-78
+256            </intent-filter>
+257        </receiver>
+258
+259        <activity
+259-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+260            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+260-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+261            android:exported="false"
+261-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+262            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+262-->[com.google.android.gms:play-services-base:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/bcf2810d31c8c3336a6f29d49b077a27/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+263
+264        <provider
+264-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+265            android:name="com.google.firebase.provider.FirebaseInitProvider"
+265-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+266            android:authorities="com.treeleaf.anydone.serviceprovider.firebaseinitprovider"
+266-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+267            android:exported="false"
+267-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+268            android:initOrder="100" />
+268-->[com.google.firebase:firebase-common:19.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/305c37b5da172cbc0b3abd61df9d4cdb/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+269
+270        <receiver
+270-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:29:9-33:20
+271            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+271-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:30:13-85
+272            android:enabled="true"
+272-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:31:13-35
+273            android:exported="false" >
+273-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:32:13-37
+274        </receiver>
+275        <receiver
+275-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:34:9-42:20
+276            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+276-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:35:13-100
+277            android:enabled="true"
+277-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:36:13-35
+278            android:exported="true"
+278-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:37:13-36
+279            android:permission="android.permission.INSTALL_PACKAGES" >
+279-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:38:13-69
+280            <intent-filter>
+280-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:39:13-41:29
+281                <action android:name="com.android.vending.INSTALL_REFERRER" />
+281-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:40:17-79
+281-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:40:25-76
+282            </intent-filter>
+283        </receiver>
+284
 285        <service
-285-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:48:9-52:72
-286            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-286-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:49:13-87
+285-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:44:9-47:40
+286            android:name="com.google.android.gms.measurement.AppMeasurementService"
+286-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:45:13-84
 287            android:enabled="true"
-287-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:50:13-35
-288            android:exported="false"
-288-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:51:13-37
-289            android:permission="android.permission.BIND_JOB_SERVICE" />
-289-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:52:13-69
-290
-291        <meta-data
-291-->[com.google.android.gms:play-services-basement:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-292            android:name="com.google.android.gms.version"
-292-->[com.google.android.gms:play-services-basement:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
-293            android:value="@integer/google_play_services_version" />
-293-->[com.google.android.gms:play-services-basement:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+287-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:46:13-35
+288            android:exported="false" />
+288-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:47:13-37
+289        <service
+289-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:48:9-52:72
+290            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+290-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:49:13-87
+291            android:enabled="true"
+291-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:50:13-35
+292            android:exported="false"
+292-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:51:13-37
+293            android:permission="android.permission.BIND_JOB_SERVICE" />
+293-->[com.google.android.gms:play-services-measurement:17.3.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/3d52dcfc3b8fe47216d9874a5d293ceb/jetified-play-services-measurement-17.3.0/AndroidManifest.xml:52:13-69
 294
-295        <provider
-295-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:23:9-27:43
-296            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-296-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:24:13-79
-297            android:authorities="com.treeleaf.anydone.serviceprovider.lifecycle-process"
-297-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:25:13-69
-298            android:exported="false"
-298-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:26:13-37
-299            android:multiprocess="true" />
-299-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:27:13-40
-300    </application>
-301
-302</manifest>
+295        <meta-data
+295-->[com.google.android.gms:play-services-basement:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+296            android:name="com.google.android.gms.version"
+296-->[com.google.android.gms:play-services-basement:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+297            android:value="@integer/google_play_services_version" />
+297-->[com.google.android.gms:play-services-basement:17.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/65dd58a5b34da89a2595c4ef643af198/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+298
+299        <provider
+299-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:23:9-27:43
+300            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+300-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:24:13-79
+301            android:authorities="com.treeleaf.anydone.serviceprovider.lifecycle-process"
+301-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:25:13-69
+302            android:exported="false"
+302-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:26:13-37
+303            android:multiprocess="true" />
+303-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/rinesh/.gradle/caches/transforms-2/files-2.1/67e859fa04c0bb6c92932e73da5df4f2/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:27:13-40
+304    </application>
+305
+306</manifest>

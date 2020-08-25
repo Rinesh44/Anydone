@@ -18,7 +18,7 @@ public class AssignEmployeeContract {
     }
 
     public interface AssignEmployeePresenter extends Presenter<AssignEmployeeView> {
-        void assignEmployee(long ticketId, List<String> employeeIds);
+        void assignEmployee(long ticketId, List<Employee> employeeList);
 
         void getEmployees();
     }

@@ -1,7 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -13,8 +13,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +27,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceOrderEmployee;
@@ -40,14 +42,17 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.realm.RealmList;
 
@@ -61,6 +66,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         LinearLayout llActivities;*/
     @BindView(R.id.tv_assigned_employee_dropdown)
     TextView tvAssignedEmployeeDropDown;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
     /*    @BindView(R.id.tv_activity_dropdown)
         TextView tvActivityDropDown;
         @BindView(R.id.expandable_layout_activities)
@@ -113,6 +120,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     TextView tvTicketCreatedBy;
     @BindView(R.id.tv_ticket_created_date)
     TextView tvTicketCreatedDate;
+    @BindView(R.id.tv_ticket_created_time)
+    TextView tvTicketCreatedTime;
     @BindView(R.id.tv_ticket_title)
     TextView tvTicketTitle;
     @BindView(R.id.tv_ticket_desc)
@@ -121,6 +130,31 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     LinearLayout llTags;
     @BindView(R.id.tv_assign_employee)
     TextView tvAssignEmployee;
+    @BindView(R.id.ll_status_options)
+    LinearLayout llStatusOptions;
+    @BindView(R.id.tv_resolve)
+    TextView tvResolve;
+    @BindView(R.id.tv_close)
+    TextView tvClose;
+    @BindView(R.id.v_separator)
+    View vSeparator;
+    @BindView(R.id.rl_selected_status)
+    RelativeLayout rlSelectedStatus;
+    @BindView(R.id.iv_dropdown_status)
+    ImageView ivDropDownStatus;
+    @BindView(R.id.tv_assigned_employee_count)
+    TextView tvAssignedEmployeeCount;
+    @BindView(R.id.tv_reopen)
+    TextView tvReopen;
+    @BindView(R.id.v_separator1)
+    View vSeparator1;
+    @BindView(R.id.rl_bot_reply_holder)
+    RelativeLayout rlBotReplyHolder;
+    @BindView(R.id.tv_status_selected)
+    TextView tvStatusSelected;
+    @BindView(R.id.scroll_view)
+    ScrollView scrollView;
+
 
     private boolean expandActivity = true;
     private boolean expandEmployee = true;
@@ -130,7 +164,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private long ticketId;
     private BottomSheetBehavior sheetBehavior;
     private String status;
-    private ProgressDialog progress;
+    private Animation rotation;
 
 
     public TicketTimelineFragment() {
@@ -146,14 +180,13 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (ticketId != -1) {
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
             presenter.getCustomerDetails(ticketId);
-//            presenter.getAssignedEmployees(ticketId);
-            presenter.getTicketTimeline(ticketId);
+            presenter.getAssignedEmployees(ticketId);
+//            presenter.getTicketTimeline(ticketId);
 
-            Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
-            setTicketDetails(tickets);
+            setTicketDetails();
         }
 
-        Animation rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
+        rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
         TicketDetailsActivity mActivity = (TicketDetailsActivity) getActivity();
         assert mActivity != null;
         mActivity.setOutSideTouchListener(this);
@@ -215,10 +248,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 //        getServiceDoers();
 
-        Intent intent = new Intent(getActivity(), AssignEmployeeActivity.class);
-        i.putExtra("ticket_id", ticketId);
-        tvAssignEmployee.setOnClickListener(v -> startActivityForResult(intent,
-                ASSIGN_EMPLOYEE_REQUEST));
+
+        tvAssignEmployee.setOnClickListener(v -> {
+            GlobalUtils.showLog(TAG, "sender ticket Id: " + ticketId);
+            Intent intent = new Intent(getActivity(), AssignEmployeeActivity.class);
+            intent.putExtra("ticket_id", ticketId);
+            startActivityForResult(intent,
+                    ASSIGN_EMPLOYEE_REQUEST);
+        });
     }
 
     @Override
@@ -230,47 +267,111 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 boolean employeeAssigned = data.getBooleanExtra("employee_assigned", false);
 
                 if (employeeAssigned) {
-                    presenter.getTicketTimeline(ticketId);
+//                    presenter.getTicketTimeline(ticketId);
+                    presenter.getAssignedEmployees(ticketId);
                 }
             }
         }
     }
 
-    private void setTicketDetails(Tickets tickets) {
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        boolean isTicketStarted = Hawk.get(Constants.TICKET_STARTED, false);
+
+        if (isTicketStarted) {
+            onTicketStarted();
+            Hawk.put(Constants.TICKET_STARTED, false);
+        }
+    }
+
+    @OnClick(R.id.rl_selected_status)
+    public void toggleStatusOptions() {
+        if (llStatusOptions.getVisibility() == View.VISIBLE) {
+            llStatusOptions.setVisibility(View.GONE);
+
+            ivDropDownStatus.setImageDrawable(getActivity().getResources()
+                    .getDrawable(R.drawable.ic_oc_drop_down_blue));
+        } else {
+            llStatusOptions.setVisibility(View.VISIBLE);
+
+            ivDropDownStatus.setImageDrawable(getActivity().getResources()
+                    .getDrawable(R.drawable.ic_drop_up_blue));
+        }
+    }
+
+    @OnClick(R.id.tv_close)
+    public void closeTicket() {
+        llStatusOptions.setVisibility(View.GONE);
+        showStatusChangeConfirmation("Are you sure you want to close this ticket?", "close");
+    }
+
+    @OnClick(R.id.tv_reopen)
+    public void reopenTicket() {
+        llStatusOptions.setVisibility(View.GONE);
+        showStatusChangeConfirmation("Are you sure you want to re-open this ticket?", "reopen");
+    }
+
+    @OnClick(R.id.tv_resolve)
+    public void resolveTicket() {
+        llStatusOptions.setVisibility(View.GONE);
+        showStatusChangeConfirmation("Are you sure you want to resolve this ticket?", "resolve");
+    }
+
+    public void setTicketDetails() {
+        Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
                 tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.ticket_created_text));
                 tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.created_bg));
                 tvTicketStatus.setText("TODO");
+
+                rlSelectedStatus.setVisibility(View.GONE);
+                removeScrollviewMargin();
                 break;
 
             case "TICKET_STARTED":
-                tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.ticket_started_text));
-                tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.started_bg));
-                tvTicketStatus.setText("STARTED");
+                onTicketStarted();
                 break;
 
             case "TICKET_RESOLVED":
                 tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.ticket_resolved_text));
                 tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.resolved_bg));
                 tvTicketStatus.setText("RESOLVED");
+
+                tvStatusSelected.setText("RESOLVED");
+                tvResolve.setVisibility(View.GONE);
+                vSeparator.setVisibility(View.GONE);
+
+                tvReopen.setVisibility(View.VISIBLE);
+                vSeparator1.setVisibility(View.VISIBLE);
+
+                addScrollviewMargin();
                 break;
 
             case "TICKET_CLOSED":
                 tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.ticket_closed_text));
                 tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.closed_bg));
                 tvTicketStatus.setText("CLOSED");
+
+                removeScrollviewMargin();
+                hideActions();
                 break;
 
             case "TICKET_REOPENED":
                 tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.ticket_reopened_text));
                 tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.reopened_bg));
                 tvTicketStatus.setText("REOPENED");
+
+                rlSelectedStatus.setVisibility(View.GONE);
+                removeScrollviewMargin();
                 break;
         }
 
         tvTicketId.setText(String.valueOf(tickets.getTicketId()));
         tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
+        tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
         tvTicketTitle.setText(tickets.getTitle());
         tvTicketDesc.setText(tickets.getDescription());
         tvTicketCreatedBy.setText(tickets.getCreatedByName());
@@ -285,6 +386,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCreatedBy);
         }
 
+        llTags.removeAllViews();
         for (Tags tag : tickets.getTagsRealmList()
         ) {
             @SuppressLint("InflateParams") TextView tvTag = (TextView) getLayoutInflater()
@@ -296,6 +398,57 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             tvTag.setLayoutParams(params);
             llTags.addView(tvTag);
         }
+
+        if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
+            hideActions();
+        }
+    }
+
+    public void onTicketStarted() {
+        tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.ticket_started_text));
+        tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.started_bg));
+        tvTicketStatus.setText("STARTED");
+
+        tvReopen.setVisibility(View.GONE);
+        vSeparator1.setVisibility(View.GONE);
+        tvStatusSelected.setText("STARTED");
+        tvStatusSelected.setVisibility(View.VISIBLE);
+        rlSelectedStatus.setVisibility(View.VISIBLE);
+
+        tvResolve.setVisibility(View.VISIBLE);
+        vSeparator.setVisibility(View.VISIBLE);
+
+        addScrollviewMargin();
+    }
+
+    private void removeScrollviewMargin() {
+        //remove scroll view bottom margin
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) scrollView
+                .getLayoutParams();
+
+        layoutParams.setMargins(0, 0, 0, 0);
+        scrollView.setLayoutParams(layoutParams);
+    }
+
+    private void addScrollviewMargin() {
+        //remove scroll view bottom margin
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) scrollView
+                .getLayoutParams();
+
+        layoutParams.setMargins(0, 0, 0, 170);
+        scrollView.setLayoutParams(layoutParams);
+    }
+
+    private void hideActions() {
+        rlSelectedStatus.setVisibility(View.GONE);
+        rlBotReplyHolder.setVisibility(View.GONE);
+
+        for (int i = 0; i < llAssignedEmployeeTop.getChildCount(); i++) {
+            View assignedEmployeeView = llAssignedEmployeeTop.getChildAt(i);
+            ImageView deleteEmployee = assignedEmployeeView.findViewById(R.id.iv_delete);
+            deleteEmployee.setVisibility(View.GONE);
+        }
+        tvAssignEmployee.setVisibility(View.GONE);
     }
 
     @SuppressLint("SetTextI18n")
@@ -331,7 +484,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(getActivity(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -342,7 +495,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 
@@ -566,13 +719,22 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     private void inflateAssignedEmployeeLayout(RealmList<Employee> assignedEmployee,
                                                LinearLayout parent) {
+        parent.removeAllViews();
         GlobalUtils.showLog(TAG, "assigned emp size check: " + assignedEmployee.size());
+        tvAssignedEmployeeCount.setText(String.valueOf(assignedEmployee.size()));
         for (Employee serviceDoer : assignedEmployee
         ) {
             @SuppressLint("InflateParams") View viewAssignedEmployee = getLayoutInflater()
                     .inflate(R.layout.layout_task_assigned, null, false);
             TextView employeeName = viewAssignedEmployee.findViewById(R.id.tv_field);
             CircleImageView employeePic = viewAssignedEmployee.findViewById(R.id.civ_field);
+            ImageView deleteEmployee = viewAssignedEmployee.findViewById(R.id.iv_delete);
+
+            deleteEmployee.setOnClickListener(v -> {
+                GlobalUtils.showLog(TAG, "employee id: " + serviceDoer.getEmployeeId());
+                int pos = parent.indexOfChild(v);
+                showDeleteDialog(serviceDoer.getEmployeeId());
+            });
 
             employeeName.setText(serviceDoer.getName());
             if (serviceDoer.getEmployeeImageUrl() != null && !serviceDoer.getEmployeeImageUrl().isEmpty()) {
@@ -600,6 +762,86 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         }
     }
+
+
+    private void showDeleteDialog(String employeeId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to delete?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                (dialog, id) -> {
+                    presenter.unAssignEmployee(ticketId, employeeId);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
+    private void showStatusChangeConfirmation(String title, String type) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage(title);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                (dialog, id) -> {
+                    switch (type) {
+                        case "resolve":
+                            presenter.resolveTicket(ticketId);
+                            break;
+
+                        case "close":
+                            presenter.closeTicket(ticketId);
+                            break;
+
+                        case "reopen":
+                            presenter.reopenTicket(ticketId);
+                            break;
+                    }
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
 
     /**
      * manually opening / closing bottom sheet on button click
@@ -641,6 +883,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void geTicketTimelineFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity())
                         .getWindow().getDecorView().getRootView(), msg);
@@ -674,10 +922,94 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void setAssignedEmployee(RealmList<Employee> assignedEmployee) {
+        GlobalUtils.showLog(TAG, "assinged emp count check: " + assignedEmployee.size());
         if (CollectionUtils.isEmpty(assignedEmployee)) {
             llAssignedEmployeeTop.setVisibility(View.GONE);
+            llAssignedEmployee.setVisibility(View.GONE);
         } else {
+            llAssignedEmployee.setVisibility(View.VISIBLE);
+            llAssignedEmployeeTop.setVisibility(View.VISIBLE);
+            GlobalUtils.showLog(TAG, "get timeline ok");
             inflateAssignedEmployeeLayout(assignedEmployee, llAssignedEmployeeTop);
         }
     }
+
+    @Override
+    public void onEmployeeUnAssignSuccess(String empId) {
+        presenter.getAssignedEmployees(ticketId);
+    }
+
+    @Override
+    public void onEmployeeUnAssignFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity())
+                        .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onTicketCloseSuccess() {
+        TicketRepo.getInstance().changeTicketStatusToClosed(ticketId);
+        setTicketDetails();
+        Hawk.put(Constants.REFETCH_TICKET, true);
+    }
+
+    @Override
+    public void onTicketCloseFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity())
+                        .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onTicketReopenSuccess() {
+        TicketRepo.getInstance().changeTicketStatusToReopened(ticketId);
+        setTicketDetails();
+        Hawk.put(Constants.REFETCH_TICKET, true);
+    }
+
+    @Override
+    public void onTicketReopenFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity())
+                        .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onTicketResolveSuccess() {
+        TicketRepo.getInstance().changeTicketStatusToResolved(ticketId);
+        setTicketDetails();
+        Hawk.put(Constants.REFETCH_TICKET, true);
+    }
+
+    @Override
+    public void onTicketResolveFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity())
+                        .getWindow().getDecorView().getRootView(), msg);
+    }
+
 }

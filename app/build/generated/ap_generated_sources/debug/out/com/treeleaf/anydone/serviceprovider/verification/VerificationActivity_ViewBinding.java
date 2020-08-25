@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.verification;
 
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
@@ -17,7 +18,7 @@ import java.lang.Override;
 public class VerificationActivity_ViewBinding implements Unbinder {
   private VerificationActivity target;
 
-  private View view7f0903e5;
+  private View view7f0903f2;
 
   @UiThread
   public VerificationActivity_ViewBinding(VerificationActivity target) {
@@ -31,7 +32,7 @@ public class VerificationActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.tv_resend_code, "field 'tvResendCode' and method 'onClickResendCode'");
     target.tvResendCode = Utils.castView(view, R.id.tv_resend_code, "field 'tvResendCode'", TextView.class);
-    view7f0903e5 = view;
+    view7f0903f2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -43,6 +44,7 @@ public class VerificationActivity_ViewBinding implements Unbinder {
     target.tvCodeExpiresIn = Utils.findRequiredViewAsType(source, R.id.tv_code_expires_in, "field 'tvCodeExpiresIn'", TextView.class);
     target.tvUserEmailPhone = Utils.findRequiredViewAsType(source, R.id.tv_user_email_phone, "field 'tvUserEmailPhone'", TextView.class);
     target.etPin = Utils.findRequiredViewAsType(source, R.id.txt_pin_entry, "field 'etPin'", PinEntryEditText.class);
+    target.progress = Utils.findRequiredViewAsType(source, R.id.pb_progress, "field 'progress'", ProgressBar.class);
   }
 
   @Override
@@ -58,8 +60,9 @@ public class VerificationActivity_ViewBinding implements Unbinder {
     target.tvCodeExpiresIn = null;
     target.tvUserEmailPhone = null;
     target.etPin = null;
+    target.progress = null;
 
-    view7f0903e5.setOnClickListener(null);
-    view7f0903e5 = null;
+    view7f0903f2.setOnClickListener(null);
+    view7f0903f2 = null;
   }
 }

@@ -46,5 +46,7 @@ public class Constants {
     public static final String FETCH_SUBSCRIBEABLE_LIST = "fetch_subscribeable_list";
     public static final String FETCH_SUBSCRIBED_LIST = "fetch_subscribed_list";
     public static final String FETCH__ASSIGNED_LIST = "fetch_assigned_list";
+    public static final String TICKET_STARTED = "ticket_started";
+    public static final String REFETCH_TICKET = "refetch_ticket";
 
 }
