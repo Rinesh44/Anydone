@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,7 @@ import butterknife.BindView;
 
 public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView {
+    private static final String TAG = "TicketDetailsActivity";
     private static final int NUM_PAGES = 2;
     private static final String MQTT = "MQTT_EVENT_CHECK";
     @BindView(R.id.pager)
@@ -49,8 +51,9 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
     TextView tvToolbarTitle;
     @BindView(R.id.toolbar_problem_stat)
     TextView tvToolbarProblemStat;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
-    private ProgressDialog progress;
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
 
@@ -199,7 +202,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -210,7 +213,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

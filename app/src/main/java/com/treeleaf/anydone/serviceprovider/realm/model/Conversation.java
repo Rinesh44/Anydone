@@ -16,6 +16,8 @@ public class Conversation extends RealmObject {
     private String messageStatus;
     private String imageDesc;
     private String imageOrientation;
+    private String ticketTitle;
+    private String ticketDesc;
     private long sentAt;
     private long savedAt;
     private long refId;
@@ -40,9 +42,34 @@ public class Conversation extends RealmObject {
     private RealmList<ServiceDoer> serviceDoerList;
     private RealmList<KGraph> kGraphList;
     private RealmList<Receiver> receiverList;
+    private RealmList<Tags> tagsList;
 
 
     public Conversation() {
+    }
+
+    public String getTicketTitle() {
+        return ticketTitle;
+    }
+
+    public void setTicketTitle(String ticketTitle) {
+        this.ticketTitle = ticketTitle;
+    }
+
+    public String getTicketDesc() {
+        return ticketDesc;
+    }
+
+    public void setTicketDesc(String ticketDesc) {
+        this.ticketDesc = ticketDesc;
+    }
+
+    public RealmList<Tags> getTagsList() {
+        return tagsList;
+    }
+
+    public void setTagsList(RealmList<Tags> tagsList) {
+        this.tagsList = tagsList;
     }
 
     public String getkGraphTitle() {

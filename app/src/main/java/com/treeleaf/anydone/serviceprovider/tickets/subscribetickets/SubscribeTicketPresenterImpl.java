@@ -62,7 +62,7 @@ public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketC
                                     return;
                                 }
 
-                                saveAssignedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
+                                saveSubscribedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
                             }
 
                             @Override
@@ -127,7 +127,7 @@ public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketC
         );
     }
 
-    private void saveAssignedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
+    private void saveSubscribedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
         TicketRepo.getInstance().saveTicketList(ticketsList, Constants.SUBSCRIBED, new Repo.Callback() {
             @Override
             public void success(Object o) {
@@ -136,6 +136,7 @@ public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketC
 
             @Override
             public void fail() {
+                getView().getSubscribedTicketsSuccess();
                 GlobalUtils.showLog(TAG, "failed to save subscribed tickets");
             }
         });

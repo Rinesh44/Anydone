@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.setting.currency;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +7,9 @@ import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,12 +38,14 @@ public class SelectCurrencyActivity extends MvpBaseActivity<CurrencyPresenterImp
     EditText etSearchCurrency;
     @BindView(R.id.rv_currency)
     RecyclerView rvCurrency;
+    @BindView(R.id.pb_progress)
+    ProgressBar progressDialog;
+
     private String selectedCurrencyName;
     private String selectedCurrencyCode;
     private int selectedCurrencyFlag;
 
     private CurrencyAdapter adapter;
-    private ProgressDialog progressDialog;
 
     @Override
     protected int getLayout() {
@@ -145,7 +148,7 @@ public class SelectCurrencyActivity extends MvpBaseActivity<CurrencyPresenterImp
 
     @Override
     public void showProgressBar(String message) {
-        progressDialog = ProgressDialog.show(this, null, message, true);
+        progressDialog.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -156,7 +159,7 @@ public class SelectCurrencyActivity extends MvpBaseActivity<CurrencyPresenterImp
     @Override
     public void hideProgressBar() {
         if (progressDialog != null) {
-            progressDialog.cancel();
+            progressDialog.setVisibility(View.GONE);
         }
     }
 

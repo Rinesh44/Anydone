@@ -254,14 +254,14 @@ public interface AnyDoneService {
                                                                      @Path(value = "ticketId") String ticketId);
 
     @PATCH("ticket/complete/{ticketId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> completeTicket(@Header(AUTHORIZATION)
-                                                                                String token,
-                                                                        @Path(value = "ticketId") String ticketId);
+    Observable<TicketServiceRpcProto.TicketBaseResponse> resolveTicket(@Header(AUTHORIZATION)
+                                                                               String token,
+                                                                       @Path(value = "ticketId") long ticketId);
 
     @PATCH("ticket/close/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> closeTicket(@Header(AUTHORIZATION)
                                                                              String token,
-                                                                     @Path(value = "ticketId") String ticketId,
+                                                                     @Path(value = "ticketId") long ticketId,
                                                                      @Query("remark") String remark);
 
     @PATCH("ticket/reopen/{ticketId}")
@@ -361,13 +361,20 @@ public interface AnyDoneService {
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     filterTickets(@Header(AUTHORIZATION) String token, @Url String url);
 
-    @POST("ticket/assign/{ticketId}")
+
+    @PATCH("ticket/assign/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> assignEmployee(@Header(AUTHORIZATION)
                                                                                 String token,
                                                                         @Path(value = "ticketId")
                                                                                 long ticketId,
                                                                         @Body TicketProto.Ticket employeeAssigned);
 
+    @PATCH("ticket/unassign/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> unAssignEmployee(@Header(AUTHORIZATION)
+                                                                                  String token,
+                                                                          @Path(value = "ticketId")
+                                                                                  long ticketId,
+                                                                          @Body TicketProto.Ticket employeeUnAssigned);
 }
 
 

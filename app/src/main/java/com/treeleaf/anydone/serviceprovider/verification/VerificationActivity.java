@@ -1,7 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.verification;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -44,8 +44,9 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
     TextView tvUserEmailPhone;
     @BindView(R.id.txt_pin_entry)
     PinEntryEditText etPin;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
-    private ProgressDialog progress;
     private CountDownTimer countDownTimer;
     private int timerInSeconds = 90;
 
@@ -151,7 +152,7 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -162,7 +163,7 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

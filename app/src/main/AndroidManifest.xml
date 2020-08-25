@@ -32,11 +32,13 @@
         <activity
             android:name=".ticketdetails.TicketDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".tickets.unassignedtickets.UnassignedTicketsActivity" />
+        <activity android:name=".tickets.unassignedtickets.UnassignedTicketsActivity"
+            android:theme="@style/FormTheme"/>
         <activity
             android:name=".addticket.AddTicketActivity"
             android:theme="@style/FormTheme" />
-        <activity android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity" />
+        <activity android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
+            android:theme="@style/FormTheme"/>
         <activity
             android:name=".weblink.WebLinkActivity"
             android:theme="@style/AppTheme.NoActionBar" />

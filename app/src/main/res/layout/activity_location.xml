@@ -8,6 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_locations"
             android:layout_width="match_parent"
@@ -49,17 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_10x1"
-            android:src="@drawable/ic_no_location_found" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_no_location"
-            android:layout_margin="@dimen/dimen_10x1"
-            android:gravity="center"
-            android:text="No location added yet"
-            android:textColor="#B0B0B0"
-            android:textStyle="bold" />
+            android:src="@drawable/ic_location_not_added" />
 
 
     </RelativeLayout>

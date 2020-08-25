@@ -200,7 +200,7 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
             @Override
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to save subscribeable tickets");
-                getView().getSubscribeableTicketFail("Failed to save subscribeable tickets");
+                getView().getSubscribeableTicketSuccess();
             }
         });
     }

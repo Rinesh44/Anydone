@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.setting.timezone;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +7,9 @@ import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,10 +40,11 @@ public class SelectTimezoneActivity extends MvpBaseActivity<TimezonePresenterImp
     EditText etSearchTimezone;
     @BindView(R.id.rv_timezone)
     RecyclerView rvTimezone;
+    @BindView(R.id.pb_progress)
+    ProgressBar progressDialog;
 
     private TimezoneAdapter adapter;
     private TimezoneResult selectedTimezone;
-    private ProgressDialog progressDialog;
 
     @Override
     protected int getLayout() {
@@ -173,7 +175,7 @@ public class SelectTimezoneActivity extends MvpBaseActivity<TimezonePresenterImp
 
     @Override
     public void showProgressBar(String message) {
-        progressDialog = ProgressDialog.show(this, null, message, true);
+        progressDialog.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -184,7 +186,7 @@ public class SelectTimezoneActivity extends MvpBaseActivity<TimezonePresenterImp
     @Override
     public void hideProgressBar() {
         if (progressDialog != null) {
-            progressDialog.cancel();
+            progressDialog.setVisibility(View.GONE);
         }
     }
 

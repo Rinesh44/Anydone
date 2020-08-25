@@ -2,13 +2,13 @@ package com.treeleaf.anydone.serviceprovider.login;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -52,7 +52,8 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     TextInputLayout ilPassword;
 
     private GoogleSignInClient mGoogleSignInClient;
-    private ProgressDialog progress;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
     @Override
     protected int getLayout() {
@@ -238,7 +239,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -249,7 +250,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

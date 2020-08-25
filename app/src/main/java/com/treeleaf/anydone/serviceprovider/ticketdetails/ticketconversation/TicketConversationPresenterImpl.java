@@ -537,12 +537,12 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
                         getView().hideProgressBar();
                         if (startTicketResponse == null) {
-                            getView().getMessageFail("Failed to start ticket");
+                            getView().onTaskStartFail("Failed to start ticket");
                             return;
                         }
 
                         if (startTicketResponse.getError()) {
-                            getView().getMessageFail(startTicketResponse.getMsg());
+                            getView().onTaskStartFail(startTicketResponse.getMsg());
                             return;
                         }
 
@@ -654,8 +654,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     @Override
-    public void subscribeSuccessMessage(long orderId, String userAccountId) {
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + orderId + "/" + userAccountId;
+    public void subscribeSuccessMessage(long ticketId, String userAccountId) {
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + ticketId + "/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
         TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {

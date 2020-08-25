@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -54,7 +54,8 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         implements UnassignedTicketsContract.UnassignedView {
 
     private static final String TAG = "UnassignedTicketsActivi";
-    private ProgressDialog progress;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
     @BindView(R.id.rv_assignable_tickets)
     RecyclerView rvAssignableTickets;
     private TicketsAdapter adapter;
@@ -97,7 +98,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        if (!CollectionUtils.isEmpty(assignableTickets)) {
-            getMenuInflater().inflate(R.menu.menu_filter, menu);
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
 //        }
         return super.onCreateOptionsMenu(menu);
     }
@@ -438,7 +439,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -449,7 +450,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

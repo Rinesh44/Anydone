@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.setting.language;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -9,6 +8,8 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -39,9 +40,10 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
     RadioButton rbNepali;
     @BindView(R.id.rb_hebrew)
     RadioButton rbHebrew;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
     String selectedLanguage;
-    private ProgressDialog progress;
     private Context context;
     private Resources resources;
 
@@ -161,7 +163,7 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -171,7 +173,7 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
 
     @Override
     public void hideProgressBar() {
-        progress.cancel();
+        progress.setVisibility(View.GONE);
     }
 
     @Override

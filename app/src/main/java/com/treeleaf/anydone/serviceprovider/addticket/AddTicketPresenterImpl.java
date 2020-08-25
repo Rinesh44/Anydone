@@ -159,10 +159,10 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
             return false;
         }
 
-        if (ValidationUtils.isEmpty(desc)) {
+    /*    if (ValidationUtils.isEmpty(desc)) {
             getView().onInvalidDesc();
             return false;
-        }
+        }*/
 
    /*     if (!ValidationUtils.isEmailValid(email)) {
             getView().onInvalidEmail();
