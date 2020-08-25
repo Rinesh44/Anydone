@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:paddingBottom="@dimen/dimen_10x6"
-        android:src="@drawable/ic_not_found"
+        android:src="@drawable/ic_no_service_request_found"
         android:visibility="gone" />
 
 </RelativeLayout>

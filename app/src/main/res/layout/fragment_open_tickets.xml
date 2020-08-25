@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_open_tickets"
         android:layout_width="match_parent"
@@ -35,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:paddingBottom="@dimen/dimen_10x6"
-        android:src="@drawable/ic_not_found"
+        android:src="@drawable/ic_no_ticket_found"
         android:visibility="gone" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

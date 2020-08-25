@@ -1,63 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rg_languages"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <RadioButton
-        android:id="@+id/rb_english"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_10x1"
-        android:paddingStart="@dimen/dimens_2x"
-        android:paddingTop="@dimen/dimens_3x"
-        android:paddingEnd="@dimen/dimens_2x"
-        android:paddingBottom="@dimen/dimens_3x"
-        android:text="@string/english"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E7E7E7" />
-
-
-    <RadioButton
-        android:id="@+id/rb_nepali"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_10x1"
-        android:paddingStart="@dimen/dimens_2x"
-        android:paddingTop="@dimen/dimens_3x"
-        android:paddingEnd="@dimen/dimens_2x"
-        android:paddingBottom="@dimen/dimens_3x"
-        android:text="@string/nepali"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E7E7E7" />
-
-    <RadioButton
-        android:id="@+id/rb_hebrew"
+    <ProgressBar
+        android:id="@+id/pb_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_10x1"
-        android:paddingStart="@dimen/dimens_2x"
-        android:paddingTop="@dimen/dimens_3x"
-        android:paddingEnd="@dimen/dimens_2x"
-        android:paddingBottom="@dimen/dimens_3x"
-        android:text="@string/hebrew"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
 
-    <View
+    <RadioGroup
+        android:id="@+id/rg_languages"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E7E7E7" />
+        android:layout_height="wrap_content">
 
-</RadioGroup>
+        <RadioButton
+            android:id="@+id/rb_english"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:paddingStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimens_3x"
+            android:paddingEnd="@dimen/dimens_2x"
+            android:paddingBottom="@dimen/dimens_3x"
+            android:text="@string/english"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E7E7E7" />
+
+
+        <RadioButton
+            android:id="@+id/rb_nepali"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:paddingStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimens_3x"
+            android:paddingEnd="@dimen/dimens_2x"
+            android:paddingBottom="@dimen/dimens_3x"
+            android:text="@string/nepali"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E7E7E7" />
+
+        <RadioButton
+            android:id="@+id/rb_hebrew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:paddingStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimens_3x"
+            android:paddingEnd="@dimen/dimens_2x"
+            android:paddingBottom="@dimen/dimens_3x"
+            android:text="@string/hebrew"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E7E7E7" />
+
+    </RadioGroup>
+</RelativeLayout>

@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -50,12 +50,15 @@ import butterknife.BindView;
 public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTicketPresenterImpl>
         implements UnsubscribedTicketContract.UnsubscribedView {
 
-    private ProgressDialog progress;
     @BindView(R.id.rv_unsubscribed_tickets)
     RecyclerView rvSubscribeableTickets;
     private TicketsAdapter adapter;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
+
+
     private int subscribeTicketPos;
     List<Tickets> subscribeableTickets;
 
@@ -437,7 +440,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -448,7 +451,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

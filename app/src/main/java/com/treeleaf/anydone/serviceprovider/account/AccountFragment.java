@@ -1,18 +1,17 @@
 package com.treeleaf.anydone.serviceprovider.account;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.orhanobut.hawk.Hawk;
-
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.aboutus.AboutUsActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
@@ -38,13 +37,15 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ProgressDialog progress;
+
     @BindView(R.id.iv_profile_icon)
     ImageView ivProfileIcon;
     @BindView(R.id.iv_profile_pic_set)
     CircleImageView ivProfilePicSet;
     @BindView(R.id.tv_profile)
     TextView tvProfile;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
 
     public static AccountFragment newInstance(String param1, String param2) {
@@ -90,7 +91,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(getActivity(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -100,7 +101,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
     @Override
     public void hideProgressBar() {
-        progress.cancel();
+        progress.setVisibility(View.GONE);
     }
 
     @Override

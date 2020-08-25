@@ -212,13 +212,14 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
             if (mViewpager.getCurrentItem() == 0) {
                 presenter.filterAssignedTickets(etSearchText.getText().toString(), from, to,
-                        getTicketState(statusValue.toLowerCase()));
+                        getTicketState(statusValue));
             } else if (mViewpager.getCurrentItem() == 1) {
                 presenter.filterSubscribedTickets(etSearchText.getText().toString(), from, to,
-                        getTicketState(statusValue.toLowerCase()));
+                        getTicketState(statusValue));
             } else {
+                GlobalUtils.showLog(TAG, "get ticket status check: " + getTicketState(statusValue));
                 presenter.filterClosedTickets(etSearchText.getText().toString(), from, to,
-                        getTicketState(statusValue.toLowerCase()));
+                        getTicketState(statusValue));
             }
 
             toggleBottomSheet();
@@ -255,6 +256,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @OnClick(R.id.iv_filter)
     void filterRequests() {
+        statusValue = null;
         int fragmentIndex = mViewpager.getCurrentItem();
         if (fragmentIndex == 0) {
             if (!CollectionUtils.isEmpty(assignedTicketList)) {
@@ -275,7 +277,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                     selectedRadioButton.setBackground(getResources()
                             .getDrawable(R.drawable.round_line_active));
                     selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    statusValue = selectedRadioButton.getText().toString().trim();
+                    statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
                 });
 
                 hsvStatusContainer.removeAllViews();
@@ -301,7 +303,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                     selectedRadioButton.setBackground(getResources()
                             .getDrawable(R.drawable.round_line_active));
                     selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    statusValue = selectedRadioButton.getText().toString().trim();
+                    statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
                 });
 
                 hsvStatusContainer.removeAllViews();
@@ -327,7 +329,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                     selectedRadioButton.setBackground(getResources()
                             .getDrawable(R.drawable.round_line_active));
                     selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    statusValue = selectedRadioButton.getText().toString().trim();
+                    statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
                 });
 
                 hsvStatusContainer.removeAllViews();
@@ -340,24 +342,27 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
 
     private int getTicketState(String statusValue) {
-        switch (statusValue.toLowerCase()) {
-            case "started":
-                return TicketProto.TicketState.TICKET_STARTED.getNumber();
+        GlobalUtils.showLog(TAG, "check status value:" + statusValue);
+        if (statusValue != null) {
+            switch (statusValue) {
+                case "STARTED":
+                    return TicketProto.TicketState.TICKET_STARTED.getNumber();
 
-            case "todo":
-                return TicketProto.TicketState.TICKET_CREATED.getNumber();
+                case "TODO":
+                    return TicketProto.TicketState.TICKET_CREATED.getNumber();
 
-            case "reopened":
-                return TicketProto.TicketState.TICKET_REOPENED.getNumber();
+                case "REOPENED":
+                    return TicketProto.TicketState.TICKET_REOPENED.getNumber();
 
-            case "resolved":
-                return TicketProto.TicketState.TICKET_RESOLVED.getNumber();
+                case "RESOLVED":
+                    return TicketProto.TicketState.TICKET_RESOLVED.getNumber();
 
-            case "closed":
-                return TicketProto.TicketState.TICKET_CLOSED.getNumber();
+                case "CLOSED":
+                    return TicketProto.TicketState.TICKET_CLOSED.getNumber();
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
         return -1;
     }

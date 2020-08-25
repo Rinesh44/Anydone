@@ -214,7 +214,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
             @Override
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to save assignable tickets");
-                getView().getAssignableTicketFail("Failed to save assignable tickets");
+                getView().getAssignableTicketSuccess();
             }
         });
     }

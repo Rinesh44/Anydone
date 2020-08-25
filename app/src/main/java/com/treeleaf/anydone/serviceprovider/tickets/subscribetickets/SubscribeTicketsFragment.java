@@ -1,7 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -33,7 +31,6 @@ import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscr
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 import java.util.Objects;
@@ -54,14 +51,15 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     ImageView ivDataNotFound;
     @BindView(R.id.fab_subscribe)
     FloatingActionButton fabSubscribe;
-    /*   @BindView(R.id.pb_search)
-       ProgressBar progressBar;*/
+    @BindView(R.id.pb_search)
+    ProgressBar progressBar;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
     private Unbinder unbinder;
     private OnSwipeListener swipeListener;
     private OnSubscribeTicketsListener onSubscribeTicketsListener;
     private TicketsAdapter adapter;
     private int unsubscribedTicketPos;
-    private ProgressDialog progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,8 +118,9 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             });
             rvSubscribeTickets.setAdapter(adapter);
         } else {
+            GlobalUtils.showLog(TAG, "data not found");
             rvSubscribeTickets.setVisibility(View.GONE);
-//            ivDataNotFound.setVisibility(View.VISIBLE);
+            ivDataNotFound.setVisibility(View.VISIBLE);
         }
     }
 
@@ -249,7 +248,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
 
     @Override
     public void showProgressBar(String message) {
-        progressBar = ProgressDialog.show(getContext(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -259,8 +258,8 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
 
     @Override
     public void hideProgressBar() {
-        if (progressBar != null) {
-            progressBar.dismiss();
+        if (progress != null) {
+            progress.setVisibility(View.GONE);
         }
     }
 

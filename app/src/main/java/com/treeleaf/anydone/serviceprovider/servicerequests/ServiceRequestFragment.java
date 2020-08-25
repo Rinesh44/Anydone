@@ -412,9 +412,9 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
         List<ServiceRequest> emptyList = new ArrayList<>();
         acceptedListListener.showAcceptedRequests(emptyList);
     }
@@ -442,9 +442,9 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
         List<ServiceRequest> emptyList = new ArrayList<>();
         openListListener.showOpenRequests(emptyList);
     }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_employee_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/rl_employee_holder"
-    android:layout_marginStart="@dimen/dimen_10x2"
-    android:layout_marginEnd="@dimen/dimen_10x1"
-    android:padding="@dimen/dimen_2x4">
+    android:layout_marginStart="@dimen/dimen_10x1"
+    android:padding="@dimen/dimen_10x1">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_employee"
@@ -28,7 +27,10 @@
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/cb_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:gravity="center" />
 </RelativeLayout>

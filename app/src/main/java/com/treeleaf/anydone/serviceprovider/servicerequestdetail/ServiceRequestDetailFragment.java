@@ -2,7 +2,6 @@ package com.treeleaf.anydone.serviceprovider.servicerequestdetail;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -48,12 +47,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
-import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.adapters.MessageAdapter;
-import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
+import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.MessageAdapter;
+import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
@@ -148,9 +147,11 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     ProgressBar pbLoadData;
     @BindView(R.id.ll_bot_replying)
     LinearLayout llBotReplying;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
     public static CoordinatorLayout clCaptureView;
-    private ProgressDialog progress;
+
     private static final String TAG = "ServiceRequestDetailFra";
     private String currentPhotoPath = "";
     private long serviceRequestId;
@@ -177,6 +178,10 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ServiceRequestDetailActivity mActivity = (ServiceRequestDetailActivity) getActivity();
+        assert mActivity != null;
+        mActivity.setOutSideTouchListener(this);
 
         Account userAccount = AccountRepo.getInstance().getAccount();
         userAccountId = userAccount.getAccountId();
@@ -209,9 +214,6 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
         messageSheetBehavior = BottomSheetBehavior.from(llBottomSheetMessage);
         profileSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 
-        ServiceRequestDetailActivity mActivity = (ServiceRequestDetailActivity) getActivity();
-        assert mActivity != null;
-        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
         etMessage.addTextChangedListener(new TextWatcher() {
@@ -451,7 +453,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(getActivity(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -462,7 +464,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

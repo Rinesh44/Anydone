@@ -1,14 +1,14 @@
 package com.treeleaf.anydone.serviceprovider.assignemployee;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,9 +41,10 @@ public class AssignEmployeeActivity extends MvpBaseActivity<AssignEmployeePresen
     EditText etSearchEmployee;
     @BindView(R.id.rv_employees)
     RecyclerView rvEmployees;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
-    private ProgressDialog progress;
-    List<String> employeeIds = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
     private SearchEmployeeAdapter adapter;
 
     @Override
@@ -58,13 +59,14 @@ public class AssignEmployeeActivity extends MvpBaseActivity<AssignEmployeePresen
 
         Intent i = getIntent();
         long ticketId = i.getLongExtra("ticket_id", -1);
+        GlobalUtils.showLog(TAG, "received ticket id: " + ticketId);
         presenter.getEmployees();
         ivBack.setOnClickListener(v -> onBackPressed());
         btnAdd.setOnClickListener(v -> {
-            if (employeeIds.isEmpty()) {
+            if (employees.isEmpty()) {
                 Toast.makeText(AssignEmployeeActivity.this, "Please select employee to add", Toast.LENGTH_SHORT).show();
             } else {
-                presenter.assignEmployee(ticketId, employeeIds);
+                presenter.assignEmployee(ticketId, employees);
             }
         });
 
@@ -96,28 +98,35 @@ public class AssignEmployeeActivity extends MvpBaseActivity<AssignEmployeePresen
 
         adapter.setOnItemClickListener(new SearchEmployeeAdapter.OnItemClickListener() {
             @Override
-            public void onItemAdd(String employeeId) {
+            public void onItemAdd(Employee employee) {
                 GlobalUtils.showLog(TAG, "item add listen");
-                employeeIds.add(employeeId);
-                GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
+                Employee addEmployee = new Employee();
+                addEmployee.setName(employee.getName());
+                addEmployee.setEmployeeImageUrl(employee.getEmployeeImageUrl());
+                addEmployee.setEmployeeId(employee.getEmployeeId());
+                addEmployee.setCreatedAt(employee.getCreatedAt());
+                addEmployee.setAccountId(employee.getAccountId());
+                addEmployee.setEmail(employee.getEmail());
+                addEmployee.setPhone(employee.getPhone());
+                employees.add(addEmployee);
+                GlobalUtils.showLog(TAG, "employee list size: " + employees.size());
+                if (employees.size() > 0) {
+                    enableAddButton();
+                }
             }
 
             @Override
-            public void onItemRemove(String employeeId) {
+            public void onItemRemove(Employee employee) {
                 GlobalUtils.showLog(TAG, "item remove listen");
-                employeeIds.remove(employeeId);
-                GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-
+                employees.remove(employee);
+                GlobalUtils.showLog(TAG, "employee list size: " + employees.size());
+                if (employees.size() == 0) {
+                    disableAddButton();
+                }
             }
         });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_profile, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     protected void injectDagger() {
@@ -161,7 +170,7 @@ public class AssignEmployeeActivity extends MvpBaseActivity<AssignEmployeePresen
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -172,7 +181,7 @@ public class AssignEmployeeActivity extends MvpBaseActivity<AssignEmployeePresen
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.cancel();
+            progress.setVisibility(View.GONE);
         }
     }
 
@@ -184,5 +193,15 @@ public class AssignEmployeeActivity extends MvpBaseActivity<AssignEmployeePresen
     @Override
     public Context getContext() {
         return this;
+    }
+
+    private void enableAddButton() {
+        btnAdd.setClickable(true);
+        btnAdd.setBackgroundColor(btnAdd.getContext().getResources().getColor(R.color.colorPrimary));
+    }
+
+    private void disableAddButton() {
+        btnAdd.setClickable(false);
+        btnAdd.setBackgroundColor(btnAdd.getContext().getResources().getColor(R.color.btn_disabled));
     }
 }

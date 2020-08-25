@@ -1,17 +1,15 @@
 package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +21,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.OrderServiceProto;
@@ -65,7 +62,9 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     TextView tvToolbarTitle;
     @BindView(R.id.toolbar_problem_stat)
     TextView tvToolbarProblemStat;
-    private ProgressDialog progress;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
+
     private ServiceRequest serviceRequest;
 
     public OnOutsideClickListener outsideClickListener;
@@ -413,7 +412,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -424,7 +423,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

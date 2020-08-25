@@ -1,13 +1,13 @@
 package com.treeleaf.anydone.serviceprovider.servicerequests.accepted;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,10 +45,12 @@ public class AcceptedRequestFragment extends BaseFragment<AcceptedPresenterImpl>
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
+
     private ServiceRequestAdapter adapter;
     private OnSwipeListener swipeListener;
     private OnAcceptedFragmentReadyListener onFragmentsReadyListener;
-    private ProgressDialog progress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -199,7 +201,7 @@ public class AcceptedRequestFragment extends BaseFragment<AcceptedPresenterImpl>
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(getActivity(), null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -210,7 +212,7 @@ public class AcceptedRequestFragment extends BaseFragment<AcceptedPresenterImpl>
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

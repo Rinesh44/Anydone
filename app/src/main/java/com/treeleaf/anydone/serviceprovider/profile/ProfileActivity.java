@@ -1,7 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.profile;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -22,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,10 +37,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
-import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -83,8 +83,9 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
     TextView tvName;
     @BindView(R.id.bottom_sheet)
     MaterialCardView mBottomSheet;
+    @BindView(R.id.pb_progress)
+    ProgressBar progress;
 
-    private ProgressDialog progress;
     private Account account;
     private boolean isPhone;
     private Dialog dialog;
@@ -333,7 +334,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
 
     @Override
     public void showProgressBar(String message) {
-        progress = ProgressDialog.show(this, null, message, true);
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -344,7 +345,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
     @Override
     public void hideProgressBar() {
         if (progress != null) {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
         }
     }
 

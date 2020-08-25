@@ -1,13 +1,14 @@
 package com.treeleaf.anydone.serviceprovider.assignemployee;
 
 import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -34,17 +35,18 @@ public class AssignEmployeePresenterImpl extends BasePresenter<AssignEmployeeCon
     }
 
     @Override
-    public void assignEmployee(long ticketId, List<String> employeeIds) {
+    public void assignEmployee(long ticketId, List<Employee> employeeList) {
         getView().showProgressBar("Please wait...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> assignEmployeeObservable;
         String token = Hawk.get(Constants.TOKEN);
 
         List<TicketProto.EmployeeAssigned> assignedEmployee = new ArrayList<>();
-        for (String employeeId : employeeIds
+        for (Employee employee : employeeList
         ) {
             UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
-                    .setEmployeeProfileId(employeeId)
+                    .setEmployeeProfileId(employee.getEmployeeId())
                     .build();
+
             TicketProto.EmployeeAssigned employeesAssigned = TicketProto.EmployeeAssigned.newBuilder()
                     .setAssignedAt(System.currentTimeMillis())
                     .setAssignedTo(employeeProfile)
@@ -57,6 +59,7 @@ public class AssignEmployeePresenterImpl extends BasePresenter<AssignEmployeeCon
                 .addAllEmployeesAssigned(assignedEmployee)
                 .build();
 
+        GlobalUtils.showLog(TAG, "ticket assigned list: " + ticket);
         assignEmployeeObservable = assignEmployeeRepository.assignEmployee(token, ticketId, ticket);
 
         addSubscription(assignEmployeeObservable
@@ -78,7 +81,7 @@ public class AssignEmployeePresenterImpl extends BasePresenter<AssignEmployeeCon
                             return;
                         }
 
-                        getView().assignEmployeeSuccess();
+                        saveAssignedEmployee(ticketId, employeeList);
                     }
 
                     @Override
@@ -92,6 +95,21 @@ public class AssignEmployeePresenterImpl extends BasePresenter<AssignEmployeeCon
                     }
                 }));
     }
+
+    private void saveAssignedEmployee(long ticketId, List<Employee> employeeList) {
+        TicketRepo.getInstance().addAssignedEmployees(ticketId, employeeList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                getView().assignEmployeeSuccess();
+            }
+
+            @Override
+            public void fail() {
+                getView().assignEmployeeFail("assign employee fail");
+            }
+        });
+    }
+
 
     @Override
     public void getEmployees() {
