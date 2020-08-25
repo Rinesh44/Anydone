@@ -185,7 +185,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             justScreenShot = false;
                         } else {
                             imageViewCaptureImageLocal.setImageBitmap(bitmap);
-                            mhostActivityCallback.passCapturedImageFrame(bitmap);
+                            if (mhostActivityCallback != null)
+                                mhostActivityCallback.passCapturedImageFrame(bitmap);
                         }
 
                         /**
