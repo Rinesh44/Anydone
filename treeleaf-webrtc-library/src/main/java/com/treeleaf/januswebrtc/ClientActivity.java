@@ -895,27 +895,29 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
 
     private void terminateBroadCast() {
-        callTerminated = true;
-        if (mhostActivityCallback != null)
-            mhostActivityCallback.notifyHostHangUp();
-        if (mRestChannel != null) {
-            mRestChannel.publisherUnpublish();
-            mRestChannel.detachPlugin();
-            mRestChannel.destroySession();
-            mRestChannel.clearPendingApiCalls();
-            mRestChannel = null;
+        if (!callTerminated) {
+            if (mhostActivityCallback != null)
+                mhostActivityCallback.notifyHostHangUp();
+            if (mRestChannel != null) {
+                mRestChannel.publisherUnpublish();
+                mRestChannel.detachPlugin();
+                mRestChannel.destroySession();
+                mRestChannel.clearPendingApiCalls();
+                mRestChannel = null;
+            }
+            if (localRender != null)
+                localRender.release();
+            if (peerConnectionClient != null) {
+                peerConnectionClient.close();
+                peerConnectionClient = null;
+            }
+            if (audioManager != null) {
+                audioManager.stop();
+                audioManager = null;
+            }
+            callTerminated = true;
+            finish();
         }
-        if (localRender != null)
-            localRender.release();
-        if (peerConnectionClient != null) {
-            peerConnectionClient.close();
-            peerConnectionClient = null;
-        }
-        if (audioManager != null) {
-            audioManager.stop();
-            audioManager = null;
-        }
-        finish();
     }
 
     @Override
