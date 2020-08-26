@@ -291,7 +291,6 @@ public interface AnyDoneService {
                                                                                   @Query("to") long to,
                                                                                   @Query("page") int page);
 
-
     @GET("ticket/assignable")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignableTickets(@Header(AUTHORIZATION)
                                                                                       String token,

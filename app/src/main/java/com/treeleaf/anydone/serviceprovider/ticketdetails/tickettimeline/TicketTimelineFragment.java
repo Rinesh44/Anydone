@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -154,6 +155,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     TextView tvStatusSelected;
     @BindView(R.id.scroll_view)
     ScrollView scrollView;
+    @BindView(R.id.btn_reopen)
+    MaterialButton btnReopen;
 
 
     private boolean expandActivity = true;
@@ -203,6 +206,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             }
             elActivities.toggle();
         });*/
+
+        btnReopen.setOnClickListener(v -> reopenTicket());
 
         tvCustomerDropdown.setOnClickListener(v -> {
             expandCustomer = !expandCustomer;
@@ -301,6 +306,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
     }
 
+
     @OnClick(R.id.tv_close)
     public void closeTicket() {
         llStatusOptions.setVisibility(View.GONE);
@@ -329,10 +335,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
                 rlSelectedStatus.setVisibility(View.GONE);
                 removeScrollviewMargin();
+                btnReopen.setVisibility(View.GONE);
                 break;
 
             case "TICKET_STARTED":
                 onTicketStarted();
+                btnReopen.setVisibility(View.GONE);
                 break;
 
             case "TICKET_RESOLVED":
@@ -348,6 +356,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 vSeparator1.setVisibility(View.VISIBLE);
 
                 addScrollviewMargin();
+                btnReopen.setVisibility(View.GONE);
                 break;
 
             case "TICKET_CLOSED":
@@ -355,11 +364,13 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.closed_bg));
                 tvTicketStatus.setText("CLOSED");
 
-                removeScrollviewMargin();
+                addScrollviewMargin();
+                btnReopen.setVisibility(View.VISIBLE);
                 hideActions();
                 break;
 
             case "TICKET_REOPENED":
+                btnReopen.setVisibility(View.GONE);
                 tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.ticket_reopened_text));
                 tvTicketStatus.setBackground(getActivity().getResources().getDrawable(R.drawable.reopened_bg));
                 tvTicketStatus.setText("REOPENED");
