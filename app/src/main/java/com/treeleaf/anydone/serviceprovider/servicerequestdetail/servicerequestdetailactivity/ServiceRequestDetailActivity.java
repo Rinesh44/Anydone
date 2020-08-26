@@ -2,7 +2,6 @@ package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequest
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -80,14 +78,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     Callback.HostActivityCallback hostActivityCallbackServer;
 
-    private String janusBaseUrl, apiKey, apiSecret;
     private Account userAccount;
     private String accountId, accountName, accountPicture, rtcMessageId;
     private String serviceName, serviceProfileUri;
-    private ClientActivity.VideoCallListener videoCallListenerClient;
     private ServerActivity.VideoCallListener videoCallListenerServer;
     private boolean paymentSuccess = false;
-    private boolean videoBroadCastPublish = false;
     private RestChannel.Role mRole;
 
     @Override
@@ -123,7 +118,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        videoBroadCastPublish = false;
     }
 
     @Override
@@ -162,7 +156,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
             @Override
             public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
-                videoCallListenerClient = callback;
             }
 
             @Override
@@ -284,24 +277,10 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     @Override
     public void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret) {
-        this.janusBaseUrl = janusBaseUrl;
-        this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
-        Log.d(TAG, "janus server info: " + janusBaseUrl + apiKey + apiSecret);
-        videoCallListenerClient.onJanusCredentialsReceived(janusBaseUrl, apiKey,
-                apiSecret, serviceName, serviceProfileUri);
     }
 
     @Override
     public void onUrlFetchFail(String msg) {
-        videoCallListenerClient.onJanusCredentialsFailure();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(ServiceRequestDetailActivity.this, msg,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
