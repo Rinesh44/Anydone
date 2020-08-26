@@ -92,6 +92,18 @@
 
         </LinearLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_reopen"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_margin="@dimen/dimen_10x1"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Re-Open"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+
         <RelativeLayout
             android:id="@+id/rl_selected_status"
             android:layout_width="match_parent"
