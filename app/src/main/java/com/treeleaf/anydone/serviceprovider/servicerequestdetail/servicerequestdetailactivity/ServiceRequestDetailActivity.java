@@ -276,24 +276,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret) {
-    }
-
-    @Override
-    public void onUrlFetchFail(String msg) {
-    }
-
-    @Override
-    public void onConnectionSuccess() {
-    }
-
-    @Override
-    public void onConnectionFail(String msg) {
-        Banner.make(Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
-    }
-
-    @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
     }

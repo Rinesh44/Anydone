@@ -46,6 +46,7 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.VIDEO_CALL_JOIN_REQUEST)
                 .setVideoCallJoinRequest(videoCallJoinRequest)
+                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
                 .build();
 
 
@@ -77,6 +78,7 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.PARTICIPANT_LEFT_REQUEST)
                 .setParticipantLeftRequest(participantLeft)
+                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
                 .build();
 
 
