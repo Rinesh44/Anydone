@@ -2949,6 +2949,16 @@ public final class NLUProto {
      * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
     IntentResult getIntentResult();
+
+    /**
+     * <code>optional string replyText = 2;</code>
+     */
+    String getReplyText();
+    /**
+     * <code>optional string replyText = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getReplyTextBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationalReply}
@@ -2959,6 +2969,7 @@ public final class NLUProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationalReply)
       ConversationalReplyOrBuilder {
     private ConversationalReply() {
+      replyText_ = "";
     }
     public static final int INTENTRESULT_FIELD_NUMBER = 1;
     private IntentResult intentResult_;
@@ -3012,10 +3023,59 @@ public final class NLUProto {
       
     }
 
+    public static final int REPLYTEXT_FIELD_NUMBER = 2;
+    private String replyText_;
+    /**
+     * <code>optional string replyText = 2;</code>
+     */
+    public String getReplyText() {
+      return replyText_;
+    }
+    /**
+     * <code>optional string replyText = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReplyTextBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(replyText_);
+    }
+    /**
+     * <code>optional string replyText = 2;</code>
+     */
+    private void setReplyText(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      replyText_ = value;
+    }
+    /**
+     * <code>optional string replyText = 2;</code>
+     */
+    private void clearReplyText() {
+      
+      replyText_ = getDefaultInstance().getReplyText();
+    }
+    /**
+     * <code>optional string replyText = 2;</code>
+     */
+    private void setReplyTextBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      replyText_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (intentResult_ != null) {
         output.writeMessage(1, getIntentResult());
+      }
+      if (!replyText_.isEmpty()) {
+        output.writeString(2, getReplyText());
       }
     }
 
@@ -3027,6 +3087,10 @@ public final class NLUProto {
       if (intentResult_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getIntentResult());
+      }
+      if (!replyText_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getReplyText());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3159,6 +3223,46 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>optional string replyText = 2;</code>
+       */
+      public String getReplyText() {
+        return instance.getReplyText();
+      }
+      /**
+       * <code>optional string replyText = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReplyTextBytes() {
+        return instance.getReplyTextBytes();
+      }
+      /**
+       * <code>optional string replyText = 2;</code>
+       */
+      public Builder setReplyText(
+          String value) {
+        copyOnWrite();
+        instance.setReplyText(value);
+        return this;
+      }
+      /**
+       * <code>optional string replyText = 2;</code>
+       */
+      public Builder clearReplyText() {
+        copyOnWrite();
+        instance.clearReplyText();
+        return this;
+      }
+      /**
+       * <code>optional string replyText = 2;</code>
+       */
+      public Builder setReplyTextBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setReplyTextBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationalReply)
     }
     protected final Object dynamicMethod(
@@ -3181,6 +3285,8 @@ public final class NLUProto {
           Visitor visitor = (Visitor) arg0;
           ConversationalReply other = (ConversationalReply) arg1;
           intentResult_ = visitor.visitMessage(intentResult_, other.intentResult_);
+          replyText_ = visitor.visitString(!replyText_.isEmpty(), replyText_,
+              !other.replyText_.isEmpty(), other.replyText_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -3216,6 +3322,12 @@ public final class NLUProto {
                     intentResult_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  replyText_ = s;
                   break;
                 }
               }
