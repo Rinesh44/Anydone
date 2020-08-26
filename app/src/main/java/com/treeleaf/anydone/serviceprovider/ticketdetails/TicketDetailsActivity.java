@@ -62,7 +62,6 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
 
     private Account userAccount;
     private String accountId, accountName, accountPicture, rtcMessageId;
-    private String serviceName, serviceProfileUri;
     private ServerActivity.VideoCallListener videoCallListenerServer;
 
     @Override
