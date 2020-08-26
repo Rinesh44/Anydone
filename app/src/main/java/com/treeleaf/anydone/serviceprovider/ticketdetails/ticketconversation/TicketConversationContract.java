@@ -14,6 +14,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceAttributes;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 
@@ -86,6 +87,11 @@ public class TicketConversationContract {
         void onTaskStartSuccess();
 
         void onTaskStartFail(String msg);
+
+        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes);
+
+        void onImageDrawDiscard();
+
     }
 
     public interface TicketConversationPresenter extends Presenter<TicketConversationView> {

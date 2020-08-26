@@ -154,6 +154,29 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
 
     }
 
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (videoCallListenerServer != null) {
+                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
+                }
+            }
+        });
+
+    }
+
+    public void onImageDrawDiscard() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "onImageReceivedFromConsumer");
+                if (videoCallListenerServer != null)
+                    videoCallListenerServer.onImageDrawDiscard();
+            }
+        });
+    }
+
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         Log.d(MQTT, "onVideoRoomJoinSuccess");
         if (videoCallListenerServer != null) {

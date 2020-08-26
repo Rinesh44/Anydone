@@ -762,6 +762,17 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+        ((TicketDetailsActivity) getActivity())
+                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+    }
+
+    @Override
+    public void onImageDrawDiscard() {
+        ((TicketDetailsActivity) getActivity()).onImageDrawDiscard();
+    }
+
+    @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
         ((TicketDetailsActivity)
                 Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);
