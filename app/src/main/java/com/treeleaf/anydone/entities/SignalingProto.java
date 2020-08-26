@@ -65,7 +65,7 @@ public final class SignalingProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static RtcSessionType valueOf(int value) {
       return forNumber(value);
     }
@@ -135,7 +135,7 @@ public final class SignalingProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static RtcProvider valueOf(int value) {
       return forNumber(value);
     }
@@ -180,7 +180,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcSessionType rtcSessionType = 1;</code>
      */
-    RtcSessionType getRtcSessionType();
+    com.treeleaf.anydone.entities.SignalingProto.RtcSessionType getRtcSessionType();
 
     /**
      * <code>optional bool isPrivate = 2;</code>
@@ -208,9 +208,9 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcSessionType rtcSessionType = 1;</code>
      */
-    public RtcSessionType getRtcSessionType() {
-      RtcSessionType result = RtcSessionType.forNumber(rtcSessionType_);
-      return result == null ? RtcSessionType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.SignalingProto.RtcSessionType getRtcSessionType() {
+      com.treeleaf.anydone.entities.SignalingProto.RtcSessionType result = com.treeleaf.anydone.entities.SignalingProto.RtcSessionType.forNumber(rtcSessionType_);
+      return result == null ? com.treeleaf.anydone.entities.SignalingProto.RtcSessionType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcSessionType rtcSessionType = 1;</code>
@@ -221,7 +221,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcSessionType rtcSessionType = 1;</code>
      */
-    private void setRtcSessionType(RtcSessionType value) {
+    private void setRtcSessionType(com.treeleaf.anydone.entities.SignalingProto.RtcSessionType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -261,7 +261,7 @@ public final class SignalingProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (rtcSessionType_ != RtcSessionType.UNKNOWN_RTC_SESSION_TYPE.getNumber()) {
+      if (rtcSessionType_ != com.treeleaf.anydone.entities.SignalingProto.RtcSessionType.UNKNOWN_RTC_SESSION_TYPE.getNumber()) {
         output.writeEnum(1, rtcSessionType_);
       }
       if (isPrivate_ != false) {
@@ -274,7 +274,7 @@ public final class SignalingProto {
       if (size != -1) return size;
 
       size = 0;
-      if (rtcSessionType_ != RtcSessionType.UNKNOWN_RTC_SESSION_TYPE.getNumber()) {
+      if (rtcSessionType_ != com.treeleaf.anydone.entities.SignalingProto.RtcSessionType.UNKNOWN_RTC_SESSION_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, rtcSessionType_);
       }
@@ -286,60 +286,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static CreateRtcSessionReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static CreateRtcSessionReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static CreateRtcSessionReq parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static CreateRtcSessionReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static CreateRtcSessionReq parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static CreateRtcSessionReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static CreateRtcSessionReq parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static CreateRtcSessionReq parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static CreateRtcSessionReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static CreateRtcSessionReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -350,7 +350,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(CreateRtcSessionReq prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -359,9 +359,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          CreateRtcSessionReq, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CreateRtcSessionReq)
-        CreateRtcSessionReqOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReqOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -385,13 +385,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcSessionType rtcSessionType = 1;</code>
        */
-      public RtcSessionType getRtcSessionType() {
+      public com.treeleaf.anydone.entities.SignalingProto.RtcSessionType getRtcSessionType() {
         return instance.getRtcSessionType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RtcSessionType rtcSessionType = 1;</code>
        */
-      public Builder setRtcSessionType(RtcSessionType value) {
+      public Builder setRtcSessionType(com.treeleaf.anydone.entities.SignalingProto.RtcSessionType value) {
         copyOnWrite();
         instance.setRtcSessionType(value);
         return this;
@@ -431,11 +431,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CreateRtcSessionReq)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new CreateRtcSessionReq();
+          return new com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -448,11 +448,11 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          CreateRtcSessionReq other = (CreateRtcSessionReq) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq other = (com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq) arg1;
           rtcSessionType_ = visitor.visitInt(rtcSessionType_ != 0, rtcSessionType_,    other.rtcSessionType_ != 0, other.rtcSessionType_);
           isPrivate_ = visitor.visitBoolean(isPrivate_ != false, isPrivate_,
               other.isPrivate_ != false, other.isPrivate_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -502,7 +502,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (CreateRtcSessionReq.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -516,13 +516,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CreateRtcSessionReq)
-    private static final CreateRtcSessionReq DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new CreateRtcSessionReq();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static CreateRtcSessionReq getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.CreateRtcSessionReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -540,7 +540,7 @@ public final class SignalingProto {
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 1;</code>
      */
@@ -554,7 +554,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcProvider rtcProvider = 2;</code>
      */
-    RtcProvider getRtcProvider();
+    com.treeleaf.anydone.entities.SignalingProto.RtcProvider getRtcProvider();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RtcSession}
@@ -568,11 +568,11 @@ public final class SignalingProto {
       sessionId_ = "";
     }
     public static final int SESSIONID_FIELD_NUMBER = 1;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -586,7 +586,7 @@ public final class SignalingProto {
      * <code>optional string sessionId = 1;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -624,9 +624,9 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcProvider rtcProvider = 2;</code>
      */
-    public RtcProvider getRtcProvider() {
-      RtcProvider result = RtcProvider.forNumber(rtcProvider_);
-      return result == null ? RtcProvider.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.SignalingProto.RtcProvider getRtcProvider() {
+      com.treeleaf.anydone.entities.SignalingProto.RtcProvider result = com.treeleaf.anydone.entities.SignalingProto.RtcProvider.forNumber(rtcProvider_);
+      return result == null ? com.treeleaf.anydone.entities.SignalingProto.RtcProvider.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcProvider rtcProvider = 2;</code>
@@ -637,7 +637,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcProvider rtcProvider = 2;</code>
      */
-    private void setRtcProvider(RtcProvider value) {
+    private void setRtcProvider(com.treeleaf.anydone.entities.SignalingProto.RtcProvider value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -657,7 +657,7 @@ public final class SignalingProto {
       if (!sessionId_.isEmpty()) {
         output.writeString(1, getSessionId());
       }
-      if (rtcProvider_ != RtcProvider.UNKNOWN_PROVIDER.getNumber()) {
+      if (rtcProvider_ != com.treeleaf.anydone.entities.SignalingProto.RtcProvider.UNKNOWN_PROVIDER.getNumber()) {
         output.writeEnum(2, rtcProvider_);
       }
     }
@@ -671,7 +671,7 @@ public final class SignalingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getSessionId());
       }
-      if (rtcProvider_ != RtcProvider.UNKNOWN_PROVIDER.getNumber()) {
+      if (rtcProvider_ != com.treeleaf.anydone.entities.SignalingProto.RtcProvider.UNKNOWN_PROVIDER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, rtcProvider_);
       }
@@ -679,60 +679,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static RtcSession parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcSession parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcSession parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcSession parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcSession parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcSession parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcSession parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RtcSession parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcSession parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcSession parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -743,7 +743,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RtcSession prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.RtcSession prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -752,9 +752,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RtcSession, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.RtcSession, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RtcSession)
-        RtcSessionOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.RtcSessionOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.RtcSession.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -764,7 +764,7 @@ public final class SignalingProto {
       /**
        * <code>optional string sessionId = 1;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -778,7 +778,7 @@ public final class SignalingProto {
        * <code>optional string sessionId = 1;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -818,13 +818,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcProvider rtcProvider = 2;</code>
        */
-      public RtcProvider getRtcProvider() {
+      public com.treeleaf.anydone.entities.SignalingProto.RtcProvider getRtcProvider() {
         return instance.getRtcProvider();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RtcProvider rtcProvider = 2;</code>
        */
-      public Builder setRtcProvider(RtcProvider value) {
+      public Builder setRtcProvider(com.treeleaf.anydone.entities.SignalingProto.RtcProvider value) {
         copyOnWrite();
         instance.setRtcProvider(value);
         return this;
@@ -841,11 +841,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcSession)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RtcSession();
+          return new com.treeleaf.anydone.entities.SignalingProto.RtcSession();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -858,11 +858,11 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RtcSession other = (RtcSession) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.RtcSession other = (com.treeleaf.anydone.entities.SignalingProto.RtcSession) arg1;
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
           rtcProvider_ = visitor.visitInt(rtcProvider_ != 0, rtcProvider_,    other.rtcProvider_ != 0, other.rtcProvider_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -913,7 +913,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RtcSession.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.RtcSession.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -927,13 +927,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RtcSession)
-    private static final RtcSession DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.RtcSession DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RtcSession();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RtcSession getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcSession getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -951,7 +951,7 @@ public final class SignalingProto {
     /**
      * <code>optional string providerPayload = 1;</code>
      */
-    String getProviderPayload();
+    java.lang.String getProviderPayload();
     /**
      * <code>optional string providerPayload = 1;</code>
      */
@@ -970,11 +970,11 @@ public final class SignalingProto {
       providerPayload_ = "";
     }
     public static final int PROVIDERPAYLOAD_FIELD_NUMBER = 1;
-    private String providerPayload_;
+    private java.lang.String providerPayload_;
     /**
      * <code>optional string providerPayload = 1;</code>
      */
-    public String getProviderPayload() {
+    public java.lang.String getProviderPayload() {
       return providerPayload_;
     }
     /**
@@ -988,7 +988,7 @@ public final class SignalingProto {
      * <code>optional string providerPayload = 1;</code>
      */
     private void setProviderPayload(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1035,60 +1035,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static RtcPayloadWrapper parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcPayloadWrapper parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcPayloadWrapper parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcPayloadWrapper parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcPayloadWrapper parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcPayloadWrapper parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcPayloadWrapper parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RtcPayloadWrapper parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcPayloadWrapper parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcPayloadWrapper parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1099,7 +1099,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RtcPayloadWrapper prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1108,9 +1108,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RtcPayloadWrapper, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RtcPayloadWrapper)
-        RtcPayloadWrapperOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapperOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1120,7 +1120,7 @@ public final class SignalingProto {
       /**
        * <code>optional string providerPayload = 1;</code>
        */
-      public String getProviderPayload() {
+      public java.lang.String getProviderPayload() {
         return instance.getProviderPayload();
       }
       /**
@@ -1134,7 +1134,7 @@ public final class SignalingProto {
        * <code>optional string providerPayload = 1;</code>
        */
       public Builder setProviderPayload(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setProviderPayload(value);
         return this;
@@ -1160,11 +1160,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcPayloadWrapper)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RtcPayloadWrapper();
+          return new com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1177,10 +1177,10 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RtcPayloadWrapper other = (RtcPayloadWrapper) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper other = (com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper) arg1;
           providerPayload_ = visitor.visitString(!providerPayload_.isEmpty(), providerPayload_,
               !other.providerPayload_.isEmpty(), other.providerPayload_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1225,7 +1225,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RtcPayloadWrapper.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1239,13 +1239,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RtcPayloadWrapper)
-    private static final RtcPayloadWrapper DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RtcPayloadWrapper();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RtcPayloadWrapper getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcPayloadWrapper getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1263,7 +1263,7 @@ public final class SignalingProto {
     /**
      * <code>optional string publisherId = 1;</code>
      */
-    String getPublisherId();
+    java.lang.String getPublisherId();
     /**
      * <code>optional string publisherId = 1;</code>
      */
@@ -1302,11 +1302,11 @@ public final class SignalingProto {
       publisherId_ = "";
     }
     public static final int PUBLISHERID_FIELD_NUMBER = 1;
-    private String publisherId_;
+    private java.lang.String publisherId_;
     /**
      * <code>optional string publisherId = 1;</code>
      */
-    public String getPublisherId() {
+    public java.lang.String getPublisherId() {
       return publisherId_;
     }
     /**
@@ -1320,7 +1320,7 @@ public final class SignalingProto {
      * <code>optional string publisherId = 1;</code>
      */
     private void setPublisherId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1487,60 +1487,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static VideoRoomSubscribeReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoRoomSubscribeReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoRoomSubscribeReq parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoRoomSubscribeReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoRoomSubscribeReq parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomSubscribeReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoRoomSubscribeReq parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomSubscribeReq parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoRoomSubscribeReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomSubscribeReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1551,7 +1551,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(VideoRoomSubscribeReq prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1560,9 +1560,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          VideoRoomSubscribeReq, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.VideoRoomSubscribeReq)
-        VideoRoomSubscribeReqOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReqOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1572,7 +1572,7 @@ public final class SignalingProto {
       /**
        * <code>optional string publisherId = 1;</code>
        */
-      public String getPublisherId() {
+      public java.lang.String getPublisherId() {
         return instance.getPublisherId();
       }
       /**
@@ -1586,7 +1586,7 @@ public final class SignalingProto {
        * <code>optional string publisherId = 1;</code>
        */
       public Builder setPublisherId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPublisherId(value);
         return this;
@@ -1704,11 +1704,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.VideoRoomSubscribeReq)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new VideoRoomSubscribeReq();
+          return new com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1721,7 +1721,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          VideoRoomSubscribeReq other = (VideoRoomSubscribeReq) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq other = (com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq) arg1;
           publisherId_ = visitor.visitString(!publisherId_.isEmpty(), publisherId_,
               !other.publisherId_.isEmpty(), other.publisherId_);
           audio_ = visitor.visitBoolean(audio_ != false, audio_,
@@ -1732,7 +1732,7 @@ public final class SignalingProto {
               other.offerAudio_ != false, other.offerAudio_);
           offerVideo_ = visitor.visitBoolean(offerVideo_ != false, offerVideo_,
               other.offerVideo_ != false, other.offerVideo_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1797,7 +1797,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (VideoRoomSubscribeReq.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1811,13 +1811,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.VideoRoomSubscribeReq)
-    private static final VideoRoomSubscribeReq DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new VideoRoomSubscribeReq();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static VideoRoomSubscribeReq getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomSubscribeReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1960,60 +1960,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static VideoRoomPublishReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoRoomPublishReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoRoomPublishReq parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoRoomPublishReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoRoomPublishReq parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomPublishReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoRoomPublishReq parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomPublishReq parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoRoomPublishReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomPublishReq parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2024,7 +2024,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(VideoRoomPublishReq prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2033,9 +2033,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          VideoRoomPublishReq, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.VideoRoomPublishReq)
-        VideoRoomPublishReqOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReqOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2114,11 +2114,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.VideoRoomPublishReq)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new VideoRoomPublishReq();
+          return new com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2131,14 +2131,14 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          VideoRoomPublishReq other = (VideoRoomPublishReq) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq other = (com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq) arg1;
           audio_ = visitor.visitBoolean(audio_ != false, audio_,
               other.audio_ != false, other.audio_);
           video_ = visitor.visitBoolean(video_ != false, video_,
               other.video_ != false, other.video_);
           record_ = visitor.visitBoolean(record_ != false, record_,
               other.record_ != false, other.record_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2192,7 +2192,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (VideoRoomPublishReq.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2206,13 +2206,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.VideoRoomPublishReq)
-    private static final VideoRoomPublishReq DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new VideoRoomPublishReq();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static VideoRoomPublishReq getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomPublishReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2230,7 +2230,7 @@ public final class SignalingProto {
     /**
      * <code>optional string type = 1;</code>
      */
-    String getType();
+    java.lang.String getType();
     /**
      * <code>optional string type = 1;</code>
      */
@@ -2240,7 +2240,7 @@ public final class SignalingProto {
     /**
      * <code>optional string sdp = 2;</code>
      */
-    String getSdp();
+    java.lang.String getSdp();
     /**
      * <code>optional string sdp = 2;</code>
      */
@@ -2260,11 +2260,11 @@ public final class SignalingProto {
       sdp_ = "";
     }
     public static final int TYPE_FIELD_NUMBER = 1;
-    private String type_;
+    private java.lang.String type_;
     /**
      * <code>optional string type = 1;</code>
      */
-    public String getType() {
+    public java.lang.String getType() {
       return type_;
     }
     /**
@@ -2278,7 +2278,7 @@ public final class SignalingProto {
      * <code>optional string type = 1;</code>
      */
     private void setType(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2306,11 +2306,11 @@ public final class SignalingProto {
     }
 
     public static final int SDP_FIELD_NUMBER = 2;
-    private String sdp_;
+    private java.lang.String sdp_;
     /**
      * <code>optional string sdp = 2;</code>
      */
-    public String getSdp() {
+    public java.lang.String getSdp() {
       return sdp_;
     }
     /**
@@ -2324,7 +2324,7 @@ public final class SignalingProto {
      * <code>optional string sdp = 2;</code>
      */
     private void setSdp(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2378,60 +2378,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static Jsep parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Jsep parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Jsep parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Jsep parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Jsep parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Jsep parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Jsep parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Jsep parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Jsep parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Jsep parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2442,7 +2442,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Jsep prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.Jsep prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2451,9 +2451,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Jsep, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.Jsep, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Jsep)
-        JsepOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.JsepOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.Jsep.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2463,7 +2463,7 @@ public final class SignalingProto {
       /**
        * <code>optional string type = 1;</code>
        */
-      public String getType() {
+      public java.lang.String getType() {
         return instance.getType();
       }
       /**
@@ -2477,7 +2477,7 @@ public final class SignalingProto {
        * <code>optional string type = 1;</code>
        */
       public Builder setType(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setType(value);
         return this;
@@ -2503,7 +2503,7 @@ public final class SignalingProto {
       /**
        * <code>optional string sdp = 2;</code>
        */
-      public String getSdp() {
+      public java.lang.String getSdp() {
         return instance.getSdp();
       }
       /**
@@ -2517,7 +2517,7 @@ public final class SignalingProto {
        * <code>optional string sdp = 2;</code>
        */
       public Builder setSdp(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSdp(value);
         return this;
@@ -2543,11 +2543,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Jsep)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Jsep();
+          return new com.treeleaf.anydone.entities.SignalingProto.Jsep();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2560,12 +2560,12 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Jsep other = (Jsep) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.Jsep other = (com.treeleaf.anydone.entities.SignalingProto.Jsep) arg1;
           type_ = visitor.visitString(!type_.isEmpty(), type_,
               !other.type_.isEmpty(), other.type_);
           sdp_ = visitor.visitString(!sdp_.isEmpty(), sdp_,
               !other.sdp_.isEmpty(), other.sdp_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2616,7 +2616,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Jsep.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.Jsep.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2630,13 +2630,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Jsep)
-    private static final Jsep DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.Jsep DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Jsep();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Jsep getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.Jsep getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2658,7 +2658,7 @@ public final class SignalingProto {
      *
      * <code>optional string candidatePayload = 1;</code>
      */
-    String getCandidatePayload();
+    java.lang.String getCandidatePayload();
     /**
      * <pre>
      *Its array of candidate
@@ -2681,7 +2681,7 @@ public final class SignalingProto {
       candidatePayload_ = "";
     }
     public static final int CANDIDATEPAYLOAD_FIELD_NUMBER = 1;
-    private String candidatePayload_;
+    private java.lang.String candidatePayload_;
     /**
      * <pre>
      *Its array of candidate
@@ -2689,7 +2689,7 @@ public final class SignalingProto {
      *
      * <code>optional string candidatePayload = 1;</code>
      */
-    public String getCandidatePayload() {
+    public java.lang.String getCandidatePayload() {
       return candidatePayload_;
     }
     /**
@@ -2711,7 +2711,7 @@ public final class SignalingProto {
      * <code>optional string candidatePayload = 1;</code>
      */
     private void setCandidatePayload(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2766,60 +2766,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static TrickleRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TrickleRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TrickleRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TrickleRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TrickleRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TrickleRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TrickleRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TrickleRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TrickleRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TrickleRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2830,7 +2830,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TrickleRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.TrickleRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2839,9 +2839,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TrickleRequest, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.TrickleRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TrickleRequest)
-        TrickleRequestOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.TrickleRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.TrickleRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2855,7 +2855,7 @@ public final class SignalingProto {
        *
        * <code>optional string candidatePayload = 1;</code>
        */
-      public String getCandidatePayload() {
+      public java.lang.String getCandidatePayload() {
         return instance.getCandidatePayload();
       }
       /**
@@ -2877,7 +2877,7 @@ public final class SignalingProto {
        * <code>optional string candidatePayload = 1;</code>
        */
       public Builder setCandidatePayload(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setCandidatePayload(value);
         return this;
@@ -2911,11 +2911,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TrickleRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TrickleRequest();
+          return new com.treeleaf.anydone.entities.SignalingProto.TrickleRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2928,10 +2928,10 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TrickleRequest other = (TrickleRequest) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.TrickleRequest other = (com.treeleaf.anydone.entities.SignalingProto.TrickleRequest) arg1;
           candidatePayload_ = visitor.visitString(!candidatePayload_.isEmpty(), candidatePayload_,
               !other.candidatePayload_.isEmpty(), other.candidatePayload_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2976,7 +2976,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TrickleRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.TrickleRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2990,13 +2990,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TrickleRequest)
-    private static final TrickleRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.TrickleRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TrickleRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TrickleRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.TrickleRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3014,7 +3014,7 @@ public final class SignalingProto {
     /**
      * <code>optional string providerPayload = 1;</code>
      */
-    String getProviderPayload();
+    java.lang.String getProviderPayload();
     /**
      * <code>optional string providerPayload = 1;</code>
      */
@@ -3033,11 +3033,11 @@ public final class SignalingProto {
       providerPayload_ = "";
     }
     public static final int PROVIDERPAYLOAD_FIELD_NUMBER = 1;
-    private String providerPayload_;
+    private java.lang.String providerPayload_;
     /**
      * <code>optional string providerPayload = 1;</code>
      */
-    public String getProviderPayload() {
+    public java.lang.String getProviderPayload() {
       return providerPayload_;
     }
     /**
@@ -3051,7 +3051,7 @@ public final class SignalingProto {
      * <code>optional string providerPayload = 1;</code>
      */
     private void setProviderPayload(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3098,60 +3098,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static PollEvent parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static PollEvent parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static PollEvent parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static PollEvent parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static PollEvent parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static PollEvent parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static PollEvent parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static PollEvent parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static PollEvent parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static PollEvent parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3162,7 +3162,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PollEvent prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.PollEvent prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3171,9 +3171,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          PollEvent, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.PollEvent, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.PollEvent)
-        PollEventOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.PollEventOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.PollEvent.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3183,7 +3183,7 @@ public final class SignalingProto {
       /**
        * <code>optional string providerPayload = 1;</code>
        */
-      public String getProviderPayload() {
+      public java.lang.String getProviderPayload() {
         return instance.getProviderPayload();
       }
       /**
@@ -3197,7 +3197,7 @@ public final class SignalingProto {
        * <code>optional string providerPayload = 1;</code>
        */
       public Builder setProviderPayload(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setProviderPayload(value);
         return this;
@@ -3223,11 +3223,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PollEvent)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new PollEvent();
+          return new com.treeleaf.anydone.entities.SignalingProto.PollEvent();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3240,10 +3240,10 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          PollEvent other = (PollEvent) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.PollEvent other = (com.treeleaf.anydone.entities.SignalingProto.PollEvent) arg1;
           providerPayload_ = visitor.visitString(!providerPayload_.isEmpty(), providerPayload_,
               !other.providerPayload_.isEmpty(), other.providerPayload_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3288,7 +3288,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (PollEvent.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.PollEvent.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3302,13 +3302,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.PollEvent)
-    private static final PollEvent DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.PollEvent DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new PollEvent();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static PollEvent getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.PollEvent getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3326,7 +3326,7 @@ public final class SignalingProto {
     /**
      * <code>optional string baseUrl = 1;</code>
      */
-    String getBaseUrl();
+    java.lang.String getBaseUrl();
     /**
      * <code>optional string baseUrl = 1;</code>
      */
@@ -3336,7 +3336,7 @@ public final class SignalingProto {
     /**
      * <code>optional string apiKey = 2;</code>
      */
-    String getApiKey();
+    java.lang.String getApiKey();
     /**
      * <code>optional string apiKey = 2;</code>
      */
@@ -3346,7 +3346,7 @@ public final class SignalingProto {
     /**
      * <code>optional string apiSecret = 3;</code>
      */
-    String getApiSecret();
+    java.lang.String getApiSecret();
     /**
      * <code>optional string apiSecret = 3;</code>
      */
@@ -3367,11 +3367,11 @@ public final class SignalingProto {
       apiSecret_ = "";
     }
     public static final int BASEURL_FIELD_NUMBER = 1;
-    private String baseUrl_;
+    private java.lang.String baseUrl_;
     /**
      * <code>optional string baseUrl = 1;</code>
      */
-    public String getBaseUrl() {
+    public java.lang.String getBaseUrl() {
       return baseUrl_;
     }
     /**
@@ -3385,7 +3385,7 @@ public final class SignalingProto {
      * <code>optional string baseUrl = 1;</code>
      */
     private void setBaseUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3413,11 +3413,11 @@ public final class SignalingProto {
     }
 
     public static final int APIKEY_FIELD_NUMBER = 2;
-    private String apiKey_;
+    private java.lang.String apiKey_;
     /**
      * <code>optional string apiKey = 2;</code>
      */
-    public String getApiKey() {
+    public java.lang.String getApiKey() {
       return apiKey_;
     }
     /**
@@ -3431,7 +3431,7 @@ public final class SignalingProto {
      * <code>optional string apiKey = 2;</code>
      */
     private void setApiKey(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3459,11 +3459,11 @@ public final class SignalingProto {
     }
 
     public static final int APISECRET_FIELD_NUMBER = 3;
-    private String apiSecret_;
+    private java.lang.String apiSecret_;
     /**
      * <code>optional string apiSecret = 3;</code>
      */
-    public String getApiSecret() {
+    public java.lang.String getApiSecret() {
       return apiSecret_;
     }
     /**
@@ -3477,7 +3477,7 @@ public final class SignalingProto {
      * <code>optional string apiSecret = 3;</code>
      */
     private void setApiSecret(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3538,60 +3538,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static AvConnectDetails parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AvConnectDetails parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AvConnectDetails parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AvConnectDetails parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AvConnectDetails parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AvConnectDetails parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AvConnectDetails parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static AvConnectDetails parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AvConnectDetails parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AvConnectDetails parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3602,7 +3602,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(AvConnectDetails prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3611,9 +3611,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          AvConnectDetails, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AvConnectDetails)
-        AvConnectDetailsOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.AvConnectDetailsOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3623,7 +3623,7 @@ public final class SignalingProto {
       /**
        * <code>optional string baseUrl = 1;</code>
        */
-      public String getBaseUrl() {
+      public java.lang.String getBaseUrl() {
         return instance.getBaseUrl();
       }
       /**
@@ -3637,7 +3637,7 @@ public final class SignalingProto {
        * <code>optional string baseUrl = 1;</code>
        */
       public Builder setBaseUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setBaseUrl(value);
         return this;
@@ -3663,7 +3663,7 @@ public final class SignalingProto {
       /**
        * <code>optional string apiKey = 2;</code>
        */
-      public String getApiKey() {
+      public java.lang.String getApiKey() {
         return instance.getApiKey();
       }
       /**
@@ -3677,7 +3677,7 @@ public final class SignalingProto {
        * <code>optional string apiKey = 2;</code>
        */
       public Builder setApiKey(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiKey(value);
         return this;
@@ -3703,7 +3703,7 @@ public final class SignalingProto {
       /**
        * <code>optional string apiSecret = 3;</code>
        */
-      public String getApiSecret() {
+      public java.lang.String getApiSecret() {
         return instance.getApiSecret();
       }
       /**
@@ -3717,7 +3717,7 @@ public final class SignalingProto {
        * <code>optional string apiSecret = 3;</code>
        */
       public Builder setApiSecret(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiSecret(value);
         return this;
@@ -3743,11 +3743,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AvConnectDetails)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new AvConnectDetails();
+          return new com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3760,14 +3760,14 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          AvConnectDetails other = (AvConnectDetails) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails other = (com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails) arg1;
           baseUrl_ = visitor.visitString(!baseUrl_.isEmpty(), baseUrl_,
               !other.baseUrl_.isEmpty(), other.baseUrl_);
           apiKey_ = visitor.visitString(!apiKey_.isEmpty(), apiKey_,
               !other.apiKey_.isEmpty(), other.apiKey_);
           apiSecret_ = visitor.visitString(!apiSecret_.isEmpty(), apiSecret_,
               !other.apiSecret_.isEmpty(), other.apiSecret_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3824,7 +3824,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (AvConnectDetails.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3838,13 +3838,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AvConnectDetails)
-    private static final AvConnectDetails DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new AvConnectDetails();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static AvConnectDetails getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3862,7 +3862,7 @@ public final class SignalingProto {
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 1;</code>
      */
@@ -3872,7 +3872,7 @@ public final class SignalingProto {
     /**
      * <code>optional string roomId = 2;</code>
      */
-    String getRoomId();
+    java.lang.String getRoomId();
     /**
      * <code>optional string roomId = 2;</code>
      */
@@ -3882,7 +3882,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 3;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 3;</code>
      */
@@ -3896,12 +3896,12 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
      */
-    AvConnectDetails getAvConnectDetails();
+    com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails getAvConnectDetails();
 
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
@@ -3911,7 +3911,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 6;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 6;</code>
      */
@@ -3921,7 +3921,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -3940,7 +3940,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 8;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 8;</code>
      */
@@ -3954,7 +3954,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
      * <pre>
@@ -3963,7 +3963,7 @@ public final class SignalingProto {
      *
      * <code>optional string rtcMessageId = 10;</code>
      */
-    String getRtcMessageId();
+    java.lang.String getRtcMessageId();
     /**
      * <pre>
      *rtc_message_id call is saved to
@@ -3994,11 +3994,11 @@ public final class SignalingProto {
     }
     private int bitField0_;
     public static final int SESSIONID_FIELD_NUMBER = 1;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -4012,7 +4012,7 @@ public final class SignalingProto {
      * <code>optional string sessionId = 1;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4040,11 +4040,11 @@ public final class SignalingProto {
     }
 
     public static final int ROOMID_FIELD_NUMBER = 2;
-    private String roomId_;
+    private java.lang.String roomId_;
     /**
      * <code>optional string roomId = 2;</code>
      */
-    public String getRoomId() {
+    public java.lang.String getRoomId() {
       return roomId_;
     }
     /**
@@ -4058,7 +4058,7 @@ public final class SignalingProto {
      * <code>optional string roomId = 2;</code>
      */
     private void setRoomId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4086,11 +4086,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 3;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 3;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -4104,7 +4104,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 3;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4132,7 +4132,7 @@ public final class SignalingProto {
     }
 
     public static final int AVCONNECTDETAILS_FIELD_NUMBER = 4;
-    private AvConnectDetails avConnectDetails_;
+    private com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails avConnectDetails_;
     /**
      * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
      */
@@ -4142,13 +4142,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
      */
-    public AvConnectDetails getAvConnectDetails() {
-      return avConnectDetails_ == null ? AvConnectDetails.getDefaultInstance() : avConnectDetails_;
+    public com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails getAvConnectDetails() {
+      return avConnectDetails_ == null ? com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.getDefaultInstance() : avConnectDetails_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
      */
-    private void setAvConnectDetails(AvConnectDetails value) {
+    private void setAvConnectDetails(com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4159,18 +4159,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
      */
     private void setAvConnectDetails(
-        AvConnectDetails.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.Builder builderForValue) {
       avConnectDetails_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
      */
-    private void mergeAvConnectDetails(AvConnectDetails value) {
+    private void mergeAvConnectDetails(com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails value) {
       if (avConnectDetails_ != null &&
-          avConnectDetails_ != AvConnectDetails.getDefaultInstance()) {
+          avConnectDetails_ != com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.getDefaultInstance()) {
         avConnectDetails_ =
-          AvConnectDetails.newBuilder(avConnectDetails_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.newBuilder(avConnectDetails_).mergeFrom(value).buildPartial();
       } else {
         avConnectDetails_ = value;
       }
@@ -4184,11 +4184,11 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 5;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -4202,7 +4202,7 @@ public final class SignalingProto {
      * <code>optional string senderAccountId = 5;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4230,11 +4230,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 6;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 6;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -4248,7 +4248,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 6;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4276,11 +4276,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -4294,7 +4294,7 @@ public final class SignalingProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4338,7 +4338,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 8;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -4359,7 +4359,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 8;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4370,7 +4370,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 8;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4381,7 +4381,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 8;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -4406,7 +4406,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 9;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
      */
@@ -4416,13 +4416,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4433,18 +4433,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -4458,7 +4458,7 @@ public final class SignalingProto {
     }
 
     public static final int RTCMESSAGEID_FIELD_NUMBER = 10;
-    private String rtcMessageId_;
+    private java.lang.String rtcMessageId_;
     /**
      * <pre>
      *rtc_message_id call is saved to
@@ -4466,7 +4466,7 @@ public final class SignalingProto {
      *
      * <code>optional string rtcMessageId = 10;</code>
      */
-    public String getRtcMessageId() {
+    public java.lang.String getRtcMessageId() {
       return rtcMessageId_;
     }
     /**
@@ -4488,7 +4488,7 @@ public final class SignalingProto {
      * <code>optional string rtcMessageId = 10;</code>
      */
     private void setRtcMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4611,60 +4611,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static BroadcastVideoCall parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BroadcastVideoCall parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BroadcastVideoCall parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BroadcastVideoCall parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BroadcastVideoCall parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BroadcastVideoCall parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BroadcastVideoCall parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static BroadcastVideoCall parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BroadcastVideoCall parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BroadcastVideoCall parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4675,7 +4675,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BroadcastVideoCall prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4684,9 +4684,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          BroadcastVideoCall, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BroadcastVideoCall)
-        BroadcastVideoCallOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCallOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4696,7 +4696,7 @@ public final class SignalingProto {
       /**
        * <code>optional string sessionId = 1;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -4710,7 +4710,7 @@ public final class SignalingProto {
        * <code>optional string sessionId = 1;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -4736,7 +4736,7 @@ public final class SignalingProto {
       /**
        * <code>optional string roomId = 2;</code>
        */
-      public String getRoomId() {
+      public java.lang.String getRoomId() {
         return instance.getRoomId();
       }
       /**
@@ -4750,7 +4750,7 @@ public final class SignalingProto {
        * <code>optional string roomId = 2;</code>
        */
       public Builder setRoomId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRoomId(value);
         return this;
@@ -4776,7 +4776,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 3;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -4790,7 +4790,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 3;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -4822,13 +4822,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
        */
-      public AvConnectDetails getAvConnectDetails() {
+      public com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails getAvConnectDetails() {
         return instance.getAvConnectDetails();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
        */
-      public Builder setAvConnectDetails(AvConnectDetails value) {
+      public Builder setAvConnectDetails(com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails value) {
         copyOnWrite();
         instance.setAvConnectDetails(value);
         return this;
@@ -4837,7 +4837,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
        */
       public Builder setAvConnectDetails(
-          AvConnectDetails.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.Builder builderForValue) {
         copyOnWrite();
         instance.setAvConnectDetails(builderForValue);
         return this;
@@ -4845,7 +4845,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 4;</code>
        */
-      public Builder mergeAvConnectDetails(AvConnectDetails value) {
+      public Builder mergeAvConnectDetails(com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails value) {
         copyOnWrite();
         instance.mergeAvConnectDetails(value);
         return this;
@@ -4861,7 +4861,7 @@ public final class SignalingProto {
       /**
        * <code>optional string senderAccountId = 5;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -4875,7 +4875,7 @@ public final class SignalingProto {
        * <code>optional string senderAccountId = 5;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -4901,7 +4901,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 6;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -4915,7 +4915,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 6;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -4941,7 +4941,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -4955,7 +4955,7 @@ public final class SignalingProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -4995,7 +4995,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 8;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -5009,7 +5009,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 8;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -5018,7 +5018,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 8;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -5027,7 +5027,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 8;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -5059,13 +5059,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -5074,7 +5074,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -5082,7 +5082,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -5102,7 +5102,7 @@ public final class SignalingProto {
        *
        * <code>optional string rtcMessageId = 10;</code>
        */
-      public String getRtcMessageId() {
+      public java.lang.String getRtcMessageId() {
         return instance.getRtcMessageId();
       }
       /**
@@ -5124,7 +5124,7 @@ public final class SignalingProto {
        * <code>optional string rtcMessageId = 10;</code>
        */
       public Builder setRtcMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRtcMessageId(value);
         return this;
@@ -5158,11 +5158,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BroadcastVideoCall)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new BroadcastVideoCall();
+          return new com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5176,7 +5176,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          BroadcastVideoCall other = (BroadcastVideoCall) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall other = (com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall) arg1;
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
           roomId_ = visitor.visitString(!roomId_.isEmpty(), roomId_,
@@ -5194,7 +5194,7 @@ public final class SignalingProto {
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           rtcMessageId_ = visitor.visitString(!rtcMessageId_.isEmpty(), rtcMessageId_,
               !other.rtcMessageId_.isEmpty(), other.rtcMessageId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -5238,11 +5238,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 34: {
-                  AvConnectDetails.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.Builder subBuilder = null;
                   if (avConnectDetails_ != null) {
                     subBuilder = avConnectDetails_.toBuilder();
                   }
-                  avConnectDetails_ = input.readMessage(AvConnectDetails.parser(), extensionRegistry);
+                  avConnectDetails_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(avConnectDetails_);
                     avConnectDetails_ = subBuilder.buildPartial();
@@ -5278,11 +5278,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 74: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -5311,7 +5311,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (BroadcastVideoCall.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5325,13 +5325,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BroadcastVideoCall)
-    private static final BroadcastVideoCall DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BroadcastVideoCall();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static BroadcastVideoCall getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5349,7 +5349,7 @@ public final class SignalingProto {
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 1;</code>
      */
@@ -5359,7 +5359,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 2;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 2;</code>
      */
@@ -5369,7 +5369,7 @@ public final class SignalingProto {
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
@@ -5379,7 +5379,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 6;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 6;</code>
      */
@@ -5389,7 +5389,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -5403,7 +5403,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
      * <code>repeated string recipients = 9;</code>
@@ -5417,7 +5417,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 9;</code>
      */
@@ -5442,11 +5442,11 @@ public final class SignalingProto {
     }
     private int bitField0_;
     public static final int SESSIONID_FIELD_NUMBER = 1;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -5460,7 +5460,7 @@ public final class SignalingProto {
      * <code>optional string sessionId = 1;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5488,11 +5488,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 2;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 2;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -5506,7 +5506,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 2;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5534,11 +5534,11 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 5;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -5552,7 +5552,7 @@ public final class SignalingProto {
      * <code>optional string senderAccountId = 5;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5580,11 +5580,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 6;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 6;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -5598,7 +5598,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 6;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5626,11 +5626,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -5644,7 +5644,7 @@ public final class SignalingProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5672,7 +5672,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
@@ -5682,13 +5682,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5699,18 +5699,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -5740,7 +5740,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -5761,7 +5761,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5772,7 +5772,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5783,7 +5783,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -5874,60 +5874,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static VideoCallJoinResponse parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoCallJoinResponse parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoCallJoinResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoCallJoinResponse parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoCallJoinResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoCallJoinResponse parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoCallJoinResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static VideoCallJoinResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoCallJoinResponse parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoCallJoinResponse parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5938,7 +5938,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(VideoCallJoinResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5947,9 +5947,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          VideoCallJoinResponse, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.VideoCallJoinResponse)
-        VideoCallJoinResponseOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5959,7 +5959,7 @@ public final class SignalingProto {
       /**
        * <code>optional string sessionId = 1;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -5973,7 +5973,7 @@ public final class SignalingProto {
        * <code>optional string sessionId = 1;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -5999,7 +5999,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 2;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -6013,7 +6013,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 2;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -6039,7 +6039,7 @@ public final class SignalingProto {
       /**
        * <code>optional string senderAccountId = 5;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -6053,7 +6053,7 @@ public final class SignalingProto {
        * <code>optional string senderAccountId = 5;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -6079,7 +6079,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 6;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -6093,7 +6093,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 6;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -6119,7 +6119,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -6133,7 +6133,7 @@ public final class SignalingProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -6165,13 +6165,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -6180,7 +6180,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -6188,7 +6188,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -6218,7 +6218,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 9;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -6232,7 +6232,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -6241,7 +6241,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -6250,7 +6250,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -6276,11 +6276,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.VideoCallJoinResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new VideoCallJoinResponse();
+          return new com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -6294,7 +6294,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          VideoCallJoinResponse other = (VideoCallJoinResponse) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse other = (com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse) arg1;
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
           participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
@@ -6307,7 +6307,7 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -6363,11 +6363,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 66: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -6399,7 +6399,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (VideoCallJoinResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -6413,13 +6413,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.VideoCallJoinResponse)
-    private static final VideoCallJoinResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new VideoCallJoinResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static VideoCallJoinResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6437,7 +6437,7 @@ public final class SignalingProto {
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 1;</code>
      */
@@ -6447,7 +6447,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 2;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 2;</code>
      */
@@ -6457,7 +6457,7 @@ public final class SignalingProto {
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
@@ -6467,7 +6467,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 6;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 6;</code>
      */
@@ -6477,7 +6477,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -6491,7 +6491,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.VideoCallJoinRequest}
@@ -6509,11 +6509,11 @@ public final class SignalingProto {
       refId_ = "";
     }
     public static final int SESSIONID_FIELD_NUMBER = 1;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -6527,7 +6527,7 @@ public final class SignalingProto {
      * <code>optional string sessionId = 1;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6555,11 +6555,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 2;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 2;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -6573,7 +6573,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 2;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6601,11 +6601,11 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 5;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -6619,7 +6619,7 @@ public final class SignalingProto {
      * <code>optional string senderAccountId = 5;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6647,11 +6647,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 6;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 6;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -6665,7 +6665,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 6;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6693,11 +6693,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -6711,7 +6711,7 @@ public final class SignalingProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6739,7 +6739,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
@@ -6749,13 +6749,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6766,18 +6766,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -6845,60 +6845,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static VideoCallJoinRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoCallJoinRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoCallJoinRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoCallJoinRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoCallJoinRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoCallJoinRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoCallJoinRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static VideoCallJoinRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoCallJoinRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoCallJoinRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6909,7 +6909,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(VideoCallJoinRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -6918,9 +6918,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          VideoCallJoinRequest, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.VideoCallJoinRequest)
-        VideoCallJoinRequestOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -6930,7 +6930,7 @@ public final class SignalingProto {
       /**
        * <code>optional string sessionId = 1;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -6944,7 +6944,7 @@ public final class SignalingProto {
        * <code>optional string sessionId = 1;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -6970,7 +6970,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 2;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -6984,7 +6984,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 2;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -7010,7 +7010,7 @@ public final class SignalingProto {
       /**
        * <code>optional string senderAccountId = 5;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -7024,7 +7024,7 @@ public final class SignalingProto {
        * <code>optional string senderAccountId = 5;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -7050,7 +7050,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 6;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -7064,7 +7064,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 6;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -7090,7 +7090,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -7104,7 +7104,7 @@ public final class SignalingProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -7136,13 +7136,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -7151,7 +7151,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -7159,7 +7159,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -7175,11 +7175,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.VideoCallJoinRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new VideoCallJoinRequest();
+          return new com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -7192,7 +7192,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          VideoCallJoinRequest other = (VideoCallJoinRequest) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest other = (com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest) arg1;
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
           participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
@@ -7204,7 +7204,7 @@ public final class SignalingProto {
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -7259,11 +7259,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 66: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -7286,7 +7286,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (VideoCallJoinRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -7300,13 +7300,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.VideoCallJoinRequest)
-    private static final VideoCallJoinRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new VideoCallJoinRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static VideoCallJoinRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7324,7 +7324,7 @@ public final class SignalingProto {
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 1;</code>
      */
@@ -7334,7 +7334,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 2;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 2;</code>
      */
@@ -7344,7 +7344,7 @@ public final class SignalingProto {
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
@@ -7354,7 +7354,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 6;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 6;</code>
      */
@@ -7364,7 +7364,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -7378,7 +7378,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
      * <code>repeated string recipients = 9;</code>
@@ -7392,7 +7392,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 9;</code>
      */
@@ -7406,7 +7406,7 @@ public final class SignalingProto {
      *
      * <code>optional string rtcMessageId = 10;</code>
      */
-    String getRtcMessageId();
+    java.lang.String getRtcMessageId();
     /**
      * <pre>
      *message id to update call duration in database
@@ -7454,11 +7454,11 @@ public final class SignalingProto {
     }
     private int bitField0_;
     public static final int SESSIONID_FIELD_NUMBER = 1;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -7472,7 +7472,7 @@ public final class SignalingProto {
      * <code>optional string sessionId = 1;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7500,11 +7500,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 2;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 2;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -7518,7 +7518,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 2;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7546,11 +7546,11 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 5;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -7564,7 +7564,7 @@ public final class SignalingProto {
      * <code>optional string senderAccountId = 5;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7592,11 +7592,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 6;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 6;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -7610,7 +7610,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 6;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7638,11 +7638,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -7656,7 +7656,7 @@ public final class SignalingProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7684,7 +7684,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
@@ -7694,13 +7694,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -7711,18 +7711,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -7752,7 +7752,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -7773,7 +7773,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7784,7 +7784,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7795,7 +7795,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -7820,7 +7820,7 @@ public final class SignalingProto {
     }
 
     public static final int RTCMESSAGEID_FIELD_NUMBER = 10;
-    private String rtcMessageId_;
+    private java.lang.String rtcMessageId_;
     /**
      * <pre>
      *message id to update call duration in database
@@ -7828,7 +7828,7 @@ public final class SignalingProto {
      *
      * <code>optional string rtcMessageId = 10;</code>
      */
-    public String getRtcMessageId() {
+    public java.lang.String getRtcMessageId() {
       return rtcMessageId_;
     }
     /**
@@ -7850,7 +7850,7 @@ public final class SignalingProto {
      * <code>optional string rtcMessageId = 10;</code>
      */
     private void setRtcMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -8043,60 +8043,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static VideoRoomHostLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoRoomHostLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoRoomHostLeft parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoRoomHostLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoRoomHostLeft parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomHostLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoRoomHostLeft parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomHostLeft parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoRoomHostLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoRoomHostLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -8107,7 +8107,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(VideoRoomHostLeft prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -8116,9 +8116,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          VideoRoomHostLeft, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.VideoRoomHostLeft)
-        VideoRoomHostLeftOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeftOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -8128,7 +8128,7 @@ public final class SignalingProto {
       /**
        * <code>optional string sessionId = 1;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -8142,7 +8142,7 @@ public final class SignalingProto {
        * <code>optional string sessionId = 1;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -8168,7 +8168,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 2;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -8182,7 +8182,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 2;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -8208,7 +8208,7 @@ public final class SignalingProto {
       /**
        * <code>optional string senderAccountId = 5;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -8222,7 +8222,7 @@ public final class SignalingProto {
        * <code>optional string senderAccountId = 5;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -8248,7 +8248,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 6;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -8262,7 +8262,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 6;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -8288,7 +8288,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -8302,7 +8302,7 @@ public final class SignalingProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -8334,13 +8334,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -8349,7 +8349,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -8357,7 +8357,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -8387,7 +8387,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 9;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -8401,7 +8401,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -8410,7 +8410,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -8419,7 +8419,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -8449,7 +8449,7 @@ public final class SignalingProto {
        *
        * <code>optional string rtcMessageId = 10;</code>
        */
-      public String getRtcMessageId() {
+      public java.lang.String getRtcMessageId() {
         return instance.getRtcMessageId();
       }
       /**
@@ -8471,7 +8471,7 @@ public final class SignalingProto {
        * <code>optional string rtcMessageId = 10;</code>
        */
       public Builder setRtcMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRtcMessageId(value);
         return this;
@@ -8575,11 +8575,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.VideoRoomHostLeft)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new VideoRoomHostLeft();
+          return new com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -8593,7 +8593,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          VideoRoomHostLeft other = (VideoRoomHostLeft) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft other = (com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft) arg1;
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
           participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
@@ -8612,7 +8612,7 @@ public final class SignalingProto {
               other.startedAt_ != 0L, other.startedAt_);
           duration_ = visitor.visitInt(duration_ != 0, duration_,
               other.duration_ != 0, other.duration_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -8668,11 +8668,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 66: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -8720,7 +8720,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (VideoRoomHostLeft.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -8734,13 +8734,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.VideoRoomHostLeft)
-    private static final VideoRoomHostLeft DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new VideoRoomHostLeft();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static VideoRoomHostLeft getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8758,7 +8758,7 @@ public final class SignalingProto {
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 1;</code>
      */
@@ -8768,7 +8768,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 2;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 2;</code>
      */
@@ -8778,7 +8778,7 @@ public final class SignalingProto {
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
@@ -8788,7 +8788,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 6;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 6;</code>
      */
@@ -8798,7 +8798,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -8812,7 +8812,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
      * <code>repeated string recipients = 9;</code>
@@ -8826,7 +8826,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 9;</code>
      */
@@ -8851,11 +8851,11 @@ public final class SignalingProto {
     }
     private int bitField0_;
     public static final int SESSIONID_FIELD_NUMBER = 1;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -8869,7 +8869,7 @@ public final class SignalingProto {
      * <code>optional string sessionId = 1;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -8897,11 +8897,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 2;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 2;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -8915,7 +8915,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 2;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -8943,11 +8943,11 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 5;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 5;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -8961,7 +8961,7 @@ public final class SignalingProto {
      * <code>optional string senderAccountId = 5;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -8989,11 +8989,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 6;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 6;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -9007,7 +9007,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 6;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9035,11 +9035,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -9053,7 +9053,7 @@ public final class SignalingProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9081,7 +9081,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
@@ -9091,13 +9091,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -9108,18 +9108,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -9149,7 +9149,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -9170,7 +9170,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9181,7 +9181,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9192,7 +9192,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -9283,60 +9283,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static ParticipantLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ParticipantLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ParticipantLeft parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ParticipantLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ParticipantLeft parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ParticipantLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ParticipantLeft parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ParticipantLeft parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ParticipantLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ParticipantLeft parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -9347,7 +9347,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ParticipantLeft prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -9356,9 +9356,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ParticipantLeft, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ParticipantLeft)
-        ParticipantLeftOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.ParticipantLeftOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -9368,7 +9368,7 @@ public final class SignalingProto {
       /**
        * <code>optional string sessionId = 1;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -9382,7 +9382,7 @@ public final class SignalingProto {
        * <code>optional string sessionId = 1;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -9408,7 +9408,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 2;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -9422,7 +9422,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 2;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -9448,7 +9448,7 @@ public final class SignalingProto {
       /**
        * <code>optional string senderAccountId = 5;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -9462,7 +9462,7 @@ public final class SignalingProto {
        * <code>optional string senderAccountId = 5;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -9488,7 +9488,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 6;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -9502,7 +9502,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 6;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -9528,7 +9528,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -9542,7 +9542,7 @@ public final class SignalingProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -9574,13 +9574,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -9589,7 +9589,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -9597,7 +9597,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -9627,7 +9627,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 9;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -9641,7 +9641,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -9650,7 +9650,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -9659,7 +9659,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -9685,11 +9685,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ParticipantLeft)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ParticipantLeft();
+          return new com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -9703,7 +9703,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ParticipantLeft other = (ParticipantLeft) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft other = (com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft) arg1;
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
           participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
@@ -9716,7 +9716,7 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -9772,11 +9772,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 66: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -9808,7 +9808,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ParticipantLeft.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -9822,13 +9822,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ParticipantLeft)
-    private static final ParticipantLeft DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ParticipantLeft();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ParticipantLeft getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9936,60 +9936,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static Position parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Position parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Position parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Position parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Position parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Position parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Position parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Position parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Position parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Position parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.Position parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -10000,7 +10000,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Position prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.Position prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -10009,9 +10009,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Position, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.Position, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Position)
-        PositionOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.PositionOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.Position.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -10067,11 +10067,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Position)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Position();
+          return new com.treeleaf.anydone.entities.SignalingProto.Position();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -10084,12 +10084,12 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Position other = (Position) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.Position other = (com.treeleaf.anydone.entities.SignalingProto.Position) arg1;
           x_ = visitor.visitInt(x_ != 0, x_,
               other.x_ != 0, other.x_);
           y_ = visitor.visitInt(y_ != 0, y_,
               other.y_ != 0, other.y_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -10138,7 +10138,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Position.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.Position.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -10152,13 +10152,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Position)
-    private static final Position DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.Position DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Position();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Position getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.Position getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10180,7 +10180,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
      */
-    ScreenDrawRequest.DrawingMode getDrawingMode();
+    com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode getDrawingMode();
 
     /**
      * <code>optional double brushWidth = 2;</code>
@@ -10200,7 +10200,7 @@ public final class SignalingProto {
     /**
      * <code>optional string text = 5;</code>
      */
-    String getText();
+    java.lang.String getText();
     /**
      * <code>optional string text = 5;</code>
      */
@@ -10210,7 +10210,7 @@ public final class SignalingProto {
     /**
      * <code>optional string senderAccountId = 6;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 6;</code>
      */
@@ -10220,7 +10220,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 7;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 7;</code>
      */
@@ -10230,7 +10230,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 8;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 8;</code>
      */
@@ -10244,7 +10244,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
      */
-    Position getPosition();
+    com.treeleaf.anydone.entities.SignalingProto.Position getPosition();
 
     /**
      * <code>repeated string recipients = 10;</code>
@@ -10258,7 +10258,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 10;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 10;</code>
      */
@@ -10329,7 +10329,7 @@ public final class SignalingProto {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static DrawingMode valueOf(int value) {
         return forNumber(value);
       }
@@ -10377,9 +10377,9 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
      */
-    public DrawingMode getDrawingMode() {
-      DrawingMode result = DrawingMode.forNumber(drawingMode_);
-      return result == null ? DrawingMode.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode getDrawingMode() {
+      com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode result = com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode.forNumber(drawingMode_);
+      return result == null ? com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
@@ -10390,7 +10390,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
      */
-    private void setDrawingMode(DrawingMode value) {
+    private void setDrawingMode(com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -10475,11 +10475,11 @@ public final class SignalingProto {
     }
 
     public static final int TEXT_FIELD_NUMBER = 5;
-    private String text_;
+    private java.lang.String text_;
     /**
      * <code>optional string text = 5;</code>
      */
-    public String getText() {
+    public java.lang.String getText() {
       return text_;
     }
     /**
@@ -10493,7 +10493,7 @@ public final class SignalingProto {
      * <code>optional string text = 5;</code>
      */
     private void setText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -10521,11 +10521,11 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 6;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 6;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -10539,7 +10539,7 @@ public final class SignalingProto {
      * <code>optional string senderAccountId = 6;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -10567,11 +10567,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 7;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 7;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -10585,7 +10585,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 7;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -10613,11 +10613,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 8;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 8;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -10631,7 +10631,7 @@ public final class SignalingProto {
      * <code>optional string refId = 8;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -10659,7 +10659,7 @@ public final class SignalingProto {
     }
 
     public static final int POSITION_FIELD_NUMBER = 9;
-    private Position position_;
+    private com.treeleaf.anydone.entities.SignalingProto.Position position_;
     /**
      * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
      */
@@ -10669,13 +10669,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
      */
-    public Position getPosition() {
-      return position_ == null ? Position.getDefaultInstance() : position_;
+    public com.treeleaf.anydone.entities.SignalingProto.Position getPosition() {
+      return position_ == null ? com.treeleaf.anydone.entities.SignalingProto.Position.getDefaultInstance() : position_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
      */
-    private void setPosition(Position value) {
+    private void setPosition(com.treeleaf.anydone.entities.SignalingProto.Position value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -10686,18 +10686,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
      */
     private void setPosition(
-        Position.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.Position.Builder builderForValue) {
       position_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
      */
-    private void mergePosition(Position value) {
+    private void mergePosition(com.treeleaf.anydone.entities.SignalingProto.Position value) {
       if (position_ != null &&
-          position_ != Position.getDefaultInstance()) {
+          position_ != com.treeleaf.anydone.entities.SignalingProto.Position.getDefaultInstance()) {
         position_ =
-          Position.newBuilder(position_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.Position.newBuilder(position_).mergeFrom(value).buildPartial();
       } else {
         position_ = value;
       }
@@ -10727,7 +10727,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 10;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -10748,7 +10748,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 10;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -10759,7 +10759,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 10;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -10770,7 +10770,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 10;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -10796,7 +10796,7 @@ public final class SignalingProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (drawingMode_ != DrawingMode.UNKNOWN_DRAWING_MODE.getNumber()) {
+      if (drawingMode_ != com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode.UNKNOWN_DRAWING_MODE.getNumber()) {
         output.writeEnum(1, drawingMode_);
       }
       if (brushWidth_ != 0D) {
@@ -10833,7 +10833,7 @@ public final class SignalingProto {
       if (size != -1) return size;
 
       size = 0;
-      if (drawingMode_ != DrawingMode.UNKNOWN_DRAWING_MODE.getNumber()) {
+      if (drawingMode_ != com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode.UNKNOWN_DRAWING_MODE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, drawingMode_);
       }
@@ -10882,60 +10882,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static ScreenDrawRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ScreenDrawRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ScreenDrawRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ScreenDrawRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ScreenDrawRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ScreenDrawRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ScreenDrawRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ScreenDrawRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ScreenDrawRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ScreenDrawRequest parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -10946,7 +10946,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ScreenDrawRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -10955,9 +10955,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ScreenDrawRequest, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ScreenDrawRequest)
-        ScreenDrawRequestOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -10981,13 +10981,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
        */
-      public DrawingMode getDrawingMode() {
+      public com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode getDrawingMode() {
         return instance.getDrawingMode();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
        */
-      public Builder setDrawingMode(DrawingMode value) {
+      public Builder setDrawingMode(com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.DrawingMode value) {
         copyOnWrite();
         instance.setDrawingMode(value);
         return this;
@@ -11073,7 +11073,7 @@ public final class SignalingProto {
       /**
        * <code>optional string text = 5;</code>
        */
-      public String getText() {
+      public java.lang.String getText() {
         return instance.getText();
       }
       /**
@@ -11087,7 +11087,7 @@ public final class SignalingProto {
        * <code>optional string text = 5;</code>
        */
       public Builder setText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -11113,7 +11113,7 @@ public final class SignalingProto {
       /**
        * <code>optional string senderAccountId = 6;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -11127,7 +11127,7 @@ public final class SignalingProto {
        * <code>optional string senderAccountId = 6;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -11153,7 +11153,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 7;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -11167,7 +11167,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 7;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -11193,7 +11193,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 8;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -11207,7 +11207,7 @@ public final class SignalingProto {
        * <code>optional string refId = 8;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -11239,13 +11239,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
        */
-      public Position getPosition() {
+      public com.treeleaf.anydone.entities.SignalingProto.Position getPosition() {
         return instance.getPosition();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
        */
-      public Builder setPosition(Position value) {
+      public Builder setPosition(com.treeleaf.anydone.entities.SignalingProto.Position value) {
         copyOnWrite();
         instance.setPosition(value);
         return this;
@@ -11254,7 +11254,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
        */
       public Builder setPosition(
-          Position.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.Position.Builder builderForValue) {
         copyOnWrite();
         instance.setPosition(builderForValue);
         return this;
@@ -11262,7 +11262,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
        */
-      public Builder mergePosition(Position value) {
+      public Builder mergePosition(com.treeleaf.anydone.entities.SignalingProto.Position value) {
         copyOnWrite();
         instance.mergePosition(value);
         return this;
@@ -11292,7 +11292,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 10;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -11306,7 +11306,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 10;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -11315,7 +11315,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 10;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -11324,7 +11324,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 10;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -11350,11 +11350,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ScreenDrawRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ScreenDrawRequest();
+          return new com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -11368,7 +11368,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ScreenDrawRequest other = (ScreenDrawRequest) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest other = (com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest) arg1;
           drawingMode_ = visitor.visitInt(drawingMode_ != 0, drawingMode_,    other.drawingMode_ != 0, other.drawingMode_);
           brushWidth_ = visitor.visitDouble(brushWidth_ != 0D, brushWidth_,
               other.brushWidth_ != 0D, other.brushWidth_);
@@ -11386,7 +11386,7 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           position_ = visitor.visitMessage(position_, other.position_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -11457,11 +11457,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 74: {
-                  Position.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.Position.Builder subBuilder = null;
                   if (position_ != null) {
                     subBuilder = position_.toBuilder();
                   }
-                  position_ = input.readMessage(Position.parser(), extensionRegistry);
+                  position_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.Position.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(position_);
                     position_ = subBuilder.buildPartial();
@@ -11493,7 +11493,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ScreenDrawRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -11507,13 +11507,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ScreenDrawRequest)
-    private static final ScreenDrawRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ScreenDrawRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ScreenDrawRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11551,7 +11551,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 5;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 5;</code>
      */
@@ -11561,7 +11561,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 6;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 6;</code>
      */
@@ -11571,7 +11571,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -11585,7 +11585,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
      * <code>repeated string recipients = 9;</code>
@@ -11599,7 +11599,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 9;</code>
      */
@@ -11718,11 +11718,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 5;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 5;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -11736,7 +11736,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 5;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11764,11 +11764,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 6;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 6;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -11782,7 +11782,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 6;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11810,11 +11810,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -11828,7 +11828,7 @@ public final class SignalingProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11856,7 +11856,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
@@ -11866,13 +11866,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -11883,18 +11883,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -11924,7 +11924,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 9;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -11945,7 +11945,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11956,7 +11956,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11967,7 +11967,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 9;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -12072,60 +12072,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static StartDraw parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static StartDraw parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static StartDraw parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static StartDraw parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static StartDraw parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static StartDraw parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static StartDraw parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static StartDraw parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static StartDraw parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static StartDraw parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -12136,7 +12136,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(StartDraw prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.StartDraw prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -12145,9 +12145,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          StartDraw, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.StartDraw, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.StartDraw)
-        StartDrawOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.StartDrawOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.StartDraw.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -12249,7 +12249,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 5;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -12263,7 +12263,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 5;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -12289,7 +12289,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 6;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -12303,7 +12303,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 6;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -12329,7 +12329,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -12343,7 +12343,7 @@ public final class SignalingProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -12375,13 +12375,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -12390,7 +12390,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -12398,7 +12398,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -12428,7 +12428,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 9;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -12442,7 +12442,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -12451,7 +12451,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -12460,7 +12460,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 9;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -12486,11 +12486,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.StartDraw)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new StartDraw();
+          return new com.treeleaf.anydone.entities.SignalingProto.StartDraw();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -12504,7 +12504,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          StartDraw other = (StartDraw) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.StartDraw other = (com.treeleaf.anydone.entities.SignalingProto.StartDraw) arg1;
           bitmapWidth_ = visitor.visitInt(bitmapWidth_ != 0, bitmapWidth_,
               other.bitmapWidth_ != 0, other.bitmapWidth_);
           bitmapHeight_ = visitor.visitInt(bitmapHeight_ != 0, bitmapHeight_,
@@ -12521,7 +12521,7 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -12585,11 +12585,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 66: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -12621,7 +12621,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (StartDraw.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.StartDraw.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -12635,13 +12635,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.StartDraw)
-    private static final StartDraw DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.StartDraw DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new StartDraw();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static StartDraw getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDraw getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -12674,7 +12674,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 4;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 4;</code>
      */
@@ -12684,7 +12684,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 5;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 5;</code>
      */
@@ -12694,7 +12694,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 6;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 6;</code>
      */
@@ -12708,7 +12708,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
      * <code>repeated string recipients = 8;</code>
@@ -12722,7 +12722,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 8;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 8;</code>
      */
@@ -12814,11 +12814,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 4;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 4;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -12832,7 +12832,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 4;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -12860,11 +12860,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 5;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 5;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -12878,7 +12878,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 5;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -12906,11 +12906,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 6;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 6;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -12924,7 +12924,7 @@ public final class SignalingProto {
      * <code>optional string refId = 6;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -12952,7 +12952,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 7;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
      */
@@ -12962,13 +12962,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12979,18 +12979,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -13020,7 +13020,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 8;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -13041,7 +13041,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 8;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -13052,7 +13052,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 8;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -13063,7 +13063,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 8;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -13161,60 +13161,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static StartDrawAcknowledgement parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static StartDrawAcknowledgement parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static StartDrawAcknowledgement parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static StartDrawAcknowledgement parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static StartDrawAcknowledgement parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static StartDrawAcknowledgement parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static StartDrawAcknowledgement parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static StartDrawAcknowledgement parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static StartDrawAcknowledgement parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static StartDrawAcknowledgement parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -13225,7 +13225,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(StartDrawAcknowledgement prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -13234,9 +13234,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          StartDrawAcknowledgement, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.StartDrawAcknowledgement)
-        StartDrawAcknowledgementOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgementOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -13315,7 +13315,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 4;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -13329,7 +13329,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 4;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -13355,7 +13355,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 5;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -13369,7 +13369,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 5;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -13395,7 +13395,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 6;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -13409,7 +13409,7 @@ public final class SignalingProto {
        * <code>optional string refId = 6;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -13441,13 +13441,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -13456,7 +13456,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -13464,7 +13464,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 7;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -13494,7 +13494,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 8;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -13508,7 +13508,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 8;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -13517,7 +13517,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 8;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -13526,7 +13526,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 8;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -13552,11 +13552,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.StartDrawAcknowledgement)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new StartDrawAcknowledgement();
+          return new com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -13570,7 +13570,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          StartDrawAcknowledgement other = (StartDrawAcknowledgement) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement other = (com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement) arg1;
           bitmapWidth_ = visitor.visitInt(bitmapWidth_ != 0, bitmapWidth_,
               other.bitmapWidth_ != 0, other.bitmapWidth_);
           bitmapHeight_ = visitor.visitInt(bitmapHeight_ != 0, bitmapHeight_,
@@ -13585,7 +13585,7 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -13644,11 +13644,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 58: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -13680,7 +13680,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (StartDrawAcknowledgement.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -13694,13 +13694,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.StartDrawAcknowledgement)
-    private static final StartDrawAcknowledgement DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new StartDrawAcknowledgement();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static StartDrawAcknowledgement getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -13723,7 +13723,7 @@ public final class SignalingProto {
     /**
      * <code>optional string participantId = 2;</code>
      */
-    String getParticipantId();
+    java.lang.String getParticipantId();
     /**
      * <code>optional string participantId = 2;</code>
      */
@@ -13733,7 +13733,7 @@ public final class SignalingProto {
     /**
      * <code>optional string clientId = 3;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 3;</code>
      */
@@ -13743,7 +13743,7 @@ public final class SignalingProto {
     /**
      * <code>optional string refId = 4;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 4;</code>
      */
@@ -13757,7 +13757,7 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
      */
-    UserProto.Account getSenderAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
      * <code>repeated string recipients = 6;</code>
@@ -13771,7 +13771,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 6;</code>
      */
-    String getRecipients(int index);
+    java.lang.String getRecipients(int index);
     /**
      * <code>repeated string recipients = 6;</code>
      */
@@ -13817,11 +13817,11 @@ public final class SignalingProto {
     }
 
     public static final int PARTICIPANTID_FIELD_NUMBER = 2;
-    private String participantId_;
+    private java.lang.String participantId_;
     /**
      * <code>optional string participantId = 2;</code>
      */
-    public String getParticipantId() {
+    public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
@@ -13835,7 +13835,7 @@ public final class SignalingProto {
      * <code>optional string participantId = 2;</code>
      */
     private void setParticipantId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -13863,11 +13863,11 @@ public final class SignalingProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 3;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 3;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -13881,7 +13881,7 @@ public final class SignalingProto {
      * <code>optional string clientId = 3;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -13909,11 +13909,11 @@ public final class SignalingProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 4;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 4;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -13927,7 +13927,7 @@ public final class SignalingProto {
      * <code>optional string refId = 4;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -13955,7 +13955,7 @@ public final class SignalingProto {
     }
 
     public static final int SENDERACCOUNT_FIELD_NUMBER = 5;
-    private UserProto.Account senderAccount_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
      */
@@ -13965,13 +13965,13 @@ public final class SignalingProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
      */
-    public UserProto.Account getSenderAccount() {
-      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
      */
-    private void setSenderAccount(UserProto.Account value) {
+    private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13982,18 +13982,18 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
      */
     private void setSenderAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccount_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
      */
-    private void mergeSenderAccount(UserProto.Account value) {
+    private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
-          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+          senderAccount_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccount_ =
-          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
       } else {
         senderAccount_ = value;
       }
@@ -14023,7 +14023,7 @@ public final class SignalingProto {
     /**
      * <code>repeated string recipients = 6;</code>
      */
-    public String getRecipients(int index) {
+    public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
@@ -14044,7 +14044,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 6;</code>
      */
     private void setRecipients(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -14055,7 +14055,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 6;</code>
      */
     private void addRecipients(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -14066,7 +14066,7 @@ public final class SignalingProto {
      * <code>repeated string recipients = 6;</code>
      */
     private void addAllRecipients(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -14150,60 +14150,60 @@ public final class SignalingProto {
       return size;
     }
 
-    public static CancelDrawing parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static CancelDrawing parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static CancelDrawing parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static CancelDrawing parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static CancelDrawing parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static CancelDrawing parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static CancelDrawing parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static CancelDrawing parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static CancelDrawing parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static CancelDrawing parseFrom(
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -14214,7 +14214,7 @@ public final class SignalingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(CancelDrawing prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -14223,9 +14223,9 @@ public final class SignalingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          CancelDrawing, Builder> implements
+          com.treeleaf.anydone.entities.SignalingProto.CancelDrawing, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CancelDrawing)
-        CancelDrawingOrBuilder {
+        com.treeleaf.anydone.entities.SignalingProto.CancelDrawingOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -14258,7 +14258,7 @@ public final class SignalingProto {
       /**
        * <code>optional string participantId = 2;</code>
        */
-      public String getParticipantId() {
+      public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
@@ -14272,7 +14272,7 @@ public final class SignalingProto {
        * <code>optional string participantId = 2;</code>
        */
       public Builder setParticipantId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParticipantId(value);
         return this;
@@ -14298,7 +14298,7 @@ public final class SignalingProto {
       /**
        * <code>optional string clientId = 3;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -14312,7 +14312,7 @@ public final class SignalingProto {
        * <code>optional string clientId = 3;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -14338,7 +14338,7 @@ public final class SignalingProto {
       /**
        * <code>optional string refId = 4;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -14352,7 +14352,7 @@ public final class SignalingProto {
        * <code>optional string refId = 4;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -14384,13 +14384,13 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
        */
-      public UserProto.Account getSenderAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
        */
-      public Builder setSenderAccount(UserProto.Account value) {
+      public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccount(value);
         return this;
@@ -14399,7 +14399,7 @@ public final class SignalingProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
        */
       public Builder setSenderAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccount(builderForValue);
         return this;
@@ -14407,7 +14407,7 @@ public final class SignalingProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 5;</code>
        */
-      public Builder mergeSenderAccount(UserProto.Account value) {
+      public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccount(value);
         return this;
@@ -14437,7 +14437,7 @@ public final class SignalingProto {
       /**
        * <code>repeated string recipients = 6;</code>
        */
-      public String getRecipients(int index) {
+      public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
@@ -14451,7 +14451,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 6;</code>
        */
       public Builder setRecipients(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -14460,7 +14460,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 6;</code>
        */
       public Builder addRecipients(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -14469,7 +14469,7 @@ public final class SignalingProto {
        * <code>repeated string recipients = 6;</code>
        */
       public Builder addAllRecipients(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -14495,11 +14495,11 @@ public final class SignalingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CancelDrawing)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new CancelDrawing();
+          return new com.treeleaf.anydone.entities.SignalingProto.CancelDrawing();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -14513,7 +14513,7 @@ public final class SignalingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          CancelDrawing other = (CancelDrawing) arg1;
+          com.treeleaf.anydone.entities.SignalingProto.CancelDrawing other = (com.treeleaf.anydone.entities.SignalingProto.CancelDrawing) arg1;
           cancellationTime_ = visitor.visitLong(cancellationTime_ != 0L, cancellationTime_,
               other.cancellationTime_ != 0L, other.cancellationTime_);
           participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
@@ -14524,7 +14524,7 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -14573,11 +14573,11 @@ public final class SignalingProto {
                   break;
                 }
                 case 42: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
                   }
-                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccount_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccount_);
                     senderAccount_ = subBuilder.buildPartial();
@@ -14609,7 +14609,7 @@ public final class SignalingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (CancelDrawing.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -14623,13 +14623,13 @@ public final class SignalingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CancelDrawing)
-    private static final CancelDrawing DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.SignalingProto.CancelDrawing DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new CancelDrawing();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static CancelDrawing getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.SignalingProto.CancelDrawing getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

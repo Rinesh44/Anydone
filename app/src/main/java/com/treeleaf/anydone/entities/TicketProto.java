@@ -213,6 +213,14 @@ public final class TicketProto {
      * <code>EXTERNAL_CUSTOMER = 2;</code>
      */
     EXTERNAL_CUSTOMER(2),
+    /**
+     * <code>ANYDONE_EMPLOYEE = 3;</code>
+     */
+    ANYDONE_EMPLOYEE(3),
+    /**
+     * <code>ANYDONE_SERVICE_PROVIDER = 4;</code>
+     */
+    ANYDONE_SERVICE_PROVIDER(4),
     UNRECOGNIZED(-1),
     ;
 
@@ -228,6 +236,14 @@ public final class TicketProto {
      * <code>EXTERNAL_CUSTOMER = 2;</code>
      */
     public static final int EXTERNAL_CUSTOMER_VALUE = 2;
+    /**
+     * <code>ANYDONE_EMPLOYEE = 3;</code>
+     */
+    public static final int ANYDONE_EMPLOYEE_VALUE = 3;
+    /**
+     * <code>ANYDONE_SERVICE_PROVIDER = 4;</code>
+     */
+    public static final int ANYDONE_SERVICE_PROVIDER_VALUE = 4;
 
 
     public final int getNumber() {
@@ -247,6 +263,8 @@ public final class TicketProto {
         case 0: return UNKNOWN_CUSTOMER_TYPE;
         case 1: return ANYDONE_CONSUMER;
         case 2: return EXTERNAL_CUSTOMER;
+        case 3: return ANYDONE_EMPLOYEE;
+        case 4: return ANYDONE_SERVICE_PROVIDER;
         default: return null;
       }
     }
@@ -4879,6 +4897,11 @@ public final class TicketProto {
      * <code>repeated .treeleaf.anydone.entities.TicketStateHistory ticketStateHistory = 25;</code>
      */
     int getTicketStateHistoryCount();
+
+    /**
+     * <code>optional bool isBotEnabled = 26;</code>
+     */
+    boolean getIsBotEnabled();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Ticket}
@@ -6301,6 +6324,29 @@ public final class TicketProto {
       ticketStateHistory_.remove(index);
     }
 
+    public static final int ISBOTENABLED_FIELD_NUMBER = 26;
+    private boolean isBotEnabled_;
+    /**
+     * <code>optional bool isBotEnabled = 26;</code>
+     */
+    public boolean getIsBotEnabled() {
+      return isBotEnabled_;
+    }
+    /**
+     * <code>optional bool isBotEnabled = 26;</code>
+     */
+    private void setIsBotEnabled(boolean value) {
+      
+      isBotEnabled_ = value;
+    }
+    /**
+     * <code>optional bool isBotEnabled = 26;</code>
+     */
+    private void clearIsBotEnabled() {
+      
+      isBotEnabled_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ticketId_ != 0L) {
@@ -6377,6 +6423,9 @@ public final class TicketProto {
       }
       for (int i = 0; i < ticketStateHistory_.size(); i++) {
         output.writeMessage(25, ticketStateHistory_.get(i));
+      }
+      if (isBotEnabled_ != false) {
+        output.writeBool(26, isBotEnabled_);
       }
     }
 
@@ -6484,6 +6533,10 @@ public final class TicketProto {
       for (int i = 0; i < ticketStateHistory_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(25, ticketStateHistory_.get(i));
+      }
+      if (isBotEnabled_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(26, isBotEnabled_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -7794,6 +7847,29 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional bool isBotEnabled = 26;</code>
+       */
+      public boolean getIsBotEnabled() {
+        return instance.getIsBotEnabled();
+      }
+      /**
+       * <code>optional bool isBotEnabled = 26;</code>
+       */
+      public Builder setIsBotEnabled(boolean value) {
+        copyOnWrite();
+        instance.setIsBotEnabled(value);
+        return this;
+      }
+      /**
+       * <code>optional bool isBotEnabled = 26;</code>
+       */
+      public Builder clearIsBotEnabled() {
+        copyOnWrite();
+        instance.clearIsBotEnabled();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Ticket)
     }
     protected final Object dynamicMethod(
@@ -7855,6 +7931,8 @@ public final class TicketProto {
           closedBy_ = visitor.visitMessage(closedBy_, other.closedBy_);
           reopenedBy_ = visitor.visitMessage(reopenedBy_, other.reopenedBy_);
           ticketStateHistory_= visitor.visitList(ticketStateHistory_, other.ticketStateHistory_);
+          isBotEnabled_ = visitor.visitBoolean(isBotEnabled_ != false, isBotEnabled_,
+              other.isBotEnabled_ != false, other.isBotEnabled_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8082,6 +8160,11 @@ public final class TicketProto {
                   }
                   ticketStateHistory_.add(
                       input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketStateHistory.parser(), extensionRegistry));
+                  break;
+                }
+                case 208: {
+
+                  isBotEnabled_ = input.readBool();
                   break;
                 }
               }
