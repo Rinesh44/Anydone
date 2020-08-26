@@ -22,7 +22,7 @@ public class UnsubscribedTicketContract {
     }
 
     public interface UnsubscribedPresenter extends Presenter<UnsubscribedView> {
-        void getSubscribeableTickets(long from, long to, int pageSize);
+        void getSubscribeableTickets(boolean showProgress, long from, long to, int pageSize);
 
         void subscribe(long ticketId);
 

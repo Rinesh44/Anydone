@@ -71,6 +71,7 @@ public class AssignEmployeePresenterImpl extends BasePresenter<AssignEmployeeCon
                         GlobalUtils.showLog(TAG, "assign employee response:"
                                 + ticketBaseResponse);
 
+                        getView().hideProgressBar();
                         if (ticketBaseResponse == null) {
                             getView().assignEmployeeFail("Failed to assign employee");
                             return;

@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.view.Menu;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -37,6 +39,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.text.SimpleDateFormat;
@@ -57,6 +60,8 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
     ImageView ivDataNotFound;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
+    @BindView(R.id.swipe_refresh_subscribeable_tickets)
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     private int subscribeTicketPos;
@@ -86,12 +91,24 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
 
         boolean fetchChanges = Hawk.get(Constants.FETCH_SUBSCRIBEABLE_LIST, false);
         if (CollectionUtils.isEmpty(subscribeableTickets) || fetchChanges) {
-            presenter.getSubscribeableTickets(0, System.currentTimeMillis(), 100);
+            presenter.getSubscribeableTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(subscribeableTickets);
         }
 
         createFilterBottomSheet();
+
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> {
+                    presenter.getSubscribeableTickets(false, 0, System.currentTimeMillis(), 100);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        //Do something after 1 sec
+                        swipeRefreshLayout.setRefreshing(false);
+                    }, 1000);
+                }
+        );
 
     }
 
