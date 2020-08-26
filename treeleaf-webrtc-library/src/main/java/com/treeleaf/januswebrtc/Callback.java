@@ -88,6 +88,12 @@ public class Callback {
 
         void onPublisherVideoStarted();
 
+    }
+
+    public interface DrawCallBack {
+
+        void onStartDrawing(float x, float y);
+
         void passCapturedImageFrame(Bitmap bitmap);
 
         void showProgressBarUntilMqttResponse();

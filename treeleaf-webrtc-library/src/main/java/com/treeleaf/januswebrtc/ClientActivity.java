@@ -40,6 +40,9 @@ import java.math.BigInteger;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.DrawMetadata;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.MetaDataUpdateListener;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.Position;
 import com.treeleaf.freedrawingdemo.freedrawing.util.ForwardTouchesView;
 import com.treeleaf.freedrawingdemo.freedrawing.util.GeneralUtil;
 import com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView;
@@ -58,7 +61,8 @@ import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.TRUE;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 
-public class ClientActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback, PeerConnectionEvents, Callback.ConnectionEvents {
+public class ClientActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface,
+        Callback.ApiCallback, PeerConnectionEvents, Callback.ConnectionEvents {
     private static final String TAG = ClientActivity.class.getSimpleName();
 
     private PeerConnectionClient peerConnectionClient;
@@ -96,6 +100,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private RecyclerView rvJoinee;
     private JoineeListAdapter joineeListAdapter;
     private static Callback.HostActivityCallback mhostActivityCallback;
+    private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
     private boolean callTerminated = false;
     private Handler handler;
@@ -104,6 +109,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Boolean credentialsReceived;
     private String roomNumber;
     private AppRTCAudioManager audioManager;
+    private DrawMetadata drawMetadata;
+    private MetaDataUpdateListener metaDataUpdateListener;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -118,8 +125,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     public static void launch(Context context, boolean credentialsAvailable, Callback.HostActivityCallback hostActivityCallBack,
-                              String calleeName, String callProfileUrl) {
+                              Callback.DrawCallBack drawCallBack, String calleeName, String callProfileUrl) {
         mhostActivityCallback = hostActivityCallBack;
+        mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ClientActivity.class);
         intent.putExtra(JANUS_CREDENTIALS_SET, credentialsAvailable);
         intent.putExtra(CALLEE_NAME, calleeName);
@@ -185,8 +193,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             justScreenShot = false;
                         } else {
                             imageViewCaptureImageLocal.setImageBitmap(bitmap);
-                            if (mhostActivityCallback != null)
-                                mhostActivityCallback.passCapturedImageFrame(bitmap);
+                            if (mDrawCallback != null)
+                                mDrawCallback.passCapturedImageFrame(bitmap);
                         }
 
                         /**
@@ -315,6 +323,63 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 copyClipData(tvParticipantNumber);
             }
         });
+
+        drawMetadata = new DrawMetadata();
+        metaDataUpdateListener = new MetaDataUpdateListener() {
+            @Override
+            public void setDrawMode(TreeleafDrawPadView.DrawMode drawMode) {
+                drawMetadata.setDrawMode(drawMode);
+            }
+
+            @Override
+            public void setBrushWidth(Float width) {
+                drawMetadata.setBrushWidth(width);
+            }
+
+            @Override
+            public void setBrushOpacity(Integer opacity) {
+                drawMetadata.setBrushOpacity(opacity);
+            }
+
+            @Override
+            public void setBrushColor(Integer color) {
+                drawMetadata.setBrushColor(color);
+            }
+
+            @Override
+            public void onClearCanvasPressed(Boolean pressed) {
+                drawMetadata.setClearCanvas(pressed);
+            }
+
+            @Override
+            public void onStartDrawing(float x, float y) {
+                drawMetadata.setCurrentDrawPosition(new Position(x, y));
+                if (mDrawCallback != null)
+                    mDrawCallback.onStartDrawing(x, y);
+            }
+
+            @Override
+            public void onEndDrawing() {
+            }
+
+            @Override
+            public void onReceiveNewDrawingPosition(float x, float y) {
+                Log.d(TAG, "onReceiveNewDrawingPosition: " + x + " " + y);
+                drawMetadata.setCurrentDrawPosition(new Position(x, y));
+            }
+
+            @Override
+            public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
+            }
+
+            @Override
+            public void onReceiveNewTextChange(String text, String id) {
+            }
+
+            @Override
+            public void onReceiveEdiTextRemove(String editTextId) {
+            }
+        };
     }
 
     private void copyClipData(TextView view) {
@@ -768,10 +833,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             localRender.addFrameListener(frameListener, 1);
             treeleafDrawPadViewLocal.addViewToDrawOver(imageViewCaptureImageLocal);
+            treeleafDrawPadViewLocal.setMetaDataUpdateListener(metaDataUpdateListener);
             //after taking screenshot
 
-            if (mhostActivityCallback != null) {
-                mhostActivityCallback.showProgressBarUntilMqttResponse();//TODO: uncomment this later
+            if (mDrawCallback != null) {
+                mDrawCallback.showProgressBarUntilMqttResponse();//TODO: uncomment this later
             }
 
         }
@@ -782,9 +848,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         public void onClick(View v) {
             GeneralUtil.hideKeyboard(v.getRootView(), ClientActivity.this);
             showHideDrawView(false);
-            if (mhostActivityCallback != null) {
-                mhostActivityCallback.discardDraw();//TODO: uncomment this later
-                mhostActivityCallback.showProgressBarUntilMqttResponse();
+            if (mDrawCallback != null) {
+                mDrawCallback.discardDraw();//TODO: uncomment this later
+                mDrawCallback.showProgressBarUntilMqttResponse();
             }
         }
     };

@@ -184,22 +184,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
 
-            @Override
-            public void passCapturedImageFrame(Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void showProgressBarUntilMqttResponse() {
-
-            }
-
-            @Override
-            public void discardDraw() {
-
-            }
-
-
         };
 
     }

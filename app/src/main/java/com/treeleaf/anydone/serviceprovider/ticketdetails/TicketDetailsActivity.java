@@ -134,20 +134,6 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, ticketId);
             }
 
-            @Override
-            public void passCapturedImageFrame(Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void showProgressBarUntilMqttResponse() {
-
-            }
-
-            @Override
-            public void discardDraw() {
-
-            }
         };
     }
 
