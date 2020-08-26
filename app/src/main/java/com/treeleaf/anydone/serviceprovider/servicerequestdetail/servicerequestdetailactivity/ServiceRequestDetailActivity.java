@@ -35,7 +35,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceRequestRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestDetailFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityFragment;
-import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
@@ -80,7 +79,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     private long serviceRequestId;
 
-    Callback.HostActivityCallback hostActivityCallbackClient, hostActivityCallbackServer;
+    Callback.HostActivityCallback hostActivityCallbackServer;
 
     private String janusBaseUrl, apiKey, apiSecret;
     private Account userAccount;
@@ -139,74 +138,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
-        hostActivityCallbackClient = new Callback.HostActivityCallback() {
-
-            @Override
-            public void fetchJanusServerInfo() {
-                presenter.fetchJanusServerUrl(Hawk.get(Constants.TOKEN));
-            }
-
-            @Override
-            public void specifyRole(RestChannel.Role role) {
-                mRole = role;
-            }
-
-            @Override
-            public void onPublisherVideoStarted() {
-
-            }
-
-            @Override
-            public void passCapturedImageFrame(Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void showProgressBarUntilMqttResponse() {
-
-            }
-
-            @Override
-            public void discardDraw() {
-
-            }
-
-            @Override
-            public void passJanusServerInfo(BigInteger sessionId,
-                                            BigInteger roomId, BigInteger participantId) {
-                videoBroadCastPublish = true;
-                presenter.publishVideoBroadCastMessage(accountId, accountName, accountPicture,
-                        serviceRequestId, String.valueOf(sessionId), String.valueOf(roomId),
-                        String.valueOf(participantId), janusBaseUrl, apiSecret, apiKey);
-
-            }
-
-            @Override
-            public void onServiceProviderAudioPublished(BigInteger sessionId, BigInteger roomId, BigInteger participantId) {
-
-            }
-
-            @Override
-            public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
-                videoCallListenerClient = callback;
-            }
-
-            @Override
-            public void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener) {
-
-            }
-
-            @Override
-            public void notifyHostHangUp() {
-                presenter.publishHostHangUpEvent(accountId, accountName, accountPicture,
-                        serviceRequestId, rtcMessageId, videoBroadCastPublish);
-            }
-
-            @Override
-            public void notifySubscriberLeft() {
-
-            }
-        };
 
         hostActivityCallbackServer = new Callback.HostActivityCallback() {
 
@@ -399,9 +330,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     @Override
     public void onConnectionSuccess() {
-        ClientActivity.launch(ServiceRequestDetailActivity.this,
-                false, hostActivityCallbackClient,
-                serviceName, serviceProfileUri);
     }
 
     @Override
