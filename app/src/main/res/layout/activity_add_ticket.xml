@@ -30,12 +30,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/summary">
+                android:hint="@string/summary"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/red">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:background="@null"
                     android:inputType="textVisiblePassword"
                     android:maxLength="45"
@@ -70,12 +73,15 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/customer_name">
+                android:hint="@string/customer_name"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/red">
 
                 <AutoCompleteTextView
                     android:id="@+id/et_customer_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_2x2"
                     android:drawableEnd="@drawable/ic_dropdown"
                     android:inputType="textVisiblePassword"
                     android:maxLength="45"

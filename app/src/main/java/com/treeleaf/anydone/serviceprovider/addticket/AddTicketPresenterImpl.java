@@ -40,7 +40,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                              String customerPhone, String customerName, List<String> tags,
                              List<String> assignedEmployeeIds) {
 
-        if (!validateCredentials(title, description, customerPhone)) {
+        if (!validateCredentials(title, customerName)) {
             return;
         }
 
@@ -152,25 +152,15 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         });
     }
 
-    private boolean validateCredentials(String summary, String desc, String phone) {
+    private boolean validateCredentials(String summary, String customerName) {
 
         if (ValidationUtils.isEmpty(summary)) {
             getView().onInvalidSummary();
             return false;
         }
 
-    /*    if (ValidationUtils.isEmpty(desc)) {
-            getView().onInvalidDesc();
-            return false;
-        }*/
-
-   /*     if (!ValidationUtils.isEmailValid(email)) {
-            getView().onInvalidEmail();
-            return false;
-        }*/
-
-        if (ValidationUtils.isEmpty(phone)) {
-            getView().onInvalidPhone();
+        if (ValidationUtils.isEmpty(customerName)) {
+            getView().onInvalidCustomer();
             return false;
         }
         return true;
