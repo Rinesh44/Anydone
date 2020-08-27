@@ -154,8 +154,8 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
-        Retrofit retrofit = getRetrofitInstance();
-        AnyDoneService service = retrofit.create(AnyDoneService.class);
+            Retrofit retrofit = getRetrofitInstance();
+            AnyDoneService service = retrofit.create(AnyDoneService.class);
         String filterUrl = getAssignableFilterUrl(searchQuery, from, to, ticketState);
 
         ticketBaseResponseObservable = service.filterTickets(token, filterUrl);

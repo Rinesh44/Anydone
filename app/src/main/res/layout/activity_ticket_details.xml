@@ -29,7 +29,7 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/AppTheme.NoActionBar">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -49,13 +49,23 @@
                         android:id="@+id/toolbar_problem_stat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/toolbar_title"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="this is problem"
                         android:textColor="@color/black"
                         android:textSize="@dimen/material_text_body1" />
 
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/dimen_10x1"
+                        android:src="@drawable/ic_share" />
+
+                </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
