@@ -82,6 +82,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     private String accountId, accountName, accountPicture, rtcMessageId;
     private String serviceName, serviceProfileUri;
     private ServerActivity.VideoCallListener videoCallListenerServer;
+    private ServerActivity.ServerDrawingPadEventListener serverDrawingPadEventListener;
     private boolean paymentSuccess = false;
     private RestChannel.Role mRole;
 
@@ -160,6 +161,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
 
             @Override
+            public void passDrawPadEventListenerCallback(Callback.DrawPadEventListener drawPadEventListener) {
+                serverDrawingPadEventListener = (ServerActivity.ServerDrawingPadEventListener) drawPadEventListener;
+            }
+
+            @Override
             public void notifyHostHangUp() {
             }
 
@@ -199,8 +205,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (videoCallListenerServer != null) {
-                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes);
                 }
             }
         });
@@ -212,8 +218,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             @Override
             public void run() {
                 Log.d(TAG, "onImageReceivedFromConsumer");
-                if (videoCallListenerServer != null)
-                    videoCallListenerServer.onImageDrawDiscard();
+                if (serverDrawingPadEventListener != null)
+                    serverDrawingPadEventListener.onDrawDiscard();
             }
         });
     }

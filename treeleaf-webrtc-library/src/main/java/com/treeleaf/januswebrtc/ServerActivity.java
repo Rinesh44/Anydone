@@ -101,7 +101,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private RecyclerView rvJoinee;
     private JoineeListAdapter joineeListAdapter;
     private static Callback.HostActivityCallback mhostActivityCallback;
-    private ServerActivity.VideoCallListener videoCallListener;
+    private VideoCallListener videoCallListener;
+    private ServerDrawingPadEventListener serverDrawingPadEventListener;
     private boolean callTerminated = false;
     private Handler handler;
     private Runnable runnable;
@@ -240,8 +241,24 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 terminateBroadCast();
             }
 
+//            @Override
+//            public void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes) {
+//                showHideDrawView(true);
+//                Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
+//                imageViewCaptureImageLocal.setImageBitmap(receivedBitmap);
+//                treeleafDrawPadViewLocal.addViewToDrawOver(imageViewCaptureImageLocal);
+//            }
+//
+//            @Override
+//            public void onImageDrawDiscard() {
+//                GeneralUtil.hideKeyboard(findViewById(android.R.id.content).getRootView(), ServerActivity.this);
+//                showHideDrawView(false);
+//            }
+        };
+
+        serverDrawingPadEventListener = new ServerDrawingPadEventListener() {
             @Override
-            public void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes) {
+            public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes) {
                 showHideDrawView(true);
                 Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
                 imageViewCaptureImageLocal.setImageBitmap(receivedBitmap);
@@ -249,7 +266,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onImageDrawDiscard() {
+            public void onDrawDiscard() {
                 GeneralUtil.hideKeyboard(findViewById(android.R.id.content).getRootView(), ServerActivity.this);
                 showHideDrawView(false);
             }
@@ -259,6 +276,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         setUpNetworkStrengthHandler();
         if (mhostActivityCallback != null) {
             mhostActivityCallback.passJoineeReceivedCallback(videoCallListener);
+            mhostActivityCallback.passDrawPadEventListenerCallback(serverDrawingPadEventListener);
             mhostActivityCallback.specifyRole(RestChannel.Role.SERVER);
         }
 
@@ -921,9 +939,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         void onHostTerminateCall();
 
-        void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes);
+    }
 
-        void onImageDrawDiscard();
+    public interface ServerDrawingPadEventListener extends Callback.DrawPadEventListener {
+
+        void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes);
+
+        void onDrawDiscard();
 
     }
 

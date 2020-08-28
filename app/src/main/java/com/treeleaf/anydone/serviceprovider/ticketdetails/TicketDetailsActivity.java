@@ -62,6 +62,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
     private Account userAccount;
     private String accountId, accountName, accountPicture, rtcMessageId;
     private ServerActivity.VideoCallListener videoCallListenerServer;
+    private ServerActivity.ServerDrawingPadEventListener serverDrawingPadEventListener;
 
     @Override
     protected int getLayout() {
@@ -116,6 +117,11 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
             }
 
             @Override
+            public void passDrawPadEventListenerCallback(Callback.DrawPadEventListener drawPadEventListener) {
+                serverDrawingPadEventListener = (ServerActivity.ServerDrawingPadEventListener) drawPadEventListener;
+            }
+
+            @Override
             public void notifyHostHangUp() {
             }
 
@@ -154,8 +160,8 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (videoCallListenerServer != null) {
-                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes);
                 }
             }
         });
@@ -167,8 +173,8 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
             @Override
             public void run() {
                 Log.d(TAG, "onImageReceivedFromConsumer");
-                if (videoCallListenerServer != null)
-                    videoCallListenerServer.onImageDrawDiscard();
+                if (serverDrawingPadEventListener != null)
+                    serverDrawingPadEventListener.onDrawDiscard();
             }
         });
     }

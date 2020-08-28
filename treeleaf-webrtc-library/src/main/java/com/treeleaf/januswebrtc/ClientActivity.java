@@ -102,6 +102,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private static Callback.HostActivityCallback mhostActivityCallback;
     private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
+    private ClientDrawingPadEventListener clientDrawingPadEventListener;
     private boolean callTerminated = false;
     private Handler handler;
     private Runnable runnable;
@@ -194,7 +195,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         } else {
                             imageViewCaptureImageLocal.setImageBitmap(bitmap);
                             if (mDrawCallback != null)
-                                mDrawCallback.passCapturedImageFrame(bitmap);
+                                mDrawCallback.onNewImageFrameCaptured(bitmap);
                         }
 
                         /**
@@ -263,20 +264,34 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 });
             }
 
+//            @Override
+//            public void onImageDrawingReady() {
+//                hideProgressBar();
+//            }
+//
+//            @Override
+//            public void holdDrawingUntilResponse() {
+//                showProgressBar("Please Wait...");
+//            }
+        };
+
+        clientDrawingPadEventListener = new ClientDrawingPadEventListener() {
             @Override
-            public void onImageDrawingReady() {
+            public void onDrawHideProgress() {
                 hideProgressBar();
             }
 
             @Override
-            public void holdDrawingUntilResponse() {
+            public void onDrawShowProgress() {
                 showProgressBar("Please Wait...");
             }
         };
+
         setUpRecyclerView();
         setUpNetworkStrengthHandler();
         if (mhostActivityCallback != null) {
             mhostActivityCallback.passJoineeReceivedCallback(videoCallListener);
+            mhostActivityCallback.passDrawPadEventListenerCallback(clientDrawingPadEventListener);
             mhostActivityCallback.fetchJanusServerInfo();
             mhostActivityCallback.specifyRole(RestChannel.Role.CLIENT);
         }
@@ -345,7 +360,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             public void onStartDrawing(float x, float y) {
                 drawMetadata.setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null)
-                    mDrawCallback.onStartDrawing(x, y);
+                    mDrawCallback.onStartDraw(x, y);
             }
 
             @Override
@@ -827,7 +842,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             //after taking screenshot
 
             if (mDrawCallback != null) {
-                mDrawCallback.showProgressBarUntilMqttResponse();//TODO: uncomment this later
+                mDrawCallback.onHoldDraw();//TODO: uncomment this later
             }
 
         }
@@ -839,8 +854,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             GeneralUtil.hideKeyboard(v.getRootView(), ClientActivity.this);
             showHideDrawView(false);
             if (mDrawCallback != null) {
-                mDrawCallback.discardDraw();//TODO: uncomment this later
-                mDrawCallback.showProgressBarUntilMqttResponse();
+                mDrawCallback.onDiscardDraw();//TODO: uncomment this later
+                mDrawCallback.onHoldDraw();
             }
         }
     };
@@ -1030,9 +1045,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
         void onJanusCredentialsFailure();
 
-        void onImageDrawingReady();
+    }
 
-        void holdDrawingUntilResponse();
+    public interface ClientDrawingPadEventListener extends Callback.DrawPadEventListener {
+
+        void onDrawHideProgress();
+
+        void onDrawShowProgress();
 
     }
 

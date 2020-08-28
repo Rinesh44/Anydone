@@ -76,6 +76,8 @@ public class Callback {
 
         void passJoineeReceivedCallback(AudioVideoCallbackListener videoCallListener);
 
+        void passDrawPadEventListenerCallback(DrawPadEventListener drawPadEventListener);
+
         void notifyHostHangUp();
 
         void notifySubscriberLeft();
@@ -90,13 +92,13 @@ public class Callback {
 
     public interface DrawCallBack {
 
-        void onStartDrawing(float x, float y);
+        void onStartDraw(float x, float y);
 
-        void passCapturedImageFrame(Bitmap bitmap);
+        void onNewImageFrameCaptured(Bitmap bitmap);
 
-        void showProgressBarUntilMqttResponse();
+        void onHoldDraw();
 
-        void discardDraw();
+        void onDiscardDraw();
 
     }
 
@@ -106,6 +108,12 @@ public class Callback {
 
         void onJoineeRemoved(String accountId);
 
+    }
+
+    public interface DrawPadEventListener {
+        /**
+         * common events for draw between Client and Server
+         */
     }
 
 }
