@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -916,11 +915,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         getResources().getColor(R.color.colorTransparent)));
     }
 
-    public interface VideoCallListener {
-
-        void onJoineeReceived(String joineedName, String joineedProfileUrl, String accountId);
-
-        void onJoineeRemoved(String accountId);
+    public interface VideoCallListener extends Callback.AudioVideoCallbackListener {
 
         void onVideoViewReady();
 

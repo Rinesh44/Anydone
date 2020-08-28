@@ -74,9 +74,7 @@ public class Callback {
 
         void onServiceProviderAudioPublished(BigInteger sessionId, BigInteger roomId, BigInteger participantId);
 
-        void passJoineeReceivedCallback(ClientActivity.VideoCallListener videoCallListener);
-
-        void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener);
+        void passJoineeReceivedCallback(AudioVideoCallbackListener videoCallListener);
 
         void notifyHostHangUp();
 
@@ -99,6 +97,14 @@ public class Callback {
         void showProgressBarUntilMqttResponse();
 
         void discardDraw();
+
+    }
+
+    public interface AudioVideoCallbackListener {
+
+        void onJoineeReceived(String joineedName, String joineedProfileUrl, String accountId);
+
+        void onJoineeRemoved(String accountId);
 
     }
 

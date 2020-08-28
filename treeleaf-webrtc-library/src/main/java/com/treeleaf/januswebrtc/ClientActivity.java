@@ -264,16 +264,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onVideoViewReady() {
-                showVideoCallStartView(false);
-            }
-
-            @Override
-            public void onSubscriberAudioPublished(BigInteger roomId, BigInteger participantId) {
-                roomNumber = String.valueOf(roomId);
-            }
-
-            @Override
             public void onImageDrawingReady() {
                 hideProgressBar();
             }
@@ -1033,20 +1023,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         getResources().getColor(R.color.colorTransparent)));
     }
 
-    public interface VideoCallListener {
-
-        void onJoineeReceived(String joineedName, String joineedProfileUrl, String accountId);
-
-        void onJoineeRemoved(String accountId);
+    public interface VideoCallListener extends Callback.AudioVideoCallbackListener {
 
         void onJanusCredentialsReceived(String baseUrl, String apiKey,
                                         String apiSecret, String calleeName, String calleeProfile);
 
         void onJanusCredentialsFailure();
-
-        void onVideoViewReady();
-
-        void onSubscriberAudioPublished(BigInteger roomId, BigInteger participantId);
 
         void onImageDrawingReady();
 

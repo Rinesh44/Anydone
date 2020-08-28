@@ -111,12 +111,8 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
             }
 
             @Override
-            public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
-            }
-
-            @Override
-            public void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener) {
-                videoCallListenerServer = videoCallListener;
+            public void passJoineeReceivedCallback(Callback.AudioVideoCallbackListener videoCallListener) {
+                videoCallListenerServer = (ServerActivity.VideoCallListener) videoCallListener;
             }
 
             @Override
