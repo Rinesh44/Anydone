@@ -15,7 +15,7 @@ public final class SearchServiceRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class SearchServiceRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class SearchServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -140,11 +140,11 @@ public final class SearchServiceRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -158,7 +158,7 @@ public final class SearchServiceRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -186,11 +186,11 @@ public final class SearchServiceRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -204,7 +204,7 @@ public final class SearchServiceRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -248,7 +248,7 @@ public final class SearchServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -269,7 +269,7 @@ public final class SearchServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -280,7 +280,7 @@ public final class SearchServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -291,7 +291,7 @@ public final class SearchServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -828,60 +828,60 @@ public final class SearchServiceRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(
+    public static SearchServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(
+    public static SearchServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(byte[] data)
+    public static SearchServiceBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(
+    public static SearchServiceBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(java.io.InputStream input)
+    public static SearchServiceBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(
+    public static SearchServiceBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static SearchServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseDelimitedFrom(
+    public static SearchServiceBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(
+    public static SearchServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest parseFrom(
+    public static SearchServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -892,7 +892,7 @@ public final class SearchServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest prototype) {
+    public static Builder newBuilder(SearchServiceBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -901,9 +901,9 @@ public final class SearchServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest, Builder> implements
+          SearchServiceBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.SearchServiceBaseRequest)
-        com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequestOrBuilder {
+        SearchServiceBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -913,7 +913,7 @@ public final class SearchServiceRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -927,7 +927,7 @@ public final class SearchServiceRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -953,7 +953,7 @@ public final class SearchServiceRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -967,7 +967,7 @@ public final class SearchServiceRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1007,7 +1007,7 @@ public final class SearchServiceRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1021,7 +1021,7 @@ public final class SearchServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1030,7 +1030,7 @@ public final class SearchServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1039,7 +1039,7 @@ public final class SearchServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1427,11 +1427,11 @@ public final class SearchServiceRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.SearchServiceBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest();
+          return new SearchServiceBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1445,7 +1445,7 @@ public final class SearchServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest other = (com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest) arg1;
+          SearchServiceBaseRequest other = (SearchServiceBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1465,7 +1465,7 @@ public final class SearchServiceRpcProto {
           extractNERRequest_ = visitor.visitMessage(extractNERRequest_, other.extractNERRequest_);
           searchServiceRequest_ = visitor.visitMessage(searchServiceRequest_, other.searchServiceRequest_);
           autoCompleteRequest_ = visitor.visitMessage(autoCompleteRequest_, other.autoCompleteRequest_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1624,7 +1624,7 @@ public final class SearchServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest.class) {
+          if (PARSER == null) {    synchronized (SearchServiceBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1638,13 +1638,13 @@ public final class SearchServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.SearchServiceBaseRequest)
-    private static final com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest DEFAULT_INSTANCE;
+    private static final SearchServiceBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new SearchServiceBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseRequest getDefaultInstance() {
+    public static SearchServiceBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1667,7 +1667,7 @@ public final class SearchServiceRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1705,7 +1705,7 @@ public final class SearchServiceRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -1848,11 +1848,11 @@ public final class SearchServiceRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -1866,7 +1866,7 @@ public final class SearchServiceRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2031,11 +2031,11 @@ public final class SearchServiceRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -2049,7 +2049,7 @@ public final class SearchServiceRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2281,7 +2281,7 @@ public final class SearchServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 10;</code>
      */
     private void addAllServiceAttributes(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> values) {
       ensureServiceAttributesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceAttributes_);
@@ -2557,7 +2557,7 @@ public final class SearchServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceKnowledgeBase serviceKnowledgeBaseList = 14;</code>
      */
     private void addAllServiceKnowledgeBaseList(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase> values) {
       ensureServiceKnowledgeBaseListIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceKnowledgeBaseList_);
@@ -2677,7 +2677,7 @@ public final class SearchServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Service services = 15;</code>
      */
     private void addAllServices(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.Service> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.Service> values) {
       ensureServicesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, services_);
@@ -2873,60 +2873,60 @@ public final class SearchServiceRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(
+    public static SearchServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(
+    public static SearchServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(byte[] data)
+    public static SearchServiceBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(
+    public static SearchServiceBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(java.io.InputStream input)
+    public static SearchServiceBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(
+    public static SearchServiceBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static SearchServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseDelimitedFrom(
+    public static SearchServiceBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(
+    public static SearchServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse parseFrom(
+    public static SearchServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2937,7 +2937,7 @@ public final class SearchServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse prototype) {
+    public static Builder newBuilder(SearchServiceBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2946,9 +2946,9 @@ public final class SearchServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse, Builder> implements
+          SearchServiceBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.SearchServiceBaseResponse)
-        com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponseOrBuilder {
+        SearchServiceBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2981,7 +2981,7 @@ public final class SearchServiceRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2995,7 +2995,7 @@ public final class SearchServiceRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -3149,7 +3149,7 @@ public final class SearchServiceRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -3163,7 +3163,7 @@ public final class SearchServiceRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -3351,7 +3351,7 @@ public final class SearchServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 10;</code>
        */
       public Builder addAllServiceAttributes(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> values) {
         copyOnWrite();
         instance.addAllServiceAttributes(values);
         return this;
@@ -3583,7 +3583,7 @@ public final class SearchServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceKnowledgeBase serviceKnowledgeBaseList = 14;</code>
        */
       public Builder addAllServiceKnowledgeBaseList(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase> values) {
         copyOnWrite();
         instance.addAllServiceKnowledgeBaseList(values);
         return this;
@@ -3680,7 +3680,7 @@ public final class SearchServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Service services = 15;</code>
        */
       public Builder addAllServices(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.Service> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.Service> values) {
         copyOnWrite();
         instance.addAllServices(values);
         return this;
@@ -3750,11 +3750,11 @@ public final class SearchServiceRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.SearchServiceBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse();
+          return new SearchServiceBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3770,7 +3770,7 @@ public final class SearchServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse other = (com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse) arg1;
+          SearchServiceBaseResponse other = (SearchServiceBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -3792,7 +3792,7 @@ public final class SearchServiceRpcProto {
           serviceKnowledgeBaseList_= visitor.visitList(serviceKnowledgeBaseList_, other.serviceKnowledgeBaseList_);
           services_= visitor.visitList(services_, other.services_);
           autocompleteResponse_ = visitor.visitMessage(autocompleteResponse_, other.autocompleteResponse_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3983,7 +3983,7 @@ public final class SearchServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse.class) {
+          if (PARSER == null) {    synchronized (SearchServiceBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3997,13 +3997,13 @@ public final class SearchServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.SearchServiceBaseResponse)
-    private static final com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse DEFAULT_INSTANCE;
+    private static final SearchServiceBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new SearchServiceBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.SearchServiceRpcProto.SearchServiceBaseResponse getDefaultInstance() {
+    public static SearchServiceBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

@@ -532,6 +532,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             btnStartTask.setVisibility(View.VISIBLE);
             tvClosed.setVisibility(View.GONE);
         }
+
+        if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
+            llSearchContainer.setVisibility(View.GONE);
+            btnStartTask.setVisibility(View.GONE);
+        }
     }
 
     private void setInitialTicketDetail(Tickets tickets) {

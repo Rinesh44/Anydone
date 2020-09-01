@@ -39,8 +39,10 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
     }
 
     @Override
-    public void getAssignableTickets(long from, long to, int pageSize) {
-        getView().showProgressBar("Please wait...");
+    public void getAssignableTickets(boolean showProgress, long from, long to, int pageSize) {
+        if (showProgress) {
+            getView().showProgressBar("Please wait...");
+        }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -152,8 +154,8 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
-        Retrofit retrofit = getRetrofitInstance();
-        AnyDoneService service = retrofit.create(AnyDoneService.class);
+            Retrofit retrofit = getRetrofitInstance();
+            AnyDoneService service = retrofit.create(AnyDoneService.class);
         String filterUrl = getAssignableFilterUrl(searchQuery, from, to, ticketState);
 
         ticketBaseResponseObservable = service.filterTickets(token, filterUrl);

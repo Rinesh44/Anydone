@@ -38,8 +38,10 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
     }
 
     @Override
-    public void getSubscribeableTickets(long from, long to, int pageSize) {
-        getView().showProgressBar("Please wait...");
+    public void getSubscribeableTickets(boolean showProgress, long from, long to, int pageSize) {
+        if (showProgress) {
+            getView().showProgressBar("Please wait...");
+        }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
         String token = Hawk.get(Constants.TOKEN);

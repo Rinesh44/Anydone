@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.view.Menu;
@@ -22,8 +23,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -32,6 +35,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
+import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeActivity;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -53,6 +57,7 @@ import butterknife.BindView;
 public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketPresenterImpl>
         implements UnassignedTicketsContract.UnassignedView {
 
+    public static final int EMPLOYEE_ASSIGN_REQUEST = 3454;
     private static final String TAG = "UnassignedTicketsActivi";
     @BindView(R.id.pb_progress)
     ProgressBar progress;
@@ -61,6 +66,8 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     private TicketsAdapter adapter;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
+    @BindView(R.id.swipe_refresh_assignable_tickets)
+    SwipeRefreshLayout swipeRefreshLayout;
     private int assignTicketPos;
     List<Tickets> assignableTickets;
     private BottomSheetDialog filterBottomSheet;
@@ -86,12 +93,27 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         assignableTickets = TicketRepo.getInstance().getAssignableTickets();
 
         if (CollectionUtils.isEmpty(assignableTickets)) {
-            presenter.getAssignableTickets(0, System.currentTimeMillis(), 100);
+            presenter.getAssignableTickets(true,0, System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(assignableTickets);
         }
 
         createFilterBottomSheet();
+
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> {
+                    GlobalUtils.showLog(TAG, "swipe refresh assignable called");
+
+                    presenter.getAssignableTickets(false, 0, System.currentTimeMillis(), 100);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        //Do something after 1 sec
+                        swipeRefreshLayout.setRefreshing(false);
+                    }, 1000);
+                }
+        );
+
     }
 
 
@@ -291,8 +313,13 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             });
 
             adapter.setOnAssignListener((id, pos) -> {
-                assignTicketPos = pos;
-                showAssignTicketDialog(id);
+               /* assignTicketPos = pos;
+                showAssignTicketDialog(id);*/
+                GlobalUtils.showLog(TAG, "assign ticket id check: " + id);
+                adapter.closeSwipeLayout(id);
+                Intent i = new Intent(this, AssignEmployeeActivity.class);
+                i.putExtra("ticket_id", Long.valueOf(id));
+                startActivityForResult(i, EMPLOYEE_ASSIGN_REQUEST);
             });
             rvAssignableTickets.setAdapter(adapter);
         } else {
@@ -462,5 +489,21 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == EMPLOYEE_ASSIGN_REQUEST && resultCode == 2) {
+            if (data != null) {
+                boolean employeeAssigned = data.getBooleanExtra("employee_assigned", false);
+
+                if (employeeAssigned) {
+                    assignableTickets = TicketRepo.getInstance().getAssignableTickets();
+                    setUpRecyclerView(assignableTickets);
+                }
+            }
+        }
     }
 }

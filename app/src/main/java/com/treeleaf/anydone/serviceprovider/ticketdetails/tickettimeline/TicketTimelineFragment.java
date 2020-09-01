@@ -357,6 +357,15 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
                 addScrollviewMargin();
                 btnReopen.setVisibility(View.GONE);
+
+                rlBotReplyHolder.setVisibility(View.GONE);
+
+                for (int i = 0; i < llAssignedEmployeeTop.getChildCount(); i++) {
+                    View assignedEmployeeView = llAssignedEmployeeTop.getChildAt(i);
+                    ImageView deleteEmployee = assignedEmployeeView.findViewById(R.id.iv_delete);
+                    deleteEmployee.setVisibility(View.GONE);
+                }
+                tvAssignEmployee.setVisibility(View.GONE);
                 break;
 
             case "TICKET_CLOSED":
@@ -384,7 +393,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
         tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
         tvTicketTitle.setText(tickets.getTitle());
-        tvTicketDesc.setText(tickets.getDescription());
+        if (tickets.getDescription() == null || tickets.getDescription().isEmpty()) {
+            tvTicketDesc.setVisibility(View.GONE);
+        } else {
+            tvTicketDesc.setText(tickets.getDescription());
+        }
         tvTicketCreatedBy.setText(tickets.getCreatedByName());
 
         String profilePicUrl = tickets.getCreatedByPic();
@@ -397,18 +410,23 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCreatedBy);
         }
 
-        llTags.removeAllViews();
-        for (Tags tag : tickets.getTagsRealmList()
-        ) {
-            @SuppressLint("InflateParams") TextView tvTag = (TextView) getLayoutInflater()
-                    .inflate(R.layout.layout_tag, null);
-            tvTag.setText(tag.getLabel());
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMarginEnd(20);
-            tvTag.setLayoutParams(params);
-            llTags.addView(tvTag);
+        if (!CollectionUtils.isEmpty(tickets.getTagsRealmList())) {
+            llTags.removeAllViews();
+            for (Tags tag : tickets.getTagsRealmList()
+            ) {
+                @SuppressLint("InflateParams") TextView tvTag = (TextView) getLayoutInflater()
+                        .inflate(R.layout.layout_tag, null);
+                tvTag.setText(tag.getLabel());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMarginEnd(20);
+                tvTag.setLayoutParams(params);
+                llTags.addView(tvTag);
+            }
+        } else {
+            llTags.setVisibility(View.GONE);
         }
+
 
         if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
             hideActions();

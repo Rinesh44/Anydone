@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -53,6 +54,8 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
     TextView tvToolbarProblemStat;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
+    @BindView(R.id.iv_share)
+    ImageView ivShare;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;

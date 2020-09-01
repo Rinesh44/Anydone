@@ -22,7 +22,7 @@ public class UnassignedTicketsContract {
     }
 
     public interface UnassignedPresenter extends Presenter<UnassignedView> {
-        void getAssignableTickets(long from, long to, int pageSize);
+        void getAssignableTickets(boolean showProgress, long from, long to, int pageSize);
 
         void assignTicket(long ticketId, String employeeId);
 
