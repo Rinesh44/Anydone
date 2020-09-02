@@ -15,7 +15,7 @@ public final class RtcServiceRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class RtcServiceRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    String getStringValue();
+    java.lang.String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class RtcServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    String getStringValues(int index);
+    java.lang.String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -142,6 +142,15 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 15;</code>
      */
     com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq getDeleteMessageReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    boolean hasRtcMessage();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseRequest}
@@ -158,11 +167,11 @@ public final class RtcServiceRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -176,7 +185,7 @@ public final class RtcServiceRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -204,11 +213,11 @@ public final class RtcServiceRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private String stringValue_;
+    private java.lang.String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public String getStringValue() {
+    public java.lang.String getStringValue() {
       return stringValue_;
     }
     /**
@@ -222,7 +231,7 @@ public final class RtcServiceRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -266,7 +275,7 @@ public final class RtcServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public String getStringValues(int index) {
+    public java.lang.String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -287,7 +296,7 @@ public final class RtcServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -298,7 +307,7 @@ public final class RtcServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -309,7 +318,7 @@ public final class RtcServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -841,6 +850,58 @@ public final class RtcServiceRpcProto {
       
     }
 
+    public static final int RTCMESSAGE_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.RtcProto.RtcMessage rtcMessage_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    public boolean hasRtcMessage() {
+      return rtcMessage_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
+      return rtcMessage_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : rtcMessage_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      rtcMessage_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void setRtcMessage(
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+      rtcMessage_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (rtcMessage_ != null &&
+          rtcMessage_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
+        rtcMessage_ =
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
+      } else {
+        rtcMessage_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void clearRtcMessage() {  rtcMessage_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -887,6 +948,9 @@ public final class RtcServiceRpcProto {
       }
       if (deleteMessageReq_ != null) {
         output.writeMessage(15, getDeleteMessageReq());
+      }
+      if (rtcMessage_ != null) {
+        output.writeMessage(16, getRtcMessage());
       }
     }
 
@@ -960,64 +1024,68 @@ public final class RtcServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getDeleteMessageReq());
       }
+      if (rtcMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getRtcMessage());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static RtcServiceBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcServiceBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcServiceBaseRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcServiceBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcServiceBaseRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcServiceBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RtcServiceBaseRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcServiceBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcServiceBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1028,7 +1096,7 @@ public final class RtcServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RtcServiceBaseRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1037,9 +1105,9 @@ public final class RtcServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RtcServiceBaseRequest, Builder> implements
+          com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.RtcServiceBaseRequest)
-        RtcServiceBaseRequestOrBuilder {
+        com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1049,7 +1117,7 @@ public final class RtcServiceRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1063,7 +1131,7 @@ public final class RtcServiceRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1089,7 +1157,7 @@ public final class RtcServiceRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public String getStringValue() {
+      public java.lang.String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1103,7 +1171,7 @@ public final class RtcServiceRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1143,7 +1211,7 @@ public final class RtcServiceRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public String getStringValues(int index) {
+      public java.lang.String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1157,7 +1225,7 @@ public final class RtcServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1166,7 +1234,7 @@ public final class RtcServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1175,7 +1243,7 @@ public final class RtcServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1650,14 +1718,59 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public boolean hasRtcMessage() {
+        return instance.hasRtcMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
+        return instance.getRtcMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.setRtcMessage(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder setRtcMessage(
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.setRtcMessage(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.mergeRtcMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder clearRtcMessage() {  copyOnWrite();
+        instance.clearRtcMessage();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RtcServiceBaseRequest();
+          return new com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1671,7 +1784,7 @@ public final class RtcServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RtcServiceBaseRequest other = (RtcServiceBaseRequest) arg1;
+          com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest other = (com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1693,7 +1806,8 @@ public final class RtcServiceRpcProto {
           videoRoomPublishReq_ = visitor.visitMessage(videoRoomPublishReq_, other.videoRoomPublishReq_);
           getMessageDetail_ = visitor.visitMessage(getMessageDetail_, other.getMessageDetail_);
           deleteMessageReq_ = visitor.visitMessage(deleteMessageReq_, other.deleteMessageReq_);
-          if (visitor == MergeFromVisitor
+          rtcMessage_ = visitor.visitMessage(rtcMessage_, other.rtcMessage_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1863,6 +1977,19 @@ public final class RtcServiceRpcProto {
 
                   break;
                 }
+                case 130: {
+                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
+                  if (rtcMessage_ != null) {
+                    subBuilder = rtcMessage_.toBuilder();
+                  }
+                  rtcMessage_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(rtcMessage_);
+                    rtcMessage_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1878,7 +2005,7 @@ public final class RtcServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RtcServiceBaseRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1892,13 +2019,13 @@ public final class RtcServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.RtcServiceBaseRequest)
-    private static final RtcServiceBaseRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RtcServiceBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RtcServiceBaseRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1921,7 +2048,7 @@ public final class RtcServiceRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1959,7 +2086,7 @@ public final class RtcServiceRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -2071,11 +2198,11 @@ public final class RtcServiceRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -2089,7 +2216,7 @@ public final class RtcServiceRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2254,11 +2381,11 @@ public final class RtcServiceRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -2272,7 +2399,7 @@ public final class RtcServiceRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2475,7 +2602,7 @@ public final class RtcServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.RtcMessage rtcMessages = 10;</code>
      */
     private void addAllRtcMessages(
-        Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
       ensureRtcMessagesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, rtcMessages_);
@@ -2647,7 +2774,7 @@ public final class RtcServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.RtcSession rtcSessions = 12;</code>
      */
     private void addAllRtcSessions(
-        Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.RtcSession> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.RtcSession> values) {
       ensureRtcSessionsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, rtcSessions_);
@@ -2767,7 +2894,7 @@ public final class RtcServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 13;</code>
      */
     private void addAllAvConnectDetails(
-        Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails> values) {
       ensureAvConnectDetailsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, avConnectDetails_);
@@ -2890,60 +3017,60 @@ public final class RtcServiceRpcProto {
       return size;
     }
 
-    public static RtcServiceBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcServiceBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcServiceBaseResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcServiceBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcServiceBaseResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcServiceBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RtcServiceBaseResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcServiceBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcServiceBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2954,7 +3081,7 @@ public final class RtcServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RtcServiceBaseResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2963,9 +3090,9 @@ public final class RtcServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RtcServiceBaseResponse, Builder> implements
+          com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.RtcServiceBaseResponse)
-        RtcServiceBaseResponseOrBuilder {
+        com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2998,7 +3125,7 @@ public final class RtcServiceRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -3012,7 +3139,7 @@ public final class RtcServiceRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -3166,7 +3293,7 @@ public final class RtcServiceRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -3180,7 +3307,7 @@ public final class RtcServiceRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -3346,7 +3473,7 @@ public final class RtcServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.RtcMessage rtcMessages = 10;</code>
        */
       public Builder addAllRtcMessages(
-          Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
         copyOnWrite();
         instance.addAllRtcMessages(values);
         return this;
@@ -3488,7 +3615,7 @@ public final class RtcServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.RtcSession rtcSessions = 12;</code>
        */
       public Builder addAllRtcSessions(
-          Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.RtcSession> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.RtcSession> values) {
         copyOnWrite();
         instance.addAllRtcSessions(values);
         return this;
@@ -3585,7 +3712,7 @@ public final class RtcServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.AvConnectDetails avConnectDetails = 13;</code>
        */
       public Builder addAllAvConnectDetails(
-          Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails> values) {
         copyOnWrite();
         instance.addAllAvConnectDetails(values);
         return this;
@@ -3610,11 +3737,11 @@ public final class RtcServiceRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RtcServiceBaseResponse();
+          return new com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3630,7 +3757,7 @@ public final class RtcServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RtcServiceBaseResponse other = (RtcServiceBaseResponse) arg1;
+          com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse other = (com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -3650,7 +3777,7 @@ public final class RtcServiceRpcProto {
           rtcSession_ = visitor.visitMessage(rtcSession_, other.rtcSession_);
           rtcSessions_= visitor.visitList(rtcSessions_, other.rtcSessions_);
           avConnectDetails_= visitor.visitList(avConnectDetails_, other.avConnectDetails_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3794,7 +3921,7 @@ public final class RtcServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RtcServiceBaseResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3808,13 +3935,13 @@ public final class RtcServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.RtcServiceBaseResponse)
-    private static final RtcServiceBaseResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RtcServiceBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RtcServiceBaseResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.RtcServiceRpcProto.RtcServiceBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
