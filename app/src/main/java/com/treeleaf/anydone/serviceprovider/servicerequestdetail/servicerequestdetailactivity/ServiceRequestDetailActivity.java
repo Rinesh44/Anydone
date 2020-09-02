@@ -19,7 +19,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
@@ -35,9 +34,10 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragmen
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
-import com.treeleaf.januswebrtc.ClientActivity;
+import com.treeleaf.januswebrtc.GeneralUtils;
 import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.math.BigInteger;
 import java.util.Objects;
@@ -245,6 +245,58 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         Log.d(MQTT, "onHostHangUp");
         if (videoCallListenerServer != null)
             videoCallListenerServer.onHostTerminateCall();
+    }
+
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
+                    captureDrawParam.getYCoordinate());
+            serverDrawingPadEventListener.onDrawTouchDown();
+        }
+    }
+
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
+                    captureDrawParam.getYCoordinate());
+            serverDrawingPadEventListener.onDrawTouchMove();
+        }
+    }
+
+    public void onDrawTouchUp() {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawTouchUp();
+        }
+    }
+
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId);
+        }
+    }
+
+    public void onDrawReceiveNewTextChange(String text, String id) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id);
+        }
+    }
+
+    public void onDrawReceiveEdiTextRemove(String editTextId) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId);
+        }
+    }
+
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawParamChanged(captureDrawParam);
+        }
+    }
+
+    public void onDrawCanvasCleared() {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawCanvasCleared();
+        }
     }
 
     @Override
