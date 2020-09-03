@@ -45,6 +45,7 @@ import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -809,6 +810,92 @@ public class ServiceRequestDetailPresenterImpl extends
                             .getVideoRoomHostLeftResponse();
                     if (videoRoomHostLeft != null) {
                         getView().onHostHangUp(videoRoomHostLeft);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .DRAW_TOUCH_DOWN_RESPONSE)) {
+                    SignalingProto.DrawTouchDown drawTouchDown = relayResponse
+                            .getDrawTouchDownResponse();
+                    if (drawTouchDown != null) {
+                        CaptureDrawParam captureDrawParam = new CaptureDrawParam();
+                        captureDrawParam.setXCoordinate(drawTouchDown.getX());
+                        captureDrawParam.setYCoordinate(drawTouchDown.getY());
+                        getView().onDrawTouchDown(captureDrawParam);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .DRAW_TOUCH_MOVE_RESPONSE)) {
+                    SignalingProto.DrawTouchMove drawTouchMove = relayResponse
+                            .getDrawTouchMoveResponse();
+                    if (drawTouchMove != null) {
+                        CaptureDrawParam captureDrawParam = new CaptureDrawParam();
+                        captureDrawParam.setXCoordinate(drawTouchMove.getX());
+                        captureDrawParam.setYCoordinate(drawTouchMove.getY());
+                        getView().onDrawTouchMove(captureDrawParam);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .DRAW_TOUCH_UP_RESPONSE)) {
+                    SignalingProto.DrawTouchUp drawTouchUp = relayResponse
+                            .getDrawTouchUpResponse();
+                    if (drawTouchUp != null) {
+                        getView().onDrawTouchUp();
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .RECEIVE_NEW_TEXT_FIELD_RESPONSE)) {
+                    SignalingProto.ReceiveNewTextField receiveNewTextField = relayResponse
+                            .getReceiveNewTextFieldResponse();
+                    if (receiveNewTextField != null) {
+                        getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
+                                receiveNewTextField.getY(), receiveNewTextField.getTextId());
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .TEXT_FIELD_CHANGE_RESPONSE)) {
+                    SignalingProto.TextFieldChange textFieldChange = relayResponse
+                            .getTextFieldChangeResponse();
+                    if (textFieldChange != null) {
+                        getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
+                                textFieldChange.getTextId());
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .TEXT_FIELD_REMOVE_RESPONSE)) {
+                    SignalingProto.TextFieldRemove textFieldRemove = relayResponse
+                            .getTextFieldRemoveResponse();
+                    if (textFieldRemove != null) {
+                        getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId());
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .DRAW_META_DATA_CHANGE_RESPONSE)) {
+                    SignalingProto.DrawMetaDataChange drawMetaDataChange = relayResponse
+                            .getDrawMetaDataChangeResponse();
+                    if (drawMetaDataChange != null) {
+                        CaptureDrawParam captureDrawParam = new CaptureDrawParam();
+                        captureDrawParam.setXCoordinate(drawMetaDataChange.getX());
+                        captureDrawParam.setYCoordinate(drawMetaDataChange.getY());
+                        captureDrawParam.setBrushWidth(drawMetaDataChange.getBrushWidth());
+                        captureDrawParam.setBrushOpacity(Integer.parseInt(String.valueOf(drawMetaDataChange.getBrushOpacity())));
+                        captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
+                        getView().onDrawParamChanged(captureDrawParam);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        .DRAW_CANVAS_CLEAR_RESPONSE)) {
+                    SignalingProto.DrawCanvasClear drawCanvasClear = relayResponse
+                            .getDrawCanvasClearResponse();
+                    if (drawCanvasClear != null) {
+                        getView().onDrawCanvasCleared();
                     }
                 }
 

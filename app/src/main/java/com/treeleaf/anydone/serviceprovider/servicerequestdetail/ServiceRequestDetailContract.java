@@ -14,6 +14,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceAttributes;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 
@@ -98,6 +99,23 @@ public class ServiceRequestDetailContract {
         void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes);
 
         void onImageDrawDiscard();
+
+        void onDrawTouchDown(CaptureDrawParam captureDrawParam);
+
+        void onDrawTouchMove(CaptureDrawParam captureDrawParam);
+
+        void onDrawTouchUp();
+
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId);
+
+        void onDrawReceiveNewTextChange(String text, String id);
+
+        void onDrawReceiveEdiTextRemove(String editTextId);
+
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+
+        void onDrawCanvasCleared();
+
     }
 
     public interface ServiceRequestDetailPresenter extends Presenter<ServiceRequestDetailView> {

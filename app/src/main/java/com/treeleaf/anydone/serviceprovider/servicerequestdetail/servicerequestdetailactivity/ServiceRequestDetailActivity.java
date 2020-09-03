@@ -47,7 +47,7 @@ import butterknife.BindView;
 public class ServiceRequestDetailActivity extends MvpBaseActivity
         <ServiceRequestDetailActivityPresenterImpl> implements
         ServiceRequestDetailActivityContract.ServiceRequestDetailActivityView,
-        View.OnClickListener {
+        View.OnClickListener, Callback.OnDrawEventListener {
     private static final String TAG = "ServiceRequestDetail";
     private static final String MQTT = "MQTT_EVENT_CHECK";
     @BindView(R.id.pager)
@@ -247,6 +247,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             videoCallListenerServer.onHostTerminateCall();
     }
 
+    @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
@@ -255,6 +256,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         }
     }
 
+    @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
@@ -263,36 +265,42 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         }
     }
 
+    @Override
     public void onDrawTouchUp() {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawTouchUp();
         }
     }
 
+    @Override
     public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId);
         }
     }
 
+    @Override
     public void onDrawReceiveNewTextChange(String text, String id) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id);
         }
     }
 
+    @Override
     public void onDrawReceiveEdiTextRemove(String editTextId) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId);
         }
     }
 
+    @Override
     public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawParamChanged(captureDrawParam);
         }
     }
 
+    @Override
     public void onDrawCanvasCleared() {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawCanvasCleared();
