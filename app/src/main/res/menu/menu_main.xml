@@ -7,6 +7,11 @@
         android:title="@string/tickets" />
 
     <item
+        android:id="@+id/navigation_threads"
+        android:icon="@drawable/request_service"
+        android:title="Conversation" />
+
+    <item
         android:id="@+id/navigation_service_requests"
         android:icon="@drawable/request_service"
         android:title="@string/service_requests" />

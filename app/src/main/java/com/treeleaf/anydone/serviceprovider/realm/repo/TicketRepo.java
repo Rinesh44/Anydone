@@ -125,7 +125,7 @@ public class TicketRepo extends Repo {
         });
     }
 
-    public void unAssignEmployee(long ticketId, String empId, final Callback callback) {
+/*    public void unAssignEmployee(long ticketId, String empId, final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             try {
@@ -145,15 +145,15 @@ public class TicketRepo extends Repo {
             }
 
         });
-    }
+    }*/
 
 
-    public void addAssignedEmployees(long ticketId, List<Employee> employeeList, final Callback callback) {
+    public void replaceAssignedEmployees(long ticketId, Employee employee, final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             try {
                 Tickets tickets = getTicketById(ticketId);
-                tickets.getAssignedEmployee().addAll(employeeList);
+                tickets.setAssignedEmployee(employee);
                 callback.success(null);
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
@@ -191,7 +191,7 @@ public class TicketRepo extends Repo {
             tickets.setTicketSource(ticketPb.getTicketSource().name());
             tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
 //            tickets.setServiceId(ticketPb.getService().getServiceId());
-            tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeesAssignedList()));
+            tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeeAssigned()));
             tickets.setCustomerType(ticketPb.getCustomerType().name());
             tickets.setCreatedAt(ticketPb.getCreatedAt());
             tickets.setTicketType(type);
@@ -216,14 +216,14 @@ public class TicketRepo extends Repo {
         tickets.setTicketSource(ticketPb.getTicketSource().name());
         tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
 //            tickets.setServiceId(ticketPb.getService().getServiceId());
-        tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeesAssignedList()));
+        tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeeAssigned()));
         tickets.setCustomerType(ticketPb.getCustomerType().name());
         tickets.setCreatedAt(ticketPb.getCreatedAt());
         tickets.setTicketType(type);
         tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
         tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
         tickets.setTicketStatus(ticketPb.getTicketState().name());
-
+        tickets.setPriority(ticketPb.getPriorityValue());
         return tickets;
     }
 

@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
+import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
 import io.reactivex.Observable;
@@ -43,4 +44,8 @@ public class TicketTimelineRepositoryImpl implements TicketTimelineRepository {
         return anyDoneService.closeTicket(token, ticketId, remark);
     }
 
+    @Override
+    public Observable<UserRpcProto.UserBaseResponse> findEmployees(String token) {
+        return anyDoneService.findEmployees(token);
+    }
 }

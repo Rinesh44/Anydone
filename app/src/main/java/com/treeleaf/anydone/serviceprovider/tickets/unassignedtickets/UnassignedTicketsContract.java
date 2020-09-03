@@ -19,7 +19,12 @@ public class UnassignedTicketsContract {
         void updateAssignableTickets(List<Tickets> ticketsList);
 
         void filterAssignableTicketFailed(String msg);
+
+        void getEmployeeSuccess();
+
+        void getEmployeeFail(String msg);
     }
+
 
     public interface UnassignedPresenter extends Presenter<UnassignedView> {
         void getAssignableTickets(boolean showProgress, long from, long to, int pageSize);
@@ -27,6 +32,8 @@ public class UnassignedTicketsContract {
         void assignTicket(long ticketId, String employeeId);
 
         void filterAssignableTickets(String searchQuery, long from, long to, int ticketState);
+
+        void getEmployees();
 
     }
 

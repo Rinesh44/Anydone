@@ -37,7 +37,8 @@ public class AddTicketContract {
 
     public interface AddTicketPresenter extends Presenter<AddTicketView> {
         void createTicket(String title, String description, String customerId, String customerEmail,
-                          String customerPhone, String customerName, List<String> tags, List<String> assignedEmployeeIds);
+                          String customerPhone, String customerName, List<String> tags, String assignedEmployeeId,
+                          int priority);
 
         void findEmployees();
 

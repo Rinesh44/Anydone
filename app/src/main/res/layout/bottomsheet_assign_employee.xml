@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/top_round_corners"
+    android:clickable="true"
+    android:elevation="@dimen/dimen_10x5"
+    android:focusable="true"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="7dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:background="@drawable/bottomsheet_drawer" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_select_employee"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimens_2x"
+            android:paddingEnd="@dimen/dimens_2x">
+
+            <AutoCompleteTextView
+                android:id="@+id/et_search_employee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_dropdown"
+                android:hint="@string/search_employee"
+                android:inputType="textVisiblePassword"
+                android:maxLength="45"
+                android:paddingStart="12dp"
+                android:paddingTop="@dimen/dimens_2x"
+                android:paddingEnd="18dp"
+                android:paddingBottom="@dimen/dimens_2x"
+                android:singleLine="true"
+                android:textSize="@dimen/material_text_subhead" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginEnd="@dimen/dimens_2x">
+
+            <include
+                layout="@layout/layout_assign_employee_result"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_assign"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimens_2x"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Assign"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

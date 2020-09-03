@@ -30,17 +30,39 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dimens_2x">
 
-                    <TextView
-                        android:id="@+id/toolbar_title"
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:gravity="start"
-                        android:text="Tickets"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:layout_toStartOf="@+id/btn_add_ticket">
+
+                        <ImageView
+                            android:id="@+id/iv_service"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/dimen_10x1"
+                            android:src="@drawable/ic_assigned_emp_placeholder" />
+
+                        <TextView
+                            android:id="@+id/toolbar_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/dimen_10x1"
+                            android:layout_toEndOf="@+id/iv_service"
+                            android:drawableEnd="@drawable/ic_dropdown"
+                            android:drawablePadding="@dimen/dimen_10x1"
+                            android:ellipsize="end"
+                            android:gravity="start"
+                            android:singleLine="true"
+                            android:text="Tickets"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_ticket"
@@ -94,6 +116,13 @@
 
     </LinearLayout>
 
-    <!--    <include layout="@layout/layout_bottomsheet_filter_tickets" />-->
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:visibility="gone"
+        android:background="@drawable/bottomsheet_shadow"
+        app:layout_anchor="@id/bottom_sheet" />
 
+    <include layout="@layout/bottomsheet_select_service" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

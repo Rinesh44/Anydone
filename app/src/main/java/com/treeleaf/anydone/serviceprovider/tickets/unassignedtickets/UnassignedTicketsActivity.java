@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,31 +19,39 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
-import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeActivity;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -53,6 +63,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketPresenterImpl>
         implements UnassignedTicketsContract.UnassignedView {
@@ -68,6 +79,16 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     ImageView ivDataNotFound;
     @BindView(R.id.swipe_refresh_assignable_tickets)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.bottom_sheet)
+    LinearLayout llBottomSheet;
+    @BindView(R.id.shadow)
+    View bottomSheetShadow;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
+    @BindView(R.id.iv_filter)
+    ImageView ivFilter;
+
+
     private int assignTicketPos;
     List<Tickets> assignableTickets;
     private BottomSheetDialog filterBottomSheet;
@@ -79,6 +100,19 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     final Calendar myCalendar = Calendar.getInstance();
     String statusValue = null;
     private RadioGroup rgStatus;
+    private BottomSheetBehavior sheetBehavior;
+    private EmployeeSearchAdapter employeeSearchAdapter;
+    private String selectedEmployeeId;
+    private List<AssignEmployee> employeeList;
+    private RecyclerView rvEmployee;
+    private ScrollView svSearchEmployee;
+    private AutoCompleteTextView searchEmployee;
+    private LinearLayout llSelf;
+    private TextView tvSelfName;
+    private CircleImageView civSelfImage;
+    private Employee selfEmployee;
+    private String ticketId;
+    private TextView tvAllUsers;
 
     @Override
     protected int getLayout() {
@@ -88,17 +122,20 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setToolbar();
 
         assignableTickets = TicketRepo.getInstance().getAssignableTickets();
+        selfEmployee = EmployeeRepo.getInstance().getEmployee();
 
         if (CollectionUtils.isEmpty(assignableTickets)) {
-            presenter.getAssignableTickets(true,0, System.currentTimeMillis(), 100);
+            presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(assignableTickets);
         }
 
         createFilterBottomSheet();
+        sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+        handleEmployeeBottomSheet();
+        presenter.getEmployees();
 
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
@@ -114,20 +151,8 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
                 }
         );
 
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        if (!CollectionUtils.isEmpty(assignableTickets)) {
-        getMenuInflater().inflate(R.menu.menu_filter, menu);
-//        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_filter) {
+        ivBack.setOnClickListener(v -> onBackPressed());
+        ivFilter.setOnClickListener(v -> {
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
                     .inflate(R.layout.layout_status_buttons_alternate, null);
             rgStatus = statusView.findViewById(R.id.rg_status);
@@ -152,8 +177,111 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             hsvStatusContainer.addView(rgStatus);
 
             toggleBottomSheet();
-        }
-        return false;
+        });
+
+    }
+
+    private void handleEmployeeBottomSheet() {
+        searchEmployee = llBottomSheet.findViewById(R.id.et_search_employee);
+        MaterialButton btnAssign = llBottomSheet.findViewById(R.id.btn_assign);
+        svSearchEmployee = llBottomSheet.findViewById(R.id.search_employee);
+        rvEmployee = llBottomSheet.findViewById(R.id.rv_all_users);
+        civSelfImage = llBottomSheet.findViewById(R.id.civ_image_self);
+        tvSelfName = llBottomSheet.findViewById(R.id.tv_name_self);
+        llSelf = llBottomSheet.findViewById(R.id.ll_self);
+        tvAllUsers = llBottomSheet.findViewById(R.id.tv_all_users);
+
+        setSelfDetails();
+        llSelf.setOnClickListener(v -> {
+            Employee self = EmployeeRepo.getInstance().getEmployee();
+            if (self != null) {
+                AssignEmployee selfEmployee = new AssignEmployee();
+                selfEmployee.setPhone(self.getPhone());
+                selfEmployee.setName(self.getName());
+                selfEmployee.setEmployeeImageUrl(self.getEmployeeImageUrl());
+                selfEmployee.setEmployeeId(self.getEmployeeId());
+                selfEmployee.setEmail(self.getEmail());
+                selfEmployee.setCreatedAt(self.getCreatedAt());
+                selfEmployee.setAccountId(self.getAccountId());
+
+                selectedEmployeeId = self.getEmployeeId();
+            }
+
+            searchEmployee.setText(selfEmployee.getName());
+            searchEmployee.setSelection(selfEmployee.getName().length());
+            svSearchEmployee.setVisibility(View.GONE);
+
+            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
+            params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
+            llBottomSheet.setLayoutParams(params);
+            hideKeyBoard();
+        });
+
+        searchEmployee.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 1) {
+                    GlobalUtils.showLog(TAG, "text changed");
+                    employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
+                    if (CollectionUtils.isEmpty(employeeList)) {
+                        tvAllUsers.setVisibility(View.GONE);
+                    } else {
+                        tvAllUsers.setVisibility(View.VISIBLE);
+                    }
+                    GlobalUtils.showLog(TAG, "searched list size: " + employeeList.size());
+                    if (svSearchEmployee.getVisibility() == View.GONE)
+                        svSearchEmployee.setVisibility(View.VISIBLE);
+                    if (employeeSearchAdapter != null) {
+                        employeeSearchAdapter.setData(employeeList);
+                        employeeSearchAdapter.notifyDataSetChanged();
+                    }
+                } else {
+                    svSearchEmployee.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        searchEmployee.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
+                params.height = CoordinatorLayout.LayoutParams.MATCH_PARENT;
+                llBottomSheet.setLayoutParams(params);
+
+                sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
+                    params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
+                    llBottomSheet.setLayoutParams(params);
+                    hideKeyBoard();
+                    searchEmployee.setText("");
+                    searchEmployee.clearFocus();
+                }
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                // React to dragging events
+
+            }
+        });
+
+        btnAssign.setOnClickListener(v -> showAssignTicketDialog(ticketId));
     }
     /*
      */
@@ -271,6 +399,46 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         });
     }
 
+    private void setUpEmployeeRecyclerView() {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvEmployee.setLayoutManager(mLayoutManager);
+
+        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this);
+        rvEmployee.setAdapter(employeeSearchAdapter);
+
+        if (employeeSearchAdapter != null) {
+            employeeSearchAdapter.setOnItemClickListener((employee) -> {
+                hideKeyBoard();
+
+                selectedEmployeeId = employee.getEmployeeId();
+                searchEmployee.setText(employee.getName());
+                searchEmployee.setSelection(employee.getName().length());
+                svSearchEmployee.setVisibility(View.GONE);
+
+                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
+                params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
+                llBottomSheet.setLayoutParams(params);
+            });
+        }
+    }
+
+    private void setSelfDetails() {
+        Employee employee = EmployeeRepo.getInstance().getEmployee();
+        if (employee != null) {
+            tvSelfName.setText(employee.getName() + " (Me)");
+
+            String profilePicUrl = employee.getEmployeeImageUrl();
+            if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_profile_icon)
+                        .error(R.drawable.ic_profile_icon);
+
+                Glide.with(this).load(profilePicUrl).apply(options).into(civSelfImage);
+            }
+        }
+    }
+
     private int getTicketState(String statusValue) {
         switch (statusValue.toLowerCase()) {
             case "started":
@@ -305,21 +473,23 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             rvAssignableTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
-            adapter.setOnItemClickListener(ticket -> {
+      /*      adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(this, TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
                 i.putExtra("ticket_desc", ticket.getTitle());
                 startActivity(i);
-            });
+            });*/
 
             adapter.setOnAssignListener((id, pos) -> {
-               /* assignTicketPos = pos;
-                showAssignTicketDialog(id);*/
+                assignTicketPos = pos;
+//                showAssignTicketDialog(id);
                 GlobalUtils.showLog(TAG, "assign ticket id check: " + id);
+                ticketId = id;
                 adapter.closeSwipeLayout(id);
-                Intent i = new Intent(this, AssignEmployeeActivity.class);
+                toggleEmployeeBottomSheet();
+           /*     Intent i = new Intent(this, AssignEmployeeActivity.class);
                 i.putExtra("ticket_id", Long.valueOf(id));
-                startActivityForResult(i, EMPLOYEE_ASSIGN_REQUEST);
+                startActivityForResult(i, EMPLOYEE_ASSIGN_REQUEST);*/
             });
             rvAssignableTickets.setAdapter(adapter);
         } else {
@@ -330,18 +500,18 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
     private void showAssignTicketDialog(String ticketId) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Self assign ticket?");
+        builder1.setMessage("Are you sure to assign to this employee?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
                 "Yes",
                 (dialog, id) -> {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                     adapter.closeSwipeLayout(ticketId);
                     dialog.dismiss();
-                    Employee employee = EmployeeRepo.getInstance().getEmployee();
                     GlobalUtils.showLog(TAG, "ticket Id check: " + ticketId);
-                    GlobalUtils.showLog(TAG, "employee Id check: " + employee.getEmployeeId());
-                    presenter.assignTicket(Long.parseLong(ticketId), employee.getEmployeeId());
+                    GlobalUtils.showLog(TAG, "employee Id check: " + selectedEmployeeId);
+                    presenter.assignTicket(Long.parseLong(ticketId), selectedEmployeeId);
                 });
 
         builder1.setNegativeButton(
@@ -379,22 +549,21 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         }
     }
 
-    private void setToolbar() {
-        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(getResources()
-                .getDrawable(R.drawable.white_bg));
-
-        SpannableStringBuilder str = new SpannableStringBuilder("Tickets");
-        str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
-                0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(str);
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        //prevent bottom sheet from changing layout height
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
+        params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
+        llBottomSheet.setLayoutParams(params);
     }
 
     @Override
@@ -405,6 +574,20 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             ivDataNotFound.setVisibility(View.VISIBLE);
         } else {
             setUpRecyclerView(assignableTickets);
+        }
+    }
+
+    public void toggleEmployeeBottomSheet() {
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
+            bottomSheetShadow.setVisibility(View.VISIBLE);
+            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        } else if (sheetBehavior.getState() == BottomSheetBehavior.STATE_HALF_EXPANDED) {
+            bottomSheetShadow.setVisibility(View.GONE);
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        } else {
+            bottomSheetShadow.setVisibility(View.GONE);
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
     }
 
@@ -461,6 +644,22 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             return;
         }
 
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void getEmployeeSuccess() {
+        employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
+        setUpEmployeeRecyclerView();
+    }
+
+    @Override
+    public void getEmployeeFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
     }
 

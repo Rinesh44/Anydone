@@ -13,7 +13,8 @@ public class AssignedTicketRepositoryImpl implements AssignedTicketRepository {
     }
 
     @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(String token, long from, long to, int page) {
-        return anyDoneService.getAssignedTickets(token, from, to, page);
+    public Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(String token, String serviceId,
+                                                                                   long from, long to, int page) {
+        return anyDoneService.getAssignedTickets(token, serviceId, from, to, page);
     }
 }

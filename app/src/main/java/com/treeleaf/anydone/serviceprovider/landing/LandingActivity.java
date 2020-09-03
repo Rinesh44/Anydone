@@ -14,6 +14,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
+import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 
 import butterknife.BindView;
@@ -87,6 +88,10 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
             case R.id.navigation_tickets:
 //                setActionTitle(HOME);
                 openFragment(TicketsFragment.newInstance("", ""));
+                return true;
+
+            case R.id.navigation_threads:
+                openFragment(ThreadFragment.newInstance("", ""));
                 return true;
 
             case R.id.navigation_account:

@@ -1,12 +1,10 @@
 package com.treeleaf.anydone.serviceprovider.utils;
 
-import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -75,7 +73,7 @@ public final class ProtoMapper {
         return serviceAttributesList;
     }
 
-    public static Customer transformCustomer(TicketProto.Customer customerPb) {
+    public static Customer transformCustomer(UserProto.Customer customerPb) {
         Customer customer1 = new Customer();
         customer1.setCustomerId(customerPb.getCustomerId());
         customer1.setFullName(customerPb.getFullName());
@@ -218,22 +216,19 @@ public final class ProtoMapper {
         return locationList;
     }
 
-    public static RealmList<Employee> transformAssignedEmployee(
-            List<TicketProto.EmployeeAssigned> assignedToListPb) {
-        RealmList<Employee> employeeRealmList = new RealmList<>();
-        for (TicketProto.EmployeeAssigned employeeProfile : assignedToListPb
-        ) {
-            Employee employee = new Employee();
-            employee.setAccountId(employeeProfile.getAssignedTo().getAccount().getAccountId());
-            employee.setCreatedAt(employeeProfile.getAssignedAt());
-            employee.setEmployeeId(employeeProfile.getAssignedTo().getEmployeeProfileId());
-            employee.setEmployeeImageUrl(employeeProfile.getAssignedTo().getAccount().getProfilePic());
-            employee.setName(employeeProfile.getAssignedTo().getAccount().getFullName());
-            employee.setPhone(employeeProfile.getAssignedTo().getAccount().getPhone());
-            employee.setEmail(employeeProfile.getAssignedTo().getAccount().getEmail());
-            employeeRealmList.add(employee);
-        }
-        return employeeRealmList;
+    public static Employee transformAssignedEmployee(
+            TicketProto.EmployeeAssigned employeeProfile) {
+
+        Employee employee = new Employee();
+        employee.setAccountId(employeeProfile.getAssignedTo().getAccount().getAccountId());
+        employee.setCreatedAt(employeeProfile.getAssignedAt());
+        employee.setEmployeeId(employeeProfile.getAssignedTo().getEmployeeProfileId());
+        employee.setEmployeeImageUrl(employeeProfile.getAssignedTo().getAccount().getProfilePic());
+        employee.setName(employeeProfile.getAssignedTo().getAccount().getFullName());
+        employee.setPhone(employeeProfile.getAssignedTo().getAccount().getPhone());
+        employee.setEmail(employeeProfile.getAssignedTo().getAccount().getEmail());
+
+        return employee;
     }
 
     public static List<Employee> transformEmployee(List<UserProto.EmployeeProfile> employeeList) {

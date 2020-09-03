@@ -2951,14 +2951,23 @@ public final class NLUProto {
     IntentResult getIntentResult();
 
     /**
-     * <code>optional string replyText = 2;</code>
+     * <code>repeated string replyText = 2;</code>
      */
-    String getReplyText();
+    java.util.List<String>
+        getReplyTextList();
     /**
-     * <code>optional string replyText = 2;</code>
+     * <code>repeated string replyText = 2;</code>
+     */
+    int getReplyTextCount();
+    /**
+     * <code>repeated string replyText = 2;</code>
+     */
+    String getReplyText(int index);
+    /**
+     * <code>repeated string replyText = 2;</code>
      */
     com.google.protobuf.ByteString
-        getReplyTextBytes();
+        getReplyTextBytes(int index);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationalReply}
@@ -2969,8 +2978,9 @@ public final class NLUProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationalReply)
       ConversationalReplyOrBuilder {
     private ConversationalReply() {
-      replyText_ = "";
+      replyText_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
+    private int bitField0_;
     public static final int INTENTRESULT_FIELD_NUMBER = 1;
     private IntentResult intentResult_;
     /**
@@ -3024,49 +3034,87 @@ public final class NLUProto {
     }
 
     public static final int REPLYTEXT_FIELD_NUMBER = 2;
-    private String replyText_;
+    private com.google.protobuf.Internal.ProtobufList<String> replyText_;
     /**
-     * <code>optional string replyText = 2;</code>
+     * <code>repeated string replyText = 2;</code>
      */
-    public String getReplyText() {
+    public java.util.List<String> getReplyTextList() {
       return replyText_;
     }
     /**
-     * <code>optional string replyText = 2;</code>
+     * <code>repeated string replyText = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getReplyTextBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(replyText_);
+    public int getReplyTextCount() {
+      return replyText_.size();
     }
     /**
-     * <code>optional string replyText = 2;</code>
+     * <code>repeated string replyText = 2;</code>
+     */
+    public String getReplyText(int index) {
+      return replyText_.get(index);
+    }
+    /**
+     * <code>repeated string replyText = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReplyTextBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          replyText_.get(index));
+    }
+    private void ensureReplyTextIsMutable() {
+      if (!replyText_.isModifiable()) {
+        replyText_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(replyText_);
+       }
+    }
+    /**
+     * <code>repeated string replyText = 2;</code>
      */
     private void setReplyText(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureReplyTextIsMutable();
+      replyText_.set(index, value);
+    }
+    /**
+     * <code>repeated string replyText = 2;</code>
+     */
+    private void addReplyText(
         String value) {
       if (value == null) {
     throw new NullPointerException();
   }
-  
-      replyText_ = value;
+  ensureReplyTextIsMutable();
+      replyText_.add(value);
     }
     /**
-     * <code>optional string replyText = 2;</code>
+     * <code>repeated string replyText = 2;</code>
+     */
+    private void addAllReplyText(
+        Iterable<String> values) {
+      ensureReplyTextIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, replyText_);
+    }
+    /**
+     * <code>repeated string replyText = 2;</code>
      */
     private void clearReplyText() {
-      
-      replyText_ = getDefaultInstance().getReplyText();
+      replyText_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     /**
-     * <code>optional string replyText = 2;</code>
+     * <code>repeated string replyText = 2;</code>
      */
-    private void setReplyTextBytes(
+    private void addReplyTextBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-      
-      replyText_ = value.toStringUtf8();
+      ensureReplyTextIsMutable();
+      replyText_.add(value.toStringUtf8());
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -3074,8 +3122,8 @@ public final class NLUProto {
       if (intentResult_ != null) {
         output.writeMessage(1, getIntentResult());
       }
-      if (!replyText_.isEmpty()) {
-        output.writeString(2, getReplyText());
+      for (int i = 0; i < replyText_.size(); i++) {
+        output.writeString(2, replyText_.get(i));
       }
     }
 
@@ -3088,9 +3136,14 @@ public final class NLUProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getIntentResult());
       }
-      if (!replyText_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getReplyText());
+      {
+        int dataSize = 0;
+        for (int i = 0; i < replyText_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(replyText_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getReplyTextList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -3224,29 +3277,61 @@ public final class NLUProto {
       }
 
       /**
-       * <code>optional string replyText = 2;</code>
+       * <code>repeated string replyText = 2;</code>
        */
-      public String getReplyText() {
-        return instance.getReplyText();
+      public java.util.List<String>
+          getReplyTextList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getReplyTextList());
       }
       /**
-       * <code>optional string replyText = 2;</code>
+       * <code>repeated string replyText = 2;</code>
+       */
+      public int getReplyTextCount() {
+        return instance.getReplyTextCount();
+      }
+      /**
+       * <code>repeated string replyText = 2;</code>
+       */
+      public String getReplyText(int index) {
+        return instance.getReplyText(index);
+      }
+      /**
+       * <code>repeated string replyText = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getReplyTextBytes() {
-        return instance.getReplyTextBytes();
+          getReplyTextBytes(int index) {
+        return instance.getReplyTextBytes(index);
       }
       /**
-       * <code>optional string replyText = 2;</code>
+       * <code>repeated string replyText = 2;</code>
        */
       public Builder setReplyText(
-          String value) {
+          int index, String value) {
         copyOnWrite();
-        instance.setReplyText(value);
+        instance.setReplyText(index, value);
         return this;
       }
       /**
-       * <code>optional string replyText = 2;</code>
+       * <code>repeated string replyText = 2;</code>
+       */
+      public Builder addReplyText(
+          String value) {
+        copyOnWrite();
+        instance.addReplyText(value);
+        return this;
+      }
+      /**
+       * <code>repeated string replyText = 2;</code>
+       */
+      public Builder addAllReplyText(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllReplyText(values);
+        return this;
+      }
+      /**
+       * <code>repeated string replyText = 2;</code>
        */
       public Builder clearReplyText() {
         copyOnWrite();
@@ -3254,12 +3339,12 @@ public final class NLUProto {
         return this;
       }
       /**
-       * <code>optional string replyText = 2;</code>
+       * <code>repeated string replyText = 2;</code>
        */
-      public Builder setReplyTextBytes(
+      public Builder addReplyTextBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setReplyTextBytes(value);
+        instance.addReplyTextBytes(value);
         return this;
       }
 
@@ -3276,6 +3361,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          replyText_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3285,10 +3371,10 @@ public final class NLUProto {
           Visitor visitor = (Visitor) arg0;
           ConversationalReply other = (ConversationalReply) arg1;
           intentResult_ = visitor.visitMessage(intentResult_, other.intentResult_);
-          replyText_ = visitor.visitString(!replyText_.isEmpty(), replyText_,
-              !other.replyText_.isEmpty(), other.replyText_);
+          replyText_= visitor.visitList(replyText_, other.replyText_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -3326,8 +3412,11 @@ public final class NLUProto {
                 }
                 case 18: {
                   String s = input.readStringRequireUtf8();
-
-                  replyText_ = s;
+                  if (!replyText_.isModifiable()) {
+                    replyText_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(replyText_);
+                  }
+                  replyText_.add(s);
                   break;
                 }
               }

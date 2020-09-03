@@ -5,12 +5,15 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -22,34 +25,40 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeActivity;
+import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceOrderEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -65,24 +74,16 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     public static final int ASSIGN_EMPLOYEE_REQUEST = 8789;
     /*    @BindView(R.id.ll_activities)
         LinearLayout llActivities;*/
-    @BindView(R.id.tv_assigned_employee_dropdown)
-    TextView tvAssignedEmployeeDropDown;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
     /*    @BindView(R.id.tv_activity_dropdown)
         TextView tvActivityDropDown;
         @BindView(R.id.expandable_layout_activities)
         ExpandableLayout elActivities;*/
-    @BindView(R.id.expandable_layout_employee)
-    ExpandableLayout elEmployee;
-    @BindView(R.id.iv_dropdown_employee)
-    ImageView ivDropdownEmployee;
     /*    @BindView(R.id.iv_dropdown_activity)
         ImageView ivDropdownActivity;*/
     @BindView(R.id.ll_assigned_employee)
     LinearLayout llAssignedEmployee;
-    @BindView(R.id.ll_assined_employee_top)
-    LinearLayout llAssignedEmployeeTop;
     /*    @BindView(R.id.tv_elapsed_time)
         TextView tvElapsedTime;*/
     @BindView(R.id.bottom_sheet_profile)
@@ -129,8 +130,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     TextView tvTicketDesc;
     @BindView(R.id.ll_tags)
     LinearLayout llTags;
-    @BindView(R.id.tv_assign_employee)
-    TextView tvAssignEmployee;
     @BindView(R.id.ll_status_options)
     LinearLayout llStatusOptions;
     @BindView(R.id.tv_resolve)
@@ -143,8 +142,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     RelativeLayout rlSelectedStatus;
     @BindView(R.id.iv_dropdown_status)
     ImageView ivDropDownStatus;
-    @BindView(R.id.tv_assigned_employee_count)
-    TextView tvAssignedEmployeeCount;
     @BindView(R.id.tv_reopen)
     TextView tvReopen;
     @BindView(R.id.v_separator1)
@@ -157,6 +154,22 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     ScrollView scrollView;
     @BindView(R.id.btn_reopen)
     MaterialButton btnReopen;
+    @BindView(R.id.il_select_employee)
+    TextInputLayout ilSelectEmployee;
+    @BindView(R.id.et_search_employee)
+    AutoCompleteTextView etSearchEmployee;
+    @BindView(R.id.ll_self)
+    LinearLayout llSelf;
+    @BindView(R.id.civ_image_self)
+    CircleImageView civSelf;
+    @BindView(R.id.tv_name_self)
+    TextView tvSelf;
+    @BindView(R.id.tv_all_users)
+    TextView tvAllUsers;
+    @BindView(R.id.rv_all_users)
+    RecyclerView rvAllUsers;
+    @BindView(R.id.search_employee)
+    ScrollView svSearchEmployee;
 
 
     private boolean expandActivity = true;
@@ -168,6 +181,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private BottomSheetBehavior sheetBehavior;
     private String status;
     private Animation rotation;
+    private List<AssignEmployee> employeeList;
+    private EmployeeSearchAdapter employeeSearchAdapter;
+    private String selectedEmployeeId;
+    private Employee selfEmployee;
 
 
     public TicketTimelineFragment() {
@@ -184,7 +201,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
             presenter.getCustomerDetails(ticketId);
             presenter.getAssignedEmployees(ticketId);
-//            presenter.getTicketTimeline(ticketId);
+            presenter.getTicketTimeline(ticketId);
 
             setTicketDetails();
         }
@@ -193,6 +210,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         TicketDetailsActivity mActivity = (TicketDetailsActivity) getActivity();
         assert mActivity != null;
         mActivity.setOutSideTouchListener(this);
+
+        selfEmployee = EmployeeRepo.getInstance().getEmployee();
 
 /*        tvActivityDropDown.setOnClickListener(v -> {
             expandActivity = !expandActivity;
@@ -235,49 +254,45 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             elTicketDetails.toggle();
         });
 
-        tvAssignedEmployeeDropDown.setOnClickListener(v -> {
-            expandEmployee = !expandEmployee;
-            ivDropdownEmployee.startAnimation(rotation);
-            if (!expandEmployee) {
-                ivDropdownEmployee.setImageDrawable(getActivity().getResources()
-                        .getDrawable(R.drawable.ic_dropup));
-            } else {
-                ivDropdownEmployee.setImageDrawable(getActivity().getResources()
-                        .getDrawable(R.drawable.ic_dropdown_toggle));
-            }
-            elEmployee.toggle();
-        });
-
        /* btnMarkComplete.setOnClickListener(v -> startActivity(new Intent(getActivity(),
                 PaymentSummary.class)));*/
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
-//        getServiceDoers();
 
+        etSearchEmployee.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        tvAssignEmployee.setOnClickListener(v -> {
-            GlobalUtils.showLog(TAG, "sender ticket Id: " + ticketId);
-            Intent intent = new Intent(getActivity(), AssignEmployeeActivity.class);
-            intent.putExtra("ticket_id", ticketId);
-            startActivityForResult(intent,
-                    ASSIGN_EMPLOYEE_REQUEST);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 1) {
+                    GlobalUtils.showLog(TAG, "text changed");
+                    employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
+                    if (CollectionUtils.isEmpty(employeeList)) {
+                        tvAllUsers.setVisibility(View.GONE);
+                    } else {
+                        tvAllUsers.setVisibility(View.VISIBLE);
+                    }
+                    GlobalUtils.showLog(TAG, "searched list size: " + employeeList.size());
+                    if (svSearchEmployee.getVisibility() == View.GONE)
+                        svSearchEmployee.setVisibility(View.VISIBLE);
+                    if (employeeSearchAdapter != null) {
+                        employeeSearchAdapter.setData(employeeList);
+                        employeeSearchAdapter.notifyDataSetChanged();
+                    }
+                } else {
+                    svSearchEmployee.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ASSIGN_EMPLOYEE_REQUEST && resultCode == 2) {
-            if (data != null) {
-                boolean employeeAssigned = data.getBooleanExtra("employee_assigned", false);
-
-                if (employeeAssigned) {
-//                    presenter.getTicketTimeline(ticketId);
-                    presenter.getAssignedEmployees(ticketId);
-                }
-            }
-        }
-    }
 
     @Override
     public void onResume() {
@@ -360,12 +375,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
                 rlBotReplyHolder.setVisibility(View.GONE);
 
-                for (int i = 0; i < llAssignedEmployeeTop.getChildCount(); i++) {
-                    View assignedEmployeeView = llAssignedEmployeeTop.getChildAt(i);
-                    ImageView deleteEmployee = assignedEmployeeView.findViewById(R.id.iv_delete);
-                    deleteEmployee.setVisibility(View.GONE);
-                }
-                tvAssignEmployee.setVisibility(View.GONE);
                 break;
 
             case "TICKET_CLOSED":
@@ -472,12 +481,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         rlSelectedStatus.setVisibility(View.GONE);
         rlBotReplyHolder.setVisibility(View.GONE);
 
-        for (int i = 0; i < llAssignedEmployeeTop.getChildCount(); i++) {
-            View assignedEmployeeView = llAssignedEmployeeTop.getChildAt(i);
-            ImageView deleteEmployee = assignedEmployeeView.findViewById(R.id.iv_delete);
-            deleteEmployee.setVisibility(View.GONE);
-        }
-        tvAssignEmployee.setVisibility(View.GONE);
     }
 
     @SuppressLint("SetTextI18n")
@@ -746,11 +749,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
     }
 
+/*
     private void inflateAssignedEmployeeLayout(RealmList<Employee> assignedEmployee,
                                                LinearLayout parent) {
         parent.removeAllViews();
         GlobalUtils.showLog(TAG, "assigned emp size check: " + assignedEmployee.size());
-        tvAssignedEmployeeCount.setText(String.valueOf(assignedEmployee.size()));
         for (Employee serviceDoer : assignedEmployee
         ) {
             @SuppressLint("InflateParams") View viewAssignedEmployee = getLayoutInflater()
@@ -777,23 +780,28 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             }
 
             parent.addView(viewAssignedEmployee);
-     /*       employeeName.setOnClickListener(v -> {
+     */
+/*       employeeName.setOnClickListener(v -> {
                 setUpProfileBottomSheet(serviceDoer.getName(),
                         serviceDoer.getEmployeeImageUrl(), serviceDoer.get());
                 toggleBottomSheet();
-            });*/
+            });*//*
 
-      /*      employeePic.setOnClickListener(v -> {
+
+     */
+/*      employeePic.setOnClickListener(v -> {
                 setUpProfileBottomSheet(serviceDoer.getFullName(),
                         serviceDoer.getProfilePic(), serviceDoer.getAvgRating());
                 toggleBottomSheet();
-            });*/
+            });*//*
+
 
         }
     }
+*/
 
 
-    private void showDeleteDialog(String employeeId) {
+/*    private void showDeleteDialog(String employeeId) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Are you sure you want to delete?");
         builder1.setCancelable(true);
@@ -824,7 +832,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         });
         alert11.show();
-    }
+    }*/
 
     private void showStatusChangeConfirmation(String title, String type) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
@@ -897,17 +905,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     @Override
-    public void getTicketTimelineSuccess(RealmList<Employee> assignedEmployeeList) {
-        GlobalUtils.showLog(TAG, "assinged emp count check: " + assignedEmployeeList.size());
-        if (CollectionUtils.isEmpty(assignedEmployeeList)) {
-            llAssignedEmployeeTop.setVisibility(View.GONE);
-            llAssignedEmployee.setVisibility(View.GONE);
+    public void getTicketTimelineSuccess(Employee assignedEmployee) {
+        if (assignedEmployee == null) {
+            etSearchEmployee.setText("Select Employee");
         } else {
             llAssignedEmployee.setVisibility(View.VISIBLE);
-            llAssignedEmployeeTop.setVisibility(View.VISIBLE);
-            GlobalUtils.showLog(TAG, "get timeline ok");
-            inflateAssignedEmployeeLayout(assignedEmployeeList, llAssignedEmployeeTop);
+            etSearchEmployee.setText(assignedEmployee.getName());
         }
+        etSearchEmployee.clearFocus();
     }
 
     @Override
@@ -950,17 +955,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     @Override
-    public void setAssignedEmployee(RealmList<Employee> assignedEmployee) {
-        GlobalUtils.showLog(TAG, "assinged emp count check: " + assignedEmployee.size());
-        if (CollectionUtils.isEmpty(assignedEmployee)) {
-            llAssignedEmployeeTop.setVisibility(View.GONE);
-            llAssignedEmployee.setVisibility(View.GONE);
-        } else {
-            llAssignedEmployee.setVisibility(View.VISIBLE);
-            llAssignedEmployeeTop.setVisibility(View.VISIBLE);
-            GlobalUtils.showLog(TAG, "get timeline ok");
-            inflateAssignedEmployeeLayout(assignedEmployee, llAssignedEmployeeTop);
-        }
+    public void setAssignedEmployee(Employee assignedEmployee) {
+
     }
 
     @Override
@@ -1028,6 +1024,45 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         Hawk.put(Constants.REFETCH_TICKET, true);
     }
 
+    private void setUpEmployeeRecyclerView() {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        rvAllUsers.setLayoutManager(mLayoutManager);
+
+        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, getContext());
+        rvAllUsers.setAdapter(employeeSearchAdapter);
+
+        if (employeeSearchAdapter != null) {
+            employeeSearchAdapter.setOnItemClickListener((employee) -> {
+
+                selectedEmployeeId = employee.getEmployeeId();
+                etSearchEmployee.setText(employee.getName());
+                etSearchEmployee.setSelection(employee.getName().length());
+                svSearchEmployee.setVisibility(View.GONE);
+            });
+        }
+
+        setSelfDetails();
+        llSelf.setOnClickListener(v -> {
+            Employee self = EmployeeRepo.getInstance().getEmployee();
+            if (self != null) {
+                AssignEmployee selfEmployee = new AssignEmployee();
+                selfEmployee.setPhone(self.getPhone());
+                selfEmployee.setName(self.getName());
+                selfEmployee.setEmployeeImageUrl(self.getEmployeeImageUrl());
+                selfEmployee.setEmployeeId(self.getEmployeeId());
+                selfEmployee.setEmail(self.getEmail());
+                selfEmployee.setCreatedAt(self.getCreatedAt());
+                selfEmployee.setAccountId(self.getAccountId());
+
+                selectedEmployeeId = self.getEmployeeId();
+            }
+
+            etSearchEmployee.setText(selfEmployee.getName());
+            etSearchEmployee.setSelection(selfEmployee.getName().length());
+            svSearchEmployee.setVisibility(View.GONE);
+        });
+    }
+
     @Override
     public void onTicketResolveFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
@@ -1039,6 +1074,41 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity())
                         .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void getEmployeeSuccess() {
+        employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
+        setUpEmployeeRecyclerView();
+
+    }
+
+    @Override
+    public void getEmployeeFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showSnackBar(getActivity(), getActivity().getWindow().getDecorView().getRootView(), msg);
+    }
+
+
+    private void setSelfDetails() {
+        Employee employee = EmployeeRepo.getInstance().getEmployee();
+        if (employee != null) {
+            tvSelf.setText(employee.getName() + " (Me)");
+
+            String profilePicUrl = employee.getEmployeeImageUrl();
+            if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_profile_icon)
+                        .error(R.drawable.ic_profile_icon);
+
+                Glide.with(getActivity()).load(profilePicUrl).apply(options).into(civSelf);
+            }
+        }
     }
 
 }

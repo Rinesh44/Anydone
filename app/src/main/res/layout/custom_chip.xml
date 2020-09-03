@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/dimen_10x1"
+        android:layout_marginStart="@dimen/dimen_2x2"
         android:layout_toEndOf="@+id/civ_employee"
         android:text="random text"
         android:textColor="@color/black" />

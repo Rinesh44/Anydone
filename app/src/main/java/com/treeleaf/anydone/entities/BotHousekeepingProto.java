@@ -169,6 +169,82 @@ public final class BotHousekeepingProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.BotEntityResolvePolicy)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.SynonymValueType}
+   */
+  public enum SynonymValueType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_VALUE_TYPE = 0;</code>
+     */
+    UNKNOWN_VALUE_TYPE(0),
+    /**
+     * <code>REGEX_VALUE_TYPE = 1;</code>
+     */
+    REGEX_VALUE_TYPE(1),
+    /**
+     * <code>PLAIN_VALUE_TYPE = 2;</code>
+     */
+    PLAIN_VALUE_TYPE(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_VALUE_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_VALUE_TYPE_VALUE = 0;
+    /**
+     * <code>REGEX_VALUE_TYPE = 1;</code>
+     */
+    public static final int REGEX_VALUE_TYPE_VALUE = 1;
+    /**
+     * <code>PLAIN_VALUE_TYPE = 2;</code>
+     */
+    public static final int PLAIN_VALUE_TYPE_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static SynonymValueType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SynonymValueType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_VALUE_TYPE;
+        case 1: return REGEX_VALUE_TYPE;
+        case 2: return PLAIN_VALUE_TYPE;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SynonymValueType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SynonymValueType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SynonymValueType>() {
+            public SynonymValueType findValueByNumber(int number) {
+              return SynonymValueType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private SynonymValueType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.SynonymValueType)
+  }
+
   public interface TrainRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TrainRequest)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -194,16 +270,26 @@ public final class BotHousekeepingProto {
         getServiceIdBytes();
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>optional string language = 3;</code>
+     */
+    String getLanguage();
+    /**
+     * <code>optional string language = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     java.util.List<BotIntent>
         getBotIntentsList();
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     BotIntent getBotIntents(int index);
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     int getBotIntentsCount();
   }
@@ -218,6 +304,7 @@ public final class BotHousekeepingProto {
     private TrainRequest() {
       accountId_ = "";
       serviceId_ = "";
+      language_ = "";
       botIntents_ = emptyProtobufList();
     }
     private int bitField0_;
@@ -313,35 +400,81 @@ public final class BotHousekeepingProto {
       serviceId_ = value.toStringUtf8();
     }
 
-    public static final int BOTINTENTS_FIELD_NUMBER = 3;
+    public static final int LANGUAGE_FIELD_NUMBER = 3;
+    private String language_;
+    /**
+     * <code>optional string language = 3;</code>
+     */
+    public String getLanguage() {
+      return language_;
+    }
+    /**
+     * <code>optional string language = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(language_);
+    }
+    /**
+     * <code>optional string language = 3;</code>
+     */
+    private void setLanguage(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      language_ = value;
+    }
+    /**
+     * <code>optional string language = 3;</code>
+     */
+    private void clearLanguage() {
+      
+      language_ = getDefaultInstance().getLanguage();
+    }
+    /**
+     * <code>optional string language = 3;</code>
+     */
+    private void setLanguageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      language_ = value.toStringUtf8();
+    }
+
+    public static final int BOTINTENTS_FIELD_NUMBER = 4;
     private com.google.protobuf.Internal.ProtobufList<BotIntent> botIntents_;
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     public java.util.List<BotIntent> getBotIntentsList() {
       return botIntents_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     public java.util.List<? extends BotIntentOrBuilder>
         getBotIntentsOrBuilderList() {
       return botIntents_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     public int getBotIntentsCount() {
       return botIntents_.size();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     public BotIntent getBotIntents(int index) {
       return botIntents_.get(index);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     public BotIntentOrBuilder getBotIntentsOrBuilder(
         int index) {
@@ -355,7 +488,7 @@ public final class BotHousekeepingProto {
     }
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void setBotIntents(
         int index, BotIntent value) {
@@ -366,7 +499,7 @@ public final class BotHousekeepingProto {
       botIntents_.set(index, value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void setBotIntents(
         int index, BotIntent.Builder builderForValue) {
@@ -374,7 +507,7 @@ public final class BotHousekeepingProto {
       botIntents_.set(index, builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void addBotIntents(BotIntent value) {
       if (value == null) {
@@ -384,7 +517,7 @@ public final class BotHousekeepingProto {
       botIntents_.add(value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void addBotIntents(
         int index, BotIntent value) {
@@ -395,7 +528,7 @@ public final class BotHousekeepingProto {
       botIntents_.add(index, value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void addBotIntents(
         BotIntent.Builder builderForValue) {
@@ -403,7 +536,7 @@ public final class BotHousekeepingProto {
       botIntents_.add(builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void addBotIntents(
         int index, BotIntent.Builder builderForValue) {
@@ -411,7 +544,7 @@ public final class BotHousekeepingProto {
       botIntents_.add(index, builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void addAllBotIntents(
         Iterable<? extends BotIntent> values) {
@@ -420,13 +553,13 @@ public final class BotHousekeepingProto {
           values, botIntents_);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void clearBotIntents() {
       botIntents_ = emptyProtobufList();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
      */
     private void removeBotIntents(int index) {
       ensureBotIntentsIsMutable();
@@ -441,8 +574,11 @@ public final class BotHousekeepingProto {
       if (!serviceId_.isEmpty()) {
         output.writeString(2, getServiceId());
       }
+      if (!language_.isEmpty()) {
+        output.writeString(3, getLanguage());
+      }
       for (int i = 0; i < botIntents_.size(); i++) {
-        output.writeMessage(3, botIntents_.get(i));
+        output.writeMessage(4, botIntents_.get(i));
       }
     }
 
@@ -459,9 +595,13 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getServiceId());
       }
+      if (!language_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getLanguage());
+      }
       for (int i = 0; i < botIntents_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, botIntents_.get(i));
+          .computeMessageSize(4, botIntents_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -630,25 +770,65 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>optional string language = 3;</code>
+       */
+      public String getLanguage() {
+        return instance.getLanguage();
+      }
+      /**
+       * <code>optional string language = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        return instance.getLanguageBytes();
+      }
+      /**
+       * <code>optional string language = 3;</code>
+       */
+      public Builder setLanguage(
+          String value) {
+        copyOnWrite();
+        instance.setLanguage(value);
+        return this;
+      }
+      /**
+       * <code>optional string language = 3;</code>
+       */
+      public Builder clearLanguage() {
+        copyOnWrite();
+        instance.clearLanguage();
+        return this;
+      }
+      /**
+       * <code>optional string language = 3;</code>
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLanguageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public java.util.List<BotIntent> getBotIntentsList() {
         return java.util.Collections.unmodifiableList(
             instance.getBotIntentsList());
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public int getBotIntentsCount() {
         return instance.getBotIntentsCount();
       }/**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public BotIntent getBotIntents(int index) {
         return instance.getBotIntents(index);
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder setBotIntents(
           int index, BotIntent value) {
@@ -657,7 +837,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder setBotIntents(
           int index, BotIntent.Builder builderForValue) {
@@ -666,7 +846,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder addBotIntents(BotIntent value) {
         copyOnWrite();
@@ -674,7 +854,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder addBotIntents(
           int index, BotIntent value) {
@@ -683,7 +863,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder addBotIntents(
           BotIntent.Builder builderForValue) {
@@ -692,7 +872,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder addBotIntents(
           int index, BotIntent.Builder builderForValue) {
@@ -701,7 +881,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder addAllBotIntents(
           Iterable<? extends BotIntent> values) {
@@ -710,7 +890,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder clearBotIntents() {
         copyOnWrite();
@@ -718,7 +898,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 3;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 4;</code>
        */
       public Builder removeBotIntents(int index) {
         copyOnWrite();
@@ -752,6 +932,8 @@ public final class BotHousekeepingProto {
               !other.accountId_.isEmpty(), other.accountId_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
+          language_ = visitor.visitString(!language_.isEmpty(), language_,
+              !other.language_.isEmpty(), other.language_);
           botIntents_= visitor.visitList(botIntents_, other.botIntents_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
@@ -791,6 +973,12 @@ public final class BotHousekeepingProto {
                   break;
                 }
                 case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  language_ = s;
+                  break;
+                }
+                case 34: {
                   if (!botIntents_.isModifiable()) {
                     botIntents_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(botIntents_);
@@ -884,23 +1072,18 @@ public final class BotHousekeepingProto {
     int getTrainingPhrasesCount();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    boolean hasBotResponse();
+    java.util.List<BotResponse>
+        getBotResponseList();
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    BotResponse getBotResponse();
-
+    BotResponse getBotResponse(int index);
     /**
-     * <code>optional string language = 5;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    String getLanguage();
-    /**
-     * <code>optional string language = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getLanguageBytes();
+    int getBotResponseCount();
 
     /**
      * <code>optional .treeleaf.anydone.entities.IntentState intentState = 6;</code>
@@ -997,7 +1180,7 @@ public final class BotHousekeepingProto {
       intentId_ = "";
       intentName_ = "";
       trainingPhrases_ = emptyProtobufList();
-      language_ = "";
+      botResponse_ = emptyProtobufList();
       accountId_ = "";
       serviceId_ = "";
     }
@@ -1215,101 +1398,123 @@ public final class BotHousekeepingProto {
     }
 
     public static final int BOTRESPONSE_FIELD_NUMBER = 4;
-    private BotResponse botResponse_;
+    private com.google.protobuf.Internal.ProtobufList<BotResponse> botResponse_;
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    public boolean hasBotResponse() {
-      return botResponse_ != null;
+    public java.util.List<BotResponse> getBotResponseList() {
+      return botResponse_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    public BotResponse getBotResponse() {
-      return botResponse_ == null ? BotResponse.getDefaultInstance() : botResponse_;
+    public java.util.List<? extends BotResponseOrBuilder>
+        getBotResponseOrBuilderList() {
+      return botResponse_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    private void setBotResponse(BotResponse value) {
+    public int getBotResponseCount() {
+      return botResponse_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     */
+    public BotResponse getBotResponse(int index) {
+      return botResponse_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     */
+    public BotResponseOrBuilder getBotResponseOrBuilder(
+        int index) {
+      return botResponse_.get(index);
+    }
+    private void ensureBotResponseIsMutable() {
+      if (!botResponse_.isModifiable()) {
+        botResponse_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(botResponse_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     */
+    private void setBotResponse(
+        int index, BotResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      botResponse_ = value;
-      
-      }
+      ensureBotResponseIsMutable();
+      botResponse_.set(index, value);
+    }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
     private void setBotResponse(
-        BotResponse.Builder builderForValue) {
-      botResponse_ = builderForValue.build();
-      
+        int index, BotResponse.Builder builderForValue) {
+      ensureBotResponseIsMutable();
+      botResponse_.set(index, builderForValue.build());
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    private void mergeBotResponse(BotResponse value) {
-      if (botResponse_ != null &&
-          botResponse_ != BotResponse.getDefaultInstance()) {
-        botResponse_ =
-          BotResponse.newBuilder(botResponse_).mergeFrom(value).buildPartial();
-      } else {
-        botResponse_ = value;
+    private void addBotResponse(BotResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
       }
-      
+      ensureBotResponseIsMutable();
+      botResponse_.add(value);
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    private void clearBotResponse() {  botResponse_ = null;
-      
-    }
-
-    public static final int LANGUAGE_FIELD_NUMBER = 5;
-    private String language_;
-    /**
-     * <code>optional string language = 5;</code>
-     */
-    public String getLanguage() {
-      return language_;
-    }
-    /**
-     * <code>optional string language = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getLanguageBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(language_);
-    }
-    /**
-     * <code>optional string language = 5;</code>
-     */
-    private void setLanguage(
-        String value) {
+    private void addBotResponse(
+        int index, BotResponse value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      language_ = value;
+        throw new NullPointerException();
+      }
+      ensureBotResponseIsMutable();
+      botResponse_.add(index, value);
     }
     /**
-     * <code>optional string language = 5;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    private void clearLanguage() {
-      
-      language_ = getDefaultInstance().getLanguage();
+    private void addBotResponse(
+        BotResponse.Builder builderForValue) {
+      ensureBotResponseIsMutable();
+      botResponse_.add(builderForValue.build());
     }
     /**
-     * <code>optional string language = 5;</code>
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
      */
-    private void setLanguageBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      language_ = value.toStringUtf8();
+    private void addBotResponse(
+        int index, BotResponse.Builder builderForValue) {
+      ensureBotResponseIsMutable();
+      botResponse_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     */
+    private void addAllBotResponse(
+        Iterable<? extends BotResponse> values) {
+      ensureBotResponseIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, botResponse_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     */
+    private void clearBotResponse() {
+      botResponse_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+     */
+    private void removeBotResponse(int index) {
+      ensureBotResponseIsMutable();
+      botResponse_.remove(index);
     }
 
     public static final int INTENTSTATE_FIELD_NUMBER = 6;
@@ -1561,11 +1766,8 @@ public final class BotHousekeepingProto {
       for (int i = 0; i < trainingPhrases_.size(); i++) {
         output.writeMessage(3, trainingPhrases_.get(i));
       }
-      if (botResponse_ != null) {
-        output.writeMessage(4, getBotResponse());
-      }
-      if (!language_.isEmpty()) {
-        output.writeString(5, getLanguage());
+      for (int i = 0; i < botResponse_.size(); i++) {
+        output.writeMessage(4, botResponse_.get(i));
       }
       if (intentState_ != IntentState.UNKNOWN_STATE.getNumber()) {
         output.writeEnum(6, intentState_);
@@ -1600,13 +1802,9 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, trainingPhrases_.get(i));
       }
-      if (botResponse_ != null) {
+      for (int i = 0; i < botResponse_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getBotResponse());
-      }
-      if (!language_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getLanguage());
+          .computeMessageSize(4, botResponse_.get(i));
       }
       if (intentState_ != IntentState.UNKNOWN_STATE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -1889,87 +2087,99 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public boolean hasBotResponse() {
-        return instance.hasBotResponse();
+      public java.util.List<BotResponse> getBotResponseList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBotResponseList());
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public BotResponse getBotResponse() {
-        return instance.getBotResponse();
+      public int getBotResponseCount() {
+        return instance.getBotResponseCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       */
+      public BotResponse getBotResponse(int index) {
+        return instance.getBotResponse(index);
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
-       */
-      public Builder setBotResponse(BotResponse value) {
-        copyOnWrite();
-        instance.setBotResponse(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
       public Builder setBotResponse(
+          int index, BotResponse value) {
+        copyOnWrite();
+        instance.setBotResponse(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       */
+      public Builder setBotResponse(
+          int index, BotResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotResponse(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       */
+      public Builder addBotResponse(BotResponse value) {
+        copyOnWrite();
+        instance.addBotResponse(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       */
+      public Builder addBotResponse(
+          int index, BotResponse value) {
+        copyOnWrite();
+        instance.addBotResponse(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       */
+      public Builder addBotResponse(
           BotResponse.Builder builderForValue) {
         copyOnWrite();
-        instance.setBotResponse(builderForValue);
+        instance.addBotResponse(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public Builder mergeBotResponse(BotResponse value) {
+      public Builder addBotResponse(
+          int index, BotResponse.Builder builderForValue) {
         copyOnWrite();
-        instance.mergeBotResponse(value);
+        instance.addBotResponse(index, builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public Builder clearBotResponse() {  copyOnWrite();
+      public Builder addAllBotResponse(
+          Iterable<? extends BotResponse> values) {
+        copyOnWrite();
+        instance.addAllBotResponse(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
+       */
+      public Builder clearBotResponse() {
+        copyOnWrite();
         instance.clearBotResponse();
         return this;
       }
-
       /**
-       * <code>optional string language = 5;</code>
+       * <code>repeated .treeleaf.anydone.entities.BotResponse botResponse = 4;</code>
        */
-      public String getLanguage() {
-        return instance.getLanguage();
-      }
-      /**
-       * <code>optional string language = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getLanguageBytes() {
-        return instance.getLanguageBytes();
-      }
-      /**
-       * <code>optional string language = 5;</code>
-       */
-      public Builder setLanguage(
-          String value) {
+      public Builder removeBotResponse(int index) {
         copyOnWrite();
-        instance.setLanguage(value);
-        return this;
-      }
-      /**
-       * <code>optional string language = 5;</code>
-       */
-      public Builder clearLanguage() {
-        copyOnWrite();
-        instance.clearLanguage();
-        return this;
-      }
-      /**
-       * <code>optional string language = 5;</code>
-       */
-      public Builder setLanguageBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setLanguageBytes(value);
+        instance.removeBotResponse(index);
         return this;
       }
 
@@ -2224,6 +2434,7 @@ public final class BotHousekeepingProto {
         }
         case MAKE_IMMUTABLE: {
           trainingPhrases_.makeImmutable();
+          botResponse_.makeImmutable();
           intentParam_.makeImmutable();
           return null;
         }
@@ -2238,9 +2449,7 @@ public final class BotHousekeepingProto {
           intentName_ = visitor.visitString(!intentName_.isEmpty(), intentName_,
               !other.intentName_.isEmpty(), other.intentName_);
           trainingPhrases_= visitor.visitList(trainingPhrases_, other.trainingPhrases_);
-          botResponse_ = visitor.visitMessage(botResponse_, other.botResponse_);
-          language_ = visitor.visitString(!language_.isEmpty(), language_,
-              !other.language_.isEmpty(), other.language_);
+          botResponse_= visitor.visitList(botResponse_, other.botResponse_);
           intentState_ = visitor.visitInt(intentState_ != 0, intentState_,    other.intentState_ != 0, other.intentState_);
           intentParam_ = visitor.visitMap(
               intentParam_, other.internalGetIntentParam());
@@ -2295,22 +2504,12 @@ public final class BotHousekeepingProto {
                   break;
                 }
                 case 34: {
-                  BotResponse.Builder subBuilder = null;
-                  if (botResponse_ != null) {
-                    subBuilder = botResponse_.toBuilder();
+                  if (!botResponse_.isModifiable()) {
+                    botResponse_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(botResponse_);
                   }
-                  botResponse_ = input.readMessage(BotResponse.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(botResponse_);
-                    botResponse_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 42: {
-                  String s = input.readStringRequireUtf8();
-
-                  language_ = s;
+                  botResponse_.add(
+                      input.readMessage(BotResponse.parser(), extensionRegistry));
                   break;
                 }
                 case 48: {
@@ -3699,7 +3898,7 @@ public final class BotHousekeepingProto {
 
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3707,7 +3906,7 @@ public final class BotHousekeepingProto {
     int getResponseEntityCount();
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3722,7 +3921,7 @@ public final class BotHousekeepingProto {
     getResponseEntity();
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3731,7 +3930,7 @@ public final class BotHousekeepingProto {
     getResponseEntityMap();
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3742,7 +3941,7 @@ public final class BotHousekeepingProto {
             ResponseEntity defaultValue);
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3887,7 +4086,7 @@ public final class BotHousekeepingProto {
     }
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3907,7 +4106,7 @@ public final class BotHousekeepingProto {
     }
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3919,7 +4118,7 @@ public final class BotHousekeepingProto {
     }
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3935,7 +4134,7 @@ public final class BotHousekeepingProto {
     }
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -3953,7 +4152,7 @@ public final class BotHousekeepingProto {
     }
     /**
      * <pre>
-     * key = paramName , value = Response ENtity
+     * key = paramName , value = Response Entity
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4168,7 +4367,7 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = Response ENtity
+       * key = paramName , value = Response Entity
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4187,7 +4386,7 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = Response ENtity
+       * key = paramName , value = Response Entity
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4209,7 +4408,7 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = Response ENtity
+       * key = paramName , value = Response Entity
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4220,7 +4419,7 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = Response ENtity
+       * key = paramName , value = Response Entity
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4236,7 +4435,7 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = Response ENtity
+       * key = paramName , value = Response Entity
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4254,7 +4453,7 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = Response ENtity
+       * key = paramName , value = Response Entity
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4270,7 +4469,7 @@ public final class BotHousekeepingProto {
       }
       /**
        * <pre>
-       * key = paramName , value = Response ENtity
+       * key = paramName , value = Response Entity
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
@@ -4937,6 +5136,405 @@ public final class BotHousekeepingProto {
     }
   }
 
+  public interface SynonymOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Synonym)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    java.util.List<String>
+        getSynonymsList();
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    int getSynonymsCount();
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    String getSynonyms(int index);
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getSynonymsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.Synonym}
+   */
+  public  static final class Synonym extends
+      com.google.protobuf.GeneratedMessageLite<
+          Synonym, Synonym.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Synonym)
+      SynonymOrBuilder {
+    private Synonym() {
+      synonyms_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    public static final int SYNONYMS_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<String> synonyms_;
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    public java.util.List<String> getSynonymsList() {
+      return synonyms_;
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    public int getSynonymsCount() {
+      return synonyms_.size();
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    public String getSynonyms(int index) {
+      return synonyms_.get(index);
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSynonymsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          synonyms_.get(index));
+    }
+    private void ensureSynonymsIsMutable() {
+      if (!synonyms_.isModifiable()) {
+        synonyms_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(synonyms_);
+       }
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    private void setSynonyms(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSynonymsIsMutable();
+      synonyms_.set(index, value);
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    private void addSynonyms(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSynonymsIsMutable();
+      synonyms_.add(value);
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    private void addAllSynonyms(
+        Iterable<String> values) {
+      ensureSynonymsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, synonyms_);
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    private void clearSynonyms() {
+      synonyms_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string synonyms = 1;</code>
+     */
+    private void addSynonymsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureSynonymsIsMutable();
+      synonyms_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < synonyms_.size(); i++) {
+        output.writeString(1, synonyms_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < synonyms_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(synonyms_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getSynonymsList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static Synonym parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Synonym parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Synonym parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Synonym parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Synonym parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Synonym parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Synonym parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static Synonym parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Synonym parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Synonym parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(Synonym prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.Synonym}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          Synonym, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Synonym)
+        SynonymOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.Synonym.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public java.util.List<String>
+          getSynonymsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getSynonymsList());
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public int getSynonymsCount() {
+        return instance.getSynonymsCount();
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public String getSynonyms(int index) {
+        return instance.getSynonyms(index);
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSynonymsBytes(int index) {
+        return instance.getSynonymsBytes(index);
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public Builder setSynonyms(
+          int index, String value) {
+        copyOnWrite();
+        instance.setSynonyms(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public Builder addSynonyms(
+          String value) {
+        copyOnWrite();
+        instance.addSynonyms(value);
+        return this;
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public Builder addAllSynonyms(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllSynonyms(values);
+        return this;
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public Builder clearSynonyms() {
+        copyOnWrite();
+        instance.clearSynonyms();
+        return this;
+      }
+      /**
+       * <code>repeated string synonyms = 1;</code>
+       */
+      public Builder addSynonymsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addSynonymsBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Synonym)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new Synonym();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          synonyms_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          Synonym other = (Synonym) arg1;
+          synonyms_= visitor.visitList(synonyms_, other.synonyms_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+                  if (!synonyms_.isModifiable()) {
+                    synonyms_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(synonyms_);
+                  }
+                  synonyms_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (Synonym.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Synonym)
+    private static final Synonym DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Synonym();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static Synonym getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Synonym> PARSER;
+
+    public static com.google.protobuf.Parser<Synonym> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface BotEntityOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.BotEntity)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -4969,6 +5567,88 @@ public final class BotHousekeepingProto {
      * <code>optional .treeleaf.anydone.entities.ServiceAttributeType entityDataType = 3;</code>
      */
     ServiceProto.ServiceAttributeType getEntityDataType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+     */
+    int getSynonymValueTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+     */
+    SynonymValueType getSynonymValueType();
+
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+    int getSynonymsCount();
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+    boolean containsSynonyms(
+            String key);
+    /**
+     * Use {@link #getSynonymsMap()} instead.
+     */
+    @Deprecated
+    java.util.Map<String, Synonym>
+    getSynonyms();
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+    java.util.Map<String, Synonym>
+    getSynonymsMap();
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+
+    Synonym getSynonymsOrDefault(
+            String key,
+            Synonym defaultValue);
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+
+    Synonym getSynonymsOrThrow(
+            String key);
+
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    java.util.List<String>
+        getRegexList();
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    int getRegexCount();
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    String getRegex(int index);
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getRegexBytes(int index);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotEntity}
@@ -4981,7 +5661,9 @@ public final class BotHousekeepingProto {
     private BotEntity() {
       entityId_ = "";
       entityName_ = "";
+      regex_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
+    private int bitField0_;
     public static final int ENTITYID_FIELD_NUMBER = 1;
     private String entityId_;
     /**
@@ -5113,6 +5795,236 @@ public final class BotHousekeepingProto {
       entityDataType_ = 0;
     }
 
+    public static final int SYNONYMVALUETYPE_FIELD_NUMBER = 4;
+    private int synonymValueType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+     */
+    public int getSynonymValueTypeValue() {
+      return synonymValueType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+     */
+    public SynonymValueType getSynonymValueType() {
+      SynonymValueType result = SynonymValueType.forNumber(synonymValueType_);
+      return result == null ? SynonymValueType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+     */
+    private void setSynonymValueTypeValue(int value) {
+        synonymValueType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+     */
+    private void setSynonymValueType(SynonymValueType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      synonymValueType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+     */
+    private void clearSynonymValueType() {
+      
+      synonymValueType_ = 0;
+    }
+
+    public static final int SYNONYMS_FIELD_NUMBER = 5;
+    private static final class SynonymsDefaultEntryHolder {
+      static final com.google.protobuf.MapEntryLite<
+          String, Synonym> defaultEntry =
+              com.google.protobuf.MapEntryLite
+              .<String, Synonym>newDefaultInstance(
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  Synonym.getDefaultInstance());
+    }
+    private com.google.protobuf.MapFieldLite<
+        String, Synonym> synonyms_ =
+            com.google.protobuf.MapFieldLite.emptyMapField();
+    private com.google.protobuf.MapFieldLite<String, Synonym>
+    internalGetSynonyms() {
+      return synonyms_;
+    }
+    private com.google.protobuf.MapFieldLite<String, Synonym>
+    internalGetMutableSynonyms() {
+      if (!synonyms_.isMutable()) {
+        synonyms_ = synonyms_.mutableCopy();
+      }
+      return synonyms_;
+    }
+
+    public int getSynonymsCount() {
+      return internalGetSynonyms().size();
+    }
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+
+    public boolean containsSynonyms(
+        String key) {
+      if (key == null) { throw new NullPointerException(); }
+      return internalGetSynonyms().containsKey(key);
+    }
+    /**
+     * Use {@link #getSynonymsMap()} instead.
+     */
+    @Deprecated
+    public java.util.Map<String, Synonym> getSynonyms() {
+      return getSynonymsMap();
+    }
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+
+    public java.util.Map<String, Synonym> getSynonymsMap() {
+      return java.util.Collections.unmodifiableMap(
+          internalGetSynonyms());
+    }
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+
+    public Synonym getSynonymsOrDefault(
+        String key,
+        Synonym defaultValue) {
+      if (key == null) { throw new NullPointerException(); }
+      java.util.Map<String, Synonym> map =
+          internalGetSynonyms();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+
+    public Synonym getSynonymsOrThrow(
+        String key) {
+      if (key == null) { throw new NullPointerException(); }
+      java.util.Map<String, Synonym> map =
+          internalGetSynonyms();
+      if (!map.containsKey(key)) {
+        throw new IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    /**
+     * <pre>
+     * Key= Reference value, value = Synonym
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+     */
+    private java.util.Map<String, Synonym>
+    getMutableSynonymsMap() {
+      return internalGetMutableSynonyms();
+    }
+
+    public static final int REGEX_FIELD_NUMBER = 6;
+    private com.google.protobuf.Internal.ProtobufList<String> regex_;
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    public java.util.List<String> getRegexList() {
+      return regex_;
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    public int getRegexCount() {
+      return regex_.size();
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    public String getRegex(int index) {
+      return regex_.get(index);
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRegexBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          regex_.get(index));
+    }
+    private void ensureRegexIsMutable() {
+      if (!regex_.isModifiable()) {
+        regex_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(regex_);
+       }
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    private void setRegex(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRegexIsMutable();
+      regex_.set(index, value);
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    private void addRegex(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRegexIsMutable();
+      regex_.add(value);
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    private void addAllRegex(
+        Iterable<String> values) {
+      ensureRegexIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, regex_);
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    private void clearRegex() {
+      regex_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string regex = 6;</code>
+     */
+    private void addRegexBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureRegexIsMutable();
+      regex_.add(value.toStringUtf8());
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!entityId_.isEmpty()) {
@@ -5123,6 +6035,17 @@ public final class BotHousekeepingProto {
       }
       if (entityDataType_ != ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
         output.writeEnum(3, entityDataType_);
+      }
+      if (synonymValueType_ != SynonymValueType.UNKNOWN_VALUE_TYPE.getNumber()) {
+        output.writeEnum(4, synonymValueType_);
+      }
+      for (java.util.Map.Entry<String, Synonym> entry
+           : internalGetSynonyms().entrySet()) {
+        SynonymsDefaultEntryHolder.defaultEntry.serializeTo(
+            output, 5, entry.getKey(), entry.getValue());
+      }
+      for (int i = 0; i < regex_.size(); i++) {
+        output.writeString(6, regex_.get(i));
       }
     }
 
@@ -5142,6 +6065,24 @@ public final class BotHousekeepingProto {
       if (entityDataType_ != ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, entityDataType_);
+      }
+      if (synonymValueType_ != SynonymValueType.UNKNOWN_VALUE_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, synonymValueType_);
+      }
+      for (java.util.Map.Entry<String, Synonym> entry
+           : internalGetSynonyms().entrySet()) {
+        size += SynonymsDefaultEntryHolder.defaultEntry.computeMessageSize(
+          5, entry.getKey(), entry.getValue());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < regex_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(regex_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getRegexList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -5346,6 +6287,235 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+       */
+      public int getSynonymValueTypeValue() {
+        return instance.getSynonymValueTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+       */
+      public Builder setSynonymValueTypeValue(int value) {
+        copyOnWrite();
+        instance.setSynonymValueTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+       */
+      public SynonymValueType getSynonymValueType() {
+        return instance.getSynonymValueType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+       */
+      public Builder setSynonymValueType(SynonymValueType value) {
+        copyOnWrite();
+        instance.setSynonymValueType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SynonymValueType synonymValueType = 4;</code>
+       */
+      public Builder clearSynonymValueType() {
+        copyOnWrite();
+        instance.clearSynonymValueType();
+        return this;
+      }
+
+
+      public int getSynonymsCount() {
+        return instance.getSynonymsMap().size();
+      }
+      /**
+       * <pre>
+       * Key= Reference value, value = Synonym
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+       */
+
+      public boolean containsSynonyms(
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
+        return instance.getSynonymsMap().containsKey(key);
+      }
+
+      public Builder clearSynonyms() {
+        copyOnWrite();
+        instance.getMutableSynonymsMap().clear();
+        return this;
+      }
+      /**
+       * <pre>
+       * Key= Reference value, value = Synonym
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+       */
+
+      public Builder removeSynonyms(
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableSynonymsMap().remove(key);
+        return this;
+      }
+      /**
+       * Use {@link #getSynonymsMap()} instead.
+       */
+      @Deprecated
+      public java.util.Map<String, Synonym> getSynonyms() {
+        return getSynonymsMap();
+      }
+      /**
+       * <pre>
+       * Key= Reference value, value = Synonym
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+       */
+      public java.util.Map<String, Synonym> getSynonymsMap() {
+        return java.util.Collections.unmodifiableMap(
+            instance.getSynonymsMap());
+      }
+      /**
+       * <pre>
+       * Key= Reference value, value = Synonym
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+       */
+
+      public Synonym getSynonymsOrDefault(
+          String key,
+          Synonym defaultValue) {
+        if (key == null) { throw new NullPointerException(); }
+        java.util.Map<String, Synonym> map =
+            instance.getSynonymsMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <pre>
+       * Key= Reference value, value = Synonym
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+       */
+
+      public Synonym getSynonymsOrThrow(
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
+        java.util.Map<String, Synonym> map =
+            instance.getSynonymsMap();
+        if (!map.containsKey(key)) {
+          throw new IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <pre>
+       * Key= Reference value, value = Synonym
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+       */
+      public Builder putSynonyms(
+          String key,
+          Synonym value) {
+        if (key == null) { throw new NullPointerException(); }
+        if (value == null) { throw new NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableSynonymsMap().put(key, value);
+        return this;
+      }
+      /**
+       * <pre>
+       * Key= Reference value, value = Synonym
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.Synonym&gt; synonyms = 5;</code>
+       */
+      public Builder putAllSynonyms(
+          java.util.Map<String, Synonym> values) {
+        copyOnWrite();
+        instance.getMutableSynonymsMap().putAll(values);
+        return this;
+      }
+
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public java.util.List<String>
+          getRegexList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRegexList());
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public int getRegexCount() {
+        return instance.getRegexCount();
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public String getRegex(int index) {
+        return instance.getRegex(index);
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRegexBytes(int index) {
+        return instance.getRegexBytes(index);
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public Builder setRegex(
+          int index, String value) {
+        copyOnWrite();
+        instance.setRegex(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public Builder addRegex(
+          String value) {
+        copyOnWrite();
+        instance.addRegex(value);
+        return this;
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public Builder addAllRegex(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllRegex(values);
+        return this;
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public Builder clearRegex() {
+        copyOnWrite();
+        instance.clearRegex();
+        return this;
+      }
+      /**
+       * <code>repeated string regex = 6;</code>
+       */
+      public Builder addRegexBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addRegexBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotEntity)
     }
     protected final Object dynamicMethod(
@@ -5359,6 +6529,8 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          synonyms_.makeImmutable();
+          regex_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -5372,8 +6544,13 @@ public final class BotHousekeepingProto {
           entityName_ = visitor.visitString(!entityName_.isEmpty(), entityName_,
               !other.entityName_.isEmpty(), other.entityName_);
           entityDataType_ = visitor.visitInt(entityDataType_ != 0, entityDataType_,    other.entityDataType_ != 0, other.entityDataType_);
+          synonymValueType_ = visitor.visitInt(synonymValueType_ != 0, synonymValueType_,    other.synonymValueType_ != 0, other.synonymValueType_);
+          synonyms_ = visitor.visitMap(
+              synonyms_, other.internalGetSynonyms());
+          regex_= visitor.visitList(regex_, other.regex_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -5412,6 +6589,27 @@ public final class BotHousekeepingProto {
                   int rawValue = input.readEnum();
 
                   entityDataType_ = rawValue;
+                  break;
+                }
+                case 32: {
+                  int rawValue = input.readEnum();
+
+                  synonymValueType_ = rawValue;
+                  break;
+                }
+                case 42: {
+                  if (!synonyms_.isMutable()) {
+                    synonyms_ = synonyms_.mutableCopy();
+                  }
+                  SynonymsDefaultEntryHolder.defaultEntry.parseInto(synonyms_, input, extensionRegistry);  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+                  if (!regex_.isModifiable()) {
+                    regex_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(regex_);
+                  }
+                  regex_.add(s);
                   break;
                 }
               }
@@ -5509,55 +6707,55 @@ public final class BotHousekeepingProto {
     BotEntity getBotEntity();
 
     /**
-     * <code>optional string possibleValue = 6;</code>
+     * <code>optional string defaultValue = 6;</code>
+     */
+    String getDefaultValue();
+    /**
+     * <code>optional string defaultValue = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getDefaultValueBytes();
+
+    /**
+     * <code>optional string possibleValue = 7;</code>
      */
     String getPossibleValue();
     /**
-     * <code>optional string possibleValue = 6;</code>
+     * <code>optional string possibleValue = 7;</code>
      */
     com.google.protobuf.ByteString
         getPossibleValueBytes();
 
     /**
-     * <code>optional string validationRule = 7;</code>
-     */
-    String getValidationRule();
-    /**
-     * <code>optional string validationRule = 7;</code>
-     */
-    com.google.protobuf.ByteString
-        getValidationRuleBytes();
-
-    /**
-     * <code>optional bool required = 8;</code>
+     * <code>optional bool required = 9;</code>
      */
     boolean getRequired();
 
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     java.util.List<String>
         getPromptsList();
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     int getPromptsCount();
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     String getPrompts(int index);
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     com.google.protobuf.ByteString
         getPromptsBytes(int index);
 
     /**
-     * <code>optional string resolvedValue = 10;</code>
+     * <code>optional string resolvedValue = 11;</code>
      */
     String getResolvedValue();
     /**
-     * <code>optional string resolvedValue = 10;</code>
+     * <code>optional string resolvedValue = 11;</code>
      */
     com.google.protobuf.ByteString
         getResolvedValueBytes();
@@ -5574,8 +6772,8 @@ public final class BotHousekeepingProto {
       intentParamId_ = "";
       iconUrl_ = "";
       paramName_ = "";
+      defaultValue_ = "";
       possibleValue_ = "";
-      validationRule_ = "";
       prompts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       resolvedValue_ = "";
     }
@@ -5793,23 +6991,69 @@ public final class BotHousekeepingProto {
       
     }
 
-    public static final int POSSIBLEVALUE_FIELD_NUMBER = 6;
+    public static final int DEFAULTVALUE_FIELD_NUMBER = 6;
+    private String defaultValue_;
+    /**
+     * <code>optional string defaultValue = 6;</code>
+     */
+    public String getDefaultValue() {
+      return defaultValue_;
+    }
+    /**
+     * <code>optional string defaultValue = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDefaultValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(defaultValue_);
+    }
+    /**
+     * <code>optional string defaultValue = 6;</code>
+     */
+    private void setDefaultValue(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      defaultValue_ = value;
+    }
+    /**
+     * <code>optional string defaultValue = 6;</code>
+     */
+    private void clearDefaultValue() {
+      
+      defaultValue_ = getDefaultInstance().getDefaultValue();
+    }
+    /**
+     * <code>optional string defaultValue = 6;</code>
+     */
+    private void setDefaultValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      defaultValue_ = value.toStringUtf8();
+    }
+
+    public static final int POSSIBLEVALUE_FIELD_NUMBER = 7;
     private String possibleValue_;
     /**
-     * <code>optional string possibleValue = 6;</code>
+     * <code>optional string possibleValue = 7;</code>
      */
     public String getPossibleValue() {
       return possibleValue_;
     }
     /**
-     * <code>optional string possibleValue = 6;</code>
+     * <code>optional string possibleValue = 7;</code>
      */
     public com.google.protobuf.ByteString
         getPossibleValueBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(possibleValue_);
     }
     /**
-     * <code>optional string possibleValue = 6;</code>
+     * <code>optional string possibleValue = 7;</code>
      */
     private void setPossibleValue(
         String value) {
@@ -5820,14 +7064,14 @@ public final class BotHousekeepingProto {
       possibleValue_ = value;
     }
     /**
-     * <code>optional string possibleValue = 6;</code>
+     * <code>optional string possibleValue = 7;</code>
      */
     private void clearPossibleValue() {
       
       possibleValue_ = getDefaultInstance().getPossibleValue();
     }
     /**
-     * <code>optional string possibleValue = 6;</code>
+     * <code>optional string possibleValue = 7;</code>
      */
     private void setPossibleValueBytes(
         com.google.protobuf.ByteString value) {
@@ -5839,97 +7083,51 @@ public final class BotHousekeepingProto {
       possibleValue_ = value.toStringUtf8();
     }
 
-    public static final int VALIDATIONRULE_FIELD_NUMBER = 7;
-    private String validationRule_;
-    /**
-     * <code>optional string validationRule = 7;</code>
-     */
-    public String getValidationRule() {
-      return validationRule_;
-    }
-    /**
-     * <code>optional string validationRule = 7;</code>
-     */
-    public com.google.protobuf.ByteString
-        getValidationRuleBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(validationRule_);
-    }
-    /**
-     * <code>optional string validationRule = 7;</code>
-     */
-    private void setValidationRule(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      validationRule_ = value;
-    }
-    /**
-     * <code>optional string validationRule = 7;</code>
-     */
-    private void clearValidationRule() {
-      
-      validationRule_ = getDefaultInstance().getValidationRule();
-    }
-    /**
-     * <code>optional string validationRule = 7;</code>
-     */
-    private void setValidationRuleBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      validationRule_ = value.toStringUtf8();
-    }
-
-    public static final int REQUIRED_FIELD_NUMBER = 8;
+    public static final int REQUIRED_FIELD_NUMBER = 9;
     private boolean required_;
     /**
-     * <code>optional bool required = 8;</code>
+     * <code>optional bool required = 9;</code>
      */
     public boolean getRequired() {
       return required_;
     }
     /**
-     * <code>optional bool required = 8;</code>
+     * <code>optional bool required = 9;</code>
      */
     private void setRequired(boolean value) {
       
       required_ = value;
     }
     /**
-     * <code>optional bool required = 8;</code>
+     * <code>optional bool required = 9;</code>
      */
     private void clearRequired() {
       
       required_ = false;
     }
 
-    public static final int PROMPTS_FIELD_NUMBER = 9;
+    public static final int PROMPTS_FIELD_NUMBER = 10;
     private com.google.protobuf.Internal.ProtobufList<String> prompts_;
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     public java.util.List<String> getPromptsList() {
       return prompts_;
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     public int getPromptsCount() {
       return prompts_.size();
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     public String getPrompts(int index) {
       return prompts_.get(index);
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     public com.google.protobuf.ByteString
         getPromptsBytes(int index) {
@@ -5943,7 +7141,7 @@ public final class BotHousekeepingProto {
        }
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     private void setPrompts(
         int index, String value) {
@@ -5954,7 +7152,7 @@ public final class BotHousekeepingProto {
       prompts_.set(index, value);
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     private void addPrompts(
         String value) {
@@ -5965,7 +7163,7 @@ public final class BotHousekeepingProto {
       prompts_.add(value);
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     private void addAllPrompts(
         Iterable<String> values) {
@@ -5974,13 +7172,13 @@ public final class BotHousekeepingProto {
           values, prompts_);
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     private void clearPrompts() {
       prompts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     /**
-     * <code>repeated string prompts = 9;</code>
+     * <code>repeated string prompts = 10;</code>
      */
     private void addPromptsBytes(
         com.google.protobuf.ByteString value) {
@@ -5992,23 +7190,23 @@ public final class BotHousekeepingProto {
       prompts_.add(value.toStringUtf8());
     }
 
-    public static final int RESOLVEDVALUE_FIELD_NUMBER = 10;
+    public static final int RESOLVEDVALUE_FIELD_NUMBER = 11;
     private String resolvedValue_;
     /**
-     * <code>optional string resolvedValue = 10;</code>
+     * <code>optional string resolvedValue = 11;</code>
      */
     public String getResolvedValue() {
       return resolvedValue_;
     }
     /**
-     * <code>optional string resolvedValue = 10;</code>
+     * <code>optional string resolvedValue = 11;</code>
      */
     public com.google.protobuf.ByteString
         getResolvedValueBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(resolvedValue_);
     }
     /**
-     * <code>optional string resolvedValue = 10;</code>
+     * <code>optional string resolvedValue = 11;</code>
      */
     private void setResolvedValue(
         String value) {
@@ -6019,14 +7217,14 @@ public final class BotHousekeepingProto {
       resolvedValue_ = value;
     }
     /**
-     * <code>optional string resolvedValue = 10;</code>
+     * <code>optional string resolvedValue = 11;</code>
      */
     private void clearResolvedValue() {
       
       resolvedValue_ = getDefaultInstance().getResolvedValue();
     }
     /**
-     * <code>optional string resolvedValue = 10;</code>
+     * <code>optional string resolvedValue = 11;</code>
      */
     private void setResolvedValueBytes(
         com.google.protobuf.ByteString value) {
@@ -6055,20 +7253,20 @@ public final class BotHousekeepingProto {
       if (botEntity_ != null) {
         output.writeMessage(5, getBotEntity());
       }
-      if (!possibleValue_.isEmpty()) {
-        output.writeString(6, getPossibleValue());
+      if (!defaultValue_.isEmpty()) {
+        output.writeString(6, getDefaultValue());
       }
-      if (!validationRule_.isEmpty()) {
-        output.writeString(7, getValidationRule());
+      if (!possibleValue_.isEmpty()) {
+        output.writeString(7, getPossibleValue());
       }
       if (required_ != false) {
-        output.writeBool(8, required_);
+        output.writeBool(9, required_);
       }
       for (int i = 0; i < prompts_.size(); i++) {
-        output.writeString(9, prompts_.get(i));
+        output.writeString(10, prompts_.get(i));
       }
       if (!resolvedValue_.isEmpty()) {
-        output.writeString(10, getResolvedValue());
+        output.writeString(11, getResolvedValue());
       }
     }
 
@@ -6097,17 +7295,17 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getBotEntity());
       }
+      if (!defaultValue_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getDefaultValue());
+      }
       if (!possibleValue_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(6, getPossibleValue());
-      }
-      if (!validationRule_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(7, getValidationRule());
+          .computeStringSize(7, getPossibleValue());
       }
       if (required_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(8, required_);
+          .computeBoolSize(9, required_);
       }
       {
         int dataSize = 0;
@@ -6120,7 +7318,7 @@ public final class BotHousekeepingProto {
       }
       if (!resolvedValue_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(10, getResolvedValue());
+          .computeStringSize(11, getResolvedValue());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6397,20 +7595,60 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>optional string possibleValue = 6;</code>
+       * <code>optional string defaultValue = 6;</code>
+       */
+      public String getDefaultValue() {
+        return instance.getDefaultValue();
+      }
+      /**
+       * <code>optional string defaultValue = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDefaultValueBytes() {
+        return instance.getDefaultValueBytes();
+      }
+      /**
+       * <code>optional string defaultValue = 6;</code>
+       */
+      public Builder setDefaultValue(
+          String value) {
+        copyOnWrite();
+        instance.setDefaultValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string defaultValue = 6;</code>
+       */
+      public Builder clearDefaultValue() {
+        copyOnWrite();
+        instance.clearDefaultValue();
+        return this;
+      }
+      /**
+       * <code>optional string defaultValue = 6;</code>
+       */
+      public Builder setDefaultValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDefaultValueBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string possibleValue = 7;</code>
        */
       public String getPossibleValue() {
         return instance.getPossibleValue();
       }
       /**
-       * <code>optional string possibleValue = 6;</code>
+       * <code>optional string possibleValue = 7;</code>
        */
       public com.google.protobuf.ByteString
           getPossibleValueBytes() {
         return instance.getPossibleValueBytes();
       }
       /**
-       * <code>optional string possibleValue = 6;</code>
+       * <code>optional string possibleValue = 7;</code>
        */
       public Builder setPossibleValue(
           String value) {
@@ -6419,7 +7657,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>optional string possibleValue = 6;</code>
+       * <code>optional string possibleValue = 7;</code>
        */
       public Builder clearPossibleValue() {
         copyOnWrite();
@@ -6427,7 +7665,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>optional string possibleValue = 6;</code>
+       * <code>optional string possibleValue = 7;</code>
        */
       public Builder setPossibleValueBytes(
           com.google.protobuf.ByteString value) {
@@ -6437,53 +7675,13 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>optional string validationRule = 7;</code>
-       */
-      public String getValidationRule() {
-        return instance.getValidationRule();
-      }
-      /**
-       * <code>optional string validationRule = 7;</code>
-       */
-      public com.google.protobuf.ByteString
-          getValidationRuleBytes() {
-        return instance.getValidationRuleBytes();
-      }
-      /**
-       * <code>optional string validationRule = 7;</code>
-       */
-      public Builder setValidationRule(
-          String value) {
-        copyOnWrite();
-        instance.setValidationRule(value);
-        return this;
-      }
-      /**
-       * <code>optional string validationRule = 7;</code>
-       */
-      public Builder clearValidationRule() {
-        copyOnWrite();
-        instance.clearValidationRule();
-        return this;
-      }
-      /**
-       * <code>optional string validationRule = 7;</code>
-       */
-      public Builder setValidationRuleBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setValidationRuleBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional bool required = 8;</code>
+       * <code>optional bool required = 9;</code>
        */
       public boolean getRequired() {
         return instance.getRequired();
       }
       /**
-       * <code>optional bool required = 8;</code>
+       * <code>optional bool required = 9;</code>
        */
       public Builder setRequired(boolean value) {
         copyOnWrite();
@@ -6491,7 +7689,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>optional bool required = 8;</code>
+       * <code>optional bool required = 9;</code>
        */
       public Builder clearRequired() {
         copyOnWrite();
@@ -6500,7 +7698,7 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public java.util.List<String>
           getPromptsList() {
@@ -6508,26 +7706,26 @@ public final class BotHousekeepingProto {
             instance.getPromptsList());
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public int getPromptsCount() {
         return instance.getPromptsCount();
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public String getPrompts(int index) {
         return instance.getPrompts(index);
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public com.google.protobuf.ByteString
           getPromptsBytes(int index) {
         return instance.getPromptsBytes(index);
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public Builder setPrompts(
           int index, String value) {
@@ -6536,7 +7734,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public Builder addPrompts(
           String value) {
@@ -6545,7 +7743,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public Builder addAllPrompts(
           Iterable<String> values) {
@@ -6554,7 +7752,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public Builder clearPrompts() {
         copyOnWrite();
@@ -6562,7 +7760,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>repeated string prompts = 9;</code>
+       * <code>repeated string prompts = 10;</code>
        */
       public Builder addPromptsBytes(
           com.google.protobuf.ByteString value) {
@@ -6572,20 +7770,20 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>optional string resolvedValue = 10;</code>
+       * <code>optional string resolvedValue = 11;</code>
        */
       public String getResolvedValue() {
         return instance.getResolvedValue();
       }
       /**
-       * <code>optional string resolvedValue = 10;</code>
+       * <code>optional string resolvedValue = 11;</code>
        */
       public com.google.protobuf.ByteString
           getResolvedValueBytes() {
         return instance.getResolvedValueBytes();
       }
       /**
-       * <code>optional string resolvedValue = 10;</code>
+       * <code>optional string resolvedValue = 11;</code>
        */
       public Builder setResolvedValue(
           String value) {
@@ -6594,7 +7792,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>optional string resolvedValue = 10;</code>
+       * <code>optional string resolvedValue = 11;</code>
        */
       public Builder clearResolvedValue() {
         copyOnWrite();
@@ -6602,7 +7800,7 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
-       * <code>optional string resolvedValue = 10;</code>
+       * <code>optional string resolvedValue = 11;</code>
        */
       public Builder setResolvedValueBytes(
           com.google.protobuf.ByteString value) {
@@ -6642,10 +7840,10 @@ public final class BotHousekeepingProto {
           paramName_ = visitor.visitString(!paramName_.isEmpty(), paramName_,
               !other.paramName_.isEmpty(), other.paramName_);
           botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
+          defaultValue_ = visitor.visitString(!defaultValue_.isEmpty(), defaultValue_,
+              !other.defaultValue_.isEmpty(), other.defaultValue_);
           possibleValue_ = visitor.visitString(!possibleValue_.isEmpty(), possibleValue_,
               !other.possibleValue_.isEmpty(), other.possibleValue_);
-          validationRule_ = visitor.visitString(!validationRule_.isEmpty(), validationRule_,
-              !other.validationRule_.isEmpty(), other.validationRule_);
           required_ = visitor.visitBoolean(required_ != false, required_,
               other.required_ != false, other.required_);
           prompts_= visitor.visitList(prompts_, other.prompts_);
@@ -6715,21 +7913,21 @@ public final class BotHousekeepingProto {
                 case 50: {
                   String s = input.readStringRequireUtf8();
 
-                  possibleValue_ = s;
+                  defaultValue_ = s;
                   break;
                 }
                 case 58: {
                   String s = input.readStringRequireUtf8();
 
-                  validationRule_ = s;
+                  possibleValue_ = s;
                   break;
                 }
-                case 64: {
+                case 72: {
 
                   required_ = input.readBool();
                   break;
                 }
-                case 74: {
+                case 82: {
                   String s = input.readStringRequireUtf8();
                   if (!prompts_.isModifiable()) {
                     prompts_ =
@@ -6738,7 +7936,7 @@ public final class BotHousekeepingProto {
                   prompts_.add(s);
                   break;
                 }
-                case 82: {
+                case 90: {
                   String s = input.readStringRequireUtf8();
 
                   resolvedValue_ = s;

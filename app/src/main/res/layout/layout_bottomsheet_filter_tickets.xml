@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/top_round_corners"
     android:clickable="true"
     android:elevation="@dimen/dimens_2x"
@@ -74,10 +74,49 @@
             android:background="@color/grey" />
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x2"
+        android:text="Priority"
+        android:textColor="@color/black" />
+
+    <RelativeLayout
+        android:id="@+id/rl_priority_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_priority"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x4"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:background="@drawable/pinentry_bg"
+            android:elevation="@dimen/dimen_2x1" />
+
+        <TextView
+            android:id="@+id/tv_priority_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/dimen_10x2"
+            android:text="Select priority"
+            android:textColor="?android:textColorHint" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/dimens_2x"
+            android:src="@drawable/ic_dropdown" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10x2"
+        android:layout_marginTop="@dimen/dimen_10x1"
         android:orientation="horizontal"
         android:weightSum="2">
 

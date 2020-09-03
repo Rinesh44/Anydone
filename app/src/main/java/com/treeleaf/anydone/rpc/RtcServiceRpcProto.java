@@ -142,6 +142,15 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 15;</code>
      */
     com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq getDeleteMessageReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    boolean hasRtcMessage();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseRequest}
@@ -841,6 +850,58 @@ public final class RtcServiceRpcProto {
       
     }
 
+    public static final int RTCMESSAGE_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.RtcProto.RtcMessage rtcMessage_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    public boolean hasRtcMessage() {
+      return rtcMessage_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
+      return rtcMessage_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : rtcMessage_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      rtcMessage_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void setRtcMessage(
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+      rtcMessage_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (rtcMessage_ != null &&
+          rtcMessage_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
+        rtcMessage_ =
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
+      } else {
+        rtcMessage_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+     */
+    private void clearRtcMessage() {  rtcMessage_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -887,6 +948,9 @@ public final class RtcServiceRpcProto {
       }
       if (deleteMessageReq_ != null) {
         output.writeMessage(15, getDeleteMessageReq());
+      }
+      if (rtcMessage_ != null) {
+        output.writeMessage(16, getRtcMessage());
       }
     }
 
@@ -959,6 +1023,10 @@ public final class RtcServiceRpcProto {
       if (deleteMessageReq_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getDeleteMessageReq());
+      }
+      if (rtcMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getRtcMessage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1650,6 +1718,51 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public boolean hasRtcMessage() {
+        return instance.hasRtcMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
+        return instance.getRtcMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.setRtcMessage(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder setRtcMessage(
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.setRtcMessage(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.mergeRtcMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 16;</code>
+       */
+      public Builder clearRtcMessage() {  copyOnWrite();
+        instance.clearRtcMessage();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1693,6 +1806,7 @@ public final class RtcServiceRpcProto {
           videoRoomPublishReq_ = visitor.visitMessage(videoRoomPublishReq_, other.videoRoomPublishReq_);
           getMessageDetail_ = visitor.visitMessage(getMessageDetail_, other.getMessageDetail_);
           deleteMessageReq_ = visitor.visitMessage(deleteMessageReq_, other.deleteMessageReq_);
+          rtcMessage_ = visitor.visitMessage(rtcMessage_, other.rtcMessage_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1859,6 +1973,19 @@ public final class RtcServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(deleteMessageReq_);
                     deleteMessageReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
+                  if (rtcMessage_ != null) {
+                    subBuilder = rtcMessage_.toBuilder();
+                  }
+                  rtcMessage_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(rtcMessage_);
+                    rtcMessage_ = subBuilder.buildPartial();
                   }
 
                   break;

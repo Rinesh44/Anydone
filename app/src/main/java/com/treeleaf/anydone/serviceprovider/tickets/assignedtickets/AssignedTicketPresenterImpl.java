@@ -8,6 +8,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 
@@ -37,8 +38,10 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
         String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        GlobalUtils.showLog(TAG, "service id check: " + serviceId);
 
-        getTicketsObservable = assignedTicketRepository.getAssignedTickets(token, from, to, page);
+        getTicketsObservable = assignedTicketRepository.getAssignedTickets(token, serviceId, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

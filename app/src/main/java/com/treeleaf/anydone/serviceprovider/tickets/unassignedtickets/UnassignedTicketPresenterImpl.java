@@ -5,13 +5,17 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
+import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import java.util.List;
 
@@ -88,6 +92,48 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
     }
 
     @Override
+    public void getEmployees() {
+        Observable<UserRpcProto.UserBaseResponse> employeeObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        employeeObservable = unassignedTicketRepository.findEmployees(token);
+
+        addSubscription(employeeObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                    @Override
+                    public void onNext(UserRpcProto.UserBaseResponse getEmployeeResponse) {
+                        GlobalUtils.showLog(TAG, "find employees response:"
+                                + getEmployeeResponse);
+
+                        if (getEmployeeResponse == null) {
+                            getView().getEmployeeFail("Failed to get employee");
+                            return;
+                        }
+
+                        if (getEmployeeResponse.getError()) {
+                            getView().getEmployeeFail(getEmployeeResponse.getMsg());
+                            return;
+                        }
+
+                        saveEmployees(getEmployeeResponse.getEmployeesList());
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
     public void assignTicket(long ticketId, String employeeId) {
         getView().showProgressBar("Please wait...");
 
@@ -97,13 +143,14 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
                 .setEmployeeProfileId(String.valueOf(employeeId))
                 .build();
+
         TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
                 .setAssignedTo(employeeProfile)
                 .setAssignedAt(System.currentTimeMillis())
                 .build();
 
         TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
-                .addEmployeesAssigned(employeeAssigned)
+                .setEmployeeAssigned(employeeAssigned)
                 .build();
 
         GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
@@ -154,8 +201,8 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
-            Retrofit retrofit = getRetrofitInstance();
-            AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Retrofit retrofit = getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String filterUrl = getAssignableFilterUrl(searchQuery, from, to, ticketState);
 
         ticketBaseResponseObservable = service.filterTickets(token, filterUrl);
@@ -256,5 +303,20 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
             filterUrlBuilder.append(status);
         }
         return filterUrlBuilder.toString();
+    }
+
+    private void saveEmployees(List<UserProto.EmployeeProfile> employeesList) {
+        AssignEmployeeRepo.getInstance().saveAssignEmployeeList(employeesList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved assign employees");
+                getView().getEmployeeSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save assign employees");
+            }
+        });
     }
 }

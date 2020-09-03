@@ -32,7 +32,7 @@ public class AvailableServicesRepo extends Repo {
         return availableServicesRepo;
     }
 
-    public void saveAvailableServices(final List<ServiceProto.Service> serviceListPb,
+    public void saveAvailableServices(final List<ServiceProto.AvailableService> serviceListPb,
                                       final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
 
@@ -52,24 +52,22 @@ public class AvailableServicesRepo extends Repo {
     }
 
 
-    private static List<Service> transformServicesProto(List<ServiceProto.Service> serviceListPb) {
+    private static List<Service> transformServicesProto(List<ServiceProto.AvailableService> serviceListPb) {
         if (CollectionUtils.isEmpty(serviceListPb)) {
             throw new IllegalArgumentException(EXCEPTION_NULL_VALUE);
         }
 
         List<Service> serviceList = new ArrayList<>();
-        for (ServiceProto.Service servicePb : serviceListPb
+        for (ServiceProto.AvailableService servicePb : serviceListPb
         ) {
             Service service = new Service();
-            service.setCreatedAt(servicePb.getCreatedAt());
-            service.setDesc(servicePb.getDesc());
-            service.setName(GlobalUtils.convertCase(servicePb.getName()));
-            service.setServiceIconUrl(servicePb.getServiceIconUrl());
-            service.setServiceId(servicePb.getServiceId());
-            service.setServiceType(servicePb.getServiceType().name());
+            service.setCreatedAt(servicePb.getService().getCreatedAt());
+            service.setDesc(servicePb.getService().getDesc());
+            service.setName(GlobalUtils.convertCase(servicePb.getService().getName()));
+            service.setServiceIconUrl(servicePb.getService().getServiceIconUrl());
+            service.setServiceId(servicePb.getService().getServiceId());
+            service.setServiceType(servicePb.getService().getServiceType().name());
 
-            RealmList<ServiceAttributes> serviceAttributes = ProtoMapper.getServiceAttributes(servicePb);
-            service.setServiceAttributesList(serviceAttributes);
             serviceList.add(service);
         }
 

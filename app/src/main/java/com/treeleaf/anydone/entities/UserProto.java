@@ -84,6 +84,91 @@ public final class UserProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.LocationType)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.ThirdPartySource}
+   */
+  public enum ThirdPartySource
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_THIRD_PARTY_SOURCE = 0;</code>
+     */
+    UNKNOWN_THIRD_PARTY_SOURCE(0),
+    /**
+     * <code>FACEBOOK_THIRD_PARTY_SOURCE = 1;</code>
+     */
+    FACEBOOK_THIRD_PARTY_SOURCE(1),
+    /**
+     * <code>VIBER_THIRD_PARTY_SOURCE = 2;</code>
+     */
+    VIBER_THIRD_PARTY_SOURCE(2),
+    /**
+     * <code>SERVICE_PROVIDER_SOURCE = 3;</code>
+     */
+    SERVICE_PROVIDER_SOURCE(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_THIRD_PARTY_SOURCE = 0;</code>
+     */
+    public static final int UNKNOWN_THIRD_PARTY_SOURCE_VALUE = 0;
+    /**
+     * <code>FACEBOOK_THIRD_PARTY_SOURCE = 1;</code>
+     */
+    public static final int FACEBOOK_THIRD_PARTY_SOURCE_VALUE = 1;
+    /**
+     * <code>VIBER_THIRD_PARTY_SOURCE = 2;</code>
+     */
+    public static final int VIBER_THIRD_PARTY_SOURCE_VALUE = 2;
+    /**
+     * <code>SERVICE_PROVIDER_SOURCE = 3;</code>
+     */
+    public static final int SERVICE_PROVIDER_SOURCE_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static ThirdPartySource valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ThirdPartySource forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_THIRD_PARTY_SOURCE;
+        case 1: return FACEBOOK_THIRD_PARTY_SOURCE;
+        case 2: return VIBER_THIRD_PARTY_SOURCE;
+        case 3: return SERVICE_PROVIDER_SOURCE;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ThirdPartySource>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ThirdPartySource> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ThirdPartySource>() {
+            public ThirdPartySource findValueByNumber(int number) {
+              return ThirdPartySource.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private ThirdPartySource(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ThirdPartySource)
+  }
+
   public interface AccountOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Account)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -17496,6 +17581,1396 @@ public final class UserProto {
     private static volatile com.google.protobuf.Parser<Location> PARSER;
 
     public static com.google.protobuf.Parser<Location> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface CustomerOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Customer)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string customerId = 1;</code>
+     */
+    String getCustomerId();
+    /**
+     * <code>optional string customerId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getCustomerIdBytes();
+
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    String getFullName();
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getFullNameBytes();
+
+    /**
+     * <code>optional string phone = 3;</code>
+     */
+    String getPhone();
+    /**
+     * <code>optional string phone = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPhoneBytes();
+
+    /**
+     * <code>optional string email = 4;</code>
+     */
+    String getEmail();
+    /**
+     * <code>optional string email = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getEmailBytes();
+
+    /**
+     * <code>optional string profilePic = 5;</code>
+     */
+    String getProfilePic();
+    /**
+     * <code>optional string profilePic = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getProfilePicBytes();
+
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    String getCreatedBy();
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getCreatedByBytes();
+
+    /**
+     * <code>optional bool createdByBot = 7;</code>
+     */
+    boolean getCreatedByBot();
+
+    /**
+     * <code>optional string spAccountId = 8;</code>
+     */
+    String getSpAccountId();
+    /**
+     * <code>optional string spAccountId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getSpAccountIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+     */
+    int getSourceValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+     */
+    ThirdPartySource getSource();
+
+    /**
+     * <code>optional string customerRefId = 10;</code>
+     */
+    String getCustomerRefId();
+    /**
+     * <code>optional string customerRefId = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getCustomerRefIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 11;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 12;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.Customer}
+   */
+  public  static final class Customer extends
+      com.google.protobuf.GeneratedMessageLite<
+          Customer, Customer.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Customer)
+      CustomerOrBuilder {
+    private Customer() {
+      customerId_ = "";
+      fullName_ = "";
+      phone_ = "";
+      email_ = "";
+      profilePic_ = "";
+      createdBy_ = "";
+      spAccountId_ = "";
+      customerRefId_ = "";
+    }
+    public static final int CUSTOMERID_FIELD_NUMBER = 1;
+    private String customerId_;
+    /**
+     * <code>optional string customerId = 1;</code>
+     */
+    public String getCustomerId() {
+      return customerId_;
+    }
+    /**
+     * <code>optional string customerId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCustomerIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(customerId_);
+    }
+    /**
+     * <code>optional string customerId = 1;</code>
+     */
+    private void setCustomerId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      customerId_ = value;
+    }
+    /**
+     * <code>optional string customerId = 1;</code>
+     */
+    private void clearCustomerId() {
+      
+      customerId_ = getDefaultInstance().getCustomerId();
+    }
+    /**
+     * <code>optional string customerId = 1;</code>
+     */
+    private void setCustomerIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      customerId_ = value.toStringUtf8();
+    }
+
+    public static final int FULLNAME_FIELD_NUMBER = 2;
+    private String fullName_;
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    public String getFullName() {
+      return fullName_;
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFullNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fullName_);
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    private void setFullName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fullName_ = value;
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    private void clearFullName() {
+      
+      fullName_ = getDefaultInstance().getFullName();
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    private void setFullNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fullName_ = value.toStringUtf8();
+    }
+
+    public static final int PHONE_FIELD_NUMBER = 3;
+    private String phone_;
+    /**
+     * <code>optional string phone = 3;</code>
+     */
+    public String getPhone() {
+      return phone_;
+    }
+    /**
+     * <code>optional string phone = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPhoneBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(phone_);
+    }
+    /**
+     * <code>optional string phone = 3;</code>
+     */
+    private void setPhone(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      phone_ = value;
+    }
+    /**
+     * <code>optional string phone = 3;</code>
+     */
+    private void clearPhone() {
+      
+      phone_ = getDefaultInstance().getPhone();
+    }
+    /**
+     * <code>optional string phone = 3;</code>
+     */
+    private void setPhoneBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      phone_ = value.toStringUtf8();
+    }
+
+    public static final int EMAIL_FIELD_NUMBER = 4;
+    private String email_;
+    /**
+     * <code>optional string email = 4;</code>
+     */
+    public String getEmail() {
+      return email_;
+    }
+    /**
+     * <code>optional string email = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEmailBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(email_);
+    }
+    /**
+     * <code>optional string email = 4;</code>
+     */
+    private void setEmail(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      email_ = value;
+    }
+    /**
+     * <code>optional string email = 4;</code>
+     */
+    private void clearEmail() {
+      
+      email_ = getDefaultInstance().getEmail();
+    }
+    /**
+     * <code>optional string email = 4;</code>
+     */
+    private void setEmailBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      email_ = value.toStringUtf8();
+    }
+
+    public static final int PROFILEPIC_FIELD_NUMBER = 5;
+    private String profilePic_;
+    /**
+     * <code>optional string profilePic = 5;</code>
+     */
+    public String getProfilePic() {
+      return profilePic_;
+    }
+    /**
+     * <code>optional string profilePic = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProfilePicBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(profilePic_);
+    }
+    /**
+     * <code>optional string profilePic = 5;</code>
+     */
+    private void setProfilePic(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      profilePic_ = value;
+    }
+    /**
+     * <code>optional string profilePic = 5;</code>
+     */
+    private void clearProfilePic() {
+      
+      profilePic_ = getDefaultInstance().getProfilePic();
+    }
+    /**
+     * <code>optional string profilePic = 5;</code>
+     */
+    private void setProfilePicBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      profilePic_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDBY_FIELD_NUMBER = 6;
+    private String createdBy_;
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    public String getCreatedBy() {
+      return createdBy_;
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCreatedByBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(createdBy_);
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    private void setCreatedBy(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      createdBy_ = value;
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    private void clearCreatedBy() {
+      
+      createdBy_ = getDefaultInstance().getCreatedBy();
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    private void setCreatedByBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      createdBy_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDBYBOT_FIELD_NUMBER = 7;
+    private boolean createdByBot_;
+    /**
+     * <code>optional bool createdByBot = 7;</code>
+     */
+    public boolean getCreatedByBot() {
+      return createdByBot_;
+    }
+    /**
+     * <code>optional bool createdByBot = 7;</code>
+     */
+    private void setCreatedByBot(boolean value) {
+      
+      createdByBot_ = value;
+    }
+    /**
+     * <code>optional bool createdByBot = 7;</code>
+     */
+    private void clearCreatedByBot() {
+      
+      createdByBot_ = false;
+    }
+
+    public static final int SPACCOUNTID_FIELD_NUMBER = 8;
+    private String spAccountId_;
+    /**
+     * <code>optional string spAccountId = 8;</code>
+     */
+    public String getSpAccountId() {
+      return spAccountId_;
+    }
+    /**
+     * <code>optional string spAccountId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+    }
+    /**
+     * <code>optional string spAccountId = 8;</code>
+     */
+    private void setSpAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      spAccountId_ = value;
+    }
+    /**
+     * <code>optional string spAccountId = 8;</code>
+     */
+    private void clearSpAccountId() {
+      
+      spAccountId_ = getDefaultInstance().getSpAccountId();
+    }
+    /**
+     * <code>optional string spAccountId = 8;</code>
+     */
+    private void setSpAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      spAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 9;
+    private int source_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+     */
+    public int getSourceValue() {
+      return source_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+     */
+    public ThirdPartySource getSource() {
+      ThirdPartySource result = ThirdPartySource.forNumber(source_);
+      return result == null ? ThirdPartySource.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+     */
+    private void setSourceValue(int value) {
+        source_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+     */
+    private void setSource(ThirdPartySource value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      source_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0;
+    }
+
+    public static final int CUSTOMERREFID_FIELD_NUMBER = 10;
+    private String customerRefId_;
+    /**
+     * <code>optional string customerRefId = 10;</code>
+     */
+    public String getCustomerRefId() {
+      return customerRefId_;
+    }
+    /**
+     * <code>optional string customerRefId = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCustomerRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(customerRefId_);
+    }
+    /**
+     * <code>optional string customerRefId = 10;</code>
+     */
+    private void setCustomerRefId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      customerRefId_ = value;
+    }
+    /**
+     * <code>optional string customerRefId = 10;</code>
+     */
+    private void clearCustomerRefId() {
+      
+      customerRefId_ = getDefaultInstance().getCustomerRefId();
+    }
+    /**
+     * <code>optional string customerRefId = 10;</code>
+     */
+    private void setCustomerRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      customerRefId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 11;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 11;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 11;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 11;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 12;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 12;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 12;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 12;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!customerId_.isEmpty()) {
+        output.writeString(1, getCustomerId());
+      }
+      if (!fullName_.isEmpty()) {
+        output.writeString(2, getFullName());
+      }
+      if (!phone_.isEmpty()) {
+        output.writeString(3, getPhone());
+      }
+      if (!email_.isEmpty()) {
+        output.writeString(4, getEmail());
+      }
+      if (!profilePic_.isEmpty()) {
+        output.writeString(5, getProfilePic());
+      }
+      if (!createdBy_.isEmpty()) {
+        output.writeString(6, getCreatedBy());
+      }
+      if (createdByBot_ != false) {
+        output.writeBool(7, createdByBot_);
+      }
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(8, getSpAccountId());
+      }
+      if (source_ != ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        output.writeEnum(9, source_);
+      }
+      if (!customerRefId_.isEmpty()) {
+        output.writeString(10, getCustomerRefId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(11, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(12, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!customerId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getCustomerId());
+      }
+      if (!fullName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getFullName());
+      }
+      if (!phone_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getPhone());
+      }
+      if (!email_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getEmail());
+      }
+      if (!profilePic_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getProfilePic());
+      }
+      if (!createdBy_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getCreatedBy());
+      }
+      if (createdByBot_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, createdByBot_);
+      }
+      if (!spAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getSpAccountId());
+      }
+      if (source_ != ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(9, source_);
+      }
+      if (!customerRefId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getCustomerRefId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(11, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(12, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static Customer parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Customer parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Customer parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Customer parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Customer parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Customer parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Customer parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static Customer parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Customer parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Customer parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(Customer prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.Customer}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          Customer, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Customer)
+        CustomerOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.UserProto.Customer.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string customerId = 1;</code>
+       */
+      public String getCustomerId() {
+        return instance.getCustomerId();
+      }
+      /**
+       * <code>optional string customerId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCustomerIdBytes() {
+        return instance.getCustomerIdBytes();
+      }
+      /**
+       * <code>optional string customerId = 1;</code>
+       */
+      public Builder setCustomerId(
+          String value) {
+        copyOnWrite();
+        instance.setCustomerId(value);
+        return this;
+      }
+      /**
+       * <code>optional string customerId = 1;</code>
+       */
+      public Builder clearCustomerId() {
+        copyOnWrite();
+        instance.clearCustomerId();
+        return this;
+      }
+      /**
+       * <code>optional string customerId = 1;</code>
+       */
+      public Builder setCustomerIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCustomerIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public String getFullName() {
+        return instance.getFullName();
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFullNameBytes() {
+        return instance.getFullNameBytes();
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public Builder setFullName(
+          String value) {
+        copyOnWrite();
+        instance.setFullName(value);
+        return this;
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public Builder clearFullName() {
+        copyOnWrite();
+        instance.clearFullName();
+        return this;
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public Builder setFullNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFullNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string phone = 3;</code>
+       */
+      public String getPhone() {
+        return instance.getPhone();
+      }
+      /**
+       * <code>optional string phone = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPhoneBytes() {
+        return instance.getPhoneBytes();
+      }
+      /**
+       * <code>optional string phone = 3;</code>
+       */
+      public Builder setPhone(
+          String value) {
+        copyOnWrite();
+        instance.setPhone(value);
+        return this;
+      }
+      /**
+       * <code>optional string phone = 3;</code>
+       */
+      public Builder clearPhone() {
+        copyOnWrite();
+        instance.clearPhone();
+        return this;
+      }
+      /**
+       * <code>optional string phone = 3;</code>
+       */
+      public Builder setPhoneBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPhoneBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string email = 4;</code>
+       */
+      public String getEmail() {
+        return instance.getEmail();
+      }
+      /**
+       * <code>optional string email = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getEmailBytes() {
+        return instance.getEmailBytes();
+      }
+      /**
+       * <code>optional string email = 4;</code>
+       */
+      public Builder setEmail(
+          String value) {
+        copyOnWrite();
+        instance.setEmail(value);
+        return this;
+      }
+      /**
+       * <code>optional string email = 4;</code>
+       */
+      public Builder clearEmail() {
+        copyOnWrite();
+        instance.clearEmail();
+        return this;
+      }
+      /**
+       * <code>optional string email = 4;</code>
+       */
+      public Builder setEmailBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setEmailBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string profilePic = 5;</code>
+       */
+      public String getProfilePic() {
+        return instance.getProfilePic();
+      }
+      /**
+       * <code>optional string profilePic = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProfilePicBytes() {
+        return instance.getProfilePicBytes();
+      }
+      /**
+       * <code>optional string profilePic = 5;</code>
+       */
+      public Builder setProfilePic(
+          String value) {
+        copyOnWrite();
+        instance.setProfilePic(value);
+        return this;
+      }
+      /**
+       * <code>optional string profilePic = 5;</code>
+       */
+      public Builder clearProfilePic() {
+        copyOnWrite();
+        instance.clearProfilePic();
+        return this;
+      }
+      /**
+       * <code>optional string profilePic = 5;</code>
+       */
+      public Builder setProfilePicBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setProfilePicBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public String getCreatedBy() {
+        return instance.getCreatedBy();
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCreatedByBytes() {
+        return instance.getCreatedByBytes();
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public Builder setCreatedBy(
+          String value) {
+        copyOnWrite();
+        instance.setCreatedBy(value);
+        return this;
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public Builder clearCreatedBy() {
+        copyOnWrite();
+        instance.clearCreatedBy();
+        return this;
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public Builder setCreatedByBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCreatedByBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional bool createdByBot = 7;</code>
+       */
+      public boolean getCreatedByBot() {
+        return instance.getCreatedByBot();
+      }
+      /**
+       * <code>optional bool createdByBot = 7;</code>
+       */
+      public Builder setCreatedByBot(boolean value) {
+        copyOnWrite();
+        instance.setCreatedByBot(value);
+        return this;
+      }
+      /**
+       * <code>optional bool createdByBot = 7;</code>
+       */
+      public Builder clearCreatedByBot() {
+        copyOnWrite();
+        instance.clearCreatedByBot();
+        return this;
+      }
+
+      /**
+       * <code>optional string spAccountId = 8;</code>
+       */
+      public String getSpAccountId() {
+        return instance.getSpAccountId();
+      }
+      /**
+       * <code>optional string spAccountId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
+      }
+      /**
+       * <code>optional string spAccountId = 8;</code>
+       */
+      public Builder setSpAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setSpAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 8;</code>
+       */
+      public Builder clearSpAccountId() {
+        copyOnWrite();
+        instance.clearSpAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 8;</code>
+       */
+      public Builder setSpAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSpAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+       */
+      public int getSourceValue() {
+        return instance.getSourceValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+       */
+      public Builder setSourceValue(int value) {
+        copyOnWrite();
+        instance.setSourceValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+       */
+      public ThirdPartySource getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+       */
+      public Builder setSource(ThirdPartySource value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 9;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
+      /**
+       * <code>optional string customerRefId = 10;</code>
+       */
+      public String getCustomerRefId() {
+        return instance.getCustomerRefId();
+      }
+      /**
+       * <code>optional string customerRefId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCustomerRefIdBytes() {
+        return instance.getCustomerRefIdBytes();
+      }
+      /**
+       * <code>optional string customerRefId = 10;</code>
+       */
+      public Builder setCustomerRefId(
+          String value) {
+        copyOnWrite();
+        instance.setCustomerRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string customerRefId = 10;</code>
+       */
+      public Builder clearCustomerRefId() {
+        copyOnWrite();
+        instance.clearCustomerRefId();
+        return this;
+      }
+      /**
+       * <code>optional string customerRefId = 10;</code>
+       */
+      public Builder setCustomerRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCustomerRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 11;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 11;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 11;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 12;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 12;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 12;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Customer)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new Customer();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          Customer other = (Customer) arg1;
+          customerId_ = visitor.visitString(!customerId_.isEmpty(), customerId_,
+              !other.customerId_.isEmpty(), other.customerId_);
+          fullName_ = visitor.visitString(!fullName_.isEmpty(), fullName_,
+              !other.fullName_.isEmpty(), other.fullName_);
+          phone_ = visitor.visitString(!phone_.isEmpty(), phone_,
+              !other.phone_.isEmpty(), other.phone_);
+          email_ = visitor.visitString(!email_.isEmpty(), email_,
+              !other.email_.isEmpty(), other.email_);
+          profilePic_ = visitor.visitString(!profilePic_.isEmpty(), profilePic_,
+              !other.profilePic_.isEmpty(), other.profilePic_);
+          createdBy_ = visitor.visitString(!createdBy_.isEmpty(), createdBy_,
+              !other.createdBy_.isEmpty(), other.createdBy_);
+          createdByBot_ = visitor.visitBoolean(createdByBot_ != false, createdByBot_,
+              other.createdByBot_ != false, other.createdByBot_);
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
+          source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
+          customerRefId_ = visitor.visitString(!customerRefId_.isEmpty(), customerRefId_,
+              !other.customerRefId_.isEmpty(), other.customerRefId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  customerId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  fullName_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  phone_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  email_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  profilePic_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  createdBy_ = s;
+                  break;
+                }
+                case 56: {
+
+                  createdByBot_ = input.readBool();
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  spAccountId_ = s;
+                  break;
+                }
+                case 72: {
+                  int rawValue = input.readEnum();
+
+                  source_ = rawValue;
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  customerRefId_ = s;
+                  break;
+                }
+                case 88: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 96: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (Customer.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Customer)
+    private static final Customer DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Customer();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static Customer getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Customer> PARSER;
+
+    public static com.google.protobuf.Parser<Customer> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
