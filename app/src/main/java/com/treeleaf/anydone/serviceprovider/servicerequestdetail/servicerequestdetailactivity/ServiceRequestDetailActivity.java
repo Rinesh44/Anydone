@@ -274,23 +274,38 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     @Override
     public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
-        if (serverDrawingPadEventListener != null) {
-            serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId);
+                }
+            }
+        });
     }
 
     @Override
     public void onDrawReceiveNewTextChange(String text, String id) {
-        if (serverDrawingPadEventListener != null) {
-            serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id);
+                }
+            }
+        });
     }
 
     @Override
     public void onDrawReceiveEdiTextRemove(String editTextId) {
-        if (serverDrawingPadEventListener != null) {
-            serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId);
+                }
+            }
+        });
     }
 
     @Override
