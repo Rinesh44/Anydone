@@ -26,6 +26,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.serviceprovider.model.Priority;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -396,6 +397,27 @@ Limit selectable Date range
                 dp,
                 r.getDisplayMetrics()
         );
+    }
+
+    public static int getPriorityNum(Priority selectedPriority) {
+        switch (selectedPriority.getValue()) {
+            case "Highest":
+                return 5;
+
+            case "High":
+                return 4;
+
+            case "Medium":
+                return 3;
+
+            case "Low":
+                return 2;
+
+            case "Lowest":
+                return 1;
+
+        }
+        return 0;
     }
 
 }

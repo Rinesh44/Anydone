@@ -20,6 +20,10 @@ public class TicketsContract {
         void updateClosedTicketList(List<Tickets> ticketsList);
 
         void filterClosedTicketFailed(String msg);
+
+        void getServiceSuccess();
+
+        void getServiceFail(String msg);
     }
 
     public interface TicketsPresenter extends Presenter<TicketsView> {
@@ -28,5 +32,7 @@ public class TicketsContract {
         void filterSubscribedTickets(String searchQuery, long from, long to, int ticketState);
 
         void filterClosedTickets(String searchQuery, long from, long to, int ticketState);
+
+        void getServices();
     }
 }

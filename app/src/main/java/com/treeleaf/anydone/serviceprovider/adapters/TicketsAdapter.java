@@ -136,6 +136,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         holder.ticketId.setText("#" + tickets.getTicketId());
         holder.summary.setText(tickets.getTitle());
         holder.customer.setText(tickets.getCustomer().getFullName());
+        setPriority(tickets.getPriority(), holder);
         GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
@@ -228,65 +229,22 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         }
 
         GlobalUtils.showLog(TAG, "ticket id: " + tickets.getTicketId());
-     /*   GlobalUtils.showLog(TAG, "assigned Employee size: " + tickets.getAssignedEmployee().size());
-        Tickets tickets1 = TicketRepo.getInstance().getTicketById(45);
-        GlobalUtils.showLog(TAG, "assigned emp size: " + tickets1.getAssignedEmployee().size());
-        for (Employee employee : tickets1.getAssignedEmployee()
-        ) {
-            GlobalUtils.showLog(TAG, "image url check: " + employee.getEmployeeImageUrl());
 
-        }*/
+        CircleImageView employeeImage = (CircleImageView) LayoutInflater.from(mContext)
+                .inflate(R.layout.layout_assigned_employee, null);
+        Random random = new Random();
+        int randomId = random.nextInt(100);
+        employeeImage.setId(randomId);
 
-        boolean moreLayoutInflated = false;
-        for (int i = 0; i < tickets.getAssignedEmployee().size(); i++) {
-            CircleImageView employeeImage = (CircleImageView) LayoutInflater.from(mContext)
-                    .inflate(R.layout.layout_assigned_employee, null);
-            Random random = new Random();
-            int randomId = random.nextInt(100);
-            employeeImage.setId(randomId);
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.drawable.ic_assigned_emp_placeholder)
+                .error(R.drawable.ic_assigned_emp_placeholder);
 
-            RequestOptions options = new RequestOptions()
-                    .placeholder(R.drawable.ic_assigned_emp_placeholder)
-                    .error(R.drawable.ic_assigned_emp_placeholder);
+        Glide.with(mContext).load(tickets.getAssignedEmployee().getEmployeeImageUrl())
+                .apply(options).into(employeeImage);
 
-            Glide.with(mContext).load(tickets.getAssignedEmployee().get(i).getEmployeeImageUrl())
-                    .apply(options).into(employeeImage);
+        holder.assignedEmployeeHolder.addView(employeeImage);
 
-            boolean firstEmployee = true;
-            //sequentially add images until employee count is 3
-            if (holder.assignedEmployeeHolder.getChildCount() >= 1 && holder.assignedEmployeeHolder.getChildCount() <= 2) {
-                firstEmployee = false;
-                CircleImageView prevImage = (CircleImageView) holder.assignedEmployeeHolder.getChildAt(i - 1);
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.END_OF, prevImage.getId());
-                params.setMarginStart(-30);
-                employeeImage.setLayoutParams(params);
-
-                employeeImage.setElevation(4);
-                holder.assignedEmployeeHolder.addView(employeeImage);
-
-                //show remaining people layout when employee count exceeds 3
-            } else if (!moreLayoutInflated && tickets.getAssignedEmployee().size() > 3 && holder.assignedEmployeeHolder.getChildCount() != 0) {
-                int remainingPeopleCount = tickets.getAssignedEmployee().size() - 2;
-                RelativeLayout moreLayout = (RelativeLayout) LayoutInflater.from(mContext)
-                        .inflate(R.layout.more_people, null);
-                TextView remainingPeople = moreLayout.findViewById(R.id.tv_more);
-                remainingPeople.setText("+" + remainingPeopleCount);
-
-                CircleImageView prevImage = (CircleImageView) holder.assignedEmployeeHolder.getChildAt(i - 2);
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.END_OF, prevImage.getId());
-                params.setMarginStart(-30);
-                moreLayout.setLayoutParams(params);
-                moreLayout.setElevation(4);
-
-                holder.assignedEmployeeHolder.addView(moreLayout);
-                moreLayoutInflated = true;
-            }
-
-            if (firstEmployee) holder.assignedEmployeeHolder.addView(employeeImage);
-
-        }
 
    /*     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
                 (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -295,10 +253,39 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         holder.assignedEmployeeHolder.setLayoutParams(params);*/
 
         //change layout design if no assigned employee found
-        if (CollectionUtils.isEmpty(tickets.getAssignedEmployee())) {
+        if ((tickets.getAssignedEmployee() == null)) {
             holder.dots.setVisibility(View.GONE);
             holder.assignedEmployeeHolder.setVisibility(View.GONE);
             holder.llTicketView.setGravity(Gravity.CENTER);
+        }
+    }
+
+    private void setPriority(int priority, TicketHolder holder) {
+        switch (priority) {
+            case 1:
+                holder.ticketPriority.setText("Lowest");
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowest_small, 0, 0, 0);
+                break;
+
+            case 2:
+                holder.ticketPriority.setText("Low");
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_low_small, 0, 0, 0);
+                break;
+
+            case 4:
+                holder.ticketPriority.setText("High");
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_high_small, 0, 0, 0);
+                break;
+
+            case 5:
+                holder.ticketPriority.setText("Highest");
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_highest_small, 0, 0, 0);
+                break;
+
+            default:
+                holder.ticketPriority.setText("Medium");
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medium_small, 0, 0, 0);
+                break;
         }
     }
 
@@ -326,6 +313,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         private LinearLayout llReopen;
         private View dots;
         private LinearLayout llTicketView;
+        private TextView ticketPriority;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
@@ -345,6 +333,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             llSubscribe = itemView.findViewById(R.id.ll_swipe_subscribe);
             dots = itemView.findViewById(R.id.v_dots);
             llTicketView = itemView.findViewById(R.id.ll_ticket_view);
+            ticketPriority = itemView.findViewById(R.id.tv_priority);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {

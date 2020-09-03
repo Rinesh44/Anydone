@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Spannable;
@@ -37,9 +36,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.text.SimpleDateFormat;
@@ -329,12 +326,12 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
             rvSubscribeableTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
-            adapter.setOnItemClickListener(ticket -> {
+       /*     adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(this, TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
                 i.putExtra("ticket_desc", ticket.getTitle());
                 startActivity(i);
-            });
+            });*/
 
             adapter.setOnSubscribeListener((id, pos) -> {
                 subscribeTicketPos = pos;

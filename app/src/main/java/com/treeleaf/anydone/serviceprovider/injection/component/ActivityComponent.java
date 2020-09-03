@@ -1,7 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.injection.component;
 
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
-import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
@@ -10,7 +9,6 @@ import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCode
 import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.scope.ScopeActivity;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
-
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationActivity;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
@@ -20,6 +18,7 @@ import com.treeleaf.anydone.serviceprovider.setting.language.LanguagesActivity;
 import com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.SelectTimezoneActivity;
+import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
@@ -70,5 +69,5 @@ public interface ActivityComponent {
 
     void inject(AddTicketActivity addTicketActivity);
 
-    void inject(AssignEmployeeActivity assignEmployeeActivity);
+    void inject(ThreadDetailActivity threadDetailActivity);
 }

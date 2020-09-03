@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.addticket;
 
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
@@ -38,7 +39,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
     @Override
     public void createTicket(String title, String description, String customerId, String customerEmail,
                              String customerPhone, String customerName, List<String> tags,
-                             List<String> assignedEmployeeIds) {
+                             String assignedEmployeeId, int priority) {
 
         if (!validateCredentials(title, customerName)) {
             return;
@@ -48,37 +49,32 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        TicketProto.Customer customer;
+        UserProto.Customer customer;
         if (customerId != null) {
-            customer = TicketProto.Customer.newBuilder()
+            customer = UserProto.Customer.newBuilder()
                     .setCustomerId(customerId)
                     .setEmail(customerEmail)
                     .setPhone(customerPhone)
                     .setFullName(customerName)
                     .build();
         } else {
-            customer = TicketProto.Customer.newBuilder()
+            customer = UserProto.Customer.newBuilder()
                     .setEmail(customerEmail)
                     .setPhone(customerPhone)
                     .setFullName(customerName)
                     .build();
         }
 
-        List<TicketProto.EmployeeAssigned> employeeAssignedList = new ArrayList<>();
         List<TicketProto.TicketTag> tagList = new ArrayList<>();
-        for (String employeeId : assignedEmployeeIds
-        ) {
-            UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
-                    .setEmployeeProfileId(employeeId)
-                    .build();
 
-            TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
-                    .setAssignedAt(System.currentTimeMillis())
-                    .setAssignedTo(employeeProfile)
-                    .build();
+        UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
+                .setEmployeeProfileId(assignedEmployeeId)
+                .build();
 
-            employeeAssignedList.add(employeeAssigned);
-        }
+        TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
+                .setAssignedAt(System.currentTimeMillis())
+                .setAssignedTo(employeeProfile)
+                .build();
 
         for (String tagId : tags
         ) {
@@ -89,12 +85,23 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
             tagList.add(tag);
         }
 
+
+        ServiceProto.Service service = ServiceProto.Service.newBuilder()
+                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
+                .build();
+
+        GlobalUtils.showLog(TAG, "Ticket title check: " + title);
+        GlobalUtils.showLog(TAG, "employee assigned check: " + employeeAssigned);
+        GlobalUtils.showLog(TAG, "ticket priority check: " + priority);
+        GlobalUtils.showLog(TAG, "service check: " + service);
         TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
                 .setTitle(title)
                 .setDescription(description)
                 .setCustomer(customer)
                 .setCustomerType(TicketProto.CustomerType.EXTERNAL_CUSTOMER)
-                .addAllEmployeesAssigned(employeeAssignedList)
+                .setPriority(getTicketPriority(priority))
+                .setService(service)
+                .setEmployeeAssigned(employeeAssigned)
                 .addAllTags(tagList)
                 .build();
 
@@ -136,6 +143,26 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                 }));
 
 
+    }
+
+    private TicketProto.TicketPriority getTicketPriority(int priority) {
+        switch (priority) {
+            case 1:
+                return TicketProto.TicketPriority.LOWEST_TICKET_PRIORITY;
+
+            case 2:
+                return TicketProto.TicketPriority.LOW_TICKET_PRIORITY;
+
+            case 3:
+                return TicketProto.TicketPriority.MEDIUM_TICKET_PRIORITY;
+
+            case 4:
+                return TicketProto.TicketPriority.HIGH_TICKET_PRIORITY;
+
+            case 5:
+                return TicketProto.TicketPriority.HIGHEST_TICKET_PRIORITY;
+        }
+        return TicketProto.TicketPriority.UNKNOWN_TICKET_PRIORITY;
     }
 
     private void saveTicket(TicketProto.Ticket ticketPb) {

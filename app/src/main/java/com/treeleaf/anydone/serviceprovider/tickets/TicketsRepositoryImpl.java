@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.tickets;
 
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
+import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
@@ -15,16 +16,22 @@ public class TicketsRepositoryImpl implements TicketsRepository {
 
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(String token,
+                                                                                   String serviceId,
                                                                                    long from,
                                                                                    long to,
                                                                                    int page) {
-        return service.getAssignedTickets(token, from, to, page);
+        return service.getAssignedTickets(token, serviceId, from, to, page);
     }
 
     @Override
     public Observable<OrderServiceRpcProto.OrderServiceBaseResponse> filterServiceRequests(
             String token, String serviceName, long from, long to, String status) {
-        return null;
+        return service.filterServiceRequests(token, serviceName, from, to, status);
+    }
+
+    @Override
+    public Observable<ServiceRpcProto.ServiceBaseResponse> getServices(String token) {
+        return service.getServices(token);
     }
 
 }

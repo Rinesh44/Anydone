@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.addticket;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,6 +9,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,8 +35,10 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -65,8 +70,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     FlexboxLayout fblLabel;
     @BindView(R.id.search_employee)
     ScrollView svSearchEmployee;
-    @BindView(R.id.fbl_employee)
-    FlexboxLayout fblEmployee;
     @BindView(R.id.civ_image_self)
     CircleImageView civSelfImage;
     @BindView(R.id.tv_name_self)
@@ -105,6 +108,14 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     TextView tvCustomerSelf;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
+    @BindView(R.id.il_priority)
+    TextInputLayout ilPriority;
+    @BindView(R.id.et_priority)
+    TextInputEditText etPriority;
+    @BindView(R.id.sp_priority)
+    AppCompatSpinner spPriority;
+    @BindView(R.id.tv_all_users)
+    TextView tvAllUsers;
 
     private List<AssignEmployee> employeeList;
     private List<Customer> customerList;
@@ -116,28 +127,61 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private Customer selectedCustomer;
     private Tags selectedTag;
     private Employee selfEmployee;
+    private Priority selectedPriority;
+    private String selectedEmployeeId;
 
     @Override
     protected int getLayout() {
         return R.layout.activity_add_ticket;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setToolbar();
+        selfEmployee = EmployeeRepo.getInstance().getEmployee();
         presenter.findCustomers();
         presenter.findEmployees();
         presenter.findTags();
 
         setSelfDetails();
+        etPriority.setText("a");
+        etPriority.setTextColor(getResources().getColor(R.color.white));
+        setUpPriorityDropdown();
+        spPriority.setSelection(2);
+        selectedPriority = (Priority) spPriority.getSelectedItem();
 
-        selfEmployee = EmployeeRepo.getInstance().getEmployee();
         tagsList = TagRepo.getInstance().getAllTags();
         GlobalUtils.showLog(TAG, "tag list size: " + tagsList.size());
         tagSearchAdapter = new TagSearchAdapter(this, tagsList);
         etLabel.setAdapter(tagSearchAdapter);
+
+        spPriority.setOnTouchListener((v, event) -> {
+            etPriority.requestFocus();
+            setUpPriorityDropdown();
+            return false;
+        });
+
+        etPriority.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etPriority.setText("a");
+                etPriority.setTextColor(getResources().getColor(R.color.transparent));
+            }
+        });
+
+        spPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedPriority = (Priority) spPriority.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         etCustomerName.setOnItemClickListener((parent, view, position, id) -> {
             UiUtils.hideKeyboard(this);
@@ -154,7 +198,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     etPhone.setFocusable(false);
                     etPhone.setEnabled(false);
                 }
-
             }
         });
 
@@ -171,6 +214,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                         .apply(options).into(civSelf);
 
                 rlCustomerSelfHolder.setVisibility(View.VISIBLE);
+            } else {
+                rlCustomerSelfHolder.setVisibility(View.GONE);
             }
         });
 
@@ -199,6 +244,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             etCustomerName.setSelection(etCustomerName.getText().length());
             rlCustomerSelfHolder.setVisibility(View.GONE);
+            hideKeyBoard();
         });
 
         etCustomerName.addTextChangedListener(new TextWatcher() {
@@ -260,10 +306,12 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 selfEmployee.setCreatedAt(self.getCreatedAt());
                 selfEmployee.setAccountId(self.getAccountId());
 
-                addNewEmployeeChip(selfEmployee);
+                selectedEmployeeId = self.getEmployeeId();
             }
 
-            etAssignEmployee.setText("");
+            etAssignEmployee.setText(selfEmployee.getName());
+            etAssignEmployee.setSelection(selfEmployee.getName().length());
+            svSearchEmployee.setVisibility(View.GONE);
         });
 
         etAssignEmployee.addTextChangedListener(new TextWatcher() {
@@ -277,11 +325,18 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 if (s.length() >= 1) {
                     GlobalUtils.showLog(TAG, "text changed");
                     employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
+                    if (CollectionUtils.isEmpty(employeeList)) {
+                        tvAllUsers.setVisibility(View.GONE);
+                    } else {
+                        tvAllUsers.setVisibility(View.VISIBLE);
+                    }
                     GlobalUtils.showLog(TAG, "searched list size: " + employeeList.size());
                     if (svSearchEmployee.getVisibility() == View.GONE)
                         svSearchEmployee.setVisibility(View.VISIBLE);
-                    employeeSearchAdapter.setData(employeeList);
-                    employeeSearchAdapter.notifyDataSetChanged();
+                    if (employeeSearchAdapter != null) {
+                        employeeSearchAdapter.setData(employeeList);
+                        employeeSearchAdapter.notifyDataSetChanged();
+                    }
                 } else {
                     svSearchEmployee.setVisibility(View.GONE);
                 }
@@ -309,32 +364,42 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 }
             }
 
-            if (fblEmployee.getChildCount() > 1) {
-                for (int i = 0; i < fblEmployee.getChildCount(); i++) {
-                    View employee = fblEmployee.getChildAt(i);
-                    TextView employeeId = employee.findViewById(R.id.tv_chip_id);
-                    if (employeeId != null) {
-                        GlobalUtils.showLog(TAG, "tags ids: " + employeeId.getText());
-                        assignedEmployees.add(employeeId.getText().toString().trim());
-                    }
-
-                }
-            }
-
+            int priorityNum = GlobalUtils.getPriorityNum(selectedPriority);
             if (selectedCustomer != null) {
                 presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
                         selectedCustomer.getCustomerId(), UiUtils.getString(etEmail),
                         UiUtils.getString(etPhone), selectedCustomer.getFullName(), tags,
-                        assignedEmployees);
+                        selectedEmployeeId, priorityNum);
             } else {
                 presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
                         null, UiUtils.getString(etEmail),
                         UiUtils.getString(etPhone), UiUtils.getString(etCustomerName), tags,
-                        assignedEmployees);
+                        selectedEmployeeId, priorityNum);
             }
         });
+    }
 
 
+    private void setUpPriorityDropdown() {
+        List<Priority> priorityList = getPriorityList();
+        PriorityAdapter adapter = new PriorityAdapter(this,
+                R.layout.layout_proirity, priorityList);
+        spPriority.setAdapter(adapter);
+    }
+
+    private List<Priority> getPriorityList() {
+        List<Priority> priorityList = new ArrayList<>();
+        Priority highest = new Priority("Highest", R.drawable.ic_highest);
+        Priority high = new Priority("High", R.drawable.ic_high);
+        Priority medium = new Priority("Medium", R.drawable.ic_medium);
+        Priority low = new Priority("Low", R.drawable.ic_low);
+        Priority lowest = new Priority("Lowest", R.drawable.ic_lowest);
+        priorityList.add(highest);
+        priorityList.add(high);
+        priorityList.add(medium);
+        priorityList.add(low);
+        priorityList.add(lowest);
+        return priorityList;
     }
 
     private void setSelfDetails() {
@@ -372,33 +437,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         ivCancel.setOnClickListener(v -> fblLabel.removeView(chip));
     }
 
-    private void addNewEmployeeChip(AssignEmployee selectedEmployee) {
-        View chip = getLayoutInflater().inflate(R.layout.custom_chip, null);
-        CircleImageView civEmployee = chip.findViewById(R.id.civ_employee);
-        TextView tvEmployee = chip.findViewById(R.id.tv_name);
-        ImageView ivCancel = chip.findViewById(R.id.iv_cancel);
-        TextView tvId = chip.findViewById(R.id.tv_chip_id);
-
-        tvId.setText(selectedEmployee.getEmployeeId());
-        String profilePicUrl = selectedEmployee.getEmployeeImageUrl();
-        if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
-
-            Glide.with(this).load(profilePicUrl).apply(options).into(civEmployee);
-        }
-        tvEmployee.setText(selectedEmployee.getName());
-
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 10, 20, 10);
-        chip.setLayoutParams(params);
-
-        fblEmployee.addView(chip, fblEmployee.getChildCount() - 1);
-        ivCancel.setOnClickListener(v -> fblEmployee.removeView(chip));
-    }
 
     @Override
     protected void injectDagger() {
@@ -420,11 +458,12 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
-                svSearchEmployee.setVisibility(View.GONE);
                 hideKeyBoard();
-                addNewEmployeeChip(employee);
 
-                etAssignEmployee.setText("");
+                selectedEmployeeId = employee.getEmployeeId();
+                etAssignEmployee.setText(employee.getName());
+                etAssignEmployee.setSelection(employee.getName().length());
+                svSearchEmployee.setVisibility(View.GONE);
             });
         }
     }

@@ -91,15 +91,36 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_ticket_id_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="#124568"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_ticket_id_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:gravity="bottom"
+                    android:text="#124568"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x1"
+                    android:layout_toEndOf="@+id/tv_ticket_id_value"
+                    android:drawableStart="@drawable/ic_highest_small"
+                    android:drawablePadding="@dimen/dimen_2x2"
+                    android:gravity="bottom"
+                    android:text="Highest"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_summary"

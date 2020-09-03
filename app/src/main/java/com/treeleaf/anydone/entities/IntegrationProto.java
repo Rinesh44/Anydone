@@ -15,7 +15,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationId = 1;</code>
      */
-    java.lang.String getIntegrationId();
+    String getIntegrationId();
     /**
      * <code>optional string integrationId = 1;</code>
      */
@@ -29,12 +29,12 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getIntegrationMessenger();
+    IntegrationMessenger getIntegrationMessenger();
 
     /**
      * <code>optional string serviceProviderAccountId = 3;</code>
      */
-    java.lang.String getServiceProviderAccountId();
+    String getServiceProviderAccountId();
     /**
      * <code>optional string serviceProviderAccountId = 3;</code>
      */
@@ -44,7 +44,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string defaultLabelId = 4;</code>
      */
-    java.lang.String getDefaultLabelId();
+    String getDefaultLabelId();
     /**
      * <code>optional string defaultLabelId = 4;</code>
      */
@@ -54,7 +54,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string serviceId = 5;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 5;</code>
      */
@@ -68,7 +68,7 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 6;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
+    UserProto.ThirdPartySource getSource();
 
     /**
      * <code>optional bool isEnabled = 7;</code>
@@ -100,11 +100,11 @@ public final class IntegrationProto {
       serviceId_ = "";
     }
     public static final int INTEGRATIONID_FIELD_NUMBER = 1;
-    private java.lang.String integrationId_;
+    private String integrationId_;
     /**
      * <code>optional string integrationId = 1;</code>
      */
-    public java.lang.String getIntegrationId() {
+    public String getIntegrationId() {
       return integrationId_;
     }
     /**
@@ -118,7 +118,7 @@ public final class IntegrationProto {
      * <code>optional string integrationId = 1;</code>
      */
     private void setIntegrationId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -146,7 +146,7 @@ public final class IntegrationProto {
     }
 
     public static final int INTEGRATIONMESSENGER_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger integrationMessenger_;
+    private IntegrationMessenger integrationMessenger_;
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
@@ -156,13 +156,13 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    public com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getIntegrationMessenger() {
-      return integrationMessenger_ == null ? com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.getDefaultInstance() : integrationMessenger_;
+    public IntegrationMessenger getIntegrationMessenger() {
+      return integrationMessenger_ == null ? IntegrationMessenger.getDefaultInstance() : integrationMessenger_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    private void setIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
+    private void setIntegrationMessenger(IntegrationMessenger value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -173,18 +173,18 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
     private void setIntegrationMessenger(
-        com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.Builder builderForValue) {
+        IntegrationMessenger.Builder builderForValue) {
       integrationMessenger_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    private void mergeIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
+    private void mergeIntegrationMessenger(IntegrationMessenger value) {
       if (integrationMessenger_ != null &&
-          integrationMessenger_ != com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.getDefaultInstance()) {
+          integrationMessenger_ != IntegrationMessenger.getDefaultInstance()) {
         integrationMessenger_ =
-          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.newBuilder(integrationMessenger_).mergeFrom(value).buildPartial();
+          IntegrationMessenger.newBuilder(integrationMessenger_).mergeFrom(value).buildPartial();
       } else {
         integrationMessenger_ = value;
       }
@@ -198,11 +198,11 @@ public final class IntegrationProto {
     }
 
     public static final int SERVICEPROVIDERACCOUNTID_FIELD_NUMBER = 3;
-    private java.lang.String serviceProviderAccountId_;
+    private String serviceProviderAccountId_;
     /**
      * <code>optional string serviceProviderAccountId = 3;</code>
      */
-    public java.lang.String getServiceProviderAccountId() {
+    public String getServiceProviderAccountId() {
       return serviceProviderAccountId_;
     }
     /**
@@ -216,7 +216,7 @@ public final class IntegrationProto {
      * <code>optional string serviceProviderAccountId = 3;</code>
      */
     private void setServiceProviderAccountId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -244,11 +244,11 @@ public final class IntegrationProto {
     }
 
     public static final int DEFAULTLABELID_FIELD_NUMBER = 4;
-    private java.lang.String defaultLabelId_;
+    private String defaultLabelId_;
     /**
      * <code>optional string defaultLabelId = 4;</code>
      */
-    public java.lang.String getDefaultLabelId() {
+    public String getDefaultLabelId() {
       return defaultLabelId_;
     }
     /**
@@ -262,7 +262,7 @@ public final class IntegrationProto {
      * <code>optional string defaultLabelId = 4;</code>
      */
     private void setDefaultLabelId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -290,11 +290,11 @@ public final class IntegrationProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 5;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 5;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -308,7 +308,7 @@ public final class IntegrationProto {
      * <code>optional string serviceId = 5;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -346,9 +346,9 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 6;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
-      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
-      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    public UserProto.ThirdPartySource getSource() {
+      UserProto.ThirdPartySource result = UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? UserProto.ThirdPartySource.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 6;</code>
@@ -359,7 +359,7 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 6;</code>
      */
-    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+    private void setSource(UserProto.ThirdPartySource value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -460,7 +460,7 @@ public final class IntegrationProto {
       if (!serviceId_.isEmpty()) {
         output.writeString(5, getServiceId());
       }
-      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         output.writeEnum(6, source_);
       }
       if (isEnabled_ != false) {
@@ -499,7 +499,7 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getServiceId());
       }
-      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, source_);
       }
@@ -519,60 +519,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
+    public static Integration parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
+    public static Integration parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(byte[] data)
+    public static Integration parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
+    public static Integration parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(java.io.InputStream input)
+    public static Integration parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
+    public static Integration parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseDelimitedFrom(java.io.InputStream input)
+    public static Integration parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseDelimitedFrom(
+    public static Integration parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
+    public static Integration parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
+    public static Integration parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -583,7 +583,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.Integration prototype) {
+    public static Builder newBuilder(Integration prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -592,9 +592,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.IntegrationProto.Integration, Builder> implements
+          Integration, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Integration)
-        com.treeleaf.anydone.entities.IntegrationProto.IntegrationOrBuilder {
+        IntegrationOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.Integration.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -604,7 +604,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationId = 1;</code>
        */
-      public java.lang.String getIntegrationId() {
+      public String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
@@ -618,7 +618,7 @@ public final class IntegrationProto {
        * <code>optional string integrationId = 1;</code>
        */
       public Builder setIntegrationId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setIntegrationId(value);
         return this;
@@ -650,13 +650,13 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
-      public com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getIntegrationMessenger() {
+      public IntegrationMessenger getIntegrationMessenger() {
         return instance.getIntegrationMessenger();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
-      public Builder setIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
+      public Builder setIntegrationMessenger(IntegrationMessenger value) {
         copyOnWrite();
         instance.setIntegrationMessenger(value);
         return this;
@@ -665,7 +665,7 @@ public final class IntegrationProto {
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
       public Builder setIntegrationMessenger(
-          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.Builder builderForValue) {
+          IntegrationMessenger.Builder builderForValue) {
         copyOnWrite();
         instance.setIntegrationMessenger(builderForValue);
         return this;
@@ -673,7 +673,7 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
-      public Builder mergeIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
+      public Builder mergeIntegrationMessenger(IntegrationMessenger value) {
         copyOnWrite();
         instance.mergeIntegrationMessenger(value);
         return this;
@@ -689,7 +689,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string serviceProviderAccountId = 3;</code>
        */
-      public java.lang.String getServiceProviderAccountId() {
+      public String getServiceProviderAccountId() {
         return instance.getServiceProviderAccountId();
       }
       /**
@@ -703,7 +703,7 @@ public final class IntegrationProto {
        * <code>optional string serviceProviderAccountId = 3;</code>
        */
       public Builder setServiceProviderAccountId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceProviderAccountId(value);
         return this;
@@ -729,7 +729,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string defaultLabelId = 4;</code>
        */
-      public java.lang.String getDefaultLabelId() {
+      public String getDefaultLabelId() {
         return instance.getDefaultLabelId();
       }
       /**
@@ -743,7 +743,7 @@ public final class IntegrationProto {
        * <code>optional string defaultLabelId = 4;</code>
        */
       public Builder setDefaultLabelId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setDefaultLabelId(value);
         return this;
@@ -769,7 +769,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string serviceId = 5;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -783,7 +783,7 @@ public final class IntegrationProto {
        * <code>optional string serviceId = 5;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -823,13 +823,13 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 6;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      public UserProto.ThirdPartySource getSource() {
         return instance.getSource();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 6;</code>
        */
-      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+      public Builder setSource(UserProto.ThirdPartySource value) {
         copyOnWrite();
         instance.setSource(value);
         return this;
@@ -915,11 +915,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Integration)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.IntegrationProto.Integration();
+          return new Integration();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -932,7 +932,7 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.IntegrationProto.Integration other = (com.treeleaf.anydone.entities.IntegrationProto.Integration) arg1;
+          Integration other = (Integration) arg1;
           integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
               !other.integrationId_.isEmpty(), other.integrationId_);
           integrationMessenger_ = visitor.visitMessage(integrationMessenger_, other.integrationMessenger_);
@@ -949,7 +949,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -980,11 +980,11 @@ public final class IntegrationProto {
                   break;
                 }
                 case 18: {
-                  com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.Builder subBuilder = null;
+                  IntegrationMessenger.Builder subBuilder = null;
                   if (integrationMessenger_ != null) {
                     subBuilder = integrationMessenger_.toBuilder();
                   }
-                  integrationMessenger_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.parser(), extensionRegistry);
+                  integrationMessenger_ = input.readMessage(IntegrationMessenger.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(integrationMessenger_);
                     integrationMessenger_ = subBuilder.buildPartial();
@@ -1046,7 +1046,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.Integration.class) {
+          if (PARSER == null) {    synchronized (Integration.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1060,13 +1060,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Integration)
-    private static final com.treeleaf.anydone.entities.IntegrationProto.Integration DEFAULT_INSTANCE;
+    private static final Integration DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Integration();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.IntegrationProto.Integration getDefaultInstance() {
+    public static Integration getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1084,7 +1084,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationMessengerId = 1;</code>
      */
-    java.lang.String getIntegrationMessengerId();
+    String getIntegrationMessengerId();
     /**
      * <code>optional string integrationMessengerId = 1;</code>
      */
@@ -1094,7 +1094,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string verifyToken = 2;</code>
      */
-    java.lang.String getVerifyToken();
+    String getVerifyToken();
     /**
      * <code>optional string verifyToken = 2;</code>
      */
@@ -1104,7 +1104,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string pageAccessToken = 3;</code>
      */
-    java.lang.String getPageAccessToken();
+    String getPageAccessToken();
     /**
      * <code>optional string pageAccessToken = 3;</code>
      */
@@ -1114,7 +1114,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationId = 4;</code>
      */
-    java.lang.String getIntegrationId();
+    String getIntegrationId();
     /**
      * <code>optional string integrationId = 4;</code>
      */
@@ -1146,11 +1146,11 @@ public final class IntegrationProto {
       integrationId_ = "";
     }
     public static final int INTEGRATIONMESSENGERID_FIELD_NUMBER = 1;
-    private java.lang.String integrationMessengerId_;
+    private String integrationMessengerId_;
     /**
      * <code>optional string integrationMessengerId = 1;</code>
      */
-    public java.lang.String getIntegrationMessengerId() {
+    public String getIntegrationMessengerId() {
       return integrationMessengerId_;
     }
     /**
@@ -1164,7 +1164,7 @@ public final class IntegrationProto {
      * <code>optional string integrationMessengerId = 1;</code>
      */
     private void setIntegrationMessengerId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1192,11 +1192,11 @@ public final class IntegrationProto {
     }
 
     public static final int VERIFYTOKEN_FIELD_NUMBER = 2;
-    private java.lang.String verifyToken_;
+    private String verifyToken_;
     /**
      * <code>optional string verifyToken = 2;</code>
      */
-    public java.lang.String getVerifyToken() {
+    public String getVerifyToken() {
       return verifyToken_;
     }
     /**
@@ -1210,7 +1210,7 @@ public final class IntegrationProto {
      * <code>optional string verifyToken = 2;</code>
      */
     private void setVerifyToken(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1238,11 +1238,11 @@ public final class IntegrationProto {
     }
 
     public static final int PAGEACCESSTOKEN_FIELD_NUMBER = 3;
-    private java.lang.String pageAccessToken_;
+    private String pageAccessToken_;
     /**
      * <code>optional string pageAccessToken = 3;</code>
      */
-    public java.lang.String getPageAccessToken() {
+    public String getPageAccessToken() {
       return pageAccessToken_;
     }
     /**
@@ -1256,7 +1256,7 @@ public final class IntegrationProto {
      * <code>optional string pageAccessToken = 3;</code>
      */
     private void setPageAccessToken(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1284,11 +1284,11 @@ public final class IntegrationProto {
     }
 
     public static final int INTEGRATIONID_FIELD_NUMBER = 4;
-    private java.lang.String integrationId_;
+    private String integrationId_;
     /**
      * <code>optional string integrationId = 4;</code>
      */
-    public java.lang.String getIntegrationId() {
+    public String getIntegrationId() {
       return integrationId_;
     }
     /**
@@ -1302,7 +1302,7 @@ public final class IntegrationProto {
      * <code>optional string integrationId = 4;</code>
      */
     private void setIntegrationId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1430,60 +1430,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
+    public static IntegrationMessenger parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
+    public static IntegrationMessenger parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(byte[] data)
+    public static IntegrationMessenger parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
+    public static IntegrationMessenger parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(java.io.InputStream input)
+    public static IntegrationMessenger parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
+    public static IntegrationMessenger parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseDelimitedFrom(java.io.InputStream input)
+    public static IntegrationMessenger parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseDelimitedFrom(
+    public static IntegrationMessenger parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
+    public static IntegrationMessenger parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
+    public static IntegrationMessenger parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1494,7 +1494,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger prototype) {
+    public static Builder newBuilder(IntegrationMessenger prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1503,9 +1503,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger, Builder> implements
+          IntegrationMessenger, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntegrationMessenger)
-        com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessengerOrBuilder {
+        IntegrationMessengerOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1515,7 +1515,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationMessengerId = 1;</code>
        */
-      public java.lang.String getIntegrationMessengerId() {
+      public String getIntegrationMessengerId() {
         return instance.getIntegrationMessengerId();
       }
       /**
@@ -1529,7 +1529,7 @@ public final class IntegrationProto {
        * <code>optional string integrationMessengerId = 1;</code>
        */
       public Builder setIntegrationMessengerId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setIntegrationMessengerId(value);
         return this;
@@ -1555,7 +1555,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string verifyToken = 2;</code>
        */
-      public java.lang.String getVerifyToken() {
+      public String getVerifyToken() {
         return instance.getVerifyToken();
       }
       /**
@@ -1569,7 +1569,7 @@ public final class IntegrationProto {
        * <code>optional string verifyToken = 2;</code>
        */
       public Builder setVerifyToken(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setVerifyToken(value);
         return this;
@@ -1595,7 +1595,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string pageAccessToken = 3;</code>
        */
-      public java.lang.String getPageAccessToken() {
+      public String getPageAccessToken() {
         return instance.getPageAccessToken();
       }
       /**
@@ -1609,7 +1609,7 @@ public final class IntegrationProto {
        * <code>optional string pageAccessToken = 3;</code>
        */
       public Builder setPageAccessToken(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setPageAccessToken(value);
         return this;
@@ -1635,7 +1635,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationId = 4;</code>
        */
-      public java.lang.String getIntegrationId() {
+      public String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
@@ -1649,7 +1649,7 @@ public final class IntegrationProto {
        * <code>optional string integrationId = 4;</code>
        */
       public Builder setIntegrationId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setIntegrationId(value);
         return this;
@@ -1721,11 +1721,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntegrationMessenger)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger();
+          return new IntegrationMessenger();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1738,7 +1738,7 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger other = (com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger) arg1;
+          IntegrationMessenger other = (IntegrationMessenger) arg1;
           integrationMessengerId_ = visitor.visitString(!integrationMessengerId_.isEmpty(), integrationMessengerId_,
               !other.integrationMessengerId_.isEmpty(), other.integrationMessengerId_);
           verifyToken_ = visitor.visitString(!verifyToken_.isEmpty(), verifyToken_,
@@ -1751,7 +1751,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1824,7 +1824,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.class) {
+          if (PARSER == null) {    synchronized (IntegrationMessenger.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1838,13 +1838,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntegrationMessenger)
-    private static final com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger DEFAULT_INSTANCE;
+    private static final IntegrationMessenger DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntegrationMessenger();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getDefaultInstance() {
+    public static IntegrationMessenger getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

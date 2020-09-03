@@ -20,9 +20,18 @@ public class Tickets extends RealmObject {
     String ticketStatus;
     String createdByName;
     String createdByPic;
-    RealmList<Employee> assignedEmployee;
+    Employee assignedEmployee;
+    int priority;
 
     public Tickets() {
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public String getCreatedByName() {
@@ -125,11 +134,11 @@ public class Tickets extends RealmObject {
         this.customerType = customerType;
     }
 
-    public RealmList<Employee> getAssignedEmployee() {
+    public Employee getAssignedEmployee() {
         return assignedEmployee;
     }
 
-    public void setAssignedEmployee(RealmList<Employee> assignedEmployee) {
+    public void setAssignedEmployee(Employee assignedEmployee) {
         this.assignedEmployee = assignedEmployee;
     }
 

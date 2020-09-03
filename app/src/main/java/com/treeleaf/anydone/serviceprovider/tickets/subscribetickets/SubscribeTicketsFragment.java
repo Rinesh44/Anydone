@@ -122,6 +122,22 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             rvSubscribeTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
         }
+
+        rvSubscribeTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 || dy < 0 && fabSubscribe.isShown())
+                    fabSubscribe.hide();
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                    fabSubscribe.show();
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
 
     private void showUnsubscribeDialog(String ticketId) {
@@ -273,6 +289,11 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     @Override
     public void updateSubscribedList(List<Tickets> ticketsList) {
         setUpRecyclerView(ticketsList);
+    }
+
+    @Override
+    public void updateSubscribedList() {
+
     }
 }
 

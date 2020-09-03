@@ -9,6 +9,9 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestD
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRequestFragment;
+import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationFragment;
+import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineFragment;
+import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -50,5 +53,11 @@ public interface ApplicationComponent {
     void inject(TicketConversationFragment ticketConversationFragment);
 
     void inject(TicketTimelineFragment ticketTimelineFragment);
+
+    void inject(ThreadFragment threadFragment);
+
+    void inject(ThreadConversationFragment threadConversationFragment);
+
+    void inject(ThreadTimelineFragment threadTimelineFragment);
 
 }

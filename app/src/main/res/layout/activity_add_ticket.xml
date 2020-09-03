@@ -31,14 +31,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimens_2x"
                 android:hint="@string/summary"
-                app:helperText="*Required"
                 app:helperTextTextColor="@color/red">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:background="@null"
                     android:inputType="textVisiblePassword"
                     android:maxLength="45"
@@ -74,18 +72,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/customer_name"
-                app:helperText="*Required"
                 app:helperTextTextColor="@color/red">
 
                 <AutoCompleteTextView
                     android:id="@+id/et_customer_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_2x2"
                     android:drawableEnd="@drawable/ic_dropdown"
                     android:inputType="textVisiblePassword"
                     android:maxLength="45"
-                    android:padding="@dimen/dimens_2x"
+                    android:paddingStart="12dp"
+                    android:paddingTop="@dimen/dimens_2x"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="@dimen/dimens_2x"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />
 
@@ -163,45 +162,30 @@
                 layout="@layout/layout_assign_employee_result"
                 android:visibility="gone" />
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_assign_employee"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_6x1"
-                android:background="@drawable/et_rounded"
-                android:orientation="horizontal">
+                android:hint="@string/assign_employee">
 
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/fbl_employee"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_assign_employee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:alignContent="space_around"
-                    app:alignItems="stretch"
-                    app:flexWrap="wrap"
-                    app:showDivider="beginning|middle|end">
-
-                    <EditText
-                        android:id="@+id/et_assign_employee"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:background="@android:color/transparent"
-                        android:drawableEnd="@drawable/ic_dropdown"
-                        android:hint="Assign Employee"
-                        android:imeOptions="actionDone"
-                        android:inputType="textVisiblePassword"
-                        android:maxLength="45"
-                        android:textColorHint="@color/grey_dark"
-                        android:textSize="@dimen/material_text_subhead"
-                        app:layout_flexGrow="1" />
-
-                </com.google.android.flexbox.FlexboxLayout>
-
-            </LinearLayout>
+                    android:drawableEnd="@drawable/ic_dropdown"
+                    android:inputType="textVisiblePassword"
+                    android:maxLength="45"
+                    android:paddingEnd="18dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_subhead" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_10x2"
+                android:layout_marginBottom="@dimen/dimens_2x"
                 android:background="@drawable/et_rounded"
                 android:orientation="horizontal">
 
@@ -219,6 +203,7 @@
                         android:id="@+id/et_label"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
+                        android:layout_marginEnd="@dimen/dimen_2x4"
                         android:background="@android:color/transparent"
                         android:drawableEnd="@drawable/ic_dropdown"
                         android:hint="Team"
@@ -232,6 +217,37 @@
                 </com.google.android.flexbox.FlexboxLayout>
 
             </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/il_priority"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/priority">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_priority"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/sp_priority"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="25dp"
+                    android:elevation="@dimen/dimen_2x1" />
+
+
+            </RelativeLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_create_ticket"

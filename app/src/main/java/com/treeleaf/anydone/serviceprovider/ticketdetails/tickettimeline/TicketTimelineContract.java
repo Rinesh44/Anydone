@@ -13,13 +13,13 @@ public class TicketTimelineContract {
 
     public interface TicketTimelineView extends BaseView {
 
-        void getTicketTimelineSuccess(RealmList<Employee> assignedEmployee);
+        void getTicketTimelineSuccess(Employee assignedEmployee);
 
         void geTicketTimelineFail(String msg);
 
         void setCustomerDetails(Customer customerDetails);
 
-        void setAssignedEmployee(RealmList<Employee> assignedEmployee);
+        void setAssignedEmployee(Employee assignedEmployee);
 
         void onEmployeeUnAssignSuccess(String empId);
 
@@ -37,6 +37,10 @@ public class TicketTimelineContract {
 
         void onTicketResolveFail(String msg);
 
+        void getEmployeeSuccess();
+
+        void getEmployeeFail(String msg);
+
     }
 
     public interface TicketTimelinePresenter extends Presenter<TicketTimelineView> {
@@ -47,13 +51,15 @@ public class TicketTimelineContract {
 
         void getAssignedEmployees(long ticketId);
 
-        void unAssignEmployee(long ticketId, String employeeId);
+//        void unAssignEmployee(long ticketId, String employeeId);
 
         void closeTicket(long ticketId);
 
         void reopenTicket(long ticketId);
 
         void resolveTicket(long ticketId);
+
+        void getEmployees();
 
     }
 }

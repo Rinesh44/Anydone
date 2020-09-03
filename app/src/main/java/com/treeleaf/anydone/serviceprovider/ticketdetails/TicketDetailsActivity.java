@@ -38,6 +38,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView {
@@ -141,6 +142,17 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         };
     }
 
+    @OnClick(R.id.iv_share)
+    public void share() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Share link");
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+    }
+
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
@@ -216,6 +228,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         }
         return false;
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

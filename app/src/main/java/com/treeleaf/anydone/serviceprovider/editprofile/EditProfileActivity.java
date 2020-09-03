@@ -105,7 +105,6 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
             etFullName.setText(userAccount.getFullName());
         }
 
-        //todo add address check once implemented in back end
         if (userAccount.getGender() != null && !userAccount.getGender()
                 .equals(AnydoneProto.Gender.UNKNOWN_GENDER.name())) {
             setUpGenderDropDown();

@@ -182,8 +182,8 @@
     <string name="add_ticket">Add Ticket</string>
     <string name="assigned_to">Assigned to</string>
     <string name="description">Description</string>
-    <string name="summary">Summary</string>
-    <string name="customer_name">Customer Name</string>
+    <string name="summary">Summary*</string>
+    <string name="customer_name">Customer Name*</string>
     <string name="phone">Phone</string>
     <string name="assign_employee">Assign Employee</string>
     <string name="label">Label</string>
@@ -191,4 +191,6 @@
     <string name="todo">Todo</string>
     <string name="reopen">Reopened</string>
     <string name="ticket_details">Ticket Details</string>
+    <string name="priority">Priority*</string>
+    <string name="search_employee">Search Employee</string>
 </resources>

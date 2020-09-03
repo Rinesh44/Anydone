@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.rest.service;
 
+import com.mapbox.api.geocoding.v5.GeocodingCriteria;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
@@ -270,9 +271,11 @@ public interface AnyDoneService {
                                                                       @Path(value = "ticketId") long ticketId,
                                                                       @Query("remark") String remark);
 
-    @GET("ticket/assigned")
+    @GET("ticket/assigned/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(@Header(AUTHORIZATION)
                                                                                     String token,
+                                                                            @Path(value = "serviceId")
+                                                                            String serviceId,
                                                                             @Query("from") long from,
                                                                             @Query("to") long to,
                                                                             @Query("page") int page);
@@ -374,6 +377,9 @@ public interface AnyDoneService {
                                                                           @Path(value = "ticketId")
                                                                                   long ticketId,
                                                                           @Body TicketProto.Ticket employeeUnAssigned);
+
+    @GET("/service/available/self")
+    Observable<ServiceRpcProto.ServiceBaseResponse> getServices(@Header(AUTHORIZATION) String token);
 }
 
 

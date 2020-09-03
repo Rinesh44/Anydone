@@ -4,8 +4,6 @@ import com.treeleaf.anydone.serviceprovider.account.AccountRepository;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepository;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeRepository;
-import com.treeleaf.anydone.serviceprovider.assignemployee.AssignEmployeeRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepository;
@@ -43,6 +41,14 @@ import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLo
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepository;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailsRepository;
+import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationRepository;
+import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineRepository;
+import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.threads.ThreadRepository;
+import com.treeleaf.anydone.serviceprovider.threads.ThreadRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepository;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationRepository;
@@ -57,7 +63,6 @@ import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.Closed
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnsubscribedTicketRepository;
@@ -227,8 +232,24 @@ public class PresenterModule {
     }
 
     @Provides
-    AssignEmployeeRepository getAssignEmployeeRepository(AnyDoneService anyDoneService) {
-        return new AssignEmployeeRepositoryImpl(anyDoneService);
+    ThreadRepository getThreadRepository(AnyDoneService anyDoneService) {
+        return new ThreadRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ThreadDetailsRepository getThreadDetailsRepository(AnyDoneService anyDoneService) {
+        return new ThreadDetailRepositoryImpl(anyDoneService);
+    }
+
+
+    @Provides
+    ThreadConversationRepository getThreadConversationRepository(AnyDoneService anyDoneService) {
+        return new ThreadConversationRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ThreadTimelineRepository getThreadTimelineRepository(AnyDoneService anyDoneService) {
+        return new ThreadTimelineRepositoryImpl(anyDoneService);
     }
 }
 

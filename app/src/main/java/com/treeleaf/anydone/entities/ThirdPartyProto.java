@@ -15,7 +15,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string event = 1;</code>
      */
-    java.lang.String getEvent();
+    String getEvent();
     /**
      * <code>optional string event = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string timeStamp = 2;</code>
      */
-    java.lang.String getTimeStamp();
+    String getTimeStamp();
     /**
      * <code>optional string timeStamp = 2;</code>
      */
@@ -35,7 +35,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string chatHostName = 3;</code>
      */
-    java.lang.String getChatHostName();
+    String getChatHostName();
     /**
      * <code>optional string chatHostName = 3;</code>
      */
@@ -45,7 +45,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string messageToken = 4;</code>
      */
-    java.lang.String getMessageToken();
+    String getMessageToken();
     /**
      * <code>optional string messageToken = 4;</code>
      */
@@ -59,7 +59,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender getSender();
+    ViberSender getSender();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
@@ -68,7 +68,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage getMessage();
+    ViberMessage getMessage();
 
     /**
      * <code>optional bool silent = 7;</code>
@@ -78,7 +78,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string signature = 8;</code>
      */
-    java.lang.String getSignature();
+    String getSignature();
     /**
      * <code>optional string signature = 8;</code>
      */
@@ -101,11 +101,11 @@ public final class ThirdPartyProto {
       signature_ = "";
     }
     public static final int EVENT_FIELD_NUMBER = 1;
-    private java.lang.String event_;
+    private String event_;
     /**
      * <code>optional string event = 1;</code>
      */
-    public java.lang.String getEvent() {
+    public String getEvent() {
       return event_;
     }
     /**
@@ -119,7 +119,7 @@ public final class ThirdPartyProto {
      * <code>optional string event = 1;</code>
      */
     private void setEvent(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -147,11 +147,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 2;
-    private java.lang.String timeStamp_;
+    private String timeStamp_;
     /**
      * <code>optional string timeStamp = 2;</code>
      */
-    public java.lang.String getTimeStamp() {
+    public String getTimeStamp() {
       return timeStamp_;
     }
     /**
@@ -165,7 +165,7 @@ public final class ThirdPartyProto {
      * <code>optional string timeStamp = 2;</code>
      */
     private void setTimeStamp(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -193,11 +193,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int CHATHOSTNAME_FIELD_NUMBER = 3;
-    private java.lang.String chatHostName_;
+    private String chatHostName_;
     /**
      * <code>optional string chatHostName = 3;</code>
      */
-    public java.lang.String getChatHostName() {
+    public String getChatHostName() {
       return chatHostName_;
     }
     /**
@@ -211,7 +211,7 @@ public final class ThirdPartyProto {
      * <code>optional string chatHostName = 3;</code>
      */
     private void setChatHostName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -239,11 +239,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int MESSAGETOKEN_FIELD_NUMBER = 4;
-    private java.lang.String messageToken_;
+    private String messageToken_;
     /**
      * <code>optional string messageToken = 4;</code>
      */
-    public java.lang.String getMessageToken() {
+    public String getMessageToken() {
       return messageToken_;
     }
     /**
@@ -257,7 +257,7 @@ public final class ThirdPartyProto {
      * <code>optional string messageToken = 4;</code>
      */
     private void setMessageToken(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -285,7 +285,7 @@ public final class ThirdPartyProto {
     }
 
     public static final int SENDER_FIELD_NUMBER = 5;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender sender_;
+    private ViberSender sender_;
     /**
      * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
      */
@@ -295,13 +295,13 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender getSender() {
-      return sender_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.getDefaultInstance() : sender_;
+    public ViberSender getSender() {
+      return sender_ == null ? ViberSender.getDefaultInstance() : sender_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
      */
-    private void setSender(com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender value) {
+    private void setSender(ViberSender value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -312,18 +312,18 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
      */
     private void setSender(
-        com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.Builder builderForValue) {
+        ViberSender.Builder builderForValue) {
       sender_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
      */
-    private void mergeSender(com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender value) {
+    private void mergeSender(ViberSender value) {
       if (sender_ != null &&
-          sender_ != com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.getDefaultInstance()) {
+          sender_ != ViberSender.getDefaultInstance()) {
         sender_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.newBuilder(sender_).mergeFrom(value).buildPartial();
+          ViberSender.newBuilder(sender_).mergeFrom(value).buildPartial();
       } else {
         sender_ = value;
       }
@@ -337,7 +337,7 @@ public final class ThirdPartyProto {
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 6;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage message_;
+    private ViberMessage message_;
     /**
      * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
      */
@@ -347,13 +347,13 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage getMessage() {
-      return message_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.getDefaultInstance() : message_;
+    public ViberMessage getMessage() {
+      return message_ == null ? ViberMessage.getDefaultInstance() : message_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
      */
-    private void setMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage value) {
+    private void setMessage(ViberMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -364,18 +364,18 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
      */
     private void setMessage(
-        com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.Builder builderForValue) {
+        ViberMessage.Builder builderForValue) {
       message_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
      */
-    private void mergeMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage value) {
+    private void mergeMessage(ViberMessage value) {
       if (message_ != null &&
-          message_ != com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.getDefaultInstance()) {
+          message_ != ViberMessage.getDefaultInstance()) {
         message_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.newBuilder(message_).mergeFrom(value).buildPartial();
+          ViberMessage.newBuilder(message_).mergeFrom(value).buildPartial();
       } else {
         message_ = value;
       }
@@ -412,11 +412,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int SIGNATURE_FIELD_NUMBER = 8;
-    private java.lang.String signature_;
+    private String signature_;
     /**
      * <code>optional string signature = 8;</code>
      */
-    public java.lang.String getSignature() {
+    public String getSignature() {
       return signature_;
     }
     /**
@@ -430,7 +430,7 @@ public final class ThirdPartyProto {
      * <code>optional string signature = 8;</code>
      */
     private void setSignature(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -526,60 +526,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(
+    public static IncomingViberMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(
+    public static IncomingViberMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(byte[] data)
+    public static IncomingViberMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(
+    public static IncomingViberMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(java.io.InputStream input)
+    public static IncomingViberMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(
+    public static IncomingViberMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseDelimitedFrom(java.io.InputStream input)
+    public static IncomingViberMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseDelimitedFrom(
+    public static IncomingViberMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(
+    public static IncomingViberMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage parseFrom(
+    public static IncomingViberMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -590,7 +590,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage prototype) {
+    public static Builder newBuilder(IncomingViberMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -599,9 +599,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage, Builder> implements
+          IncomingViberMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IncomingViberMessage)
-        com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessageOrBuilder {
+        IncomingViberMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -611,7 +611,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string event = 1;</code>
        */
-      public java.lang.String getEvent() {
+      public String getEvent() {
         return instance.getEvent();
       }
       /**
@@ -625,7 +625,7 @@ public final class ThirdPartyProto {
        * <code>optional string event = 1;</code>
        */
       public Builder setEvent(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setEvent(value);
         return this;
@@ -651,7 +651,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string timeStamp = 2;</code>
        */
-      public java.lang.String getTimeStamp() {
+      public String getTimeStamp() {
         return instance.getTimeStamp();
       }
       /**
@@ -665,7 +665,7 @@ public final class ThirdPartyProto {
        * <code>optional string timeStamp = 2;</code>
        */
       public Builder setTimeStamp(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTimeStamp(value);
         return this;
@@ -691,7 +691,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string chatHostName = 3;</code>
        */
-      public java.lang.String getChatHostName() {
+      public String getChatHostName() {
         return instance.getChatHostName();
       }
       /**
@@ -705,7 +705,7 @@ public final class ThirdPartyProto {
        * <code>optional string chatHostName = 3;</code>
        */
       public Builder setChatHostName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setChatHostName(value);
         return this;
@@ -731,7 +731,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string messageToken = 4;</code>
        */
-      public java.lang.String getMessageToken() {
+      public String getMessageToken() {
         return instance.getMessageToken();
       }
       /**
@@ -745,7 +745,7 @@ public final class ThirdPartyProto {
        * <code>optional string messageToken = 4;</code>
        */
       public Builder setMessageToken(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMessageToken(value);
         return this;
@@ -777,13 +777,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender getSender() {
+      public ViberSender getSender() {
         return instance.getSender();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
        */
-      public Builder setSender(com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender value) {
+      public Builder setSender(ViberSender value) {
         copyOnWrite();
         instance.setSender(value);
         return this;
@@ -792,7 +792,7 @@ public final class ThirdPartyProto {
        * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
        */
       public Builder setSender(
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.Builder builderForValue) {
+          ViberSender.Builder builderForValue) {
         copyOnWrite();
         instance.setSender(builderForValue);
         return this;
@@ -800,7 +800,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ViberSender sender = 5;</code>
        */
-      public Builder mergeSender(com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender value) {
+      public Builder mergeSender(ViberSender value) {
         copyOnWrite();
         instance.mergeSender(value);
         return this;
@@ -822,13 +822,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage getMessage() {
+      public ViberMessage getMessage() {
         return instance.getMessage();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
        */
-      public Builder setMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage value) {
+      public Builder setMessage(ViberMessage value) {
         copyOnWrite();
         instance.setMessage(value);
         return this;
@@ -837,7 +837,7 @@ public final class ThirdPartyProto {
        * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
        */
       public Builder setMessage(
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.Builder builderForValue) {
+          ViberMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setMessage(builderForValue);
         return this;
@@ -845,7 +845,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ViberMessage message = 6;</code>
        */
-      public Builder mergeMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage value) {
+      public Builder mergeMessage(ViberMessage value) {
         copyOnWrite();
         instance.mergeMessage(value);
         return this;
@@ -884,7 +884,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string signature = 8;</code>
        */
-      public java.lang.String getSignature() {
+      public String getSignature() {
         return instance.getSignature();
       }
       /**
@@ -898,7 +898,7 @@ public final class ThirdPartyProto {
        * <code>optional string signature = 8;</code>
        */
       public Builder setSignature(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setSignature(value);
         return this;
@@ -924,11 +924,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IncomingViberMessage)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage();
+          return new IncomingViberMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -941,7 +941,7 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage other = (com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage) arg1;
+          IncomingViberMessage other = (IncomingViberMessage) arg1;
           event_ = visitor.visitString(!event_.isEmpty(), event_,
               !other.event_.isEmpty(), other.event_);
           timeStamp_ = visitor.visitString(!timeStamp_.isEmpty(), timeStamp_,
@@ -956,7 +956,7 @@ public final class ThirdPartyProto {
               other.silent_ != false, other.silent_);
           signature_ = visitor.visitString(!signature_.isEmpty(), signature_,
               !other.signature_.isEmpty(), other.signature_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1005,11 +1005,11 @@ public final class ThirdPartyProto {
                   break;
                 }
                 case 42: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.Builder subBuilder = null;
+                  ViberSender.Builder subBuilder = null;
                   if (sender_ != null) {
                     subBuilder = sender_.toBuilder();
                   }
-                  sender_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.parser(), extensionRegistry);
+                  sender_ = input.readMessage(ViberSender.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(sender_);
                     sender_ = subBuilder.buildPartial();
@@ -1018,11 +1018,11 @@ public final class ThirdPartyProto {
                   break;
                 }
                 case 50: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.Builder subBuilder = null;
+                  ViberMessage.Builder subBuilder = null;
                   if (message_ != null) {
                     subBuilder = message_.toBuilder();
                   }
-                  message_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.parser(), extensionRegistry);
+                  message_ = input.readMessage(ViberMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(message_);
                     message_ = subBuilder.buildPartial();
@@ -1056,7 +1056,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage.class) {
+          if (PARSER == null) {    synchronized (IncomingViberMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1070,13 +1070,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IncomingViberMessage)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage DEFAULT_INSTANCE;
+    private static final IncomingViberMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IncomingViberMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage getDefaultInstance() {
+    public static IncomingViberMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1094,7 +1094,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -1104,7 +1104,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string name = 2;</code>
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>optional string name = 2;</code>
      */
@@ -1114,7 +1114,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string avatar = 3;</code>
      */
-    java.lang.String getAvatar();
+    String getAvatar();
     /**
      * <code>optional string avatar = 3;</code>
      */
@@ -1124,7 +1124,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string language = 4;</code>
      */
-    java.lang.String getLanguage();
+    String getLanguage();
     /**
      * <code>optional string language = 4;</code>
      */
@@ -1134,7 +1134,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string country = 5;</code>
      */
-    java.lang.String getCountry();
+    String getCountry();
     /**
      * <code>optional string country = 5;</code>
      */
@@ -1144,7 +1144,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string apiVersion = 6;</code>
      */
-    java.lang.String getApiVersion();
+    String getApiVersion();
     /**
      * <code>optional string apiVersion = 6;</code>
      */
@@ -1168,11 +1168,11 @@ public final class ThirdPartyProto {
       apiVersion_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.String id_;
+    private String id_;
     /**
      * <code>optional string id = 1;</code>
      */
-    public java.lang.String getId() {
+    public String getId() {
       return id_;
     }
     /**
@@ -1186,7 +1186,7 @@ public final class ThirdPartyProto {
      * <code>optional string id = 1;</code>
      */
     private void setId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1214,11 +1214,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private java.lang.String name_;
+    private String name_;
     /**
      * <code>optional string name = 2;</code>
      */
-    public java.lang.String getName() {
+    public String getName() {
       return name_;
     }
     /**
@@ -1232,7 +1232,7 @@ public final class ThirdPartyProto {
      * <code>optional string name = 2;</code>
      */
     private void setName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1260,11 +1260,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int AVATAR_FIELD_NUMBER = 3;
-    private java.lang.String avatar_;
+    private String avatar_;
     /**
      * <code>optional string avatar = 3;</code>
      */
-    public java.lang.String getAvatar() {
+    public String getAvatar() {
       return avatar_;
     }
     /**
@@ -1278,7 +1278,7 @@ public final class ThirdPartyProto {
      * <code>optional string avatar = 3;</code>
      */
     private void setAvatar(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1306,11 +1306,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 4;
-    private java.lang.String language_;
+    private String language_;
     /**
      * <code>optional string language = 4;</code>
      */
-    public java.lang.String getLanguage() {
+    public String getLanguage() {
       return language_;
     }
     /**
@@ -1324,7 +1324,7 @@ public final class ThirdPartyProto {
      * <code>optional string language = 4;</code>
      */
     private void setLanguage(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1352,11 +1352,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int COUNTRY_FIELD_NUMBER = 5;
-    private java.lang.String country_;
+    private String country_;
     /**
      * <code>optional string country = 5;</code>
      */
-    public java.lang.String getCountry() {
+    public String getCountry() {
       return country_;
     }
     /**
@@ -1370,7 +1370,7 @@ public final class ThirdPartyProto {
      * <code>optional string country = 5;</code>
      */
     private void setCountry(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1398,11 +1398,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int APIVERSION_FIELD_NUMBER = 6;
-    private java.lang.String apiVersion_;
+    private String apiVersion_;
     /**
      * <code>optional string apiVersion = 6;</code>
      */
-    public java.lang.String getApiVersion() {
+    public String getApiVersion() {
       return apiVersion_;
     }
     /**
@@ -1416,7 +1416,7 @@ public final class ThirdPartyProto {
      * <code>optional string apiVersion = 6;</code>
      */
     private void setApiVersion(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1498,60 +1498,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(
+    public static ViberSender parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(
+    public static ViberSender parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(byte[] data)
+    public static ViberSender parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(
+    public static ViberSender parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(java.io.InputStream input)
+    public static ViberSender parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(
+    public static ViberSender parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseDelimitedFrom(java.io.InputStream input)
+    public static ViberSender parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseDelimitedFrom(
+    public static ViberSender parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(
+    public static ViberSender parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender parseFrom(
+    public static ViberSender parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1562,7 +1562,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender prototype) {
+    public static Builder newBuilder(ViberSender prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1571,9 +1571,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender, Builder> implements
+          ViberSender, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ViberSender)
-        com.treeleaf.anydone.entities.ThirdPartyProto.ViberSenderOrBuilder {
+        ViberSenderOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1583,7 +1583,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string id = 1;</code>
        */
-      public java.lang.String getId() {
+      public String getId() {
         return instance.getId();
       }
       /**
@@ -1597,7 +1597,7 @@ public final class ThirdPartyProto {
        * <code>optional string id = 1;</code>
        */
       public Builder setId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setId(value);
         return this;
@@ -1623,7 +1623,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string name = 2;</code>
        */
-      public java.lang.String getName() {
+      public String getName() {
         return instance.getName();
       }
       /**
@@ -1637,7 +1637,7 @@ public final class ThirdPartyProto {
        * <code>optional string name = 2;</code>
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setName(value);
         return this;
@@ -1663,7 +1663,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string avatar = 3;</code>
        */
-      public java.lang.String getAvatar() {
+      public String getAvatar() {
         return instance.getAvatar();
       }
       /**
@@ -1677,7 +1677,7 @@ public final class ThirdPartyProto {
        * <code>optional string avatar = 3;</code>
        */
       public Builder setAvatar(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAvatar(value);
         return this;
@@ -1703,7 +1703,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string language = 4;</code>
        */
-      public java.lang.String getLanguage() {
+      public String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -1717,7 +1717,7 @@ public final class ThirdPartyProto {
        * <code>optional string language = 4;</code>
        */
       public Builder setLanguage(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -1743,7 +1743,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string country = 5;</code>
        */
-      public java.lang.String getCountry() {
+      public String getCountry() {
         return instance.getCountry();
       }
       /**
@@ -1757,7 +1757,7 @@ public final class ThirdPartyProto {
        * <code>optional string country = 5;</code>
        */
       public Builder setCountry(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCountry(value);
         return this;
@@ -1783,7 +1783,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string apiVersion = 6;</code>
        */
-      public java.lang.String getApiVersion() {
+      public String getApiVersion() {
         return instance.getApiVersion();
       }
       /**
@@ -1797,7 +1797,7 @@ public final class ThirdPartyProto {
        * <code>optional string apiVersion = 6;</code>
        */
       public Builder setApiVersion(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setApiVersion(value);
         return this;
@@ -1823,11 +1823,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ViberSender)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender();
+          return new ViberSender();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1840,7 +1840,7 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender other = (com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender) arg1;
+          ViberSender other = (ViberSender) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
           name_ = visitor.visitString(!name_.isEmpty(), name_,
@@ -1853,7 +1853,7 @@ public final class ThirdPartyProto {
               !other.country_.isEmpty(), other.country_);
           apiVersion_ = visitor.visitString(!apiVersion_.isEmpty(), apiVersion_,
               !other.apiVersion_.isEmpty(), other.apiVersion_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1928,7 +1928,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender.class) {
+          if (PARSER == null) {    synchronized (ViberSender.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1942,13 +1942,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ViberSender)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender DEFAULT_INSTANCE;
+    private static final ViberSender DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ViberSender();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberSender getDefaultInstance() {
+    public static ViberSender getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1966,7 +1966,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string type = 1;</code>
      */
-    java.lang.String getType();
+    String getType();
     /**
      * <code>optional string type = 1;</code>
      */
@@ -1976,7 +1976,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string text = 2;</code>
      */
-    java.lang.String getText();
+    String getText();
     /**
      * <code>optional string text = 2;</code>
      */
@@ -1996,11 +1996,11 @@ public final class ThirdPartyProto {
       text_ = "";
     }
     public static final int TYPE_FIELD_NUMBER = 1;
-    private java.lang.String type_;
+    private String type_;
     /**
      * <code>optional string type = 1;</code>
      */
-    public java.lang.String getType() {
+    public String getType() {
       return type_;
     }
     /**
@@ -2014,7 +2014,7 @@ public final class ThirdPartyProto {
      * <code>optional string type = 1;</code>
      */
     private void setType(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2042,11 +2042,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int TEXT_FIELD_NUMBER = 2;
-    private java.lang.String text_;
+    private String text_;
     /**
      * <code>optional string text = 2;</code>
      */
-    public java.lang.String getText() {
+    public String getText() {
       return text_;
     }
     /**
@@ -2060,7 +2060,7 @@ public final class ThirdPartyProto {
      * <code>optional string text = 2;</code>
      */
     private void setText(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2114,60 +2114,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(
+    public static ViberMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(
+    public static ViberMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(byte[] data)
+    public static ViberMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(
+    public static ViberMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(java.io.InputStream input)
+    public static ViberMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(
+    public static ViberMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseDelimitedFrom(java.io.InputStream input)
+    public static ViberMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseDelimitedFrom(
+    public static ViberMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(
+    public static ViberMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage parseFrom(
+    public static ViberMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2178,7 +2178,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage prototype) {
+    public static Builder newBuilder(ViberMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2187,9 +2187,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage, Builder> implements
+          ViberMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ViberMessage)
-        com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessageOrBuilder {
+        ViberMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2199,7 +2199,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string type = 1;</code>
        */
-      public java.lang.String getType() {
+      public String getType() {
         return instance.getType();
       }
       /**
@@ -2213,7 +2213,7 @@ public final class ThirdPartyProto {
        * <code>optional string type = 1;</code>
        */
       public Builder setType(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setType(value);
         return this;
@@ -2239,7 +2239,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string text = 2;</code>
        */
-      public java.lang.String getText() {
+      public String getText() {
         return instance.getText();
       }
       /**
@@ -2253,7 +2253,7 @@ public final class ThirdPartyProto {
        * <code>optional string text = 2;</code>
        */
       public Builder setText(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -2279,11 +2279,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ViberMessage)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage();
+          return new ViberMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2296,12 +2296,12 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage other = (com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage) arg1;
+          ViberMessage other = (ViberMessage) arg1;
           type_ = visitor.visitString(!type_.isEmpty(), type_,
               !other.type_.isEmpty(), other.type_);
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2352,7 +2352,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage.class) {
+          if (PARSER == null) {    synchronized (ViberMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2366,13 +2366,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ViberMessage)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage DEFAULT_INSTANCE;
+    private static final ViberMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ViberMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ViberMessage getDefaultInstance() {
+    public static ViberMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2390,7 +2390,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string mode = 1;</code>
      */
-    java.lang.String getMode();
+    String getMode();
     /**
      * <code>optional string mode = 1;</code>
      */
@@ -2400,7 +2400,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string verifyToken = 2;</code>
      */
-    java.lang.String getVerifyToken();
+    String getVerifyToken();
     /**
      * <code>optional string verifyToken = 2;</code>
      */
@@ -2410,7 +2410,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string challenge = 3;</code>
      */
-    java.lang.String getChallenge();
+    String getChallenge();
     /**
      * <code>optional string challenge = 3;</code>
      */
@@ -2431,11 +2431,11 @@ public final class ThirdPartyProto {
       challenge_ = "";
     }
     public static final int MODE_FIELD_NUMBER = 1;
-    private java.lang.String mode_;
+    private String mode_;
     /**
      * <code>optional string mode = 1;</code>
      */
-    public java.lang.String getMode() {
+    public String getMode() {
       return mode_;
     }
     /**
@@ -2449,7 +2449,7 @@ public final class ThirdPartyProto {
      * <code>optional string mode = 1;</code>
      */
     private void setMode(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2477,11 +2477,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int VERIFYTOKEN_FIELD_NUMBER = 2;
-    private java.lang.String verifyToken_;
+    private String verifyToken_;
     /**
      * <code>optional string verifyToken = 2;</code>
      */
-    public java.lang.String getVerifyToken() {
+    public String getVerifyToken() {
       return verifyToken_;
     }
     /**
@@ -2495,7 +2495,7 @@ public final class ThirdPartyProto {
      * <code>optional string verifyToken = 2;</code>
      */
     private void setVerifyToken(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2523,11 +2523,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int CHALLENGE_FIELD_NUMBER = 3;
-    private java.lang.String challenge_;
+    private String challenge_;
     /**
      * <code>optional string challenge = 3;</code>
      */
-    public java.lang.String getChallenge() {
+    public String getChallenge() {
       return challenge_;
     }
     /**
@@ -2541,7 +2541,7 @@ public final class ThirdPartyProto {
      * <code>optional string challenge = 3;</code>
      */
     private void setChallenge(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2602,60 +2602,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(
+    public static MessengerWebhook parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(
+    public static MessengerWebhook parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(byte[] data)
+    public static MessengerWebhook parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(
+    public static MessengerWebhook parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(java.io.InputStream input)
+    public static MessengerWebhook parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(
+    public static MessengerWebhook parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseDelimitedFrom(java.io.InputStream input)
+    public static MessengerWebhook parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseDelimitedFrom(
+    public static MessengerWebhook parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(
+    public static MessengerWebhook parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook parseFrom(
+    public static MessengerWebhook parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2666,7 +2666,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook prototype) {
+    public static Builder newBuilder(MessengerWebhook prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2675,9 +2675,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook, Builder> implements
+          MessengerWebhook, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MessengerWebhook)
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhookOrBuilder {
+        MessengerWebhookOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2687,7 +2687,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string mode = 1;</code>
        */
-      public java.lang.String getMode() {
+      public String getMode() {
         return instance.getMode();
       }
       /**
@@ -2701,7 +2701,7 @@ public final class ThirdPartyProto {
        * <code>optional string mode = 1;</code>
        */
       public Builder setMode(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMode(value);
         return this;
@@ -2727,7 +2727,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string verifyToken = 2;</code>
        */
-      public java.lang.String getVerifyToken() {
+      public String getVerifyToken() {
         return instance.getVerifyToken();
       }
       /**
@@ -2741,7 +2741,7 @@ public final class ThirdPartyProto {
        * <code>optional string verifyToken = 2;</code>
        */
       public Builder setVerifyToken(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setVerifyToken(value);
         return this;
@@ -2767,7 +2767,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string challenge = 3;</code>
        */
-      public java.lang.String getChallenge() {
+      public String getChallenge() {
         return instance.getChallenge();
       }
       /**
@@ -2781,7 +2781,7 @@ public final class ThirdPartyProto {
        * <code>optional string challenge = 3;</code>
        */
       public Builder setChallenge(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setChallenge(value);
         return this;
@@ -2807,11 +2807,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessengerWebhook)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook();
+          return new MessengerWebhook();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2824,14 +2824,14 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook other = (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook) arg1;
+          MessengerWebhook other = (MessengerWebhook) arg1;
           mode_ = visitor.visitString(!mode_.isEmpty(), mode_,
               !other.mode_.isEmpty(), other.mode_);
           verifyToken_ = visitor.visitString(!verifyToken_.isEmpty(), verifyToken_,
               !other.verifyToken_.isEmpty(), other.verifyToken_);
           challenge_ = visitor.visitString(!challenge_.isEmpty(), challenge_,
               !other.challenge_.isEmpty(), other.challenge_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2888,7 +2888,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook.class) {
+          if (PARSER == null) {    synchronized (MessengerWebhook.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2902,13 +2902,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MessengerWebhook)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook DEFAULT_INSTANCE;
+    private static final MessengerWebhook DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new MessengerWebhook();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerWebhook getDefaultInstance() {
+    public static MessengerWebhook getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2926,7 +2926,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string mid = 1;</code>
      */
-    java.lang.String getMid();
+    String getMid();
     /**
      * <code>optional string mid = 1;</code>
      */
@@ -2941,7 +2941,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string text = 3;</code>
      */
-    java.lang.String getText();
+    String getText();
     /**
      * <code>optional string text = 3;</code>
      */
@@ -2961,11 +2961,11 @@ public final class ThirdPartyProto {
       text_ = "";
     }
     public static final int MID_FIELD_NUMBER = 1;
-    private java.lang.String mid_;
+    private String mid_;
     /**
      * <code>optional string mid = 1;</code>
      */
-    public java.lang.String getMid() {
+    public String getMid() {
       return mid_;
     }
     /**
@@ -2979,7 +2979,7 @@ public final class ThirdPartyProto {
      * <code>optional string mid = 1;</code>
      */
     private void setMid(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3030,11 +3030,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int TEXT_FIELD_NUMBER = 3;
-    private java.lang.String text_;
+    private String text_;
     /**
      * <code>optional string text = 3;</code>
      */
-    public java.lang.String getText() {
+    public String getText() {
       return text_;
     }
     /**
@@ -3048,7 +3048,7 @@ public final class ThirdPartyProto {
      * <code>optional string text = 3;</code>
      */
     private void setText(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3109,60 +3109,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(
+    public static MessengerMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(
+    public static MessengerMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(byte[] data)
+    public static MessengerMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(
+    public static MessengerMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(java.io.InputStream input)
+    public static MessengerMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(
+    public static MessengerMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseDelimitedFrom(java.io.InputStream input)
+    public static MessengerMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseDelimitedFrom(
+    public static MessengerMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(
+    public static MessengerMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage parseFrom(
+    public static MessengerMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3173,7 +3173,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage prototype) {
+    public static Builder newBuilder(MessengerMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3182,9 +3182,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage, Builder> implements
+          MessengerMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MessengerMessage)
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessageOrBuilder {
+        MessengerMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3194,7 +3194,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string mid = 1;</code>
        */
-      public java.lang.String getMid() {
+      public String getMid() {
         return instance.getMid();
       }
       /**
@@ -3208,7 +3208,7 @@ public final class ThirdPartyProto {
        * <code>optional string mid = 1;</code>
        */
       public Builder setMid(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMid(value);
         return this;
@@ -3257,7 +3257,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string text = 3;</code>
        */
-      public java.lang.String getText() {
+      public String getText() {
         return instance.getText();
       }
       /**
@@ -3271,7 +3271,7 @@ public final class ThirdPartyProto {
        * <code>optional string text = 3;</code>
        */
       public Builder setText(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -3297,11 +3297,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessengerMessage)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage();
+          return new MessengerMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3314,14 +3314,14 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage other = (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage) arg1;
+          MessengerMessage other = (MessengerMessage) arg1;
           mid_ = visitor.visitString(!mid_.isEmpty(), mid_,
               !other.mid_.isEmpty(), other.mid_);
           seq_ = visitor.visitLong(seq_ != 0L, seq_,
               other.seq_ != 0L, other.seq_);
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3377,7 +3377,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.class) {
+          if (PARSER == null) {    synchronized (MessengerMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3391,13 +3391,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MessengerMessage)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage DEFAULT_INSTANCE;
+    private static final MessengerMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new MessengerMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage getDefaultInstance() {
+    public static MessengerMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3419,7 +3419,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender getMessengerSender();
+    MessengerSender getMessengerSender();
 
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
@@ -3428,7 +3428,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver getMessengerReceiver();
+    MessengerReceiver getMessengerReceiver();
 
     /**
      * <code>optional int64 timestamp = 3;</code>
@@ -3442,7 +3442,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage getMessage();
+    MessengerMessage getMessage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Messaging}
@@ -3455,7 +3455,7 @@ public final class ThirdPartyProto {
     private Messaging() {
     }
     public static final int MESSENGERSENDER_FIELD_NUMBER = 1;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender messengerSender_;
+    private MessengerSender messengerSender_;
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
      */
@@ -3465,13 +3465,13 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender getMessengerSender() {
-      return messengerSender_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.getDefaultInstance() : messengerSender_;
+    public MessengerSender getMessengerSender() {
+      return messengerSender_ == null ? MessengerSender.getDefaultInstance() : messengerSender_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
      */
-    private void setMessengerSender(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender value) {
+    private void setMessengerSender(MessengerSender value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3482,18 +3482,18 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
      */
     private void setMessengerSender(
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.Builder builderForValue) {
+        MessengerSender.Builder builderForValue) {
       messengerSender_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
      */
-    private void mergeMessengerSender(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender value) {
+    private void mergeMessengerSender(MessengerSender value) {
       if (messengerSender_ != null &&
-          messengerSender_ != com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.getDefaultInstance()) {
+          messengerSender_ != MessengerSender.getDefaultInstance()) {
         messengerSender_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.newBuilder(messengerSender_).mergeFrom(value).buildPartial();
+          MessengerSender.newBuilder(messengerSender_).mergeFrom(value).buildPartial();
       } else {
         messengerSender_ = value;
       }
@@ -3507,7 +3507,7 @@ public final class ThirdPartyProto {
     }
 
     public static final int MESSENGERRECEIVER_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver messengerReceiver_;
+    private MessengerReceiver messengerReceiver_;
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
      */
@@ -3517,13 +3517,13 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver getMessengerReceiver() {
-      return messengerReceiver_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.getDefaultInstance() : messengerReceiver_;
+    public MessengerReceiver getMessengerReceiver() {
+      return messengerReceiver_ == null ? MessengerReceiver.getDefaultInstance() : messengerReceiver_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
      */
-    private void setMessengerReceiver(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver value) {
+    private void setMessengerReceiver(MessengerReceiver value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3534,18 +3534,18 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
      */
     private void setMessengerReceiver(
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.Builder builderForValue) {
+        MessengerReceiver.Builder builderForValue) {
       messengerReceiver_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
      */
-    private void mergeMessengerReceiver(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver value) {
+    private void mergeMessengerReceiver(MessengerReceiver value) {
       if (messengerReceiver_ != null &&
-          messengerReceiver_ != com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.getDefaultInstance()) {
+          messengerReceiver_ != MessengerReceiver.getDefaultInstance()) {
         messengerReceiver_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.newBuilder(messengerReceiver_).mergeFrom(value).buildPartial();
+          MessengerReceiver.newBuilder(messengerReceiver_).mergeFrom(value).buildPartial();
       } else {
         messengerReceiver_ = value;
       }
@@ -3582,7 +3582,7 @@ public final class ThirdPartyProto {
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 4;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage message_;
+    private MessengerMessage message_;
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
      */
@@ -3592,13 +3592,13 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage getMessage() {
-      return message_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.getDefaultInstance() : message_;
+    public MessengerMessage getMessage() {
+      return message_ == null ? MessengerMessage.getDefaultInstance() : message_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
      */
-    private void setMessage(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage value) {
+    private void setMessage(MessengerMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3609,18 +3609,18 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
      */
     private void setMessage(
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.Builder builderForValue) {
+        MessengerMessage.Builder builderForValue) {
       message_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
      */
-    private void mergeMessage(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage value) {
+    private void mergeMessage(MessengerMessage value) {
       if (message_ != null &&
-          message_ != com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.getDefaultInstance()) {
+          message_ != MessengerMessage.getDefaultInstance()) {
         message_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.newBuilder(message_).mergeFrom(value).buildPartial();
+          MessengerMessage.newBuilder(message_).mergeFrom(value).buildPartial();
       } else {
         message_ = value;
       }
@@ -3674,60 +3674,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(
+    public static Messaging parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(
+    public static Messaging parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(byte[] data)
+    public static Messaging parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(
+    public static Messaging parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(java.io.InputStream input)
+    public static Messaging parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(
+    public static Messaging parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseDelimitedFrom(java.io.InputStream input)
+    public static Messaging parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseDelimitedFrom(
+    public static Messaging parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(
+    public static Messaging parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging parseFrom(
+    public static Messaging parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3738,7 +3738,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging prototype) {
+    public static Builder newBuilder(Messaging prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3747,9 +3747,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.Messaging, Builder> implements
+          Messaging, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Messaging)
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessagingOrBuilder {
+        MessagingOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3765,13 +3765,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender getMessengerSender() {
+      public MessengerSender getMessengerSender() {
         return instance.getMessengerSender();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
        */
-      public Builder setMessengerSender(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender value) {
+      public Builder setMessengerSender(MessengerSender value) {
         copyOnWrite();
         instance.setMessengerSender(value);
         return this;
@@ -3780,7 +3780,7 @@ public final class ThirdPartyProto {
        * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
        */
       public Builder setMessengerSender(
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.Builder builderForValue) {
+          MessengerSender.Builder builderForValue) {
         copyOnWrite();
         instance.setMessengerSender(builderForValue);
         return this;
@@ -3788,7 +3788,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerSender messengerSender = 1;</code>
        */
-      public Builder mergeMessengerSender(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender value) {
+      public Builder mergeMessengerSender(MessengerSender value) {
         copyOnWrite();
         instance.mergeMessengerSender(value);
         return this;
@@ -3810,13 +3810,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver getMessengerReceiver() {
+      public MessengerReceiver getMessengerReceiver() {
         return instance.getMessengerReceiver();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
        */
-      public Builder setMessengerReceiver(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver value) {
+      public Builder setMessengerReceiver(MessengerReceiver value) {
         copyOnWrite();
         instance.setMessengerReceiver(value);
         return this;
@@ -3825,7 +3825,7 @@ public final class ThirdPartyProto {
        * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
        */
       public Builder setMessengerReceiver(
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.Builder builderForValue) {
+          MessengerReceiver.Builder builderForValue) {
         copyOnWrite();
         instance.setMessengerReceiver(builderForValue);
         return this;
@@ -3833,7 +3833,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerReceiver messengerReceiver = 2;</code>
        */
-      public Builder mergeMessengerReceiver(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver value) {
+      public Builder mergeMessengerReceiver(MessengerReceiver value) {
         copyOnWrite();
         instance.mergeMessengerReceiver(value);
         return this;
@@ -3878,13 +3878,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage getMessage() {
+      public MessengerMessage getMessage() {
         return instance.getMessage();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
        */
-      public Builder setMessage(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage value) {
+      public Builder setMessage(MessengerMessage value) {
         copyOnWrite();
         instance.setMessage(value);
         return this;
@@ -3893,7 +3893,7 @@ public final class ThirdPartyProto {
        * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
        */
       public Builder setMessage(
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.Builder builderForValue) {
+          MessengerMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setMessage(builderForValue);
         return this;
@@ -3901,7 +3901,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessengerMessage message = 4;</code>
        */
-      public Builder mergeMessage(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage value) {
+      public Builder mergeMessage(MessengerMessage value) {
         copyOnWrite();
         instance.mergeMessage(value);
         return this;
@@ -3917,11 +3917,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Messaging)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.Messaging();
+          return new Messaging();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3934,13 +3934,13 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.Messaging other = (com.treeleaf.anydone.entities.ThirdPartyProto.Messaging) arg1;
+          Messaging other = (Messaging) arg1;
           messengerSender_ = visitor.visitMessage(messengerSender_, other.messengerSender_);
           messengerReceiver_ = visitor.visitMessage(messengerReceiver_, other.messengerReceiver_);
           timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
               other.timestamp_ != 0L, other.timestamp_);
           message_ = visitor.visitMessage(message_, other.message_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3965,11 +3965,11 @@ public final class ThirdPartyProto {
                   break;
                 }
                 case 10: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.Builder subBuilder = null;
+                  MessengerSender.Builder subBuilder = null;
                   if (messengerSender_ != null) {
                     subBuilder = messengerSender_.toBuilder();
                   }
-                  messengerSender_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.parser(), extensionRegistry);
+                  messengerSender_ = input.readMessage(MessengerSender.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(messengerSender_);
                     messengerSender_ = subBuilder.buildPartial();
@@ -3978,11 +3978,11 @@ public final class ThirdPartyProto {
                   break;
                 }
                 case 18: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.Builder subBuilder = null;
+                  MessengerReceiver.Builder subBuilder = null;
                   if (messengerReceiver_ != null) {
                     subBuilder = messengerReceiver_.toBuilder();
                   }
-                  messengerReceiver_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.parser(), extensionRegistry);
+                  messengerReceiver_ = input.readMessage(MessengerReceiver.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(messengerReceiver_);
                     messengerReceiver_ = subBuilder.buildPartial();
@@ -3996,11 +3996,11 @@ public final class ThirdPartyProto {
                   break;
                 }
                 case 34: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.Builder subBuilder = null;
+                  MessengerMessage.Builder subBuilder = null;
                   if (message_ != null) {
                     subBuilder = message_.toBuilder();
                   }
-                  message_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerMessage.parser(), extensionRegistry);
+                  message_ = input.readMessage(MessengerMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(message_);
                     message_ = subBuilder.buildPartial();
@@ -4023,7 +4023,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.class) {
+          if (PARSER == null) {    synchronized (Messaging.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4037,13 +4037,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Messaging)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.Messaging DEFAULT_INSTANCE;
+    private static final Messaging DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Messaging();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Messaging getDefaultInstance() {
+    public static Messaging getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4061,7 +4061,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -4080,7 +4080,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.Messaging getMessaging();
+    Messaging getMessaging();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Entry}
@@ -4094,11 +4094,11 @@ public final class ThirdPartyProto {
       id_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.String id_;
+    private String id_;
     /**
      * <code>optional string id = 1;</code>
      */
-    public java.lang.String getId() {
+    public String getId() {
       return id_;
     }
     /**
@@ -4112,7 +4112,7 @@ public final class ThirdPartyProto {
      * <code>optional string id = 1;</code>
      */
     private void setId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4163,7 +4163,7 @@ public final class ThirdPartyProto {
     }
 
     public static final int MESSAGING_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.Messaging messaging_;
+    private Messaging messaging_;
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
      */
@@ -4173,13 +4173,13 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.Messaging getMessaging() {
-      return messaging_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.getDefaultInstance() : messaging_;
+    public Messaging getMessaging() {
+      return messaging_ == null ? Messaging.getDefaultInstance() : messaging_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
      */
-    private void setMessaging(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+    private void setMessaging(Messaging value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4190,18 +4190,18 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
      */
     private void setMessaging(
-        com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.Builder builderForValue) {
+        Messaging.Builder builderForValue) {
       messaging_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
      */
-    private void mergeMessaging(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+    private void mergeMessaging(Messaging value) {
       if (messaging_ != null &&
-          messaging_ != com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.getDefaultInstance()) {
+          messaging_ != Messaging.getDefaultInstance()) {
         messaging_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.newBuilder(messaging_).mergeFrom(value).buildPartial();
+          Messaging.newBuilder(messaging_).mergeFrom(value).buildPartial();
       } else {
         messaging_ = value;
       }
@@ -4248,60 +4248,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(
+    public static Entry parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(
+    public static Entry parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(byte[] data)
+    public static Entry parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(
+    public static Entry parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(java.io.InputStream input)
+    public static Entry parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(
+    public static Entry parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseDelimitedFrom(java.io.InputStream input)
+    public static Entry parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseDelimitedFrom(
+    public static Entry parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(
+    public static Entry parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry parseFrom(
+    public static Entry parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4312,7 +4312,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.Entry prototype) {
+    public static Builder newBuilder(Entry prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4321,9 +4321,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.Entry, Builder> implements
+          Entry, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Entry)
-        com.treeleaf.anydone.entities.ThirdPartyProto.EntryOrBuilder {
+        EntryOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.Entry.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4333,7 +4333,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string id = 1;</code>
        */
-      public java.lang.String getId() {
+      public String getId() {
         return instance.getId();
       }
       /**
@@ -4347,7 +4347,7 @@ public final class ThirdPartyProto {
        * <code>optional string id = 1;</code>
        */
       public Builder setId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setId(value);
         return this;
@@ -4402,13 +4402,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.Messaging getMessaging() {
+      public Messaging getMessaging() {
         return instance.getMessaging();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
        */
-      public Builder setMessaging(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+      public Builder setMessaging(Messaging value) {
         copyOnWrite();
         instance.setMessaging(value);
         return this;
@@ -4417,7 +4417,7 @@ public final class ThirdPartyProto {
        * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
        */
       public Builder setMessaging(
-          com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.Builder builderForValue) {
+          Messaging.Builder builderForValue) {
         copyOnWrite();
         instance.setMessaging(builderForValue);
         return this;
@@ -4425,7 +4425,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Messaging messaging = 3;</code>
        */
-      public Builder mergeMessaging(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+      public Builder mergeMessaging(Messaging value) {
         copyOnWrite();
         instance.mergeMessaging(value);
         return this;
@@ -4441,11 +4441,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Entry)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.Entry();
+          return new Entry();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4458,13 +4458,13 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.Entry other = (com.treeleaf.anydone.entities.ThirdPartyProto.Entry) arg1;
+          Entry other = (Entry) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
           time_ = visitor.visitLong(time_ != 0L, time_,
               other.time_ != 0L, other.time_);
           messaging_ = visitor.visitMessage(messaging_, other.messaging_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4500,11 +4500,11 @@ public final class ThirdPartyProto {
                   break;
                 }
                 case 26: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.Builder subBuilder = null;
+                  Messaging.Builder subBuilder = null;
                   if (messaging_ != null) {
                     subBuilder = messaging_.toBuilder();
                   }
-                  messaging_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.parser(), extensionRegistry);
+                  messaging_ = input.readMessage(Messaging.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(messaging_);
                     messaging_ = subBuilder.buildPartial();
@@ -4527,7 +4527,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.Entry.class) {
+          if (PARSER == null) {    synchronized (Entry.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4541,13 +4541,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Entry)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.Entry DEFAULT_INSTANCE;
+    private static final Entry DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Entry();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.Entry getDefaultInstance() {
+    public static Entry getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4565,7 +4565,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string object = 1;</code>
      */
-    java.lang.String getObject();
+    String getObject();
     /**
      * <code>optional string object = 1;</code>
      */
@@ -4579,7 +4579,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.Entry getEntry();
+    Entry getEntry();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.IncomingMessengerMessage}
@@ -4593,11 +4593,11 @@ public final class ThirdPartyProto {
       object_ = "";
     }
     public static final int OBJECT_FIELD_NUMBER = 1;
-    private java.lang.String object_;
+    private String object_;
     /**
      * <code>optional string object = 1;</code>
      */
-    public java.lang.String getObject() {
+    public String getObject() {
       return object_;
     }
     /**
@@ -4611,7 +4611,7 @@ public final class ThirdPartyProto {
      * <code>optional string object = 1;</code>
      */
     private void setObject(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4639,7 +4639,7 @@ public final class ThirdPartyProto {
     }
 
     public static final int ENTRY_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.Entry entry_;
+    private Entry entry_;
     /**
      * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
      */
@@ -4649,13 +4649,13 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.Entry getEntry() {
-      return entry_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.Entry.getDefaultInstance() : entry_;
+    public Entry getEntry() {
+      return entry_ == null ? Entry.getDefaultInstance() : entry_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
      */
-    private void setEntry(com.treeleaf.anydone.entities.ThirdPartyProto.Entry value) {
+    private void setEntry(Entry value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4666,18 +4666,18 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
      */
     private void setEntry(
-        com.treeleaf.anydone.entities.ThirdPartyProto.Entry.Builder builderForValue) {
+        Entry.Builder builderForValue) {
       entry_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
      */
-    private void mergeEntry(com.treeleaf.anydone.entities.ThirdPartyProto.Entry value) {
+    private void mergeEntry(Entry value) {
       if (entry_ != null &&
-          entry_ != com.treeleaf.anydone.entities.ThirdPartyProto.Entry.getDefaultInstance()) {
+          entry_ != Entry.getDefaultInstance()) {
         entry_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.Entry.newBuilder(entry_).mergeFrom(value).buildPartial();
+          Entry.newBuilder(entry_).mergeFrom(value).buildPartial();
       } else {
         entry_ = value;
       }
@@ -4717,60 +4717,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(
+    public static IncomingMessengerMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(
+    public static IncomingMessengerMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(byte[] data)
+    public static IncomingMessengerMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(
+    public static IncomingMessengerMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(java.io.InputStream input)
+    public static IncomingMessengerMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(
+    public static IncomingMessengerMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseDelimitedFrom(java.io.InputStream input)
+    public static IncomingMessengerMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseDelimitedFrom(
+    public static IncomingMessengerMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(
+    public static IncomingMessengerMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage parseFrom(
+    public static IncomingMessengerMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4781,7 +4781,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage prototype) {
+    public static Builder newBuilder(IncomingMessengerMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4790,9 +4790,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage, Builder> implements
+          IncomingMessengerMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IncomingMessengerMessage)
-        com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessageOrBuilder {
+        IncomingMessengerMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4802,7 +4802,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string object = 1;</code>
        */
-      public java.lang.String getObject() {
+      public String getObject() {
         return instance.getObject();
       }
       /**
@@ -4816,7 +4816,7 @@ public final class ThirdPartyProto {
        * <code>optional string object = 1;</code>
        */
       public Builder setObject(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setObject(value);
         return this;
@@ -4848,13 +4848,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.Entry getEntry() {
+      public Entry getEntry() {
         return instance.getEntry();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
        */
-      public Builder setEntry(com.treeleaf.anydone.entities.ThirdPartyProto.Entry value) {
+      public Builder setEntry(Entry value) {
         copyOnWrite();
         instance.setEntry(value);
         return this;
@@ -4863,7 +4863,7 @@ public final class ThirdPartyProto {
        * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
        */
       public Builder setEntry(
-          com.treeleaf.anydone.entities.ThirdPartyProto.Entry.Builder builderForValue) {
+          Entry.Builder builderForValue) {
         copyOnWrite();
         instance.setEntry(builderForValue);
         return this;
@@ -4871,7 +4871,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Entry entry = 2;</code>
        */
-      public Builder mergeEntry(com.treeleaf.anydone.entities.ThirdPartyProto.Entry value) {
+      public Builder mergeEntry(Entry value) {
         copyOnWrite();
         instance.mergeEntry(value);
         return this;
@@ -4887,11 +4887,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IncomingMessengerMessage)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage();
+          return new IncomingMessengerMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4904,11 +4904,11 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage other = (com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage) arg1;
+          IncomingMessengerMessage other = (IncomingMessengerMessage) arg1;
           object_ = visitor.visitString(!object_.isEmpty(), object_,
               !other.object_.isEmpty(), other.object_);
           entry_ = visitor.visitMessage(entry_, other.entry_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4939,11 +4939,11 @@ public final class ThirdPartyProto {
                   break;
                 }
                 case 18: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.Entry.Builder subBuilder = null;
+                  Entry.Builder subBuilder = null;
                   if (entry_ != null) {
                     subBuilder = entry_.toBuilder();
                   }
-                  entry_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.Entry.parser(), extensionRegistry);
+                  entry_ = input.readMessage(Entry.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(entry_);
                     entry_ = subBuilder.buildPartial();
@@ -4966,7 +4966,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage.class) {
+          if (PARSER == null) {    synchronized (IncomingMessengerMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4980,13 +4980,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IncomingMessengerMessage)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage DEFAULT_INSTANCE;
+    private static final IncomingMessengerMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IncomingMessengerMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMessengerMessage getDefaultInstance() {
+    public static IncomingMessengerMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5004,7 +5004,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string recipientId = 1;</code>
      */
-    java.lang.String getRecipientId();
+    String getRecipientId();
     /**
      * <code>optional string recipientId = 1;</code>
      */
@@ -5014,7 +5014,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string textMessage = 2;</code>
      */
-    java.lang.String getTextMessage();
+    String getTextMessage();
     /**
      * <code>optional string textMessage = 2;</code>
      */
@@ -5034,11 +5034,11 @@ public final class ThirdPartyProto {
       textMessage_ = "";
     }
     public static final int RECIPIENTID_FIELD_NUMBER = 1;
-    private java.lang.String recipientId_;
+    private String recipientId_;
     /**
      * <code>optional string recipientId = 1;</code>
      */
-    public java.lang.String getRecipientId() {
+    public String getRecipientId() {
       return recipientId_;
     }
     /**
@@ -5052,7 +5052,7 @@ public final class ThirdPartyProto {
      * <code>optional string recipientId = 1;</code>
      */
     private void setRecipientId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5080,11 +5080,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int TEXTMESSAGE_FIELD_NUMBER = 2;
-    private java.lang.String textMessage_;
+    private String textMessage_;
     /**
      * <code>optional string textMessage = 2;</code>
      */
-    public java.lang.String getTextMessage() {
+    public String getTextMessage() {
       return textMessage_;
     }
     /**
@@ -5098,7 +5098,7 @@ public final class ThirdPartyProto {
      * <code>optional string textMessage = 2;</code>
      */
     private void setTextMessage(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5152,60 +5152,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(
+    public static OutgoingMessengerContent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(
+    public static OutgoingMessengerContent parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(byte[] data)
+    public static OutgoingMessengerContent parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(
+    public static OutgoingMessengerContent parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(java.io.InputStream input)
+    public static OutgoingMessengerContent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(
+    public static OutgoingMessengerContent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseDelimitedFrom(java.io.InputStream input)
+    public static OutgoingMessengerContent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseDelimitedFrom(
+    public static OutgoingMessengerContent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(
+    public static OutgoingMessengerContent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent parseFrom(
+    public static OutgoingMessengerContent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5216,7 +5216,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent prototype) {
+    public static Builder newBuilder(OutgoingMessengerContent prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5225,9 +5225,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent, Builder> implements
+          OutgoingMessengerContent, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.OutgoingMessengerContent)
-        com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContentOrBuilder {
+        OutgoingMessengerContentOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5237,7 +5237,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string recipientId = 1;</code>
        */
-      public java.lang.String getRecipientId() {
+      public String getRecipientId() {
         return instance.getRecipientId();
       }
       /**
@@ -5251,7 +5251,7 @@ public final class ThirdPartyProto {
        * <code>optional string recipientId = 1;</code>
        */
       public Builder setRecipientId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRecipientId(value);
         return this;
@@ -5277,7 +5277,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string textMessage = 2;</code>
        */
-      public java.lang.String getTextMessage() {
+      public String getTextMessage() {
         return instance.getTextMessage();
       }
       /**
@@ -5291,7 +5291,7 @@ public final class ThirdPartyProto {
        * <code>optional string textMessage = 2;</code>
        */
       public Builder setTextMessage(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTextMessage(value);
         return this;
@@ -5317,11 +5317,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.OutgoingMessengerContent)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent();
+          return new OutgoingMessengerContent();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5334,12 +5334,12 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent other = (com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent) arg1;
+          OutgoingMessengerContent other = (OutgoingMessengerContent) arg1;
           recipientId_ = visitor.visitString(!recipientId_.isEmpty(), recipientId_,
               !other.recipientId_.isEmpty(), other.recipientId_);
           textMessage_ = visitor.visitString(!textMessage_.isEmpty(), textMessage_,
               !other.textMessage_.isEmpty(), other.textMessage_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5390,7 +5390,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent.class) {
+          if (PARSER == null) {    synchronized (OutgoingMessengerContent.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5404,13 +5404,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.OutgoingMessengerContent)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent DEFAULT_INSTANCE;
+    private static final OutgoingMessengerContent DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new OutgoingMessengerContent();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.OutgoingMessengerContent getDefaultInstance() {
+    public static OutgoingMessengerContent getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5428,7 +5428,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -5447,11 +5447,11 @@ public final class ThirdPartyProto {
       id_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.String id_;
+    private String id_;
     /**
      * <code>optional string id = 1;</code>
      */
-    public java.lang.String getId() {
+    public String getId() {
       return id_;
     }
     /**
@@ -5465,7 +5465,7 @@ public final class ThirdPartyProto {
      * <code>optional string id = 1;</code>
      */
     private void setId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5512,60 +5512,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(
+    public static MessengerSender parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(
+    public static MessengerSender parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(byte[] data)
+    public static MessengerSender parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(
+    public static MessengerSender parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(java.io.InputStream input)
+    public static MessengerSender parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(
+    public static MessengerSender parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseDelimitedFrom(java.io.InputStream input)
+    public static MessengerSender parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseDelimitedFrom(
+    public static MessengerSender parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(
+    public static MessengerSender parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender parseFrom(
+    public static MessengerSender parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5576,7 +5576,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender prototype) {
+    public static Builder newBuilder(MessengerSender prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5585,9 +5585,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender, Builder> implements
+          MessengerSender, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MessengerSender)
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSenderOrBuilder {
+        MessengerSenderOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5597,7 +5597,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string id = 1;</code>
        */
-      public java.lang.String getId() {
+      public String getId() {
         return instance.getId();
       }
       /**
@@ -5611,7 +5611,7 @@ public final class ThirdPartyProto {
        * <code>optional string id = 1;</code>
        */
       public Builder setId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setId(value);
         return this;
@@ -5637,11 +5637,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessengerSender)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender();
+          return new MessengerSender();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5654,10 +5654,10 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender other = (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender) arg1;
+          MessengerSender other = (MessengerSender) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5702,7 +5702,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender.class) {
+          if (PARSER == null) {    synchronized (MessengerSender.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5716,13 +5716,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MessengerSender)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender DEFAULT_INSTANCE;
+    private static final MessengerSender DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new MessengerSender();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerSender getDefaultInstance() {
+    public static MessengerSender getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5740,7 +5740,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -5759,11 +5759,11 @@ public final class ThirdPartyProto {
       id_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.String id_;
+    private String id_;
     /**
      * <code>optional string id = 1;</code>
      */
-    public java.lang.String getId() {
+    public String getId() {
       return id_;
     }
     /**
@@ -5777,7 +5777,7 @@ public final class ThirdPartyProto {
      * <code>optional string id = 1;</code>
      */
     private void setId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5824,60 +5824,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(
+    public static MessengerReceiver parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(
+    public static MessengerReceiver parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(byte[] data)
+    public static MessengerReceiver parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(
+    public static MessengerReceiver parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(java.io.InputStream input)
+    public static MessengerReceiver parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(
+    public static MessengerReceiver parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseDelimitedFrom(java.io.InputStream input)
+    public static MessengerReceiver parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseDelimitedFrom(
+    public static MessengerReceiver parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(
+    public static MessengerReceiver parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver parseFrom(
+    public static MessengerReceiver parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5888,7 +5888,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver prototype) {
+    public static Builder newBuilder(MessengerReceiver prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5897,9 +5897,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver, Builder> implements
+          MessengerReceiver, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MessengerReceiver)
-        com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiverOrBuilder {
+        MessengerReceiverOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5909,7 +5909,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string id = 1;</code>
        */
-      public java.lang.String getId() {
+      public String getId() {
         return instance.getId();
       }
       /**
@@ -5923,7 +5923,7 @@ public final class ThirdPartyProto {
        * <code>optional string id = 1;</code>
        */
       public Builder setId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setId(value);
         return this;
@@ -5949,11 +5949,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessengerReceiver)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver();
+          return new MessengerReceiver();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5966,10 +5966,10 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver other = (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver) arg1;
+          MessengerReceiver other = (MessengerReceiver) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -6014,7 +6014,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver.class) {
+          if (PARSER == null) {    synchronized (MessengerReceiver.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -6028,13 +6028,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MessengerReceiver)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver DEFAULT_INSTANCE;
+    private static final MessengerReceiver DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new MessengerReceiver();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.MessengerReceiver getDefaultInstance() {
+    public static MessengerReceiver getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6052,7 +6052,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string conversationId = 1;</code>
      */
-    java.lang.String getConversationId();
+    String getConversationId();
     /**
      * <code>optional string conversationId = 1;</code>
      */
@@ -6066,12 +6066,12 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
+    UserProto.ThirdPartySource getSource();
 
     /**
      * <code>optional string customerId = 3;</code>
      */
-    java.lang.String getCustomerId();
+    String getCustomerId();
     /**
      * <code>optional string customerId = 3;</code>
      */
@@ -6081,7 +6081,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string serviceId = 4;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 4;</code>
      */
@@ -6091,7 +6091,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string serviceProviderId = 5;</code>
      */
-    java.lang.String getServiceProviderId();
+    String getServiceProviderId();
     /**
      * <code>optional string serviceProviderId = 5;</code>
      */
@@ -6101,7 +6101,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional string defaultLabelId = 6;</code>
      */
-    java.lang.String getDefaultLabelId();
+    String getDefaultLabelId();
     /**
      * <code>optional string defaultLabelId = 6;</code>
      */
@@ -6134,11 +6134,11 @@ public final class ThirdPartyProto {
       defaultLabelId_ = "";
     }
     public static final int CONVERSATIONID_FIELD_NUMBER = 1;
-    private java.lang.String conversationId_;
+    private String conversationId_;
     /**
      * <code>optional string conversationId = 1;</code>
      */
-    public java.lang.String getConversationId() {
+    public String getConversationId() {
       return conversationId_;
     }
     /**
@@ -6152,7 +6152,7 @@ public final class ThirdPartyProto {
      * <code>optional string conversationId = 1;</code>
      */
     private void setConversationId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6190,9 +6190,9 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
-      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
-      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    public UserProto.ThirdPartySource getSource() {
+      UserProto.ThirdPartySource result = UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? UserProto.ThirdPartySource.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
@@ -6203,7 +6203,7 @@ public final class ThirdPartyProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
      */
-    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+    private void setSource(UserProto.ThirdPartySource value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6219,11 +6219,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int CUSTOMERID_FIELD_NUMBER = 3;
-    private java.lang.String customerId_;
+    private String customerId_;
     /**
      * <code>optional string customerId = 3;</code>
      */
-    public java.lang.String getCustomerId() {
+    public String getCustomerId() {
       return customerId_;
     }
     /**
@@ -6237,7 +6237,7 @@ public final class ThirdPartyProto {
      * <code>optional string customerId = 3;</code>
      */
     private void setCustomerId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6265,11 +6265,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 4;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 4;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -6283,7 +6283,7 @@ public final class ThirdPartyProto {
      * <code>optional string serviceId = 4;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6311,11 +6311,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int SERVICEPROVIDERID_FIELD_NUMBER = 5;
-    private java.lang.String serviceProviderId_;
+    private String serviceProviderId_;
     /**
      * <code>optional string serviceProviderId = 5;</code>
      */
-    public java.lang.String getServiceProviderId() {
+    public String getServiceProviderId() {
       return serviceProviderId_;
     }
     /**
@@ -6329,7 +6329,7 @@ public final class ThirdPartyProto {
      * <code>optional string serviceProviderId = 5;</code>
      */
     private void setServiceProviderId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6357,11 +6357,11 @@ public final class ThirdPartyProto {
     }
 
     public static final int DEFAULTLABELID_FIELD_NUMBER = 6;
-    private java.lang.String defaultLabelId_;
+    private String defaultLabelId_;
     /**
      * <code>optional string defaultLabelId = 6;</code>
      */
-    public java.lang.String getDefaultLabelId() {
+    public String getDefaultLabelId() {
       return defaultLabelId_;
     }
     /**
@@ -6375,7 +6375,7 @@ public final class ThirdPartyProto {
      * <code>optional string defaultLabelId = 6;</code>
      */
     private void setDefaultLabelId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6453,7 +6453,7 @@ public final class ThirdPartyProto {
       if (!conversationId_.isEmpty()) {
         output.writeString(1, getConversationId());
       }
-      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         output.writeEnum(2, source_);
       }
       if (!customerId_.isEmpty()) {
@@ -6485,7 +6485,7 @@ public final class ThirdPartyProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getConversationId());
       }
-      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, source_);
       }
@@ -6517,60 +6517,60 @@ public final class ThirdPartyProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(byte[] data)
+    public static ConversationThread parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(java.io.InputStream input)
+    public static ConversationThread parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseDelimitedFrom(java.io.InputStream input)
+    public static ConversationThread parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseDelimitedFrom(
+    public static ConversationThread parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6581,7 +6581,7 @@ public final class ThirdPartyProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread prototype) {
+    public static Builder newBuilder(ConversationThread prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -6590,9 +6590,9 @@ public final class ThirdPartyProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread, Builder> implements
+          ConversationThread, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationThread)
-        com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThreadOrBuilder {
+        ConversationThreadOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -6602,7 +6602,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string conversationId = 1;</code>
        */
-      public java.lang.String getConversationId() {
+      public String getConversationId() {
         return instance.getConversationId();
       }
       /**
@@ -6616,7 +6616,7 @@ public final class ThirdPartyProto {
        * <code>optional string conversationId = 1;</code>
        */
       public Builder setConversationId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setConversationId(value);
         return this;
@@ -6656,13 +6656,13 @@ public final class ThirdPartyProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      public UserProto.ThirdPartySource getSource() {
         return instance.getSource();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
        */
-      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+      public Builder setSource(UserProto.ThirdPartySource value) {
         copyOnWrite();
         instance.setSource(value);
         return this;
@@ -6679,7 +6679,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string customerId = 3;</code>
        */
-      public java.lang.String getCustomerId() {
+      public String getCustomerId() {
         return instance.getCustomerId();
       }
       /**
@@ -6693,7 +6693,7 @@ public final class ThirdPartyProto {
        * <code>optional string customerId = 3;</code>
        */
       public Builder setCustomerId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCustomerId(value);
         return this;
@@ -6719,7 +6719,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string serviceId = 4;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -6733,7 +6733,7 @@ public final class ThirdPartyProto {
        * <code>optional string serviceId = 4;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -6759,7 +6759,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string serviceProviderId = 5;</code>
        */
-      public java.lang.String getServiceProviderId() {
+      public String getServiceProviderId() {
         return instance.getServiceProviderId();
       }
       /**
@@ -6773,7 +6773,7 @@ public final class ThirdPartyProto {
        * <code>optional string serviceProviderId = 5;</code>
        */
       public Builder setServiceProviderId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceProviderId(value);
         return this;
@@ -6799,7 +6799,7 @@ public final class ThirdPartyProto {
       /**
        * <code>optional string defaultLabelId = 6;</code>
        */
-      public java.lang.String getDefaultLabelId() {
+      public String getDefaultLabelId() {
         return instance.getDefaultLabelId();
       }
       /**
@@ -6813,7 +6813,7 @@ public final class ThirdPartyProto {
        * <code>optional string defaultLabelId = 6;</code>
        */
       public Builder setDefaultLabelId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setDefaultLabelId(value);
         return this;
@@ -6885,11 +6885,11 @@ public final class ThirdPartyProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationThread)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread();
+          return new ConversationThread();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -6902,7 +6902,7 @@ public final class ThirdPartyProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread other = (com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread) arg1;
+          ConversationThread other = (ConversationThread) arg1;
           conversationId_ = visitor.visitString(!conversationId_.isEmpty(), conversationId_,
               !other.conversationId_.isEmpty(), other.conversationId_);
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
@@ -6918,7 +6918,7 @@ public final class ThirdPartyProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -7003,7 +7003,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.class) {
+          if (PARSER == null) {    synchronized (ConversationThread.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -7017,13 +7017,13 @@ public final class ThirdPartyProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationThread)
-    private static final com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread DEFAULT_INSTANCE;
+    private static final ConversationThread DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ConversationThread();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getDefaultInstance() {
+    public static ConversationThread getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

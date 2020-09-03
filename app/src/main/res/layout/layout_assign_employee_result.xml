@@ -3,9 +3,10 @@
     android:id="@+id/search_employee"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="true"
+    android:layout_marginBottom="@dimen/dimens_2x"
     android:background="@color/grey_shade"
-    android:elevation="8dp">
+    android:elevation="8dp"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +16,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Suggestions"
-            android:textColor="@color/black"
             android:layout_marginTop="@dimen/dimen_6x1"
             android:paddingStart="@dimen/dimen_10x1"
+            android:text="Suggestions"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
 
@@ -27,8 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/dimen_6x1"
             android:paddingStart="@dimen/dimen_10x1"
+            android:paddingTop="@dimen/dimen_6x1"
             android:paddingBottom="@dimen/dimen_6x1">
 
 
@@ -52,15 +53,15 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#F8F8F8"/>
+            android:background="#F8F8F8" />
 
         <TextView
             android:id="@+id/tv_all_users"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="All Users"
             android:paddingStart="@dimen/dimen_10x1"
             android:paddingTop="@dimen/dimen_10x1"
+            android:text="All Users"
             android:textColor="@color/black"
             android:textStyle="bold" />
 

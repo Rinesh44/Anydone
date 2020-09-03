@@ -4,2772 +4,3041 @@
 package com.treeleaf.anydone.rpc;
 
 public final class AuthRpcProto {
-  private AuthRpcProto() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-  public interface AuthBaseRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.rpc.AuthBaseRequest)
-      com.google.protobuf.MessageLiteOrBuilder {
+    private AuthRpcProto() {
+    }
 
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    java.lang.String getRefId();
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    com.google.protobuf.ByteString
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
+
+    public interface AuthBaseRequestOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.rpc.AuthBaseRequest)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>optional string refId = 1;</code>
+         */
+        String getRefId();
+
+        /**
+         * <code>optional string refId = 1;</code>
+         */
+        com.google.protobuf.ByteString
         getRefIdBytes();
 
-    /**
-     * <code>optional string stringValue = 2;</code>
-     */
-    java.lang.String getStringValue();
-    /**
-     * <code>optional string stringValue = 2;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string stringValue = 2;</code>
+         */
+        String getStringValue();
+
+        /**
+         * <code>optional string stringValue = 2;</code>
+         */
+        com.google.protobuf.ByteString
         getStringValueBytes();
 
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    java.util.List<String>
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        java.util.List<String>
         getStringValuesList();
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    int getStringValuesCount();
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    java.lang.String getStringValues(int index);
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    com.google.protobuf.ByteString
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        int getStringValuesCount();
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        String getStringValues(int index);
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        com.google.protobuf.ByteString
         getStringValuesBytes(int index);
 
-    /**
-     * <code>optional int32 intValue = 4;</code>
-     */
-    int getIntValue();
+        /**
+         * <code>optional int32 intValue = 4;</code>
+         */
+        int getIntValue();
 
-    /**
-     * <code>optional int64 longValue = 5;</code>
-     */
-    long getLongValue();
+        /**
+         * <code>optional int64 longValue = 5;</code>
+         */
+        long getLongValue();
 
-    /**
-     * <code>optional bool boolValue = 6;</code>
-     */
-    boolean getBoolValue();
+        /**
+         * <code>optional bool boolValue = 6;</code>
+         */
+        boolean getBoolValue();
 
-    /**
-     * <code>optional bool doubleValue = 7;</code>
-     */
-    boolean getDoubleValue();
+        /**
+         * <code>optional bool doubleValue = 7;</code>
+         */
+        boolean getDoubleValue();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    boolean hasAuthorization();
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    com.treeleaf.anydone.entities.AuthProto.Authorization getAuthorization();
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        boolean hasAuthorization();
 
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    boolean hasDebug();
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug();
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        com.treeleaf.anydone.entities.AuthProto.Authorization getAuthorization();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    boolean hasLoginRequest();
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
-   */
-  public  static final class AuthBaseRequest extends
-      com.google.protobuf.GeneratedMessageLite<
-          AuthBaseRequest, AuthBaseRequest.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.rpc.AuthBaseRequest)
-      AuthBaseRequestOrBuilder {
-    private AuthBaseRequest() {
-      refId_ = "";
-      stringValue_ = "";
-      stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    private int bitField0_;
-    public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    public java.lang.String getRefId() {
-      return refId_;
-    }
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRefIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
-    }
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    private void setRefId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      refId_ = value;
-    }
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    private void clearRefId() {
-      
-      refId_ = getDefaultInstance().getRefId();
-    }
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    private void setRefIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      refId_ = value.toStringUtf8();
-    }
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        boolean hasDebug();
 
-    public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
-    /**
-     * <code>optional string stringValue = 2;</code>
-     */
-    public java.lang.String getStringValue() {
-      return stringValue_;
-    }
-    /**
-     * <code>optional string stringValue = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getStringValueBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(stringValue_);
-    }
-    /**
-     * <code>optional string stringValue = 2;</code>
-     */
-    private void setStringValue(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      stringValue_ = value;
-    }
-    /**
-     * <code>optional string stringValue = 2;</code>
-     */
-    private void clearStringValue() {
-      
-      stringValue_ = getDefaultInstance().getStringValue();
-    }
-    /**
-     * <code>optional string stringValue = 2;</code>
-     */
-    private void setStringValueBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      stringValue_ = value.toStringUtf8();
-    }
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug();
 
-    public static final int STRINGVALUES_FIELD_NUMBER = 3;
-    private com.google.protobuf.Internal.ProtobufList<String> stringValues_;
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    public java.util.List<String> getStringValuesList() {
-      return stringValues_;
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    public int getStringValuesCount() {
-      return stringValues_.size();
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    public java.lang.String getStringValues(int index) {
-      return stringValues_.get(index);
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getStringValuesBytes(int index) {
-      return com.google.protobuf.ByteString.copyFromUtf8(
-          stringValues_.get(index));
-    }
-    private void ensureStringValuesIsMutable() {
-      if (!stringValues_.isModifiable()) {
-        stringValues_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(stringValues_);
-       }
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    private void setStringValues(
-        int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureStringValuesIsMutable();
-      stringValues_.set(index, value);
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    private void addStringValues(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureStringValuesIsMutable();
-      stringValues_.add(value);
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
-      ensureStringValuesIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, stringValues_);
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    private void clearStringValues() {
-      stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    /**
-     * <code>repeated string stringValues = 3;</code>
-     */
-    private void addStringValuesBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensureStringValuesIsMutable();
-      stringValues_.add(value.toStringUtf8());
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        boolean hasLoginRequest();
 
-    public static final int INTVALUE_FIELD_NUMBER = 4;
-    private int intValue_;
-    /**
-     * <code>optional int32 intValue = 4;</code>
-     */
-    public int getIntValue() {
-      return intValue_;
-    }
-    /**
-     * <code>optional int32 intValue = 4;</code>
-     */
-    private void setIntValue(int value) {
-      
-      intValue_ = value;
-    }
-    /**
-     * <code>optional int32 intValue = 4;</code>
-     */
-    private void clearIntValue() {
-      
-      intValue_ = 0;
-    }
-
-    public static final int LONGVALUE_FIELD_NUMBER = 5;
-    private long longValue_;
-    /**
-     * <code>optional int64 longValue = 5;</code>
-     */
-    public long getLongValue() {
-      return longValue_;
-    }
-    /**
-     * <code>optional int64 longValue = 5;</code>
-     */
-    private void setLongValue(long value) {
-      
-      longValue_ = value;
-    }
-    /**
-     * <code>optional int64 longValue = 5;</code>
-     */
-    private void clearLongValue() {
-      
-      longValue_ = 0L;
-    }
-
-    public static final int BOOLVALUE_FIELD_NUMBER = 6;
-    private boolean boolValue_;
-    /**
-     * <code>optional bool boolValue = 6;</code>
-     */
-    public boolean getBoolValue() {
-      return boolValue_;
-    }
-    /**
-     * <code>optional bool boolValue = 6;</code>
-     */
-    private void setBoolValue(boolean value) {
-      
-      boolValue_ = value;
-    }
-    /**
-     * <code>optional bool boolValue = 6;</code>
-     */
-    private void clearBoolValue() {
-      
-      boolValue_ = false;
-    }
-
-    public static final int DOUBLEVALUE_FIELD_NUMBER = 7;
-    private boolean doubleValue_;
-    /**
-     * <code>optional bool doubleValue = 7;</code>
-     */
-    public boolean getDoubleValue() {
-      return doubleValue_;
-    }
-    /**
-     * <code>optional bool doubleValue = 7;</code>
-     */
-    private void setDoubleValue(boolean value) {
-      
-      doubleValue_ = value;
-    }
-    /**
-     * <code>optional bool doubleValue = 7;</code>
-     */
-    private void clearDoubleValue() {
-      
-      doubleValue_ = false;
-    }
-
-    public static final int AUTHORIZATION_FIELD_NUMBER = 8;
-    private com.treeleaf.anydone.entities.AuthProto.Authorization authorization_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    public boolean hasAuthorization() {
-      return authorization_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.Authorization getAuthorization() {
-      return authorization_ == null ? com.treeleaf.anydone.entities.AuthProto.Authorization.getDefaultInstance() : authorization_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    private void setAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      authorization_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    private void setAuthorization(
-        com.treeleaf.anydone.entities.AuthProto.Authorization.Builder builderForValue) {
-      authorization_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    private void mergeAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
-      if (authorization_ != null &&
-          authorization_ != com.treeleaf.anydone.entities.AuthProto.Authorization.getDefaultInstance()) {
-        authorization_ =
-          com.treeleaf.anydone.entities.AuthProto.Authorization.newBuilder(authorization_).mergeFrom(value).buildPartial();
-      } else {
-        authorization_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-     */
-    private void clearAuthorization() {  authorization_ = null;
-      
-    }
-
-    public static final int DEBUG_FIELD_NUMBER = 9;
-    private com.treeleaf.anydone.entities.TreeleafProto.Debug debug_;
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    public boolean hasDebug() {
-      return debug_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
-      return debug_ == null ? com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance() : debug_;
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    private void setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      debug_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    private void setDebug(
-        com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
-      debug_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    private void mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-      if (debug_ != null &&
-          debug_ != com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance()) {
-        debug_ =
-          com.treeleaf.anydone.entities.TreeleafProto.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
-      } else {
-        debug_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-     */
-    private void clearDebug() {  debug_ = null;
-      
-    }
-
-    public static final int LOGINREQUEST_FIELD_NUMBER = 10;
-    private com.treeleaf.anydone.entities.AuthProto.LoginRequest loginRequest_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    public boolean hasLoginRequest() {
-      return loginRequest_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest() {
-      return loginRequest_ == null ? com.treeleaf.anydone.entities.AuthProto.LoginRequest.getDefaultInstance() : loginRequest_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    private void setLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      loginRequest_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    private void setLoginRequest(
-        com.treeleaf.anydone.entities.AuthProto.LoginRequest.Builder builderForValue) {
-      loginRequest_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    private void mergeLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
-      if (loginRequest_ != null &&
-          loginRequest_ != com.treeleaf.anydone.entities.AuthProto.LoginRequest.getDefaultInstance()) {
-        loginRequest_ =
-          com.treeleaf.anydone.entities.AuthProto.LoginRequest.newBuilder(loginRequest_).mergeFrom(value).buildPartial();
-      } else {
-        loginRequest_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-     */
-    private void clearLoginRequest() {  loginRequest_ = null;
-      
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!refId_.isEmpty()) {
-        output.writeString(1, getRefId());
-      }
-      if (!stringValue_.isEmpty()) {
-        output.writeString(2, getStringValue());
-      }
-      for (int i = 0; i < stringValues_.size(); i++) {
-        output.writeString(3, stringValues_.get(i));
-      }
-      if (intValue_ != 0) {
-        output.writeInt32(4, intValue_);
-      }
-      if (longValue_ != 0L) {
-        output.writeInt64(5, longValue_);
-      }
-      if (boolValue_ != false) {
-        output.writeBool(6, boolValue_);
-      }
-      if (doubleValue_ != false) {
-        output.writeBool(7, doubleValue_);
-      }
-      if (authorization_ != null) {
-        output.writeMessage(8, getAuthorization());
-      }
-      if (debug_ != null) {
-        output.writeMessage(9, getDebug());
-      }
-      if (loginRequest_ != null) {
-        output.writeMessage(10, getLoginRequest());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!refId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getRefId());
-      }
-      if (!stringValue_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getStringValue());
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < stringValues_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeStringSizeNoTag(stringValues_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getStringValuesList().size();
-      }
-      if (intValue_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, intValue_);
-      }
-      if (longValue_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, longValue_);
-      }
-      if (boolValue_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(6, boolValue_);
-      }
-      if (doubleValue_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, doubleValue_);
-      }
-      if (authorization_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getAuthorization());
-      }
-      if (debug_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getDebug());
-      }
-      if (loginRequest_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getLoginRequest());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest();
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.AuthBaseRequest)
-        com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequestOrBuilder {
-      // Construct using com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string refId = 1;</code>
-       */
-      public java.lang.String getRefId() {
-        return instance.getRefId();
-      }
-      /**
-       * <code>optional string refId = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRefIdBytes() {
-        return instance.getRefIdBytes();
-      }
-      /**
-       * <code>optional string refId = 1;</code>
-       */
-      public Builder setRefId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setRefId(value);
-        return this;
-      }
-      /**
-       * <code>optional string refId = 1;</code>
-       */
-      public Builder clearRefId() {
-        copyOnWrite();
-        instance.clearRefId();
-        return this;
-      }
-      /**
-       * <code>optional string refId = 1;</code>
-       */
-      public Builder setRefIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setRefIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string stringValue = 2;</code>
-       */
-      public java.lang.String getStringValue() {
-        return instance.getStringValue();
-      }
-      /**
-       * <code>optional string stringValue = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getStringValueBytes() {
-        return instance.getStringValueBytes();
-      }
-      /**
-       * <code>optional string stringValue = 2;</code>
-       */
-      public Builder setStringValue(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setStringValue(value);
-        return this;
-      }
-      /**
-       * <code>optional string stringValue = 2;</code>
-       */
-      public Builder clearStringValue() {
-        copyOnWrite();
-        instance.clearStringValue();
-        return this;
-      }
-      /**
-       * <code>optional string stringValue = 2;</code>
-       */
-      public Builder setStringValueBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setStringValueBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public java.util.List<String>
-          getStringValuesList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getStringValuesList());
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public int getStringValuesCount() {
-        return instance.getStringValuesCount();
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public java.lang.String getStringValues(int index) {
-        return instance.getStringValues(index);
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getStringValuesBytes(int index) {
-        return instance.getStringValuesBytes(index);
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public Builder setStringValues(
-          int index, java.lang.String value) {
-        copyOnWrite();
-        instance.setStringValues(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public Builder addStringValues(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.addStringValues(value);
-        return this;
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
-        copyOnWrite();
-        instance.addAllStringValues(values);
-        return this;
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public Builder clearStringValues() {
-        copyOnWrite();
-        instance.clearStringValues();
-        return this;
-      }
-      /**
-       * <code>repeated string stringValues = 3;</code>
-       */
-      public Builder addStringValuesBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addStringValuesBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional int32 intValue = 4;</code>
-       */
-      public int getIntValue() {
-        return instance.getIntValue();
-      }
-      /**
-       * <code>optional int32 intValue = 4;</code>
-       */
-      public Builder setIntValue(int value) {
-        copyOnWrite();
-        instance.setIntValue(value);
-        return this;
-      }
-      /**
-       * <code>optional int32 intValue = 4;</code>
-       */
-      public Builder clearIntValue() {
-        copyOnWrite();
-        instance.clearIntValue();
-        return this;
-      }
-
-      /**
-       * <code>optional int64 longValue = 5;</code>
-       */
-      public long getLongValue() {
-        return instance.getLongValue();
-      }
-      /**
-       * <code>optional int64 longValue = 5;</code>
-       */
-      public Builder setLongValue(long value) {
-        copyOnWrite();
-        instance.setLongValue(value);
-        return this;
-      }
-      /**
-       * <code>optional int64 longValue = 5;</code>
-       */
-      public Builder clearLongValue() {
-        copyOnWrite();
-        instance.clearLongValue();
-        return this;
-      }
-
-      /**
-       * <code>optional bool boolValue = 6;</code>
-       */
-      public boolean getBoolValue() {
-        return instance.getBoolValue();
-      }
-      /**
-       * <code>optional bool boolValue = 6;</code>
-       */
-      public Builder setBoolValue(boolean value) {
-        copyOnWrite();
-        instance.setBoolValue(value);
-        return this;
-      }
-      /**
-       * <code>optional bool boolValue = 6;</code>
-       */
-      public Builder clearBoolValue() {
-        copyOnWrite();
-        instance.clearBoolValue();
-        return this;
-      }
-
-      /**
-       * <code>optional bool doubleValue = 7;</code>
-       */
-      public boolean getDoubleValue() {
-        return instance.getDoubleValue();
-      }
-      /**
-       * <code>optional bool doubleValue = 7;</code>
-       */
-      public Builder setDoubleValue(boolean value) {
-        copyOnWrite();
-        instance.setDoubleValue(value);
-        return this;
-      }
-      /**
-       * <code>optional bool doubleValue = 7;</code>
-       */
-      public Builder clearDoubleValue() {
-        copyOnWrite();
-        instance.clearDoubleValue();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-       */
-      public boolean hasAuthorization() {
-        return instance.hasAuthorization();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-       */
-      public com.treeleaf.anydone.entities.AuthProto.Authorization getAuthorization() {
-        return instance.getAuthorization();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-       */
-      public Builder setAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
-        copyOnWrite();
-        instance.setAuthorization(value);
-        return this;
+    public static final class AuthBaseRequest extends
+            com.google.protobuf.GeneratedMessageLite<
+                    AuthBaseRequest, AuthBaseRequest.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.rpc.AuthBaseRequest)
+            AuthBaseRequestOrBuilder {
+        private AuthBaseRequest() {
+            refId_ = "";
+            stringValue_ = "";
+            stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-       */
-      public Builder setAuthorization(
-          com.treeleaf.anydone.entities.AuthProto.Authorization.Builder builderForValue) {
-        copyOnWrite();
-        instance.setAuthorization(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-       */
-      public Builder mergeAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
-        copyOnWrite();
-        instance.mergeAuthorization(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
-       */
-      public Builder clearAuthorization() {  copyOnWrite();
-        instance.clearAuthorization();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-       */
-      public boolean hasDebug() {
-        return instance.hasDebug();
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-       */
-      public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
-        return instance.getDebug();
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-       */
-      public Builder setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-        copyOnWrite();
-        instance.setDebug(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-       */
-      public Builder setDebug(
-          com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
-        copyOnWrite();
-        instance.setDebug(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-       */
-      public Builder mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-        copyOnWrite();
-        instance.mergeDebug(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 9;</code>
-       */
-      public Builder clearDebug() {  copyOnWrite();
-        instance.clearDebug();
-        return this;
-      }
+        private int bitField0_;
+        public static final int REFID_FIELD_NUMBER = 1;
+        private String refId_;
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-       */
-      public boolean hasLoginRequest() {
-        return instance.hasLoginRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-       */
-      public com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest() {
-        return instance.getLoginRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-       */
-      public Builder setLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
-        copyOnWrite();
-        instance.setLoginRequest(value);
-        return this;
+        /**
+         * <code>optional string refId = 1;</code>
+         */
+        public String getRefId() {
+            return refId_;
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-       */
-      public Builder setLoginRequest(
-          com.treeleaf.anydone.entities.AuthProto.LoginRequest.Builder builderForValue) {
-        copyOnWrite();
-        instance.setLoginRequest(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-       */
-      public Builder mergeLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
-        copyOnWrite();
-        instance.mergeLoginRequest(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
-       */
-      public Builder clearLoginRequest() {  copyOnWrite();
-        instance.clearLoginRequest();
-        return this;
-      }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseRequest)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest();
+        /**
+         * <code>optional string refId = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getRefIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(refId_);
         }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          stringValues_.makeImmutable();
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest other = (com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest) arg1;
-          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
-              !other.refId_.isEmpty(), other.refId_);
-          stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
-              !other.stringValue_.isEmpty(), other.stringValue_);
-          stringValues_= visitor.visitList(stringValues_, other.stringValues_);
-          intValue_ = visitor.visitInt(intValue_ != 0, intValue_,
-              other.intValue_ != 0, other.intValue_);
-          longValue_ = visitor.visitLong(longValue_ != 0L, longValue_,
-              other.longValue_ != 0L, other.longValue_);
-          boolValue_ = visitor.visitBoolean(boolValue_ != false, boolValue_,
-              other.boolValue_ != false, other.boolValue_);
-          doubleValue_ = visitor.visitBoolean(doubleValue_ != false, doubleValue_,
-              other.doubleValue_ != false, other.doubleValue_);
-          authorization_ = visitor.visitMessage(authorization_, other.authorization_);
-          debug_ = visitor.visitMessage(debug_, other.debug_);
-          loginRequest_ = visitor.visitMessage(loginRequest_, other.loginRequest_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
 
-                  refId_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
+        /**
+         * <code>optional string refId = 1;</code>
+         */
+        private void setRefId(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
 
-                  stringValue_ = s;
-                  break;
-                }
-                case 26: {
-                  String s = input.readStringRequireUtf8();
-                  if (!stringValues_.isModifiable()) {
-                    stringValues_ =
+            refId_ = value;
+        }
+
+        /**
+         * <code>optional string refId = 1;</code>
+         */
+        private void clearRefId() {
+
+            refId_ = getDefaultInstance().getRefId();
+        }
+
+        /**
+         * <code>optional string refId = 1;</code>
+         */
+        private void setRefIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            refId_ = value.toStringUtf8();
+        }
+
+        public static final int STRINGVALUE_FIELD_NUMBER = 2;
+        private String stringValue_;
+
+        /**
+         * <code>optional string stringValue = 2;</code>
+         */
+        public String getStringValue() {
+            return stringValue_;
+        }
+
+        /**
+         * <code>optional string stringValue = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+        getStringValueBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(stringValue_);
+        }
+
+        /**
+         * <code>optional string stringValue = 2;</code>
+         */
+        private void setStringValue(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            stringValue_ = value;
+        }
+
+        /**
+         * <code>optional string stringValue = 2;</code>
+         */
+        private void clearStringValue() {
+
+            stringValue_ = getDefaultInstance().getStringValue();
+        }
+
+        /**
+         * <code>optional string stringValue = 2;</code>
+         */
+        private void setStringValueBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            stringValue_ = value.toStringUtf8();
+        }
+
+        public static final int STRINGVALUES_FIELD_NUMBER = 3;
+        private com.google.protobuf.Internal.ProtobufList<String> stringValues_;
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        public java.util.List<String> getStringValuesList() {
+            return stringValues_;
+        }
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        public int getStringValuesCount() {
+            return stringValues_.size();
+        }
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        public String getStringValues(int index) {
+            return stringValues_.get(index);
+        }
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+        getStringValuesBytes(int index) {
+            return com.google.protobuf.ByteString.copyFromUtf8(
+                    stringValues_.get(index));
+        }
+
+        private void ensureStringValuesIsMutable() {
+            if (!stringValues_.isModifiable()) {
+                stringValues_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(stringValues_);
-                  }
-                  stringValues_.add(s);
-                  break;
-                }
-                case 32: {
-
-                  intValue_ = input.readInt32();
-                  break;
-                }
-                case 40: {
-
-                  longValue_ = input.readInt64();
-                  break;
-                }
-                case 48: {
-
-                  boolValue_ = input.readBool();
-                  break;
-                }
-                case 56: {
-
-                  doubleValue_ = input.readBool();
-                  break;
-                }
-                case 66: {
-                  com.treeleaf.anydone.entities.AuthProto.Authorization.Builder subBuilder = null;
-                  if (authorization_ != null) {
-                    subBuilder = authorization_.toBuilder();
-                  }
-                  authorization_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.Authorization.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(authorization_);
-                    authorization_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 74: {
-                  com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder subBuilder = null;
-                  if (debug_ != null) {
-                    subBuilder = debug_.toBuilder();
-                  }
-                  debug_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.Debug.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(debug_);
-                    debug_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 82: {
-                  com.treeleaf.anydone.entities.AuthProto.LoginRequest.Builder subBuilder = null;
-                  if (loginRequest_ != null) {
-                    subBuilder = loginRequest_.toBuilder();
-                  }
-                  loginRequest_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LoginRequest.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(loginRequest_);
-                    loginRequest_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-              }
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
         }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        private void setStringValues(
+                int index, String value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          }
-          return PARSER;
+            ensureStringValuesIsMutable();
+            stringValues_.set(index, value);
         }
-      }
-      throw new UnsupportedOperationException();
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        private void addStringValues(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureStringValuesIsMutable();
+            stringValues_.add(value);
+        }
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        private void addAllStringValues(
+                Iterable<String> values) {
+            ensureStringValuesIsMutable();
+            com.google.protobuf.AbstractMessageLite.addAll(
+                    values, stringValues_);
+        }
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        private void clearStringValues() {
+            stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+        }
+
+        /**
+         * <code>repeated string stringValues = 3;</code>
+         */
+        private void addStringValuesBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+            ensureStringValuesIsMutable();
+            stringValues_.add(value.toStringUtf8());
+        }
+
+        public static final int INTVALUE_FIELD_NUMBER = 4;
+        private int intValue_;
+
+        /**
+         * <code>optional int32 intValue = 4;</code>
+         */
+        public int getIntValue() {
+            return intValue_;
+        }
+
+        /**
+         * <code>optional int32 intValue = 4;</code>
+         */
+        private void setIntValue(int value) {
+
+            intValue_ = value;
+        }
+
+        /**
+         * <code>optional int32 intValue = 4;</code>
+         */
+        private void clearIntValue() {
+
+            intValue_ = 0;
+        }
+
+        public static final int LONGVALUE_FIELD_NUMBER = 5;
+        private long longValue_;
+
+        /**
+         * <code>optional int64 longValue = 5;</code>
+         */
+        public long getLongValue() {
+            return longValue_;
+        }
+
+        /**
+         * <code>optional int64 longValue = 5;</code>
+         */
+        private void setLongValue(long value) {
+
+            longValue_ = value;
+        }
+
+        /**
+         * <code>optional int64 longValue = 5;</code>
+         */
+        private void clearLongValue() {
+
+            longValue_ = 0L;
+        }
+
+        public static final int BOOLVALUE_FIELD_NUMBER = 6;
+        private boolean boolValue_;
+
+        /**
+         * <code>optional bool boolValue = 6;</code>
+         */
+        public boolean getBoolValue() {
+            return boolValue_;
+        }
+
+        /**
+         * <code>optional bool boolValue = 6;</code>
+         */
+        private void setBoolValue(boolean value) {
+
+            boolValue_ = value;
+        }
+
+        /**
+         * <code>optional bool boolValue = 6;</code>
+         */
+        private void clearBoolValue() {
+
+            boolValue_ = false;
+        }
+
+        public static final int DOUBLEVALUE_FIELD_NUMBER = 7;
+        private boolean doubleValue_;
+
+        /**
+         * <code>optional bool doubleValue = 7;</code>
+         */
+        public boolean getDoubleValue() {
+            return doubleValue_;
+        }
+
+        /**
+         * <code>optional bool doubleValue = 7;</code>
+         */
+        private void setDoubleValue(boolean value) {
+
+            doubleValue_ = value;
+        }
+
+        /**
+         * <code>optional bool doubleValue = 7;</code>
+         */
+        private void clearDoubleValue() {
+
+            doubleValue_ = false;
+        }
+
+        public static final int AUTHORIZATION_FIELD_NUMBER = 8;
+        private com.treeleaf.anydone.entities.AuthProto.Authorization authorization_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        public boolean hasAuthorization() {
+            return authorization_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        public com.treeleaf.anydone.entities.AuthProto.Authorization getAuthorization() {
+            return authorization_ == null ? com.treeleaf.anydone.entities.AuthProto.Authorization.getDefaultInstance() : authorization_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        private void setAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            authorization_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        private void setAuthorization(
+                com.treeleaf.anydone.entities.AuthProto.Authorization.Builder builderForValue) {
+            authorization_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        private void mergeAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
+            if (authorization_ != null &&
+                    authorization_ != com.treeleaf.anydone.entities.AuthProto.Authorization.getDefaultInstance()) {
+                authorization_ =
+                        com.treeleaf.anydone.entities.AuthProto.Authorization.newBuilder(authorization_).mergeFrom(value).buildPartial();
+            } else {
+                authorization_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+         */
+        private void clearAuthorization() {
+            authorization_ = null;
+
+        }
+
+        public static final int DEBUG_FIELD_NUMBER = 9;
+        private com.treeleaf.anydone.entities.TreeleafProto.Debug debug_;
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        public boolean hasDebug() {
+            return debug_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
+            return debug_ == null ? com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance() : debug_;
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        private void setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            debug_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        private void setDebug(
+                com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
+            debug_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        private void mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+            if (debug_ != null &&
+                    debug_ != com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance()) {
+                debug_ =
+                        com.treeleaf.anydone.entities.TreeleafProto.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+            } else {
+                debug_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+         */
+        private void clearDebug() {
+            debug_ = null;
+
+        }
+
+        public static final int LOGINREQUEST_FIELD_NUMBER = 10;
+        private com.treeleaf.anydone.entities.AuthProto.LoginRequest loginRequest_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        public boolean hasLoginRequest() {
+            return loginRequest_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        public com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest() {
+            return loginRequest_ == null ? com.treeleaf.anydone.entities.AuthProto.LoginRequest.getDefaultInstance() : loginRequest_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        private void setLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            loginRequest_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        private void setLoginRequest(
+                com.treeleaf.anydone.entities.AuthProto.LoginRequest.Builder builderForValue) {
+            loginRequest_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        private void mergeLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
+            if (loginRequest_ != null &&
+                    loginRequest_ != com.treeleaf.anydone.entities.AuthProto.LoginRequest.getDefaultInstance()) {
+                loginRequest_ =
+                        com.treeleaf.anydone.entities.AuthProto.LoginRequest.newBuilder(loginRequest_).mergeFrom(value).buildPartial();
+            } else {
+                loginRequest_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+         */
+        private void clearLoginRequest() {
+            loginRequest_ = null;
+
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!refId_.isEmpty()) {
+                output.writeString(1, getRefId());
+            }
+            if (!stringValue_.isEmpty()) {
+                output.writeString(2, getStringValue());
+            }
+            for (int i = 0; i < stringValues_.size(); i++) {
+                output.writeString(3, stringValues_.get(i));
+            }
+            if (intValue_ != 0) {
+                output.writeInt32(4, intValue_);
+            }
+            if (longValue_ != 0L) {
+                output.writeInt64(5, longValue_);
+            }
+            if (boolValue_ != false) {
+                output.writeBool(6, boolValue_);
+            }
+            if (doubleValue_ != false) {
+                output.writeBool(7, doubleValue_);
+            }
+            if (authorization_ != null) {
+                output.writeMessage(8, getAuthorization());
+            }
+            if (debug_ != null) {
+                output.writeMessage(9, getDebug());
+            }
+            if (loginRequest_ != null) {
+                output.writeMessage(10, getLoginRequest());
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!refId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(1, getRefId());
+            }
+            if (!stringValue_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(2, getStringValue());
+            }
+            {
+                int dataSize = 0;
+                for (int i = 0; i < stringValues_.size(); i++) {
+                    dataSize += com.google.protobuf.CodedOutputStream
+                            .computeStringSizeNoTag(stringValues_.get(i));
+                }
+                size += dataSize;
+                size += 1 * getStringValuesList().size();
+            }
+            if (intValue_ != 0) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt32Size(4, intValue_);
+            }
+            if (longValue_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt64Size(5, longValue_);
+            }
+            if (boolValue_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(6, boolValue_);
+            }
+            if (doubleValue_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(7, doubleValue_);
+            }
+            if (authorization_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(8, getAuthorization());
+            }
+            if (debug_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(9, getDebug());
+            }
+            if (loginRequest_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(10, getLoginRequest());
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static AuthBaseRequest parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static AuthBaseRequest parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static AuthBaseRequest parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static AuthBaseRequest parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static AuthBaseRequest parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static AuthBaseRequest parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static AuthBaseRequest parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static AuthBaseRequest parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static AuthBaseRequest parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static AuthBaseRequest parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(AuthBaseRequest prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        AuthBaseRequest, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.AuthBaseRequest)
+                AuthBaseRequestOrBuilder {
+            // Construct using com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional string refId = 1;</code>
+             */
+            public String getRefId() {
+                return instance.getRefId();
+            }
+
+            /**
+             * <code>optional string refId = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getRefIdBytes() {
+                return instance.getRefIdBytes();
+            }
+
+            /**
+             * <code>optional string refId = 1;</code>
+             */
+            public Builder setRefId(
+                    String value) {
+                copyOnWrite();
+                instance.setRefId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string refId = 1;</code>
+             */
+            public Builder clearRefId() {
+                copyOnWrite();
+                instance.clearRefId();
+                return this;
+            }
+
+            /**
+             * <code>optional string refId = 1;</code>
+             */
+            public Builder setRefIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setRefIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string stringValue = 2;</code>
+             */
+            public String getStringValue() {
+                return instance.getStringValue();
+            }
+
+            /**
+             * <code>optional string stringValue = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getStringValueBytes() {
+                return instance.getStringValueBytes();
+            }
+
+            /**
+             * <code>optional string stringValue = 2;</code>
+             */
+            public Builder setStringValue(
+                    String value) {
+                copyOnWrite();
+                instance.setStringValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string stringValue = 2;</code>
+             */
+            public Builder clearStringValue() {
+                copyOnWrite();
+                instance.clearStringValue();
+                return this;
+            }
+
+            /**
+             * <code>optional string stringValue = 2;</code>
+             */
+            public Builder setStringValueBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setStringValueBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public java.util.List<String>
+            getStringValuesList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getStringValuesList());
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public int getStringValuesCount() {
+                return instance.getStringValuesCount();
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public String getStringValues(int index) {
+                return instance.getStringValues(index);
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public com.google.protobuf.ByteString
+            getStringValuesBytes(int index) {
+                return instance.getStringValuesBytes(index);
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public Builder setStringValues(
+                    int index, String value) {
+                copyOnWrite();
+                instance.setStringValues(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public Builder addStringValues(
+                    String value) {
+                copyOnWrite();
+                instance.addStringValues(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public Builder addAllStringValues(
+                    Iterable<String> values) {
+                copyOnWrite();
+                instance.addAllStringValues(values);
+                return this;
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public Builder clearStringValues() {
+                copyOnWrite();
+                instance.clearStringValues();
+                return this;
+            }
+
+            /**
+             * <code>repeated string stringValues = 3;</code>
+             */
+            public Builder addStringValuesBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.addStringValuesBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional int32 intValue = 4;</code>
+             */
+            public int getIntValue() {
+                return instance.getIntValue();
+            }
+
+            /**
+             * <code>optional int32 intValue = 4;</code>
+             */
+            public Builder setIntValue(int value) {
+                copyOnWrite();
+                instance.setIntValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional int32 intValue = 4;</code>
+             */
+            public Builder clearIntValue() {
+                copyOnWrite();
+                instance.clearIntValue();
+                return this;
+            }
+
+            /**
+             * <code>optional int64 longValue = 5;</code>
+             */
+            public long getLongValue() {
+                return instance.getLongValue();
+            }
+
+            /**
+             * <code>optional int64 longValue = 5;</code>
+             */
+            public Builder setLongValue(long value) {
+                copyOnWrite();
+                instance.setLongValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional int64 longValue = 5;</code>
+             */
+            public Builder clearLongValue() {
+                copyOnWrite();
+                instance.clearLongValue();
+                return this;
+            }
+
+            /**
+             * <code>optional bool boolValue = 6;</code>
+             */
+            public boolean getBoolValue() {
+                return instance.getBoolValue();
+            }
+
+            /**
+             * <code>optional bool boolValue = 6;</code>
+             */
+            public Builder setBoolValue(boolean value) {
+                copyOnWrite();
+                instance.setBoolValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional bool boolValue = 6;</code>
+             */
+            public Builder clearBoolValue() {
+                copyOnWrite();
+                instance.clearBoolValue();
+                return this;
+            }
+
+            /**
+             * <code>optional bool doubleValue = 7;</code>
+             */
+            public boolean getDoubleValue() {
+                return instance.getDoubleValue();
+            }
+
+            /**
+             * <code>optional bool doubleValue = 7;</code>
+             */
+            public Builder setDoubleValue(boolean value) {
+                copyOnWrite();
+                instance.setDoubleValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional bool doubleValue = 7;</code>
+             */
+            public Builder clearDoubleValue() {
+                copyOnWrite();
+                instance.clearDoubleValue();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+             */
+            public boolean hasAuthorization() {
+                return instance.hasAuthorization();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+             */
+            public com.treeleaf.anydone.entities.AuthProto.Authorization getAuthorization() {
+                return instance.getAuthorization();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+             */
+            public Builder setAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
+                copyOnWrite();
+                instance.setAuthorization(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+             */
+            public Builder setAuthorization(
+                    com.treeleaf.anydone.entities.AuthProto.Authorization.Builder builderForValue) {
+                copyOnWrite();
+                instance.setAuthorization(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+             */
+            public Builder mergeAuthorization(com.treeleaf.anydone.entities.AuthProto.Authorization value) {
+                copyOnWrite();
+                instance.mergeAuthorization(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Authorization authorization = 8;</code>
+             */
+            public Builder clearAuthorization() {
+                copyOnWrite();
+                instance.clearAuthorization();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+             */
+            public boolean hasDebug() {
+                return instance.hasDebug();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+             */
+            public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
+                return instance.getDebug();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+             */
+            public Builder setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+                copyOnWrite();
+                instance.setDebug(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+             */
+            public Builder setDebug(
+                    com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
+                copyOnWrite();
+                instance.setDebug(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+             */
+            public Builder mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+                copyOnWrite();
+                instance.mergeDebug(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 9;</code>
+             */
+            public Builder clearDebug() {
+                copyOnWrite();
+                instance.clearDebug();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+             */
+            public boolean hasLoginRequest() {
+                return instance.hasLoginRequest();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+             */
+            public com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest() {
+                return instance.getLoginRequest();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+             */
+            public Builder setLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
+                copyOnWrite();
+                instance.setLoginRequest(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+             */
+            public Builder setLoginRequest(
+                    com.treeleaf.anydone.entities.AuthProto.LoginRequest.Builder builderForValue) {
+                copyOnWrite();
+                instance.setLoginRequest(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+             */
+            public Builder mergeLoginRequest(com.treeleaf.anydone.entities.AuthProto.LoginRequest value) {
+                copyOnWrite();
+                instance.mergeLoginRequest(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
+             */
+            public Builder clearLoginRequest() {
+                copyOnWrite();
+                instance.clearLoginRequest();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseRequest)
+        }
+
+        protected final Object dynamicMethod(
+                MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new AuthBaseRequest();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    stringValues_.makeImmutable();
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    AuthBaseRequest other = (AuthBaseRequest) arg1;
+                    refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+                            !other.refId_.isEmpty(), other.refId_);
+                    stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
+                            !other.stringValue_.isEmpty(), other.stringValue_);
+                    stringValues_ = visitor.visitList(stringValues_, other.stringValues_);
+                    intValue_ = visitor.visitInt(intValue_ != 0, intValue_,
+                            other.intValue_ != 0, other.intValue_);
+                    longValue_ = visitor.visitLong(longValue_ != 0L, longValue_,
+                            other.longValue_ != 0L, other.longValue_);
+                    boolValue_ = visitor.visitBoolean(boolValue_ != false, boolValue_,
+                            other.boolValue_ != false, other.boolValue_);
+                    doubleValue_ = visitor.visitBoolean(doubleValue_ != false, doubleValue_,
+                            other.doubleValue_ != false, other.doubleValue_);
+                    authorization_ = visitor.visitMessage(authorization_, other.authorization_);
+                    debug_ = visitor.visitMessage(debug_, other.debug_);
+                    loginRequest_ = visitor.visitMessage(loginRequest_, other.loginRequest_);
+                    if (visitor == MergeFromVisitor
+                            .INSTANCE) {
+                        bitField0_ |= other.bitField0_;
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 10: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    refId_ = s;
+                                    break;
+                                }
+                                case 18: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    stringValue_ = s;
+                                    break;
+                                }
+                                case 26: {
+                                    String s = input.readStringRequireUtf8();
+                                    if (!stringValues_.isModifiable()) {
+                                        stringValues_ =
+                                                com.google.protobuf.GeneratedMessageLite.mutableCopy(stringValues_);
+                                    }
+                                    stringValues_.add(s);
+                                    break;
+                                }
+                                case 32: {
+
+                                    intValue_ = input.readInt32();
+                                    break;
+                                }
+                                case 40: {
+
+                                    longValue_ = input.readInt64();
+                                    break;
+                                }
+                                case 48: {
+
+                                    boolValue_ = input.readBool();
+                                    break;
+                                }
+                                case 56: {
+
+                                    doubleValue_ = input.readBool();
+                                    break;
+                                }
+                                case 66: {
+                                    com.treeleaf.anydone.entities.AuthProto.Authorization.Builder subBuilder = null;
+                                    if (authorization_ != null) {
+                                        subBuilder = authorization_.toBuilder();
+                                    }
+                                    authorization_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.Authorization.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(authorization_);
+                                        authorization_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 74: {
+                                    com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder subBuilder = null;
+                                    if (debug_ != null) {
+                                        subBuilder = debug_.toBuilder();
+                                    }
+                                    debug_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.Debug.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(debug_);
+                                        debug_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 82: {
+                                    com.treeleaf.anydone.entities.AuthProto.LoginRequest.Builder subBuilder = null;
+                                    if (loginRequest_ != null) {
+                                        subBuilder = loginRequest_.toBuilder();
+                                    }
+                                    loginRequest_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LoginRequest.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(loginRequest_);
+                                        loginRequest_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (AuthBaseRequest.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.AuthBaseRequest)
+        private static final AuthBaseRequest DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new AuthBaseRequest();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static AuthBaseRequest getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<AuthBaseRequest> PARSER;
+
+        public static com.google.protobuf.Parser<AuthBaseRequest> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
+    public interface AuthBaseResponseOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.rpc.AuthBaseResponse)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.AuthBaseRequest)
-    private static final com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new AuthBaseRequest();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
+        /**
+         * <code>optional bool error = 1;</code>
+         */
+        boolean getError();
 
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
+        /**
+         * <code>optional string msg = 2;</code>
+         */
+        String getMsg();
 
-    private static volatile com.google.protobuf.Parser<AuthBaseRequest> PARSER;
-
-    public static com.google.protobuf.Parser<AuthBaseRequest> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface AuthBaseResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.rpc.AuthBaseResponse)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional bool error = 1;</code>
-     */
-    boolean getError();
-
-    /**
-     * <code>optional string msg = 2;</code>
-     */
-    java.lang.String getMsg();
-    /**
-     * <code>optional string msg = 2;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string msg = 2;</code>
+         */
+        com.google.protobuf.ByteString
         getMsgBytes();
 
-    /**
-     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-     */
-    int getErrorCodeValue();
-    /**
-     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-     */
-    com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode();
+        /**
+         * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+         */
+        int getErrorCodeValue();
 
-    /**
-     * <code>optional bool success = 4;</code>
-     */
-    boolean getSuccess();
+        /**
+         * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+         */
+        com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode();
 
-    /**
-     * <code>optional int64 timestamp = 5;</code>
-     */
-    long getTimestamp();
+        /**
+         * <code>optional bool success = 4;</code>
+         */
+        boolean getSuccess();
 
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    boolean hasDebug();
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug();
+        /**
+         * <code>optional int64 timestamp = 5;</code>
+         */
+        long getTimestamp();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    boolean hasSession();
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    com.treeleaf.anydone.entities.AuthProto.Session getSession();
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        boolean hasDebug();
 
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    java.util.List<com.treeleaf.anydone.entities.AuthProto.Session> 
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        boolean hasSession();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        com.treeleaf.anydone.entities.AuthProto.Session getSession();
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        java.util.List<com.treeleaf.anydone.entities.AuthProto.Session>
         getSessionsList();
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    com.treeleaf.anydone.entities.AuthProto.Session getSessions(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    int getSessionsCount();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    boolean hasLoginResponse();
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    com.treeleaf.anydone.entities.AuthProto.LoginResponse getLoginResponse();
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        com.treeleaf.anydone.entities.AuthProto.Session getSessions(int index);
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    boolean hasAuthResponse();
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    com.treeleaf.anydone.entities.AuthProto.AuthResponse getAuthResponse();
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        int getSessionsCount();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    boolean hasUser();
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    com.treeleaf.anydone.entities.UserProto.User getUser();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseResponse}
-   */
-  public  static final class AuthBaseResponse extends
-      com.google.protobuf.GeneratedMessageLite<
-          AuthBaseResponse, AuthBaseResponse.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.rpc.AuthBaseResponse)
-      AuthBaseResponseOrBuilder {
-    private AuthBaseResponse() {
-      msg_ = "";
-      sessions_ = emptyProtobufList();
-    }
-    private int bitField0_;
-    public static final int ERROR_FIELD_NUMBER = 1;
-    private boolean error_;
-    /**
-     * <code>optional bool error = 1;</code>
-     */
-    public boolean getError() {
-      return error_;
-    }
-    /**
-     * <code>optional bool error = 1;</code>
-     */
-    private void setError(boolean value) {
-      
-      error_ = value;
-    }
-    /**
-     * <code>optional bool error = 1;</code>
-     */
-    private void clearError() {
-      
-      error_ = false;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        boolean hasLoginResponse();
 
-    public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
-    /**
-     * <code>optional string msg = 2;</code>
-     */
-    public java.lang.String getMsg() {
-      return msg_;
-    }
-    /**
-     * <code>optional string msg = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getMsgBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(msg_);
-    }
-    /**
-     * <code>optional string msg = 2;</code>
-     */
-    private void setMsg(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      msg_ = value;
-    }
-    /**
-     * <code>optional string msg = 2;</code>
-     */
-    private void clearMsg() {
-      
-      msg_ = getDefaultInstance().getMsg();
-    }
-    /**
-     * <code>optional string msg = 2;</code>
-     */
-    private void setMsgBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      msg_ = value.toStringUtf8();
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        com.treeleaf.anydone.entities.AuthProto.LoginResponse getLoginResponse();
 
-    public static final int ERRORCODE_FIELD_NUMBER = 3;
-    private int errorCode_;
-    /**
-     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-     */
-    public int getErrorCodeValue() {
-      return errorCode_;
-    }
-    /**
-     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-     */
-    public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
-      com.treeleaf.anydone.entities.TreeleafProto.ErrorCode result = com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.forNumber(errorCode_);
-      return result == null ? com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-     */
-    private void setErrorCodeValue(int value) {
-        errorCode_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-     */
-    private void setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      errorCode_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-     */
-    private void clearErrorCode() {
-      
-      errorCode_ = 0;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        boolean hasAuthResponse();
 
-    public static final int SUCCESS_FIELD_NUMBER = 4;
-    private boolean success_;
-    /**
-     * <code>optional bool success = 4;</code>
-     */
-    public boolean getSuccess() {
-      return success_;
-    }
-    /**
-     * <code>optional bool success = 4;</code>
-     */
-    private void setSuccess(boolean value) {
-      
-      success_ = value;
-    }
-    /**
-     * <code>optional bool success = 4;</code>
-     */
-    private void clearSuccess() {
-      
-      success_ = false;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        com.treeleaf.anydone.entities.AuthProto.AuthResponse getAuthResponse();
 
-    public static final int TIMESTAMP_FIELD_NUMBER = 5;
-    private long timestamp_;
-    /**
-     * <code>optional int64 timestamp = 5;</code>
-     */
-    public long getTimestamp() {
-      return timestamp_;
-    }
-    /**
-     * <code>optional int64 timestamp = 5;</code>
-     */
-    private void setTimestamp(long value) {
-      
-      timestamp_ = value;
-    }
-    /**
-     * <code>optional int64 timestamp = 5;</code>
-     */
-    private void clearTimestamp() {
-      
-      timestamp_ = 0L;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        boolean hasUser();
 
-    public static final int DEBUG_FIELD_NUMBER = 6;
-    private com.treeleaf.anydone.entities.TreeleafProto.Debug debug_;
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    public boolean hasDebug() {
-      return debug_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
-      return debug_ == null ? com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance() : debug_;
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    private void setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      debug_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    private void setDebug(
-        com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
-      debug_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    private void mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-      if (debug_ != null &&
-          debug_ != com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance()) {
-        debug_ =
-          com.treeleaf.anydone.entities.TreeleafProto.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
-      } else {
-        debug_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-     */
-    private void clearDebug() {  debug_ = null;
-      
-    }
-
-    public static final int SESSION_FIELD_NUMBER = 7;
-    private com.treeleaf.anydone.entities.AuthProto.Session session_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    public boolean hasSession() {
-      return session_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.Session getSession() {
-      return session_ == null ? com.treeleaf.anydone.entities.AuthProto.Session.getDefaultInstance() : session_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    private void setSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      session_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    private void setSession(
-        com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-      session_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    private void mergeSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
-      if (session_ != null &&
-          session_ != com.treeleaf.anydone.entities.AuthProto.Session.getDefaultInstance()) {
-        session_ =
-          com.treeleaf.anydone.entities.AuthProto.Session.newBuilder(session_).mergeFrom(value).buildPartial();
-      } else {
-        session_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-     */
-    private void clearSession() {  session_ = null;
-      
-    }
-
-    public static final int SESSIONS_FIELD_NUMBER = 8;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.AuthProto.Session> sessions_;
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    public java.util.List<com.treeleaf.anydone.entities.AuthProto.Session> getSessionsList() {
-      return sessions_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.AuthProto.SessionOrBuilder> 
-        getSessionsOrBuilderList() {
-      return sessions_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    public int getSessionsCount() {
-      return sessions_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.Session getSessions(int index) {
-      return sessions_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.SessionOrBuilder getSessionsOrBuilder(
-        int index) {
-      return sessions_.get(index);
-    }
-    private void ensureSessionsIsMutable() {
-      if (!sessions_.isModifiable()) {
-        sessions_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(sessions_);
-       }
-    }
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void setSessions(
-        int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureSessionsIsMutable();
-      sessions_.set(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void setSessions(
-        int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-      ensureSessionsIsMutable();
-      sessions_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void addSessions(com.treeleaf.anydone.entities.AuthProto.Session value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureSessionsIsMutable();
-      sessions_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void addSessions(
-        int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureSessionsIsMutable();
-      sessions_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void addSessions(
-        com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-      ensureSessionsIsMutable();
-      sessions_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void addSessions(
-        int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-      ensureSessionsIsMutable();
-      sessions_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void addAllSessions(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.AuthProto.Session> values) {
-      ensureSessionsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, sessions_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void clearSessions() {
-      sessions_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-     */
-    private void removeSessions(int index) {
-      ensureSessionsIsMutable();
-      sessions_.remove(index);
-    }
-
-    public static final int LOGINRESPONSE_FIELD_NUMBER = 9;
-    private com.treeleaf.anydone.entities.AuthProto.LoginResponse loginResponse_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    public boolean hasLoginResponse() {
-      return loginResponse_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.LoginResponse getLoginResponse() {
-      return loginResponse_ == null ? com.treeleaf.anydone.entities.AuthProto.LoginResponse.getDefaultInstance() : loginResponse_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    private void setLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      loginResponse_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    private void setLoginResponse(
-        com.treeleaf.anydone.entities.AuthProto.LoginResponse.Builder builderForValue) {
-      loginResponse_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    private void mergeLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
-      if (loginResponse_ != null &&
-          loginResponse_ != com.treeleaf.anydone.entities.AuthProto.LoginResponse.getDefaultInstance()) {
-        loginResponse_ =
-          com.treeleaf.anydone.entities.AuthProto.LoginResponse.newBuilder(loginResponse_).mergeFrom(value).buildPartial();
-      } else {
-        loginResponse_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-     */
-    private void clearLoginResponse() {  loginResponse_ = null;
-      
-    }
-
-    public static final int AUTHRESPONSE_FIELD_NUMBER = 10;
-    private com.treeleaf.anydone.entities.AuthProto.AuthResponse authResponse_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    public boolean hasAuthResponse() {
-      return authResponse_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.AuthResponse getAuthResponse() {
-      return authResponse_ == null ? com.treeleaf.anydone.entities.AuthProto.AuthResponse.getDefaultInstance() : authResponse_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    private void setAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      authResponse_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    private void setAuthResponse(
-        com.treeleaf.anydone.entities.AuthProto.AuthResponse.Builder builderForValue) {
-      authResponse_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    private void mergeAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
-      if (authResponse_ != null &&
-          authResponse_ != com.treeleaf.anydone.entities.AuthProto.AuthResponse.getDefaultInstance()) {
-        authResponse_ =
-          com.treeleaf.anydone.entities.AuthProto.AuthResponse.newBuilder(authResponse_).mergeFrom(value).buildPartial();
-      } else {
-        authResponse_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-     */
-    private void clearAuthResponse() {  authResponse_ = null;
-      
-    }
-
-    public static final int USER_FIELD_NUMBER = 11;
-    private com.treeleaf.anydone.entities.UserProto.User user_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    public boolean hasUser() {
-      return user_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    public com.treeleaf.anydone.entities.UserProto.User getUser() {
-      return user_ == null ? com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance() : user_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    private void setUser(com.treeleaf.anydone.entities.UserProto.User value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      user_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    private void setUser(
-        com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
-      user_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    private void mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
-      if (user_ != null &&
-          user_ != com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance()) {
-        user_ =
-          com.treeleaf.anydone.entities.UserProto.User.newBuilder(user_).mergeFrom(value).buildPartial();
-      } else {
-        user_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-     */
-    private void clearUser() {  user_ = null;
-      
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (error_ != false) {
-        output.writeBool(1, error_);
-      }
-      if (!msg_.isEmpty()) {
-        output.writeString(2, getMsg());
-      }
-      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
-        output.writeEnum(3, errorCode_);
-      }
-      if (success_ != false) {
-        output.writeBool(4, success_);
-      }
-      if (timestamp_ != 0L) {
-        output.writeInt64(5, timestamp_);
-      }
-      if (debug_ != null) {
-        output.writeMessage(6, getDebug());
-      }
-      if (session_ != null) {
-        output.writeMessage(7, getSession());
-      }
-      for (int i = 0; i < sessions_.size(); i++) {
-        output.writeMessage(8, sessions_.get(i));
-      }
-      if (loginResponse_ != null) {
-        output.writeMessage(9, getLoginResponse());
-      }
-      if (authResponse_ != null) {
-        output.writeMessage(10, getAuthResponse());
-      }
-      if (user_ != null) {
-        output.writeMessage(11, getUser());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (error_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, error_);
-      }
-      if (!msg_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getMsg());
-      }
-      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, errorCode_);
-      }
-      if (success_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, success_);
-      }
-      if (timestamp_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, timestamp_);
-      }
-      if (debug_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getDebug());
-      }
-      if (session_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getSession());
-      }
-      for (int i = 0; i < sessions_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, sessions_.get(i));
-      }
-      if (loginResponse_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getLoginResponse());
-      }
-      if (authResponse_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getAuthResponse());
-      }
-      if (user_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, getUser());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        com.treeleaf.anydone.entities.UserProto.User getUser();
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseResponse}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.AuthBaseResponse)
-        com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponseOrBuilder {
-      // Construct using com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional bool error = 1;</code>
-       */
-      public boolean getError() {
-        return instance.getError();
-      }
-      /**
-       * <code>optional bool error = 1;</code>
-       */
-      public Builder setError(boolean value) {
-        copyOnWrite();
-        instance.setError(value);
-        return this;
-      }
-      /**
-       * <code>optional bool error = 1;</code>
-       */
-      public Builder clearError() {
-        copyOnWrite();
-        instance.clearError();
-        return this;
-      }
-
-      /**
-       * <code>optional string msg = 2;</code>
-       */
-      public java.lang.String getMsg() {
-        return instance.getMsg();
-      }
-      /**
-       * <code>optional string msg = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMsgBytes() {
-        return instance.getMsgBytes();
-      }
-      /**
-       * <code>optional string msg = 2;</code>
-       */
-      public Builder setMsg(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setMsg(value);
-        return this;
-      }
-      /**
-       * <code>optional string msg = 2;</code>
-       */
-      public Builder clearMsg() {
-        copyOnWrite();
-        instance.clearMsg();
-        return this;
-      }
-      /**
-       * <code>optional string msg = 2;</code>
-       */
-      public Builder setMsgBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setMsgBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-       */
-      public int getErrorCodeValue() {
-        return instance.getErrorCodeValue();
-      }
-      /**
-       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-       */
-      public Builder setErrorCodeValue(int value) {
-        copyOnWrite();
-        instance.setErrorCodeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-       */
-      public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
-        return instance.getErrorCode();
-      }
-      /**
-       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-       */
-      public Builder setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
-        copyOnWrite();
-        instance.setErrorCode(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
-       */
-      public Builder clearErrorCode() {
-        copyOnWrite();
-        instance.clearErrorCode();
-        return this;
-      }
-
-      /**
-       * <code>optional bool success = 4;</code>
-       */
-      public boolean getSuccess() {
-        return instance.getSuccess();
-      }
-      /**
-       * <code>optional bool success = 4;</code>
-       */
-      public Builder setSuccess(boolean value) {
-        copyOnWrite();
-        instance.setSuccess(value);
-        return this;
-      }
-      /**
-       * <code>optional bool success = 4;</code>
-       */
-      public Builder clearSuccess() {
-        copyOnWrite();
-        instance.clearSuccess();
-        return this;
-      }
-
-      /**
-       * <code>optional int64 timestamp = 5;</code>
-       */
-      public long getTimestamp() {
-        return instance.getTimestamp();
-      }
-      /**
-       * <code>optional int64 timestamp = 5;</code>
-       */
-      public Builder setTimestamp(long value) {
-        copyOnWrite();
-        instance.setTimestamp(value);
-        return this;
-      }
-      /**
-       * <code>optional int64 timestamp = 5;</code>
-       */
-      public Builder clearTimestamp() {
-        copyOnWrite();
-        instance.clearTimestamp();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-       */
-      public boolean hasDebug() {
-        return instance.hasDebug();
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-       */
-      public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
-        return instance.getDebug();
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-       */
-      public Builder setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-        copyOnWrite();
-        instance.setDebug(value);
-        return this;
+    public static final class AuthBaseResponse extends
+            com.google.protobuf.GeneratedMessageLite<
+                    AuthBaseResponse, AuthBaseResponse.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.rpc.AuthBaseResponse)
+            AuthBaseResponseOrBuilder {
+        private AuthBaseResponse() {
+            msg_ = "";
+            sessions_ = emptyProtobufList();
         }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-       */
-      public Builder setDebug(
-          com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
-        copyOnWrite();
-        instance.setDebug(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-       */
-      public Builder mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
-        copyOnWrite();
-        instance.mergeDebug(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.Debug debug = 6;</code>
-       */
-      public Builder clearDebug() {  copyOnWrite();
-        instance.clearDebug();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-       */
-      public boolean hasSession() {
-        return instance.hasSession();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-       */
-      public com.treeleaf.anydone.entities.AuthProto.Session getSession() {
-        return instance.getSession();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-       */
-      public Builder setSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
-        copyOnWrite();
-        instance.setSession(value);
-        return this;
+        private int bitField0_;
+        public static final int ERROR_FIELD_NUMBER = 1;
+        private boolean error_;
+
+        /**
+         * <code>optional bool error = 1;</code>
+         */
+        public boolean getError() {
+            return error_;
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-       */
-      public Builder setSession(
-          com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-        copyOnWrite();
-        instance.setSession(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-       */
-      public Builder mergeSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
-        copyOnWrite();
-        instance.mergeSession(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
-       */
-      public Builder clearSession() {  copyOnWrite();
-        instance.clearSession();
-        return this;
-      }
 
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public java.util.List<com.treeleaf.anydone.entities.AuthProto.Session> getSessionsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getSessionsList());
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public int getSessionsCount() {
-        return instance.getSessionsCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public com.treeleaf.anydone.entities.AuthProto.Session getSessions(int index) {
-        return instance.getSessions(index);
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder setSessions(
-          int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
-        copyOnWrite();
-        instance.setSessions(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder setSessions(
-          int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-        copyOnWrite();
-        instance.setSessions(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder addSessions(com.treeleaf.anydone.entities.AuthProto.Session value) {
-        copyOnWrite();
-        instance.addSessions(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder addSessions(
-          int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
-        copyOnWrite();
-        instance.addSessions(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder addSessions(
-          com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-        copyOnWrite();
-        instance.addSessions(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder addSessions(
-          int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
-        copyOnWrite();
-        instance.addSessions(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder addAllSessions(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.AuthProto.Session> values) {
-        copyOnWrite();
-        instance.addAllSessions(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder clearSessions() {
-        copyOnWrite();
-        instance.clearSessions();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
-       */
-      public Builder removeSessions(int index) {
-        copyOnWrite();
-        instance.removeSessions(index);
-        return this;
-      }
+        /**
+         * <code>optional bool error = 1;</code>
+         */
+        private void setError(boolean value) {
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-       */
-      public boolean hasLoginResponse() {
-        return instance.hasLoginResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-       */
-      public com.treeleaf.anydone.entities.AuthProto.LoginResponse getLoginResponse() {
-        return instance.getLoginResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-       */
-      public Builder setLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
-        copyOnWrite();
-        instance.setLoginResponse(value);
-        return this;
+            error_ = value;
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-       */
-      public Builder setLoginResponse(
-          com.treeleaf.anydone.entities.AuthProto.LoginResponse.Builder builderForValue) {
-        copyOnWrite();
-        instance.setLoginResponse(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-       */
-      public Builder mergeLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
-        copyOnWrite();
-        instance.mergeLoginResponse(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
-       */
-      public Builder clearLoginResponse() {  copyOnWrite();
-        instance.clearLoginResponse();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-       */
-      public boolean hasAuthResponse() {
-        return instance.hasAuthResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-       */
-      public com.treeleaf.anydone.entities.AuthProto.AuthResponse getAuthResponse() {
-        return instance.getAuthResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-       */
-      public Builder setAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
-        copyOnWrite();
-        instance.setAuthResponse(value);
-        return this;
+        /**
+         * <code>optional bool error = 1;</code>
+         */
+        private void clearError() {
+
+            error_ = false;
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-       */
-      public Builder setAuthResponse(
-          com.treeleaf.anydone.entities.AuthProto.AuthResponse.Builder builderForValue) {
-        copyOnWrite();
-        instance.setAuthResponse(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-       */
-      public Builder mergeAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
-        copyOnWrite();
-        instance.mergeAuthResponse(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
-       */
-      public Builder clearAuthResponse() {  copyOnWrite();
-        instance.clearAuthResponse();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-       */
-      public boolean hasUser() {
-        return instance.hasUser();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-       */
-      public com.treeleaf.anydone.entities.UserProto.User getUser() {
-        return instance.getUser();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-       */
-      public Builder setUser(com.treeleaf.anydone.entities.UserProto.User value) {
-        copyOnWrite();
-        instance.setUser(value);
-        return this;
+        public static final int MSG_FIELD_NUMBER = 2;
+        private String msg_;
+
+        /**
+         * <code>optional string msg = 2;</code>
+         */
+        public String getMsg() {
+            return msg_;
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-       */
-      public Builder setUser(
-          com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
-        copyOnWrite();
-        instance.setUser(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-       */
-      public Builder mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
-        copyOnWrite();
-        instance.mergeUser(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
-       */
-      public Builder clearUser() {  copyOnWrite();
-        instance.clearUser();
-        return this;
-      }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseResponse)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse();
+        /**
+         * <code>optional string msg = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+        getMsgBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(msg_);
         }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
+
+        /**
+         * <code>optional string msg = 2;</code>
+         */
+        private void setMsg(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            msg_ = value;
         }
-        case MAKE_IMMUTABLE: {
-          sessions_.makeImmutable();
-          return null;
+
+        /**
+         * <code>optional string msg = 2;</code>
+         */
+        private void clearMsg() {
+
+            msg_ = getDefaultInstance().getMsg();
         }
-        case NEW_BUILDER: {
-          return new Builder();
+
+        /**
+         * <code>optional string msg = 2;</code>
+         */
+        private void setMsgBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            msg_ = value.toStringUtf8();
         }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse other = (com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse) arg1;
-          error_ = visitor.visitBoolean(error_ != false, error_,
-              other.error_ != false, other.error_);
-          msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
-              !other.msg_.isEmpty(), other.msg_);
-          errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,    other.errorCode_ != 0, other.errorCode_);
-          success_ = visitor.visitBoolean(success_ != false, success_,
-              other.success_ != false, other.success_);
-          timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
-              other.timestamp_ != 0L, other.timestamp_);
-          debug_ = visitor.visitMessage(debug_, other.debug_);
-          session_ = visitor.visitMessage(session_, other.session_);
-          sessions_= visitor.visitList(sessions_, other.sessions_);
-          loginResponse_ = visitor.visitMessage(loginResponse_, other.loginResponse_);
-          authResponse_ = visitor.visitMessage(authResponse_, other.authResponse_);
-          user_ = visitor.visitMessage(user_, other.user_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
+
+        public static final int ERRORCODE_FIELD_NUMBER = 3;
+        private int errorCode_;
+
+        /**
+         * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+         */
+        public int getErrorCodeValue() {
+            return errorCode_;
         }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
 
-                  error_ = input.readBool();
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
+        /**
+         * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+         */
+        public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+            com.treeleaf.anydone.entities.TreeleafProto.ErrorCode result = com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.forNumber(errorCode_);
+            return result == null ? com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNRECOGNIZED : result;
+        }
 
-                  msg_ = s;
-                  break;
-                }
-                case 24: {
-                  int rawValue = input.readEnum();
+        /**
+         * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+         */
+        private void setErrorCodeValue(int value) {
+            errorCode_ = value;
+        }
 
-                  errorCode_ = rawValue;
-                  break;
-                }
-                case 32: {
+        /**
+         * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+         */
+        private void setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
 
-                  success_ = input.readBool();
-                  break;
-                }
-                case 40: {
+            errorCode_ = value.getNumber();
+        }
 
-                  timestamp_ = input.readInt64();
-                  break;
-                }
-                case 50: {
-                  com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder subBuilder = null;
-                  if (debug_ != null) {
-                    subBuilder = debug_.toBuilder();
-                  }
-                  debug_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.Debug.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(debug_);
-                    debug_ = subBuilder.buildPartial();
-                  }
+        /**
+         * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+         */
+        private void clearErrorCode() {
 
-                  break;
-                }
-                case 58: {
-                  com.treeleaf.anydone.entities.AuthProto.Session.Builder subBuilder = null;
-                  if (session_ != null) {
-                    subBuilder = session_.toBuilder();
-                  }
-                  session_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.Session.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(session_);
-                    session_ = subBuilder.buildPartial();
-                  }
+            errorCode_ = 0;
+        }
 
-                  break;
-                }
-                case 66: {
-                  if (!sessions_.isModifiable()) {
-                    sessions_ =
+        public static final int SUCCESS_FIELD_NUMBER = 4;
+        private boolean success_;
+
+        /**
+         * <code>optional bool success = 4;</code>
+         */
+        public boolean getSuccess() {
+            return success_;
+        }
+
+        /**
+         * <code>optional bool success = 4;</code>
+         */
+        private void setSuccess(boolean value) {
+
+            success_ = value;
+        }
+
+        /**
+         * <code>optional bool success = 4;</code>
+         */
+        private void clearSuccess() {
+
+            success_ = false;
+        }
+
+        public static final int TIMESTAMP_FIELD_NUMBER = 5;
+        private long timestamp_;
+
+        /**
+         * <code>optional int64 timestamp = 5;</code>
+         */
+        public long getTimestamp() {
+            return timestamp_;
+        }
+
+        /**
+         * <code>optional int64 timestamp = 5;</code>
+         */
+        private void setTimestamp(long value) {
+
+            timestamp_ = value;
+        }
+
+        /**
+         * <code>optional int64 timestamp = 5;</code>
+         */
+        private void clearTimestamp() {
+
+            timestamp_ = 0L;
+        }
+
+        public static final int DEBUG_FIELD_NUMBER = 6;
+        private com.treeleaf.anydone.entities.TreeleafProto.Debug debug_;
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        public boolean hasDebug() {
+            return debug_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
+            return debug_ == null ? com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance() : debug_;
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        private void setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            debug_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        private void setDebug(
+                com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
+            debug_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        private void mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+            if (debug_ != null &&
+                    debug_ != com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance()) {
+                debug_ =
+                        com.treeleaf.anydone.entities.TreeleafProto.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+            } else {
+                debug_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+         */
+        private void clearDebug() {
+            debug_ = null;
+
+        }
+
+        public static final int SESSION_FIELD_NUMBER = 7;
+        private com.treeleaf.anydone.entities.AuthProto.Session session_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        public boolean hasSession() {
+            return session_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        public com.treeleaf.anydone.entities.AuthProto.Session getSession() {
+            return session_ == null ? com.treeleaf.anydone.entities.AuthProto.Session.getDefaultInstance() : session_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        private void setSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            session_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        private void setSession(
+                com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+            session_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        private void mergeSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
+            if (session_ != null &&
+                    session_ != com.treeleaf.anydone.entities.AuthProto.Session.getDefaultInstance()) {
+                session_ =
+                        com.treeleaf.anydone.entities.AuthProto.Session.newBuilder(session_).mergeFrom(value).buildPartial();
+            } else {
+                session_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+         */
+        private void clearSession() {
+            session_ = null;
+
+        }
+
+        public static final int SESSIONS_FIELD_NUMBER = 8;
+        private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.AuthProto.Session> sessions_;
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        public java.util.List<com.treeleaf.anydone.entities.AuthProto.Session> getSessionsList() {
+            return sessions_;
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        public java.util.List<? extends com.treeleaf.anydone.entities.AuthProto.SessionOrBuilder>
+        getSessionsOrBuilderList() {
+            return sessions_;
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        public int getSessionsCount() {
+            return sessions_.size();
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        public com.treeleaf.anydone.entities.AuthProto.Session getSessions(int index) {
+            return sessions_.get(index);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        public com.treeleaf.anydone.entities.AuthProto.SessionOrBuilder getSessionsOrBuilder(
+                int index) {
+            return sessions_.get(index);
+        }
+
+        private void ensureSessionsIsMutable() {
+            if (!sessions_.isModifiable()) {
+                sessions_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(sessions_);
-                  }
-                  sessions_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.AuthProto.Session.parser(), extensionRegistry));
-                  break;
-                }
-                case 74: {
-                  com.treeleaf.anydone.entities.AuthProto.LoginResponse.Builder subBuilder = null;
-                  if (loginResponse_ != null) {
-                    subBuilder = loginResponse_.toBuilder();
-                  }
-                  loginResponse_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LoginResponse.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(loginResponse_);
-                    loginResponse_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 82: {
-                  com.treeleaf.anydone.entities.AuthProto.AuthResponse.Builder subBuilder = null;
-                  if (authResponse_ != null) {
-                    subBuilder = authResponse_.toBuilder();
-                  }
-                  authResponse_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.AuthResponse.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(authResponse_);
-                    authResponse_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 90: {
-                  com.treeleaf.anydone.entities.UserProto.User.Builder subBuilder = null;
-                  if (user_ != null) {
-                    subBuilder = user_.toBuilder();
-                  }
-                  user_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.User.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(user_);
-                    user_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-              }
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
         }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void setSessions(
+                int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          }
-          return PARSER;
+            ensureSessionsIsMutable();
+            sessions_.set(index, value);
         }
-      }
-      throw new UnsupportedOperationException();
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void setSessions(
+                int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+            ensureSessionsIsMutable();
+            sessions_.set(index, builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void addSessions(com.treeleaf.anydone.entities.AuthProto.Session value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureSessionsIsMutable();
+            sessions_.add(value);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void addSessions(
+                int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureSessionsIsMutable();
+            sessions_.add(index, value);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void addSessions(
+                com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+            ensureSessionsIsMutable();
+            sessions_.add(builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void addSessions(
+                int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+            ensureSessionsIsMutable();
+            sessions_.add(index, builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void addAllSessions(
+                Iterable<? extends com.treeleaf.anydone.entities.AuthProto.Session> values) {
+            ensureSessionsIsMutable();
+            com.google.protobuf.AbstractMessageLite.addAll(
+                    values, sessions_);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void clearSessions() {
+            sessions_ = emptyProtobufList();
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+         */
+        private void removeSessions(int index) {
+            ensureSessionsIsMutable();
+            sessions_.remove(index);
+        }
+
+        public static final int LOGINRESPONSE_FIELD_NUMBER = 9;
+        private com.treeleaf.anydone.entities.AuthProto.LoginResponse loginResponse_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        public boolean hasLoginResponse() {
+            return loginResponse_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        public com.treeleaf.anydone.entities.AuthProto.LoginResponse getLoginResponse() {
+            return loginResponse_ == null ? com.treeleaf.anydone.entities.AuthProto.LoginResponse.getDefaultInstance() : loginResponse_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        private void setLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            loginResponse_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        private void setLoginResponse(
+                com.treeleaf.anydone.entities.AuthProto.LoginResponse.Builder builderForValue) {
+            loginResponse_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        private void mergeLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
+            if (loginResponse_ != null &&
+                    loginResponse_ != com.treeleaf.anydone.entities.AuthProto.LoginResponse.getDefaultInstance()) {
+                loginResponse_ =
+                        com.treeleaf.anydone.entities.AuthProto.LoginResponse.newBuilder(loginResponse_).mergeFrom(value).buildPartial();
+            } else {
+                loginResponse_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+         */
+        private void clearLoginResponse() {
+            loginResponse_ = null;
+
+        }
+
+        public static final int AUTHRESPONSE_FIELD_NUMBER = 10;
+        private com.treeleaf.anydone.entities.AuthProto.AuthResponse authResponse_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        public boolean hasAuthResponse() {
+            return authResponse_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        public com.treeleaf.anydone.entities.AuthProto.AuthResponse getAuthResponse() {
+            return authResponse_ == null ? com.treeleaf.anydone.entities.AuthProto.AuthResponse.getDefaultInstance() : authResponse_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        private void setAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            authResponse_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        private void setAuthResponse(
+                com.treeleaf.anydone.entities.AuthProto.AuthResponse.Builder builderForValue) {
+            authResponse_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        private void mergeAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
+            if (authResponse_ != null &&
+                    authResponse_ != com.treeleaf.anydone.entities.AuthProto.AuthResponse.getDefaultInstance()) {
+                authResponse_ =
+                        com.treeleaf.anydone.entities.AuthProto.AuthResponse.newBuilder(authResponse_).mergeFrom(value).buildPartial();
+            } else {
+                authResponse_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+         */
+        private void clearAuthResponse() {
+            authResponse_ = null;
+
+        }
+
+        public static final int USER_FIELD_NUMBER = 11;
+        private com.treeleaf.anydone.entities.UserProto.User user_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        public boolean hasUser() {
+            return user_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        public com.treeleaf.anydone.entities.UserProto.User getUser() {
+            return user_ == null ? com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance() : user_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        private void setUser(com.treeleaf.anydone.entities.UserProto.User value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            user_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        private void setUser(
+                com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
+            user_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        private void mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
+            if (user_ != null &&
+                    user_ != com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance()) {
+                user_ =
+                        com.treeleaf.anydone.entities.UserProto.User.newBuilder(user_).mergeFrom(value).buildPartial();
+            } else {
+                user_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+         */
+        private void clearUser() {
+            user_ = null;
+
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (error_ != false) {
+                output.writeBool(1, error_);
+            }
+            if (!msg_.isEmpty()) {
+                output.writeString(2, getMsg());
+            }
+            if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+                output.writeEnum(3, errorCode_);
+            }
+            if (success_ != false) {
+                output.writeBool(4, success_);
+            }
+            if (timestamp_ != 0L) {
+                output.writeInt64(5, timestamp_);
+            }
+            if (debug_ != null) {
+                output.writeMessage(6, getDebug());
+            }
+            if (session_ != null) {
+                output.writeMessage(7, getSession());
+            }
+            for (int i = 0; i < sessions_.size(); i++) {
+                output.writeMessage(8, sessions_.get(i));
+            }
+            if (loginResponse_ != null) {
+                output.writeMessage(9, getLoginResponse());
+            }
+            if (authResponse_ != null) {
+                output.writeMessage(10, getAuthResponse());
+            }
+            if (user_ != null) {
+                output.writeMessage(11, getUser());
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (error_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(1, error_);
+            }
+            if (!msg_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(2, getMsg());
+            }
+            if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(3, errorCode_);
+            }
+            if (success_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(4, success_);
+            }
+            if (timestamp_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt64Size(5, timestamp_);
+            }
+            if (debug_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(6, getDebug());
+            }
+            if (session_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(7, getSession());
+            }
+            for (int i = 0; i < sessions_.size(); i++) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(8, sessions_.get(i));
+            }
+            if (loginResponse_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(9, getLoginResponse());
+            }
+            if (authResponse_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(10, getAuthResponse());
+            }
+            if (user_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(11, getUser());
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static AuthBaseResponse parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static AuthBaseResponse parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static AuthBaseResponse parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static AuthBaseResponse parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static AuthBaseResponse parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static AuthBaseResponse parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static AuthBaseResponse parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static AuthBaseResponse parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static AuthBaseResponse parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static AuthBaseResponse parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(AuthBaseResponse prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseResponse}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        AuthBaseResponse, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.AuthBaseResponse)
+                AuthBaseResponseOrBuilder {
+            // Construct using com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional bool error = 1;</code>
+             */
+            public boolean getError() {
+                return instance.getError();
+            }
+
+            /**
+             * <code>optional bool error = 1;</code>
+             */
+            public Builder setError(boolean value) {
+                copyOnWrite();
+                instance.setError(value);
+                return this;
+            }
+
+            /**
+             * <code>optional bool error = 1;</code>
+             */
+            public Builder clearError() {
+                copyOnWrite();
+                instance.clearError();
+                return this;
+            }
+
+            /**
+             * <code>optional string msg = 2;</code>
+             */
+            public String getMsg() {
+                return instance.getMsg();
+            }
+
+            /**
+             * <code>optional string msg = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getMsgBytes() {
+                return instance.getMsgBytes();
+            }
+
+            /**
+             * <code>optional string msg = 2;</code>
+             */
+            public Builder setMsg(
+                    String value) {
+                copyOnWrite();
+                instance.setMsg(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string msg = 2;</code>
+             */
+            public Builder clearMsg() {
+                copyOnWrite();
+                instance.clearMsg();
+                return this;
+            }
+
+            /**
+             * <code>optional string msg = 2;</code>
+             */
+            public Builder setMsgBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setMsgBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+             */
+            public int getErrorCodeValue() {
+                return instance.getErrorCodeValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+             */
+            public Builder setErrorCodeValue(int value) {
+                copyOnWrite();
+                instance.setErrorCodeValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+             */
+            public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+                return instance.getErrorCode();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+             */
+            public Builder setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+                copyOnWrite();
+                instance.setErrorCode(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+             */
+            public Builder clearErrorCode() {
+                copyOnWrite();
+                instance.clearErrorCode();
+                return this;
+            }
+
+            /**
+             * <code>optional bool success = 4;</code>
+             */
+            public boolean getSuccess() {
+                return instance.getSuccess();
+            }
+
+            /**
+             * <code>optional bool success = 4;</code>
+             */
+            public Builder setSuccess(boolean value) {
+                copyOnWrite();
+                instance.setSuccess(value);
+                return this;
+            }
+
+            /**
+             * <code>optional bool success = 4;</code>
+             */
+            public Builder clearSuccess() {
+                copyOnWrite();
+                instance.clearSuccess();
+                return this;
+            }
+
+            /**
+             * <code>optional int64 timestamp = 5;</code>
+             */
+            public long getTimestamp() {
+                return instance.getTimestamp();
+            }
+
+            /**
+             * <code>optional int64 timestamp = 5;</code>
+             */
+            public Builder setTimestamp(long value) {
+                copyOnWrite();
+                instance.setTimestamp(value);
+                return this;
+            }
+
+            /**
+             * <code>optional int64 timestamp = 5;</code>
+             */
+            public Builder clearTimestamp() {
+                copyOnWrite();
+                instance.clearTimestamp();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+             */
+            public boolean hasDebug() {
+                return instance.hasDebug();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+             */
+            public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
+                return instance.getDebug();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+             */
+            public Builder setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+                copyOnWrite();
+                instance.setDebug(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+             */
+            public Builder setDebug(
+                    com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
+                copyOnWrite();
+                instance.setDebug(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+             */
+            public Builder mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+                copyOnWrite();
+                instance.mergeDebug(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.Debug debug = 6;</code>
+             */
+            public Builder clearDebug() {
+                copyOnWrite();
+                instance.clearDebug();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+             */
+            public boolean hasSession() {
+                return instance.hasSession();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+             */
+            public com.treeleaf.anydone.entities.AuthProto.Session getSession() {
+                return instance.getSession();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+             */
+            public Builder setSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
+                copyOnWrite();
+                instance.setSession(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+             */
+            public Builder setSession(
+                    com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+                copyOnWrite();
+                instance.setSession(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+             */
+            public Builder mergeSession(com.treeleaf.anydone.entities.AuthProto.Session value) {
+                copyOnWrite();
+                instance.mergeSession(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Session session = 7;</code>
+             */
+            public Builder clearSession() {
+                copyOnWrite();
+                instance.clearSession();
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public java.util.List<com.treeleaf.anydone.entities.AuthProto.Session> getSessionsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getSessionsList());
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public int getSessionsCount() {
+                return instance.getSessionsCount();
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public com.treeleaf.anydone.entities.AuthProto.Session getSessions(int index) {
+                return instance.getSessions(index);
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder setSessions(
+                    int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
+                copyOnWrite();
+                instance.setSessions(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder setSessions(
+                    int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+                copyOnWrite();
+                instance.setSessions(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder addSessions(com.treeleaf.anydone.entities.AuthProto.Session value) {
+                copyOnWrite();
+                instance.addSessions(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder addSessions(
+                    int index, com.treeleaf.anydone.entities.AuthProto.Session value) {
+                copyOnWrite();
+                instance.addSessions(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder addSessions(
+                    com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+                copyOnWrite();
+                instance.addSessions(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder addSessions(
+                    int index, com.treeleaf.anydone.entities.AuthProto.Session.Builder builderForValue) {
+                copyOnWrite();
+                instance.addSessions(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder addAllSessions(
+                    Iterable<? extends com.treeleaf.anydone.entities.AuthProto.Session> values) {
+                copyOnWrite();
+                instance.addAllSessions(values);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder clearSessions() {
+                copyOnWrite();
+                instance.clearSessions();
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Session sessions = 8;</code>
+             */
+            public Builder removeSessions(int index) {
+                copyOnWrite();
+                instance.removeSessions(index);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+             */
+            public boolean hasLoginResponse() {
+                return instance.hasLoginResponse();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+             */
+            public com.treeleaf.anydone.entities.AuthProto.LoginResponse getLoginResponse() {
+                return instance.getLoginResponse();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+             */
+            public Builder setLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
+                copyOnWrite();
+                instance.setLoginResponse(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+             */
+            public Builder setLoginResponse(
+                    com.treeleaf.anydone.entities.AuthProto.LoginResponse.Builder builderForValue) {
+                copyOnWrite();
+                instance.setLoginResponse(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+             */
+            public Builder mergeLoginResponse(com.treeleaf.anydone.entities.AuthProto.LoginResponse value) {
+                copyOnWrite();
+                instance.mergeLoginResponse(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.LoginResponse loginResponse = 9;</code>
+             */
+            public Builder clearLoginResponse() {
+                copyOnWrite();
+                instance.clearLoginResponse();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+             */
+            public boolean hasAuthResponse() {
+                return instance.hasAuthResponse();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+             */
+            public com.treeleaf.anydone.entities.AuthProto.AuthResponse getAuthResponse() {
+                return instance.getAuthResponse();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+             */
+            public Builder setAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
+                copyOnWrite();
+                instance.setAuthResponse(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+             */
+            public Builder setAuthResponse(
+                    com.treeleaf.anydone.entities.AuthProto.AuthResponse.Builder builderForValue) {
+                copyOnWrite();
+                instance.setAuthResponse(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+             */
+            public Builder mergeAuthResponse(com.treeleaf.anydone.entities.AuthProto.AuthResponse value) {
+                copyOnWrite();
+                instance.mergeAuthResponse(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.AuthResponse authResponse = 10;</code>
+             */
+            public Builder clearAuthResponse() {
+                copyOnWrite();
+                instance.clearAuthResponse();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+             */
+            public boolean hasUser() {
+                return instance.hasUser();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+             */
+            public com.treeleaf.anydone.entities.UserProto.User getUser() {
+                return instance.getUser();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+             */
+            public Builder setUser(com.treeleaf.anydone.entities.UserProto.User value) {
+                copyOnWrite();
+                instance.setUser(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+             */
+            public Builder setUser(
+                    com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
+                copyOnWrite();
+                instance.setUser(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+             */
+            public Builder mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
+                copyOnWrite();
+                instance.mergeUser(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
+             */
+            public Builder clearUser() {
+                copyOnWrite();
+                instance.clearUser();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseResponse)
+        }
+
+        protected final Object dynamicMethod(
+                MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new AuthBaseResponse();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    sessions_.makeImmutable();
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    AuthBaseResponse other = (AuthBaseResponse) arg1;
+                    error_ = visitor.visitBoolean(error_ != false, error_,
+                            other.error_ != false, other.error_);
+                    msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
+                            !other.msg_.isEmpty(), other.msg_);
+                    errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_, other.errorCode_ != 0, other.errorCode_);
+                    success_ = visitor.visitBoolean(success_ != false, success_,
+                            other.success_ != false, other.success_);
+                    timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
+                            other.timestamp_ != 0L, other.timestamp_);
+                    debug_ = visitor.visitMessage(debug_, other.debug_);
+                    session_ = visitor.visitMessage(session_, other.session_);
+                    sessions_ = visitor.visitList(sessions_, other.sessions_);
+                    loginResponse_ = visitor.visitMessage(loginResponse_, other.loginResponse_);
+                    authResponse_ = visitor.visitMessage(authResponse_, other.authResponse_);
+                    user_ = visitor.visitMessage(user_, other.user_);
+                    if (visitor == MergeFromVisitor
+                            .INSTANCE) {
+                        bitField0_ |= other.bitField0_;
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 8: {
+
+                                    error_ = input.readBool();
+                                    break;
+                                }
+                                case 18: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    msg_ = s;
+                                    break;
+                                }
+                                case 24: {
+                                    int rawValue = input.readEnum();
+
+                                    errorCode_ = rawValue;
+                                    break;
+                                }
+                                case 32: {
+
+                                    success_ = input.readBool();
+                                    break;
+                                }
+                                case 40: {
+
+                                    timestamp_ = input.readInt64();
+                                    break;
+                                }
+                                case 50: {
+                                    com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder subBuilder = null;
+                                    if (debug_ != null) {
+                                        subBuilder = debug_.toBuilder();
+                                    }
+                                    debug_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.Debug.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(debug_);
+                                        debug_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 58: {
+                                    com.treeleaf.anydone.entities.AuthProto.Session.Builder subBuilder = null;
+                                    if (session_ != null) {
+                                        subBuilder = session_.toBuilder();
+                                    }
+                                    session_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.Session.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(session_);
+                                        session_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 66: {
+                                    if (!sessions_.isModifiable()) {
+                                        sessions_ =
+                                                com.google.protobuf.GeneratedMessageLite.mutableCopy(sessions_);
+                                    }
+                                    sessions_.add(
+                                            input.readMessage(com.treeleaf.anydone.entities.AuthProto.Session.parser(), extensionRegistry));
+                                    break;
+                                }
+                                case 74: {
+                                    com.treeleaf.anydone.entities.AuthProto.LoginResponse.Builder subBuilder = null;
+                                    if (loginResponse_ != null) {
+                                        subBuilder = loginResponse_.toBuilder();
+                                    }
+                                    loginResponse_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LoginResponse.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(loginResponse_);
+                                        loginResponse_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 82: {
+                                    com.treeleaf.anydone.entities.AuthProto.AuthResponse.Builder subBuilder = null;
+                                    if (authResponse_ != null) {
+                                        subBuilder = authResponse_.toBuilder();
+                                    }
+                                    authResponse_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.AuthResponse.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(authResponse_);
+                                        authResponse_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 90: {
+                                    com.treeleaf.anydone.entities.UserProto.User.Builder subBuilder = null;
+                                    if (user_ != null) {
+                                        subBuilder = user_.toBuilder();
+                                    }
+                                    user_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.User.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(user_);
+                                        user_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (AuthBaseResponse.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.AuthBaseResponse)
+        private static final AuthBaseResponse DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new AuthBaseResponse();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static AuthBaseResponse getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<AuthBaseResponse> PARSER;
+
+        public static com.google.protobuf.Parser<AuthBaseResponse> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.AuthBaseResponse)
-    private static final com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new AuthBaseResponse();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.AuthRpcProto.AuthBaseResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<AuthBaseResponse> PARSER;
-
-    public static com.google.protobuf.Parser<AuthBaseResponse> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-
-  static {
-  }
-
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

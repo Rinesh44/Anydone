@@ -15,7 +15,7 @@ public final class IntegrationRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class IntegrationRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class IntegrationRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -146,11 +146,11 @@ public final class IntegrationRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -164,7 +164,7 @@ public final class IntegrationRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -192,11 +192,11 @@ public final class IntegrationRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -210,7 +210,7 @@ public final class IntegrationRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -254,7 +254,7 @@ public final class IntegrationRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -275,7 +275,7 @@ public final class IntegrationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -286,7 +286,7 @@ public final class IntegrationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -297,7 +297,7 @@ public final class IntegrationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -670,7 +670,7 @@ public final class IntegrationRpcProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 11;</code>
      */
     private void addAllEmployees(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
       ensureEmployeesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, employees_);
@@ -902,60 +902,60 @@ public final class IntegrationRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(
+    public static IntegrationBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(
+    public static IntegrationBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(byte[] data)
+    public static IntegrationBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(
+    public static IntegrationBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(java.io.InputStream input)
+    public static IntegrationBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(
+    public static IntegrationBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static IntegrationBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseDelimitedFrom(
+    public static IntegrationBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(
+    public static IntegrationBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest parseFrom(
+    public static IntegrationBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -966,7 +966,7 @@ public final class IntegrationRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest prototype) {
+    public static Builder newBuilder(IntegrationBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -975,9 +975,9 @@ public final class IntegrationRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest, Builder> implements
+          IntegrationBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.IntegrationBaseRequest)
-        com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequestOrBuilder {
+        IntegrationBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -987,7 +987,7 @@ public final class IntegrationRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1001,7 +1001,7 @@ public final class IntegrationRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1027,7 +1027,7 @@ public final class IntegrationRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1041,7 +1041,7 @@ public final class IntegrationRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1081,7 +1081,7 @@ public final class IntegrationRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1095,7 +1095,7 @@ public final class IntegrationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1104,7 +1104,7 @@ public final class IntegrationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1113,7 +1113,7 @@ public final class IntegrationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1438,7 +1438,7 @@ public final class IntegrationRpcProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 11;</code>
        */
       public Builder addAllEmployees(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
         copyOnWrite();
         instance.addAllEmployees(values);
         return this;
@@ -1553,11 +1553,11 @@ public final class IntegrationRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.IntegrationBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest();
+          return new IntegrationBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1572,7 +1572,7 @@ public final class IntegrationRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest other = (com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest) arg1;
+          IntegrationBaseRequest other = (IntegrationBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1592,7 +1592,7 @@ public final class IntegrationRpcProto {
           employees_= visitor.visitList(employees_, other.employees_);
           serviceProvider_ = visitor.visitMessage(serviceProvider_, other.serviceProvider_);
           integration_ = visitor.visitMessage(integration_, other.integration_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1747,7 +1747,7 @@ public final class IntegrationRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest.class) {
+          if (PARSER == null) {    synchronized (IntegrationBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1761,13 +1761,13 @@ public final class IntegrationRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.IntegrationBaseRequest)
-    private static final com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest DEFAULT_INSTANCE;
+    private static final IntegrationBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntegrationBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseRequest getDefaultInstance() {
+    public static IntegrationBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1790,7 +1790,7 @@ public final class IntegrationRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1864,11 +1864,11 @@ public final class IntegrationRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -1882,7 +1882,7 @@ public final class IntegrationRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2130,60 +2130,60 @@ public final class IntegrationRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(
+    public static IntegrationBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(
+    public static IntegrationBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(byte[] data)
+    public static IntegrationBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(
+    public static IntegrationBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(java.io.InputStream input)
+    public static IntegrationBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(
+    public static IntegrationBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static IntegrationBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseDelimitedFrom(
+    public static IntegrationBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(
+    public static IntegrationBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse parseFrom(
+    public static IntegrationBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2194,7 +2194,7 @@ public final class IntegrationRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse prototype) {
+    public static Builder newBuilder(IntegrationBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2203,9 +2203,9 @@ public final class IntegrationRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse, Builder> implements
+          IntegrationBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.IntegrationBaseResponse)
-        com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponseOrBuilder {
+        IntegrationBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2238,7 +2238,7 @@ public final class IntegrationRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2252,7 +2252,7 @@ public final class IntegrationRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -2428,11 +2428,11 @@ public final class IntegrationRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.IntegrationBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse();
+          return new IntegrationBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2445,7 +2445,7 @@ public final class IntegrationRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse other = (com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse) arg1;
+          IntegrationBaseResponse other = (IntegrationBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -2455,7 +2455,7 @@ public final class IntegrationRpcProto {
               other.success_ != false, other.success_);
           debug_ = visitor.visitMessage(debug_, other.debug_);
           integration_ = visitor.visitMessage(integration_, other.integration_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2542,7 +2542,7 @@ public final class IntegrationRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse.class) {
+          if (PARSER == null) {    synchronized (IntegrationBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2556,13 +2556,13 @@ public final class IntegrationRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.IntegrationBaseResponse)
-    private static final com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse DEFAULT_INSTANCE;
+    private static final IntegrationBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntegrationBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.IntegrationRpcProto.IntegrationBaseResponse getDefaultInstance() {
+    public static IntegrationBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

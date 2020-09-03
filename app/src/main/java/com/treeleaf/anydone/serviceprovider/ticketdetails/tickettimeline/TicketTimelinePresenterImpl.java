@@ -5,15 +5,19 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
+import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
 import io.realm.RealmList;
 
 public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineContract.TicketTimelineView>
-        implements TicketTimelineContract.TicketTimelinePresenter{
+        implements TicketTimelineContract.TicketTimelinePresenter {
     private static final String TAG = "TicketTimelinePresenter";
     private TicketTimelineRepository ticketTimelineRepository;
 
@@ -33,6 +37,47 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         this.ticketTimelineRepository = ticketTimelineRepository;
     }
 
+    @Override
+    public void getEmployees() {
+        Observable<UserRpcProto.UserBaseResponse> employeeObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        employeeObservable = ticketTimelineRepository.findEmployees(token);
+
+        addSubscription(employeeObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                    @Override
+                    public void onNext(UserRpcProto.UserBaseResponse getEmployeeResponse) {
+                        GlobalUtils.showLog(TAG, "find employees response:"
+                                + getEmployeeResponse);
+
+                        if (getEmployeeResponse == null) {
+                            getView().getEmployeeFail("Failed to get employee");
+                            return;
+                        }
+
+                        if (getEmployeeResponse.getError()) {
+                            getView().getEmployeeFail(getEmployeeResponse.getMsg());
+                            return;
+                        }
+
+                        saveEmployees(getEmployeeResponse.getEmployeesList());
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
 
     @Override
     public void getTicketTimeline(long ticketId) {
@@ -62,14 +107,11 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             return;
                         }
 
-                        GlobalUtils.showLog(TAG, "presenter assigned emp check: " + timelineResponse.getTicket().getEmployeesAssignedList().size());
-                        if (!CollectionUtils.isEmpty(timelineResponse.getTicket().getEmployeesAssignedList())) {
-                            RealmList<Employee> assignedEmployee = ProtoMapper.
-                                    transformAssignedEmployee(timelineResponse.getTicket().
-                                            getEmployeesAssignedList());
+                        Employee assignedEmployee = ProtoMapper.
+                                transformAssignedEmployee(timelineResponse.getTicket().
+                                        getEmployeeAssigned());
 
-                            getView().getTicketTimelineSuccess(assignedEmployee);
-                        }
+                        getView().getTicketTimelineSuccess(assignedEmployee);
 
                     }
 
@@ -98,7 +140,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         getView().setAssignedEmployee(tickets.getAssignedEmployee());
     }
 
-    @Override
+/*    @Override
     public void unAssignEmployee(long ticketId, String employeeId) {
         getView().showProgressBar("Please wait");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
@@ -167,7 +209,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                     }
                 }));
 
-    }
+    }*/
 
     @Override
     public void closeTicket(long ticketId) {
@@ -297,6 +339,22 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                         getView().hideProgressBar();
                     }
                 }));
+    }
+
+
+    private void saveEmployees(List<UserProto.EmployeeProfile> employeesList) {
+        AssignEmployeeRepo.getInstance().saveAssignEmployeeList(employeesList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved assign employees");
+                getView().getEmployeeSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save assign employees");
+            }
+        });
     }
 
 }

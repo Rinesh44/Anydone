@@ -110,12 +110,30 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             rvOpenTickets.setVisibility(View.GONE);
             final Handler handler = new Handler();
             handler.postDelayed(() -> {
-                if (rvOpenTickets.getVisibility() != View.VISIBLE)
-                    ivDataNotFound.setVisibility(View.VISIBLE);
-                else ivDataNotFound.setVisibility(View.GONE);
+                if (rvOpenTickets != null) {
+                    if (rvOpenTickets.getVisibility() != View.VISIBLE)
+                        ivDataNotFound.setVisibility(View.VISIBLE);
+                    else ivDataNotFound.setVisibility(View.GONE);
+                }
             }, 2000);
 
         }
+
+        rvOpenTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 || dy < 0 && fabAssign.isShown())
+                    fabAssign.hide();
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                    fabAssign.show();
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
 
     @Override
@@ -206,6 +224,11 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void updateAssignedList(List<Tickets> ticketsList) {
         GlobalUtils.showLog(TAG, "interface implemented");
         setUpRecyclerView(ticketsList);
+    }
+
+    @Override
+    public void updateAssignedList() {
+        presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
     }
 }
 

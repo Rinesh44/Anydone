@@ -15,7 +15,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -81,7 +81,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>optional string verifyToken = 7;</code>
      */
-    java.lang.String getVerifyToken();
+    String getVerifyToken();
     /**
      * <code>optional string verifyToken = 7;</code>
      */
@@ -128,11 +128,11 @@ public final class ThirdPartyRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -146,7 +146,7 @@ public final class ThirdPartyRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -174,11 +174,11 @@ public final class ThirdPartyRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -192,7 +192,7 @@ public final class ThirdPartyRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -236,7 +236,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -257,7 +257,7 @@ public final class ThirdPartyRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -268,7 +268,7 @@ public final class ThirdPartyRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -279,7 +279,7 @@ public final class ThirdPartyRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -460,11 +460,11 @@ public final class ThirdPartyRpcProto {
     }
 
     public static final int VERIFYTOKEN_FIELD_NUMBER = 7;
-    private java.lang.String verifyToken_;
+    private String verifyToken_;
     /**
      * <code>optional string verifyToken = 7;</code>
      */
-    public java.lang.String getVerifyToken() {
+    public String getVerifyToken() {
       return verifyToken_;
     }
     /**
@@ -478,7 +478,7 @@ public final class ThirdPartyRpcProto {
      * <code>optional string verifyToken = 7;</code>
      */
     private void setVerifyToken(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -658,7 +658,7 @@ public final class ThirdPartyRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
      */
     private void addAllConversations(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
       ensureConversationsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, conversations_);
@@ -758,60 +758,60 @@ public final class ThirdPartyRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(
+    public static ThirdPartyBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(
+    public static ThirdPartyBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(byte[] data)
+    public static ThirdPartyBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(
+    public static ThirdPartyBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(java.io.InputStream input)
+    public static ThirdPartyBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(
+    public static ThirdPartyBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static ThirdPartyBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseDelimitedFrom(
+    public static ThirdPartyBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(
+    public static ThirdPartyBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest parseFrom(
+    public static ThirdPartyBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -822,7 +822,7 @@ public final class ThirdPartyRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest prototype) {
+    public static Builder newBuilder(ThirdPartyBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -831,9 +831,9 @@ public final class ThirdPartyRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest, Builder> implements
+          ThirdPartyBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.ThirdPartyBaseRequest)
-        com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequestOrBuilder {
+        ThirdPartyBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -843,7 +843,7 @@ public final class ThirdPartyRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -857,7 +857,7 @@ public final class ThirdPartyRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -883,7 +883,7 @@ public final class ThirdPartyRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -897,7 +897,7 @@ public final class ThirdPartyRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -937,7 +937,7 @@ public final class ThirdPartyRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -951,7 +951,7 @@ public final class ThirdPartyRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -960,7 +960,7 @@ public final class ThirdPartyRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -969,7 +969,7 @@ public final class ThirdPartyRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1130,7 +1130,7 @@ public final class ThirdPartyRpcProto {
       /**
        * <code>optional string verifyToken = 7;</code>
        */
-      public java.lang.String getVerifyToken() {
+      public String getVerifyToken() {
         return instance.getVerifyToken();
       }
       /**
@@ -1144,7 +1144,7 @@ public final class ThirdPartyRpcProto {
        * <code>optional string verifyToken = 7;</code>
        */
       public Builder setVerifyToken(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setVerifyToken(value);
         return this;
@@ -1287,7 +1287,7 @@ public final class ThirdPartyRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
        */
       public Builder addAllConversations(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
         copyOnWrite();
         instance.addAllConversations(values);
         return this;
@@ -1312,11 +1312,11 @@ public final class ThirdPartyRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ThirdPartyBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest();
+          return new ThirdPartyBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1331,7 +1331,7 @@ public final class ThirdPartyRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest other = (com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest) arg1;
+          ThirdPartyBaseRequest other = (ThirdPartyBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1344,7 +1344,7 @@ public final class ThirdPartyRpcProto {
               !other.verifyToken_.isEmpty(), other.verifyToken_);
           conversation_ = visitor.visitMessage(conversation_, other.conversation_);
           conversations_= visitor.visitList(conversations_, other.conversations_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1472,7 +1472,7 @@ public final class ThirdPartyRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest.class) {
+          if (PARSER == null) {    synchronized (ThirdPartyBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1486,13 +1486,13 @@ public final class ThirdPartyRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.ThirdPartyBaseRequest)
-    private static final com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest DEFAULT_INSTANCE;
+    private static final ThirdPartyBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ThirdPartyBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseRequest getDefaultInstance() {
+    public static ThirdPartyBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1515,7 +1515,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1553,7 +1553,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -1563,7 +1563,7 @@ public final class ThirdPartyRpcProto {
     /**
      * <code>optional string stringValue = 8;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 8;</code>
      */
@@ -1650,11 +1650,11 @@ public final class ThirdPartyRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -1668,7 +1668,7 @@ public final class ThirdPartyRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1833,11 +1833,11 @@ public final class ThirdPartyRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -1851,7 +1851,7 @@ public final class ThirdPartyRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1879,11 +1879,11 @@ public final class ThirdPartyRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 8;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 8;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -1897,7 +1897,7 @@ public final class ThirdPartyRpcProto {
      * <code>optional string stringValue = 8;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2181,7 +2181,7 @@ public final class ThirdPartyRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
      */
     private void addAllConversations(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
       ensureConversationsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, conversations_);
@@ -2297,60 +2297,60 @@ public final class ThirdPartyRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(
+    public static ThirdPartyBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(
+    public static ThirdPartyBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(byte[] data)
+    public static ThirdPartyBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(
+    public static ThirdPartyBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(java.io.InputStream input)
+    public static ThirdPartyBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(
+    public static ThirdPartyBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static ThirdPartyBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseDelimitedFrom(
+    public static ThirdPartyBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(
+    public static ThirdPartyBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse parseFrom(
+    public static ThirdPartyBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2361,7 +2361,7 @@ public final class ThirdPartyRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse prototype) {
+    public static Builder newBuilder(ThirdPartyBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2370,9 +2370,9 @@ public final class ThirdPartyRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse, Builder> implements
+          ThirdPartyBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.ThirdPartyBaseResponse)
-        com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponseOrBuilder {
+        ThirdPartyBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2405,7 +2405,7 @@ public final class ThirdPartyRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2419,7 +2419,7 @@ public final class ThirdPartyRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -2573,7 +2573,7 @@ public final class ThirdPartyRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -2587,7 +2587,7 @@ public final class ThirdPartyRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -2613,7 +2613,7 @@ public final class ThirdPartyRpcProto {
       /**
        * <code>optional string stringValue = 8;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -2627,7 +2627,7 @@ public final class ThirdPartyRpcProto {
        * <code>optional string stringValue = 8;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -2860,7 +2860,7 @@ public final class ThirdPartyRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
        */
       public Builder addAllConversations(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
         copyOnWrite();
         instance.addAllConversations(values);
         return this;
@@ -2885,11 +2885,11 @@ public final class ThirdPartyRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ThirdPartyBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse();
+          return new ThirdPartyBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2903,7 +2903,7 @@ public final class ThirdPartyRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse other = (com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse) arg1;
+          ThirdPartyBaseResponse other = (ThirdPartyBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -2922,7 +2922,7 @@ public final class ThirdPartyRpcProto {
           incomingViberMessage_ = visitor.visitMessage(incomingViberMessage_, other.incomingViberMessage_);
           conversation_ = visitor.visitMessage(conversation_, other.conversation_);
           conversations_= visitor.visitList(conversations_, other.conversations_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3062,7 +3062,7 @@ public final class ThirdPartyRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse.class) {
+          if (PARSER == null) {    synchronized (ThirdPartyBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3076,13 +3076,13 @@ public final class ThirdPartyRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.ThirdPartyBaseResponse)
-    private static final com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse DEFAULT_INSTANCE;
+    private static final ThirdPartyBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ThirdPartyBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.ThirdPartyRpcProto.ThirdPartyBaseResponse getDefaultInstance() {
+    public static ThirdPartyBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

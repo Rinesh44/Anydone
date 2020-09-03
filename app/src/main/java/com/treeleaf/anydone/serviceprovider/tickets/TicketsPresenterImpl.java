@@ -2,9 +2,13 @@ package com.treeleaf.anydone.serviceprovider.tickets;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.ServiceProto;
+import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -211,6 +215,72 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                         })
         );
     }
+
+    @Override
+    public void getServices() {
+        Observable<ServiceRpcProto.ServiceBaseResponse> servicesObservable;
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        servicesObservable = ticketsRepository.getServices(token);
+        addSubscription(servicesObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<ServiceRpcProto.ServiceBaseResponse>() {
+                            @Override
+                            public void onNext(ServiceRpcProto.ServiceBaseResponse
+                                                       getServicesBaseResponse) {
+                                GlobalUtils.showLog(TAG, "get services response: "
+                                        + getServicesBaseResponse);
+
+                                if (getServicesBaseResponse == null) {
+                                    getView().getServiceFail("get services failed");
+                                    return;
+                                }
+
+                                if (getServicesBaseResponse.getError()) {
+                                    getView().getServiceFail(getServicesBaseResponse.getMsg());
+                                    return;
+                                }
+
+                                if (!CollectionUtils.isEmpty(
+                                        getServicesBaseResponse.getAvailableServicesList())) {
+                                    saveAvailableServices(getServicesBaseResponse.getAvailableServicesList());
+                                } else {
+                                    getView().getServiceFail("Services Not found");
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                getView().hideProgressBar();
+                                getView().filterClosedTicketFailed(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
+        );
+    }
+
+    private void saveAvailableServices(List<ServiceProto.AvailableService> availableServicesList) {
+        AvailableServicesRepo.getInstance().saveAvailableServices(availableServicesList,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getServiceSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        getView().getServiceFail("failed to get services");
+                    }
+                });
+    }
+
 
     private String getAssignedFilterUrl(String query, long from, long to, int status) {
         StringBuilder filterUrlBuilder = new StringBuilder("ticket/assigned?");

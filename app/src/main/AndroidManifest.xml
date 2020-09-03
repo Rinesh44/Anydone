@@ -33,7 +33,7 @@
             android:name=".ticketdetails.TicketDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".tickets.unassignedtickets.UnassignedTicketsActivity"
-            android:theme="@style/FormTheme"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".addticket.AddTicketActivity"
             android:theme="@style/FormTheme" />
