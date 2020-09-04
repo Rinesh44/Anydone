@@ -317,9 +317,15 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     @Override
     public void onDrawCanvasCleared() {
-        if (serverDrawingPadEventListener != null) {
-            serverDrawingPadEventListener.onDrawCanvasCleared();
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawCanvasCleared();
+                }
+            }
+        });
+
     }
 
     @Override
