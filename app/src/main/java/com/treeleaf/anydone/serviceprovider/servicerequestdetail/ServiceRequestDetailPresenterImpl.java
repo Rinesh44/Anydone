@@ -884,7 +884,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         captureDrawParam.setXCoordinate(drawMetaDataChange.getX());
                         captureDrawParam.setYCoordinate(drawMetaDataChange.getY());
                         captureDrawParam.setBrushWidth(drawMetaDataChange.getBrushWidth());
-                        captureDrawParam.setBrushOpacity(Integer.parseInt(String.valueOf(drawMetaDataChange.getBrushOpacity())));
+                        captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
                         captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
                         getView().onDrawParamChanged(captureDrawParam);
                     }
