@@ -26,6 +26,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
 
 import java.io.ByteArrayInputStream;
@@ -33,8 +34,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -400,24 +403,44 @@ Limit selectable Date range
     }
 
     public static int getPriorityNum(Priority selectedPriority) {
-        switch (selectedPriority.getValue()) {
-            case "Highest":
-                return 5;
+        if (selectedPriority != null) {
+            switch (selectedPriority.getValue()) {
+                case "Highest":
+                    return 5;
 
-            case "High":
-                return 4;
+                case "High":
+                    return 4;
 
-            case "Medium":
-                return 3;
+                case "Medium":
+                    return 3;
 
-            case "Low":
-                return 2;
+                case "Low":
+                    return 2;
 
-            case "Lowest":
-                return 1;
+                case "Lowest":
+                    return 1;
 
+            }
         }
-        return 0;
+        return -1;
+    }
+
+    public static List<Priority> getPriorityList() {
+        List<Priority> priorityList = new ArrayList<>();
+//        Priority select = new Priority("Select priority", -1);
+        Priority highest = new Priority("Highest", R.drawable.ic_highest);
+        Priority high = new Priority("High", R.drawable.ic_high);
+        Priority medium = new Priority("Medium", R.drawable.ic_medium);
+        Priority low = new Priority("Low", R.drawable.ic_low);
+        Priority lowest = new Priority("Lowest", R.drawable.ic_lowest);
+
+//        priorityList.add(select);
+        priorityList.add(highest);
+        priorityList.add(high);
+        priorityList.add(medium);
+        priorityList.add(low);
+        priorityList.add(lowest);
+        return priorityList;
     }
 
 }

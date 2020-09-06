@@ -9,14 +9,17 @@ public class Thread extends RealmObject {
     String threadId;
     String customerName;
     String serviceId;
+    String serviceProviderId;
     String customerId;
     String customerEmail;
     String customerPhone;
     long createdAt;
+    long updatedAt;
+    long lastMessageDate;
     String customerImageUrl;
     String finalMessage;
     String source;
-    RealmList<Tags> tagsRealmList;
+    String defaultLabelId;
     Employee assignedEmployee;
     boolean botEnabled;
 
@@ -103,12 +106,36 @@ public class Thread extends RealmObject {
         this.source = source;
     }
 
-    public RealmList<Tags> getTagsRealmList() {
-        return tagsRealmList;
+    public String getServiceProviderId() {
+        return serviceProviderId;
     }
 
-    public void setTagsRealmList(RealmList<Tags> tagsRealmList) {
-        this.tagsRealmList = tagsRealmList;
+    public void setServiceProviderId(String serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public long getLastMessageDate() {
+        return lastMessageDate;
+    }
+
+    public void setLastMessageDate(long lastMessageDate) {
+        this.lastMessageDate = lastMessageDate;
+    }
+
+    public String getDefaultLabelId() {
+        return defaultLabelId;
+    }
+
+    public void setDefaultLabelId(String defaultLabelId) {
+        this.defaultLabelId = defaultLabelId;
     }
 
     public Employee getAssignedEmployee() {

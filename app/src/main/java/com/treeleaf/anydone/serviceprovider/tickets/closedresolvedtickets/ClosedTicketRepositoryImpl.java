@@ -13,8 +13,12 @@ public class ClosedTicketRepositoryImpl implements ClosedTicketRepository {
     }
 
     @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> getClosedResolvedTickets(String token, long from, long to, int page) {
-        return anyDoneService.getClosedResolvedTickets(token, from, to, page);
+    public Observable<TicketServiceRpcProto.TicketBaseResponse> getClosedResolvedTickets(String token,
+                                                                                         String serviceId,
+                                                                                         long from,
+                                                                                         long to,
+                                                                                         int page) {
+        return anyDoneService.getClosedResolvedTickets(token, serviceId, from, to, page);
     }
 
     @Override

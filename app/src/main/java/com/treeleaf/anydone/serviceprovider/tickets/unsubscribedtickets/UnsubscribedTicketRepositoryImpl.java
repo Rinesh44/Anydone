@@ -14,10 +14,11 @@ public class UnsubscribedTicketRepositoryImpl implements UnsubscribedTicketRepos
 
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribeableTickets(String token,
+                                                                                        String serviceId,
                                                                                         long from,
                                                                                         long to,
                                                                                         int page) {
-        return anyDoneService.getSubscribeableTickets(token, from, to, page);
+        return anyDoneService.getSubscribeableTickets(token, serviceId, from, to, page);
     }
 
     @Override

@@ -37,8 +37,9 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
         String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = closedTicketRepository.getClosedResolvedTickets(token, from, to, page);
+        getTicketsObservable = closedTicketRepository.getClosedResolvedTickets(token, serviceId, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -61,6 +62,9 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
                                     return;
                                 }
 
+
+                                GlobalUtils.showLog(TAG, "serivce id: " + serviceId);
+                                GlobalUtils.showLog(TAG, "closed tickets Count: " + getTicketsBaseResponse.getTicketsList().size());
                                 saveClosedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
                             }
 
@@ -110,7 +114,7 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
                                     return;
                                 }
 
-                                getView().onReopenSuccess();
+                                getView().onReopenSuccess(ticketId);
                             }
 
                             @Override

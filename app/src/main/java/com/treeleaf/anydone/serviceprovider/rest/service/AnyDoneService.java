@@ -275,35 +275,43 @@ public interface AnyDoneService {
     Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(@Header(AUTHORIZATION)
                                                                                     String token,
                                                                             @Path(value = "serviceId")
-                                                                            String serviceId,
+                                                                                    String serviceId,
                                                                             @Query("from") long from,
                                                                             @Query("to") long to,
                                                                             @Query("page") int page);
 
-    @GET("ticket/subscribed")
+    @GET("ticket/subscribed/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribedTickets(@Header(AUTHORIZATION)
                                                                                       String token,
+                                                                              @Path(value = "serviceId")
+                                                                                      String serviceId,
                                                                               @Query("from") long from,
                                                                               @Query("to") long to,
                                                                               @Query("page") int page);
 
-    @GET("ticket/inactive")
+    @GET("ticket/inactive/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getClosedResolvedTickets(@Header(AUTHORIZATION)
                                                                                           String token,
+                                                                                  @Path(value = "serviceId")
+                                                                                          String serviceId,
                                                                                   @Query("from") long from,
                                                                                   @Query("to") long to,
                                                                                   @Query("page") int page);
 
-    @GET("ticket/assignable")
+    @GET("ticket/assignable/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignableTickets(@Header(AUTHORIZATION)
                                                                                       String token,
+                                                                              @Path(value = "serviceId")
+                                                                                      String serviceId,
                                                                               @Query("from") long from,
                                                                               @Query("to") long to,
                                                                               @Query("page") int page);
 
-    @GET("ticket/subscribable")
+    @GET("ticket/subscribable/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribeableTickets(@Header(AUTHORIZATION)
                                                                                          String token,
+                                                                                 @Path(value = "serviceId")
+                                                                                         String serviceId,
                                                                                  @Query("from") long from,
                                                                                  @Query("to") long to,
                                                                                  @Query("page") int page);
@@ -320,11 +328,13 @@ public interface AnyDoneService {
                                                                    @Path(value = "ticketId")
                                                                            long ticketId);
 
-    @PATCH("ticket/assign/{ticketId}")
+    @PATCH("ticket/assign/{ticketId}/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> assignToSelf(@Header(AUTHORIZATION)
                                                                               String token,
                                                                       @Path(value = "ticketId")
                                                                               long ticketId,
+                                                                      @Path(value = "serviceId")
+                                                                              String serviceId,
                                                                       @Body TicketProto.Ticket employeeAssigned);
 
 

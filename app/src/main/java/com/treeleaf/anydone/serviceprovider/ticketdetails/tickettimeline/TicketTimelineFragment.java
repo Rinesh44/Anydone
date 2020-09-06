@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -185,6 +187,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private EmployeeSearchAdapter employeeSearchAdapter;
     private String selectedEmployeeId;
     private Employee selfEmployee;
+    private boolean isEmployeeFocused;
+    private AssignEmployee selectedEmployee;
 
 
     public TicketTimelineFragment() {
@@ -202,7 +206,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             presenter.getCustomerDetails(ticketId);
             presenter.getAssignedEmployees(ticketId);
             presenter.getTicketTimeline(ticketId);
-
+            presenter.getEmployees();
             setTicketDetails();
         }
 
@@ -258,6 +262,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 PaymentSummary.class)));*/
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 
+        etSearchEmployee.setOnFocusChangeListener((v, hasFocus) -> isEmployeeFocused = hasFocus);
+
         etSearchEmployee.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -266,7 +272,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 1) {
+                if (s.length() >= 1 && isEmployeeFocused) {
                     GlobalUtils.showLog(TAG, "text changed");
                     employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
                     if (CollectionUtils.isEmpty(employeeList)) {
@@ -281,6 +287,9 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                         employeeSearchAdapter.setData(employeeList);
                         employeeSearchAdapter.notifyDataSetChanged();
                     }
+
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                    etSearchEmployee.requestFocus();
                 } else {
                     svSearchEmployee.setVisibility(View.GONE);
                 }
@@ -801,15 +810,15 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 */
 
 
-/*    private void showDeleteDialog(String employeeId) {
+    private void showConfirmationDialog(String employeeId) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Are you sure you want to delete?");
+        builder1.setMessage("Are you sure you want to assign to this employee?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
                 "Ok",
                 (dialog, id) -> {
-                    presenter.unAssignEmployee(ticketId, employeeId);
+                    presenter.assignTicket(ticketId, employeeId);
                     dialog.dismiss();
                 });
 
@@ -832,7 +841,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         });
         alert11.show();
-    }*/
+    }
 
     private void showStatusChangeConfirmation(String title, String type) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
@@ -1033,11 +1042,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
-
+                selectedEmployee = employee;
                 selectedEmployeeId = employee.getEmployeeId();
-                etSearchEmployee.setText(employee.getName());
-                etSearchEmployee.setSelection(employee.getName().length());
-                svSearchEmployee.setVisibility(View.GONE);
+
+                showConfirmationDialog(selectedEmployeeId);
             });
         }
 
@@ -1080,11 +1088,37 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     public void getEmployeeSuccess() {
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
         setUpEmployeeRecyclerView();
-
     }
 
     @Override
     public void getEmployeeFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showSnackBar(getActivity(), getActivity().getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void assignSuccess() {
+        Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
+        etSearchEmployee.setText(selectedEmployee.getName());
+        etSearchEmployee.setSelection(selectedEmployee.getName().length());
+        svSearchEmployee.setVisibility(View.GONE);
+        etSearchEmployee.clearFocus();
+        hideKeyBoard();
+    }
+
+    private void hideKeyBoard() {
+        final InputMethodManager imm = (InputMethodManager)
+                Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+    }
+
+    @Override
+    public void assignFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());

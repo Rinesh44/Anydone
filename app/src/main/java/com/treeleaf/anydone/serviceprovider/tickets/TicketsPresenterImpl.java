@@ -6,6 +6,7 @@ import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -40,14 +41,16 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
     @Override
-    public void filterAssignedTickets(String searchQuery, long from, long to, int ticketState) {
+    public void filterAssignedTickets(String searchQuery, long from, long to, int ticketState, Priority priority) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
-        String filterUrl = getAssignedFilterUrl(searchQuery, from, to, ticketState);
+
+        int priorityNum = GlobalUtils.getPriorityNum(priority);
+        String filterUrl = getAssignedFilterUrl(searchQuery, from, to, ticketState, priorityNum);
 
         ticketBaseResponseObservable = service.filterTickets(token, filterUrl);
         addSubscription(ticketBaseResponseObservable
@@ -99,14 +102,17 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
     @Override
-    public void filterSubscribedTickets(String searchQuery, long from, long to, int ticketState) {
+    public void filterSubscribedTickets(String searchQuery, long from, long to, int ticketState,
+                                        Priority priority) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
-        String filterUrl = getSubscribedFilterUrl(searchQuery, from, to, ticketState);
+
+        int priorityNum = GlobalUtils.getPriorityNum(priority);
+        String filterUrl = getSubscribedFilterUrl(searchQuery, from, to, ticketState, priorityNum);
 
         ticketBaseResponseObservable = service.filterTickets(token, filterUrl);
         addSubscription(ticketBaseResponseObservable
@@ -158,14 +164,16 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
     @Override
-    public void filterClosedTickets(String searchQuery, long from, long to, int ticketState) {
+    public void filterClosedTickets(String searchQuery, long from, long to, int ticketState, Priority priority) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
-        String filterUrl = getClosedFilterUrl(searchQuery, from, to, ticketState);
+
+        int priorityNum = GlobalUtils.getPriorityNum(priority);
+        String filterUrl = getClosedFilterUrl(searchQuery, from, to, ticketState, priorityNum);
 
         ticketBaseResponseObservable = service.filterTickets(token, filterUrl);
         addSubscription(ticketBaseResponseObservable
@@ -282,8 +290,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
 
-    private String getAssignedFilterUrl(String query, long from, long to, int status) {
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/assigned?");
+    private String getAssignedFilterUrl(String query, long from, long to, int status, int priority) {
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/assigned/" + serviceId + "?");
         if (query != null && !query.isEmpty()) {
             filterUrlBuilder.append("query=");
             filterUrlBuilder.append(query);
@@ -299,12 +308,18 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         if (status != -1) {
             filterUrlBuilder.append("&state=");
             filterUrlBuilder.append(status);
+        }
+
+        if (priority != -1) {
+            filterUrlBuilder.append("&priority=");
+            filterUrlBuilder.append(priority);
         }
         return filterUrlBuilder.toString();
     }
 
-    private String getSubscribedFilterUrl(String query, long from, long to, int status) {
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/subscribed?");
+    private String getSubscribedFilterUrl(String query, long from, long to, int status, int priority) {
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/subscribed/" + serviceId + "?");
         if (query != null && !query.isEmpty()) {
             filterUrlBuilder.append("query=");
             filterUrlBuilder.append(query);
@@ -320,12 +335,18 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         if (status != -1) {
             filterUrlBuilder.append("&state=");
             filterUrlBuilder.append(status);
+        }
+
+        if (priority != -1) {
+            filterUrlBuilder.append("&priority=");
+            filterUrlBuilder.append(priority);
         }
         return filterUrlBuilder.toString();
     }
 
-    private String getClosedFilterUrl(String query, long from, long to, int status) {
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/inactive?");
+    private String getClosedFilterUrl(String query, long from, long to, int status, int priority) {
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/inactive/" + serviceId + "?");
         if (query != null && !query.isEmpty()) {
             filterUrlBuilder.append("query=");
             filterUrlBuilder.append(query);
@@ -341,6 +362,11 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         if (status != -1) {
             filterUrlBuilder.append("&state=");
             filterUrlBuilder.append(status);
+        }
+
+        if (priority != -1) {
+            filterUrlBuilder.append("&priority=");
+            filterUrlBuilder.append(priority);
         }
         return filterUrlBuilder.toString();
     }

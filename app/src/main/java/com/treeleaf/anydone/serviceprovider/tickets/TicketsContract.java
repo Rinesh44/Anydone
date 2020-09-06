@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.tickets;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import java.util.List;
@@ -27,11 +28,11 @@ public class TicketsContract {
     }
 
     public interface TicketsPresenter extends Presenter<TicketsView> {
-        void filterAssignedTickets(String searchQuery, long from, long to, int ticketState);
+        void filterAssignedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 
-        void filterSubscribedTickets(String searchQuery, long from, long to, int ticketState);
+        void filterSubscribedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 
-        void filterClosedTickets(String searchQuery, long from, long to, int ticketState);
+        void filterClosedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 
         void getServices();
     }

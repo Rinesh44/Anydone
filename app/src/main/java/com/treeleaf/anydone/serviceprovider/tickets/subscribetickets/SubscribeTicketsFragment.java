@@ -60,6 +60,8 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     private OnSubscribeTicketsListener onSubscribeTicketsListener;
     private TicketsAdapter adapter;
     private int unsubscribedTicketPos;
+    private boolean fetchList = false;
+    private List<Tickets> subscribedTickets;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,13 +76,15 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        List<Tickets> subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
+        if (fetchList) {
+            subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
 
-        if (CollectionUtils.isEmpty(subscribedTickets)) {
-            GlobalUtils.showLog(TAG, "subscribe tickets empty");
-            presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
-        } else {
-            setUpRecyclerView(subscribedTickets);
+            if (CollectionUtils.isEmpty(subscribedTickets)) {
+                GlobalUtils.showLog(TAG, "subscribe tickets empty");
+                presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
+            } else {
+                setUpRecyclerView(subscribedTickets);
+            }
         }
     }
 
@@ -221,6 +225,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         List<Tickets> subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
         setUpRecyclerView(subscribedTickets);
         Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, false);
+        fetchList = true;
     }
 
 
@@ -236,8 +241,8 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     }
 
     @Override
-    public void onUnsubscribeSuccess() {
-        adapter.deleteItem(unsubscribedTicketPos);
+    public void onUnsubscribeSuccess(long ticketId) {
+        adapter.deleteItem(unsubscribedTicketPos, ticketId);
         Hawk.put(Constants.FETCH_SUBSCRIBEABLE_LIST, true);
     }
 
@@ -248,7 +253,10 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         if (fetchChanges) {
             GlobalUtils.showLog(TAG, "on resume fetch");
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
-        }
+        }/* else {
+            subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
+            setUpRecyclerView(subscribedTickets);
+        }*/
     }
 
     @Override
@@ -265,6 +273,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
+        ivDataNotFound.setVisibility(View.GONE);
     }
 
     @Override
@@ -293,7 +302,12 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
 
     @Override
     public void updateSubscribedList() {
+        presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
+    }
 
+    @Override
+    public void fetchList() {
+        presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
     }
 }
 

@@ -10,7 +10,7 @@ public class SubscribeTicketContract {
 
         void getSubscribedTicketsFail(String msg);
 
-        void onUnsubscribeSuccess();
+        void onUnsubscribeSuccess(long ticketId);
 
         void onUnsubscribeFail(String msg);
     }

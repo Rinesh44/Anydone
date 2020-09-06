@@ -102,43 +102,6 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:visibility="gone" />
-
-
-        <RelativeLayout
-            android:id="@+id/rl_selected_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:visibility="visible">
-
-            <TextView
-                android:id="@+id/tv_status_selected"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="@dimen/dimen_10x1"
-                android:background="@drawable/et_rounded_active"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="started"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/iv_dropdown_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/dimen_10x3"
-                android:backgroundTint="@color/colorPrimary"
-                android:src="@drawable/ic_drop_up_blue" />
-
-        </RelativeLayout>
-
     </LinearLayout>
 
     <RelativeLayout
@@ -179,7 +142,8 @@
                         android:id="@+id/switch_bot_reply"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true" />
+                        android:layout_alignParentEnd="true"
+                        android:checked="true" />
 
                     <View
                         android:layout_width="match_parent"
@@ -190,7 +154,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_ticket_details"
+                    android:id="@+id/ll_conversation_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_10x2"
@@ -204,7 +168,7 @@
                         android:layout_marginEnd="@dimen/dimen_2x1">
 
                         <TextView
-                            android:id="@+id/tv_ticket_details_dropdown"
+                            android:id="@+id/tv_conversation_details_dropdown"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -213,24 +177,9 @@
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tv_ticket_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/dimen_10x1"
-                            android:layout_toStartOf="@+id/iv_dropdown_ticket_details"
-                            android:background="@drawable/started_bg"
-                            android:paddingStart="@dimen/dimen_10x1"
-                            android:paddingTop="@dimen/dimen_6x1"
-                            android:paddingEnd="@dimen/dimen_10x1"
-                            android:paddingBottom="@dimen/dimen_6x1"
-                            android:text="Started"
-                            android:textAllCaps="true"
-                            android:textColor="#2F80ED"
-                            android:textSize="10sp" />
 
                         <ImageView
-                            android:id="@+id/iv_dropdown_ticket_details"
+                            android:id="@+id/iv_dropdown_conversation_details"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -240,7 +189,7 @@
                     </RelativeLayout>
 
                     <net.cachapa.expandablelayout.ExpandableLayout
-                        android:id="@+id/expandable_layout_ticket_details"
+                        android:id="@+id/expandable_layout_conversation_details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:el_duration="500"
@@ -252,114 +201,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:text="Ticket Id"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tv_ticket_id"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:text="1234"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:text="Priority"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:id="@+id/iv_priority"
-                                    android:layout_width="22dp"
-                                    android:layout_height="22dp"
-                                    android:src="@drawable/ic_medium_small" />
-
-                                <TextView
-                                    android:id="@+id/tv_priority"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/dimen_10x1"
-                                    android:text="Medium"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:text="Service"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:id="@+id/iv_service"
-                                    android:layout_width="22dp"
-                                    android:layout_height="22dp"
-                                    android:src="@drawable/ic_browse_service" />
-
-                                <TextView
-                                    android:id="@+id/tv_service"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/dimen_10x1"
-                                    android:text="Vianet"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:text="Created By"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:orientation="horizontal">
-
-                                <de.hdodenhof.circleimageview.CircleImageView
-                                    android:id="@+id/civ_ticket_created_by"
-                                    android:layout_width="22dp"
-                                    android:layout_height="22dp"
-                                    android:src="@drawable/ic_empty_profile_holder_icon" />
-
-                                <TextView
-                                    android:id="@+id/tv_ticket_created_by"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/dimen_10x1"
-                                    android:text="John Legend"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -376,13 +217,13 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:id="@+id/civ_ticket_created_date"
+                                    android:id="@+id/civ_conversation_created_date"
                                     android:layout_width="22dp"
                                     android:layout_height="22dp"
                                     android:src="@drawable/ic_calendar_blue" />
 
                                 <TextView
-                                    android:id="@+id/tv_ticket_created_date"
+                                    android:id="@+id/tv_conversation_created_date"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -391,7 +232,7 @@
                                     android:textColor="@color/black" />
 
                                 <TextView
-                                    android:id="@+id/tv_ticket_created_time"
+                                    android:id="@+id/tv_conversation_created_time"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -402,29 +243,47 @@
                             </LinearLayout>
 
                             <TextView
-                                android:id="@+id/tv_ticket_title"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dimen_10x1"
-                                android:text="Broken tv fallen from stand"
+                                android:text="Source"
                                 android:textColor="@color/black"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tv_ticket_desc"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:text="kjasdf alksdjf lajsdfl alskdjf lasdflkj asdflkj alsdflkjas dfljalskdjf "
-                                android:textColor="@color/black" />
-
                             <LinearLayout
-                                android:id="@+id/ll_tags"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dimen_10x1"
-                                android:layout_marginBottom="@dimen/dimen_6x1"
-                                android:orientation="horizontal" />
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/iv_source"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/circle_user" />
+
+                                <TextView
+                                    android:id="@+id/tv_source"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/dimen_10x1"
+                                    android:text="Messenger"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dimen_10x1"
+                                android:layout_marginBottom="@dimen/dimen_10x1"
+                                android:text="Team"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <include layout="@layout/layout_tag" />
+
 
                         </LinearLayout>
                     </net.cachapa.expandablelayout.ExpandableLayout>
@@ -434,7 +293,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
                     android:background="#F0EDF1" />
 
 
@@ -604,18 +463,18 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/select_employee"
                         android:layout_marginTop="@dimen/dimen_10x1"
+                        android:hint="@string/select_employee"
                         android:paddingEnd="@dimen/dimens_2x">
 
                         <AutoCompleteTextView
                             android:id="@+id/et_search_employee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@null"
                             android:drawableEnd="@drawable/ic_dropdown"
                             android:inputType="textVisiblePassword"
                             android:maxLength="45"
-                            android:backgroundTint="@null"
                             android:paddingStart="12dp"
                             android:paddingTop="@dimen/dimens_2x"
                             android:paddingEnd="18dp"
@@ -644,8 +503,7 @@
         </ScrollView>
     </RelativeLayout>
 
-
-    <include layout="@layout/bottomsheet_profile" />
+    <!--    <include layout="@layout/bottomsheet_profile" />-->
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -56,6 +56,12 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         viewBinderHelper.setOpenOnlyOne(true);
     }
 
+    public void reflectTicketDataChange(Tickets tickets) {
+        int index = ticketsList.indexOf(tickets);
+        ticketsList.set(index, tickets);
+        notifyItemChanged(index);
+    }
+
     public void setData(List<Tickets> ticketsList) {
         this.ticketsList = ticketsList;
     }
@@ -230,21 +236,22 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
         GlobalUtils.showLog(TAG, "ticket id: " + tickets.getTicketId());
 
-        CircleImageView employeeImage = (CircleImageView) LayoutInflater.from(mContext)
-                .inflate(R.layout.layout_assigned_employee, null);
-        Random random = new Random();
-        int randomId = random.nextInt(100);
-        employeeImage.setId(randomId);
+        if (tickets.getAssignedEmployee() != null) {
+            CircleImageView employeeImage = (CircleImageView) LayoutInflater.from(mContext)
+                    .inflate(R.layout.layout_assigned_employee, null);
+            Random random = new Random();
+            int randomId = random.nextInt(100);
+            employeeImage.setId(randomId);
 
-        RequestOptions options = new RequestOptions()
-                .placeholder(R.drawable.ic_assigned_emp_placeholder)
-                .error(R.drawable.ic_assigned_emp_placeholder);
+            RequestOptions options = new RequestOptions()
+                    .placeholder(R.drawable.ic_assigned_emp_placeholder)
+                    .error(R.drawable.ic_assigned_emp_placeholder);
 
-        Glide.with(mContext).load(tickets.getAssignedEmployee().getEmployeeImageUrl())
-                .apply(options).into(employeeImage);
+            Glide.with(mContext).load(tickets.getAssignedEmployee().getEmployeeImageUrl())
+                    .apply(options).into(employeeImage);
 
-        holder.assignedEmployeeHolder.addView(employeeImage);
-
+            holder.assignedEmployeeHolder.addView(employeeImage);
+        }
 
    /*     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
                 (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -253,7 +260,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         holder.assignedEmployeeHolder.setLayoutParams(params);*/
 
         //change layout design if no assigned employee found
-        if ((tickets.getAssignedEmployee() == null)) {
+        if ((tickets.getAssignedEmployee().getName().isEmpty())) {
             holder.dots.setVisibility(View.GONE);
             holder.assignedEmployeeHolder.setVisibility(View.GONE);
             holder.llTicketView.setGravity(Gravity.CENTER);
@@ -396,10 +403,12 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         this.assignListener = assignListener;
     }
 
-    public void deleteItem(int pos) {
+    public void deleteItem(int pos, long ticketId) {
         ticketsList.remove(pos);
         notifyItemRemoved(pos);
         notifyItemRangeChanged(pos, ticketsList.size());
+
+        TicketRepo.getInstance().deleteTicket(ticketId);
     }
 
 }

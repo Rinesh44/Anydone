@@ -6,6 +6,7 @@ import io.reactivex.Observable;
 
 public interface SubscribeTicketRepository {
     Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribedTickets(String token,
+                                                                              String serviceId,
                                                                               long from,
                                                                               long to,
                                                                               int page);

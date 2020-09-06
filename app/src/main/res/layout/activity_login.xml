@@ -50,7 +50,7 @@
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textVisiblePassword"
                     android:maxLength="45"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />

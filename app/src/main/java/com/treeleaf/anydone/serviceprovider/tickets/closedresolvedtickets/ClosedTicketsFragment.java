@@ -227,8 +227,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     }
 
     @Override
-    public void onReopenSuccess() {
-        adapter.deleteItem(reopenTicketPos);
+    public void onReopenSuccess(long ticketId) {
+        adapter.deleteItem(reopenTicketPos, ticketId);
       /*  if (listener != null)
             listener.ticketReopened();*/
         Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
@@ -247,6 +247,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
+        ivDataNotFound.setVisibility(View.GONE);
     }
 
     @Override

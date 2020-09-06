@@ -38,8 +38,9 @@ public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketC
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
         String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = subscribeTicketRepository.getSubscribedTickets(token, from, to, page);
+        getTicketsObservable = subscribeTicketRepository.getSubscribedTickets(token, serviceId, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -62,6 +63,8 @@ public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketC
                                     return;
                                 }
 
+                                GlobalUtils.showLog(TAG, "service Id: " + serviceId);
+                                GlobalUtils.showLog(TAG, "subscribed ticket count: " + getTicketsBaseResponse.getTicketsList().size());
                                 saveSubscribedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
                             }
 
@@ -110,7 +113,7 @@ public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketC
                                     return;
                                 }
 
-                                getView().onUnsubscribeSuccess();
+                                getView().onUnsubscribeSuccess(ticketId);
                             }
 
                             @Override

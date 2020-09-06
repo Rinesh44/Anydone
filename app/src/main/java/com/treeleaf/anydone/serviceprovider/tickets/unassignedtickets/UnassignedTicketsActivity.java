@@ -8,13 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -28,6 +26,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,13 +38,14 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -54,16 +54,19 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.Realm;
 
 public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketPresenterImpl>
         implements UnassignedTicketsContract.UnassignedView {
@@ -113,6 +116,10 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     private Employee selfEmployee;
     private String ticketId;
     private TextView tvAllUsers;
+    private Priority selectedPriority = new Priority("", -1);
+    private AppCompatSpinner spPriority;
+    private TextView tvPriorityHint;
+
 
     @Override
     protected int getLayout() {
@@ -264,6 +271,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    bottomSheetShadow.setVisibility(View.GONE);
                     CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
                     params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
                     llBottomSheet.setLayoutParams(params);
@@ -308,6 +316,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void createFilterBottomSheet() {
         filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
@@ -320,7 +329,34 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         etTillDate = view.findViewById(R.id.et_till_date);
         tvReset = view.findViewById(R.id.tv_reset);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
+        spPriority = view.findViewById(R.id.sp_priority);
+        tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
 
+        spPriority.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                List<Priority> priorityList = GlobalUtils.getPriorityList();
+                PriorityAdapter adapter = new PriorityAdapter(this,
+                        R.layout.layout_proirity, priorityList);
+                spPriority.setAdapter(adapter);
+            }
+            return false;
+        });
+
+        selectedPriority = (Priority) spPriority.getSelectedItem();
+
+        spPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedPriority = (Priority) spPriority.getItemAtPosition(position);
+                GlobalUtils.showLog(TAG, "selected Priority" + selectedPriority.getValue());
+                tvPriorityHint.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
             myCalendar.set(Calendar.YEAR, year);
@@ -351,7 +387,15 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             etFromDate.setText("");
             etTillDate.setText("");
             resetStatus();
+            selectedPriority = new Priority("", -1);
+            tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
             hideKeyBoard();
+
+            List<Priority> priorityList = Collections.emptyList();
+            PriorityAdapter adapter = new PriorityAdapter(this,
+                    R.layout.layout_proirity, priorityList);
+            spPriority.setAdapter(adapter);
+            tvPriorityHint.setVisibility(View.VISIBLE);
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
             setUpRecyclerView(assignableTickets);
@@ -385,7 +429,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
 
             presenter.filterAssignableTickets(etSearchText.getText().toString(), from, to,
-                    getTicketState(statusValue.toLowerCase()));
+                    getTicketState(statusValue), selectedPriority);
 
             toggleBottomSheet();
         });
@@ -422,6 +466,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         }
     }
 
+
     private void setSelfDetails() {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
         if (employee != null) {
@@ -440,24 +485,26 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     }
 
     private int getTicketState(String statusValue) {
-        switch (statusValue.toLowerCase()) {
-            case "started":
-                return TicketProto.TicketState.TICKET_STARTED.getNumber();
+        if (statusValue != null) {
+            switch (statusValue) {
+                case "STARTED":
+                    return TicketProto.TicketState.TICKET_STARTED.getNumber();
 
-            case "todo":
-                return TicketProto.TicketState.TICKET_CREATED.getNumber();
+                case "TODO":
+                    return TicketProto.TicketState.TICKET_CREATED.getNumber();
 
-            case "reopened":
-                return TicketProto.TicketState.TICKET_REOPENED.getNumber();
+                case "REOPENED":
+                    return TicketProto.TicketState.TICKET_REOPENED.getNumber();
 
-            case "resolved":
-                return TicketProto.TicketState.TICKET_RESOLVED.getNumber();
+                case "RESOLVED":
+                    return TicketProto.TicketState.TICKET_RESOLVED.getNumber();
 
-            case "closed":
-                return TicketProto.TicketState.TICKET_CLOSED.getNumber();
+                case "CLOSED":
+                    return TicketProto.TicketState.TICKET_CLOSED.getNumber();
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
         return -1;
     }
@@ -617,7 +664,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
     @Override
     public void assignSuccess() {
-        adapter.deleteItem(assignTicketPos);
+        presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 100);
         Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
     }
 
@@ -666,6 +713,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
+        ivDataNotFound.setVisibility(View.GONE);
     }
 
     @Override

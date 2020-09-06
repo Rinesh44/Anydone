@@ -422,7 +422,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_ticket_conversation;
+        return R.layout.fragment_thread_conversation;
     }
 
 

@@ -27,18 +27,17 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".assignemployee.AssignEmployeeActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ticketdetails.TicketDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".tickets.unassignedtickets.UnassignedTicketsActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".tickets.unassignedtickets.UnassignedTicketsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".addticket.AddTicketActivity"
             android:theme="@style/FormTheme" />
-        <activity android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
-            android:theme="@style/FormTheme"/>
+        <activity
+            android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
+            android:theme="@style/FormTheme" />
         <activity
             android:name=".weblink.WebLinkActivity"
             android:theme="@style/AppTheme.NoActionBar" />

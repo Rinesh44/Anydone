@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 import com.google.android.gms.common.util.CollectionUtils;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class TicketRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
@@ -85,6 +87,23 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public void setAssignedEmployee(long ticketId, Employee employee, final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> result = realm1.where(Tickets.class)
+                        .equalTo("ticketId", ticketId).findAll();
+                result.setObject("assignedEmployee", employee);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void changeTicketStatusToStart(long ticketId) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
@@ -95,6 +114,7 @@ public class TicketRepo extends Repo {
         });
     }
 
+
     public void changeTicketStatusToClosed(long ticketId) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
@@ -102,6 +122,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_CLOSED.name();
             result.setString("ticketStatus", status);
+            result.setString("ticketType", Constants.CLOSED_RESOLVED);
         });
     }
 
@@ -112,6 +133,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_REOPENED.name();
             result.setString("ticketStatus", status);
+
         });
     }
 
@@ -122,6 +144,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_RESOLVED.name();
             result.setString("ticketStatus", status);
+            result.setString("ticketType", Constants.CLOSED_RESOLVED);
         });
     }
 
@@ -190,7 +213,7 @@ public class TicketRepo extends Repo {
             tickets.setServiceProvider(ProtoMapper.transformServiceProvider(ticketPb.getServiceProvider()));
             tickets.setTicketSource(ticketPb.getTicketSource().name());
             tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
-//            tickets.setServiceId(ticketPb.getService().getServiceId());
+            tickets.setServiceId(ticketPb.getService().getServiceId());
             tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeeAssigned()));
             tickets.setCustomerType(ticketPb.getCustomerType().name());
             tickets.setCreatedAt(ticketPb.getCreatedAt());
@@ -243,8 +266,12 @@ public class TicketRepo extends Repo {
     public List<Tickets> getAssignedTickets() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
-            return new ArrayList<>(realm.where(Tickets.class).equalTo("ticketType",
-                    Constants.ASSIGNED).findAll());
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.ASSIGNED)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
@@ -257,8 +284,12 @@ public class TicketRepo extends Repo {
     public List<Tickets> getSubscribedTickets() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
-            return new ArrayList<>(realm.where(Tickets.class).equalTo("ticketType",
-                    Constants.SUBSCRIBED).findAll());
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.SUBSCRIBED)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
@@ -270,8 +301,12 @@ public class TicketRepo extends Repo {
     public List<Tickets> getClosedResolvedTickets() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
-            return new ArrayList<>(realm.where(Tickets.class).equalTo("ticketType",
-                    Constants.CLOSED_RESOLVED).findAll());
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.CLOSED_RESOLVED)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
@@ -283,8 +318,12 @@ public class TicketRepo extends Repo {
     public List<Tickets> getAssignableTickets() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
-            return new ArrayList<>(realm.where(Tickets.class).equalTo("ticketType",
-                    Constants.ASSIGNABLE).findAll());
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.ASSIGNABLE)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
@@ -296,13 +335,25 @@ public class TicketRepo extends Repo {
     public List<Tickets> getSubscribeableTickets() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
-            return new ArrayList<>(realm.where(Tickets.class).equalTo("ticketType",
-                    Constants.SUBSCRIBEABLE).findAll());
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.SUBSCRIBEABLE)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
         } finally {
             close(realm);
         }
+    }
+
+    public void deleteTicket(long ticketId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class).equalTo("ticketId", ticketId).findAll();
+            result.deleteAllFromRealm();
+        });
     }
 }

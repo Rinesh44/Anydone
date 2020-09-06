@@ -116,7 +116,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private BottomSheetBehavior sheetBehavior;
     private SearchServiceAdapter adapter;
     private RecyclerView rvServices;
-    private Priority selectedPriority;
+    private Priority selectedPriority = new Priority("", -1);
     private TextView tvPriorityHint;
     private RelativeLayout rlPriorityHolder;
 
@@ -164,6 +164,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         if (CollectionUtils.isEmpty(serviceList)) {
             presenter.getServices();
         } else {
+            Service firstService = serviceList.get(0);
+            tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
             setUpRecyclerView(serviceList);
         }
 
@@ -268,7 +271,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         spPriority.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                List<Priority> priorityList = getPriorityList();
+                List<Priority> priorityList = GlobalUtils.getPriorityList();
                 PriorityAdapter adapter = new PriorityAdapter(getActivity(),
                         R.layout.layout_proirity, priorityList);
                 spPriority.setAdapter(adapter);
@@ -282,6 +285,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedPriority = (Priority) spPriority.getItemAtPosition(position);
+                GlobalUtils.showLog(TAG, "selected Priority" + selectedPriority.getValue());
                 tvPriorityHint.setVisibility(View.GONE);
             }
 
@@ -343,6 +347,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                     R.layout.layout_proirity, priorityList);
             spPriority.setAdapter(adapter);
             tvPriorityHint.setVisibility(View.VISIBLE);
+
+            selectedPriority = new Priority("", -1);
         });
 
         etSearchText.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
@@ -374,14 +380,14 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
             if (mViewpager.getCurrentItem() == 0) {
                 presenter.filterAssignedTickets(etSearchText.getText().toString(), from, to,
-                        getTicketState(statusValue));
+                        getTicketState(statusValue), selectedPriority);
             } else if (mViewpager.getCurrentItem() == 1) {
                 presenter.filterSubscribedTickets(etSearchText.getText().toString(), from, to,
-                        getTicketState(statusValue));
+                        getTicketState(statusValue), selectedPriority);
             } else {
                 GlobalUtils.showLog(TAG, "get ticket status check: " + getTicketState(statusValue));
                 presenter.filterClosedTickets(etSearchText.getText().toString(), from, to,
-                        getTicketState(statusValue));
+                        getTicketState(statusValue), selectedPriority);
             }
 
             toggleBottomSheet();
@@ -502,23 +508,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         toggleBottomSheet();
     }
 
-    private List<Priority> getPriorityList() {
-        List<Priority> priorityList = new ArrayList<>();
-//        Priority select = new Priority("Select priority", -1);
-        Priority highest = new Priority("Highest", R.drawable.ic_highest);
-        Priority high = new Priority("High", R.drawable.ic_high);
-        Priority medium = new Priority("Medium", R.drawable.ic_medium);
-        Priority low = new Priority("Low", R.drawable.ic_low);
-        Priority lowest = new Priority("Lowest", R.drawable.ic_lowest);
-
-//        priorityList.add(select);
-        priorityList.add(highest);
-        priorityList.add(high);
-        priorityList.add(medium);
-        priorityList.add(low);
-        priorityList.add(lowest);
-        return priorityList;
-    }
 
     private int getTicketState(String statusValue) {
         GlobalUtils.showLog(TAG, "check status value:" + statusValue);
@@ -716,6 +705,20 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @Override
     public void getServiceSuccess() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
+        Service firstService = serviceList.get(0);
+        Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        GlobalUtils.showLog(TAG, "first service id saved");
+
+        if (assignedListListener != null) {
+            assignedListListener.fetchList();
+        }
+
+        if (subscribedListListener != null) {
+            subscribedListListener.fetchList();
+        }
+
+        tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
         setUpRecyclerView(serviceList);
     }
 
@@ -777,6 +780,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         void updateAssignedList(List<Tickets> ticketsList);
 
         void updateAssignedList();
+
+        void fetchList();
     }
 
     public void setAssignedListListener(AssignedListListener listener) {
@@ -787,6 +792,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         void updateSubscribedList(List<Tickets> ticketsList);
 
         void updateSubscribedList();
+
+        void fetchList();
     }
 
     public void setSubscribedListListener(SubscribedListListener listener) {

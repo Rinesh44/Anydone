@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
@@ -70,4 +71,5 @@ public class EmployeeRepo extends Repo {
             close(realm);
         }
     }
+
 }
