@@ -166,8 +166,9 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
         String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
 
-        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
+        //TODO: copy here code from ServiceRequestDetailActivity
+//        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+//                roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
 
     }
 

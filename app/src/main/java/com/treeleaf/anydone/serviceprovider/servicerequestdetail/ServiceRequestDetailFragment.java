@@ -44,7 +44,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.OrderServiceProto;
@@ -799,8 +798,18 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onImageDrawDiscard() {
-        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscard();
+    public void onImageDrawDiscardLocal() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardLocal();
+    }
+
+    @Override
+    public void onImageDrawDiscardRemote() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote();
+    }
+
+    @Override
+    public void onImageCaptured() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageCaptured();
     }
 
     @Override

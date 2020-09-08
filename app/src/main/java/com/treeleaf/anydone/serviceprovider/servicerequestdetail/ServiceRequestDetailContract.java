@@ -98,7 +98,11 @@ public class ServiceRequestDetailContract {
 
         void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes);
 
-        void onImageDrawDiscard();
+        void onImageCaptured();
+
+        void onImageDrawDiscardLocal();
+
+        void onImageDrawDiscardRemote();
 
         void onDrawTouchDown(CaptureDrawParam captureDrawParam);
 

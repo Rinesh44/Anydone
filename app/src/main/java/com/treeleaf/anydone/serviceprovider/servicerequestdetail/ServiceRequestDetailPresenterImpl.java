@@ -763,26 +763,31 @@ public class ServiceRequestDetailPresenterImpl extends
 
                 if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
                     SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
+                    String accountId = startDraw.getSenderAccount().getAccountId();
                     if (startDraw != null) {
-                        ByteString imageByteString = startDraw.getCapturedImage();
-                        int width = startDraw.getBitmapWidth();
-                        int height = startDraw.getBitmapHeight();
-                        long captureTime = startDraw.getCapturedTime();
-                        byte[] convertedBytes = imageByteString.toByteArray();
-                        getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                        if (userAccountId.equals(accountId)) {
+                            //sent and received id is same
+                            getView().onImageCaptured();
+                        } else {
+                            //sent and received id is different
+                            ByteString imageByteString = startDraw.getCapturedImage();
+                            int width = startDraw.getBitmapWidth();
+                            int height = startDraw.getBitmapHeight();
+                            long captureTime = startDraw.getCapturedTime();
+                            byte[] convertedBytes = imageByteString.toByteArray();
+                            getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                        }
                     }
                 }
 
                 if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
                     SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
                     if (cancelDrawing != null) {
-                        getView().onImageDrawDiscard();
-                    }
-                }
-
-                if (relayResponse.getResponseType().equals(CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE)) {
-                    SignalingProto.StartDrawAcknowledgement startDrawAcknowledgement = relayResponse.getStartDrawAckResponse();
-                    if (startDrawAcknowledgement != null) {
+                        if (cancelDrawing.getSenderAccount().getAccountId().
+                                equals(userAccountId)) {
+                            getView().onImageDrawDiscardLocal();
+                        } else
+                            getView().onImageDrawDiscardRemote();
                     }
                 }
 
@@ -817,7 +822,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .DRAW_TOUCH_DOWN_RESPONSE)) {
                     SignalingProto.DrawTouchDown drawTouchDown = relayResponse
                             .getDrawTouchDownResponse();
-                    if (drawTouchDown != null) {
+                    if (drawTouchDown != null &&
+                            !drawTouchDown.getSenderAccount().getAccountId().equals(userAccountId)) {
                         CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                         captureDrawParam.setXCoordinate(drawTouchDown.getX());
                         captureDrawParam.setYCoordinate(drawTouchDown.getY());
@@ -829,7 +835,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .DRAW_TOUCH_MOVE_RESPONSE)) {
                     SignalingProto.DrawTouchMove drawTouchMove = relayResponse
                             .getDrawTouchMoveResponse();
-                    if (drawTouchMove != null) {
+                    if (drawTouchMove != null &&
+                            !drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
                         CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                         captureDrawParam.setXCoordinate(drawTouchMove.getX());
                         captureDrawParam.setYCoordinate(drawTouchMove.getY());
@@ -841,7 +848,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .DRAW_TOUCH_UP_RESPONSE)) {
                     SignalingProto.DrawTouchUp drawTouchUp = relayResponse
                             .getDrawTouchUpResponse();
-                    if (drawTouchUp != null) {
+                    if (drawTouchUp != null &&
+                            !drawTouchUp.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawTouchUp();
                     }
                 }
@@ -850,7 +858,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .RECEIVE_NEW_TEXT_FIELD_RESPONSE)) {
                     SignalingProto.ReceiveNewTextField receiveNewTextField = relayResponse
                             .getReceiveNewTextFieldResponse();
-                    if (receiveNewTextField != null) {
+                    if (receiveNewTextField != null &&
+                            !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
                                 receiveNewTextField.getY(), receiveNewTextField.getTextId());
                     }
@@ -860,7 +869,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .TEXT_FIELD_CHANGE_RESPONSE)) {
                     SignalingProto.TextFieldChange textFieldChange = relayResponse
                             .getTextFieldChangeResponse();
-                    if (textFieldChange != null) {
+                    if (textFieldChange != null &&
+                            !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
                                 textFieldChange.getTextId());
                     }
@@ -870,7 +880,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .TEXT_FIELD_REMOVE_RESPONSE)) {
                     SignalingProto.TextFieldRemove textFieldRemove = relayResponse
                             .getTextFieldRemoveResponse();
-                    if (textFieldRemove != null) {
+                    if (textFieldRemove != null &&
+                            !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId());
                     }
                 }
@@ -879,7 +890,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .DRAW_META_DATA_CHANGE_RESPONSE)) {
                     SignalingProto.DrawMetaDataChange drawMetaDataChange = relayResponse
                             .getDrawMetaDataChangeResponse();
-                    if (drawMetaDataChange != null) {
+                    if (drawMetaDataChange != null &&
+                            !drawMetaDataChange.getSenderAccount().getAccountId().equals(userAccountId)) {
                         CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                         captureDrawParam.setXCoordinate(drawMetaDataChange.getX());
                         captureDrawParam.setYCoordinate(drawMetaDataChange.getY());
@@ -894,7 +906,8 @@ public class ServiceRequestDetailPresenterImpl extends
                         .DRAW_CANVAS_CLEAR_RESPONSE)) {
                     SignalingProto.DrawCanvasClear drawCanvasClear = relayResponse
                             .getDrawCanvasClearResponse();
-                    if (drawCanvasClear != null) {
+                    if (drawCanvasClear != null &&
+                            !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawCanvasCleared();
                     }
                 }
