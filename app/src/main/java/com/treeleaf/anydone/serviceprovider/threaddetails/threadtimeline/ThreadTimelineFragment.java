@@ -139,6 +139,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private EmployeeSearchAdapter employeeSearchAdapter;
     private String selectedEmployeeId;
     private Employee selfEmployee;
+    private Thread thread;
 
 
     public ThreadTimelineFragment() {
@@ -153,6 +154,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         threadId = i.getStringExtra("thread_id");
         if (threadId != null) {
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
+            thread = ThreadRepo.getInstance().getThreadById(threadId);
             setThreadDetails();
         }
 
@@ -247,7 +249,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
     private void setThreadDetails() {
-        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
         tvConversationCreatedDate.setText(GlobalUtils.getDateAlternate(thread.getCreatedAt()));
         tvConversationCreatedTime.setText(GlobalUtils.getTime(thread.getCreatedAt()));
         tvTag.setText(thread.getDefaultLabel());
@@ -304,6 +305,11 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     @Override
     public void onResume() {
         super.onResume();
+
+        //set bot reply to false when replied from our end
+        if (!thread.isBotEnabled()) {
+            botReply.setChecked(false);
+        }
     }
 
 

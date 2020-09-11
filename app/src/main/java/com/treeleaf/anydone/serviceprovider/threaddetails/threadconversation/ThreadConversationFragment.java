@@ -569,6 +569,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             Objects.requireNonNull(getActivity()).runOnUiThread(() ->
                     llBotReplying.setVisibility(View.GONE));
 
+//            ThreadRepo.getInstance().disableBotReply(threadId);
         }
         sendMessage(conversation);
     }

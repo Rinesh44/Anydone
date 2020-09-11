@@ -38,6 +38,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.TeamAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
@@ -71,6 +72,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     FlexboxLayout fblLabel;
     @BindView(R.id.search_employee)
     ScrollView svSearchEmployee;
+    @BindView(R.id.search_teams)
+    ScrollView svSearchTeams;
     @BindView(R.id.civ_image_self)
     CircleImageView civSelfImage;
     @BindView(R.id.tv_name_self)
@@ -79,6 +82,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     EditText etAssignEmployee;
     @BindView(R.id.rv_all_users)
     RecyclerView rvAllUsers;
+    @BindView(R.id.rv_teams)
+    RecyclerView rvTeams;
     @BindView(R.id.ll_self)
     LinearLayout llSelf;
     @BindView(R.id.btn_create_ticket)
@@ -122,9 +127,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private List<Customer> customerList;
     private List<Tags> tagsList;
 
-    private TagSearchAdapter tagSearchAdapter;
     private EmployeeSearchAdapter employeeSearchAdapter;
     private CustomerSearchAdapter customerSearchAdapter;
+    private TeamAdapter teamSearchAdapter;
     private Customer selectedCustomer;
     private Tags selectedTag;
     private Employee selfEmployee;
@@ -156,9 +161,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         selectedPriority = (Priority) spPriority.getSelectedItem();
 
         tagsList = TagRepo.getInstance().getAllTags();
-        GlobalUtils.showLog(TAG, "tag list size: " + tagsList.size());
-        tagSearchAdapter = new TagSearchAdapter(this, tagsList);
-        etLabel.setAdapter(tagSearchAdapter);
 
         Intent intent = getIntent();
         createTicketFromThread = intent.getBooleanExtra("create_ticket_from_thread", false);
@@ -244,6 +246,40 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etCustomerName.setSelection(etCustomerName.getText().length());
             rlCustomerSelfHolder.setVisibility(View.GONE);
             hideKeyBoard();
+        });
+
+        etLabel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 1) {
+                    tagsList = TagRepo.getInstance().searchTags(s.toString());
+                    GlobalUtils.showLog(TAG, "searched tags size: " + tagsList.size());
+                    if (svSearchTeams.getVisibility() == View.GONE)
+                        svSearchTeams.setVisibility(View.VISIBLE);
+                    if (teamSearchAdapter != null) {
+                        teamSearchAdapter.setData(tagsList);
+                        teamSearchAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etLabel.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                svSearchTeams.setVisibility(View.VISIBLE);
+            } else {
+                svSearchTeams.setVisibility(View.GONE);
+            }
         });
 
         etCustomerName.addTextChangedListener(new TextWatcher() {
@@ -506,8 +542,30 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         }
     }
 
+    private void setUpTeamRecyclerView() {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvTeams.setLayoutManager(mLayoutManager);
+
+        teamSearchAdapter = new TeamAdapter(tagsList, this);
+        rvTeams.setAdapter(teamSearchAdapter);
+
+        if (teamSearchAdapter != null) {
+            teamSearchAdapter.setOnItemClickListener((team) -> {
+                hideKeyBoard();
+
+                if (!CollectionUtils.isEmpty(tagsList)) {
+                    selectedTag = team;
+                    addNewTagChip(selectedTag);
+                    svSearchTeams.setVisibility(View.GONE);
+                }
+                etLabel.setText("");
+            });
+        }
+    }
+
     @Override
     public void findEmployeeFail(String msg) {
+
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
         setUpRecyclerView();
 
@@ -536,16 +594,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @Override
     public void findTagsSuccess() {
         tagsList = TagRepo.getInstance().getAllTags();
-        tagSearchAdapter = new TagSearchAdapter(this, tagsList);
-        etLabel.setAdapter(tagSearchAdapter);
+        setUpTeamRecyclerView();
     }
 
     @Override
     public void findTagsFail(String msg) {
         tagsList = TagRepo.getInstance().getAllTags();
-        GlobalUtils.showLog(TAG, "tag list size: " + tagsList.size());
-        tagSearchAdapter = new TagSearchAdapter(this, tagsList);
-        etLabel.setAdapter(tagSearchAdapter);
+        setUpTeamRecyclerView();
 
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(this, msg);

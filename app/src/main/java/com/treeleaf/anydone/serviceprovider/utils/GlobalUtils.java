@@ -114,7 +114,7 @@ public class GlobalUtils {
     }
 
     public static String getTimeExcludeMillis(long time) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh.mm aa");
         Date date = new Date(time);
         return dateFormat.format(date);
     }

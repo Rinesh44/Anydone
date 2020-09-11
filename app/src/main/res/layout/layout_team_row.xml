@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_team_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:paddingTop="@dimen/dimen_6x1"
+        android:paddingBottom="@dimen/dimen_6x1"
+        android:text="Rtineh shakya"
+        android:textColor="@color/black"
+        tools:ignore="UnknownIdInLayout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/tv_tag"
+        android:layout_marginTop="@dimen/dimen_10x2"
+        android:background="#F8F8F8" />
+
+</RelativeLayout>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
@@ -39,7 +41,6 @@ import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 import java.util.Objects;
@@ -65,6 +66,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     ImageView ivThreadNotFound;
     @BindView(R.id.root)
     CoordinatorLayout root;
+    @BindView(R.id.swipe_refresh_threads)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private RecyclerView rvServices;
     private BottomSheetBehavior sheetBehavior;
@@ -160,6 +163,19 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         });
 
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> {
+                    GlobalUtils.showLog(TAG, "swipe refresh threads called");
+
+                    presenter.getConversationThreads(false);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        //Do something after 1 sec
+                        swipeRefreshLayout.setRefreshing(false);
+                    }, 1000);
+                }
+        );
     }
 
 
