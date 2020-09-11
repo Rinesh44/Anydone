@@ -36,7 +36,7 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragmen
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
-import com.treeleaf.januswebrtc.GeneralUtils;
+import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -121,8 +121,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
-            int localDeviceWidth = GeneralUtils.getDeviceResolution(ServiceRequestDetailActivity.this)[0];
-            int localDeviceHeight = GeneralUtils.getDeviceResolution(ServiceRequestDetailActivity.this)[1];
+            int localDeviceWidth = VideoCallUtil.getDeviceResolution(ServiceRequestDetailActivity.this)[0];
+            int localDeviceHeight = VideoCallUtil.getDeviceResolution(ServiceRequestDetailActivity.this)[1];
             presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId, imageByteString,
                     localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
 
