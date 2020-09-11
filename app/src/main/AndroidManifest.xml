@@ -30,6 +30,9 @@
             android:name=".ticketdetails.TicketDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".threaddetails.ThreadDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".tickets.unassignedtickets.UnassignedTicketsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

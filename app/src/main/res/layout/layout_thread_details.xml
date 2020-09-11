@@ -34,10 +34,20 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back"
+                        android:tint="@color/black" />
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/civ_customer"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="@dimen/dimens_2x"
+                        android:layout_toEndOf="@+id/iv_back"
                         android:src="@drawable/circle_user" />
 
                     <TextView
@@ -45,8 +55,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/civ_customer"
                         android:layout_marginStart="@dimen/dimen_10x1"
+                        android:layout_toEndOf="@+id/civ_customer"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="Plumber"

@@ -1,5 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
+import com.treeleaf.anydone.rpc.ConversationRpcProto;
+import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
@@ -14,13 +16,25 @@ public class ThreadTimelineRepositoryImpl implements ThreadTimelineRepository {
     }
 
     @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(String token,
-                                                                                  long ticketId) {
-        return anyDoneService.getTicketTimeline(token, ticketId);
+    public Observable<ConversationRpcProto.ConversationBaseResponse> getThreadById(String token, String threadId) {
+        return anyDoneService.getConversationThreadById(token, threadId);
+    }
+
+    @Override
+    public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableBot(String token,
+                                                                           String threadId) {
+        return anyDoneService.enableThreadBotReply(token, threadId);
+    }
+
+    @Override
+    public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableBot(String token,
+                                                                            String threadId) {
+        return anyDoneService.disableThreadBotReply(token, threadId);
     }
 
     @Override
     public Observable<UserRpcProto.UserBaseResponse> findEmployees(String token) {
         return anyDoneService.findEmployees(token);
     }
+
 }

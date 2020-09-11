@@ -50,6 +50,11 @@ public class EmployeeRepo extends Repo {
     private Employee transformEmployee(Employee employee,
                                        UserProto.EmployeeProfile employeeProfile) {
         employee.setAccountId(employeeProfile.getAccount().getAccountId());
+        employee.setName(employeeProfile.getAccount().getFullName());
+        employee.setEmployeeImageUrl(employeeProfile.getAccount().getProfilePic());
+        employee.setCreatedAt(employeeProfile.getCreatedAt());
+        employee.setPhone(employeeProfile.getAccount().getPhone());
+        employee.setEmail(employeeProfile.getAccount().getEmail());
         return employee;
     }
 

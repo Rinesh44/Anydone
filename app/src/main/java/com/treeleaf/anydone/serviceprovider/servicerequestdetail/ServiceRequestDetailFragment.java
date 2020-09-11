@@ -191,7 +191,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
         if (serviceRequestId != -1) {
             Hawk.put(Constants.CURRENT_SERVICE_ORDER_ID, serviceRequestId);
             conversationList = ConversationRepo.getInstance()
-                    .getConversationByOrderId(serviceRequestId);
+                    .getConversationByOrderId(String.valueOf(serviceRequestId));
             GlobalUtils.showLog(TAG, "service request id check:" + serviceRequestId);
             if (CollectionUtils.isEmpty(conversationList)) {
                 presenter.getMessages(serviceRequestId, 0, System.currentTimeMillis(),
@@ -592,7 +592,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
                     serviceDoers.add(serviceDoerList.get(j));
                     serviceDoers.add(serviceDoerList.get(i));
                     conversation.setServiceDoerList(serviceDoers);
-                    conversation.setRefId(serviceRequestId);
+                    conversation.setRefId(String.valueOf(serviceRequestId));
                     conversationList.add(conversation);
                 } else {
                     RealmList<ServiceDoer> serviceDoers = new RealmList<>();
@@ -604,7 +604,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
                     serviceDoers.add(serviceDoerList.get(j));
                     serviceDoers.add(serviceDoerList.get(i));
                     conversation.setServiceDoerList(serviceDoers);
-                    conversation.setRefId(serviceRequestId);
+                    conversation.setRefId(String.valueOf(serviceRequestId));
                     conversationList.add(conversation);
                 }
             }
@@ -760,10 +760,10 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
         etMessage.setText("");
         if (conversation.getMessageType()
                 .equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
-            presenter.publishLinkMessage(conversation.getMessage(), conversation.getRefId(),
+            presenter.publishLinkMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
                     userAccountId, conversation.getClientId());
         } else {
-            presenter.publishTextMessage(conversation.getMessage(), conversation.getRefId(),
+            presenter.publishTextMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
                     userAccountId, conversation.getClientId());
         }
     }
@@ -819,7 +819,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
         conversation.setSenderId(videoRoomHostLeft.getSenderAccountId());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setSentAt(videoRoomHostLeft.getStartedAt());
-        conversation.setRefId(Long.parseLong(videoRoomHostLeft.getRefId()));
+        conversation.setRefId((videoRoomHostLeft.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
 
@@ -872,7 +872,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
             selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
             selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
             selectedSuggestion.setSentAt(System.currentTimeMillis());
-            selectedSuggestion.setRefId(serviceRequestId);
+            selectedSuggestion.setRefId(String.valueOf(serviceRequestId));
 
             ConversationRepo.getInstance().saveConversation(selectedSuggestion,
                     new Repo.Callback() {
@@ -916,7 +916,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
         conversation.setServiceIconUrl(serviceRequest.getServiceIconUrl());
         conversation.setServiceName(serviceRequest.getServiceName());
         conversation.setProblemStat(serviceRequest.getProblemStatement());
-        conversation.setRefId(serviceRequest.getServiceOrderId());
+        conversation.setRefId(String.valueOf(serviceRequest.getServiceOrderId()));
 
         for (Map.Entry<String, String> entry : availableAttributes.entrySet()) {
             String key = entry.getKey();
@@ -952,7 +952,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
             conversation.setAcceptedBy(serviceProvider.getFullName());
             conversation.setClientId(UUID.randomUUID().toString().replace("", ""));
             conversation.setMessageType("MSG_ACCEPTED_TAG");
-            conversation.setRefId(serviceRequestId);
+            conversation.setRefId(String.valueOf(serviceRequestId));
             conversation.setSenderId(UUID.randomUUID().toString().replace("-", ""));
             adapter.setAcceptedTAG(conversation);
         }

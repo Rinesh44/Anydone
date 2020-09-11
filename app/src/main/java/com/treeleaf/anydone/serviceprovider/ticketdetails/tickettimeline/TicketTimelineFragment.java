@@ -45,11 +45,13 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceOrderEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -66,7 +68,6 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.realm.RealmList;
 
 public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenterImpl> implements
         TicketTimelineContract.TicketTimelineView,
@@ -172,6 +173,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     RecyclerView rvAllUsers;
     @BindView(R.id.search_employee)
     ScrollView svSearchEmployee;
+    @BindView(R.id.iv_service)
+    ImageView ivService;
+    @BindView(R.id.tv_service)
+    TextView tvService;
+    @BindView(R.id.iv_priority)
+    ImageView ivPriority;
+    @BindView(R.id.tv_priority)
+    TextView tvPriority;
 
 
     private boolean expandActivity = true;
@@ -320,12 +329,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (llStatusOptions.getVisibility() == View.VISIBLE) {
             llStatusOptions.setVisibility(View.GONE);
 
-            ivDropDownStatus.setImageDrawable(getActivity().getResources()
+            ivDropDownStatus.setImageDrawable(Objects.requireNonNull(getActivity()).getResources()
                     .getDrawable(R.drawable.ic_oc_drop_down_blue));
         } else {
             llStatusOptions.setVisibility(View.VISIBLE);
 
-            ivDropDownStatus.setImageDrawable(getActivity().getResources()
+            ivDropDownStatus.setImageDrawable(Objects.requireNonNull(getActivity()).getResources()
                     .getDrawable(R.drawable.ic_drop_up_blue));
         }
     }
@@ -445,9 +454,55 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             llTags.setVisibility(View.GONE);
         }
 
+        setPriority(tickets.getPriority());
+        setService(tickets.getServiceId());
 
         if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
             hideActions();
+        }
+    }
+
+    private void setService(String serviceId) {
+        Service service = AvailableServicesRepo.getInstance().getAvailableServiceById(serviceId);
+        tvService.setText(service.getName());
+
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_browse_service)
+                .error(R.drawable.ic_browse_service);
+
+        Glide.with(this)
+                .load(service.getServiceIconUrl())
+                .apply(options)
+                .into(ivService);
+    }
+
+    private void setPriority(int priority) {
+        switch (priority) {
+            case 1:
+                tvPriority.setText("Lowest");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_lowest));
+                break;
+
+            case 2:
+                tvPriority.setText("Low");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_low));
+                break;
+
+            case 4:
+                tvPriority.setText("High");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_high));
+                break;
+
+            case 5:
+                tvPriority.setText("Highest");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_highest));
+                break;
+
+            default:
+                tvPriority.setText("Medium");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_medium));
+                break;
         }
     }
 
@@ -489,7 +544,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private void hideActions() {
         rlSelectedStatus.setVisibility(View.GONE);
         rlBotReplyHolder.setVisibility(View.GONE);
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -808,7 +862,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
     }
 */
-
 
     private void showConfirmationDialog(String employeeId) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());

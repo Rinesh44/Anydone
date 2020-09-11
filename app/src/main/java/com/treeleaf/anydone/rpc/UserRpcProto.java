@@ -220,6 +220,24 @@ public final class UserRpcProto {
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 27;</code>
      */
     com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    boolean hasCustomer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Customer getCustomer();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+     */
+    int getSourceValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.UserBaseRequest}
@@ -1357,6 +1375,97 @@ public final class UserRpcProto {
       
     }
 
+    public static final int CUSTOMER_FIELD_NUMBER = 28;
+    private com.treeleaf.anydone.entities.UserProto.Customer customer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    public boolean hasCustomer() {
+      return customer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+      return customer_ == null ? com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance() : customer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    private void setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      customer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    private void setCustomer(
+        com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+      customer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    private void mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (customer_ != null &&
+          customer_ != com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance()) {
+        customer_ =
+          com.treeleaf.anydone.entities.UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
+      } else {
+        customer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+     */
+    private void clearCustomer() {  customer_ = null;
+      
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 29;
+    private int source_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+     */
+    public int getSourceValue() {
+      return source_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+     */
+    private void setSourceValue(int value) {
+        source_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+     */
+    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      source_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1430,6 +1539,12 @@ public final class UserRpcProto {
       }
       if (dataQuery_ != null) {
         output.writeMessage(27, getDataQuery());
+      }
+      if (customer_ != null) {
+        output.writeMessage(28, getCustomer());
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        output.writeEnum(29, source_);
       }
     }
 
@@ -1538,6 +1653,14 @@ public final class UserRpcProto {
       if (dataQuery_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(27, getDataQuery());
+      }
+      if (customer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(28, getCustomer());
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(29, source_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2607,6 +2730,88 @@ public final class UserRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+       */
+      public boolean hasCustomer() {
+        return instance.hasCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+        return instance.getCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+       */
+      public Builder setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.setCustomer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+       */
+      public Builder setCustomer(
+          com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+       */
+      public Builder mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.mergeCustomer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 28;</code>
+       */
+      public Builder clearCustomer() {  copyOnWrite();
+        instance.clearCustomer();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+       */
+      public int getSourceValue() {
+        return instance.getSourceValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+       */
+      public Builder setSourceValue(int value) {
+        copyOnWrite();
+        instance.setSourceValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+       */
+      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2661,6 +2866,8 @@ public final class UserRpcProto {
           addEmployeeProfileRequestList_ = visitor.visitMessage(addEmployeeProfileRequestList_, other.addEmployeeProfileRequestList_);
           location_ = visitor.visitMessage(location_, other.location_);
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
+          customer_ = visitor.visitMessage(customer_, other.customer_);
+          source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2931,6 +3138,25 @@ public final class UserRpcProto {
                     dataQuery_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 226: {
+                  com.treeleaf.anydone.entities.UserProto.Customer.Builder subBuilder = null;
+                  if (customer_ != null) {
+                    subBuilder = customer_.toBuilder();
+                  }
+                  customer_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(customer_);
+                    customer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 232: {
+                  int rawValue = input.readEnum();
+
+                  source_ = rawValue;
                   break;
                 }
               }
@@ -3206,6 +3432,29 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceRating serviceRatings = 21;</code>
      */
     int getServiceRatingsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    boolean hasCustomer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Customer getCustomer();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.UserProto.Customer> 
+        getCustomersList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Customer getCustomers(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    int getCustomersCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.UserBaseResponse}
@@ -3227,6 +3476,7 @@ public final class UserRpcProto {
       users_ = emptyProtobufList();
       locations_ = emptyProtobufList();
       serviceRatings_ = emptyProtobufList();
+      customers_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -4655,6 +4905,178 @@ public final class UserRpcProto {
       serviceRatings_.remove(index);
     }
 
+    public static final int CUSTOMER_FIELD_NUMBER = 22;
+    private com.treeleaf.anydone.entities.UserProto.Customer customer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    public boolean hasCustomer() {
+      return customer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+      return customer_ == null ? com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance() : customer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    private void setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      customer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    private void setCustomer(
+        com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+      customer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    private void mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (customer_ != null &&
+          customer_ != com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance()) {
+        customer_ =
+          com.treeleaf.anydone.entities.UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
+      } else {
+        customer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+     */
+    private void clearCustomer() {  customer_ = null;
+      
+    }
+
+    public static final int CUSTOMERS_FIELD_NUMBER = 23;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.Customer> customers_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.UserProto.Customer> getCustomersList() {
+      return customers_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.UserProto.CustomerOrBuilder> 
+        getCustomersOrBuilderList() {
+      return customers_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    public int getCustomersCount() {
+      return customers_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Customer getCustomers(int index) {
+      return customers_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.CustomerOrBuilder getCustomersOrBuilder(
+        int index) {
+      return customers_.get(index);
+    }
+    private void ensureCustomersIsMutable() {
+      if (!customers_.isModifiable()) {
+        customers_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(customers_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void setCustomers(
+        int index, com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomersIsMutable();
+      customers_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void setCustomers(
+        int index, com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+      ensureCustomersIsMutable();
+      customers_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void addCustomers(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomersIsMutable();
+      customers_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void addCustomers(
+        int index, com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomersIsMutable();
+      customers_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void addCustomers(
+        com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+      ensureCustomersIsMutable();
+      customers_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void addCustomers(
+        int index, com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+      ensureCustomersIsMutable();
+      customers_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void addAllCustomers(
+        Iterable<? extends com.treeleaf.anydone.entities.UserProto.Customer> values) {
+      ensureCustomersIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, customers_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void clearCustomers() {
+      customers_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+     */
+    private void removeCustomers(int index) {
+      ensureCustomersIsMutable();
+      customers_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -4719,6 +5141,12 @@ public final class UserRpcProto {
       }
       for (int i = 0; i < serviceRatings_.size(); i++) {
         output.writeMessage(21, serviceRatings_.get(i));
+      }
+      if (customer_ != null) {
+        output.writeMessage(22, getCustomer());
+      }
+      for (int i = 0; i < customers_.size(); i++) {
+        output.writeMessage(23, customers_.get(i));
       }
     }
 
@@ -4810,6 +5238,14 @@ public final class UserRpcProto {
       for (int i = 0; i < serviceRatings_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(21, serviceRatings_.get(i));
+      }
+      if (customer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getCustomer());
+      }
+      for (int i = 0; i < customers_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(23, customers_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -6103,6 +6539,148 @@ public final class UserRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+       */
+      public boolean hasCustomer() {
+        return instance.hasCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+        return instance.getCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+       */
+      public Builder setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.setCustomer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+       */
+      public Builder setCustomer(
+          com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+       */
+      public Builder mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.mergeCustomer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 22;</code>
+       */
+      public Builder clearCustomer() {  copyOnWrite();
+        instance.clearCustomer();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.UserProto.Customer> getCustomersList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getCustomersList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public int getCustomersCount() {
+        return instance.getCustomersCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Customer getCustomers(int index) {
+        return instance.getCustomers(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder setCustomers(
+          int index, com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.setCustomers(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder setCustomers(
+          int index, com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomers(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder addCustomers(com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.addCustomers(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder addCustomers(
+          int index, com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.addCustomers(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder addCustomers(
+          com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.addCustomers(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder addCustomers(
+          int index, com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.addCustomers(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder addAllCustomers(
+          Iterable<? extends com.treeleaf.anydone.entities.UserProto.Customer> values) {
+        copyOnWrite();
+        instance.addAllCustomers(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder clearCustomers() {
+        copyOnWrite();
+        instance.clearCustomers();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
+       */
+      public Builder removeCustomers(int index) {
+        copyOnWrite();
+        instance.removeCustomers(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -6122,6 +6700,7 @@ public final class UserRpcProto {
           users_.makeImmutable();
           locations_.makeImmutable();
           serviceRatings_.makeImmutable();
+          customers_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -6159,6 +6738,8 @@ public final class UserRpcProto {
           users_= visitor.visitList(users_, other.users_);
           locations_= visitor.visitList(locations_, other.locations_);
           serviceRatings_= visitor.visitList(serviceRatings_, other.serviceRatings_);
+          customer_ = visitor.visitMessage(customer_, other.customer_);
+          customers_= visitor.visitList(customers_, other.customers_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -6365,6 +6946,28 @@ public final class UserRpcProto {
                   }
                   serviceRatings_.add(
                       input.readMessage(com.treeleaf.anydone.entities.OrderServiceProto.ServiceRating.parser(), extensionRegistry));
+                  break;
+                }
+                case 178: {
+                  com.treeleaf.anydone.entities.UserProto.Customer.Builder subBuilder = null;
+                  if (customer_ != null) {
+                    subBuilder = customer_.toBuilder();
+                  }
+                  customer_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(customer_);
+                    customer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 186: {
+                  if (!customers_.isModifiable()) {
+                    customers_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(customers_);
+                  }
+                  customers_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry));
                   break;
                 }
               }

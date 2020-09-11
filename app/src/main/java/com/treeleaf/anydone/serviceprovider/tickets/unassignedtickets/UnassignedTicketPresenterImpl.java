@@ -1,7 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets;
 
-import android.provider.Settings;
-
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -10,7 +8,6 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -18,8 +15,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
-import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 

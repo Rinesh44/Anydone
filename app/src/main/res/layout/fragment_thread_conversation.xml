@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_root"
     android:layout_width="match_parent"
@@ -15,8 +16,8 @@
             android:id="@+id/pb_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_connection_status"
@@ -330,7 +331,7 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/bottomsheet_message_actions" />
+    <include layout="@layout/layout_thread_bottomsheet_actions" />
 
     <include layout="@layout/bottomsheet_profile" />
 

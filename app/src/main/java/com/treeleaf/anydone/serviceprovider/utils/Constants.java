@@ -50,5 +50,7 @@ public class Constants {
     public static final String TICKET_STARTED = "ticket_started";
     public static final String REFETCH_TICKET = "refetch_ticket";
     public static final String SELECTED_SERVICE = "selected_service";
+    public static final String SERVICE_CHANGED_TICKET = "service_changed_ticket";
+    public static final String SERVICE_CHANGED_THREAD = "service_changed_thread";
 
 }

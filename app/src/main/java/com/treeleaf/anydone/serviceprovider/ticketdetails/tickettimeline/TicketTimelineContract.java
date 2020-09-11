@@ -5,10 +5,6 @@ import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 
-import java.util.List;
-
-import io.realm.RealmList;
-
 public class TicketTimelineContract {
 
     public interface TicketTimelineView extends BaseView {

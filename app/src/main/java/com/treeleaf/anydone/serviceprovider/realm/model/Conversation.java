@@ -20,7 +20,7 @@ public class Conversation extends RealmObject {
     private String ticketDesc;
     private long sentAt;
     private long savedAt;
-    private long refId;
+    private String refId;
     private boolean sent;
     private boolean sendFail;
     private String fileName;
@@ -256,11 +256,11 @@ public class Conversation extends RealmObject {
         this.savedAt = savedAt;
     }
 
-    public long getRefId() {
+    public String getRefId() {
         return refId;
     }
 
-    public void setRefId(long refId) {
+    public void setRefId(String refId) {
         this.refId = refId;
     }
 

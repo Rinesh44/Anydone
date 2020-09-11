@@ -191,6 +191,10 @@ public final class RtcProto {
      * <code>ANDDONE_USER_MESSAGE = 2;</code>
      */
     ANDDONE_USER_MESSAGE(2),
+    /**
+     * <code>EXTERNAL_USER_MESSAGE = 3;</code>
+     */
+    EXTERNAL_USER_MESSAGE(3),
     UNRECOGNIZED(-1),
     ;
 
@@ -206,6 +210,10 @@ public final class RtcProto {
      * <code>ANDDONE_USER_MESSAGE = 2;</code>
      */
     public static final int ANDDONE_USER_MESSAGE_VALUE = 2;
+    /**
+     * <code>EXTERNAL_USER_MESSAGE = 3;</code>
+     */
+    public static final int EXTERNAL_USER_MESSAGE_VALUE = 3;
 
 
     public final int getNumber() {
@@ -225,6 +233,7 @@ public final class RtcProto {
         case 0: return UNKNOWN_MESSAGE_ACTOR;
         case 1: return ANYDONE_BOT_MESSAGE;
         case 2: return ANDDONE_USER_MESSAGE;
+        case 3: return EXTERNAL_USER_MESSAGE;
         default: return null;
       }
     }
@@ -5855,10 +5864,18 @@ public final class RtcProto {
         getParentMessageIdBytes();
 
     /**
+     * <pre>
+     *text, image, doc..
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
     int getRtcMessageTypeValue();
     /**
+     * <pre>
+     *text, image, doc..
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
     RtcMessageType getRtcMessageType();
@@ -5918,10 +5935,18 @@ public final class RtcProto {
         getTimezoneBytes();
 
     /**
+     * <pre>
+     *service order, ticket, conversation
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
      */
     int getContextValue();
     /**
+     * <pre>
+     *service order, ticket, conversation
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
      */
     RtcMessageContext getContext();
@@ -6805,12 +6830,20 @@ public final class RtcProto {
     public static final int RTCMESSAGETYPE_FIELD_NUMBER = 16;
     private int rtcMessageType_;
     /**
+     * <pre>
+     *text, image, doc..
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
     public int getRtcMessageTypeValue() {
       return rtcMessageType_;
     }
     /**
+     * <pre>
+     *text, image, doc..
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
     public RtcMessageType getRtcMessageType() {
@@ -6818,12 +6851,20 @@ public final class RtcProto {
       return result == null ? RtcMessageType.UNRECOGNIZED : result;
     }
     /**
+     * <pre>
+     *text, image, doc..
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
     private void setRtcMessageTypeValue(int value) {
         rtcMessageType_ = value;
     }
     /**
+     * <pre>
+     *text, image, doc..
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
     private void setRtcMessageType(RtcMessageType value) {
@@ -6834,6 +6875,10 @@ public final class RtcProto {
       rtcMessageType_ = value.getNumber();
     }
     /**
+     * <pre>
+     *text, image, doc..
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
     private void clearRtcMessageType() {
@@ -7080,12 +7125,20 @@ public final class RtcProto {
     public static final int CONTEXT_FIELD_NUMBER = 21;
     private int context_;
     /**
+     * <pre>
+     *service order, ticket, conversation
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
      */
     public int getContextValue() {
       return context_;
     }
     /**
+     * <pre>
+     *service order, ticket, conversation
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
      */
     public RtcMessageContext getContext() {
@@ -7093,12 +7146,20 @@ public final class RtcProto {
       return result == null ? RtcMessageContext.UNRECOGNIZED : result;
     }
     /**
+     * <pre>
+     *service order, ticket, conversation
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
      */
     private void setContextValue(int value) {
         context_ = value;
     }
     /**
+     * <pre>
+     *service order, ticket, conversation
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
      */
     private void setContext(RtcMessageContext value) {
@@ -7109,6 +7170,10 @@ public final class RtcProto {
       context_ = value.getNumber();
     }
     /**
+     * <pre>
+     *service order, ticket, conversation
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
      */
     private void clearContext() {
@@ -8257,12 +8322,20 @@ public final class RtcProto {
       }
 
       /**
+       * <pre>
+       *text, image, doc..
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
        */
       public int getRtcMessageTypeValue() {
         return instance.getRtcMessageTypeValue();
       }
       /**
+       * <pre>
+       *text, image, doc..
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
        */
       public Builder setRtcMessageTypeValue(int value) {
@@ -8271,12 +8344,20 @@ public final class RtcProto {
         return this;
       }
       /**
+       * <pre>
+       *text, image, doc..
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
        */
       public RtcMessageType getRtcMessageType() {
         return instance.getRtcMessageType();
       }
       /**
+       * <pre>
+       *text, image, doc..
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
        */
       public Builder setRtcMessageType(RtcMessageType value) {
@@ -8285,6 +8366,10 @@ public final class RtcProto {
         return this;
       }
       /**
+       * <pre>
+       *text, image, doc..
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
        */
       public Builder clearRtcMessageType() {
@@ -8504,12 +8589,20 @@ public final class RtcProto {
       }
 
       /**
+       * <pre>
+       *service order, ticket, conversation
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
        */
       public int getContextValue() {
         return instance.getContextValue();
       }
       /**
+       * <pre>
+       *service order, ticket, conversation
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
        */
       public Builder setContextValue(int value) {
@@ -8518,12 +8611,20 @@ public final class RtcProto {
         return this;
       }
       /**
+       * <pre>
+       *service order, ticket, conversation
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
        */
       public RtcMessageContext getContext() {
         return instance.getContext();
       }
       /**
+       * <pre>
+       *service order, ticket, conversation
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
        */
       public Builder setContext(RtcMessageContext value) {
@@ -8532,6 +8633,10 @@ public final class RtcProto {
         return this;
       }
       /**
+       * <pre>
+       *service order, ticket, conversation
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
        */
       public Builder clearContext() {

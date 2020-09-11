@@ -22,12 +22,14 @@
 
     </LinearLayout>
 
-
     <RelativeLayout
         android:id="@+id/rl_ticket_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground">
 
         <LinearLayout
             android:id="@+id/ll_ticket_view"
@@ -95,7 +97,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
 
                 <TextView
                     android:id="@+id/tv_ticket_id_value"

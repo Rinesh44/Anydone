@@ -444,7 +444,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public interface OnMessageNotDeliveredListener {
         void onMessageNotDelivered(Conversation message);
-
     }
 
     public void setOnMessageNotDeliveredListener(MessageAdapter.OnMessageNotDeliveredListener
@@ -530,7 +529,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 //case when sending failed. Show resend layout
                 resend.setVisibility(View.VISIBLE);
                 notDelivered.setVisibility(View.VISIBLE);
-
+                sent.setVisibility(View.GONE);
             } else {
                 // case when message is sent. Disable progress and resend layout
                 if (resend != null && notDelivered != null) {
@@ -558,12 +557,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         sent.setVisibility(View.VISIBLE);
                         sent.setText("Seen");
                     }
+                } else if (conversation.isSendFail()) {
+                    sent.setVisibility(View.GONE);
                 } else {
                     sent.setVisibility(View.VISIBLE);
                     sent.setText("Sent");
                 }
             }
-
 
             //click listeners
             textHolder.setOnLongClickListener(v -> {
@@ -1075,12 +1075,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             civSender = itemView.findViewById(R.id.civ_sender);
             senderTitle = itemView.findViewById(R.id.tv_title);
             spacing = itemView.findViewById(R.id.spacing);
-
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
                   boolean isContinuous) {
-
             //show additional padding if not continuous
             if (!isContinuous) {
                 spacing.setVisibility(View.VISIBLE);
@@ -1097,7 +1095,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
-
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -1121,7 +1118,18 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 });
             }
+
+            //click listeners
+            textHolder.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });
         }
+
     }
 
     private class LeftLinkHolder extends RecyclerView.ViewHolder {

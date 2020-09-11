@@ -86,6 +86,19 @@ public class AvailableServicesRepo extends Repo {
         }
     }
 
+    public Service getAvailableServiceById(String serviceId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            return realm.where(Service.class)
+                    .equalTo("serviceId", serviceId).findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
     private RealmQuery<Service> performSearch(String searchTerm, Realm realm) {
         RealmQuery<Service> query = realm.where(Service.class);
         query = query

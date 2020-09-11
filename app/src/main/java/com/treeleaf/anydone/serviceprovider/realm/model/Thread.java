@@ -1,10 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
-import io.realm.RealmList;
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Thread extends RealmObject {
+public class Thread extends RealmObject implements Serializable {
     @PrimaryKey
     String threadId;
     String customerName;
@@ -20,6 +21,7 @@ public class Thread extends RealmObject {
     String finalMessage;
     String source;
     String defaultLabelId;
+    String defaultLabel;
     Employee assignedEmployee;
     boolean botEnabled;
 
@@ -152,5 +154,13 @@ public class Thread extends RealmObject {
 
     public void setBotEnabled(boolean botEnabled) {
         this.botEnabled = botEnabled;
+    }
+
+    public String getDefaultLabel() {
+        return defaultLabel;
+    }
+
+    public void setDefaultLabel(String defaultLabel) {
+        this.defaultLabel = defaultLabel;
     }
 }

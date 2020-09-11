@@ -25,7 +25,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_message_holder_aligned"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_sent_at"
         android:layout_marginEnd="@dimen/dimens_11x"
@@ -71,10 +71,20 @@
                 android:layout_marginEnd="@dimen/dimens_2x"
                 android:autoLink="web"
                 android:linksClickable="true"
-                android:text="hello user"
+                android:text="hello user sdffsdf"
                 android:textColor="@color/black" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_create_ticket"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/ll_text_holder"
+            android:src="@drawable/ic_create_ticket" />
 
     </RelativeLayout>
 </RelativeLayout>

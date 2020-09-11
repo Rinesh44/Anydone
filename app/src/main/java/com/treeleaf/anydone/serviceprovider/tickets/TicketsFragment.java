@@ -62,6 +62,7 @@ import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTi
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -119,6 +120,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private Priority selectedPriority = new Priority("", -1);
     private TextView tvPriorityHint;
     private RelativeLayout rlPriorityHolder;
+    private String selectedServiceId;
 
     @Override
     protected int getLayout() {
@@ -164,9 +166,17 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         if (CollectionUtils.isEmpty(serviceList)) {
             presenter.getServices();
         } else {
-            Service firstService = serviceList.get(0);
-            tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-            Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+            selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+            if (selectedServiceId == null) {
+                Service firstService = serviceList.get(0);
+                tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+                Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+            } else {
+                Service selectedService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedServiceId);
+                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext())).load(selectedService.getServiceIconUrl()).into(ivService);
+            }
             setUpRecyclerView(serviceList);
         }
 
@@ -239,15 +249,16 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 GlobalUtils.showLog(TAG, "interface applied for subscribed");
                 subscribedListListener.updateSubscribedList();
             }
-/*
+
             if (closedListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for closed");
                 closedListListener.updateClosedList();
             } else {
                 Hawk.put(Constants.FETCH_CLOSED_LIST, true);
-            }*/
+            }
 
-            Hawk.put(Constants.FETCH_CLOSED_LIST, true);
+
+//            Hawk.put(Constants.FETCH_CLOSED_LIST, true);
         });
     }
 
@@ -544,6 +555,27 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     public void onResume() {
         super.onResume();
         UiUtils.hideKeyboardForced(getContext());
+
+        boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_THREAD, false);
+        if (serviceChanged) {
+            if (assignedListListener != null) {
+                GlobalUtils.showLog(TAG, "interface applied for assigned");
+                assignedListListener.updateAssignedList();
+            }
+
+            if (subscribedListListener != null) {
+                GlobalUtils.showLog(TAG, "interface applied for subscribed");
+                subscribedListListener.updateSubscribedList();
+            }
+
+            if (closedListListener != null) {
+                GlobalUtils.showLog(TAG, "interface applied for closed");
+                closedListListener.updateClosedList();
+            }
+
+            Hawk.put(Constants.SERVICE_CHANGED_THREAD, false);
+        }
+
     }
 
     @Override
@@ -627,6 +659,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         viewPagerAdapter.addFragment(new AssignedTicketsFragment(), "Assigned");
         viewPagerAdapter.addFragment(new SubscribeTicketsFragment(), "Subscribed");
         viewPagerAdapter.addFragment(new ClosedTicketsFragment(), "Closed/Resolved");
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -717,6 +750,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             subscribedListListener.fetchList();
         }
 
+        if (closedListListener != null) {
+            closedListListener.fetchList();
+        }
+
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));
         Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
         setUpRecyclerView(serviceList);
@@ -751,6 +788,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager) {
+//            super(manager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             super(manager);
         }
 
@@ -804,6 +842,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         void updateClosedList(List<Tickets> ticketsList);
 
         void updateClosedList();
+
+        void fetchList();
     }
 
     public void setClosedListListener(ClosedListListener listener) {

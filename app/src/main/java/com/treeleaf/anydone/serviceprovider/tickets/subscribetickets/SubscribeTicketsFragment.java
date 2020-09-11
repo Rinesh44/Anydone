@@ -253,10 +253,10 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         if (fetchChanges) {
             GlobalUtils.showLog(TAG, "on resume fetch");
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
-        }/* else {
+        } else {
             subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
             setUpRecyclerView(subscribedTickets);
-        }*/
+        }
     }
 
     @Override

@@ -14,7 +14,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
-import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 

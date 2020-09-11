@@ -89,27 +89,24 @@ public final class ThirdPartyRpcProto {
         getVerifyTokenBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+     * <code>optional string serviceProviderId = 8;</code>
      */
-    boolean hasConversation();
+    String getServiceProviderId();
     /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+     * <code>optional string serviceProviderId = 8;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversation();
+    com.google.protobuf.ByteString
+        getServiceProviderIdBytes();
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> 
-        getConversationsList();
+    String getServiceId();
     /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversations(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    int getConversationsCount();
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ThirdPartyBaseRequest}
@@ -124,7 +121,8 @@ public final class ThirdPartyRpcProto {
       stringValue_ = "";
       stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       verifyToken_ = "";
-      conversations_ = emptyProtobufList();
+      serviceProviderId_ = "";
+      serviceId_ = "";
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
@@ -505,176 +503,96 @@ public final class ThirdPartyRpcProto {
       verifyToken_ = value.toStringUtf8();
     }
 
-    public static final int CONVERSATION_FIELD_NUMBER = 8;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread conversation_;
+    public static final int SERVICEPROVIDERID_FIELD_NUMBER = 8;
+    private String serviceProviderId_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+     * <code>optional string serviceProviderId = 8;</code>
      */
-    public boolean hasConversation() {
-      return conversation_ != null;
+    public String getServiceProviderId() {
+      return serviceProviderId_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+     * <code>optional string serviceProviderId = 8;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversation() {
-      return conversation_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.getDefaultInstance() : conversation_;
+    public com.google.protobuf.ByteString
+        getServiceProviderIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceProviderId_);
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+     * <code>optional string serviceProviderId = 8;</code>
      */
-    private void setConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
+    private void setServiceProviderId(
+        String value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      conversation_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
-     */
-    private void setConversation(
-        com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      conversation_ = builderForValue.build();
-      
+    throw new NullPointerException();
+  }
+  
+      serviceProviderId_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+     * <code>optional string serviceProviderId = 8;</code>
      */
-    private void mergeConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-      if (conversation_ != null &&
-          conversation_ != com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.getDefaultInstance()) {
-        conversation_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.newBuilder(conversation_).mergeFrom(value).buildPartial();
-      } else {
-        conversation_ = value;
-      }
+    private void clearServiceProviderId() {
       
+      serviceProviderId_ = getDefaultInstance().getServiceProviderId();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+     * <code>optional string serviceProviderId = 8;</code>
      */
-    private void clearConversation() {  conversation_ = null;
+    private void setServiceProviderIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
       
+      serviceProviderId_ = value.toStringUtf8();
     }
 
-    public static final int CONVERSATIONS_FIELD_NUMBER = 9;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> conversations_;
+    public static final int SERVICEID_FIELD_NUMBER = 9;
+    private String serviceId_;
     /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> getConversationsList() {
-      return conversations_;
+    public String getServiceId() {
+      return serviceId_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThreadOrBuilder> 
-        getConversationsOrBuilderList() {
-      return conversations_;
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    public int getConversationsCount() {
-      return conversations_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversations(int index) {
-      return conversations_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThreadOrBuilder getConversationsOrBuilder(
-        int index) {
-      return conversations_.get(index);
-    }
-    private void ensureConversationsIsMutable() {
-      if (!conversations_.isModifiable()) {
-        conversations_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(conversations_);
-       }
-    }
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    private void setConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
+    private void setServiceId(
+        String value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureConversationsIsMutable();
-      conversations_.set(index, value);
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    private void setConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      ensureConversationsIsMutable();
-      conversations_.set(index, builderForValue.build());
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    private void addConversations(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureConversationsIsMutable();
-      conversations_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    private void addConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureConversationsIsMutable();
-      conversations_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    private void addConversations(
-        com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      ensureConversationsIsMutable();
-      conversations_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    private void addConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      ensureConversationsIsMutable();
-      conversations_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    private void addAllConversations(
-        Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
-      ensureConversationsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, conversations_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    private void clearConversations() {
-      conversations_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-     */
-    private void removeConversations(int index) {
-      ensureConversationsIsMutable();
-      conversations_.remove(index);
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -700,11 +618,11 @@ public final class ThirdPartyRpcProto {
       if (!verifyToken_.isEmpty()) {
         output.writeString(7, getVerifyToken());
       }
-      if (conversation_ != null) {
-        output.writeMessage(8, getConversation());
+      if (!serviceProviderId_.isEmpty()) {
+        output.writeString(8, getServiceProviderId());
       }
-      for (int i = 0; i < conversations_.size(); i++) {
-        output.writeMessage(9, conversations_.get(i));
+      if (!serviceId_.isEmpty()) {
+        output.writeString(9, getServiceId());
       }
     }
 
@@ -746,13 +664,13 @@ public final class ThirdPartyRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(7, getVerifyToken());
       }
-      if (conversation_ != null) {
+      if (!serviceProviderId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getConversation());
+          .computeStringSize(8, getServiceProviderId());
       }
-      for (int i = 0; i < conversations_.size(); i++) {
+      if (!serviceId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, conversations_.get(i));
+          .computeStringSize(9, getServiceId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1168,144 +1086,82 @@ public final class ThirdPartyRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+       * <code>optional string serviceProviderId = 8;</code>
        */
-      public boolean hasConversation() {
-        return instance.hasConversation();
+      public String getServiceProviderId() {
+        return instance.getServiceProviderId();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+       * <code>optional string serviceProviderId = 8;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversation() {
-        return instance.getConversation();
+      public com.google.protobuf.ByteString
+          getServiceProviderIdBytes() {
+        return instance.getServiceProviderIdBytes();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+       * <code>optional string serviceProviderId = 8;</code>
        */
-      public Builder setConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
+      public Builder setServiceProviderId(
+          String value) {
         copyOnWrite();
-        instance.setConversation(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
-       */
-      public Builder setConversation(
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-        copyOnWrite();
-        instance.setConversation(builderForValue);
+        instance.setServiceProviderId(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+       * <code>optional string serviceProviderId = 8;</code>
        */
-      public Builder mergeConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
+      public Builder clearServiceProviderId() {
         copyOnWrite();
-        instance.mergeConversation(value);
+        instance.clearServiceProviderId();
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 8;</code>
+       * <code>optional string serviceProviderId = 8;</code>
        */
-      public Builder clearConversation() {  copyOnWrite();
-        instance.clearConversation();
+      public Builder setServiceProviderIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceProviderIdBytes(value);
         return this;
       }
 
       /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+       * <code>optional string serviceId = 9;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> getConversationsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getConversationsList());
+      public String getServiceId() {
+        return instance.getServiceId();
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+       * <code>optional string serviceId = 9;</code>
        */
-      public int getConversationsCount() {
-        return instance.getConversationsCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-       */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversations(int index) {
-        return instance.getConversations(index);
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+       * <code>optional string serviceId = 9;</code>
        */
-      public Builder setConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
+      public Builder setServiceId(
+          String value) {
         copyOnWrite();
-        instance.setConversations(index, value);
+        instance.setServiceId(value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+       * <code>optional string serviceId = 9;</code>
        */
-      public Builder setConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
+      public Builder clearServiceId() {
         copyOnWrite();
-        instance.setConversations(index, builderForValue);
+        instance.clearServiceId();
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
+       * <code>optional string serviceId = 9;</code>
        */
-      public Builder addConversations(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.addConversations(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-       */
-      public Builder addConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-        copyOnWrite();
-        instance.addConversations(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-       */
-      public Builder addConversations(
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-        copyOnWrite();
-        instance.addConversations(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-       */
-      public Builder addConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-        copyOnWrite();
-        instance.addConversations(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-       */
-      public Builder addAllConversations(
-          Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
-        copyOnWrite();
-        instance.addAllConversations(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-       */
-      public Builder clearConversations() {
-        copyOnWrite();
-        instance.clearConversations();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 9;</code>
-       */
-      public Builder removeConversations(int index) {
-        copyOnWrite();
-        instance.removeConversations(index);
+        instance.setServiceIdBytes(value);
         return this;
       }
 
@@ -1323,7 +1179,6 @@ public final class ThirdPartyRpcProto {
         }
         case MAKE_IMMUTABLE: {
           stringValues_.makeImmutable();
-          conversations_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -1342,8 +1197,10 @@ public final class ThirdPartyRpcProto {
           messengerWebhook_ = visitor.visitMessage(messengerWebhook_, other.messengerWebhook_);
           verifyToken_ = visitor.visitString(!verifyToken_.isEmpty(), verifyToken_,
               !other.verifyToken_.isEmpty(), other.verifyToken_);
-          conversation_ = visitor.visitMessage(conversation_, other.conversation_);
-          conversations_= visitor.visitList(conversations_, other.conversations_);
+          serviceProviderId_ = visitor.visitString(!serviceProviderId_.isEmpty(), serviceProviderId_,
+              !other.serviceProviderId_.isEmpty(), other.serviceProviderId_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1436,25 +1293,15 @@ public final class ThirdPartyRpcProto {
                   break;
                 }
                 case 66: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder subBuilder = null;
-                  if (conversation_ != null) {
-                    subBuilder = conversation_.toBuilder();
-                  }
-                  conversation_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(conversation_);
-                    conversation_ = subBuilder.buildPartial();
-                  }
+                  String s = input.readStringRequireUtf8();
 
+                  serviceProviderId_ = s;
                   break;
                 }
                 case 74: {
-                  if (!conversations_.isModifiable()) {
-                    conversations_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(conversations_);
-                  }
-                  conversations_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.parser(), extensionRegistry));
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
                   break;
                 }
               }
@@ -1587,29 +1434,6 @@ public final class ThirdPartyRpcProto {
      * <code>optional .treeleaf.anydone.entities.IncomingViberMessage incomingViberMessage = 10;</code>
      */
     com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage getIncomingViberMessage();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    boolean hasConversation();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversation();
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    java.util.List<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> 
-        getConversationsList();
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversations(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    int getConversationsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ThirdPartyBaseResponse}
@@ -1623,9 +1447,7 @@ public final class ThirdPartyRpcProto {
       msg_ = "";
       refId_ = "";
       stringValue_ = "";
-      conversations_ = emptyProtobufList();
     }
-    private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
     private boolean error_;
     /**
@@ -2028,178 +1850,6 @@ public final class ThirdPartyRpcProto {
       
     }
 
-    public static final int CONVERSATION_FIELD_NUMBER = 11;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread conversation_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    public boolean hasConversation() {
-      return conversation_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversation() {
-      return conversation_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.getDefaultInstance() : conversation_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    private void setConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      conversation_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    private void setConversation(
-        com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      conversation_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    private void mergeConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-      if (conversation_ != null &&
-          conversation_ != com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.getDefaultInstance()) {
-        conversation_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.newBuilder(conversation_).mergeFrom(value).buildPartial();
-      } else {
-        conversation_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-     */
-    private void clearConversation() {  conversation_ = null;
-      
-    }
-
-    public static final int CONVERSATIONS_FIELD_NUMBER = 12;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> conversations_;
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    public java.util.List<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> getConversationsList() {
-      return conversations_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThreadOrBuilder> 
-        getConversationsOrBuilderList() {
-      return conversations_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    public int getConversationsCount() {
-      return conversations_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversations(int index) {
-      return conversations_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThreadOrBuilder getConversationsOrBuilder(
-        int index) {
-      return conversations_.get(index);
-    }
-    private void ensureConversationsIsMutable() {
-      if (!conversations_.isModifiable()) {
-        conversations_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(conversations_);
-       }
-    }
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void setConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureConversationsIsMutable();
-      conversations_.set(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void setConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      ensureConversationsIsMutable();
-      conversations_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void addConversations(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureConversationsIsMutable();
-      conversations_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void addConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureConversationsIsMutable();
-      conversations_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void addConversations(
-        com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      ensureConversationsIsMutable();
-      conversations_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void addConversations(
-        int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-      ensureConversationsIsMutable();
-      conversations_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void addAllConversations(
-        Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
-      ensureConversationsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, conversations_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void clearConversations() {
-      conversations_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-     */
-    private void removeConversations(int index) {
-      ensureConversationsIsMutable();
-      conversations_.remove(index);
-    }
-
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2231,12 +1881,6 @@ public final class ThirdPartyRpcProto {
       }
       if (incomingViberMessage_ != null) {
         output.writeMessage(10, getIncomingViberMessage());
-      }
-      if (conversation_ != null) {
-        output.writeMessage(11, getConversation());
-      }
-      for (int i = 0; i < conversations_.size(); i++) {
-        output.writeMessage(12, conversations_.get(i));
       }
     }
 
@@ -2284,14 +1928,6 @@ public final class ThirdPartyRpcProto {
       if (incomingViberMessage_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getIncomingViberMessage());
-      }
-      if (conversation_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, getConversation());
-      }
-      for (int i = 0; i < conversations_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, conversations_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -2740,148 +2376,6 @@ public final class ThirdPartyRpcProto {
         return this;
       }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-       */
-      public boolean hasConversation() {
-        return instance.hasConversation();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-       */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversation() {
-        return instance.getConversation();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-       */
-      public Builder setConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-        copyOnWrite();
-        instance.setConversation(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-       */
-      public Builder setConversation(
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-        copyOnWrite();
-        instance.setConversation(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-       */
-      public Builder mergeConversation(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-        copyOnWrite();
-        instance.mergeConversation(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ConversationThread conversation = 11;</code>
-       */
-      public Builder clearConversation() {  copyOnWrite();
-        instance.clearConversation();
-        return this;
-      }
-
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public java.util.List<com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> getConversationsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getConversationsList());
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public int getConversationsCount() {
-        return instance.getConversationsCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread getConversations(int index) {
-        return instance.getConversations(index);
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder setConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-        copyOnWrite();
-        instance.setConversations(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder setConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-        copyOnWrite();
-        instance.setConversations(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder addConversations(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-        copyOnWrite();
-        instance.addConversations(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder addConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread value) {
-        copyOnWrite();
-        instance.addConversations(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder addConversations(
-          com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-        copyOnWrite();
-        instance.addConversations(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder addConversations(
-          int index, com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder builderForValue) {
-        copyOnWrite();
-        instance.addConversations(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder addAllConversations(
-          Iterable<? extends com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread> values) {
-        copyOnWrite();
-        instance.addAllConversations(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder clearConversations() {
-        copyOnWrite();
-        instance.clearConversations();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 12;</code>
-       */
-      public Builder removeConversations(int index) {
-        copyOnWrite();
-        instance.removeConversations(index);
-        return this;
-      }
-
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ThirdPartyBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2895,7 +2389,6 @@ public final class ThirdPartyRpcProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
-          conversations_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2920,11 +2413,8 @@ public final class ThirdPartyRpcProto {
               !other.stringValue_.isEmpty(), other.stringValue_);
           incomingMessengerMessage_ = visitor.visitMessage(incomingMessengerMessage_, other.incomingMessengerMessage_);
           incomingViberMessage_ = visitor.visitMessage(incomingViberMessage_, other.incomingViberMessage_);
-          conversation_ = visitor.visitMessage(conversation_, other.conversation_);
-          conversations_= visitor.visitList(conversations_, other.conversations_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
-            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -3023,28 +2513,6 @@ public final class ThirdPartyRpcProto {
                     incomingViberMessage_ = subBuilder.buildPartial();
                   }
 
-                  break;
-                }
-                case 90: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.Builder subBuilder = null;
-                  if (conversation_ != null) {
-                    subBuilder = conversation_.toBuilder();
-                  }
-                  conversation_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(conversation_);
-                    conversation_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 98: {
-                  if (!conversations_.isModifiable()) {
-                    conversations_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(conversations_);
-                  }
-                  conversations_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.ConversationThread.parser(), extensionRegistry));
                   break;
                 }
               }

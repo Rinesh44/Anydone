@@ -1,8 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,13 +9,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,17 +30,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -51,7 +52,6 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenterImpl> implements
@@ -64,8 +64,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     ProgressBar progress;
     @BindView(R.id.ll_assigned_employee)
     LinearLayout llAssignedEmployee;
-    @BindView(R.id.bottom_sheet_profile)
-    LinearLayout mBottomSheet;
+    /*   @BindView(R.id.bottom_sheet_profile)
+       LinearLayout mBottomSheet;*/
     @BindView(R.id.tv_customer_dropdown)
     TextView tvCustomerDropdown;
     @BindView(R.id.iv_dropdown_customer)
@@ -120,12 +120,18 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     RecyclerView rvAllUsers;
     @BindView(R.id.search_employee)
     ScrollView svSearchEmployee;
+    @BindView(R.id.iv_source)
+    ImageView ivSource;
+    @BindView(R.id.tv_source)
+    TextView tvSource;
+    @BindView(R.id.switch_bot_reply)
+    Switch botReply;
 
 
     private boolean expandCustomer = true;
     private boolean expandTicketDetails = true;
     private int viewHeight = 0;
-    private long threadId;
+    private String threadId;
     private BottomSheetBehavior sheetBehavior;
     private String status;
     private Animation rotation;
@@ -144,13 +150,13 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         super.onViewCreated(view, savedInstanceState);
 
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
-        threadId = i.getLongExtra("thread_id", -1);
-        if (threadId != -1) {
+        threadId = i.getStringExtra("thread_id");
+        if (threadId != null) {
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
-            presenter.getCustomerDetails(threadId);
-            presenter.getAssignedEmployees(threadId);
-            presenter.getTicketTimeline(threadId);
+            setThreadDetails();
         }
+
+        presenter.getEmployees();
 
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
         ThreadDetailActivity mActivity = (ThreadDetailActivity) getActivity();
@@ -187,7 +193,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
        /* btnMarkComplete.setOnClickListener(v -> startActivity(new Intent(getActivity(),
                 PaymentSummary.class)));*/
-        sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+//        sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 
         etSearchEmployee.addTextChangedListener(new TextWatcher() {
             @Override
@@ -212,6 +218,9 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                         employeeSearchAdapter.setData(employeeList);
                         employeeSearchAdapter.notifyDataSetChanged();
                     }
+
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                    etSearchEmployee.requestFocus();
                 } else {
                     svSearchEmployee.setVisibility(View.GONE);
                 }
@@ -222,6 +231,73 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
             }
         });
+
+        setBotReplyChangeListener();
+
+    }
+
+    private void setBotReplyChangeListener() {
+        botReply.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                presenter.enableBot(threadId);
+            } else {
+                presenter.disableBot(threadId);
+            }
+        });
+    }
+
+    private void setThreadDetails() {
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        tvConversationCreatedDate.setText(GlobalUtils.getDateAlternate(thread.getCreatedAt()));
+        tvConversationCreatedTime.setText(GlobalUtils.getTime(thread.getCreatedAt()));
+        tvTag.setText(thread.getDefaultLabel());
+        setSource(thread);
+        setCustomerDetails(thread);
+
+        if (thread.isBotEnabled()) {
+            botReply.setChecked(true);
+        } else {
+            botReply.setChecked(false);
+        }
+    }
+
+    private void setCustomerDetails(Thread thread) {
+        tvCustomerName.setText(thread.getCustomerName());
+        if (thread.getCustomerPhone() == null || thread.getCustomerPhone().isEmpty()) {
+            llCustomerPhone.setVisibility(View.GONE);
+        } else {
+            tvCustomerPhone.setText(thread.getCustomerPhone());
+        }
+
+        if (thread.getCustomerEmail() == null || thread.getCustomerEmail().isEmpty()) {
+            llCustomerEmail.setVisibility(View.GONE);
+        } else {
+            tvCustomerEmail.setText(thread.getCustomerEmail());
+        }
+
+        String profilePicUrl = thread.getCustomerImageUrl();
+        if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(this).load(profilePicUrl).apply(options).into(civCustomer);
+        }
+    }
+
+    private void setSource(Thread thread) {
+        switch (thread.getSource()) {
+            case "FACEBOOK_THIRD_PARTY_SOURCE":
+                tvSource.setText(R.string.messenger);
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_messenger));
+                break;
+
+            case "VIBER_THIRD_PARTY_SOURCE":
+                tvSource.setText(R.string.viber);
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_viber));
+                break;
+        }
     }
 
 
@@ -250,7 +326,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
 
-    @SuppressLint("SetTextI18n")
+/*    @SuppressLint("SetTextI18n")
     private void setUpProfileBottomSheet(String name, String imageUrl, float rating) {
         TextView ratingNumber = mBottomSheet.findViewById(R.id.tv_rate_number);
         RatingBar ratingBar = mBottomSheet.findViewById(R.id.rating);
@@ -269,7 +345,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 .load(imageUrl)
                 .apply(options)
                 .into(profileImage);
-    }
+    }*/
 
     @Override
     protected int getLayout() {
@@ -320,70 +396,14 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     @Override
     public void onOutsideClick(MotionEvent event) {
         GlobalUtils.showLog(TAG, "on outside click second");
-        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+     /*   if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             Rect outRect = new Rect();
-            mBottomSheet.getGlobalVisibleRect(outRect);
+//            mBottomSheet.getGlobalVisibleRect(outRect);
 
             if (!outRect.contains((int) event.getRawX(), (int) event.getRawY()))
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        }
+        }*/
     }
-
-    @Override
-    public void getTicketTimelineSuccess(Employee assignedEmployee) {
-        if (assignedEmployee == null) {
-            etSearchEmployee.setText("Select Employee");
-        } else {
-            llAssignedEmployee.setVisibility(View.VISIBLE);
-            etSearchEmployee.setText(assignedEmployee.getName());
-        }
-        etSearchEmployee.clearFocus();
-    }
-
-    @Override
-    public void geTicketTimelineFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), msg);
-            onAuthorizationFailed(getActivity());
-            return;
-        }
-
-        UiUtils.showSnackBar(getActivity(),
-                Objects.requireNonNull(getActivity())
-                        .getWindow().getDecorView().getRootView(), msg);
-    }
-
-    @Override
-    public void setCustomerDetails(Customer customerDetails) {
-        tvCustomerName.setText(customerDetails.getFullName());
-        if (customerDetails.getPhone() == null || customerDetails.getPhone().isEmpty()) {
-            llCustomerPhone.setVisibility(View.GONE);
-        } else {
-            tvCustomerPhone.setText(customerDetails.getPhone());
-        }
-
-        if (customerDetails.getEmail() == null || customerDetails.getEmail().isEmpty()) {
-            llCustomerEmail.setVisibility(View.GONE);
-        } else {
-            tvCustomerEmail.setText(customerDetails.getEmail());
-        }
-
-        String profilePicUrl = customerDetails.getProfilePic();
-        if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
-
-            Glide.with(this).load(profilePicUrl).apply(options).into(civCustomer);
-        }
-    }
-
-    @Override
-    public void setAssignedEmployee(Employee assignedEmployee) {
-
-    }
-
 
     private void setUpEmployeeRecyclerView() {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -394,11 +414,11 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
-
                 selectedEmployeeId = employee.getEmployeeId();
                 etSearchEmployee.setText(employee.getName());
                 etSearchEmployee.setSelection(employee.getName().length());
                 svSearchEmployee.setVisibility(View.GONE);
+                hideKeyBoard();
             });
         }
 
@@ -428,7 +448,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     public void getEmployeeSuccess() {
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
         setUpEmployeeRecyclerView();
-
     }
 
     @Override
@@ -438,7 +457,48 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             onAuthorizationFailed(getActivity());
             return;
         }
-        UiUtils.showSnackBar(getActivity(), getActivity().getWindow().getDecorView().getRootView(), msg);
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void enableBotSuccess() {
+        botReply.setChecked(true);
+        ThreadRepo.getInstance().enableBotReply(threadId);
+    }
+
+    @Override
+    public void enableBotFail(String msg) {
+        botReply.setOnCheckedChangeListener(null);
+        botReply.setChecked(false);
+        setBotReplyChangeListener();
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void disableBotFail(String msg) {
+        botReply.setOnCheckedChangeListener(null);
+        botReply.setChecked(true);
+        setBotReplyChangeListener();
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void disableBotSuccess() {
+        botReply.setChecked(false);
+        ThreadRepo.getInstance().disableBotReply(threadId);
     }
 
 
@@ -454,9 +514,16 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                         .placeholder(R.drawable.ic_profile_icon)
                         .error(R.drawable.ic_profile_icon);
 
-                Glide.with(getActivity()).load(profilePicUrl).apply(options).into(civSelf);
+                Glide.with(Objects.requireNonNull(getActivity())).load(profilePicUrl).apply(options).into(civSelf);
             }
         }
+    }
+
+    private void hideKeyBoard() {
+        final InputMethodManager imm = (InputMethodManager)
+                Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
     }
 
 }

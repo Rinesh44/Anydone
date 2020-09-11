@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.addticket;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spannable;
@@ -129,6 +130,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private Employee selfEmployee;
     private Priority selectedPriority;
     private String selectedEmployeeId;
+    private boolean createTicketFromThread;
 
     @Override
     protected int getLayout() {
@@ -157,6 +159,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         GlobalUtils.showLog(TAG, "tag list size: " + tagsList.size());
         tagSearchAdapter = new TagSearchAdapter(this, tagsList);
         etLabel.setAdapter(tagSearchAdapter);
+
+        Intent intent = getIntent();
+        createTicketFromThread = intent.getBooleanExtra("create_ticket_from_thread", false);
+
+        if (createTicketFromThread) {
+            setDataFromThread(intent);
+        }
 
         spPriority.setOnTouchListener((v, event) -> {
             etPriority.requestFocus();
@@ -187,17 +196,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             UiUtils.hideKeyboard(this);
             if (!CollectionUtils.isEmpty(customerList)) {
                 selectedCustomer = customerList.get(position);
-                if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
-                    etEmail.setText(selectedCustomer.getEmail());
-                    etEmail.setFocusable(false);
-                    etEmail.setEnabled(false);
-                }
-
-                if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
-                    etPhone.setText(selectedCustomer.getPhone());
-                    etPhone.setFocusable(false);
-                    etPhone.setEnabled(false);
-                }
+                setEmailAndPhoneIfAvailable();
             }
         });
 
@@ -312,6 +311,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etAssignEmployee.setText(selfEmployee.getName());
             etAssignEmployee.setSelection(selfEmployee.getName().length());
             svSearchEmployee.setVisibility(View.GONE);
+
+            hideKeyBoard();
         });
 
         etAssignEmployee.addTextChangedListener(new TextWatcher() {
@@ -379,6 +380,42 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
+    private void setDataFromThread(Intent i) {
+        String summaryText = i.getStringExtra("summary_text");
+        String customerName = i.getStringExtra("customer_name");
+        String employeeId = i.getStringExtra("employee_id");
+        String teamId = i.getStringExtra("team");
+
+        etSummary.setText(summaryText);
+        etCustomerName.setText(customerName);
+//        setEmailAndPhoneIfAvailable();
+
+        if (employeeId != null) {
+            Employee employee = EmployeeRepo.getInstance().getEmployeeByAccountId(employeeId);
+            selectedEmployeeId = employee.getEmployeeId();
+            etAssignEmployee.setText(employee.getName());
+        }
+
+        if (teamId != null) {
+            Tags tags = TagRepo.getInstance().getTagById(teamId);
+            addNewTagChip(tags);
+        }
+    }
+
+    private void setEmailAndPhoneIfAvailable() {
+        if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
+            etEmail.setText(selectedCustomer.getEmail());
+            etEmail.setFocusable(false);
+            etEmail.setEnabled(false);
+        }
+
+        if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
+            etPhone.setText(selectedCustomer.getPhone());
+            etPhone.setFocusable(false);
+            etPhone.setEnabled(false);
+        }
+    }
+
 
     private void setUpPriorityDropdown() {
         List<Priority> priorityList = getPriorityList();
@@ -404,6 +441,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
     private void setSelfDetails() {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
+        GlobalUtils.showLog(TAG, "employee check: " + employee);
         if (employee != null) {
             tvSelfName.setText(employee.getName() + " (Me)");
 
@@ -521,6 +559,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
     @Override
     public void onCreateTicketSuccess() {
+        if (createTicketFromThread) {
+            Intent intent = new Intent();
+            setResult(2, intent);
+        }
         finish();
     }
 

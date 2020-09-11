@@ -263,7 +263,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                             @Override
                             public void onError(Throwable e) {
                                 getView().hideProgressBar();
-                                getView().filterClosedTicketFailed(e.getLocalizedMessage());
+                                getView().getServiceFail(e.getLocalizedMessage());
                             }
 
                             @Override

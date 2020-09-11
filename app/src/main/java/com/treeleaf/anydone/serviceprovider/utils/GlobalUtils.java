@@ -87,6 +87,16 @@ public class GlobalUtils {
         return "";
     }
 
+    public static String getDateShort(long time) {
+        try {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd MMM");
+            return sdf.format(new Date(time));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public static String getDateNormal(long time) {
         try {
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("d MMM, yyyy");
@@ -102,6 +112,13 @@ public class GlobalUtils {
         Date date = new Date(time);
         return dateFormat.format(date);
     }
+
+    public static String getTimeExcludeMillis(long time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date(time);
+        return dateFormat.format(date);
+    }
+
 
     public static AnydoneProto.Gender getGender(String selectedItem) {
         switch (selectedItem) {
@@ -424,6 +441,7 @@ Limit selectable Date range
         }
         return -1;
     }
+
 
     public static List<Priority> getPriorityList() {
         List<Priority> priorityList = new ArrayList<>();

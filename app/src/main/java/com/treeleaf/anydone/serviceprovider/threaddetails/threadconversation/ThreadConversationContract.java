@@ -7,7 +7,6 @@ import android.net.Uri;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
@@ -72,27 +71,23 @@ public class ThreadConversationContract {
         void getSuggestionFail(String msg);
 
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
-
-        void onTaskStartSuccess();
-
-        void onTaskStartFail(String msg);
     }
 
     public interface ThreadConversationPresenter extends Presenter<ThreadConversationView> {
 
-        void getThread(long id);
+        void getThread(String id);
 
         void uploadImage(Uri uri, Conversation conversation, Activity activity);
 
         void uploadDoc(Uri uri, Conversation conversation);
 
-        void publishTextOrUrlMessage(String message, long orderId);
+        void publishTextOrUrlMessage(String message, String threadId);
 
-        void publishImage(String imageUrl, long orderId, String clientId, String imageCaption);
+        void publishImage(String imageUrl, String threadId, String clientId, String imageCaption);
 
-        void publishDoc(String docUrl, File file, long orderId, String clientId);
+        void publishDoc(String docUrl, File file, String threadId, String clientId);
 
-        void subscribeSuccessMessage(long orderId, String userAccountId);
+        void subscribeSuccessMessage(String threadId, String userAccountId);
 
         void subscribeFailMessage();
 
@@ -100,34 +95,32 @@ public class ThreadConversationContract {
 
         void checkConnection(MqttAndroidClient client);
 
-        void getMessages(long refId, long from, long to, int pageSize);
+        void getMessages(String refId, long from, long to, int pageSize);
 
-        void createPreConversationForImage(String imageUri, long orderId,
+        void createPreConversationForImage(String imageUri, String threadId,
                                            String imageTitle, Bitmap bitmap);
 
-        void createPreConversationForText(String message, long orderId, boolean link);
+        void createPreConversationForText(String message, String threadId, boolean link);
 
-        void createPreConversationForDoc(long orderId, File file);
+        void createPreConversationForDoc(String threadId, File file);
 
         void publishMessageDelete(Conversation message);
 
         void sendDeliveredStatusForMessages(List<Conversation> conversationList);
 
-        void publishTextMessage(String message, long orderId,
+        void publishTextMessage(String message, String threadId,
                                 String userAccountId, String clientId);
 
-        void publishLinkMessage(String message, long orderId,
+        void publishLinkMessage(String message, String threadId,
                                 String userAccountId, String clientId);
 
         void setConversationAsFailed(Conversation conversation);
 
-        void getSuggestions(String nextMessageId, long refId, boolean backClicked);
+        void getSuggestions(String nextMessageId, String refId, boolean backClicked);
 
         void getServiceProviderInfo(Tickets tickets);
 
         void enterMessage(RecyclerView conversation, TextInputEditText etMessage);
-
-        void startTask(long ticketId);
 
     }
 }

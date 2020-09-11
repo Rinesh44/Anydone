@@ -2,17 +2,14 @@ package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.UserProto;
-import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
+import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
+import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import java.util.List;
 
@@ -76,65 +73,91 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
     }
 
     @Override
-    public void getTicketTimeline(long ticketId) {
-//        getView().showProgressBar("Please wait...");
-        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+    public void enableBot(String threadId) {
+        getView().showProgressBar("Enabling bot...");
+        Observable<RtcServiceRpcProto.RtcServiceBaseResponse> rtcBaseResponseObservable;
         String token = Hawk.get(Constants.TOKEN);
-        ticketObservable = threadTimelineRepository.getTicketTimeline(token,
-                ticketId);
 
-        addSubscription(ticketObservable
+        rtcBaseResponseObservable = threadTimelineRepository.enableBot(token, threadId);
+
+        addSubscription(rtcBaseResponseObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse timelineResponse) {
-                        GlobalUtils.showLog(TAG, "timeline response:"
-                                + timelineResponse);
+                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
+                        GlobalUtils.showLog(TAG, "enable bot response:"
+                                + rtcResponse);
+
                         getView().hideProgressBar();
-
-                        if (timelineResponse == null) {
-                            getView().geTicketTimelineFail("Failed to get timeline");
+                        if (rtcResponse == null) {
+                            getView().enableBotFail("Failed to enable bot");
                             return;
                         }
 
-                        if (timelineResponse.getError()) {
-                            getView().geTicketTimelineFail(timelineResponse.getMsg());
+                        if (rtcResponse.getError()) {
+                            getView().enableBotFail(rtcResponse.getMsg());
                             return;
                         }
 
-                        Employee assignedEmployee = ProtoMapper.
-                                transformAssignedEmployee(timelineResponse.getTicket().
-                                        getEmployeeAssigned());
-
-                        getView().getTicketTimelineSuccess(assignedEmployee);
-
+                        getView().enableBotSuccess();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         getView().hideProgressBar();
-                        getView().onFailure(e.getLocalizedMessage());
+                        getView().enableBotFail(e.getLocalizedMessage());
                     }
 
                     @Override
                     public void onComplete() {
-                        getView().hideProgressBar();
                     }
                 }));
     }
 
     @Override
-    public void getCustomerDetails(long ticketId) {
-        Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
-        getView().setCustomerDetails(tickets.getCustomer());
+    public void disableBot(String threadId) {
+        getView().showProgressBar("Disabling bot...");
+        Observable<RtcServiceRpcProto.RtcServiceBaseResponse> rtcBaseResponseObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        rtcBaseResponseObservable = threadTimelineRepository.disableBot(token, threadId);
+
+        addSubscription(rtcBaseResponseObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                    @Override
+                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
+                        GlobalUtils.showLog(TAG, "disable bot response:"
+                                + rtcResponse);
+
+                        getView().hideProgressBar();
+                        if (rtcResponse == null) {
+                            getView().disableBotFail("Failed to disable bot");
+                            return;
+                        }
+
+                        if (rtcResponse.getError()) {
+                            getView().disableBotFail(rtcResponse.getMsg());
+                            return;
+                        }
+
+                        getView().disableBotSuccess();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().disableBotFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
     }
 
-    @Override
-    public void getAssignedEmployees(long ticketId) {
-        Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
-        getView().setAssignedEmployee(tickets.getAssignedEmployee());
-    }
 
 /*    @Override
     public void unAssignEmployee(long ticketId, String employeeId) {

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_service_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:id="@+id/ll_service_holder"
-    android:padding="@dimen/dimen_10x1">
+    android:paddingStart="@dimen/dimens_2x"
+    android:paddingTop="@dimen/dimen_10x1"
+    android:paddingEnd="@dimen/dimens_2x"
+    android:paddingBottom="@dimen/dimen_10x1">
 
     <ImageView
         android:id="@+id/iv_service_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_assigned_emp_placeholder" />
 
     <TextView

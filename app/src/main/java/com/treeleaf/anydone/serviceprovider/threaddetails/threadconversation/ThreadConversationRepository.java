@@ -8,7 +8,7 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import io.reactivex.Observable;
 
 public interface ThreadConversationRepository {
-    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessages(String token, long ticketId,
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessages(String token, String threadId,
                                                                       long from,
                                                                       long to,
                                                                       int pageSize);

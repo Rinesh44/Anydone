@@ -149,7 +149,7 @@ public final class ProtoMapper {
             conversation.setSenderName(message.getSenderAccountObj().getFullName());
             conversation.setSentAt(message.getSentAt());
             conversation.setSavedAt(message.getSavedAt());
-            conversation.setRefId(Long.parseLong(message.getRefId()));
+            conversation.setRefId((message.getRefId()));
             conversation.setSent(true);
             conversation.setReceiverList(receiverList);
             conversationList.add(conversation);
@@ -162,6 +162,7 @@ public final class ProtoMapper {
             case "TEXT_RTC_MESSAGE":
                 conversation.setMessage(message.getText().getMessage());
                 break;
+
             case "LINK_RTC_MESSAGE":
                 conversation.setMessage(message.getLink().getTitle());
                 break;
