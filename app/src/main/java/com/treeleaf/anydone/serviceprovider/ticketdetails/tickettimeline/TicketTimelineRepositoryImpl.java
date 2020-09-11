@@ -48,4 +48,12 @@ public class TicketTimelineRepositoryImpl implements TicketTimelineRepository {
     public Observable<UserRpcProto.UserBaseResponse> findEmployees(String token) {
         return anyDoneService.findEmployees(token);
     }
+
+    @Override
+    public Observable<TicketServiceRpcProto.TicketBaseResponse> assignTicket(String token,
+                                                                             long ticketId,
+                                                                             TicketProto.Ticket assignedEmployee) {
+        return anyDoneService.assignEmployee(token, ticketId, assignedEmployee);
+    }
+
 }

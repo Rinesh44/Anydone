@@ -26,7 +26,10 @@
         android:id="@+id/rl_ticket_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground">
 
         <LinearLayout
             android:id="@+id/ll_ticket_view"
@@ -149,6 +152,7 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/dimens_2x"
                 android:scrollbars="none">
 
                 <LinearLayout

@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation;
 
 import com.treeleaf.anydone.entities.BotConversationProto;
+import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
@@ -17,11 +18,12 @@ public class ThreadConversationRepositoryImpl implements ThreadConversationRepos
 
     @Override
     public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessages(String token,
-                                                                             long ticketId,
+                                                                             String threadId,
                                                                              long from,
                                                                              long to,
                                                                              int pageSize) {
-        return anyDoneService.getTicketMessages(token, ticketId, to, from, pageSize);
+        return anyDoneService.getThreadMessages(token, threadId, from, to,
+                pageSize, RtcProto.RtcMessageContext.CONVERSATION_CONTEXT_VALUE);
     }
 
     @Override

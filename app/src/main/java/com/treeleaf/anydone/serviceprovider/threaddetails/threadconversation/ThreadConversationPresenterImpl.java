@@ -23,7 +23,6 @@ import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
-import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
@@ -89,7 +88,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void getThread(long id) {
+    public void getThread(String id) {
         Thread thread = ThreadRepo.getInstance().getThreadById(id);
         if (thread != null) {
             getView().getThreadSuccess(thread);
@@ -310,17 +309,17 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
 
     @Override
-    public void publishTextOrUrlMessage(String message, long orderId) {
+    public void publishTextOrUrlMessage(String message, String threadId) {
         String messageType = getTextOrLink(message);
         if (messageType.equalsIgnoreCase(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name())) {
-            createPreConversationForText(message, orderId, false);
+            createPreConversationForText(message, threadId, false);
         } else {
-            createPreConversationForText(message, orderId, true);
+            createPreConversationForText(message, threadId, true);
         }
     }
 
     @Override
-    public void publishLinkMessage(String message, long orderId, String userAccountId,
+    public void publishLinkMessage(String message, String threadId, String userAccountId,
                                    String clientId) {
 
         String[] links = extractLinks(message);
@@ -333,14 +332,15 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setLink(linkMessage)
+                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE)
-                .setRefId(String.valueOf(orderId))
+                .setRefId(String.valueOf(threadId))
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(RtcProto.RtcMessageContext.CONVERSATION_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -354,7 +354,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
     @Override
     public void publishTextMessage(String message,
-                                   long orderId,
+                                   String threadId,
                                    String userAccountId,
                                    String clientId) {
         RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
@@ -365,14 +365,15 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setText(textMessage)
+                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
-                .setRefId(String.valueOf(orderId))
+                .setRefId(String.valueOf(threadId))
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(RtcProto.RtcMessageContext.CONVERSATION_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -404,7 +405,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void getSuggestions(String nextMessageId, long refId, boolean backClicked) {
+    public void getSuggestions(String nextMessageId, String refId, boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "Message id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -519,53 +520,6 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 });
     }
 
-    @Override
-    public void startTask(long ticketId) {
-        getView().showProgressBar("Please wait...");
-        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
-        String token = Hawk.get(Constants.TOKEN);
-
-        ticketObservable = threadConversationRepository.startTask(token,
-                ticketId);
-        addSubscription(ticketObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
-                    @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
-                                               startTicketResponse) {
-                        GlobalUtils.showLog(TAG, "start ticket response: " +
-                                startTicketResponse);
-
-                        getView().hideProgressBar();
-                        if (startTicketResponse == null) {
-                            getView().onTaskStartFail("Failed to start ticket");
-                            return;
-                        }
-
-                        if (startTicketResponse.getError()) {
-                            getView().onTaskStartFail(startTicketResponse.getMsg());
-                            return;
-                        }
-
-                        getView().onTaskStartSuccess();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideProgressBar();
-                        getView().getMessageFail(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        getView().hideProgressBar();
-                    }
-                })
-        );
-    }
-
-
     private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
         RealmList<KGraph> kGraphList = new RealmList<>();
         for (KGraphProto.Answer answer : answersList
@@ -583,7 +537,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
 
-    public void publishImage(String imageUrl, long orderId, String clientId, String imageCaption) {
+    public void publishImage(String imageUrl, String threadId, String clientId, String imageCaption) {
 
         RtcProto.Image image = RtcProto.Image.newBuilder()
                 .setUrl(imageUrl)
@@ -598,14 +552,15 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .setSenderAccountId(employee.getAccountId())
                 .setClientId(clientId)
                 .setImage(imageMessage)
+                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE)
-                .setRefId(String.valueOf(orderId))
+                .setRefId(String.valueOf(threadId))
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(RtcProto.RtcMessageContext.CONVERSATION_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -618,7 +573,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void publishDoc(String docUrl, File file, long orderId, String clientId) {
+    public void publishDoc(String docUrl, File file, String threadId, String clientId) {
 
         RtcProto.AttachmentMessage attachmentMessage = RtcProto.AttachmentMessage.newBuilder()
                 .setUrl(docUrl)
@@ -629,14 +584,15 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .setSenderAccountId(employee.getAccountId())
                 .setClientId(clientId)
                 .setAttachment(attachmentMessage)
+                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE)
-                .setRefId(String.valueOf(orderId))
+                .setRefId(threadId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(RtcProto.RtcMessageContext.CONVERSATION_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -658,8 +614,8 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void subscribeSuccessMessage(long ticketId, String userAccountId) {
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + ticketId + "/" + userAccountId;
+    public void subscribeSuccessMessage(String threadId, String userAccountId) {
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + threadId + "/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
         TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
@@ -686,7 +642,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                     conversation.setkGraphBack(false);
                     conversation.setkGraphTitle(relayResponse.getRtcMessage()
                             .getText().getMessage());
-                    conversation.setRefId(Long.parseLong(relayResponse
+                    conversation.setRefId((relayResponse
                             .getRtcMessage().getRefId()));
 
                     ConversationRepo.getInstance().saveConversation(conversation,
@@ -766,6 +722,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                         }
                     });
 
+
                     GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
                     if (!relayResponse.getRtcMessage().getSenderAccountId()
                             .equalsIgnoreCase(userAccountId)) {
@@ -807,7 +764,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setMessageDeliveredRequest(deliveredRequest)
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DELIVERED_MSG_RELAY)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(RtcProto.RtcMessageContext.CONVERSATION_CONTEXT)
                 .build();
 
         GlobalUtils.showLog(TAG, "actual delivered object: " + relayRequest);
@@ -887,7 +844,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .getSenderAccountObj().getFullName());
         conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getProfilePic());
-        conversation.setRefId(Long.parseLong(relayResponse.getRtcMessage().getRefId()));
+        conversation.setRefId((relayResponse.getRtcMessage().getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
         conversation.setConversationId(relayResponse.getRtcMessage().getRtcMessageId());
@@ -1086,7 +1043,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void getMessages(long refId, long from, long to, int pageSize) {
+    public void getMessages(String refId, long from, long to, int pageSize) {
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
         String token = Hawk.get(Constants.TOKEN);
 
@@ -1098,24 +1055,24 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
                     @Override
                     public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse
-                                               rtcServiceBaseResponse) {
-                        GlobalUtils.showLog(TAG, "messages service response: " +
-                                rtcServiceBaseResponse);
+                                               rtcThreadBaseResponse) {
+                        GlobalUtils.showLog(TAG, "messages thread response: " +
+                                rtcThreadBaseResponse);
 
-                        if (rtcServiceBaseResponse == null) {
+                        if (rtcThreadBaseResponse == null) {
                             getView().getMessageFail("Failed to get messages");
                             return;
                         }
 
-                        if (rtcServiceBaseResponse.getError()) {
-                            getView().getMessageFail(rtcServiceBaseResponse.getMsg());
+                        if (rtcThreadBaseResponse.getError()) {
+                            getView().getMessageFail(rtcThreadBaseResponse.getMsg());
                             return;
                         }
 
                         GlobalUtils.showLog(TAG, "messages response: " +
-                                rtcServiceBaseResponse.getRtcMessagesList());
-                        if (!CollectionUtils.isEmpty(rtcServiceBaseResponse.getRtcMessagesList())) {
-                            saveConversations(rtcServiceBaseResponse.getRtcMessagesList());
+                                rtcThreadBaseResponse.getRtcMessagesList());
+                        if (!CollectionUtils.isEmpty(rtcThreadBaseResponse.getRtcMessagesList())) {
+                            saveConversations(rtcThreadBaseResponse.getRtcMessagesList());
                         }
                     }
 
@@ -1134,7 +1091,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void createPreConversationForImage(String imageUri, long orderId,
+    public void createPreConversationForImage(String imageUri, String threadId,
                                               String imageTitle, Bitmap bitmap) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
@@ -1144,7 +1101,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         conversation.setSenderId(employee.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
-        conversation.setRefId(orderId);
+        conversation.setRefId(threadId);
         conversation.setSent(false);
         conversation.setSendFail(false);
         conversation.setSentAt(System.currentTimeMillis());
@@ -1167,7 +1124,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void createPreConversationForText(String message, long orderId, boolean link) {
+    public void createPreConversationForText(String message, String threadId, boolean link) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
         GlobalUtils.showLog(TAG, "pre conversation text id: " + clientId);
         Conversation conversation = new Conversation();
@@ -1177,7 +1134,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
-        conversation.setRefId(orderId);
+        conversation.setRefId(threadId);
         conversation.setSent(false);
         conversation.setSendFail(false);
         conversation.setSentAt(System.currentTimeMillis());
@@ -1199,7 +1156,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void createPreConversationForDoc(long orderId, File file) {
+    public void createPreConversationForDoc(String threadId, File file) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
         int fileLength = Integer.parseInt(String.valueOf(file.length() / 1024));
         String fileSizeFormatted = getFileSize(fileLength);
@@ -1209,7 +1166,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         conversation.setSenderId(employee.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
-        conversation.setRefId(orderId);
+        conversation.setRefId(threadId);
         conversation.setSent(false);
         conversation.setSendFail(false);
         conversation.setFileName(file.getName());
@@ -1245,7 +1202,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_DELETE)
                 .setDeleteMessageReq(deleteMessageReq)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(RtcProto.RtcMessageContext.CONVERSATION_CONTEXT)
                 .build();
 
         GlobalUtils.showLog(TAG, "actual values: " + relayRequest);

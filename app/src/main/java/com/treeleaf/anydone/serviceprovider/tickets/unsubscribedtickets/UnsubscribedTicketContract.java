@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class UnsubscribedTicketContract {
 
         void getSubscribeableTicketFail(String msg);
 
-        void onSubscribeSuccess();
+        void onSubscribeSuccess(long ticketId);
 
         void onSubscribeFail(String msg);
 
@@ -26,7 +27,7 @@ public class UnsubscribedTicketContract {
 
         void subscribe(long ticketId);
 
-        void filterTickets(String searchQuery, long from, long to, int ticketState);
+        void filterTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
     }
 
 }

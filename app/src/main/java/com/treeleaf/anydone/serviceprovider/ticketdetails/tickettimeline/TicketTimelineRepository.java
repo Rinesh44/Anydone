@@ -29,5 +29,9 @@ public interface TicketTimelineRepository {
 
     Observable<UserRpcProto.UserBaseResponse> findEmployees(String token);
 
+    Observable<TicketServiceRpcProto.TicketBaseResponse> assignTicket(String token,
+                                                                      long ticketId,
+                                                                      TicketProto.Ticket assignedEmployee);
+
 
 }

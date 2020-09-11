@@ -26,6 +26,9 @@
     <RelativeLayout
         android:id="@+id/rl_ticket_holder"
         android:layout_width="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
         android:layout_height="wrap_content"
         android:background="@color/white">
 
@@ -150,6 +153,7 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/dimens_2x"
                 android:scrollbars="none">
 
                 <LinearLayout

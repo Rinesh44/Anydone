@@ -16,17 +16,18 @@ public class UnassignedTicketRepositoryImpl implements UnassignedTicketRepositor
 
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignableTickets(String token,
+                                                                                     String serviceId,
                                                                                      long from,
                                                                                      long to,
                                                                                      int page) {
-        return anyDoneService.getAssignableTickets(token, from, to, page);
+        return anyDoneService.getAssignableTickets(token, serviceId, from, to, page);
     }
 
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse> assignTicket(String token,
                                                                              long ticketId,
                                                                              TicketProto.Ticket assignedEmployee) {
-        return anyDoneService.assignToSelf(token, ticketId, assignedEmployee);
+        return anyDoneService.assignEmployee(token, ticketId, assignedEmployee);
     }
 
     @Override

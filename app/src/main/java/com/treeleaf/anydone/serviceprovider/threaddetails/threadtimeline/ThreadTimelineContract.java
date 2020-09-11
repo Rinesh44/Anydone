@@ -9,29 +9,26 @@ public class ThreadTimelineContract {
 
     public interface ThreadTimelineView extends BaseView {
 
-        void getTicketTimelineSuccess(Employee assignedEmployee);
-
-        void geTicketTimelineFail(String msg);
-
-        void setCustomerDetails(Customer customerDetails);
-
-        void setAssignedEmployee(Employee assignedEmployee);
-
         void getEmployeeSuccess();
 
         void getEmployeeFail(String msg);
+
+        void enableBotSuccess();
+
+        void enableBotFail(String msg);
+
+        void disableBotFail(String msg);
+
+        void disableBotSuccess();
 
     }
 
     public interface ThreadTimelinePresenter extends Presenter<ThreadTimelineView> {
 
-        void getTicketTimeline(long ticketId);
-
-        void getCustomerDetails(long ticketId);
-
-        void getAssignedEmployees(long ticketId);
-
         void getEmployees();
 
+        void enableBot(String threadId);
+
+        void disableBot(String threadId);
     }
 }

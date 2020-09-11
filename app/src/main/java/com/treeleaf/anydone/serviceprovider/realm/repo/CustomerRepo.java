@@ -66,6 +66,20 @@ public class CustomerRepo extends Repo {
         }
     }
 
+    public Customer getCustomerById(String customerId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            return realm.where(Customer.class)
+                    .equalTo("customerId", customerId)
+                    .findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
     public List<Customer> searchCustomers(String query) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {

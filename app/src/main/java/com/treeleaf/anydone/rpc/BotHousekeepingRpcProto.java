@@ -138,6 +138,15 @@ public final class BotHousekeepingRpcProto {
      * <code>optional .treeleaf.anydone.entities.IntentResponse intentResponse = 14;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.IntentResponse getIntentResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    boolean hasTrainRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest getTrainRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseRequest}
@@ -854,6 +863,58 @@ public final class BotHousekeepingRpcProto {
       
     }
 
+    public static final int TRAINREQUEST_FIELD_NUMBER = 15;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest trainRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    public boolean hasTrainRequest() {
+      return trainRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest getTrainRequest() {
+      return trainRequest_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.getDefaultInstance() : trainRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    private void setTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      trainRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    private void setTrainRequest(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.Builder builderForValue) {
+      trainRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    private void mergeTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
+      if (trainRequest_ != null &&
+          trainRequest_ != com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.getDefaultInstance()) {
+        trainRequest_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.newBuilder(trainRequest_).mergeFrom(value).buildPartial();
+      } else {
+        trainRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+     */
+    private void clearTrainRequest() {  trainRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -897,6 +958,9 @@ public final class BotHousekeepingRpcProto {
       }
       if (intentResponse_ != null) {
         output.writeMessage(14, getIntentResponse());
+      }
+      if (trainRequest_ != null) {
+        output.writeMessage(15, getTrainRequest());
       }
     }
 
@@ -965,6 +1029,10 @@ public final class BotHousekeepingRpcProto {
       if (intentResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getIntentResponse());
+      }
+      if (trainRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getTrainRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1663,6 +1731,51 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+       */
+      public boolean hasTrainRequest() {
+        return instance.hasTrainRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest getTrainRequest() {
+        return instance.getTrainRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+       */
+      public Builder setTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
+        copyOnWrite();
+        instance.setTrainRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+       */
+      public Builder setTrainRequest(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTrainRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+       */
+      public Builder mergeTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
+        copyOnWrite();
+        instance.mergeTrainRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 15;</code>
+       */
+      public Builder clearTrainRequest() {  copyOnWrite();
+        instance.clearTrainRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1706,6 +1819,7 @@ public final class BotHousekeepingRpcProto {
           entity_ = visitor.visitMessage(entity_, other.entity_);
           trainingPhrase_ = visitor.visitMessage(trainingPhrase_, other.trainingPhrase_);
           intentResponse_ = visitor.visitMessage(intentResponse_, other.intentResponse_);
+          trainRequest_ = visitor.visitMessage(trainRequest_, other.trainRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1855,6 +1969,19 @@ public final class BotHousekeepingRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(intentResponse_);
                     intentResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 122: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.Builder subBuilder = null;
+                  if (trainRequest_ != null) {
+                    subBuilder = trainRequest_.toBuilder();
+                  }
+                  trainRequest_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(trainRequest_);
+                    trainRequest_ = subBuilder.buildPartial();
                   }
 
                   break;

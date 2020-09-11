@@ -48,24 +48,21 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
-import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.MessageAdapter;
+import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -84,7 +81,6 @@ import java.util.UUID;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.realm.RealmList;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -95,6 +91,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 6543;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 8776;
     public static final int PICK_FILE_REQUEST_CODE = 8997;
+    public static final int CREATE_TICKET_CODE = 7782;
 
     @BindView(R.id.pb_progress)
     ProgressBar progress;
@@ -153,7 +150,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
     private String currentPhotoPath = "";
-    private long threadId;
+    private String threadId;
     private BottomSheetBehavior messageSheetBehavior;
     private BottomSheetBehavior profileSheetBehavior;
     private Conversation longClickedMessage;
@@ -178,7 +175,6 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         ThreadDetailActivity activity = (ThreadDetailActivity) getActivity();
         assert activity != null;
         activity.setOutSideTouchListener(this);
@@ -187,26 +183,26 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         userAccountId = userAccount.getAccountId();
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
-        threadId = i.getLongExtra("thread_id", -1);
-        if (threadId != -1) {
+        threadId = i.getStringExtra("thread_id");
+        if (threadId != null) {
             conversationList = ConversationRepo.getInstance()
                     .getConversationByOrderId(threadId);
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
 
-    /*        if (CollectionUtils.isEmpty(conversationList)) {
-                presenter.getMessages(ticketId, 0, System.currentTimeMillis(),
+            if (CollectionUtils.isEmpty(conversationList)) {
+                presenter.getMessages(threadId, 0, System.currentTimeMillis(),
                         100);
             } else {
                 fetchRemainingMessages = true;
                 Conversation lastMessage = conversationList.get(conversationList.size() - 1);
-                presenter.getMessages(ticketId,
+                presenter.getMessages(threadId,
                         lastMessage.getSentAt() + 1, System.currentTimeMillis(), 100);
-            }*/
+            }
 
             setUpConversationView();
             presenter.subscribeSuccessMessage(threadId, userAccount.getAccountId());
             presenter.subscribeFailMessage();
-            presenter.getThread(threadId);
+            presenter.getThread(String.valueOf(threadId));
         }
 
         clCaptureView = view.findViewById(R.id.cl_capture_view);
@@ -263,11 +259,6 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         }
     }
 
-    @OnClick(R.id.btn_start_task)
-    void startTask() {
-        presenter.startTask(threadId);
-    }
-
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
@@ -292,6 +283,20 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         clipboard.setPrimaryClip(clip);
         toggleMessageBottomSheet();
         Toast.makeText(getActivity(), "Copied", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.rl_create_ticket_holder)
+    void createTicket() {
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        Intent i = new Intent(getActivity(), AddTicketActivity.class);
+        i.putExtra("summary_text", longClickedMessage.getMessage());
+        i.putExtra("customer_name", thread.getCustomerName());
+        if (thread.getAssignedEmployee() != null)
+            i.putExtra("employee_id", thread.getAssignedEmployee().getEmployeeId());
+        i.putExtra("team", thread.getDefaultLabelId());
+        i.putExtra("create_ticket_from_thread", true);
+        startActivityForResult(i, CREATE_TICKET_CODE);
+        toggleMessageBottomSheet();
     }
 
     private void showDeleteConfirmation() {
@@ -422,7 +427,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_ticket_conversation;
+        return R.layout.fragment_thread_conversation;
     }
 
 
@@ -487,95 +492,6 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     @Override
     public void getThreadSuccess(Thread thread) {
         GlobalUtils.showLog(TAG, "thread details: " + thread);
-
-
-   /*     if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.)) {
-            llSearchContainer.setVisibility(View.GONE);
-            tvCancelled.setVisibility(View.VISIBLE);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rvConversation.getLayoutParams();
-            params.addRule(RelativeLayout.ABOVE, R.id.tv_cancelled);
-        }*/
-//        presenter.getServiceProviderInfo(tickets);
-    }
-
-    private void setStatusViews(Tickets tickets) {
-        if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CLOSED.name())) {
-            llSearchContainer.setVisibility(View.GONE);
-            tvClosed.setVisibility(View.VISIBLE);
-            tvClosed.setText("Closed");
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
-                    rvConversation.getLayoutParams();
-            params.addRule(RelativeLayout.ABOVE, R.id.tv_closed);
-        }
-
-        if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_RESOLVED.name())) {
-            llSearchContainer.setVisibility(View.GONE);
-            tvClosed.setText("Resolved");
-            tvClosed.setVisibility(View.VISIBLE);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
-                    rvConversation.getLayoutParams();
-            params.addRule(RelativeLayout.ABOVE, R.id.tv_closed);
-        }
-
-        if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
-                || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
-            llSearchContainer.setVisibility(View.GONE);
-            btnStartTask.setVisibility(View.VISIBLE);
-            tvClosed.setVisibility(View.GONE);
-        }
-
-        if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
-            llSearchContainer.setVisibility(View.GONE);
-            btnStartTask.setVisibility(View.GONE);
-        }
-    }
-
-    private void setInitialTicketDetail(Tickets tickets) {
-        Conversation conversation = new Conversation();
-        conversation.setClientId(UUID.randomUUID().toString().replace("-", ""));
-        conversation.setRefId(tickets.getTicketId());
-        conversation.setTicketTitle(tickets.getTitle());
-        conversation.setTicketDesc(tickets.getDescription());
-        conversation.setTagsList(tickets.getTagsRealmList());
-        conversation.setMessageType("INITIAL_TICKET_DETAIL");
-        adapter.setInitialData(conversation);
-    }
-
-
-    private RealmList<Conversation> getGroupedConversations(List<ServiceDoer> serviceDoerList) {
-        RealmList<Conversation> conversationList = new RealmList<>();
-        for (int i = 0; i < serviceDoerList.size(); i++) {
-            for (int j = i + 1; j < serviceDoerList.size(); j++) {
-                // compare list.get(i) and list.get(j)
-                if (serviceDoerList.get(i).getAssignedAt() == serviceDoerList.get(j)
-                        .getAssignedAt()) {
-                    RealmList<ServiceDoer> serviceDoers = new RealmList<>();
-                    Conversation conversation = new Conversation();
-                    conversation.setClientId(UUID.randomUUID().toString()
-                            .replace("-", ""));
-                    conversation.setMessageType("MSG_SERVICE_DOERS_TAG");
-                    conversation.setSentAt(serviceDoerList.get(i).getAssignedAt());
-                    serviceDoers.add(serviceDoerList.get(j));
-                    serviceDoers.add(serviceDoerList.get(i));
-                    conversation.setServiceDoerList(serviceDoers);
-                    conversation.setRefId(threadId);
-                    conversationList.add(conversation);
-                } else {
-                    RealmList<ServiceDoer> serviceDoers = new RealmList<>();
-                    Conversation conversation = new Conversation();
-                    conversation.setSentAt(serviceDoerList.get(j).getAssignedAt());
-                    conversation.setClientId(UUID.randomUUID().toString()
-                            .replace("-", ""));
-                    conversation.setMessageType("MSG_SERVICE_DOERS_TAG");
-                    serviceDoers.add(serviceDoerList.get(j));
-                    serviceDoers.add(serviceDoerList.get(i));
-                    conversation.setServiceDoerList(serviceDoers);
-                    conversation.setRefId(threadId);
-                    conversationList.add(conversation);
-                }
-            }
-        }
-        return conversationList;
     }
 
     @Override
@@ -818,28 +734,6 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     }
 
     @Override
-    public void onTaskStartSuccess() {
-        btnStartTask.setVisibility(View.GONE);
-        llSearchContainer.setVisibility(View.VISIBLE);
-        TicketRepo.getInstance().changeTicketStatusToStart(threadId);
-      /*  if (onTicketStartListener != null)
-            onTicketStartListener.onTicketStarted();*/
-        Hawk.put(Constants.TICKET_STARTED, true);
-    }
-
-    @Override
-    public void onTaskStartFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), msg);
-            onAuthorizationFailed(getActivity());
-            return;
-        }
-
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
-    }
-
-    @Override
     public void setSeenStatus(Conversation conversation) {
         adapter.setData(conversation);
     }
@@ -855,7 +749,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // 2
             uri = FileProvider.getUriForFile(getActivity(),
-                    "com.treeleaf.anydone.provider", file);
+                    "com.treeleaf.anydone.serviceprovider.provider", file);
         } else {
             uri = Uri.fromFile(file); // 3
         }
@@ -881,11 +775,17 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == CREATE_TICKET_CODE && resultCode == 2) {
+            if (data != null) {
+                Toast.makeText(getContext(), "Ticket created", Toast.LENGTH_SHORT).show();
+            }
+        }
+
         if (requestCode == CAMERA_ACTION_PICK_REQUEST_CODE && resultCode == RESULT_OK) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(((ServiceRequestDetailActivity)
+            Objects.requireNonNull(((ThreadDetailActivity)
                     getActivity()).getSupportActionBar()).hide();
 
             uri = Uri.parse(currentPhotoPath);
@@ -921,7 +821,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                 Objects.requireNonNull(getActivity()).getWindow()
                         .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                Objects.requireNonNull(((ServiceRequestDetailActivity)
+                Objects.requireNonNull(((ThreadDetailActivity)
                         getActivity()).getSupportActionBar()).hide();
 
                 uri = data.getData();
@@ -942,7 +842,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         } else if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_CANCELED) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(((ServiceRequestDetailActivity)
+            Objects.requireNonNull(((ThreadDetailActivity)
                     getActivity()).getSupportActionBar()).show();
         }
 
@@ -976,7 +876,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         UiUtils.hideKeyboard(Objects.requireNonNull(getActivity()));
         clCaptureView.setVisibility(View.INVISIBLE);
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(((ServiceRequestDetailActivity)
+        Objects.requireNonNull(((ThreadDetailActivity)
                 getActivity()).getSupportActionBar()).show();
 
         String imageCaption = UiUtils.getString(etImageDesc);
@@ -1061,11 +961,17 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     private void toggleMessageBottomSheet() {
         if (messageSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             RelativeLayout copyHolder = llBottomSheetMessage.findViewById(R.id.rl_copy_holder);
+            RelativeLayout createTicketHolder = llBottomSheetMessage.findViewById(R.id.rl_create_ticket_holder);
             if (!longClickedMessage.getMessageType()
                     .equalsIgnoreCase("TEXT_RTC_MESSAGE")) {
                 copyHolder.setVisibility(View.GONE);
+                createTicketHolder.setVisibility(View.GONE);
+            } else if (longClickedMessage.getMessageType().equalsIgnoreCase("TEXT_RTC_MESSAGE")
+                    && longClickedMessage.getSenderId().equalsIgnoreCase(userAccountId)) {
+                createTicketHolder.setVisibility(View.GONE);
             } else {
                 copyHolder.setVisibility(View.VISIBLE);
+                createTicketHolder.setVisibility(View.VISIBLE);
             }
             messageSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {
@@ -1106,7 +1012,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                     clCaptureView.setVisibility(View.GONE);
                     Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.
                             LayoutParams.FLAG_FULLSCREEN);
-                    Objects.requireNonNull(((ServiceRequestDetailActivity)
+                    Objects.requireNonNull(((ThreadDetailActivity)
                             getActivity()).getSupportActionBar()).show();
                 } else {
                     Objects.requireNonNull(getActivity()).finish();

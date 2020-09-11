@@ -193,4 +193,15 @@
     <string name="ticket_details">Ticket Details</string>
     <string name="priority">Priority*</string>
     <string name="search_employee">Search Employee</string>
+    <string name="select_employee">Select Employee</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="messenger">Messenger</string>
+    <string name="viber">Viber</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,8 +29,6 @@ import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.Thr
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
-import java.util.Objects;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -45,12 +44,12 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
     TextView tvToolbarTitle;
-    @BindView(R.id.toolbar_problem_stat)
-    TextView tvToolbarProblemStat;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
     @BindView(R.id.civ_customer)
     CircleImageView civCustomer;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
 
 
     public OnOutsideClickListener outsideClickListener;
@@ -83,28 +82,21 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
         userAccount = AccountRepo.getInstance().getAccount();
     }
 
-    @OnClick(R.id.iv_share)
-    public void share() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Share link");
-        sendIntent.setType("text/plain");
-
-        Intent shareIntent = Intent.createChooser(sendIntent, null);
-        startActivity(shareIntent);
-    }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
 //            case R.id.action_video_call:
 //                return true;
         }
         return false;
+    }
+
+    @OnClick(R.id.iv_back)
+    public void back() {
+        hideKeyBoard();
+        onBackPressed();
     }
 
 
@@ -148,7 +140,6 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
 
     private void setUpToolbar(String customerName, String customerImg) {
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
         tvToolbarTitle.setText(customerName);
 

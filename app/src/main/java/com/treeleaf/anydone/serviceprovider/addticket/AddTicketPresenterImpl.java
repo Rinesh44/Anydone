@@ -66,16 +66,6 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         }
 
         List<TicketProto.TicketTag> tagList = new ArrayList<>();
-
-        UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
-                .setEmployeeProfileId(assignedEmployeeId)
-                .build();
-
-        TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
-                .setAssignedAt(System.currentTimeMillis())
-                .setAssignedTo(employeeProfile)
-                .build();
-
         for (String tagId : tags
         ) {
             TicketProto.TicketTag tag = TicketProto.TicketTag.newBuilder()
@@ -91,19 +81,40 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                 .build();
 
         GlobalUtils.showLog(TAG, "Ticket title check: " + title);
-        GlobalUtils.showLog(TAG, "employee assigned check: " + employeeAssigned);
         GlobalUtils.showLog(TAG, "ticket priority check: " + priority);
         GlobalUtils.showLog(TAG, "service check: " + service);
-        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
-                .setTitle(title)
-                .setDescription(description)
-                .setCustomer(customer)
-                .setCustomerType(TicketProto.CustomerType.EXTERNAL_CUSTOMER)
-                .setPriority(getTicketPriority(priority))
-                .setService(service)
-                .setEmployeeAssigned(employeeAssigned)
-                .addAllTags(tagList)
-                .build();
+
+        TicketProto.Ticket ticket;
+        if (assignedEmployeeId != null) {
+            UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
+                    .setEmployeeProfileId(assignedEmployeeId)
+                    .build();
+
+            TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
+                    .setAssignedAt(System.currentTimeMillis())
+                    .setAssignedTo(employeeProfile)
+                    .build();
+            ticket = TicketProto.Ticket.newBuilder()
+                    .setTitle(title)
+                    .setDescription(description)
+                    .setCustomer(customer)
+                    .setCustomerType(TicketProto.CustomerType.EXTERNAL_CUSTOMER)
+                    .setPriority(getTicketPriority(priority))
+                    .setService(service)
+                    .setEmployeeAssigned(employeeAssigned)
+                    .addAllTags(tagList)
+                    .build();
+        } else {
+            ticket = TicketProto.Ticket.newBuilder()
+                    .setTitle(title)
+                    .setDescription(description)
+                    .setCustomer(customer)
+                    .setCustomerType(TicketProto.CustomerType.EXTERNAL_CUSTOMER)
+                    .setPriority(getTicketPriority(priority))
+                    .setService(service)
+                    .addAllTags(tagList)
+                    .build();
+        }
 
         ticketObservable = addTicketRepository.createTicket(token, ticket);
 

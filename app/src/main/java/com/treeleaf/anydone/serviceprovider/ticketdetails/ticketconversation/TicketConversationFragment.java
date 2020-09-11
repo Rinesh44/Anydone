@@ -192,10 +192,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         if (ticketId != -1) {
             Hawk.put(Constants.CURRENT_SERVICE_ORDER_ID, ticketId);
             conversationList = ConversationRepo.getInstance()
-                    .getConversationByOrderId(ticketId);
+                    .getConversationByOrderId(String.valueOf(ticketId));
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
 
-    /*        if (CollectionUtils.isEmpty(conversationList)) {
+            if (CollectionUtils.isEmpty(conversationList)) {
                 presenter.getMessages(ticketId, 0, System.currentTimeMillis(),
                         100);
             } else {
@@ -203,7 +203,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 Conversation lastMessage = conversationList.get(conversationList.size() - 1);
                 presenter.getMessages(ticketId,
                         lastMessage.getSentAt() + 1, System.currentTimeMillis(), 100);
-            }*/
+            }
 
             setUpConversationView();
             presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
@@ -542,7 +542,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private void setInitialTicketDetail(Tickets tickets) {
         Conversation conversation = new Conversation();
         conversation.setClientId(UUID.randomUUID().toString().replace("-", ""));
-        conversation.setRefId(tickets.getTicketId());
+        conversation.setRefId(String.valueOf(tickets.getTicketId()));
         conversation.setTicketTitle(tickets.getTitle());
         conversation.setTicketDesc(tickets.getDescription());
         conversation.setTagsList(tickets.getTagsRealmList());
@@ -567,7 +567,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     serviceDoers.add(serviceDoerList.get(j));
                     serviceDoers.add(serviceDoerList.get(i));
                     conversation.setServiceDoerList(serviceDoers);
-                    conversation.setRefId(ticketId);
+                    conversation.setRefId(String.valueOf(ticketId));
                     conversationList.add(conversation);
                 } else {
                     RealmList<ServiceDoer> serviceDoers = new RealmList<>();
@@ -579,7 +579,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     serviceDoers.add(serviceDoerList.get(j));
                     serviceDoers.add(serviceDoerList.get(i));
                     conversation.setServiceDoerList(serviceDoers);
-                    conversation.setRefId(ticketId);
+                    conversation.setRefId(String.valueOf(ticketId));
                     conversationList.add(conversation);
                 }
             }
@@ -735,10 +735,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         etMessage.setText("");
         if (conversation.getMessageType()
                 .equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
-            presenter.publishLinkMessage(conversation.getMessage(), conversation.getRefId(),
+            presenter.publishLinkMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
                     userAccountId, conversation.getClientId());
         } else {
-            presenter.publishTextMessage(conversation.getMessage(), conversation.getRefId(),
+            presenter.publishTextMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
                     userAccountId, conversation.getClientId());
         }
     }
@@ -794,7 +794,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setSenderId(videoRoomHostLeft.getSenderAccountId());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setSentAt(videoRoomHostLeft.getStartedAt());
-        conversation.setRefId(Long.parseLong(videoRoomHostLeft.getRefId()));
+        conversation.setRefId((videoRoomHostLeft.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
 
@@ -847,7 +847,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
             selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
             selectedSuggestion.setSentAt(System.currentTimeMillis());
-            selectedSuggestion.setRefId(ticketId);
+            selectedSuggestion.setRefId(String.valueOf(ticketId));
 
             ConversationRepo.getInstance().saveConversation(selectedSuggestion,
                     new Repo.Callback() {
@@ -891,7 +891,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             conversation.setAcceptedBy(serviceProvider.getFullName());
             conversation.setClientId(UUID.randomUUID().toString().replace("", ""));
             conversation.setMessageType("MSG_ACCEPTED_TAG");
-            conversation.setRefId(ticketId);
+            conversation.setRefId(String.valueOf(ticketId));
             conversation.setSenderId(UUID.randomUUID().toString().replace("-", ""));
             adapter.setAcceptedTAG(conversation);
         }

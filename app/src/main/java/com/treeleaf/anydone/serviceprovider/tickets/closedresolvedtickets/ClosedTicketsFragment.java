@@ -55,6 +55,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     private int reopenTicketPos;
     private OnTicketReopenListener listener;
     private List<Tickets> closedTickets;
+    private boolean fetchList = false;
 
     @Override
     public void updateClosedList(List<Tickets> ticketsList) {
@@ -63,9 +64,14 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void updateClosedList() {
+        presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
 
     }
 
+    @Override
+    public void fetchList() {
+        presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,12 +85,15 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
 
-        if (CollectionUtils.isEmpty(closedTickets)) {
-            presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
-        } else {
-            setUpRecyclerView(closedTickets);
+        if (fetchList) {
+            closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+
+            if (CollectionUtils.isEmpty(closedTickets)) {
+                presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
+            } else {
+                setUpRecyclerView(closedTickets);
+            }
         }
 
     }
@@ -214,6 +223,9 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void getClosedTicketSuccess() {
         List<Tickets> closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
         setUpRecyclerView(closedTickets);
+
+        Hawk.put(Constants.FETCH_CLOSED_LIST, false);
+        fetchList = true;
     }
 
     @Override
@@ -227,8 +239,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     }
 
     @Override
-    public void onReopenSuccess() {
-        adapter.deleteItem(reopenTicketPos);
+    public void onReopenSuccess(long ticketId) {
+        adapter.deleteItem(reopenTicketPos, ticketId);
       /*  if (listener != null)
             listener.ticketReopened();*/
         Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
@@ -247,6 +259,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
+        ivDataNotFound.setVisibility(View.GONE);
     }
 
     @Override

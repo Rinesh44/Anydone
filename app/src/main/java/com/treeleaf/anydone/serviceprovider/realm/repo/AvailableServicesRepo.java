@@ -4,9 +4,7 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
-import com.treeleaf.anydone.serviceprovider.realm.model.ServiceAttributes;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
@@ -16,7 +14,6 @@ import java.util.List;
 
 import io.realm.Case;
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -60,15 +57,17 @@ public class AvailableServicesRepo extends Repo {
         List<Service> serviceList = new ArrayList<>();
         for (ServiceProto.AvailableService servicePb : serviceListPb
         ) {
-            Service service = new Service();
-            service.setCreatedAt(servicePb.getService().getCreatedAt());
-            service.setDesc(servicePb.getService().getDesc());
-            service.setName(GlobalUtils.convertCase(servicePb.getService().getName()));
-            service.setServiceIconUrl(servicePb.getService().getServiceIconUrl());
-            service.setServiceId(servicePb.getService().getServiceId());
-            service.setServiceType(servicePb.getService().getServiceType().name());
+            if (servicePb.getService().getServiceType().equals(ServiceProto.ServiceType.CORPORATE_SERVICE)) {
+                Service service = new Service();
+                service.setCreatedAt(servicePb.getService().getCreatedAt());
+                service.setDesc(servicePb.getService().getDesc());
+                service.setName(GlobalUtils.convertCase(servicePb.getService().getName()));
+                service.setServiceIconUrl(servicePb.getService().getServiceIconUrl());
+                service.setServiceId(servicePb.getService().getServiceId());
+                service.setServiceType(servicePb.getService().getServiceType().name());
 
-            serviceList.add(service);
+                serviceList.add(service);
+            }
         }
 
         return serviceList;
@@ -79,6 +78,19 @@ public class AvailableServicesRepo extends Repo {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             return new ArrayList<>(realm.where(Service.class).findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public Service getAvailableServiceById(String serviceId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            return realm.where(Service.class)
+                    .equalTo("serviceId", serviceId).findFirst();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;

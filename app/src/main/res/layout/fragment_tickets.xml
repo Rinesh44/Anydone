@@ -100,13 +100,6 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <ProgressBar
-            android:id="@+id/pb_search"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/dimen_10x1"
-            android:visibility="gone" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
@@ -115,6 +108,15 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_search"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:elevation="4dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dimen_10x1"
+        android:visibility="gone" />
 
     <View
         android:id="@+id/shadow"

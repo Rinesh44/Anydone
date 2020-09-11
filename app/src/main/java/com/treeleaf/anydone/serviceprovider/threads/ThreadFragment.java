@@ -17,12 +17,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
@@ -35,7 +37,9 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 import java.util.Objects;
@@ -57,6 +61,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     View bottomSheetShadow;
     @BindView(R.id.pb_search)
     ProgressBar pbSearch;
+    @BindView(R.id.iv_thread_not_found)
+    ImageView ivThreadNotFound;
+    @BindView(R.id.root)
+    CoordinatorLayout root;
 
     private RecyclerView rvServices;
     private BottomSheetBehavior sheetBehavior;
@@ -88,11 +96,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        List<Thread> threadList = ThreadRepo.getInstance().getAllThreads();
-        if (!CollectionUtils.isEmpty(threadList)) {
-            setUpThreadRecyclerView(threadList);
-        }
-
         sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
 
         sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -114,7 +117,30 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         rvServices = llBottomSheet.findViewById(R.id.rv_services);
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        setUpServiceRecyclerView(serviceList);
+        if (CollectionUtils.isEmpty(serviceList)) {
+            presenter.getServices();
+        } else {
+            String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+            if (selectedServiceId == null) {
+                Service firstService = serviceList.get(0);
+                tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+                Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+            } else {
+                Service selectedService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedServiceId);
+                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext())).load(selectedService.getServiceIconUrl()).into(ivService);
+            }
+            setUpServiceRecyclerView(serviceList);
+        }
+
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
+        if (!CollectionUtils.isEmpty(threadList)) {
+            setUpThreadRecyclerView(threadList);
+        } else {
+            presenter.getConversationThreads(true);
+        }
 
         searchService.addTextChangedListener(new TextWatcher() {
             @Override
@@ -161,11 +187,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         adapter.setOnItemClickListener(service -> {
             hideKeyBoard();
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
+            Hawk.put(Constants.SERVICE_CHANGED_THREAD, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
             Glide.with(getContext()).load(service.getServiceIconUrl()).into(ivService);
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             bottomSheetShadow.setVisibility(View.GONE);
 
+            ivThreadNotFound.setVisibility(View.GONE);
+            presenter.getConversationThreads(true);
         });
     }
 
@@ -204,6 +233,19 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+  /*      boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_TICKET, false);
+        if (serviceChanged) {
+            presenter.getConversationThreads();
+            Hawk.put(Constants.SERVICE_CHANGED_TICKET, false);
+        }
+*/
+        presenter.getConversationThreads(false);
+    }
+
+    @Override
     public void hideProgressBar() {
         if (pbSearch != null) {
             pbSearch.setVisibility(View.GONE);
@@ -215,5 +257,62 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 message);
+
+        ivThreadNotFound.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void getConversationThreadSuccess() {
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
+        setUpThreadRecyclerView(threadList);
+        rvThreads.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void getConversationThreadFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+     /*   UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);*/
+        showCustomSnackBar(msg);
+        rvThreads.setVisibility(View.GONE);
+        ivThreadNotFound.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void getServiceSuccess() {
+        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
+        Service firstService = serviceList.get(0);
+        Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        GlobalUtils.showLog(TAG, "first thread service id saved");
+
+        tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+        setUpServiceRecyclerView(serviceList);
+    }
+
+    @Override
+    public void getServiceFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    private void showCustomSnackBar(String msg) {
+        Snackbar snack = Snackbar.make(root, msg, Snackbar.LENGTH_LONG);
+        snack.show();
     }
 }

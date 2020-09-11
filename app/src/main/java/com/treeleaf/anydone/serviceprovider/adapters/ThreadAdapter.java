@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Card;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -63,19 +67,89 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
             holder.tvCustomerName.setText(thread.getCustomerName());
             holder.tvLastMsg.setText(thread.getFinalMessage());
 
-            holder.ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_messenger));
-
-            //todo logic to show date
-
-
+            GlobalUtils.showLog(TAG, "current date: " + thread.getLastMessageDate());
+            setSourceImg(holder.ivSource, thread);
+            showMessagedDateTime(holder.tvDate, thread);
         }
     }
+
+    private void setSourceImg(ImageView ivSource, Thread thread) {
+        if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.FACEBOOK_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_messenger));
+        } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.VIBER_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_viber));
+        }
+    }
+
+    private void showMessagedDateTime(TextView tvDate, Thread thread) {
+        long lastMsgDate = thread.getLastMessageDate();
+        Date date = new Date();
+        date.setTime(lastMsgDate);
+        if (DateUtils.isToday(lastMsgDate)) {
+            tvDate.setText(GlobalUtils.getTimeExcludeMillis(lastMsgDate));
+
+            //check for yesterday
+        } else if (DateUtils.isToday(lastMsgDate + DateUtils.DAY_IN_MILLIS)) {
+            tvDate.setText(R.string.yesterday);
+        } else if (isDateInCurrentWeek(date) != -1) {
+            switch (isDateInCurrentWeek(date)) {
+                case 1:
+                    tvDate.setText(R.string.sun);
+                    break;
+
+                case 2:
+                    tvDate.setText(R.string.mon);
+                    break;
+
+                case 3:
+                    tvDate.setText(R.string.tue);
+                    break;
+
+                case 4:
+                    tvDate.setText(R.string.wed);
+                    break;
+
+                case 5:
+                    tvDate.setText(R.string.thu);
+                    break;
+
+                case 6:
+                    tvDate.setText(R.string.fri);
+                    break;
+
+                case 7:
+                    tvDate.setText(R.string.sat);
+                    break;
+
+                default:
+                    break;
+            }
+
+        } else {
+            tvDate.setText(GlobalUtils.getDateShort(lastMsgDate));
+        }
+    }
+
 
     @Override
     public int getItemCount() {
         return threadList.size();
     }
 
+    public static int isDateInCurrentWeek(Date date) {
+        Calendar currentCalendar = Calendar.getInstance();
+        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
+        int year = currentCalendar.get(Calendar.YEAR);
+        Calendar targetCalendar = Calendar.getInstance();
+        targetCalendar.setTime(date);
+        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
+        int targetYear = targetCalendar.get(Calendar.YEAR);
+        int day = targetCalendar.get(Calendar.DAY_OF_WEEK);
+        if (week == targetWeek && year == targetYear) {
+            return day;
+        }
+        return -1;
+    }
 
     class ThreadHolder extends RecyclerView.ViewHolder {
         private TextView tvCustomerName;

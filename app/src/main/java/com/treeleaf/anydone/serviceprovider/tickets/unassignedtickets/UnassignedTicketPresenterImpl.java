@@ -7,7 +7,7 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -15,7 +15,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import java.util.List;
 
@@ -50,8 +49,9 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
         String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = unassignedTicketRepository.getAssignableTickets(token, from, to, pageSize);
+        getTicketsObservable = unassignedTicketRepository.getAssignableTickets(token, serviceId, from, to, pageSize);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -141,7 +141,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         String token = Hawk.get(Constants.TOKEN);
 
         UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
-                .setEmployeeProfileId(String.valueOf(employeeId))
+                .setEmployeeProfileId(employeeId)
                 .build();
 
         TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
@@ -196,14 +196,17 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
     }
 
     @Override
-    public void filterAssignableTickets(String searchQuery, long from, long to, int ticketState) {
+    public void filterAssignableTickets(String searchQuery, long from, long to, int ticketState,
+                                        Priority priority) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
-        String filterUrl = getAssignableFilterUrl(searchQuery, from, to, ticketState);
+
+        int priorityNum = GlobalUtils.getPriorityNum(priority);
+        String filterUrl = getAssignableFilterUrl(searchQuery, from, to, ticketState, priorityNum);
 
         ticketBaseResponseObservable = service.filterTickets(token, filterUrl);
         addSubscription(ticketBaseResponseObservable
@@ -284,8 +287,9 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
                 .build();
     }
 
-    private String getAssignableFilterUrl(String query, long from, long to, int status) {
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/assignable?");
+    private String getAssignableFilterUrl(String query, long from, long to, int status, int priority) {
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/assignable/" + serviceId + "?");
         if (query != null && !query.isEmpty()) {
             filterUrlBuilder.append("query=");
             filterUrlBuilder.append(query);
@@ -302,6 +306,12 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
             filterUrlBuilder.append("&state=");
             filterUrlBuilder.append(status);
         }
+
+        if (priority != -1) {
+            filterUrlBuilder.append("&priority=");
+            filterUrlBuilder.append(priority);
+        }
+
         return filterUrlBuilder.toString();
     }
 

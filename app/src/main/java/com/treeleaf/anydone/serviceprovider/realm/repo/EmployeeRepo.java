@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
@@ -49,6 +50,11 @@ public class EmployeeRepo extends Repo {
     private Employee transformEmployee(Employee employee,
                                        UserProto.EmployeeProfile employeeProfile) {
         employee.setAccountId(employeeProfile.getAccount().getAccountId());
+        employee.setName(employeeProfile.getAccount().getFullName());
+        employee.setEmployeeImageUrl(employeeProfile.getAccount().getProfilePic());
+        employee.setCreatedAt(employeeProfile.getCreatedAt());
+        employee.setPhone(employeeProfile.getAccount().getPhone());
+        employee.setEmail(employeeProfile.getAccount().getEmail());
         return employee;
     }
 
@@ -70,4 +76,5 @@ public class EmployeeRepo extends Repo {
             close(realm);
         }
     }
+
 }

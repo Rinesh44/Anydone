@@ -45,11 +45,11 @@ public class TagRepo extends Repo {
         }
     }
 
-    public Tickets getTicketById(long ticketId) {
+    public Tags getTagById(String tagId) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
-            return realm.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findFirst();
+            return realm.where(Tags.class)
+                    .equalTo("tagId", tagId).findFirst();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;

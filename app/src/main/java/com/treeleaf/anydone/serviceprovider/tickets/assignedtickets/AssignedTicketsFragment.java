@@ -55,6 +55,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     private Unbinder unbinder;
     private TicketsAdapter adapter;
     private List<Tickets> assignedTickets;
+    private boolean fetchList = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,12 +70,14 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+        if (fetchList) {
+            assignedTickets = TicketRepo.getInstance().getAssignedTickets();
 
-        if (CollectionUtils.isEmpty(assignedTickets)) {
-            presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
-        } else {
-            setUpRecyclerView(assignedTickets);
+            if (CollectionUtils.isEmpty(assignedTickets)) {
+                presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+            } else {
+                setUpRecyclerView(assignedTickets);
+            }
         }
     }
 
@@ -178,6 +181,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
         List<Tickets> assignedTickets = TicketRepo.getInstance().getAssignedTickets();
         setUpRecyclerView(assignedTickets);
         Hawk.put(Constants.FETCH__ASSIGNED_LIST, false);
+        fetchList = true;
     }
 
     @Override
@@ -193,6 +197,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
+        ivDataNotFound.setVisibility(View.GONE);
     }
 
     @Override
@@ -228,6 +233,11 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void updateAssignedList() {
+        presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+    }
+
+    @Override
+    public void fetchList() {
         presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
     }
 }

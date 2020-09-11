@@ -140,7 +140,7 @@ public class ConversationRepo extends Repo {
         }
     }
 
-    public List<Conversation> getConversationByOrderId(long refId) {
+    public List<Conversation> getConversationByOrderId(String refId) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             return new ArrayList<>(realm.where(Conversation.class)

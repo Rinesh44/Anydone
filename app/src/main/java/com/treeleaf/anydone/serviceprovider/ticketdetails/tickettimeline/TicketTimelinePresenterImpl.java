@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
-import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
@@ -12,7 +11,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -25,7 +23,6 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import io.realm.RealmList;
 
 public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineContract.TicketTimelineView>
         implements TicketTimelineContract.TicketTimelinePresenter {
@@ -35,6 +32,68 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
     @Inject
     public TicketTimelinePresenterImpl(TicketTimelineRepository ticketTimelineRepository) {
         this.ticketTimelineRepository = ticketTimelineRepository;
+    }
+
+
+    @Override
+    public void assignTicket(long ticketId, String employeeId) {
+        getView().showProgressBar("Please wait...");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
+                .setEmployeeProfileId(String.valueOf(employeeId))
+                .build();
+
+        TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
+                .setAssignedTo(employeeProfile)
+                .setAssignedAt(System.currentTimeMillis())
+                .build();
+
+        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
+                .setEmployeeAssigned(employeeAssigned)
+                .build();
+
+        GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
+
+        getTicketsObservable = ticketTimelineRepository.assignTicket(token, ticketId, ticket);
+        addSubscription(getTicketsObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                            @Override
+                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                                       getTicketsBaseResponse) {
+                                GlobalUtils.showLog(TAG, "assign tickets response: "
+                                        + getTicketsBaseResponse);
+
+                                getView().hideProgressBar();
+                                if (getTicketsBaseResponse == null) {
+                                    getView().assignFail("assign ticket failed");
+                                    return;
+                                }
+
+                                if (getTicketsBaseResponse.getError()) {
+                                    getView().assignFail(getTicketsBaseResponse.getMsg());
+                                    return;
+                                }
+
+                                getView().assignSuccess();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                getView().hideProgressBar();
+                                getView().assignFail(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
+        );
     }
 
     @Override

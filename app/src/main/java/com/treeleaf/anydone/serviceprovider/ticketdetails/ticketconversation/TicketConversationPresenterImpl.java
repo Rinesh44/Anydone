@@ -454,7 +454,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         conversation.setSenderId("Anydone bot 101");
                         conversation.setkGraphBack(true);
                         conversation.setSentAt(System.currentTimeMillis());
-                        conversation.setRefId(refId);
+                        conversation.setRefId(String.valueOf(refId));
                         if (!backClicked)
                             conversation.setkGraphTitle(Hawk.get(Constants.KGRAPH_TITLE));
                         else
@@ -690,7 +690,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     conversation.setkGraphBack(false);
                     conversation.setkGraphTitle(relayResponse.getRtcMessage()
                             .getText().getMessage());
-                    conversation.setRefId(Long.parseLong(relayResponse
+                    conversation.setRefId((relayResponse
                             .getRtcMessage().getRefId()));
 
                     ConversationRepo.getInstance().saveConversation(conversation,
@@ -946,7 +946,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .getSenderAccountObj().getFullName());
         conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getProfilePic());
-        conversation.setRefId(Long.parseLong(relayResponse.getRtcMessage().getRefId()));
+        conversation.setRefId((relayResponse.getRtcMessage().getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
         conversation.setConversationId(relayResponse.getRtcMessage().getRtcMessageId());
@@ -1062,11 +1062,11 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
             case "TEXT_RTC_MESSAGE":
 
             case "LINK_RTC_MESSAGE":
-                publishTextOrUrlMessage(conversation.getMessage(), conversation.getRefId());
+                publishTextOrUrlMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()));
                 break;
 
             case "IMAGE_RTC_MESSAGE":
-                publishImage(conversation.getMessage(), conversation.getRefId(),
+                publishImage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
                         conversation.getClientId(), conversation.getImageDesc());
                 break;
 
@@ -1203,7 +1203,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         conversation.setSenderId(employee.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
-        conversation.setRefId(orderId);
+        conversation.setRefId(String.valueOf(orderId));
         conversation.setSent(false);
         conversation.setSendFail(false);
         conversation.setSentAt(System.currentTimeMillis());
@@ -1236,7 +1236,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
-        conversation.setRefId(orderId);
+        conversation.setRefId(String.valueOf(orderId));
         conversation.setSent(false);
         conversation.setSendFail(false);
         conversation.setSentAt(System.currentTimeMillis());
@@ -1268,7 +1268,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         conversation.setSenderId(employee.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
-        conversation.setRefId(orderId);
+        conversation.setRefId(String.valueOf(orderId));
         conversation.setSent(false);
         conversation.setSendFail(false);
         conversation.setFileName(file.getName());

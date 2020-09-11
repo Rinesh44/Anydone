@@ -5,10 +5,6 @@ import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 
-import java.util.List;
-
-import io.realm.RealmList;
-
 public class TicketTimelineContract {
 
     public interface TicketTimelineView extends BaseView {
@@ -41,6 +37,10 @@ public class TicketTimelineContract {
 
         void getEmployeeFail(String msg);
 
+        void assignSuccess();
+
+        void assignFail(String msg);
+
     }
 
     public interface TicketTimelinePresenter extends Presenter<TicketTimelineView> {
@@ -60,6 +60,8 @@ public class TicketTimelineContract {
         void resolveTicket(long ticketId);
 
         void getEmployees();
+
+        void assignTicket(long ticketId, String employeeId);
 
     }
 }

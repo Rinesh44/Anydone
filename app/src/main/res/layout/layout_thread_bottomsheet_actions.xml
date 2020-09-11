@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="true"
+    android:elevation="@dimen/dimens_3x"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:weightSum="3"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_copy_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="@dimen/dimen_10x2">
+
+        <ImageView
+            android:id="@+id/iv_copy"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_copy" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_copy"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:text="@string/copy" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_delete_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="@dimen/dimen_10x2">
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_bin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_delete"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:text="@string/remove" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_create_ticket_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="@dimen/dimen_10x2">
+
+        <ImageView
+            android:id="@+id/iv_create_ticket"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_ticket"
+            android:tint="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_create_ticket"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:text="@string/add_ticket" />
+    </RelativeLayout>
+</LinearLayout>

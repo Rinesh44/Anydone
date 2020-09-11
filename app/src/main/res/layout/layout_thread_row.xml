@@ -7,65 +7,77 @@
         android:id="@+id/rl_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dimens_2x">
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="12dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_customer"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="44dp"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_height="44dp"
             android:src="@drawable/circle_user" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginEnd="@dimen/dimen_10x1"
             android:layout_toStartOf="@+id/iv_source"
             android:layout_toEndOf="@+id/civ_customer">
-
 
             <TextView
                 android:id="@+id/tv_customer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="James Corner"
-                android:textColor="@color/black"
+                android:textColor="#333333"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_last_msg"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_customer_name"
-                android:layout_toStartOf="@+id/tv_date"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="need help with payment bill asdf sdf"
-                android:textColor="@color/black" />
+                android:layout_below="@+id/tv_customer_name">
 
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_customer_name"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/dimen_10x1"
-                android:text="27th Aug"
-                android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tv_last_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_2x1"
+                    android:ellipsize="end"
+                    android:text="need helpsdsdfsdf"
+                    android:maxLength="25"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
 
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x1"
+                    android:layout_marginTop="@dimen/dimen_2x1"
+                    android:layout_toEndOf="@id/tv_last_msg"
+                    android:ellipsize="none"
+                    android:singleLine="true"
+                    android:text="27th Aug"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
         <ImageView
             android:id="@+id/iv_source"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/dimen_10x1"
             android:src="@drawable/circle_user" />
-
 
     </RelativeLayout>
 

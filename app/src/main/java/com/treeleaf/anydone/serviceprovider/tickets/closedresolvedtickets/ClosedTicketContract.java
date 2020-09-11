@@ -10,7 +10,7 @@ public class ClosedTicketContract {
 
         void getClosedTicketFail(String msg);
 
-        void onReopenSuccess();
+        void onReopenSuccess(long ticketId);
 
         void onReopenFail(String msg);
     }

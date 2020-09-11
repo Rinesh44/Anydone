@@ -1,22 +1,27 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
-import io.realm.RealmList;
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Thread extends RealmObject {
+public class Thread extends RealmObject implements Serializable {
     @PrimaryKey
     String threadId;
     String customerName;
     String serviceId;
+    String serviceProviderId;
     String customerId;
     String customerEmail;
     String customerPhone;
     long createdAt;
+    long updatedAt;
+    long lastMessageDate;
     String customerImageUrl;
     String finalMessage;
     String source;
-    RealmList<Tags> tagsRealmList;
+    String defaultLabelId;
+    String defaultLabel;
     Employee assignedEmployee;
     boolean botEnabled;
 
@@ -103,12 +108,36 @@ public class Thread extends RealmObject {
         this.source = source;
     }
 
-    public RealmList<Tags> getTagsRealmList() {
-        return tagsRealmList;
+    public String getServiceProviderId() {
+        return serviceProviderId;
     }
 
-    public void setTagsRealmList(RealmList<Tags> tagsRealmList) {
-        this.tagsRealmList = tagsRealmList;
+    public void setServiceProviderId(String serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public long getLastMessageDate() {
+        return lastMessageDate;
+    }
+
+    public void setLastMessageDate(long lastMessageDate) {
+        this.lastMessageDate = lastMessageDate;
+    }
+
+    public String getDefaultLabelId() {
+        return defaultLabelId;
+    }
+
+    public void setDefaultLabelId(String defaultLabelId) {
+        this.defaultLabelId = defaultLabelId;
     }
 
     public Employee getAssignedEmployee() {
@@ -125,5 +154,13 @@ public class Thread extends RealmObject {
 
     public void setBotEnabled(boolean botEnabled) {
         this.botEnabled = botEnabled;
+    }
+
+    public String getDefaultLabel() {
+        return defaultLabel;
+    }
+
+    public void setDefaultLabel(String defaultLabel) {
+        this.defaultLabel = defaultLabel;
     }
 }

@@ -129,6 +129,15 @@ public final class IntegrationRpcProto {
      * <code>optional .treeleaf.anydone.entities.Integration integration = 13;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.Integration getIntegration();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    boolean hasApi();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getApi();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.IntegrationBaseRequest}
@@ -793,6 +802,58 @@ public final class IntegrationRpcProto {
       
     }
 
+    public static final int API_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi api_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    public boolean hasApi() {
+      return api_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getApi() {
+      return api_ == null ? com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.getDefaultInstance() : api_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    private void setApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      api_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    private void setApi(
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+      api_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    private void mergeApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (api_ != null &&
+          api_ != com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.getDefaultInstance()) {
+        api_ =
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.newBuilder(api_).mergeFrom(value).buildPartial();
+      } else {
+        api_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+     */
+    private void clearApi() {  api_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -833,6 +894,9 @@ public final class IntegrationRpcProto {
       }
       if (integration_ != null) {
         output.writeMessage(13, getIntegration());
+      }
+      if (api_ != null) {
+        output.writeMessage(14, getApi());
       }
     }
 
@@ -897,6 +961,10 @@ public final class IntegrationRpcProto {
       if (integration_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getIntegration());
+      }
+      if (api_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getApi());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1550,6 +1618,51 @@ public final class IntegrationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+       */
+      public boolean hasApi() {
+        return instance.hasApi();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getApi() {
+        return instance.getApi();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+       */
+      public Builder setApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.setApi(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+       */
+      public Builder setApi(
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+        copyOnWrite();
+        instance.setApi(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+       */
+      public Builder mergeApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.mergeApi(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 14;</code>
+       */
+      public Builder clearApi() {  copyOnWrite();
+        instance.clearApi();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.IntegrationBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1592,6 +1705,7 @@ public final class IntegrationRpcProto {
           employees_= visitor.visitList(employees_, other.employees_);
           serviceProvider_ = visitor.visitMessage(serviceProvider_, other.serviceProvider_);
           integration_ = visitor.visitMessage(integration_, other.integration_);
+          api_ = visitor.visitMessage(api_, other.api_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1732,6 +1846,19 @@ public final class IntegrationRpcProto {
 
                   break;
                 }
+                case 114: {
+                  com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder subBuilder = null;
+                  if (api_ != null) {
+                    subBuilder = api_.toBuilder();
+                  }
+                  api_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(api_);
+                    api_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1828,6 +1955,43 @@ public final class IntegrationRpcProto {
      * <code>optional .treeleaf.anydone.entities.Integration integration = 6;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.Integration getIntegration();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.IntegrationProto.Integration> 
+        getIntegrationsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.Integration getIntegrations(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    int getIntegrationsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    boolean hasThirdPartyApi();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getThirdPartyApi();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi> 
+        getThirdPartyApisList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getThirdPartyApis(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    int getThirdPartyApisCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.IntegrationBaseResponse}
@@ -1839,7 +2003,10 @@ public final class IntegrationRpcProto {
       IntegrationBaseResponseOrBuilder {
     private IntegrationBaseResponse() {
       msg_ = "";
+      integrations_ = emptyProtobufList();
+      thirdPartyApis_ = emptyProtobufList();
     }
+    private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
     private boolean error_;
     /**
@@ -2075,6 +2242,298 @@ public final class IntegrationRpcProto {
       
     }
 
+    public static final int INTEGRATIONS_FIELD_NUMBER = 7;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.IntegrationProto.Integration> integrations_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.Integration> getIntegrationsList() {
+      return integrations_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.IntegrationProto.IntegrationOrBuilder> 
+        getIntegrationsOrBuilderList() {
+      return integrations_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    public int getIntegrationsCount() {
+      return integrations_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.Integration getIntegrations(int index) {
+      return integrations_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.IntegrationOrBuilder getIntegrationsOrBuilder(
+        int index) {
+      return integrations_.get(index);
+    }
+    private void ensureIntegrationsIsMutable() {
+      if (!integrations_.isModifiable()) {
+        integrations_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(integrations_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void setIntegrations(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.Integration value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureIntegrationsIsMutable();
+      integrations_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void setIntegrations(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.Integration.Builder builderForValue) {
+      ensureIntegrationsIsMutable();
+      integrations_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void addIntegrations(com.treeleaf.anydone.entities.IntegrationProto.Integration value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureIntegrationsIsMutable();
+      integrations_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void addIntegrations(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.Integration value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureIntegrationsIsMutable();
+      integrations_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void addIntegrations(
+        com.treeleaf.anydone.entities.IntegrationProto.Integration.Builder builderForValue) {
+      ensureIntegrationsIsMutable();
+      integrations_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void addIntegrations(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.Integration.Builder builderForValue) {
+      ensureIntegrationsIsMutable();
+      integrations_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void addAllIntegrations(
+        Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.Integration> values) {
+      ensureIntegrationsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, integrations_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void clearIntegrations() {
+      integrations_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+     */
+    private void removeIntegrations(int index) {
+      ensureIntegrationsIsMutable();
+      integrations_.remove(index);
+    }
+
+    public static final int THIRDPARTYAPI_FIELD_NUMBER = 8;
+    private com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi thirdPartyApi_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    public boolean hasThirdPartyApi() {
+      return thirdPartyApi_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getThirdPartyApi() {
+      return thirdPartyApi_ == null ? com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.getDefaultInstance() : thirdPartyApi_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    private void setThirdPartyApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      thirdPartyApi_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    private void setThirdPartyApi(
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+      thirdPartyApi_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    private void mergeThirdPartyApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (thirdPartyApi_ != null &&
+          thirdPartyApi_ != com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.getDefaultInstance()) {
+        thirdPartyApi_ =
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.newBuilder(thirdPartyApi_).mergeFrom(value).buildPartial();
+      } else {
+        thirdPartyApi_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+     */
+    private void clearThirdPartyApi() {  thirdPartyApi_ = null;
+      
+    }
+
+    public static final int THIRDPARTYAPIS_FIELD_NUMBER = 9;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi> thirdPartyApis_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi> getThirdPartyApisList() {
+      return thirdPartyApis_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiOrBuilder> 
+        getThirdPartyApisOrBuilderList() {
+      return thirdPartyApis_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    public int getThirdPartyApisCount() {
+      return thirdPartyApis_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getThirdPartyApis(int index) {
+      return thirdPartyApis_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiOrBuilder getThirdPartyApisOrBuilder(
+        int index) {
+      return thirdPartyApis_.get(index);
+    }
+    private void ensureThirdPartyApisIsMutable() {
+      if (!thirdPartyApis_.isModifiable()) {
+        thirdPartyApis_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(thirdPartyApis_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void setThirdPartyApis(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureThirdPartyApisIsMutable();
+      thirdPartyApis_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void setThirdPartyApis(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+      ensureThirdPartyApisIsMutable();
+      thirdPartyApis_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void addThirdPartyApis(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureThirdPartyApisIsMutable();
+      thirdPartyApis_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void addThirdPartyApis(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureThirdPartyApisIsMutable();
+      thirdPartyApis_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void addThirdPartyApis(
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+      ensureThirdPartyApisIsMutable();
+      thirdPartyApis_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void addThirdPartyApis(
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+      ensureThirdPartyApisIsMutable();
+      thirdPartyApis_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void addAllThirdPartyApis(
+        Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi> values) {
+      ensureThirdPartyApisIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, thirdPartyApis_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void clearThirdPartyApis() {
+      thirdPartyApis_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+     */
+    private void removeThirdPartyApis(int index) {
+      ensureThirdPartyApisIsMutable();
+      thirdPartyApis_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2094,6 +2553,15 @@ public final class IntegrationRpcProto {
       }
       if (integration_ != null) {
         output.writeMessage(6, getIntegration());
+      }
+      for (int i = 0; i < integrations_.size(); i++) {
+        output.writeMessage(7, integrations_.get(i));
+      }
+      if (thirdPartyApi_ != null) {
+        output.writeMessage(8, getThirdPartyApi());
+      }
+      for (int i = 0; i < thirdPartyApis_.size(); i++) {
+        output.writeMessage(9, thirdPartyApis_.get(i));
       }
     }
 
@@ -2125,6 +2593,18 @@ public final class IntegrationRpcProto {
       if (integration_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, getIntegration());
+      }
+      for (int i = 0; i < integrations_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, integrations_.get(i));
+      }
+      if (thirdPartyApi_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getThirdPartyApi());
+      }
+      for (int i = 0; i < thirdPartyApis_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, thirdPartyApis_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -2425,6 +2905,245 @@ public final class IntegrationRpcProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.Integration> getIntegrationsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getIntegrationsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public int getIntegrationsCount() {
+        return instance.getIntegrationsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.Integration getIntegrations(int index) {
+        return instance.getIntegrations(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder setIntegrations(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.Integration value) {
+        copyOnWrite();
+        instance.setIntegrations(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder setIntegrations(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.Integration.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIntegrations(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder addIntegrations(com.treeleaf.anydone.entities.IntegrationProto.Integration value) {
+        copyOnWrite();
+        instance.addIntegrations(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder addIntegrations(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.Integration value) {
+        copyOnWrite();
+        instance.addIntegrations(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder addIntegrations(
+          com.treeleaf.anydone.entities.IntegrationProto.Integration.Builder builderForValue) {
+        copyOnWrite();
+        instance.addIntegrations(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder addIntegrations(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.Integration.Builder builderForValue) {
+        copyOnWrite();
+        instance.addIntegrations(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder addAllIntegrations(
+          Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.Integration> values) {
+        copyOnWrite();
+        instance.addAllIntegrations(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder clearIntegrations() {
+        copyOnWrite();
+        instance.clearIntegrations();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Integration integrations = 7;</code>
+       */
+      public Builder removeIntegrations(int index) {
+        copyOnWrite();
+        instance.removeIntegrations(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+       */
+      public boolean hasThirdPartyApi() {
+        return instance.hasThirdPartyApi();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getThirdPartyApi() {
+        return instance.getThirdPartyApi();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+       */
+      public Builder setThirdPartyApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.setThirdPartyApi(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+       */
+      public Builder setThirdPartyApi(
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+        copyOnWrite();
+        instance.setThirdPartyApi(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+       */
+      public Builder mergeThirdPartyApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.mergeThirdPartyApi(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 8;</code>
+       */
+      public Builder clearThirdPartyApi() {  copyOnWrite();
+        instance.clearThirdPartyApi();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi> getThirdPartyApisList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getThirdPartyApisList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public int getThirdPartyApisCount() {
+        return instance.getThirdPartyApisCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getThirdPartyApis(int index) {
+        return instance.getThirdPartyApis(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder setThirdPartyApis(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.setThirdPartyApis(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder setThirdPartyApis(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+        copyOnWrite();
+        instance.setThirdPartyApis(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder addThirdPartyApis(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.addThirdPartyApis(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder addThirdPartyApis(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.addThirdPartyApis(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder addThirdPartyApis(
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+        copyOnWrite();
+        instance.addThirdPartyApis(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder addThirdPartyApis(
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+        copyOnWrite();
+        instance.addThirdPartyApis(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder addAllThirdPartyApis(
+          Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi> values) {
+        copyOnWrite();
+        instance.addAllThirdPartyApis(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder clearThirdPartyApis() {
+        copyOnWrite();
+        instance.clearThirdPartyApis();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
+       */
+      public Builder removeThirdPartyApis(int index) {
+        copyOnWrite();
+        instance.removeThirdPartyApis(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.IntegrationBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2438,6 +3157,8 @@ public final class IntegrationRpcProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          integrations_.makeImmutable();
+          thirdPartyApis_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2455,8 +3176,12 @@ public final class IntegrationRpcProto {
               other.success_ != false, other.success_);
           debug_ = visitor.visitMessage(debug_, other.debug_);
           integration_ = visitor.visitMessage(integration_, other.integration_);
+          integrations_= visitor.visitList(integrations_, other.integrations_);
+          thirdPartyApi_ = visitor.visitMessage(thirdPartyApi_, other.thirdPartyApi_);
+          thirdPartyApis_= visitor.visitList(thirdPartyApis_, other.thirdPartyApis_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -2525,6 +3250,37 @@ public final class IntegrationRpcProto {
                     integration_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 58: {
+                  if (!integrations_.isModifiable()) {
+                    integrations_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(integrations_);
+                  }
+                  integrations_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.Integration.parser(), extensionRegistry));
+                  break;
+                }
+                case 66: {
+                  com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder subBuilder = null;
+                  if (thirdPartyApi_ != null) {
+                    subBuilder = thirdPartyApi_.toBuilder();
+                  }
+                  thirdPartyApi_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(thirdPartyApi_);
+                    thirdPartyApi_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 74: {
+                  if (!thirdPartyApis_.isModifiable()) {
+                    thirdPartyApis_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(thirdPartyApis_);
+                  }
+                  thirdPartyApis_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.parser(), extensionRegistry));
                   break;
                 }
               }
