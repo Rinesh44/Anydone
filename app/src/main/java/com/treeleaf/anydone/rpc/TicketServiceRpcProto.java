@@ -2649,6 +2649,16 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Customer customers = 11;</code>
      */
     int getCustomersCount();
+
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    String getLink();
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getLinkBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -2663,6 +2673,7 @@ public final class TicketServiceRpcProto {
       tickets_ = emptyProtobufList();
       tags_ = emptyProtobufList();
       customers_ = emptyProtobufList();
+      link_ = "";
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -3364,6 +3375,52 @@ public final class TicketServiceRpcProto {
       customers_.remove(index);
     }
 
+    public static final int LINK_FIELD_NUMBER = 12;
+    private String link_;
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    public String getLink() {
+      return link_;
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLinkBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(link_);
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void setLink(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      link_ = value;
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void clearLink() {
+      
+      link_ = getDefaultInstance().getLink();
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void setLinkBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      link_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3398,6 +3455,9 @@ public final class TicketServiceRpcProto {
       }
       for (int i = 0; i < customers_.size(); i++) {
         output.writeMessage(11, customers_.get(i));
+      }
+      if (!link_.isEmpty()) {
+        output.writeString(12, getLink());
       }
     }
 
@@ -3449,6 +3509,10 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < customers_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, customers_.get(i));
+      }
+      if (!link_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getLink());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4130,6 +4194,46 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public String getLink() {
+        return instance.getLink();
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLinkBytes() {
+        return instance.getLinkBytes();
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder setLink(
+          String value) {
+        copyOnWrite();
+        instance.setLink(value);
+        return this;
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder clearLink() {
+        copyOnWrite();
+        instance.clearLink();
+        return this;
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder setLinkBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLinkBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4168,6 +4272,8 @@ public final class TicketServiceRpcProto {
           tags_= visitor.visitList(tags_, other.tags_);
           employeeTag_ = visitor.visitMessage(employeeTag_, other.employeeTag_);
           customers_= visitor.visitList(customers_, other.customers_);
+          link_ = visitor.visitString(!link_.isEmpty(), link_,
+              !other.link_.isEmpty(), other.link_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4292,6 +4398,12 @@ public final class TicketServiceRpcProto {
                   }
                   customers_.add(
                       input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry));
+                  break;
+                }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  link_ = s;
                   break;
                 }
               }

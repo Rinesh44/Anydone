@@ -326,91 +326,6 @@ public final class RtcProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.RtcMessageStatus)
   }
 
-  /**
-   * Protobuf enum {@code treeleaf.anydone.entities.RtcMessageContext}
-   */
-  public enum RtcMessageContext
-      implements com.google.protobuf.Internal.EnumLite {
-    /**
-     * <code>UNKNOWN_CONTEXT = 0;</code>
-     */
-    UNKNOWN_CONTEXT(0),
-    /**
-     * <code>SERVICE_ORDER_CONTEXT = 1;</code>
-     */
-    SERVICE_ORDER_CONTEXT(1),
-    /**
-     * <code>TICKET_CONTEXT = 2;</code>
-     */
-    TICKET_CONTEXT(2),
-    /**
-     * <code>CONVERSATION_CONTEXT = 3;</code>
-     */
-    CONVERSATION_CONTEXT(3),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>UNKNOWN_CONTEXT = 0;</code>
-     */
-    public static final int UNKNOWN_CONTEXT_VALUE = 0;
-    /**
-     * <code>SERVICE_ORDER_CONTEXT = 1;</code>
-     */
-    public static final int SERVICE_ORDER_CONTEXT_VALUE = 1;
-    /**
-     * <code>TICKET_CONTEXT = 2;</code>
-     */
-    public static final int TICKET_CONTEXT_VALUE = 2;
-    /**
-     * <code>CONVERSATION_CONTEXT = 3;</code>
-     */
-    public static final int CONVERSATION_CONTEXT_VALUE = 3;
-
-
-    public final int getNumber() {
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @Deprecated
-    public static RtcMessageContext valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static RtcMessageContext forNumber(int value) {
-      switch (value) {
-        case 0: return UNKNOWN_CONTEXT;
-        case 1: return SERVICE_ORDER_CONTEXT;
-        case 2: return TICKET_CONTEXT;
-        case 3: return CONVERSATION_CONTEXT;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<RtcMessageContext>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        RtcMessageContext> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<RtcMessageContext>() {
-            public RtcMessageContext findValueByNumber(int number) {
-              return RtcMessageContext.forNumber(number);
-            }
-          };
-
-    private final int value;
-
-    private RtcMessageContext(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.RtcMessageContext)
-  }
-
   public interface LinkMessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.LinkMessage)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -5939,7 +5854,7 @@ public final class RtcProto {
      *service order, ticket, conversation
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
     int getContextValue();
     /**
@@ -5947,9 +5862,9 @@ public final class RtcProto {
      *service order, ticket, conversation
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
-    RtcMessageContext getContext();
+    AnydoneProto.ServiceContext getContext();
 
     /**
      * <pre>
@@ -7129,7 +7044,7 @@ public final class RtcProto {
      *service order, ticket, conversation
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
     public int getContextValue() {
       return context_;
@@ -7139,18 +7054,18 @@ public final class RtcProto {
      *service order, ticket, conversation
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
-    public RtcMessageContext getContext() {
-      RtcMessageContext result = RtcMessageContext.forNumber(context_);
-      return result == null ? RtcMessageContext.UNRECOGNIZED : result;
+    public AnydoneProto.ServiceContext getContext() {
+      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
      * <pre>
      *service order, ticket, conversation
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
     private void setContextValue(int value) {
         context_ = value;
@@ -7160,9 +7075,9 @@ public final class RtcProto {
      *service order, ticket, conversation
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
-    private void setContext(RtcMessageContext value) {
+    private void setContext(AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -7174,7 +7089,7 @@ public final class RtcProto {
      *service order, ticket, conversation
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
     private void clearContext() {
       
@@ -7401,7 +7316,7 @@ public final class RtcProto {
       if (!timezone_.isEmpty()) {
         output.writeString(20, getTimezone());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(21, context_);
       }
       if (!serviceId_.isEmpty()) {
@@ -7500,7 +7415,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(20, getTimezone());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(21, context_);
       }
@@ -8593,7 +8508,7 @@ public final class RtcProto {
        *service order, ticket, conversation
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
        */
       public int getContextValue() {
         return instance.getContextValue();
@@ -8603,7 +8518,7 @@ public final class RtcProto {
        *service order, ticket, conversation
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
        */
       public Builder setContextValue(int value) {
         copyOnWrite();
@@ -8615,9 +8530,9 @@ public final class RtcProto {
        *service order, ticket, conversation
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
        */
-      public RtcMessageContext getContext() {
+      public AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
@@ -8625,9 +8540,9 @@ public final class RtcProto {
        *service order, ticket, conversation
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
        */
-      public Builder setContext(RtcMessageContext value) {
+      public Builder setContext(AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
@@ -8637,7 +8552,7 @@ public final class RtcProto {
        *service order, ticket, conversation
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 21;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
        */
       public Builder clearContext() {
         copyOnWrite();
@@ -10480,13 +10395,13 @@ public final class RtcProto {
         getRefIdBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
     int getContextValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
-    RtcMessageContext getContext();
+    AnydoneProto.ServiceContext getContext();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.GetMessageRequest}
@@ -10617,28 +10532,28 @@ public final class RtcProto {
     public static final int CONTEXT_FIELD_NUMBER = 5;
     private int context_;
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
     public int getContextValue() {
       return context_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
-    public RtcMessageContext getContext() {
-      RtcMessageContext result = RtcMessageContext.forNumber(context_);
-      return result == null ? RtcMessageContext.UNRECOGNIZED : result;
+    public AnydoneProto.ServiceContext getContext() {
+      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
     private void setContextValue(int value) {
         context_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
-    private void setContext(RtcMessageContext value) {
+    private void setContext(AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -10646,7 +10561,7 @@ public final class RtcProto {
       context_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
     private void clearContext() {
       
@@ -10667,7 +10582,7 @@ public final class RtcProto {
       if (!refId_.isEmpty()) {
         output.writeString(4, getRefId());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(5, context_);
       }
     }
@@ -10693,7 +10608,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getRefId());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, context_);
       }
@@ -10893,13 +10808,13 @@ public final class RtcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
        */
       public int getContextValue() {
         return instance.getContextValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
        */
       public Builder setContextValue(int value) {
         copyOnWrite();
@@ -10907,21 +10822,21 @@ public final class RtcProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
        */
-      public RtcMessageContext getContext() {
+      public AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
        */
-      public Builder setContext(RtcMessageContext value) {
+      public Builder setContext(AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 5;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
        */
       public Builder clearContext() {
         copyOnWrite();
@@ -12241,13 +12156,13 @@ public final class RtcProto {
     SignalingProto.CancelDrawing getCancelDrawRequest();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
     int getContextValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
-    RtcMessageContext getContext();
+    AnydoneProto.ServiceContext getContext();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
@@ -13174,28 +13089,28 @@ public final class RtcProto {
     public static final int CONTEXT_FIELD_NUMBER = 13;
     private int context_;
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
     public int getContextValue() {
       return context_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
-    public RtcMessageContext getContext() {
-      RtcMessageContext result = RtcMessageContext.forNumber(context_);
-      return result == null ? RtcMessageContext.UNRECOGNIZED : result;
+    public AnydoneProto.ServiceContext getContext() {
+      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
     private void setContextValue(int value) {
         context_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
-    private void setContext(RtcMessageContext value) {
+    private void setContext(AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13203,7 +13118,7 @@ public final class RtcProto {
       context_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
     private void clearContext() {
       
@@ -13664,7 +13579,7 @@ public final class RtcProto {
       if (cancelDrawRequest_ != null) {
         output.writeMessage(12, getCancelDrawRequest());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(13, context_);
       }
       if (receiveNewTextFieldRequest_ != null) {
@@ -13746,7 +13661,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getCancelDrawRequest());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(13, context_);
       }
@@ -14401,13 +14316,13 @@ public final class RtcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
        */
       public int getContextValue() {
         return instance.getContextValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
        */
       public Builder setContextValue(int value) {
         copyOnWrite();
@@ -14415,21 +14330,21 @@ public final class RtcProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
        */
-      public RtcMessageContext getContext() {
+      public AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
        */
-      public Builder setContext(RtcMessageContext value) {
+      public Builder setContext(AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
        */
       public Builder clearContext() {
         copyOnWrite();
@@ -16476,13 +16391,13 @@ public final class RtcProto {
     SignalingProto.CancelDrawing getCancelDrawResponse();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
     int getContextValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
-    RtcMessageContext getContext();
+    AnydoneProto.ServiceContext getContext();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
@@ -17540,28 +17455,28 @@ public final class RtcProto {
     public static final int CONTEXT_FIELD_NUMBER = 16;
     private int context_;
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
     public int getContextValue() {
       return context_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
-    public RtcMessageContext getContext() {
-      RtcMessageContext result = RtcMessageContext.forNumber(context_);
-      return result == null ? RtcMessageContext.UNRECOGNIZED : result;
+    public AnydoneProto.ServiceContext getContext() {
+      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
     private void setContextValue(int value) {
         context_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
-    private void setContext(RtcMessageContext value) {
+    private void setContext(AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17569,7 +17484,7 @@ public final class RtcProto {
       context_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
     private void clearContext() {
       
@@ -18039,7 +17954,7 @@ public final class RtcProto {
       if (cancelDrawResponse_ != null) {
         output.writeMessage(15, getCancelDrawResponse());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(16, context_);
       }
       if (receiveNewTextFieldResponse_ != null) {
@@ -18133,7 +18048,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getCancelDrawResponse());
       }
-      if (context_ != RtcMessageContext.UNKNOWN_CONTEXT.getNumber()) {
+      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(16, context_);
       }
@@ -18896,13 +18811,13 @@ public final class RtcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
        */
       public int getContextValue() {
         return instance.getContextValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
        */
       public Builder setContextValue(int value) {
         copyOnWrite();
@@ -18910,21 +18825,21 @@ public final class RtcProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
        */
-      public RtcMessageContext getContext() {
+      public AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
        */
-      public Builder setContext(RtcMessageContext value) {
+      public Builder setContext(AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageContext context = 16;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
        */
       public Builder clearContext() {
         copyOnWrite();

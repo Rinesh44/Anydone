@@ -8,6 +8,109 @@ public final class ThirdPartyProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.EventTypes}
+   */
+  public enum EventTypes
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>delivered = 0;</code>
+     */
+    delivered(0),
+    /**
+     * <code>seen = 1;</code>
+     */
+    seen(1),
+    /**
+     * <code>failed = 2;</code>
+     */
+    failed(2),
+    /**
+     * <code>subscribed = 3;</code>
+     */
+    subscribed(3),
+    /**
+     * <code>unsubscribed = 4;</code>
+     */
+    unsubscribed(4),
+    /**
+     * <code>conversation_started = 5;</code>
+     */
+    conversation_started(5),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>delivered = 0;</code>
+     */
+    public static final int delivered_VALUE = 0;
+    /**
+     * <code>seen = 1;</code>
+     */
+    public static final int seen_VALUE = 1;
+    /**
+     * <code>failed = 2;</code>
+     */
+    public static final int failed_VALUE = 2;
+    /**
+     * <code>subscribed = 3;</code>
+     */
+    public static final int subscribed_VALUE = 3;
+    /**
+     * <code>unsubscribed = 4;</code>
+     */
+    public static final int unsubscribed_VALUE = 4;
+    /**
+     * <code>conversation_started = 5;</code>
+     */
+    public static final int conversation_started_VALUE = 5;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static EventTypes valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static EventTypes forNumber(int value) {
+      switch (value) {
+        case 0: return delivered;
+        case 1: return seen;
+        case 2: return failed;
+        case 3: return subscribed;
+        case 4: return unsubscribed;
+        case 5: return conversation_started;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EventTypes>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        EventTypes> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EventTypes>() {
+            public EventTypes findValueByNumber(int number) {
+              return EventTypes.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private EventTypes(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.EventTypes)
+  }
+
   public interface IncomingViberMessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.IncomingViberMessage)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -2915,6 +3018,712 @@ public final class ThirdPartyProto {
     private static volatile com.google.protobuf.Parser<MessengerWebhook> PARSER;
 
     public static com.google.protobuf.Parser<MessengerWebhook> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ViberWebhookOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ViberWebhook)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    String getUrl();
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    java.util.List<EventTypes> getEventTypesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    int getEventTypesCount();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    EventTypes getEventTypes(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    java.util.List<Integer>
+    getEventTypesValueList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    int getEventTypesValue(int index);
+
+    /**
+     * <code>optional bool sendName = 3;</code>
+     */
+    boolean getSendName();
+
+    /**
+     * <code>optional bool sendPhoto = 4;</code>
+     */
+    boolean getSendPhoto();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ViberWebhook}
+   */
+  public  static final class ViberWebhook extends
+      com.google.protobuf.GeneratedMessageLite<
+          ViberWebhook, ViberWebhook.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ViberWebhook)
+      ViberWebhookOrBuilder {
+    private ViberWebhook() {
+      url_ = "";
+      eventTypes_ = emptyIntList();
+    }
+    private int bitField0_;
+    public static final int URL_FIELD_NUMBER = 1;
+    private String url_;
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    public String getUrl() {
+      return url_;
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(url_);
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    private void setUrl(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      url_ = value;
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    private void clearUrl() {
+      
+      url_ = getDefaultInstance().getUrl();
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    private void setUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      url_ = value.toStringUtf8();
+    }
+
+    public static final int EVENTTYPES_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.IntList eventTypes_;
+    private static final com.google.protobuf.Internal.ListAdapter.Converter<
+        Integer, EventTypes> eventTypes_converter_ =
+            new com.google.protobuf.Internal.ListAdapter.Converter<
+                Integer, EventTypes>() {
+              public EventTypes convert(Integer from) {
+                EventTypes result = EventTypes.forNumber(from);
+                return result == null ? EventTypes.UNRECOGNIZED : result;
+              }
+            };
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    public java.util.List<EventTypes> getEventTypesList() {
+      return new com.google.protobuf.Internal.ListAdapter<
+          Integer, EventTypes>(eventTypes_, eventTypes_converter_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    public int getEventTypesCount() {
+      return eventTypes_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    public EventTypes getEventTypes(int index) {
+      return eventTypes_converter_.convert(eventTypes_.getInt(index));
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    public java.util.List<Integer>
+    getEventTypesValueList() {
+      return eventTypes_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    public int getEventTypesValue(int index) {
+      return eventTypes_.getInt(index);
+    }
+    private void ensureEventTypesIsMutable() {
+      if (!eventTypes_.isModifiable()) {
+        eventTypes_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(eventTypes_);
+      }
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    private void setEventTypes(
+        int index, EventTypes value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEventTypesIsMutable();
+      eventTypes_.setInt(index, value.getNumber());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    private void addEventTypes(EventTypes value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEventTypesIsMutable();
+      eventTypes_.addInt(value.getNumber());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    private void addAllEventTypes(
+        Iterable<? extends EventTypes> values) {
+      ensureEventTypesIsMutable();
+      for (EventTypes value : values) {
+        eventTypes_.addInt(value.getNumber());
+      }
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    private void clearEventTypes() {
+      eventTypes_ = emptyIntList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    private void setEventTypesValue(
+        int index, int value) {
+      ensureEventTypesIsMutable();
+      eventTypes_.setInt(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    private void addEventTypesValue(int value) {
+      ensureEventTypesIsMutable();
+      eventTypes_.addInt(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+     */
+    private void addAllEventTypesValue(
+        Iterable<Integer> values) {
+      ensureEventTypesIsMutable();
+      for (int value : values) {
+        eventTypes_.addInt(value);
+      }
+    }
+
+    public static final int SENDNAME_FIELD_NUMBER = 3;
+    private boolean sendName_;
+    /**
+     * <code>optional bool sendName = 3;</code>
+     */
+    public boolean getSendName() {
+      return sendName_;
+    }
+    /**
+     * <code>optional bool sendName = 3;</code>
+     */
+    private void setSendName(boolean value) {
+      
+      sendName_ = value;
+    }
+    /**
+     * <code>optional bool sendName = 3;</code>
+     */
+    private void clearSendName() {
+      
+      sendName_ = false;
+    }
+
+    public static final int SENDPHOTO_FIELD_NUMBER = 4;
+    private boolean sendPhoto_;
+    /**
+     * <code>optional bool sendPhoto = 4;</code>
+     */
+    public boolean getSendPhoto() {
+      return sendPhoto_;
+    }
+    /**
+     * <code>optional bool sendPhoto = 4;</code>
+     */
+    private void setSendPhoto(boolean value) {
+      
+      sendPhoto_ = value;
+    }
+    /**
+     * <code>optional bool sendPhoto = 4;</code>
+     */
+    private void clearSendPhoto() {
+      
+      sendPhoto_ = false;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (!url_.isEmpty()) {
+        output.writeString(1, getUrl());
+      }
+      for (int i = 0; i < eventTypes_.size(); i++) {
+        output.writeEnum(2, eventTypes_.getInt(i));
+      }
+      if (sendName_ != false) {
+        output.writeBool(3, sendName_);
+      }
+      if (sendPhoto_ != false) {
+        output.writeBool(4, sendPhoto_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!url_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getUrl());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < eventTypes_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(eventTypes_.getInt(i));
+        }
+        size += dataSize;
+        size += 1 * eventTypes_.size();
+      }
+      if (sendName_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, sendName_);
+      }
+      if (sendPhoto_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, sendPhoto_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static ViberWebhook parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static ViberWebhook parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static ViberWebhook parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static ViberWebhook parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static ViberWebhook parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static ViberWebhook parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static ViberWebhook parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static ViberWebhook parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static ViberWebhook parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static ViberWebhook parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ViberWebhook prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ViberWebhook}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          ViberWebhook, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ViberWebhook)
+        ViberWebhookOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.ViberWebhook.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public String getUrl() {
+        return instance.getUrl();
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlBytes() {
+        return instance.getUrlBytes();
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public Builder setUrl(
+          String value) {
+        copyOnWrite();
+        instance.setUrl(value);
+        return this;
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public Builder clearUrl() {
+        copyOnWrite();
+        instance.clearUrl();
+        return this;
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public Builder setUrlBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setUrlBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public java.util.List<EventTypes> getEventTypesList() {
+        return instance.getEventTypesList();
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public int getEventTypesCount() {
+        return instance.getEventTypesCount();
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public EventTypes getEventTypes(int index) {
+        return instance.getEventTypes(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public Builder setEventTypes(
+          int index, EventTypes value) {
+        copyOnWrite();
+        instance.setEventTypes(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public Builder addEventTypes(EventTypes value) {
+        copyOnWrite();
+        instance.addEventTypes(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public Builder addAllEventTypes(
+          Iterable<? extends EventTypes> values) {
+        copyOnWrite();
+        instance.addAllEventTypes(values);  return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public Builder clearEventTypes() {
+        copyOnWrite();
+        instance.clearEventTypes();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public java.util.List<Integer>
+      getEventTypesValueList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getEventTypesValueList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public int getEventTypesValue(int index) {
+        return instance.getEventTypesValue(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public Builder setEventTypesValue(
+          int index, int value) {
+        copyOnWrite();
+        instance.setEventTypesValue(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public Builder addEventTypesValue(int value) {
+        instance.addEventTypesValue(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EventTypes eventTypes = 2;</code>
+       */
+      public Builder addAllEventTypesValue(
+          Iterable<Integer> values) {
+        copyOnWrite();
+        instance.addAllEventTypesValue(values);
+        return this;
+      }
+
+      /**
+       * <code>optional bool sendName = 3;</code>
+       */
+      public boolean getSendName() {
+        return instance.getSendName();
+      }
+      /**
+       * <code>optional bool sendName = 3;</code>
+       */
+      public Builder setSendName(boolean value) {
+        copyOnWrite();
+        instance.setSendName(value);
+        return this;
+      }
+      /**
+       * <code>optional bool sendName = 3;</code>
+       */
+      public Builder clearSendName() {
+        copyOnWrite();
+        instance.clearSendName();
+        return this;
+      }
+
+      /**
+       * <code>optional bool sendPhoto = 4;</code>
+       */
+      public boolean getSendPhoto() {
+        return instance.getSendPhoto();
+      }
+      /**
+       * <code>optional bool sendPhoto = 4;</code>
+       */
+      public Builder setSendPhoto(boolean value) {
+        copyOnWrite();
+        instance.setSendPhoto(value);
+        return this;
+      }
+      /**
+       * <code>optional bool sendPhoto = 4;</code>
+       */
+      public Builder clearSendPhoto() {
+        copyOnWrite();
+        instance.clearSendPhoto();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ViberWebhook)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new ViberWebhook();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          eventTypes_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          ViberWebhook other = (ViberWebhook) arg1;
+          url_ = visitor.visitString(!url_.isEmpty(), url_,
+              !other.url_.isEmpty(), other.url_);
+          eventTypes_= visitor.visitIntList(eventTypes_, other.eventTypes_);
+          sendName_ = visitor.visitBoolean(sendName_ != false, sendName_,
+              other.sendName_ != false, other.sendName_);
+          sendPhoto_ = visitor.visitBoolean(sendPhoto_ != false, sendPhoto_,
+              other.sendPhoto_ != false, other.sendPhoto_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  url_ = s;
+                  break;
+                }
+                case 16: {
+                  if (!eventTypes_.isModifiable()) {
+                    eventTypes_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(eventTypes_);
+                  }
+                  eventTypes_.addInt(input.readEnum());
+                  break;
+                }
+                case 18: {
+                  if (!eventTypes_.isModifiable()) {
+                    eventTypes_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(eventTypes_);
+                  }
+                  int length = input.readRawVarint32();
+                  int oldLimit = input.pushLimit(length);
+                  while(input.getBytesUntilLimit() > 0) {
+                    eventTypes_.addInt(input.readEnum());
+                  }
+                  input.popLimit(oldLimit);
+                  break;
+                }
+                case 24: {
+
+                  sendName_ = input.readBool();
+                  break;
+                }
+                case 32: {
+
+                  sendPhoto_ = input.readBool();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (ViberWebhook.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ViberWebhook)
+    private static final ViberWebhook DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ViberWebhook();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static ViberWebhook getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ViberWebhook> PARSER;
+
+    public static com.google.protobuf.Parser<ViberWebhook> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

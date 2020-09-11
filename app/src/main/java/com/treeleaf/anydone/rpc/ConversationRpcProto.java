@@ -1686,6 +1686,16 @@ public final class ConversationRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 13;</code>
      */
     int getConversationsCount();
+
+    /**
+     * <code>optional string link = 14;</code>
+     */
+    String getLink();
+    /**
+     * <code>optional string link = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getLinkBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ConversationBaseResponse}
@@ -1700,6 +1710,7 @@ public final class ConversationRpcProto {
       refId_ = "";
       stringValue_ = "";
       conversations_ = emptyProtobufList();
+      link_ = "";
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2172,6 +2183,52 @@ public final class ConversationRpcProto {
       conversations_.remove(index);
     }
 
+    public static final int LINK_FIELD_NUMBER = 14;
+    private String link_;
+    /**
+     * <code>optional string link = 14;</code>
+     */
+    public String getLink() {
+      return link_;
+    }
+    /**
+     * <code>optional string link = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLinkBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(link_);
+    }
+    /**
+     * <code>optional string link = 14;</code>
+     */
+    private void setLink(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      link_ = value;
+    }
+    /**
+     * <code>optional string link = 14;</code>
+     */
+    private void clearLink() {
+      
+      link_ = getDefaultInstance().getLink();
+    }
+    /**
+     * <code>optional string link = 14;</code>
+     */
+    private void setLinkBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      link_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2203,6 +2260,9 @@ public final class ConversationRpcProto {
       }
       for (int i = 0; i < conversations_.size(); i++) {
         output.writeMessage(13, conversations_.get(i));
+      }
+      if (!link_.isEmpty()) {
+        output.writeString(14, getLink());
       }
     }
 
@@ -2250,6 +2310,10 @@ public final class ConversationRpcProto {
       for (int i = 0; i < conversations_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, conversations_.get(i));
+      }
+      if (!link_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(14, getLink());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2750,6 +2814,46 @@ public final class ConversationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional string link = 14;</code>
+       */
+      public String getLink() {
+        return instance.getLink();
+      }
+      /**
+       * <code>optional string link = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLinkBytes() {
+        return instance.getLinkBytes();
+      }
+      /**
+       * <code>optional string link = 14;</code>
+       */
+      public Builder setLink(
+          String value) {
+        copyOnWrite();
+        instance.setLink(value);
+        return this;
+      }
+      /**
+       * <code>optional string link = 14;</code>
+       */
+      public Builder clearLink() {
+        copyOnWrite();
+        instance.clearLink();
+        return this;
+      }
+      /**
+       * <code>optional string link = 14;</code>
+       */
+      public Builder setLinkBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLinkBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ConversationBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2788,6 +2892,8 @@ public final class ConversationRpcProto {
               !other.stringValue_.isEmpty(), other.stringValue_);
           conversation_ = visitor.visitMessage(conversation_, other.conversation_);
           conversations_= visitor.visitList(conversations_, other.conversations_);
+          link_ = visitor.visitString(!link_.isEmpty(), link_,
+              !other.link_.isEmpty(), other.link_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2885,6 +2991,12 @@ public final class ConversationRpcProto {
                   }
                   conversations_.add(
                       input.readMessage(com.treeleaf.anydone.entities.ConversationProto.ConversationThread.parser(), extensionRegistry));
+                  break;
+                }
+                case 114: {
+                  String s = input.readStringRequireUtf8();
+
+                  link_ = s;
                   break;
                 }
               }

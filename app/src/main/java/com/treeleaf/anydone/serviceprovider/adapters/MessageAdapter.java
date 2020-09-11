@@ -257,12 +257,16 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (!isSameDay(conversation.getSentAt(), prevMessage.getSentAt())) {
                 isNewDay = true;
                 isContinuous = false;
+                GlobalUtils.showLog(TAG, "first");
             } else if (isSameDay(conversation.getSentAt(), prevMessage.getSentAt())
                     && timeDiff > 20 * 60 * 1000) {
                 isShowTime = true;
                 isContinuous = isContinuous(conversation, prevMessage);
+                GlobalUtils.showLog(TAG, "second");
             } else {
+                GlobalUtils.showLog(TAG, "third");
                 isContinuous = isContinuous(conversation, prevMessage);
+                GlobalUtils.showLog(TAG, "check result: " + isContinuous);
             }
         } else if (position == conversationList.size() - 1) {
             isNewDay = true;
@@ -1084,6 +1088,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 spacing.setVisibility(View.VISIBLE);
             } else {
                 spacing.setVisibility(View.GONE);
+                GlobalUtils.showLog(TAG, "spacing deleted");
             }
             // Show the date if the message was sent on a different date than the previous message.
             messageText.setText(conversation.getMessage());
@@ -1101,7 +1106,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
             // Hide profile image and name if the previous message was also sent by current sender.
-            if (isContinuous) {
+            if (isContinuous && !showTime && !isNewDay) {
                 civSender.setVisibility(View.INVISIBLE);
                 senderTitle.setVisibility(View.GONE);
             } else {
@@ -1847,6 +1852,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     private boolean isContinuous(Conversation currentMsg, Conversation precedingMsg) {
         if (currentMsg == null || precedingMsg == null) {
+            GlobalUtils.showLog(TAG, "both null");
             return false;
         }
 
@@ -1854,9 +1860,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         String precedingUserId = precedingMsg.getSenderId();
 
         if (currentUserID != null && precedingUserId != null) {
+            GlobalUtils.showLog(TAG, "both not null");
             return !currentUserID.isEmpty() && !precedingUserId.isEmpty() &&
                     currentUserID.equalsIgnoreCase(precedingUserId);
-        } else return false;
+        } else {
+            GlobalUtils.showLog(TAG, "last one");
+            return false;
+        }
 
     }
 

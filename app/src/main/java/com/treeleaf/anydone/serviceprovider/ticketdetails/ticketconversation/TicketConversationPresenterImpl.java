@@ -16,6 +16,7 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.entities.NLUProto;
@@ -340,7 +341,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -372,7 +373,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -605,7 +606,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -636,7 +637,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
                 .setRtcMessage(rtcMessage)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -843,7 +844,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setMessageDeliveredRequest(deliveredRequest)
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DELIVERED_MSG_RELAY)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
         GlobalUtils.showLog(TAG, "actual delivered object: " + relayRequest);
@@ -1281,7 +1282,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_DELETE)
                 .setDeleteMessageReq(deleteMessageReq)
-                .setContext(RtcProto.RtcMessageContext.TICKET_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
         GlobalUtils.showLog(TAG, "actual values: " + relayRequest);

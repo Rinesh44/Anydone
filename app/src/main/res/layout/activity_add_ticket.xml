@@ -59,9 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:gravity="start"
-                    android:inputType="textVisiblePassword"
-                    android:maxLength="45"
-                    android:singleLine="true"
+                    android:inputType="textVisiblePassword|textMultiLine"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>

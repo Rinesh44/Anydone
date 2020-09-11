@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation;
 
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
@@ -23,7 +24,7 @@ public class TicketConversationRepositoryImpl implements TicketConversationRepos
                                                                              long to,
                                                                              int pageSize) {
         return anyDoneService.getTicketMessages(token, ticketId, from, to, pageSize,
-                RtcProto.RtcMessageContext.TICKET_CONTEXT_VALUE);
+                AnydoneProto.ServiceContext.TICKET_CONTEXT_VALUE);
     }
 
     @Override

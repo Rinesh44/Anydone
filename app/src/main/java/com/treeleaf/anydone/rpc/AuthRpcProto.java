@@ -97,6 +97,25 @@ public final class AuthRpcProto {
      * <code>optional .treeleaf.anydone.entities.LoginRequest loginRequest = 10;</code>
      */
     com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+     */
+    int getServiceContextValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+     */
+    com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getServiceContext();
+
+    /**
+     * <code>optional string customerId = 12;</code>
+     */
+    String getCustomerId();
+    /**
+     * <code>optional string customerId = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getCustomerIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
@@ -110,6 +129,7 @@ public final class AuthRpcProto {
       refId_ = "";
       stringValue_ = "";
       stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      customerId_ = "";
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
@@ -536,6 +556,91 @@ public final class AuthRpcProto {
       
     }
 
+    public static final int SERVICECONTEXT_FIELD_NUMBER = 11;
+    private int serviceContext_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+     */
+    public int getServiceContextValue() {
+      return serviceContext_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getServiceContext() {
+      com.treeleaf.anydone.entities.AnydoneProto.ServiceContext result = com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.forNumber(serviceContext_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+     */
+    private void setServiceContextValue(int value) {
+        serviceContext_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+     */
+    private void setServiceContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      serviceContext_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+     */
+    private void clearServiceContext() {
+      
+      serviceContext_ = 0;
+    }
+
+    public static final int CUSTOMERID_FIELD_NUMBER = 12;
+    private String customerId_;
+    /**
+     * <code>optional string customerId = 12;</code>
+     */
+    public String getCustomerId() {
+      return customerId_;
+    }
+    /**
+     * <code>optional string customerId = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCustomerIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(customerId_);
+    }
+    /**
+     * <code>optional string customerId = 12;</code>
+     */
+    private void setCustomerId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      customerId_ = value;
+    }
+    /**
+     * <code>optional string customerId = 12;</code>
+     */
+    private void clearCustomerId() {
+      
+      customerId_ = getDefaultInstance().getCustomerId();
+    }
+    /**
+     * <code>optional string customerId = 12;</code>
+     */
+    private void setCustomerIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      customerId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -567,6 +672,12 @@ public final class AuthRpcProto {
       }
       if (loginRequest_ != null) {
         output.writeMessage(10, getLoginRequest());
+      }
+      if (serviceContext_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+        output.writeEnum(11, serviceContext_);
+      }
+      if (!customerId_.isEmpty()) {
+        output.writeString(12, getCustomerId());
       }
     }
 
@@ -619,6 +730,14 @@ public final class AuthRpcProto {
       if (loginRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getLoginRequest());
+      }
+      if (serviceContext_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(11, serviceContext_);
+      }
+      if (!customerId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getCustomerId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1085,6 +1204,83 @@ public final class AuthRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+       */
+      public int getServiceContextValue() {
+        return instance.getServiceContextValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+       */
+      public Builder setServiceContextValue(int value) {
+        copyOnWrite();
+        instance.setServiceContextValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+       */
+      public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getServiceContext() {
+        return instance.getServiceContext();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+       */
+      public Builder setServiceContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
+        copyOnWrite();
+        instance.setServiceContext(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
+       */
+      public Builder clearServiceContext() {
+        copyOnWrite();
+        instance.clearServiceContext();
+        return this;
+      }
+
+      /**
+       * <code>optional string customerId = 12;</code>
+       */
+      public String getCustomerId() {
+        return instance.getCustomerId();
+      }
+      /**
+       * <code>optional string customerId = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCustomerIdBytes() {
+        return instance.getCustomerIdBytes();
+      }
+      /**
+       * <code>optional string customerId = 12;</code>
+       */
+      public Builder setCustomerId(
+          String value) {
+        copyOnWrite();
+        instance.setCustomerId(value);
+        return this;
+      }
+      /**
+       * <code>optional string customerId = 12;</code>
+       */
+      public Builder clearCustomerId() {
+        copyOnWrite();
+        instance.clearCustomerId();
+        return this;
+      }
+      /**
+       * <code>optional string customerId = 12;</code>
+       */
+      public Builder setCustomerIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCustomerIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1123,6 +1319,9 @@ public final class AuthRpcProto {
           authorization_ = visitor.visitMessage(authorization_, other.authorization_);
           debug_ = visitor.visitMessage(debug_, other.debug_);
           loginRequest_ = visitor.visitMessage(loginRequest_, other.loginRequest_);
+          serviceContext_ = visitor.visitInt(serviceContext_ != 0, serviceContext_,    other.serviceContext_ != 0, other.serviceContext_);
+          customerId_ = visitor.visitString(!customerId_.isEmpty(), customerId_,
+              !other.customerId_.isEmpty(), other.customerId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1226,6 +1425,18 @@ public final class AuthRpcProto {
                     loginRequest_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 88: {
+                  int rawValue = input.readEnum();
+
+                  serviceContext_ = rawValue;
+                  break;
+                }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  customerId_ = s;
                   break;
                 }
               }
@@ -1370,6 +1581,16 @@ public final class AuthRpcProto {
      * <code>optional .treeleaf.anydone.entities.User user = 11;</code>
      */
     com.treeleaf.anydone.entities.UserProto.User getUser();
+
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    String getLink();
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getLinkBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseResponse}
@@ -1382,6 +1603,7 @@ public final class AuthRpcProto {
     private AuthBaseResponse() {
       msg_ = "";
       sessions_ = emptyProtobufList();
+      link_ = "";
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -1918,6 +2140,52 @@ public final class AuthRpcProto {
       
     }
 
+    public static final int LINK_FIELD_NUMBER = 12;
+    private String link_;
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    public String getLink() {
+      return link_;
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLinkBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(link_);
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void setLink(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      link_ = value;
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void clearLink() {
+      
+      link_ = getDefaultInstance().getLink();
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void setLinkBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      link_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -1952,6 +2220,9 @@ public final class AuthRpcProto {
       }
       if (user_ != null) {
         output.writeMessage(11, getUser());
+      }
+      if (!link_.isEmpty()) {
+        output.writeString(12, getLink());
       }
     }
 
@@ -2003,6 +2274,10 @@ public final class AuthRpcProto {
       if (user_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getUser());
+      }
+      if (!link_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getLink());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2558,6 +2833,46 @@ public final class AuthRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public String getLink() {
+        return instance.getLink();
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLinkBytes() {
+        return instance.getLinkBytes();
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder setLink(
+          String value) {
+        copyOnWrite();
+        instance.setLink(value);
+        return this;
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder clearLink() {
+        copyOnWrite();
+        instance.clearLink();
+        return this;
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder setLinkBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLinkBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2595,6 +2910,8 @@ public final class AuthRpcProto {
           loginResponse_ = visitor.visitMessage(loginResponse_, other.loginResponse_);
           authResponse_ = visitor.visitMessage(authResponse_, other.authResponse_);
           user_ = visitor.visitMessage(user_, other.user_);
+          link_ = visitor.visitString(!link_.isEmpty(), link_,
+              !other.link_.isEmpty(), other.link_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2719,6 +3036,12 @@ public final class AuthRpcProto {
                     user_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  link_ = s;
                   break;
                 }
               }
