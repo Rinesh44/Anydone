@@ -100,6 +100,8 @@ public class ServiceRequestDetailContract {
 
         void onImageCaptured();
 
+        void onImageAckSent();
+
         void onImageDrawDiscardLocal();
 
         void onImageDrawDiscardRemote();
@@ -120,6 +122,7 @@ public class ServiceRequestDetailContract {
 
         void onDrawCanvasCleared();
 
+        void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse);
     }
 
     public interface ServiceRequestDetailPresenter extends Presenter<ServiceRequestDetailView> {

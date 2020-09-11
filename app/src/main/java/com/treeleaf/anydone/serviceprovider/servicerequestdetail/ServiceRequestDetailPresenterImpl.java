@@ -767,7 +767,7 @@ public class ServiceRequestDetailPresenterImpl extends
                     if (startDraw != null) {
                         if (userAccountId.equals(accountId)) {
                             //sent and received id is same
-                            getView().onImageCaptured();
+//                            getView().onImageCaptured();
                         } else {
                             //sent and received id is different
                             ByteString imageByteString = startDraw.getCapturedImage();
@@ -776,6 +776,20 @@ public class ServiceRequestDetailPresenterImpl extends
                             long captureTime = startDraw.getCapturedTime();
                             byte[] convertedBytes = imageByteString.toByteArray();
                             getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                        }
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE)) {
+                    SignalingProto.StartDrawAcknowledgement startDrawAckResponse = relayResponse.getStartDrawAckResponse();
+                    String accountId = startDrawAckResponse.getSenderAccount().getAccountId();
+                    if (startDrawAckResponse != null) {
+                        if (userAccountId.equals(accountId)) {
+                            //sent and received id is same
+                            getView().onImageAckSent();
+                        } else {
+                            //sent and received id is different
+                            getView().onRemoteDeviceConfigReceived(startDrawAckResponse);
                         }
                     }
                 }

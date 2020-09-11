@@ -96,9 +96,9 @@ public class ServiceRequestDetailActivityPresenterImpl extends
     }
 
     @Override
-    public void publishStartDrawingEvent(String userAccountId, String accountName, String accountPicture,
-                                         long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
-                                         long capturedTime) {
+    public void publishSendImageToRemoteEvent(String userAccountId, String accountName, String accountPicture,
+                                              long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
+                                              long capturedTime) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -120,6 +120,40 @@ public class ServiceRequestDetailActivityPresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.IMAGE_CAPTURE_MESSAGE_REQUEST)
                 .setStartDrawRequest(startDraw)
+                .build();
+
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
+    public void publishSendAckToRemoteEvent(String userAccountId, String accountName, String accountPicture,
+                                            long orderId, int bitmapWidth, int bitmapHeight, long capturedTime) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.StartDrawAcknowledgement startDrawAcknowledgement = SignalingProto.StartDrawAcknowledgement.newBuilder()
+                .setBitmapWidth(bitmapWidth)
+                .setBitmapHeight(bitmapHeight)
+                .setCapturedTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST)
+                .setStartDrawAckRequest(startDrawAcknowledgement)
                 .build();
 
 

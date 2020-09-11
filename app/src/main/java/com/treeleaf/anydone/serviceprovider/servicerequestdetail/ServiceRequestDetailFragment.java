@@ -813,6 +813,16 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
+    public void onImageAckSent() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageAckSent();
+    }
+
+    @Override
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse) {
+        ((ServiceRequestDetailActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse);
+    }
+
+    @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
         ((ServiceRequestDetailActivity)
                 Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);

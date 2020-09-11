@@ -22,9 +22,13 @@ public class ServiceRequestDetailActivityContract {
         void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
                                          long orderId);
 
-        void publishStartDrawingEvent(String userAccountId, String accountName, String accountPicture,
-                                      long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
-                                      long capturedTime);
+        void publishSendImageToRemoteEvent(String userAccountId, String accountName, String accountPicture,
+                                           long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
+                                           long capturedTime);
+
+        void publishSendAckToRemoteEvent(String userAccountId, String accountName, String accountPicture,
+                                         long orderId, int bitmapWidth, int bitmapHeight,
+                                         long capturedTime);
 
         void publishCancelDrawEvent(String userAccountId, String accountName, String accountPicture,
                                     long orderId, long cancellationTime);

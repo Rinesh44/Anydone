@@ -36,6 +36,7 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragmen
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
+import com.treeleaf.januswebrtc.GeneralUtils;
 import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -120,9 +121,10 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
-
-            presenter.publishStartDrawingEvent(accountId, accountName, accountPicture, serviceRequestId, imageByteString,
-                    convertedBitmap.getWidth(), convertedBitmap.getHeight(), System.currentTimeMillis());
+            int localDeviceWidth = GeneralUtils.getDeviceResolution(ServiceRequestDetailActivity.this)[0];
+            int localDeviceHeight = GeneralUtils.getDeviceResolution(ServiceRequestDetailActivity.this)[1];
+            presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId, imageByteString,
+                    localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -200,6 +202,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         };
 
         drawCallBack = new Callback.DrawCallBack() {
+
+            @Override
+            public void onNewImageAcknowledge(int width, int height, long timeStamp) {
+                presenter.publishSendAckToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId,
+                        width, height, System.currentTimeMillis());
+            }
 
             @Override
             public void onHoldDraw() {
@@ -326,6 +334,21 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         Log.d(TAG, "onImageReceivedFromConsumer");
         if (serverDrawingPadEventListener != null)
             serverDrawingPadEventListener.onDrawHideProgress();
+    }
+
+    public void onImageAckSent() {
+        if (serverDrawingPadEventListener != null)
+            serverDrawingPadEventListener.onDrawDisplayCapturedImage();
+    }
+
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse) {
+        if (serverDrawingPadEventListener != null) {
+            int width = startDrawAckResponse.getBitmapWidth();
+            int height = startDrawAckResponse.getBitmapHeight();
+            long timeStamp = startDrawAckResponse.getCapturedTime();
+            serverDrawingPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp);
+            serverDrawingPadEventListener.onDrawHideProgress();
+        }
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
