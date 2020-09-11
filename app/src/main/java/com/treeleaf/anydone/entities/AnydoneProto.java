@@ -621,6 +621,176 @@ public final class AnydoneProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ServiceProviderType)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.ServiceContext}
+   */
+  public enum ServiceContext
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_SERVICE_CONTEXT = 0;</code>
+     */
+    UNKNOWN_SERVICE_CONTEXT(0),
+    /**
+     * <code>SERVICE_ORDER_CONTEXT = 1;</code>
+     */
+    SERVICE_ORDER_CONTEXT(1),
+    /**
+     * <code>TICKET_CONTEXT = 2;</code>
+     */
+    TICKET_CONTEXT(2),
+    /**
+     * <code>CONVERSATION_CONTEXT = 3;</code>
+     */
+    CONVERSATION_CONTEXT(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_SERVICE_CONTEXT = 0;</code>
+     */
+    public static final int UNKNOWN_SERVICE_CONTEXT_VALUE = 0;
+    /**
+     * <code>SERVICE_ORDER_CONTEXT = 1;</code>
+     */
+    public static final int SERVICE_ORDER_CONTEXT_VALUE = 1;
+    /**
+     * <code>TICKET_CONTEXT = 2;</code>
+     */
+    public static final int TICKET_CONTEXT_VALUE = 2;
+    /**
+     * <code>CONVERSATION_CONTEXT = 3;</code>
+     */
+    public static final int CONVERSATION_CONTEXT_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ServiceContext valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ServiceContext forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_SERVICE_CONTEXT;
+        case 1: return SERVICE_ORDER_CONTEXT;
+        case 2: return TICKET_CONTEXT;
+        case 3: return CONVERSATION_CONTEXT;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ServiceContext>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ServiceContext> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ServiceContext>() {
+            public ServiceContext findValueByNumber(int number) {
+              return ServiceContext.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private ServiceContext(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ServiceContext)
+  }
+
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.SessionType}
+   */
+  public enum SessionType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_SESSION_TYPE = 0;</code>
+     */
+    UNKNOWN_SESSION_TYPE(0),
+    /**
+     * <code>PASSWORD_AUTH = 1;</code>
+     */
+    PASSWORD_AUTH(1),
+    /**
+     * <code>API_KEY_AUTH = 2;</code>
+     */
+    API_KEY_AUTH(2),
+    /**
+     * <code>TOKEN_AUTH = 3;</code>
+     */
+    TOKEN_AUTH(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_SESSION_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_SESSION_TYPE_VALUE = 0;
+    /**
+     * <code>PASSWORD_AUTH = 1;</code>
+     */
+    public static final int PASSWORD_AUTH_VALUE = 1;
+    /**
+     * <code>API_KEY_AUTH = 2;</code>
+     */
+    public static final int API_KEY_AUTH_VALUE = 2;
+    /**
+     * <code>TOKEN_AUTH = 3;</code>
+     */
+    public static final int TOKEN_AUTH_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static SessionType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SessionType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_SESSION_TYPE;
+        case 1: return PASSWORD_AUTH;
+        case 2: return API_KEY_AUTH;
+        case 3: return TOKEN_AUTH;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SessionType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SessionType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SessionType>() {
+            public SessionType findValueByNumber(int number) {
+              return SessionType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private SessionType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.SessionType)
+  }
+
 
   static {
   }

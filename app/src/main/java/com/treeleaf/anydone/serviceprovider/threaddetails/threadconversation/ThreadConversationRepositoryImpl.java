@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation;
 
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
@@ -23,7 +24,7 @@ public class ThreadConversationRepositoryImpl implements ThreadConversationRepos
                                                                              long to,
                                                                              int pageSize) {
         return anyDoneService.getThreadMessages(token, threadId, from, to,
-                pageSize, RtcProto.RtcMessageContext.CONVERSATION_CONTEXT_VALUE);
+                pageSize, AnydoneProto.ServiceContext.CONVERSATION_CONTEXT_VALUE);
     }
 
     @Override

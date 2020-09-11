@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequest
 
 
 import com.google.protobuf.ByteString;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
@@ -51,7 +52,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.VIDEO_CALL_JOIN_REQUEST)
                 .setVideoCallJoinRequest(videoCallJoinRequest)
-                .setContext(RtcProto.RtcMessageContext.SERVICE_ORDER_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT)
                 .build();
 
 
@@ -83,7 +84,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.PARTICIPANT_LEFT_REQUEST)
                 .setParticipantLeftRequest(participantLeft)
-                .setContext(RtcProto.RtcMessageContext.SERVICE_ORDER_CONTEXT)
+                .setContext(AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT)
                 .build();
 
 
