@@ -65,7 +65,7 @@ public final class IntegrationProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ThirdPartyApiMethod valueOf(int value) {
       return forNumber(value);
     }
@@ -143,7 +143,7 @@ public final class IntegrationProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ThirdPartyApiParameterType valueOf(int value) {
       return forNumber(value);
     }
@@ -185,7 +185,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationId = 1;</code>
      */
-    String getIntegrationId();
+    java.lang.String getIntegrationId();
     /**
      * <code>optional string integrationId = 1;</code>
      */
@@ -199,7 +199,7 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    IntegrationMessenger getIntegrationMessenger();
+    com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getIntegrationMessenger();
 
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
@@ -208,12 +208,12 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
      */
-    IntegrationViber getIntegrationViber();
+    com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber getIntegrationViber();
 
     /**
      * <code>optional string serviceProviderAccountId = 4;</code>
      */
-    String getServiceProviderAccountId();
+    java.lang.String getServiceProviderAccountId();
     /**
      * <code>optional string serviceProviderAccountId = 4;</code>
      */
@@ -223,7 +223,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string defaultLabelId = 5;</code>
      */
-    String getDefaultLabelId();
+    java.lang.String getDefaultLabelId();
     /**
      * <code>optional string defaultLabelId = 5;</code>
      */
@@ -233,7 +233,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string serviceId = 6;</code>
      */
-    String getServiceId();
+    java.lang.String getServiceId();
     /**
      * <code>optional string serviceId = 6;</code>
      */
@@ -247,7 +247,7 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 7;</code>
      */
-    UserProto.ThirdPartySource getSource();
+    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
 
     /**
      * <code>optional bool isEnabled = 8;</code>
@@ -279,11 +279,11 @@ public final class IntegrationProto {
       serviceId_ = "";
     }
     public static final int INTEGRATIONID_FIELD_NUMBER = 1;
-    private String integrationId_;
+    private java.lang.String integrationId_;
     /**
      * <code>optional string integrationId = 1;</code>
      */
-    public String getIntegrationId() {
+    public java.lang.String getIntegrationId() {
       return integrationId_;
     }
     /**
@@ -297,7 +297,7 @@ public final class IntegrationProto {
      * <code>optional string integrationId = 1;</code>
      */
     private void setIntegrationId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -325,7 +325,7 @@ public final class IntegrationProto {
     }
 
     public static final int INTEGRATIONMESSENGER_FIELD_NUMBER = 2;
-    private IntegrationMessenger integrationMessenger_;
+    private com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger integrationMessenger_;
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
@@ -335,13 +335,13 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    public IntegrationMessenger getIntegrationMessenger() {
-      return integrationMessenger_ == null ? IntegrationMessenger.getDefaultInstance() : integrationMessenger_;
+    public com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getIntegrationMessenger() {
+      return integrationMessenger_ == null ? com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.getDefaultInstance() : integrationMessenger_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    private void setIntegrationMessenger(IntegrationMessenger value) {
+    private void setIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -352,18 +352,18 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
     private void setIntegrationMessenger(
-        IntegrationMessenger.Builder builderForValue) {
+        com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.Builder builderForValue) {
       integrationMessenger_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
      */
-    private void mergeIntegrationMessenger(IntegrationMessenger value) {
+    private void mergeIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
       if (integrationMessenger_ != null &&
-          integrationMessenger_ != IntegrationMessenger.getDefaultInstance()) {
+          integrationMessenger_ != com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.getDefaultInstance()) {
         integrationMessenger_ =
-          IntegrationMessenger.newBuilder(integrationMessenger_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.newBuilder(integrationMessenger_).mergeFrom(value).buildPartial();
       } else {
         integrationMessenger_ = value;
       }
@@ -377,7 +377,7 @@ public final class IntegrationProto {
     }
 
     public static final int INTEGRATIONVIBER_FIELD_NUMBER = 3;
-    private IntegrationViber integrationViber_;
+    private com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber integrationViber_;
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
      */
@@ -387,13 +387,13 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
      */
-    public IntegrationViber getIntegrationViber() {
-      return integrationViber_ == null ? IntegrationViber.getDefaultInstance() : integrationViber_;
+    public com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber getIntegrationViber() {
+      return integrationViber_ == null ? com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.getDefaultInstance() : integrationViber_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
      */
-    private void setIntegrationViber(IntegrationViber value) {
+    private void setIntegrationViber(com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -404,18 +404,18 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
      */
     private void setIntegrationViber(
-        IntegrationViber.Builder builderForValue) {
+        com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.Builder builderForValue) {
       integrationViber_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
      */
-    private void mergeIntegrationViber(IntegrationViber value) {
+    private void mergeIntegrationViber(com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber value) {
       if (integrationViber_ != null &&
-          integrationViber_ != IntegrationViber.getDefaultInstance()) {
+          integrationViber_ != com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.getDefaultInstance()) {
         integrationViber_ =
-          IntegrationViber.newBuilder(integrationViber_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.newBuilder(integrationViber_).mergeFrom(value).buildPartial();
       } else {
         integrationViber_ = value;
       }
@@ -429,11 +429,11 @@ public final class IntegrationProto {
     }
 
     public static final int SERVICEPROVIDERACCOUNTID_FIELD_NUMBER = 4;
-    private String serviceProviderAccountId_;
+    private java.lang.String serviceProviderAccountId_;
     /**
      * <code>optional string serviceProviderAccountId = 4;</code>
      */
-    public String getServiceProviderAccountId() {
+    public java.lang.String getServiceProviderAccountId() {
       return serviceProviderAccountId_;
     }
     /**
@@ -447,7 +447,7 @@ public final class IntegrationProto {
      * <code>optional string serviceProviderAccountId = 4;</code>
      */
     private void setServiceProviderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -475,11 +475,11 @@ public final class IntegrationProto {
     }
 
     public static final int DEFAULTLABELID_FIELD_NUMBER = 5;
-    private String defaultLabelId_;
+    private java.lang.String defaultLabelId_;
     /**
      * <code>optional string defaultLabelId = 5;</code>
      */
-    public String getDefaultLabelId() {
+    public java.lang.String getDefaultLabelId() {
       return defaultLabelId_;
     }
     /**
@@ -493,7 +493,7 @@ public final class IntegrationProto {
      * <code>optional string defaultLabelId = 5;</code>
      */
     private void setDefaultLabelId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -521,11 +521,11 @@ public final class IntegrationProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 6;
-    private String serviceId_;
+    private java.lang.String serviceId_;
     /**
      * <code>optional string serviceId = 6;</code>
      */
-    public String getServiceId() {
+    public java.lang.String getServiceId() {
       return serviceId_;
     }
     /**
@@ -539,7 +539,7 @@ public final class IntegrationProto {
      * <code>optional string serviceId = 6;</code>
      */
     private void setServiceId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -577,9 +577,9 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 7;</code>
      */
-    public UserProto.ThirdPartySource getSource() {
-      UserProto.ThirdPartySource result = UserProto.ThirdPartySource.forNumber(source_);
-      return result == null ? UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 7;</code>
@@ -590,7 +590,7 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 7;</code>
      */
-    private void setSource(UserProto.ThirdPartySource value) {
+    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -694,7 +694,7 @@ public final class IntegrationProto {
       if (!serviceId_.isEmpty()) {
         output.writeString(6, getServiceId());
       }
-      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         output.writeEnum(7, source_);
       }
       if (isEnabled_ != false) {
@@ -737,7 +737,7 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(6, getServiceId());
       }
-      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, source_);
       }
@@ -757,60 +757,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static Integration parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Integration parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Integration parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Integration parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Integration parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Integration parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Integration parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Integration parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Integration parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Integration parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -821,7 +821,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Integration prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.Integration prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -830,9 +830,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Integration, Builder> implements
+          com.treeleaf.anydone.entities.IntegrationProto.Integration, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Integration)
-        IntegrationOrBuilder {
+        com.treeleaf.anydone.entities.IntegrationProto.IntegrationOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.Integration.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -842,7 +842,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationId = 1;</code>
        */
-      public String getIntegrationId() {
+      public java.lang.String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
@@ -856,7 +856,7 @@ public final class IntegrationProto {
        * <code>optional string integrationId = 1;</code>
        */
       public Builder setIntegrationId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntegrationId(value);
         return this;
@@ -888,13 +888,13 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
-      public IntegrationMessenger getIntegrationMessenger() {
+      public com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getIntegrationMessenger() {
         return instance.getIntegrationMessenger();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
-      public Builder setIntegrationMessenger(IntegrationMessenger value) {
+      public Builder setIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
         copyOnWrite();
         instance.setIntegrationMessenger(value);
         return this;
@@ -903,7 +903,7 @@ public final class IntegrationProto {
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
       public Builder setIntegrationMessenger(
-          IntegrationMessenger.Builder builderForValue) {
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.Builder builderForValue) {
         copyOnWrite();
         instance.setIntegrationMessenger(builderForValue);
         return this;
@@ -911,7 +911,7 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationMessenger integrationMessenger = 2;</code>
        */
-      public Builder mergeIntegrationMessenger(IntegrationMessenger value) {
+      public Builder mergeIntegrationMessenger(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger value) {
         copyOnWrite();
         instance.mergeIntegrationMessenger(value);
         return this;
@@ -933,13 +933,13 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
        */
-      public IntegrationViber getIntegrationViber() {
+      public com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber getIntegrationViber() {
         return instance.getIntegrationViber();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
        */
-      public Builder setIntegrationViber(IntegrationViber value) {
+      public Builder setIntegrationViber(com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber value) {
         copyOnWrite();
         instance.setIntegrationViber(value);
         return this;
@@ -948,7 +948,7 @@ public final class IntegrationProto {
        * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
        */
       public Builder setIntegrationViber(
-          IntegrationViber.Builder builderForValue) {
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.Builder builderForValue) {
         copyOnWrite();
         instance.setIntegrationViber(builderForValue);
         return this;
@@ -956,7 +956,7 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntegrationViber integrationViber = 3;</code>
        */
-      public Builder mergeIntegrationViber(IntegrationViber value) {
+      public Builder mergeIntegrationViber(com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber value) {
         copyOnWrite();
         instance.mergeIntegrationViber(value);
         return this;
@@ -972,7 +972,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string serviceProviderAccountId = 4;</code>
        */
-      public String getServiceProviderAccountId() {
+      public java.lang.String getServiceProviderAccountId() {
         return instance.getServiceProviderAccountId();
       }
       /**
@@ -986,7 +986,7 @@ public final class IntegrationProto {
        * <code>optional string serviceProviderAccountId = 4;</code>
        */
       public Builder setServiceProviderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceProviderAccountId(value);
         return this;
@@ -1012,7 +1012,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string defaultLabelId = 5;</code>
        */
-      public String getDefaultLabelId() {
+      public java.lang.String getDefaultLabelId() {
         return instance.getDefaultLabelId();
       }
       /**
@@ -1026,7 +1026,7 @@ public final class IntegrationProto {
        * <code>optional string defaultLabelId = 5;</code>
        */
       public Builder setDefaultLabelId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setDefaultLabelId(value);
         return this;
@@ -1052,7 +1052,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string serviceId = 6;</code>
        */
-      public String getServiceId() {
+      public java.lang.String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -1066,7 +1066,7 @@ public final class IntegrationProto {
        * <code>optional string serviceId = 6;</code>
        */
       public Builder setServiceId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -1106,13 +1106,13 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 7;</code>
        */
-      public UserProto.ThirdPartySource getSource() {
+      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
         return instance.getSource();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 7;</code>
        */
-      public Builder setSource(UserProto.ThirdPartySource value) {
+      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
         copyOnWrite();
         instance.setSource(value);
         return this;
@@ -1198,11 +1198,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Integration)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Integration();
+          return new com.treeleaf.anydone.entities.IntegrationProto.Integration();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1215,7 +1215,7 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Integration other = (Integration) arg1;
+          com.treeleaf.anydone.entities.IntegrationProto.Integration other = (com.treeleaf.anydone.entities.IntegrationProto.Integration) arg1;
           integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
               !other.integrationId_.isEmpty(), other.integrationId_);
           integrationMessenger_ = visitor.visitMessage(integrationMessenger_, other.integrationMessenger_);
@@ -1233,7 +1233,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1264,11 +1264,11 @@ public final class IntegrationProto {
                   break;
                 }
                 case 18: {
-                  IntegrationMessenger.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.Builder subBuilder = null;
                   if (integrationMessenger_ != null) {
                     subBuilder = integrationMessenger_.toBuilder();
                   }
-                  integrationMessenger_ = input.readMessage(IntegrationMessenger.parser(), extensionRegistry);
+                  integrationMessenger_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(integrationMessenger_);
                     integrationMessenger_ = subBuilder.buildPartial();
@@ -1277,11 +1277,11 @@ public final class IntegrationProto {
                   break;
                 }
                 case 26: {
-                  IntegrationViber.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.Builder subBuilder = null;
                   if (integrationViber_ != null) {
                     subBuilder = integrationViber_.toBuilder();
                   }
-                  integrationViber_ = input.readMessage(IntegrationViber.parser(), extensionRegistry);
+                  integrationViber_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(integrationViber_);
                     integrationViber_ = subBuilder.buildPartial();
@@ -1343,7 +1343,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Integration.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.Integration.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1357,13 +1357,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Integration)
-    private static final Integration DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.IntegrationProto.Integration DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Integration();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Integration getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.IntegrationProto.Integration getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1381,7 +1381,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationMessengerId = 1;</code>
      */
-    String getIntegrationMessengerId();
+    java.lang.String getIntegrationMessengerId();
     /**
      * <code>optional string integrationMessengerId = 1;</code>
      */
@@ -1391,7 +1391,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string verifyToken = 2;</code>
      */
-    String getVerifyToken();
+    java.lang.String getVerifyToken();
     /**
      * <code>optional string verifyToken = 2;</code>
      */
@@ -1401,7 +1401,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string pageAccessToken = 3;</code>
      */
-    String getPageAccessToken();
+    java.lang.String getPageAccessToken();
     /**
      * <code>optional string pageAccessToken = 3;</code>
      */
@@ -1411,7 +1411,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationId = 4;</code>
      */
-    String getIntegrationId();
+    java.lang.String getIntegrationId();
     /**
      * <code>optional string integrationId = 4;</code>
      */
@@ -1443,11 +1443,11 @@ public final class IntegrationProto {
       integrationId_ = "";
     }
     public static final int INTEGRATIONMESSENGERID_FIELD_NUMBER = 1;
-    private String integrationMessengerId_;
+    private java.lang.String integrationMessengerId_;
     /**
      * <code>optional string integrationMessengerId = 1;</code>
      */
-    public String getIntegrationMessengerId() {
+    public java.lang.String getIntegrationMessengerId() {
       return integrationMessengerId_;
     }
     /**
@@ -1461,7 +1461,7 @@ public final class IntegrationProto {
      * <code>optional string integrationMessengerId = 1;</code>
      */
     private void setIntegrationMessengerId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1489,11 +1489,11 @@ public final class IntegrationProto {
     }
 
     public static final int VERIFYTOKEN_FIELD_NUMBER = 2;
-    private String verifyToken_;
+    private java.lang.String verifyToken_;
     /**
      * <code>optional string verifyToken = 2;</code>
      */
-    public String getVerifyToken() {
+    public java.lang.String getVerifyToken() {
       return verifyToken_;
     }
     /**
@@ -1507,7 +1507,7 @@ public final class IntegrationProto {
      * <code>optional string verifyToken = 2;</code>
      */
     private void setVerifyToken(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1535,11 +1535,11 @@ public final class IntegrationProto {
     }
 
     public static final int PAGEACCESSTOKEN_FIELD_NUMBER = 3;
-    private String pageAccessToken_;
+    private java.lang.String pageAccessToken_;
     /**
      * <code>optional string pageAccessToken = 3;</code>
      */
-    public String getPageAccessToken() {
+    public java.lang.String getPageAccessToken() {
       return pageAccessToken_;
     }
     /**
@@ -1553,7 +1553,7 @@ public final class IntegrationProto {
      * <code>optional string pageAccessToken = 3;</code>
      */
     private void setPageAccessToken(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1581,11 +1581,11 @@ public final class IntegrationProto {
     }
 
     public static final int INTEGRATIONID_FIELD_NUMBER = 4;
-    private String integrationId_;
+    private java.lang.String integrationId_;
     /**
      * <code>optional string integrationId = 4;</code>
      */
-    public String getIntegrationId() {
+    public java.lang.String getIntegrationId() {
       return integrationId_;
     }
     /**
@@ -1599,7 +1599,7 @@ public final class IntegrationProto {
      * <code>optional string integrationId = 4;</code>
      */
     private void setIntegrationId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1727,60 +1727,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static IntegrationMessenger parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntegrationMessenger parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntegrationMessenger parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntegrationMessenger parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntegrationMessenger parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntegrationMessenger parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntegrationMessenger parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static IntegrationMessenger parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntegrationMessenger parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntegrationMessenger parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1791,7 +1791,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(IntegrationMessenger prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1800,9 +1800,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          IntegrationMessenger, Builder> implements
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntegrationMessenger)
-        IntegrationMessengerOrBuilder {
+        com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessengerOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1812,7 +1812,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationMessengerId = 1;</code>
        */
-      public String getIntegrationMessengerId() {
+      public java.lang.String getIntegrationMessengerId() {
         return instance.getIntegrationMessengerId();
       }
       /**
@@ -1826,7 +1826,7 @@ public final class IntegrationProto {
        * <code>optional string integrationMessengerId = 1;</code>
        */
       public Builder setIntegrationMessengerId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntegrationMessengerId(value);
         return this;
@@ -1852,7 +1852,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string verifyToken = 2;</code>
        */
-      public String getVerifyToken() {
+      public java.lang.String getVerifyToken() {
         return instance.getVerifyToken();
       }
       /**
@@ -1866,7 +1866,7 @@ public final class IntegrationProto {
        * <code>optional string verifyToken = 2;</code>
        */
       public Builder setVerifyToken(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setVerifyToken(value);
         return this;
@@ -1892,7 +1892,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string pageAccessToken = 3;</code>
        */
-      public String getPageAccessToken() {
+      public java.lang.String getPageAccessToken() {
         return instance.getPageAccessToken();
       }
       /**
@@ -1906,7 +1906,7 @@ public final class IntegrationProto {
        * <code>optional string pageAccessToken = 3;</code>
        */
       public Builder setPageAccessToken(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPageAccessToken(value);
         return this;
@@ -1932,7 +1932,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationId = 4;</code>
        */
-      public String getIntegrationId() {
+      public java.lang.String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
@@ -1946,7 +1946,7 @@ public final class IntegrationProto {
        * <code>optional string integrationId = 4;</code>
        */
       public Builder setIntegrationId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntegrationId(value);
         return this;
@@ -2018,11 +2018,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntegrationMessenger)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new IntegrationMessenger();
+          return new com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2035,7 +2035,7 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          IntegrationMessenger other = (IntegrationMessenger) arg1;
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger other = (com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger) arg1;
           integrationMessengerId_ = visitor.visitString(!integrationMessengerId_.isEmpty(), integrationMessengerId_,
               !other.integrationMessengerId_.isEmpty(), other.integrationMessengerId_);
           verifyToken_ = visitor.visitString(!verifyToken_.isEmpty(), verifyToken_,
@@ -2048,7 +2048,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2121,7 +2121,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (IntegrationMessenger.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2135,13 +2135,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntegrationMessenger)
-    private static final IntegrationMessenger DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntegrationMessenger();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static IntegrationMessenger getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationMessenger getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2159,7 +2159,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string apiId = 1;</code>
      */
-    String getApiId();
+    java.lang.String getApiId();
     /**
      * <code>optional string apiId = 1;</code>
      */
@@ -2169,7 +2169,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string title = 2;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 2;</code>
      */
@@ -2179,7 +2179,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string url = 3;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 3;</code>
      */
@@ -2193,17 +2193,17 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiMethod method = 4;</code>
      */
-    ThirdPartyApiMethod getMethod();
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod getMethod();
 
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
-    java.util.List<ThirdPartyApiHeader>
+    java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader> 
         getApiHeadersList();
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
-    ThirdPartyApiHeader getApiHeaders(int index);
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader getApiHeaders(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
@@ -2212,12 +2212,12 @@ public final class IntegrationProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
-    java.util.List<ThirdPartyApiParameter>
+    java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter> 
         getApiParametersList();
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
-    ThirdPartyApiParameter getApiParameters(int index);
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter getApiParameters(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
@@ -2250,11 +2250,11 @@ public final class IntegrationProto {
     }
     private int bitField0_;
     public static final int APIID_FIELD_NUMBER = 1;
-    private String apiId_;
+    private java.lang.String apiId_;
     /**
      * <code>optional string apiId = 1;</code>
      */
-    public String getApiId() {
+    public java.lang.String getApiId() {
       return apiId_;
     }
     /**
@@ -2268,7 +2268,7 @@ public final class IntegrationProto {
      * <code>optional string apiId = 1;</code>
      */
     private void setApiId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2296,11 +2296,11 @@ public final class IntegrationProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 2;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 2;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -2314,7 +2314,7 @@ public final class IntegrationProto {
      * <code>optional string title = 2;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2342,11 +2342,11 @@ public final class IntegrationProto {
     }
 
     public static final int URL_FIELD_NUMBER = 3;
-    private String url_;
+    private java.lang.String url_;
     /**
      * <code>optional string url = 3;</code>
      */
-    public String getUrl() {
+    public java.lang.String getUrl() {
       return url_;
     }
     /**
@@ -2360,7 +2360,7 @@ public final class IntegrationProto {
      * <code>optional string url = 3;</code>
      */
     private void setUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2398,9 +2398,9 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiMethod method = 4;</code>
      */
-    public ThirdPartyApiMethod getMethod() {
-      ThirdPartyApiMethod result = ThirdPartyApiMethod.forNumber(method_);
-      return result == null ? ThirdPartyApiMethod.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod getMethod() {
+      com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod result = com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod.forNumber(method_);
+      return result == null ? com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiMethod method = 4;</code>
@@ -2411,7 +2411,7 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiMethod method = 4;</code>
      */
-    private void setMethod(ThirdPartyApiMethod value) {
+    private void setMethod(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2427,17 +2427,17 @@ public final class IntegrationProto {
     }
 
     public static final int APIHEADERS_FIELD_NUMBER = 5;
-    private com.google.protobuf.Internal.ProtobufList<ThirdPartyApiHeader> apiHeaders_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader> apiHeaders_;
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
-    public java.util.List<ThirdPartyApiHeader> getApiHeadersList() {
+    public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader> getApiHeadersList() {
       return apiHeaders_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
-    public java.util.List<? extends ThirdPartyApiHeaderOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeaderOrBuilder> 
         getApiHeadersOrBuilderList() {
       return apiHeaders_;
     }
@@ -2450,13 +2450,13 @@ public final class IntegrationProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
-    public ThirdPartyApiHeader getApiHeaders(int index) {
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader getApiHeaders(int index) {
       return apiHeaders_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
-    public ThirdPartyApiHeaderOrBuilder getApiHeadersOrBuilder(
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeaderOrBuilder getApiHeadersOrBuilder(
         int index) {
       return apiHeaders_.get(index);
     }
@@ -2471,7 +2471,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
     private void setApiHeaders(
-        int index, ThirdPartyApiHeader value) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2482,14 +2482,14 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
     private void setApiHeaders(
-        int index, ThirdPartyApiHeader.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.Builder builderForValue) {
       ensureApiHeadersIsMutable();
       apiHeaders_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
-    private void addApiHeaders(ThirdPartyApiHeader value) {
+    private void addApiHeaders(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2500,7 +2500,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
     private void addApiHeaders(
-        int index, ThirdPartyApiHeader value) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2511,7 +2511,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
     private void addApiHeaders(
-        ThirdPartyApiHeader.Builder builderForValue) {
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.Builder builderForValue) {
       ensureApiHeadersIsMutable();
       apiHeaders_.add(builderForValue.build());
     }
@@ -2519,7 +2519,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
     private void addApiHeaders(
-        int index, ThirdPartyApiHeader.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.Builder builderForValue) {
       ensureApiHeadersIsMutable();
       apiHeaders_.add(index, builderForValue.build());
     }
@@ -2527,7 +2527,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
      */
     private void addAllApiHeaders(
-        Iterable<? extends ThirdPartyApiHeader> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader> values) {
       ensureApiHeadersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, apiHeaders_);
@@ -2547,17 +2547,17 @@ public final class IntegrationProto {
     }
 
     public static final int APIPARAMETERS_FIELD_NUMBER = 6;
-    private com.google.protobuf.Internal.ProtobufList<ThirdPartyApiParameter> apiParameters_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter> apiParameters_;
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
-    public java.util.List<ThirdPartyApiParameter> getApiParametersList() {
+    public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter> getApiParametersList() {
       return apiParameters_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
-    public java.util.List<? extends ThirdPartyApiParameterOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterOrBuilder> 
         getApiParametersOrBuilderList() {
       return apiParameters_;
     }
@@ -2570,13 +2570,13 @@ public final class IntegrationProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
-    public ThirdPartyApiParameter getApiParameters(int index) {
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter getApiParameters(int index) {
       return apiParameters_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
-    public ThirdPartyApiParameterOrBuilder getApiParametersOrBuilder(
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterOrBuilder getApiParametersOrBuilder(
         int index) {
       return apiParameters_.get(index);
     }
@@ -2591,7 +2591,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
     private void setApiParameters(
-        int index, ThirdPartyApiParameter value) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2602,14 +2602,14 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
     private void setApiParameters(
-        int index, ThirdPartyApiParameter.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.Builder builderForValue) {
       ensureApiParametersIsMutable();
       apiParameters_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
-    private void addApiParameters(ThirdPartyApiParameter value) {
+    private void addApiParameters(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2620,7 +2620,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
     private void addApiParameters(
-        int index, ThirdPartyApiParameter value) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2631,7 +2631,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
     private void addApiParameters(
-        ThirdPartyApiParameter.Builder builderForValue) {
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.Builder builderForValue) {
       ensureApiParametersIsMutable();
       apiParameters_.add(builderForValue.build());
     }
@@ -2639,7 +2639,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
     private void addApiParameters(
-        int index, ThirdPartyApiParameter.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.Builder builderForValue) {
       ensureApiParametersIsMutable();
       apiParameters_.add(index, builderForValue.build());
     }
@@ -2647,7 +2647,7 @@ public final class IntegrationProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
      */
     private void addAllApiParameters(
-        Iterable<? extends ThirdPartyApiParameter> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter> values) {
       ensureApiParametersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, apiParameters_);
@@ -2723,7 +2723,7 @@ public final class IntegrationProto {
       if (!url_.isEmpty()) {
         output.writeString(3, getUrl());
       }
-      if (method_ != ThirdPartyApiMethod.UNKNOWN_API_METHOD.getNumber()) {
+      if (method_ != com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod.UNKNOWN_API_METHOD.getNumber()) {
         output.writeEnum(4, method_);
       }
       for (int i = 0; i < apiHeaders_.size(); i++) {
@@ -2757,7 +2757,7 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(3, getUrl());
       }
-      if (method_ != ThirdPartyApiMethod.UNKNOWN_API_METHOD.getNumber()) {
+      if (method_ != com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod.UNKNOWN_API_METHOD.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, method_);
       }
@@ -2781,60 +2781,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static ThirdPartyApi parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ThirdPartyApi parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ThirdPartyApi parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ThirdPartyApi parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ThirdPartyApi parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApi parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ThirdPartyApi parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApi parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ThirdPartyApi parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApi parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2845,7 +2845,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ThirdPartyApi prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2854,9 +2854,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ThirdPartyApi, Builder> implements
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ThirdPartyApi)
-        ThirdPartyApiOrBuilder {
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2866,7 +2866,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string apiId = 1;</code>
        */
-      public String getApiId() {
+      public java.lang.String getApiId() {
         return instance.getApiId();
       }
       /**
@@ -2880,7 +2880,7 @@ public final class IntegrationProto {
        * <code>optional string apiId = 1;</code>
        */
       public Builder setApiId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiId(value);
         return this;
@@ -2906,7 +2906,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string title = 2;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -2920,7 +2920,7 @@ public final class IntegrationProto {
        * <code>optional string title = 2;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -2946,7 +2946,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string url = 3;</code>
        */
-      public String getUrl() {
+      public java.lang.String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -2960,7 +2960,7 @@ public final class IntegrationProto {
        * <code>optional string url = 3;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -3000,13 +3000,13 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartyApiMethod method = 4;</code>
        */
-      public ThirdPartyApiMethod getMethod() {
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod getMethod() {
         return instance.getMethod();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartyApiMethod method = 4;</code>
        */
-      public Builder setMethod(ThirdPartyApiMethod value) {
+      public Builder setMethod(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiMethod value) {
         copyOnWrite();
         instance.setMethod(value);
         return this;
@@ -3023,7 +3023,7 @@ public final class IntegrationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
-      public java.util.List<ThirdPartyApiHeader> getApiHeadersList() {
+      public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader> getApiHeadersList() {
         return java.util.Collections.unmodifiableList(
             instance.getApiHeadersList());
       }
@@ -3035,14 +3035,14 @@ public final class IntegrationProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
-      public ThirdPartyApiHeader getApiHeaders(int index) {
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader getApiHeaders(int index) {
         return instance.getApiHeaders(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
       public Builder setApiHeaders(
-          int index, ThirdPartyApiHeader value) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader value) {
         copyOnWrite();
         instance.setApiHeaders(index, value);
         return this;
@@ -3051,7 +3051,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
       public Builder setApiHeaders(
-          int index, ThirdPartyApiHeader.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.Builder builderForValue) {
         copyOnWrite();
         instance.setApiHeaders(index, builderForValue);
         return this;
@@ -3059,7 +3059,7 @@ public final class IntegrationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
-      public Builder addApiHeaders(ThirdPartyApiHeader value) {
+      public Builder addApiHeaders(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader value) {
         copyOnWrite();
         instance.addApiHeaders(value);
         return this;
@@ -3068,7 +3068,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
       public Builder addApiHeaders(
-          int index, ThirdPartyApiHeader value) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader value) {
         copyOnWrite();
         instance.addApiHeaders(index, value);
         return this;
@@ -3077,7 +3077,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
       public Builder addApiHeaders(
-          ThirdPartyApiHeader.Builder builderForValue) {
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.Builder builderForValue) {
         copyOnWrite();
         instance.addApiHeaders(builderForValue);
         return this;
@@ -3086,7 +3086,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
       public Builder addApiHeaders(
-          int index, ThirdPartyApiHeader.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.Builder builderForValue) {
         copyOnWrite();
         instance.addApiHeaders(index, builderForValue);
         return this;
@@ -3095,7 +3095,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiHeader apiHeaders = 5;</code>
        */
       public Builder addAllApiHeaders(
-          Iterable<? extends ThirdPartyApiHeader> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader> values) {
         copyOnWrite();
         instance.addAllApiHeaders(values);
         return this;
@@ -3120,7 +3120,7 @@ public final class IntegrationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
-      public java.util.List<ThirdPartyApiParameter> getApiParametersList() {
+      public java.util.List<com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter> getApiParametersList() {
         return java.util.Collections.unmodifiableList(
             instance.getApiParametersList());
       }
@@ -3132,14 +3132,14 @@ public final class IntegrationProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
-      public ThirdPartyApiParameter getApiParameters(int index) {
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter getApiParameters(int index) {
         return instance.getApiParameters(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
       public Builder setApiParameters(
-          int index, ThirdPartyApiParameter value) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter value) {
         copyOnWrite();
         instance.setApiParameters(index, value);
         return this;
@@ -3148,7 +3148,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
       public Builder setApiParameters(
-          int index, ThirdPartyApiParameter.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.Builder builderForValue) {
         copyOnWrite();
         instance.setApiParameters(index, builderForValue);
         return this;
@@ -3156,7 +3156,7 @@ public final class IntegrationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
-      public Builder addApiParameters(ThirdPartyApiParameter value) {
+      public Builder addApiParameters(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter value) {
         copyOnWrite();
         instance.addApiParameters(value);
         return this;
@@ -3165,7 +3165,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
       public Builder addApiParameters(
-          int index, ThirdPartyApiParameter value) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter value) {
         copyOnWrite();
         instance.addApiParameters(index, value);
         return this;
@@ -3174,7 +3174,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
       public Builder addApiParameters(
-          ThirdPartyApiParameter.Builder builderForValue) {
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.Builder builderForValue) {
         copyOnWrite();
         instance.addApiParameters(builderForValue);
         return this;
@@ -3183,7 +3183,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
       public Builder addApiParameters(
-          int index, ThirdPartyApiParameter.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.Builder builderForValue) {
         copyOnWrite();
         instance.addApiParameters(index, builderForValue);
         return this;
@@ -3192,7 +3192,7 @@ public final class IntegrationProto {
        * <code>repeated .treeleaf.anydone.entities.ThirdPartyApiParameter apiParameters = 6;</code>
        */
       public Builder addAllApiParameters(
-          Iterable<? extends ThirdPartyApiParameter> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter> values) {
         copyOnWrite();
         instance.addAllApiParameters(values);
         return this;
@@ -3263,11 +3263,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ThirdPartyApi)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ThirdPartyApi();
+          return new com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3282,7 +3282,7 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ThirdPartyApi other = (ThirdPartyApi) arg1;
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi other = (com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi) arg1;
           apiId_ = visitor.visitString(!apiId_.isEmpty(), apiId_,
               !other.apiId_.isEmpty(), other.apiId_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
@@ -3296,7 +3296,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3351,7 +3351,7 @@ public final class IntegrationProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(apiHeaders_);
                   }
                   apiHeaders_.add(
-                      input.readMessage(ThirdPartyApiHeader.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.parser(), extensionRegistry));
                   break;
                 }
                 case 50: {
@@ -3360,7 +3360,7 @@ public final class IntegrationProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(apiParameters_);
                   }
                   apiParameters_.add(
-                      input.readMessage(ThirdPartyApiParameter.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.parser(), extensionRegistry));
                   break;
                 }
                 case 64: {
@@ -3388,7 +3388,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ThirdPartyApi.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3402,13 +3402,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ThirdPartyApi)
-    private static final ThirdPartyApi DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ThirdPartyApi();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ThirdPartyApi getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3426,7 +3426,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string apiHeaderId = 1;</code>
      */
-    String getApiHeaderId();
+    java.lang.String getApiHeaderId();
     /**
      * <code>optional string apiHeaderId = 1;</code>
      */
@@ -3436,7 +3436,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string key = 2;</code>
      */
-    String getKey();
+    java.lang.String getKey();
     /**
      * <code>optional string key = 2;</code>
      */
@@ -3446,7 +3446,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string value = 3;</code>
      */
-    String getValue();
+    java.lang.String getValue();
     /**
      * <code>optional string value = 3;</code>
      */
@@ -3467,11 +3467,11 @@ public final class IntegrationProto {
       value_ = "";
     }
     public static final int APIHEADERID_FIELD_NUMBER = 1;
-    private String apiHeaderId_;
+    private java.lang.String apiHeaderId_;
     /**
      * <code>optional string apiHeaderId = 1;</code>
      */
-    public String getApiHeaderId() {
+    public java.lang.String getApiHeaderId() {
       return apiHeaderId_;
     }
     /**
@@ -3485,7 +3485,7 @@ public final class IntegrationProto {
      * <code>optional string apiHeaderId = 1;</code>
      */
     private void setApiHeaderId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3513,11 +3513,11 @@ public final class IntegrationProto {
     }
 
     public static final int KEY_FIELD_NUMBER = 2;
-    private String key_;
+    private java.lang.String key_;
     /**
      * <code>optional string key = 2;</code>
      */
-    public String getKey() {
+    public java.lang.String getKey() {
       return key_;
     }
     /**
@@ -3531,7 +3531,7 @@ public final class IntegrationProto {
      * <code>optional string key = 2;</code>
      */
     private void setKey(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3559,11 +3559,11 @@ public final class IntegrationProto {
     }
 
     public static final int VALUE_FIELD_NUMBER = 3;
-    private String value_;
+    private java.lang.String value_;
     /**
      * <code>optional string value = 3;</code>
      */
-    public String getValue() {
+    public java.lang.String getValue() {
       return value_;
     }
     /**
@@ -3577,7 +3577,7 @@ public final class IntegrationProto {
      * <code>optional string value = 3;</code>
      */
     private void setValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3638,60 +3638,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static ThirdPartyApiHeader parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ThirdPartyApiHeader parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ThirdPartyApiHeader parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ThirdPartyApiHeader parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ThirdPartyApiHeader parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApiHeader parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ThirdPartyApiHeader parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApiHeader parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ThirdPartyApiHeader parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApiHeader parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3702,7 +3702,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ThirdPartyApiHeader prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3711,9 +3711,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ThirdPartyApiHeader, Builder> implements
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ThirdPartyApiHeader)
-        ThirdPartyApiHeaderOrBuilder {
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeaderOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3723,7 +3723,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string apiHeaderId = 1;</code>
        */
-      public String getApiHeaderId() {
+      public java.lang.String getApiHeaderId() {
         return instance.getApiHeaderId();
       }
       /**
@@ -3737,7 +3737,7 @@ public final class IntegrationProto {
        * <code>optional string apiHeaderId = 1;</code>
        */
       public Builder setApiHeaderId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiHeaderId(value);
         return this;
@@ -3763,7 +3763,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string key = 2;</code>
        */
-      public String getKey() {
+      public java.lang.String getKey() {
         return instance.getKey();
       }
       /**
@@ -3777,7 +3777,7 @@ public final class IntegrationProto {
        * <code>optional string key = 2;</code>
        */
       public Builder setKey(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setKey(value);
         return this;
@@ -3803,7 +3803,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string value = 3;</code>
        */
-      public String getValue() {
+      public java.lang.String getValue() {
         return instance.getValue();
       }
       /**
@@ -3817,7 +3817,7 @@ public final class IntegrationProto {
        * <code>optional string value = 3;</code>
        */
       public Builder setValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setValue(value);
         return this;
@@ -3843,11 +3843,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ThirdPartyApiHeader)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ThirdPartyApiHeader();
+          return new com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3860,14 +3860,14 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ThirdPartyApiHeader other = (ThirdPartyApiHeader) arg1;
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader other = (com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader) arg1;
           apiHeaderId_ = visitor.visitString(!apiHeaderId_.isEmpty(), apiHeaderId_,
               !other.apiHeaderId_.isEmpty(), other.apiHeaderId_);
           key_ = visitor.visitString(!key_.isEmpty(), key_,
               !other.key_.isEmpty(), other.key_);
           value_ = visitor.visitString(!value_.isEmpty(), value_,
               !other.value_.isEmpty(), other.value_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3924,7 +3924,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ThirdPartyApiHeader.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3938,13 +3938,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ThirdPartyApiHeader)
-    private static final ThirdPartyApiHeader DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ThirdPartyApiHeader();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ThirdPartyApiHeader getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiHeader getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3962,7 +3962,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string apiParameterId = 1;</code>
      */
-    String getApiParameterId();
+    java.lang.String getApiParameterId();
     /**
      * <code>optional string apiParameterId = 1;</code>
      */
@@ -3972,7 +3972,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string key = 2;</code>
      */
-    String getKey();
+    java.lang.String getKey();
     /**
      * <code>optional string key = 2;</code>
      */
@@ -3986,12 +3986,12 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiParameterType type = 3;</code>
      */
-    ThirdPartyApiParameterType getType();
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType getType();
 
     /**
      * <code>optional string value = 4;</code>
      */
-    String getValue();
+    java.lang.String getValue();
     /**
      * <code>optional string value = 4;</code>
      */
@@ -4012,11 +4012,11 @@ public final class IntegrationProto {
       value_ = "";
     }
     public static final int APIPARAMETERID_FIELD_NUMBER = 1;
-    private String apiParameterId_;
+    private java.lang.String apiParameterId_;
     /**
      * <code>optional string apiParameterId = 1;</code>
      */
-    public String getApiParameterId() {
+    public java.lang.String getApiParameterId() {
       return apiParameterId_;
     }
     /**
@@ -4030,7 +4030,7 @@ public final class IntegrationProto {
      * <code>optional string apiParameterId = 1;</code>
      */
     private void setApiParameterId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4058,11 +4058,11 @@ public final class IntegrationProto {
     }
 
     public static final int KEY_FIELD_NUMBER = 2;
-    private String key_;
+    private java.lang.String key_;
     /**
      * <code>optional string key = 2;</code>
      */
-    public String getKey() {
+    public java.lang.String getKey() {
       return key_;
     }
     /**
@@ -4076,7 +4076,7 @@ public final class IntegrationProto {
      * <code>optional string key = 2;</code>
      */
     private void setKey(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4114,9 +4114,9 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiParameterType type = 3;</code>
      */
-    public ThirdPartyApiParameterType getType() {
-      ThirdPartyApiParameterType result = ThirdPartyApiParameterType.forNumber(type_);
-      return result == null ? ThirdPartyApiParameterType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType getType() {
+      com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType result = com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiParameterType type = 3;</code>
@@ -4127,7 +4127,7 @@ public final class IntegrationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApiParameterType type = 3;</code>
      */
-    private void setType(ThirdPartyApiParameterType value) {
+    private void setType(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4143,11 +4143,11 @@ public final class IntegrationProto {
     }
 
     public static final int VALUE_FIELD_NUMBER = 4;
-    private String value_;
+    private java.lang.String value_;
     /**
      * <code>optional string value = 4;</code>
      */
-    public String getValue() {
+    public java.lang.String getValue() {
       return value_;
     }
     /**
@@ -4161,7 +4161,7 @@ public final class IntegrationProto {
      * <code>optional string value = 4;</code>
      */
     private void setValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4196,7 +4196,7 @@ public final class IntegrationProto {
       if (!key_.isEmpty()) {
         output.writeString(2, getKey());
       }
-      if (type_ != ThirdPartyApiParameterType.UNKNOWN_API_PARAMETER_TYPE.getNumber()) {
+      if (type_ != com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType.UNKNOWN_API_PARAMETER_TYPE.getNumber()) {
         output.writeEnum(3, type_);
       }
       if (!value_.isEmpty()) {
@@ -4217,7 +4217,7 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getKey());
       }
-      if (type_ != ThirdPartyApiParameterType.UNKNOWN_API_PARAMETER_TYPE.getNumber()) {
+      if (type_ != com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType.UNKNOWN_API_PARAMETER_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, type_);
       }
@@ -4229,60 +4229,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static ThirdPartyApiParameter parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ThirdPartyApiParameter parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ThirdPartyApiParameter parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ThirdPartyApiParameter parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ThirdPartyApiParameter parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApiParameter parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ThirdPartyApiParameter parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApiParameter parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ThirdPartyApiParameter parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ThirdPartyApiParameter parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4293,7 +4293,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ThirdPartyApiParameter prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4302,9 +4302,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ThirdPartyApiParameter, Builder> implements
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ThirdPartyApiParameter)
-        ThirdPartyApiParameterOrBuilder {
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4314,7 +4314,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string apiParameterId = 1;</code>
        */
-      public String getApiParameterId() {
+      public java.lang.String getApiParameterId() {
         return instance.getApiParameterId();
       }
       /**
@@ -4328,7 +4328,7 @@ public final class IntegrationProto {
        * <code>optional string apiParameterId = 1;</code>
        */
       public Builder setApiParameterId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiParameterId(value);
         return this;
@@ -4354,7 +4354,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string key = 2;</code>
        */
-      public String getKey() {
+      public java.lang.String getKey() {
         return instance.getKey();
       }
       /**
@@ -4368,7 +4368,7 @@ public final class IntegrationProto {
        * <code>optional string key = 2;</code>
        */
       public Builder setKey(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setKey(value);
         return this;
@@ -4408,13 +4408,13 @@ public final class IntegrationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartyApiParameterType type = 3;</code>
        */
-      public ThirdPartyApiParameterType getType() {
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType getType() {
         return instance.getType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartyApiParameterType type = 3;</code>
        */
-      public Builder setType(ThirdPartyApiParameterType value) {
+      public Builder setType(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameterType value) {
         copyOnWrite();
         instance.setType(value);
         return this;
@@ -4431,7 +4431,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string value = 4;</code>
        */
-      public String getValue() {
+      public java.lang.String getValue() {
         return instance.getValue();
       }
       /**
@@ -4445,7 +4445,7 @@ public final class IntegrationProto {
        * <code>optional string value = 4;</code>
        */
       public Builder setValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setValue(value);
         return this;
@@ -4471,11 +4471,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ThirdPartyApiParameter)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ThirdPartyApiParameter();
+          return new com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4488,7 +4488,7 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ThirdPartyApiParameter other = (ThirdPartyApiParameter) arg1;
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter other = (com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter) arg1;
           apiParameterId_ = visitor.visitString(!apiParameterId_.isEmpty(), apiParameterId_,
               !other.apiParameterId_.isEmpty(), other.apiParameterId_);
           key_ = visitor.visitString(!key_.isEmpty(), key_,
@@ -4496,7 +4496,7 @@ public final class IntegrationProto {
           type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
           value_ = visitor.visitString(!value_.isEmpty(), value_,
               !other.value_.isEmpty(), other.value_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4559,7 +4559,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ThirdPartyApiParameter.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4573,13 +4573,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ThirdPartyApiParameter)
-    private static final ThirdPartyApiParameter DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ThirdPartyApiParameter();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ThirdPartyApiParameter getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApiParameter getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4597,7 +4597,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationViberId = 1;</code>
      */
-    String getIntegrationViberId();
+    java.lang.String getIntegrationViberId();
     /**
      * <code>optional string integrationViberId = 1;</code>
      */
@@ -4607,7 +4607,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string name = 2;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>optional string name = 2;</code>
      */
@@ -4617,7 +4617,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string avatar = 3;</code>
      */
-    String getAvatar();
+    java.lang.String getAvatar();
     /**
      * <code>optional string avatar = 3;</code>
      */
@@ -4627,7 +4627,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string pageAccessToken = 4;</code>
      */
-    String getPageAccessToken();
+    java.lang.String getPageAccessToken();
     /**
      * <code>optional string pageAccessToken = 4;</code>
      */
@@ -4637,7 +4637,7 @@ public final class IntegrationProto {
     /**
      * <code>optional string integrationId = 5;</code>
      */
-    String getIntegrationId();
+    java.lang.String getIntegrationId();
     /**
      * <code>optional string integrationId = 5;</code>
      */
@@ -4670,11 +4670,11 @@ public final class IntegrationProto {
       integrationId_ = "";
     }
     public static final int INTEGRATIONVIBERID_FIELD_NUMBER = 1;
-    private String integrationViberId_;
+    private java.lang.String integrationViberId_;
     /**
      * <code>optional string integrationViberId = 1;</code>
      */
-    public String getIntegrationViberId() {
+    public java.lang.String getIntegrationViberId() {
       return integrationViberId_;
     }
     /**
@@ -4688,7 +4688,7 @@ public final class IntegrationProto {
      * <code>optional string integrationViberId = 1;</code>
      */
     private void setIntegrationViberId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4716,11 +4716,11 @@ public final class IntegrationProto {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private String name_;
+    private java.lang.String name_;
     /**
      * <code>optional string name = 2;</code>
      */
-    public String getName() {
+    public java.lang.String getName() {
       return name_;
     }
     /**
@@ -4734,7 +4734,7 @@ public final class IntegrationProto {
      * <code>optional string name = 2;</code>
      */
     private void setName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4762,11 +4762,11 @@ public final class IntegrationProto {
     }
 
     public static final int AVATAR_FIELD_NUMBER = 3;
-    private String avatar_;
+    private java.lang.String avatar_;
     /**
      * <code>optional string avatar = 3;</code>
      */
-    public String getAvatar() {
+    public java.lang.String getAvatar() {
       return avatar_;
     }
     /**
@@ -4780,7 +4780,7 @@ public final class IntegrationProto {
      * <code>optional string avatar = 3;</code>
      */
     private void setAvatar(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4808,11 +4808,11 @@ public final class IntegrationProto {
     }
 
     public static final int PAGEACCESSTOKEN_FIELD_NUMBER = 4;
-    private String pageAccessToken_;
+    private java.lang.String pageAccessToken_;
     /**
      * <code>optional string pageAccessToken = 4;</code>
      */
-    public String getPageAccessToken() {
+    public java.lang.String getPageAccessToken() {
       return pageAccessToken_;
     }
     /**
@@ -4826,7 +4826,7 @@ public final class IntegrationProto {
      * <code>optional string pageAccessToken = 4;</code>
      */
     private void setPageAccessToken(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4854,11 +4854,11 @@ public final class IntegrationProto {
     }
 
     public static final int INTEGRATIONID_FIELD_NUMBER = 5;
-    private String integrationId_;
+    private java.lang.String integrationId_;
     /**
      * <code>optional string integrationId = 5;</code>
      */
-    public String getIntegrationId() {
+    public java.lang.String getIntegrationId() {
       return integrationId_;
     }
     /**
@@ -4872,7 +4872,7 @@ public final class IntegrationProto {
      * <code>optional string integrationId = 5;</code>
      */
     private void setIntegrationId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5007,60 +5007,60 @@ public final class IntegrationProto {
       return size;
     }
 
-    public static IntegrationViber parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntegrationViber parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntegrationViber parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntegrationViber parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntegrationViber parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntegrationViber parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntegrationViber parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static IntegrationViber parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntegrationViber parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntegrationViber parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5071,7 +5071,7 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(IntegrationViber prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5080,9 +5080,9 @@ public final class IntegrationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          IntegrationViber, Builder> implements
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntegrationViber)
-        IntegrationViberOrBuilder {
+        com.treeleaf.anydone.entities.IntegrationProto.IntegrationViberOrBuilder {
       // Construct using com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5092,7 +5092,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationViberId = 1;</code>
        */
-      public String getIntegrationViberId() {
+      public java.lang.String getIntegrationViberId() {
         return instance.getIntegrationViberId();
       }
       /**
@@ -5106,7 +5106,7 @@ public final class IntegrationProto {
        * <code>optional string integrationViberId = 1;</code>
        */
       public Builder setIntegrationViberId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntegrationViberId(value);
         return this;
@@ -5132,7 +5132,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string name = 2;</code>
        */
-      public String getName() {
+      public java.lang.String getName() {
         return instance.getName();
       }
       /**
@@ -5146,7 +5146,7 @@ public final class IntegrationProto {
        * <code>optional string name = 2;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setName(value);
         return this;
@@ -5172,7 +5172,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string avatar = 3;</code>
        */
-      public String getAvatar() {
+      public java.lang.String getAvatar() {
         return instance.getAvatar();
       }
       /**
@@ -5186,7 +5186,7 @@ public final class IntegrationProto {
        * <code>optional string avatar = 3;</code>
        */
       public Builder setAvatar(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAvatar(value);
         return this;
@@ -5212,7 +5212,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string pageAccessToken = 4;</code>
        */
-      public String getPageAccessToken() {
+      public java.lang.String getPageAccessToken() {
         return instance.getPageAccessToken();
       }
       /**
@@ -5226,7 +5226,7 @@ public final class IntegrationProto {
        * <code>optional string pageAccessToken = 4;</code>
        */
       public Builder setPageAccessToken(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPageAccessToken(value);
         return this;
@@ -5252,7 +5252,7 @@ public final class IntegrationProto {
       /**
        * <code>optional string integrationId = 5;</code>
        */
-      public String getIntegrationId() {
+      public java.lang.String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
@@ -5266,7 +5266,7 @@ public final class IntegrationProto {
        * <code>optional string integrationId = 5;</code>
        */
       public Builder setIntegrationId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setIntegrationId(value);
         return this;
@@ -5338,11 +5338,11 @@ public final class IntegrationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntegrationViber)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new IntegrationViber();
+          return new com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5355,7 +5355,7 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          IntegrationViber other = (IntegrationViber) arg1;
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber other = (com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber) arg1;
           integrationViberId_ = visitor.visitString(!integrationViberId_.isEmpty(), integrationViberId_,
               !other.integrationViberId_.isEmpty(), other.integrationViberId_);
           name_ = visitor.visitString(!name_.isEmpty(), name_,
@@ -5370,7 +5370,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5449,7 +5449,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (IntegrationViber.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5463,13 +5463,13 @@ public final class IntegrationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntegrationViber)
-    private static final IntegrationViber DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntegrationViber();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static IntegrationViber getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.IntegrationProto.IntegrationViber getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

@@ -6,12 +6,12 @@
     tools:context=".ClientActivity">
 
     <ImageView
-        android:id="@+id/iv_captured_image_local"
+        android:id="@+id/iv_captured_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView
-        android:id="@+id/treeleaf_draw_pad_local"
+        android:id="@+id/treeleaf_draw_pad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible" />

@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity;
 
 
+import com.google.protobuf.ByteString;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
@@ -10,33 +11,52 @@ public class ServiceRequestDetailActivityContract {
 
     public interface ServiceRequestDetailActivityView extends BaseView {
 
-        void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret);
-
-        void onUrlFetchFail(String msg);
-
-        void onConnectionSuccess();
-
-        void onConnectionFail(String msg);
-
     }
 
     public interface ServiceRequestDetailActivityPresenter extends Presenter<ServiceRequestDetailActivityView> {
 
-        void fetchJanusServerUrl(String token);
-
-        void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, long orderId,
-                                          String sessionId, String roomId, String participantId,
-                                          String janusBaseUrl, String apiSecret, String apiKey);
-
-        void checkConnection(MqttAndroidClient client);
-
-        void publishHostHangUpEvent(String userAccountId, String accountName, String accountPicture, long orderId, String rtcMesssageId, boolean videoBroadCastPublish);
 
         void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
                                         long orderId);
 
         void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
                                          long orderId);
+
+        void publishSendImageToRemoteEvent(String userAccountId, String accountName, String accountPicture,
+                                           long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
+                                           long capturedTime);
+
+        void publishSendAckToRemoteEvent(String userAccountId, String accountName, String accountPicture,
+                                         long orderId, int bitmapWidth, int bitmapHeight,
+                                         long capturedTime);
+
+        void publishCancelDrawEvent(String userAccountId, String accountName, String accountPicture,
+                                    long orderId, long cancellationTime);
+
+        void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
+                                       long orderId, Float x, Float y, long capturedTime);
+
+        void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
+                                       long orderId, Float x, Float y, long capturedTime);
+
+        void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
+                                     long orderId, long capturedTime);
+
+        void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
+                                        Float x, Float y, Float brushWidth, Float brushOpacity,
+                                        int brushColor, int textColor, long orderId, long capturedTime);
+
+        void publishDrawCanvasClearEvent(String userAccountId, String accountName, String accountPicture,
+                                         long orderId, long capturedTime);
+
+        void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
+                                            Float x, Float y, String textFieldId, long orderId, long capturedTime);
+
+        void publishTextFieldChangeEventEvent(String userAccountId, String accountName, String accountPicture,
+                                              String text, String textFieldId, long orderId, long capturedTime);
+
+        void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
+                                              String textFieldId, long orderId, long capturedTime);
 
     }
 

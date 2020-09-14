@@ -37,6 +37,10 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         joineeListState = JoineeListState.CONTRACT;
     }
 
+    public Boolean isJoineePresent() {
+        return mapTotalJoinees.size() > 0;
+    }
+
     public void setJoineeListToggleUpdate(JoineeListToggleUpdate joineeListToggleUpdate) {
         this.joineeListToggleUpdate = joineeListToggleUpdate;
     }

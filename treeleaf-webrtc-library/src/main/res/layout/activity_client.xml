@@ -170,19 +170,19 @@
     <TextView
         android:id="@+id/tv_room_number"
         android:layout_width="wrap_content"
-        android:textColor="@color/color_white"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_margin="20dp"
+        android:textColor="@color/color_white"
         android:visibility="gone" />
 
     <TextView
-        android:textColor="@color/color_white"
         android:id="@+id/tv_participant_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_room_number"
         android:layout_margin="20dp"
+        android:textColor="@color/color_white"
         android:visibility="gone" />
 
 </RelativeLayout>

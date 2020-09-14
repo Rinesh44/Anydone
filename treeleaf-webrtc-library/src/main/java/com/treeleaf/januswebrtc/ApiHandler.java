@@ -30,7 +30,7 @@ public class ApiHandler {
 
     public ApiHandler(Context context, ApiHandlerCallback apiHandlerCallback,
                       String janusServerUrl, String apiKey) {
-        this.apiService = ApiClient.getClient(context, GeneralUtils.appendEndPoint(janusServerUrl),
+        this.apiService = ApiClient.getClient(context, VideoCallUtil.appendEndPoint(janusServerUrl),
                 apiKey).create(ApiService.class);
         _mApiCallback = apiHandlerCallback;
         jsonParser = new JsonParser();

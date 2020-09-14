@@ -5,7 +5,7 @@ import java.math.BigInteger;
 public class Const {
     public static final String CLIENT = "client";
     public static final String SERVER = "server";
-    public static final String BASE_URL = "http://mediaserver.anydone.net/janus/";
+    public static final String BASE_URL = "https://mediaserver.anydone.net/janus/";
     public static String API_SECRET = "anydone@321123!@#";
     public static BigInteger ROOM_NUMBER;
 

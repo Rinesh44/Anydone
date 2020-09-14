@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,12 +26,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.DrawMetadata;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.MetaDataUpdateListener;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.Position;
+import com.treeleaf.freedrawingdemo.freedrawing.util.DrawPadUtil;
 import com.treeleaf.freedrawingdemo.freedrawing.util.ForwardTouchesView;
-import com.treeleaf.freedrawingdemo.freedrawing.util.GeneralUtil;
 import com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView;
 import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionEvents;
 import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionParameters;
 import com.treeleaf.januswebrtc.audio.AppRTCAudioManager;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.json.JSONObject;
 import org.webrtc.Camera1Enumerator;
@@ -79,11 +82,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private View layoutDraw;
     private ImageView fabStartDraw;
     private ImageView fabDiscardDraw;
-    private ImageView imageViewCaptureImageLocal;
+    private ImageView imageViewCaptureImage;
     private ImageView imageAudioToggle, imageScreenShot,
             imageEndCall, imageAcceptCall, ivScreenShotImage,
             ibToggleJoineeList, ivSignalStrength;
-    private TreeleafDrawPadView treeleafDrawPadViewLocal;
+    private TreeleafDrawPadView treeleafDrawPadView;
     private ForwardTouchesView forwardTouchesView;
     private ConstraintLayout clCallSettings, clCallOtions, clCallAcceptOptions;
     private RelativeLayout rlScreenShotImage;
@@ -102,12 +105,20 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private RecyclerView rvJoinee;
     private JoineeListAdapter joineeListAdapter;
     private static Callback.HostActivityCallback mhostActivityCallback;
-    private ServerActivity.VideoCallListener videoCallListener;
+    private static Callback.DrawCallBack mDrawCallback;
+    private VideoCallListener videoCallListener;
+    private ServerDrawingPadEventListener serverDrawingPadEventListener;
     private boolean callTerminated = false;
     private Handler handler;
     private Runnable runnable;
     private int timerDelay = 10000;
     private AppRTCAudioManager audioManager;
+    private DrawMetadata drawMetaDataRemote, drawMetadataLocal;
+    private MetaDataUpdateListener metaDataUpdateListener;
+    private CaptureDrawParam captureDrawParam;
+    private int localDeviceHeight, localDeviceWidth;
+    private int remoteDeviceHeight, remoteDeviceWidth;
+
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -124,8 +135,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, Callback.HostActivityCallback hostActivityCallBack,
-                              String calleeName, String callProfileUrl) {
+                              Callback.DrawCallBack drawCallBack, String calleeName, String callProfileUrl) {
         mhostActivityCallback = hostActivityCallBack;
+        mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ServerActivity.class);
         intent.putExtra(JANUS_URL, janusServerUrl);
         intent.putExtra(JANUS_API_KEY, apiKey);
@@ -145,8 +157,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         layoutDraw = findViewById(R.id.layout_draw);
         fabStartDraw = findViewById(R.id.fab_start_draw);
         fabDiscardDraw = findViewById(R.id.fab_discard_draw);
-        imageViewCaptureImageLocal = findViewById(R.id.iv_captured_image_local);
-        treeleafDrawPadViewLocal = findViewById(R.id.treeleaf_draw_pad_local);
+        imageViewCaptureImage = findViewById(R.id.iv_captured_image);
+        treeleafDrawPadView = findViewById(R.id.treeleaf_draw_pad);
         remoteRender = findViewById(R.id.remote_video_view);
         clCallSettings = findViewById(R.id.cl_call_setting);
         clCallOtions = findViewById(R.id.cl_call_options);
@@ -176,7 +188,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         forwardTouchesView = findViewById(R.id.forward_touch);
 
-        forwardTouchesView.setForwardTo(treeleafDrawPadViewLocal);
+        forwardTouchesView.setForwardTo(treeleafDrawPadView);
         fabStartDraw.setOnClickListener(startDrawClickListener);
         fabDiscardDraw.setOnClickListener(discardDrawClickListener);
 
@@ -190,10 +202,15 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     public void run() {
                         if (justScreenShot) {
                             ivScreenShotImage.setImageBitmap(bitmap);
-                            treeleafDrawPadViewLocal.takeAndSaveScreenShot(rlScreenShotImage);
+                            treeleafDrawPadView.takeAndSaveScreenShot(rlScreenShotImage);
                             justScreenShot = false;
-                        } else
-                            imageViewCaptureImageLocal.setImageBitmap(bitmap);
+                        } else {
+                            imageViewCaptureImage.setImageBitmap(bitmap);
+                            if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                                mDrawCallback.onHoldDraw();
+                                mDrawCallback.onNewImageFrameCaptured(bitmap);
+                            }
+                        }
 
                         /**
                          * remove frame listener as soon as you get the captured image.
@@ -241,25 +258,238 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 terminateBroadCast();
             }
 
+        };
+
+        serverDrawingPadEventListener = new ServerDrawingPadEventListener() {
             @Override
-            public void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes) {
-                showHideDrawView(true);
+            public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes) {
+//                showHideDrawView(true);
                 Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
-                imageViewCaptureImageLocal.setImageBitmap(receivedBitmap);
-                treeleafDrawPadViewLocal.addViewToDrawOver(imageViewCaptureImageLocal);
+                imageViewCaptureImage.setImageBitmap(receivedBitmap);
+                treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
+
+
+                if (mDrawCallback != null) {
+                    localDeviceWidth = VideoCallUtil.getDeviceResolution(ServerActivity.this)[0];
+                    localDeviceHeight = VideoCallUtil.getDeviceResolution(ServerActivity.this)[1];
+                    remoteDeviceWidth = width;
+                    remoteDeviceHeight = height;
+//                    onDrawShowProgress();
+                    mDrawCallback.onNewImageAcknowledge(localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
+                }
+
             }
 
             @Override
-            public void onImageDrawDiscard() {
-                GeneralUtil.hideKeyboard(findViewById(android.R.id.content).getRootView(), ServerActivity.this);
+            public void onDrawRemoteDeviceConfigReceived(int width, int height, long timeStamp) {
+                remoteDeviceWidth = width;
+                remoteDeviceHeight = height;
+                localDeviceWidth = VideoCallUtil.getDeviceResolution(ServerActivity.this)[0];
+                localDeviceHeight = VideoCallUtil.getDeviceResolution(ServerActivity.this)[1];
+            }
+
+            @Override
+            public void onDrawDisplayCapturedImage() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showHideDrawView(true);
+                    }
+                });
+            }
+
+            @Override
+            public void onDrawDiscard() {
+                DrawPadUtil.hideKeyboard(findViewById(android.R.id.content).getRootView(), ServerActivity.this);
                 showHideDrawView(false);
             }
+
+            @Override
+            public void onDrawHideProgress() {
+                hideProgressBar();
+            }
+
+            @Override
+            public void onDrawShowProgress() {
+                showProgressBar("Please Wait...");
+            }
+
+            @Override
+            public void onDrawTouchDown() {
+                treeleafDrawPadView.onRemoteTouchDown(drawMetaDataRemote);
+            }
+
+            @Override
+            public void onDrawTouchMove() {
+                treeleafDrawPadView.onRemoteTouchMove(drawMetaDataRemote);
+            }
+
+            @Override
+            public void onDrawTouchUp() {
+                treeleafDrawPadView.onRemoteTouchUp();
+            }
+
+            @Override
+            public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
+                treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getTextColor());
+            }
+
+            @Override
+            public void onDrawReceiveNewTextChange(String text, String id) {
+                treeleafDrawPadView.onRemoteChangedEditText(text, id);
+            }
+
+            @Override
+            public void onDrawReceiveEdiTextRemove(String editTextId) {
+                treeleafDrawPadView.onRemoteRemoveEditText(editTextId);
+            }
+
+            /**
+             * this callback has be called every time draw coordinates is changed
+             * and should be called everytime before onDrawTouchDown and onDrawTouchMove
+             * @param x
+             * @param y
+             */
+            @Override
+            public void onDrawNewDrawCoordinatesReceived(Float x, Float y) {
+                drawMetaDataRemote.setCurrentDrawPosition(new Position(x, y));
+            }
+
+            @Override
+            public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+                drawMetaDataRemote = VideoCallUtil.getDrawMetaData(captureDrawParam);
+            }
+
+            @Override
+            public void onDrawCanvasCleared() {
+                treeleafDrawPadView.onRemoteClearCanvas();
+            }
+
         };
+
+        drawMetaDataRemote = new DrawMetadata();
+        drawMetadataLocal = new DrawMetadata();
+
+        metaDataUpdateListener = new MetaDataUpdateListener() {
+            @Override
+            public void setDrawMode(TreeleafDrawPadView.DrawMode drawMode) {
+                drawMetadataLocal.setDrawMode(drawMode);
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                }
+            }
+
+            @Override
+            public void setBrushWidth(Float width) {
+                drawMetadataLocal.setBrushWidth(width);
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
+                    mDrawCallback.onDrawParamChanged(captureDrawParam);
+                }
+            }
+
+            @Override
+            public void setBrushOpacity(Integer opacity) {
+                drawMetadataLocal.setBrushOpacity(opacity);
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
+                    mDrawCallback.onDrawParamChanged(captureDrawParam);
+                }
+            }
+
+            @Override
+            public void setBrushColor(Integer color) {
+                drawMetadataLocal.setBrushColor(color);
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
+                    mDrawCallback.onDrawParamChanged(captureDrawParam);
+                }
+            }
+
+            @Override
+            public void setTextColor(Integer color) {
+                drawMetadataLocal.setTextColor(color);
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
+                    mDrawCallback.onDrawParamChanged(captureDrawParam);
+                }
+            }
+
+            @Override
+            public void onClearCanvasPressed(Boolean pressed) {
+                drawMetadataLocal.setClearCanvas(pressed);
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    mDrawCallback.onDrawCanvasCleared();
+                }
+            }
+
+            @Override
+            public void onStartDrawing(float x, float y) {
+                Log.d(TAG, "onStartDrawing: " + x + " " + y);
+                x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
+                        remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
+                y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
+                        remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
+                drawMetadataLocal.setCurrentDrawPosition(new Position(x, y));
+                if (mDrawCallback != null) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
+                    mDrawCallback.onStartDraw(x, y);
+                }
+            }
+
+            @Override
+            public void onEndDrawing() {
+                Log.d(TAG, "onEndDrawing: ");
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    mDrawCallback.onClientTouchUp();
+                }
+            }
+
+            @Override
+            public void onReceiveNewDrawingPosition(float x, float y) {
+                Log.d(TAG, "onReceiveNewDrawingPosition: " + x + " " + y);
+                x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
+                        remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
+                y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
+                        remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
+                drawMetadataLocal.setCurrentDrawPosition(new Position(x, y));
+                if (mDrawCallback != null) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
+                    mDrawCallback.onClientTouchMove(captureDrawParam);
+                }
+
+            }
+
+            @Override
+            public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
+                            remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
+                    y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
+                            remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
+                    mDrawCallback.onReceiveNewTextField(x, y, editTextFieldId);
+                }
+            }
+
+            @Override
+            public void onReceiveNewTextChange(String text, String id) {
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
+                    mDrawCallback.onReceiveNewTextChange(text, id);
+            }
+
+            @Override
+            public void onReceiveEdiTextRemove(String editTextId) {
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
+                    mDrawCallback.onReceiveEdiTextRemove(editTextId);
+            }
+
+        };
+        treeleafDrawPadView.setMetaDataUpdateListener(metaDataUpdateListener);
 
         setUpRecyclerView();
         setUpNetworkStrengthHandler();
         if (mhostActivityCallback != null) {
             mhostActivityCallback.passJoineeReceivedCallback(videoCallListener);
+            mhostActivityCallback.passDrawPadEventListenerCallback(serverDrawingPadEventListener);
             mhostActivityCallback.specifyRole(RestChannel.Role.SERVER);
         }
 
@@ -281,14 +511,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }
         showVideoCallStartView(true);
         loadCallNameAndProfileIcon(calleeName, calleeProfile);
-       /* btnPublishAudio = findViewById(R.id.btn_publish_audio);
-        btnPublishAudio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //start by calling publisher create handle
-//                mRestChannel.subscriberCreateHandle();
-            }
-        });*/
     }
 
     private void setUpNetworkStrengthHandler() {
@@ -323,7 +545,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     private void setUpProgressDialog() {
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Finding remote peer...");
+        progressDialog.setTitle("Please Wait...");
         progressDialog.setMessage("Loading...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setCancelable(false);
@@ -585,7 +807,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void run() {
                 if (progressDialog != null)
-                    progressDialog.setMessage(message);
+                    progressDialog.setMessage("Preparing draw...");
             }
         });
     }
@@ -741,7 +963,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             //take screenshot
 
             remoteRender.addFrameListener(frameListener, 1);
-            treeleafDrawPadViewLocal.addViewToDrawOver(imageViewCaptureImageLocal);
+            treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
             //after taking screenshot
 
         }
@@ -750,8 +972,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener discardDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            GeneralUtil.hideKeyboard(v.getRootView(), ServerActivity.this);
+            DrawPadUtil.hideKeyboard(v.getRootView(), ServerActivity.this);
             showHideDrawView(false);
+            if (mDrawCallback != null) {
+                mDrawCallback.onDiscardDraw();//TODO: uncomment this later
+                mDrawCallback.onHoldDraw();
+            }
         }
     };
 
@@ -916,19 +1142,16 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         getResources().getColor(R.color.colorTransparent)));
     }
 
-    public interface VideoCallListener {
-
-        void onJoineeReceived(String joineedName, String joineedProfileUrl, String accountId);
-
-        void onJoineeRemoved(String accountId);
+    public interface VideoCallListener extends Callback.AudioVideoCallbackListener {
 
         void onVideoViewReady();
 
         void onHostTerminateCall();
 
-        void onImageReceivedForDrawing(int width, int height, long captureTime, byte[] convertedBytes);
+    }
 
-        void onImageDrawDiscard();
+    public interface ServerDrawingPadEventListener extends Callback.DrawPadEventListener {
+
 
     }
 

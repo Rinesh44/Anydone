@@ -2,7 +2,6 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -67,6 +66,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
     private Account userAccount;
     private String accountId, accountName, accountPicture, rtcMessageId;
     private ServerActivity.VideoCallListener videoCallListenerServer;
+    private ServerActivity.ServerDrawingPadEventListener serverDrawingPadEventListener;
 
     @Override
     protected int getLayout() {
@@ -116,12 +116,13 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
             }
 
             @Override
-            public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
+            public void passJoineeReceivedCallback(Callback.AudioVideoCallbackListener videoCallListener) {
+                videoCallListenerServer = (ServerActivity.VideoCallListener) videoCallListener;
             }
 
             @Override
-            public void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener) {
-                videoCallListenerServer = videoCallListener;
+            public void passDrawPadEventListenerCallback(Callback.DrawPadEventListener drawPadEventListener) {
+                serverDrawingPadEventListener = (ServerActivity.ServerDrawingPadEventListener) drawPadEventListener;
             }
 
             @Override
@@ -138,20 +139,6 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, ticketId);
             }
 
-            @Override
-            public void passCapturedImageFrame(Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void showProgressBarUntilMqttResponse() {
-
-            }
-
-            @Override
-            public void discardDraw() {
-
-            }
         };
     }
 
@@ -179,9 +166,33 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
         String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
 
-        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
+        //TODO: copy here code from ServiceRequestDetailActivity
+//        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+//                roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
 
+    }
+
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes);
+                }
+            }
+        });
+
+    }
+
+    public void onImageDrawDiscard() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "onImageReceivedFromConsumer");
+                if (serverDrawingPadEventListener != null)
+                    serverDrawingPadEventListener.onDrawDiscard();
+            }
+        });
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {

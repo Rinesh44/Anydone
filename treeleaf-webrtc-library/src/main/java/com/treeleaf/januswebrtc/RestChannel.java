@@ -17,7 +17,7 @@ import static com.treeleaf.januswebrtc.Const.API_SECRET;
 import static com.treeleaf.januswebrtc.Const.CLIENT;
 import static com.treeleaf.januswebrtc.Const.getRoomNumber;
 import static com.treeleaf.januswebrtc.Const.setRoomNumber;
-import static com.treeleaf.januswebrtc.GeneralUtils.generateTransactionString;
+import static com.treeleaf.januswebrtc.VideoCallUtil.generateTransactionString;
 
 
 public class RestChannel implements ApiHandlerCallback {

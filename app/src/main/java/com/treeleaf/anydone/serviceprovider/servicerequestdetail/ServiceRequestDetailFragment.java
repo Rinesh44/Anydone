@@ -44,7 +44,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.OrderServiceProto;
@@ -70,6 +69,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -798,8 +798,28 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onImageDrawDiscard() {
-        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscard();
+    public void onImageDrawDiscardLocal() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardLocal();
+    }
+
+    @Override
+    public void onImageDrawDiscardRemote() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote();
+    }
+
+    @Override
+    public void onImageCaptured() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageCaptured();
+    }
+
+    @Override
+    public void onImageAckSent() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageAckSent();
+    }
+
+    @Override
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse) {
+        ((ServiceRequestDetailActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse);
     }
 
     @Override
@@ -1347,4 +1367,45 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
         final Handler handler = new Handler();
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
     }
+
+    @Override
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchDown(captureDrawParam);
+    }
+
+    @Override
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchMove(captureDrawParam);
+    }
+
+    @Override
+    public void onDrawTouchUp() {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchUp();
+    }
+
+    @Override
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId);
+    }
+
+    @Override
+    public void onDrawReceiveNewTextChange(String text, String id) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextChange(text, id);
+    }
+
+    @Override
+    public void onDrawReceiveEdiTextRemove(String editTextId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId);
+    }
+
+    @Override
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawParamChanged(captureDrawParam);
+    }
+
+    @Override
+    public void onDrawCanvasCleared() {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawCanvasCleared();
+    }
+
 }

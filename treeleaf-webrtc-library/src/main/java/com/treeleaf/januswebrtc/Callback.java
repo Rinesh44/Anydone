@@ -3,6 +3,8 @@ package com.treeleaf.januswebrtc;
 
 import android.graphics.Bitmap;
 
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
+
 import org.json.JSONObject;
 
 import java.math.BigInteger;
@@ -74,9 +76,9 @@ public class Callback {
 
         void onServiceProviderAudioPublished(BigInteger sessionId, BigInteger roomId, BigInteger participantId);
 
-        void passJoineeReceivedCallback(ClientActivity.VideoCallListener videoCallListener);
+        void passJoineeReceivedCallback(AudioVideoCallbackListener videoCallListener);
 
-        void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener);
+        void passDrawPadEventListenerCallback(DrawPadEventListener drawPadEventListener);
 
         void notifyHostHangUp();
 
@@ -88,11 +90,98 @@ public class Callback {
 
         void onPublisherVideoStarted();
 
-        void passCapturedImageFrame(Bitmap bitmap);
+    }
 
-        void showProgressBarUntilMqttResponse();
+    public interface DrawCallBack {
 
-        void discardDraw();
+        void onStartDraw(float x, float y);
+
+        void onNewImageFrameCaptured(Bitmap bitmap);
+
+        void onNewImageAcknowledge(int width, int height, long timeStamp);
+
+        void onHoldDraw();
+
+        void onDiscardDraw();
+
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+
+        void onClientTouchMove(CaptureDrawParam captureDrawParam);
+
+        void onClientTouchUp();
+
+        void onDrawCanvasCleared();
+
+        void onReceiveNewTextField(float x, float y, String editTextFieldId);
+
+        void onReceiveNewTextChange(String text, String id);
+
+        void onReceiveEdiTextRemove(String editTextId);
+
+    }
+
+    public interface AudioVideoCallbackListener {
+
+        void onJoineeReceived(String joineedName, String joineedProfileUrl, String accountId);
+
+        void onJoineeRemoved(String accountId);
+
+    }
+
+    public interface DrawPadEventListener {
+        /**
+         * common events for draw between Client and Server
+         */
+
+        void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes);
+
+        void onDrawDisplayCapturedImage();
+
+        void onDrawDiscard();
+
+        void onDrawHideProgress();
+
+        void onDrawShowProgress();
+
+        void onDrawTouchDown();
+
+        void onDrawTouchMove();
+
+        void onDrawTouchUp();
+
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId);
+
+        void onDrawReceiveNewTextChange(String text, String id);
+
+        void onDrawReceiveEdiTextRemove(String editTextId);
+
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+
+        void onDrawNewDrawCoordinatesReceived(Float x, Float y);
+
+        void onDrawCanvasCleared();
+
+        void onDrawRemoteDeviceConfigReceived(int width, int height, long timeStamp);
+
+    }
+
+    public interface OnDrawEventListener {
+
+        void onDrawTouchDown(CaptureDrawParam captureDrawParam);
+
+        void onDrawTouchMove(CaptureDrawParam captureDrawParam);
+
+        void onDrawTouchUp();
+
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId);
+
+        void onDrawReceiveNewTextChange(String text, String id);
+
+        void onDrawReceiveEdiTextRemove(String editTextId);
+
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+
+        void onDrawCanvasCleared();
 
     }
 

@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -21,7 +20,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.shasin.notificationbanner.Banner;
+import com.google.protobuf.ByteString;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
@@ -37,9 +36,10 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragmen
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
-import com.treeleaf.januswebrtc.ClientActivity;
+import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.math.BigInteger;
 import java.util.Objects;
@@ -49,7 +49,7 @@ import butterknife.BindView;
 public class ServiceRequestDetailActivity extends MvpBaseActivity
         <ServiceRequestDetailActivityPresenterImpl> implements
         ServiceRequestDetailActivityContract.ServiceRequestDetailActivityView,
-        View.OnClickListener {
+        View.OnClickListener, Callback.OnDrawEventListener {
     private static final String TAG = "ServiceRequestDetail";
     private static final String MQTT = "MQTT_EVENT_CHECK";
     @BindView(R.id.pager)
@@ -80,15 +80,14 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     Callback.HostActivityCallback hostActivityCallbackServer;
 
-    private String janusBaseUrl, apiKey, apiSecret;
     private Account userAccount;
     private String accountId, accountName, accountPicture, rtcMessageId;
     private String serviceName, serviceProfileUri;
-    private ClientActivity.VideoCallListener videoCallListenerClient;
     private ServerActivity.VideoCallListener videoCallListenerServer;
+    private ServerActivity.ServerDrawingPadEventListener serverDrawingPadEventListener;
     private boolean paymentSuccess = false;
-    private boolean videoBroadCastPublish = false;
     private RestChannel.Role mRole;
+    private Callback.DrawCallBack drawCallBack;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,6 +114,23 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         return false;
     }
 
+    private void captureImageFrame(Bitmap caputureBitmap) {
+        Bitmap bitmap = caputureBitmap;
+        Bitmap convertedBitmap;
+        try {
+            convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
+            byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
+            ByteString imageByteString = ByteString.copyFrom(bytes);
+            int localDeviceWidth = VideoCallUtil.getDeviceResolution(ServiceRequestDetailActivity.this)[0];
+            int localDeviceHeight = VideoCallUtil.getDeviceResolution(ServiceRequestDetailActivity.this)[1];
+            presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId, imageByteString,
+                    localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     @Override
     protected int getLayout() {
         return R.layout.activity_service_request_detail;
@@ -123,7 +139,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        videoBroadCastPublish = false;
     }
 
     @Override
@@ -161,13 +176,13 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             }
 
             @Override
-            public void passJoineeReceivedCallback(ClientActivity.VideoCallListener callback) {
-                videoCallListenerClient = callback;
+            public void passJoineeReceivedCallback(Callback.AudioVideoCallbackListener videoCallListener) {
+                videoCallListenerServer = (ServerActivity.VideoCallListener) videoCallListener;
             }
 
             @Override
-            public void passJoineeReceivedCallback(ServerActivity.VideoCallListener videoCallListener) {
-                videoCallListenerServer = videoCallListener;
+            public void passDrawPadEventListenerCallback(Callback.DrawPadEventListener drawPadEventListener) {
+                serverDrawingPadEventListener = (ServerActivity.ServerDrawingPadEventListener) drawPadEventListener;
             }
 
             @Override
@@ -184,21 +199,82 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
 
-            @Override
-            public void passCapturedImageFrame(Bitmap bitmap) {
+        };
 
+        drawCallBack = new Callback.DrawCallBack() {
+
+            @Override
+            public void onNewImageAcknowledge(int width, int height, long timeStamp) {
+                presenter.publishSendAckToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId,
+                        width, height, System.currentTimeMillis());
             }
 
             @Override
-            public void showProgressBarUntilMqttResponse() {
-
+            public void onHoldDraw() {
+                if (serverDrawingPadEventListener != null)
+                    serverDrawingPadEventListener.onDrawShowProgress();//TODO: uncomment this later
             }
 
             @Override
-            public void discardDraw() {
-
+            public void onDiscardDraw() {
+                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, serviceRequestId, System.currentTimeMillis());
             }
 
+            @Override
+            public void onDrawCanvasCleared() {
+                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, serviceRequestId, System.currentTimeMillis());
+            }
+
+            @Override
+            public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
+                presenter.publishDrawReceiveNewTextEvent(accountId, accountName, accountPicture, x, y,
+                        editTextFieldId, serviceRequestId, System.currentTimeMillis());
+            }
+
+            @Override
+            public void onReceiveNewTextChange(String text, String id) {
+                presenter.publishTextFieldChangeEventEvent(accountId, accountName, accountPicture, text,
+                        id, serviceRequestId, System.currentTimeMillis());
+            }
+
+            @Override
+            public void onReceiveEdiTextRemove(String editTextId) {
+                presenter.publishTextFieldRemoveEventEvent(accountId, accountName, accountPicture, editTextId,
+                        serviceRequestId, System.currentTimeMillis());
+            }
+
+            @Override
+            public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+                presenter.publishDrawMetaChangeEvent(accountId, accountName, accountPicture, captureDrawParam.getXCoordinate(),
+                        captureDrawParam.getYCoordinate(), captureDrawParam.getBrushWidth(),
+                        Float.parseFloat(captureDrawParam.getBrushOpacity().toString()),
+                        captureDrawParam.getBrushColor(), captureDrawParam.getTextColor(),
+                        serviceRequestId, System.currentTimeMillis());
+            }
+
+            @Override
+            public void onStartDraw(float x, float y) {
+                presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
+                        serviceRequestId, x, y, System.currentTimeMillis());
+            }
+
+            @Override
+            public void onClientTouchMove(CaptureDrawParam captureDrawParam) {
+                presenter.publishDrawTouchMoveEvent(accountId, accountName, accountPicture,
+                        serviceRequestId, captureDrawParam.getXCoordinate(), captureDrawParam.getYCoordinate(),
+                        System.currentTimeMillis());
+            }
+
+            @Override
+            public void onClientTouchUp() {
+                presenter.publishDrawTouchUpEvent(accountId, accountName, accountPicture,
+                        serviceRequestId, System.currentTimeMillis());
+            }
+
+            @Override
+            public void onNewImageFrameCaptured(Bitmap bitmap) {
+                captureImageFrame(bitmap);
+            }
 
         };
 
@@ -218,7 +294,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
 
         ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
+                roomNumber, participantId, hostActivityCallbackServer, drawCallBack, calleeName, calleeProfileUrl);
 
     }
 
@@ -226,23 +302,54 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (videoCallListenerServer != null) {
-                    videoCallListenerServer.onImageReceivedForDrawing(width, height, captureTime, convertedBytes);
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes);
                 }
             }
         });
 
     }
 
-    public void onImageDrawDiscard() {
+    public void onImageDrawDiscardRemote() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "onImageReceivedFromConsumer");
-                if (videoCallListenerServer != null)
-                    videoCallListenerServer.onImageDrawDiscard();
+                if (serverDrawingPadEventListener != null)
+                    serverDrawingPadEventListener.onDrawDiscard();
             }
         });
+    }
+
+    public void onImageDrawDiscardLocal() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null)
+                    serverDrawingPadEventListener.onDrawHideProgress();
+            }
+        });
+    }
+
+    public void onImageCaptured() {
+        Log.d(TAG, "onImageReceivedFromConsumer");
+        if (serverDrawingPadEventListener != null)
+            serverDrawingPadEventListener.onDrawHideProgress();
+    }
+
+    public void onImageAckSent() {
+        if (serverDrawingPadEventListener != null)
+            serverDrawingPadEventListener.onDrawDisplayCapturedImage();
+    }
+
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse) {
+        if (serverDrawingPadEventListener != null) {
+            int width = startDrawAckResponse.getBitmapWidth();
+            int height = startDrawAckResponse.getBitmapHeight();
+            long timeStamp = startDrawAckResponse.getCapturedTime();
+            serverDrawingPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp);
+            serverDrawingPadEventListener.onDrawHideProgress();
+        }
     }
 
     public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
@@ -266,6 +373,87 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         Log.d(MQTT, "onHostHangUp");
         if (videoCallListenerServer != null)
             videoCallListenerServer.onHostTerminateCall();
+    }
+
+    @Override
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
+                    captureDrawParam.getYCoordinate());
+            serverDrawingPadEventListener.onDrawTouchDown();
+        }
+    }
+
+    @Override
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
+                    captureDrawParam.getYCoordinate());
+            serverDrawingPadEventListener.onDrawTouchMove();
+        }
+    }
+
+    @Override
+    public void onDrawTouchUp() {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawTouchUp();
+        }
+    }
+
+    @Override
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDrawReceiveNewTextChange(String text, String id) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDrawReceiveEdiTextRemove(String editTextId) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+        if (serverDrawingPadEventListener != null) {
+            serverDrawingPadEventListener.onDrawParamChanged(captureDrawParam);
+        }
+    }
+
+    @Override
+    public void onDrawCanvasCleared() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (serverDrawingPadEventListener != null) {
+                    serverDrawingPadEventListener.onDrawCanvasCleared();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -296,33 +484,6 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     @Override
     public void onClick(View v) {
 
-    }
-
-    @Override
-    public void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret) {
-        this.janusBaseUrl = janusBaseUrl;
-        this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
-        Log.d(TAG, "janus server info: " + janusBaseUrl + apiKey + apiSecret);
-        videoCallListenerClient.onJanusCredentialsReceived(janusBaseUrl, apiKey,
-                apiSecret, serviceName, serviceProfileUri);
-    }
-
-    @Override
-    public void onUrlFetchFail(String msg) {
-        videoCallListenerClient.onJanusCredentialsFailure();
-        runOnUiThread(() -> Toast.makeText(ServiceRequestDetailActivity.this, msg,
-                Toast.LENGTH_SHORT).show());
-    }
-
-    @Override
-    public void onConnectionSuccess() {
-    }
-
-    @Override
-    public void onConnectionFail(String msg) {
-        Banner.make(Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     @Override

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
@@ -75,6 +76,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
+
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CANCEL_DRAWING_MESSAGE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
         implements TicketConversationContract.TicketConversationPresenter {
@@ -719,6 +723,25 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             relayResponse.getBroadcastVideoCall();
                     if (broadcastVideoCall != null) {
                         getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
+                    SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
+                    if (startDraw != null) {
+                        ByteString imageByteString = startDraw.getCapturedImage();
+                        int width = startDraw.getBitmapWidth();
+                        int height = startDraw.getBitmapHeight();
+                        long captureTime = startDraw.getCapturedTime();
+                        byte[] convertedBytes = imageByteString.toByteArray();
+                        getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
+                    SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
+                    if (cancelDrawing != null) {
+                        getView().onImageDrawDiscard();
                     }
                 }
 
