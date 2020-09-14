@@ -345,7 +345,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
-                treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getBrushColor());
+                treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getTextColor());
             }
 
             @Override
@@ -455,6 +455,15 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void setBrushColor(Integer color) {
                 drawMetaDataLocal.setBrushColor(color);
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetaDataLocal);
+                    mDrawCallback.onDrawParamChanged(captureDrawParam);
+                }
+            }
+
+            @Override
+            public void setTextColor(Integer color) {
+                drawMetaDataLocal.setTextColor(color);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetaDataLocal);
                     mDrawCallback.onDrawParamChanged(captureDrawParam);

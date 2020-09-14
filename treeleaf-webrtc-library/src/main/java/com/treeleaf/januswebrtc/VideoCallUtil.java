@@ -34,6 +34,7 @@ public class VideoCallUtil {
         captureDrawParam.setBrushWidth(drawMetadata.getBrushWidth());
         captureDrawParam.setBrushOpacity(drawMetadata.getBrushOpacity());
         captureDrawParam.setBrushColor(drawMetadata.getBrushColor());
+        captureDrawParam.setTextColor(drawMetadata.getTextColor());
         captureDrawParam.setXCoordinate(drawMetadata.getCurrentDrawPosition().getX());
         captureDrawParam.setYCoordinate(drawMetadata.getCurrentDrawPosition().getY());
         return captureDrawParam;
@@ -44,6 +45,7 @@ public class VideoCallUtil {
         drawMetadata.setBrushWidth(captureDrawParam.getBrushWidth());
         drawMetadata.setBrushOpacity(base255ToBase100(captureDrawParam.getBrushOpacity()));
         drawMetadata.setBrushColor(captureDrawParam.getBrushColor());
+        drawMetadata.setTextColor(captureDrawParam.getTextColor());
         drawMetadata.setCurrentDrawPosition(new Position(captureDrawParam.getXCoordinate(),
                 captureDrawParam.getYCoordinate()));
         return drawMetadata;

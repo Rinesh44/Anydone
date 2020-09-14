@@ -298,7 +298,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
     @Override
     public void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
                                            Float x, Float y, Float brushWidth, Float brushOpacity,
-                                           int brushColor, long orderId, long capturedTime) {
+                                           int brushColor, int textColor, long orderId, long capturedTime) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -313,6 +313,7 @@ public class ServiceRequestDetailActivityPresenterImpl extends
                 .setBrushWidth(brushWidth)
                 .setBrushOpacity(brushOpacity)
                 .setBrushColor(brushColor)
+                .setTextColor(textColor)
                 .setEventTime(capturedTime)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))

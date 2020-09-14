@@ -44,7 +44,7 @@ public class ServiceRequestDetailActivityContract {
 
         void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
                                         Float x, Float y, Float brushWidth, Float brushOpacity,
-                                        int brushColor, long orderId, long capturedTime);
+                                        int brushColor, int textColor, long orderId, long capturedTime);
 
         void publishDrawCanvasClearEvent(String userAccountId, String accountName, String accountPicture,
                                          long orderId, long capturedTime);

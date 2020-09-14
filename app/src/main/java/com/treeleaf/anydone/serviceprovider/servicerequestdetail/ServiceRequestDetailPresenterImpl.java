@@ -912,6 +912,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         captureDrawParam.setBrushWidth(drawMetaDataChange.getBrushWidth());
                         captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
                         captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
+                        captureDrawParam.setTextColor(drawMetaDataChange.getTextColor());
                         getView().onDrawParamChanged(captureDrawParam);
                     }
                 }

@@ -22011,64 +22011,69 @@ public final class SignalingProto {
     int getBrushColor();
 
     /**
-     * <code>optional int64 eventTime = 6;</code>
+     * <code>optional int32 textColor = 6;</code>
+     */
+    int getTextColor();
+
+    /**
+     * <code>optional int64 eventTime = 7;</code>
      */
     long getEventTime();
 
     /**
-     * <code>optional string participantId = 7;</code>
+     * <code>optional string participantId = 8;</code>
      */
     java.lang.String getParticipantId();
     /**
-     * <code>optional string participantId = 7;</code>
+     * <code>optional string participantId = 8;</code>
      */
     com.google.protobuf.ByteString
         getParticipantIdBytes();
 
     /**
-     * <code>optional string clientId = 8;</code>
+     * <code>optional string clientId = 9;</code>
      */
     java.lang.String getClientId();
     /**
-     * <code>optional string clientId = 8;</code>
+     * <code>optional string clientId = 9;</code>
      */
     com.google.protobuf.ByteString
         getClientIdBytes();
 
     /**
-     * <code>optional string refId = 9;</code>
+     * <code>optional string refId = 10;</code>
      */
     java.lang.String getRefId();
     /**
-     * <code>optional string refId = 9;</code>
+     * <code>optional string refId = 10;</code>
      */
     com.google.protobuf.ByteString
         getRefIdBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     boolean hasSenderAccount();
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     java.util.List<String>
         getRecipientsList();
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     int getRecipientsCount();
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     java.lang.String getRecipients(int index);
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
@@ -22203,46 +22208,69 @@ public final class SignalingProto {
       brushColor_ = 0;
     }
 
-    public static final int EVENTTIME_FIELD_NUMBER = 6;
+    public static final int TEXTCOLOR_FIELD_NUMBER = 6;
+    private int textColor_;
+    /**
+     * <code>optional int32 textColor = 6;</code>
+     */
+    public int getTextColor() {
+      return textColor_;
+    }
+    /**
+     * <code>optional int32 textColor = 6;</code>
+     */
+    private void setTextColor(int value) {
+      
+      textColor_ = value;
+    }
+    /**
+     * <code>optional int32 textColor = 6;</code>
+     */
+    private void clearTextColor() {
+      
+      textColor_ = 0;
+    }
+
+    public static final int EVENTTIME_FIELD_NUMBER = 7;
     private long eventTime_;
     /**
-     * <code>optional int64 eventTime = 6;</code>
+     * <code>optional int64 eventTime = 7;</code>
      */
     public long getEventTime() {
       return eventTime_;
     }
     /**
-     * <code>optional int64 eventTime = 6;</code>
+     * <code>optional int64 eventTime = 7;</code>
      */
     private void setEventTime(long value) {
       
       eventTime_ = value;
     }
     /**
-     * <code>optional int64 eventTime = 6;</code>
+     * <code>optional int64 eventTime = 7;</code>
      */
     private void clearEventTime() {
       
       eventTime_ = 0L;
     }
 
-    public static final int PARTICIPANTID_FIELD_NUMBER = 7;
+    public static final int PARTICIPANTID_FIELD_NUMBER = 8;
     private java.lang.String participantId_;
     /**
-     * <code>optional string participantId = 7;</code>
+     * <code>optional string participantId = 8;</code>
      */
     public java.lang.String getParticipantId() {
       return participantId_;
     }
     /**
-     * <code>optional string participantId = 7;</code>
+     * <code>optional string participantId = 8;</code>
      */
     public com.google.protobuf.ByteString
         getParticipantIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
     }
     /**
-     * <code>optional string participantId = 7;</code>
+     * <code>optional string participantId = 8;</code>
      */
     private void setParticipantId(
         java.lang.String value) {
@@ -22253,14 +22281,14 @@ public final class SignalingProto {
       participantId_ = value;
     }
     /**
-     * <code>optional string participantId = 7;</code>
+     * <code>optional string participantId = 8;</code>
      */
     private void clearParticipantId() {
       
       participantId_ = getDefaultInstance().getParticipantId();
     }
     /**
-     * <code>optional string participantId = 7;</code>
+     * <code>optional string participantId = 8;</code>
      */
     private void setParticipantIdBytes(
         com.google.protobuf.ByteString value) {
@@ -22272,23 +22300,23 @@ public final class SignalingProto {
       participantId_ = value.toStringUtf8();
     }
 
-    public static final int CLIENTID_FIELD_NUMBER = 8;
+    public static final int CLIENTID_FIELD_NUMBER = 9;
     private java.lang.String clientId_;
     /**
-     * <code>optional string clientId = 8;</code>
+     * <code>optional string clientId = 9;</code>
      */
     public java.lang.String getClientId() {
       return clientId_;
     }
     /**
-     * <code>optional string clientId = 8;</code>
+     * <code>optional string clientId = 9;</code>
      */
     public com.google.protobuf.ByteString
         getClientIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
     }
     /**
-     * <code>optional string clientId = 8;</code>
+     * <code>optional string clientId = 9;</code>
      */
     private void setClientId(
         java.lang.String value) {
@@ -22299,14 +22327,14 @@ public final class SignalingProto {
       clientId_ = value;
     }
     /**
-     * <code>optional string clientId = 8;</code>
+     * <code>optional string clientId = 9;</code>
      */
     private void clearClientId() {
       
       clientId_ = getDefaultInstance().getClientId();
     }
     /**
-     * <code>optional string clientId = 8;</code>
+     * <code>optional string clientId = 9;</code>
      */
     private void setClientIdBytes(
         com.google.protobuf.ByteString value) {
@@ -22318,23 +22346,23 @@ public final class SignalingProto {
       clientId_ = value.toStringUtf8();
     }
 
-    public static final int REFID_FIELD_NUMBER = 9;
+    public static final int REFID_FIELD_NUMBER = 10;
     private java.lang.String refId_;
     /**
-     * <code>optional string refId = 9;</code>
+     * <code>optional string refId = 10;</code>
      */
     public java.lang.String getRefId() {
       return refId_;
     }
     /**
-     * <code>optional string refId = 9;</code>
+     * <code>optional string refId = 10;</code>
      */
     public com.google.protobuf.ByteString
         getRefIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(refId_);
     }
     /**
-     * <code>optional string refId = 9;</code>
+     * <code>optional string refId = 10;</code>
      */
     private void setRefId(
         java.lang.String value) {
@@ -22345,14 +22373,14 @@ public final class SignalingProto {
       refId_ = value;
     }
     /**
-     * <code>optional string refId = 9;</code>
+     * <code>optional string refId = 10;</code>
      */
     private void clearRefId() {
       
       refId_ = getDefaultInstance().getRefId();
     }
     /**
-     * <code>optional string refId = 9;</code>
+     * <code>optional string refId = 10;</code>
      */
     private void setRefIdBytes(
         com.google.protobuf.ByteString value) {
@@ -22364,22 +22392,22 @@ public final class SignalingProto {
       refId_ = value.toStringUtf8();
     }
 
-    public static final int SENDERACCOUNT_FIELD_NUMBER = 10;
+    public static final int SENDERACCOUNT_FIELD_NUMBER = 11;
     private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     public boolean hasSenderAccount() {
       return senderAccount_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
       return senderAccount_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccount_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     private void setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
@@ -22389,7 +22417,7 @@ public final class SignalingProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     private void setSenderAccount(
         com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
@@ -22397,7 +22425,7 @@ public final class SignalingProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     private void mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccount_ != null &&
@@ -22410,34 +22438,34 @@ public final class SignalingProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
      */
     private void clearSenderAccount() {  senderAccount_ = null;
       
     }
 
-    public static final int RECIPIENTS_FIELD_NUMBER = 11;
+    public static final int RECIPIENTS_FIELD_NUMBER = 12;
     private com.google.protobuf.Internal.ProtobufList<String> recipients_;
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     public java.util.List<String> getRecipientsList() {
       return recipients_;
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     public int getRecipientsCount() {
       return recipients_.size();
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     public com.google.protobuf.ByteString
         getRecipientsBytes(int index) {
@@ -22451,7 +22479,7 @@ public final class SignalingProto {
        }
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     private void setRecipients(
         int index, java.lang.String value) {
@@ -22462,7 +22490,7 @@ public final class SignalingProto {
       recipients_.set(index, value);
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     private void addRecipients(
         java.lang.String value) {
@@ -22473,7 +22501,7 @@ public final class SignalingProto {
       recipients_.add(value);
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     private void addAllRecipients(
         java.lang.Iterable<java.lang.String> values) {
@@ -22482,13 +22510,13 @@ public final class SignalingProto {
           values, recipients_);
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     private void clearRecipients() {
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     /**
-     * <code>repeated string recipients = 11;</code>
+     * <code>repeated string recipients = 12;</code>
      */
     private void addRecipientsBytes(
         com.google.protobuf.ByteString value) {
@@ -22517,23 +22545,26 @@ public final class SignalingProto {
       if (brushColor_ != 0) {
         output.writeInt32(5, brushColor_);
       }
+      if (textColor_ != 0) {
+        output.writeInt32(6, textColor_);
+      }
       if (eventTime_ != 0L) {
-        output.writeInt64(6, eventTime_);
+        output.writeInt64(7, eventTime_);
       }
       if (!participantId_.isEmpty()) {
-        output.writeString(7, getParticipantId());
+        output.writeString(8, getParticipantId());
       }
       if (!clientId_.isEmpty()) {
-        output.writeString(8, getClientId());
+        output.writeString(9, getClientId());
       }
       if (!refId_.isEmpty()) {
-        output.writeString(9, getRefId());
+        output.writeString(10, getRefId());
       }
       if (senderAccount_ != null) {
-        output.writeMessage(10, getSenderAccount());
+        output.writeMessage(11, getSenderAccount());
       }
       for (int i = 0; i < recipients_.size(); i++) {
-        output.writeString(11, recipients_.get(i));
+        output.writeString(12, recipients_.get(i));
       }
     }
 
@@ -22562,25 +22593,29 @@ public final class SignalingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(5, brushColor_);
       }
+      if (textColor_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, textColor_);
+      }
       if (eventTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, eventTime_);
+          .computeInt64Size(7, eventTime_);
       }
       if (!participantId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(7, getParticipantId());
+          .computeStringSize(8, getParticipantId());
       }
       if (!clientId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(8, getClientId());
+          .computeStringSize(9, getClientId());
       }
       if (!refId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(9, getRefId());
+          .computeStringSize(10, getRefId());
       }
       if (senderAccount_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getSenderAccount());
+          .computeMessageSize(11, getSenderAccount());
       }
       {
         int dataSize = 0;
@@ -22793,13 +22828,36 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional int64 eventTime = 6;</code>
+       * <code>optional int32 textColor = 6;</code>
+       */
+      public int getTextColor() {
+        return instance.getTextColor();
+      }
+      /**
+       * <code>optional int32 textColor = 6;</code>
+       */
+      public Builder setTextColor(int value) {
+        copyOnWrite();
+        instance.setTextColor(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 textColor = 6;</code>
+       */
+      public Builder clearTextColor() {
+        copyOnWrite();
+        instance.clearTextColor();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 eventTime = 7;</code>
        */
       public long getEventTime() {
         return instance.getEventTime();
       }
       /**
-       * <code>optional int64 eventTime = 6;</code>
+       * <code>optional int64 eventTime = 7;</code>
        */
       public Builder setEventTime(long value) {
         copyOnWrite();
@@ -22807,7 +22865,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional int64 eventTime = 6;</code>
+       * <code>optional int64 eventTime = 7;</code>
        */
       public Builder clearEventTime() {
         copyOnWrite();
@@ -22816,20 +22874,20 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional string participantId = 7;</code>
+       * <code>optional string participantId = 8;</code>
        */
       public java.lang.String getParticipantId() {
         return instance.getParticipantId();
       }
       /**
-       * <code>optional string participantId = 7;</code>
+       * <code>optional string participantId = 8;</code>
        */
       public com.google.protobuf.ByteString
           getParticipantIdBytes() {
         return instance.getParticipantIdBytes();
       }
       /**
-       * <code>optional string participantId = 7;</code>
+       * <code>optional string participantId = 8;</code>
        */
       public Builder setParticipantId(
           java.lang.String value) {
@@ -22838,7 +22896,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional string participantId = 7;</code>
+       * <code>optional string participantId = 8;</code>
        */
       public Builder clearParticipantId() {
         copyOnWrite();
@@ -22846,7 +22904,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional string participantId = 7;</code>
+       * <code>optional string participantId = 8;</code>
        */
       public Builder setParticipantIdBytes(
           com.google.protobuf.ByteString value) {
@@ -22856,20 +22914,20 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional string clientId = 8;</code>
+       * <code>optional string clientId = 9;</code>
        */
       public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
-       * <code>optional string clientId = 8;</code>
+       * <code>optional string clientId = 9;</code>
        */
       public com.google.protobuf.ByteString
           getClientIdBytes() {
         return instance.getClientIdBytes();
       }
       /**
-       * <code>optional string clientId = 8;</code>
+       * <code>optional string clientId = 9;</code>
        */
       public Builder setClientId(
           java.lang.String value) {
@@ -22878,7 +22936,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional string clientId = 8;</code>
+       * <code>optional string clientId = 9;</code>
        */
       public Builder clearClientId() {
         copyOnWrite();
@@ -22886,7 +22944,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional string clientId = 8;</code>
+       * <code>optional string clientId = 9;</code>
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
@@ -22896,20 +22954,20 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional string refId = 9;</code>
+       * <code>optional string refId = 10;</code>
        */
       public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
-       * <code>optional string refId = 9;</code>
+       * <code>optional string refId = 10;</code>
        */
       public com.google.protobuf.ByteString
           getRefIdBytes() {
         return instance.getRefIdBytes();
       }
       /**
-       * <code>optional string refId = 9;</code>
+       * <code>optional string refId = 10;</code>
        */
       public Builder setRefId(
           java.lang.String value) {
@@ -22918,7 +22976,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional string refId = 9;</code>
+       * <code>optional string refId = 10;</code>
        */
       public Builder clearRefId() {
         copyOnWrite();
@@ -22926,7 +22984,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional string refId = 9;</code>
+       * <code>optional string refId = 10;</code>
        */
       public Builder setRefIdBytes(
           com.google.protobuf.ByteString value) {
@@ -22936,19 +22994,19 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
        */
       public boolean hasSenderAccount() {
         return instance.hasSenderAccount();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
        */
       public com.treeleaf.anydone.entities.UserProto.Account getSenderAccount() {
         return instance.getSenderAccount();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
        */
       public Builder setSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
@@ -22956,7 +23014,7 @@ public final class SignalingProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
        */
       public Builder setSenderAccount(
           com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
@@ -22965,7 +23023,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
        */
       public Builder mergeSenderAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
@@ -22973,7 +23031,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 11;</code>
        */
       public Builder clearSenderAccount() {  copyOnWrite();
         instance.clearSenderAccount();
@@ -22981,7 +23039,7 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public java.util.List<String>
           getRecipientsList() {
@@ -22989,26 +23047,26 @@ public final class SignalingProto {
             instance.getRecipientsList());
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public int getRecipientsCount() {
         return instance.getRecipientsCount();
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public com.google.protobuf.ByteString
           getRecipientsBytes(int index) {
         return instance.getRecipientsBytes(index);
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public Builder setRecipients(
           int index, java.lang.String value) {
@@ -23017,7 +23075,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public Builder addRecipients(
           java.lang.String value) {
@@ -23026,7 +23084,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public Builder addAllRecipients(
           java.lang.Iterable<java.lang.String> values) {
@@ -23035,7 +23093,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public Builder clearRecipients() {
         copyOnWrite();
@@ -23043,7 +23101,7 @@ public final class SignalingProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 11;</code>
+       * <code>repeated string recipients = 12;</code>
        */
       public Builder addRecipientsBytes(
           com.google.protobuf.ByteString value) {
@@ -23084,6 +23142,8 @@ public final class SignalingProto {
               other.brushOpacity_ != 0F, other.brushOpacity_);
           brushColor_ = visitor.visitInt(brushColor_ != 0, brushColor_,
               other.brushColor_ != 0, other.brushColor_);
+          textColor_ = visitor.visitInt(textColor_ != 0, textColor_,
+              other.textColor_ != 0, other.textColor_);
           eventTime_ = visitor.visitLong(eventTime_ != 0L, eventTime_,
               other.eventTime_ != 0L, other.eventTime_);
           participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
@@ -23146,28 +23206,33 @@ public final class SignalingProto {
                 }
                 case 48: {
 
-                  eventTime_ = input.readInt64();
+                  textColor_ = input.readInt32();
                   break;
                 }
-                case 58: {
-                  String s = input.readStringRequireUtf8();
+                case 56: {
 
-                  participantId_ = s;
+                  eventTime_ = input.readInt64();
                   break;
                 }
                 case 66: {
                   String s = input.readStringRequireUtf8();
 
-                  clientId_ = s;
+                  participantId_ = s;
                   break;
                 }
                 case 74: {
                   String s = input.readStringRequireUtf8();
 
-                  refId_ = s;
+                  clientId_ = s;
                   break;
                 }
                 case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 90: {
                   com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
                     subBuilder = senderAccount_.toBuilder();
@@ -23180,7 +23245,7 @@ public final class SignalingProto {
 
                   break;
                 }
-                case 90: {
+                case 98: {
                   String s = input.readStringRequireUtf8();
                   if (!recipients_.isModifiable()) {
                     recipients_ =

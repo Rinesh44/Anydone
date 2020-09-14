@@ -8,6 +8,7 @@ public class CaptureDrawParam {
     private Float brushWidth;
     private Integer brushOpacity;
     private Integer brushColor;
+    private Integer textColor;
     private Boolean clearCanvas;
     private Float xCoordinate, yCoordinate;
 
@@ -42,6 +43,14 @@ public class CaptureDrawParam {
     public void setBrushColor(Integer brushColor) {
         int alphaColor = ColorUtils.setAlphaComponent(brushColor, this.getBrushOpacity());
         this.brushColor = alphaColor;
+    }
+
+    public Integer getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(Integer textColor) {
+        this.textColor = textColor;
     }
 
     public Boolean getClearCanvas() {

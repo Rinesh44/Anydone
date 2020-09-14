@@ -248,7 +248,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                 presenter.publishDrawMetaChangeEvent(accountId, accountName, accountPicture, captureDrawParam.getXCoordinate(),
                         captureDrawParam.getYCoordinate(), captureDrawParam.getBrushWidth(),
                         Float.parseFloat(captureDrawParam.getBrushOpacity().toString()),
-                        captureDrawParam.getBrushColor(), serviceRequestId, System.currentTimeMillis());
+                        captureDrawParam.getBrushColor(), captureDrawParam.getTextColor(),
+                        serviceRequestId, System.currentTimeMillis());
             }
 
             @Override
