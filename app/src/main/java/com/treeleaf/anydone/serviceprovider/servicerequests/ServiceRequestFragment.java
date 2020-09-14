@@ -362,7 +362,7 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
      * manually opening / closing bottom sheet on button click
      */
     public void toggleBottomSheet() {
-        if (filterBottomSheet.isShowing()) filterBottomSheet.hide();
+        if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();
         else {
             int selectedRadioBtn = Hawk.get(Constants.SELECTED_FILTER_STATUS, -1);
             if (selectedRadioBtn != -1) {

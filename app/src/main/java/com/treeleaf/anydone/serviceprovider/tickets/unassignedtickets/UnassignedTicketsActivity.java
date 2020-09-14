@@ -54,7 +54,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.text.SimpleDateFormat;
@@ -66,7 +65,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.realm.Realm;
 
 public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketPresenterImpl>
         implements UnassignedTicketsContract.UnassignedView {
@@ -298,7 +296,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
      * manually opening / closing bottom sheet on button click
      */
     public void toggleBottomSheet() {
-        if (filterBottomSheet.isShowing()) filterBottomSheet.hide();
+        if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();
         else {
             int selectedRadioBtn = Hawk.get(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
             if (selectedRadioBtn != -1) {

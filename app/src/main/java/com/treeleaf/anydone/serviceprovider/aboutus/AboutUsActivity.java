@@ -18,6 +18,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AboutUsActivity extends AppCompatActivity {
+    public static final String SITE = "https://treeleaf.ai/";
+    public static final String PRIVACY_POLICY = "https://treeleaf.ai/";
+    public static final String TERMS_AND_CONDITIONS = "https://treeleaf.ai/";
+    public static final String FB_LINK = "https://www.facebook.com/treeleafai";
     @BindView(R.id.tv_privacy)
     TextView tvPrivacy;
     @BindView(R.id.tv_open_src_library)
@@ -37,6 +41,7 @@ public class AboutUsActivity extends AppCompatActivity {
 
         tvPrivacy.setOnClickListener(v -> {
             Intent i = new Intent(AboutUsActivity.this, WebLinkActivity.class);
+            i.putExtra("link", PRIVACY_POLICY);
             startActivity(i);
         });
 
@@ -47,11 +52,13 @@ public class AboutUsActivity extends AppCompatActivity {
 
         tvTermsAndConditions.setOnClickListener(v -> {
             Intent i = new Intent(AboutUsActivity.this, WebLinkActivity.class);
+            i.putExtra("link", TERMS_AND_CONDITIONS);
             startActivity(i);
         });
 
         ivFacebook.setOnClickListener(v -> {
             Intent i = new Intent(AboutUsActivity.this, WebLinkActivity.class);
+            i.putExtra("link", FB_LINK);
             startActivity(i);
         });
     }

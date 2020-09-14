@@ -17,7 +17,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_copy_holder"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
@@ -45,7 +45,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_delete_holder"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:clickable="true"
@@ -71,7 +71,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_create_ticket_holder"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:clickable="true"

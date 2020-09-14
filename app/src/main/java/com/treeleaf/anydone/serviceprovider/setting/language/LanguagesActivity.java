@@ -46,6 +46,7 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
     String selectedLanguage;
     private Context context;
     private Resources resources;
+    private boolean languageChange = false;
 
     @Override
     protected int getLayout() {
@@ -73,6 +74,7 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
         }
 
         rgLanguages.setOnCheckedChangeListener((radioGroup, i) -> {
+            languageChange = true;
             int englishLangId = rbEnglish.getId();
             int nepaliLangId = rbNepali.getId();
             int hebrewLangId = rbHebrew.getId();
@@ -132,10 +134,13 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(LanguagesActivity.this, LandingActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
-        startActivity(i);
+        if (languageChange) {
+            Intent i = new Intent(LanguagesActivity.this, LandingActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+        } else {
+            finish();
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
+
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
@@ -166,7 +167,6 @@ public class TicketRepo extends Repo {
                 throwable.printStackTrace();
                 callback.fail();
             }
-
         });
     }*/
 
@@ -357,3 +357,4 @@ public class TicketRepo extends Repo {
         });
     }
 }
+

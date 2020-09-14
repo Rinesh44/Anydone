@@ -7,17 +7,6 @@ import java.util.List;
 
 public class AddTicketContract {
     public interface AddTicketView extends BaseView {
-        void findEmployeeSuccess();
-
-        void findEmployeeFail(String msg);
-
-        void findCustomerSuccess();
-
-        void findCustomerFail(String msg);
-
-        void findTagsSuccess();
-
-        void findTagsFail(String msg);
 
         void onCreateTicketSuccess();
 
@@ -39,12 +28,6 @@ public class AddTicketContract {
         void createTicket(String title, String description, String customerId, String customerEmail,
                           String customerPhone, String customerName, List<String> tags, String assignedEmployeeId,
                           int priority);
-
-        void findEmployees();
-
-        void findCustomers();
-
-        void findTags();
 
     }
 }

@@ -19,18 +19,4 @@ public class AddTicketRepositoryImpl implements AddTicketRepository {
         return anyDoneService.createTicket(token, ticket);
     }
 
-    @Override
-    public Observable<UserRpcProto.UserBaseResponse> findConsumers(String token) {
-        return anyDoneService.findConsumers(token);
-    }
-
-    @Override
-    public Observable<UserRpcProto.UserBaseResponse> findEmployees(String token) {
-        return anyDoneService.findEmployees(token);
-    }
-
-    @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> findTags(String token) {
-        return anyDoneService.findTag(token);
-    }
 }

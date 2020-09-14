@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import java.util.List;

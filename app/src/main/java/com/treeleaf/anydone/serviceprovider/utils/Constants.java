@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.utils;
 
-public class Constants {
+public class
+Constants {
     public static final String TOKEN = "token";
     public static final String LOGGED_IN = "logged_in";
     public static final String IS_PHONE = "is_phone";
@@ -38,19 +39,20 @@ public class Constants {
     public static final String KGRAPH_TITLE = "kgraph_title";
     public static final String SELECTED_FILTER_STATUS = "selected_filter_status";
     public static final String SELECTED_TICKET_FILTER_STATUS = "selected_ticket_filter_status";
-    public static final String ASSIGNED = "ASSIGNED";
-    public static final String SUBSCRIBED = "SUBSCRIBED";
-    public static final String CLOSED_RESOLVED = "CLOSED_RESOLVED";
-    public static final String ASSIGNABLE = "ASSIGNABLE";
-    public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
     public static final String FETCH_SUBSCRIBEABLE_LIST = "fetch_subscribeable_list";
     public static final String FETCH_SUBSCRIBED_LIST = "fetch_subscribed_list";
     public static final String FETCH__ASSIGNED_LIST = "fetch_assigned_list";
     public static final String FETCH_CLOSED_LIST = "fetch_closed_list";
     public static final String TICKET_STARTED = "ticket_started";
     public static final String REFETCH_TICKET = "refetch_ticket";
+    public static final String REFETCH_TICKET_TYPE = "refetch_type";
     public static final String SELECTED_SERVICE = "selected_service";
     public static final String SERVICE_CHANGED_TICKET = "service_changed_ticket";
     public static final String SERVICE_CHANGED_THREAD = "service_changed_thread";
+    public static final String ASSIGNED = "ASSIGNED";
+    public static final String SUBSCRIBED = "SUBSCRIBED";
+    public static final String CLOSED_RESOLVED = "CLOSED_RESOLVED";
+    public static final String ASSIGNABLE = "ASSIGNABLE";
+    public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
 
 }

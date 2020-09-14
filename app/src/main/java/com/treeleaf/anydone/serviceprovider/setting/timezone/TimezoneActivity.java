@@ -42,7 +42,7 @@ public class TimezoneActivity extends AppCompatActivity {
 
         String timezoneId = Hawk.get(Constants.TIMEZONE_ID);
         GlobalUtils.showLog(TAG, "timezoneid check: " + timezoneId);
-        if (timezoneId != null) {
+        if (timezoneId != null && !timezoneId.isEmpty()) {
             TimeZone timeZone = TimeZone.getTimeZone(timezoneId);
             setTimezone(timeZone);
         } else {
@@ -62,7 +62,7 @@ public class TimezoneActivity extends AppCompatActivity {
 
         GlobalUtils.showLog(TAG, "gmt check: " + gmt);
         GlobalUtils.showLog(TAG, "zone check: " + zone);
-        tvZone.setText(zone);
+        tvZone.setText(zone.replace("_", " "));
         tvTimezone.setText(timeZone.getDisplayName() + " " + "(" + gmt + ")");
     }
 

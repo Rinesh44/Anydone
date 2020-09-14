@@ -179,7 +179,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         TicketDetailsActivity activity = (TicketDetailsActivity) getActivity();
         assert activity != null;
         activity.setOutSideTouchListener(this);

@@ -54,7 +54,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/ic_dropdown" />
+                            android:src="@drawable/ic_dropdown_toggle" />
 
                     </RelativeLayout>
 
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_dropdown" />
+                        android:src="@drawable/ic_dropdown_toggle" />
 
                 </RelativeLayout>
 

@@ -1,11 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
+
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,16 +17,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
-import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Random;
@@ -412,4 +407,3 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     }
 
 }
-

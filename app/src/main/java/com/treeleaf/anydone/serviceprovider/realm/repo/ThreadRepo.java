@@ -13,6 +13,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class ThreadRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
@@ -111,7 +112,9 @@ public class ThreadRepo extends Repo {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             return realm.where(Thread.class)
-                    .equalTo("serviceId", serviceId).findAll();
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;

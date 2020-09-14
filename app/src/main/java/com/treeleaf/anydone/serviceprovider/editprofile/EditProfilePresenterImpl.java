@@ -206,6 +206,7 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
         UserProto.Account account = UserProto.Account.newBuilder()
                 .setFullName(fullName)
                 .setAccountId(accountId)
+                .setAccountType(AnydoneProto.AccountType.EMPLOYEE)
                 .setCountryCode(Hawk.get(Constants.COUNTRY_CODE))
                 .build();
 
@@ -229,6 +230,7 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
         UserProto.Account account = UserProto.Account.newBuilder()
                 .setFullName(fullName)
                 .setAccountId(accountId)
+                .setAccountType(AnydoneProto.AccountType.SERVICE_PROVIDER)
                 .setCountryCode(Hawk.get(Constants.COUNTRY_CODE))
                 .build();
 

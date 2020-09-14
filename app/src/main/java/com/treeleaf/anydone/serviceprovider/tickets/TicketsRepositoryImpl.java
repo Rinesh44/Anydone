@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.tickets;
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
+import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
 import io.reactivex.Observable;
@@ -34,4 +35,19 @@ public class TicketsRepositoryImpl implements TicketsRepository {
         return service.getServices(token);
     }
 
+
+    @Override
+    public Observable<UserRpcProto.UserBaseResponse> findConsumers(String token) {
+        return service.findConsumers(token);
+    }
+
+    @Override
+    public Observable<UserRpcProto.UserBaseResponse> findEmployees(String token) {
+        return service.findEmployees(token);
+    }
+
+    @Override
+    public Observable<TicketServiceRpcProto.TicketBaseResponse> findTags(String token) {
+        return service.findTag(token);
+    }
 }

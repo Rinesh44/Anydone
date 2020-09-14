@@ -25,12 +25,4 @@
         android:text="ram prasad"
         android:textColor="@color/black" />
 
-    <ImageView
-        android:id="@+id/iv_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/dimen_10x1"
-        android:src="@drawable/ic_bin" />
 </RelativeLayout>

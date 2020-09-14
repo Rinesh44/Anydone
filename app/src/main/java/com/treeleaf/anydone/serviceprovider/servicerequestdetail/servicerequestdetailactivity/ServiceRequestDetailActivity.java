@@ -311,13 +311,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     @Override
     public void onUrlFetchFail(String msg) {
         videoCallListenerClient.onJanusCredentialsFailure();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(ServiceRequestDetailActivity.this, msg,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+        runOnUiThread(() -> Toast.makeText(ServiceRequestDetailActivity.this, msg,
+                Toast.LENGTH_SHORT).show());
     }
 
     @Override

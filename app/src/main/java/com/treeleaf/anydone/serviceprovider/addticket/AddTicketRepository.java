@@ -10,9 +10,4 @@ public interface AddTicketRepository {
     Observable<TicketServiceRpcProto.TicketBaseResponse> createTicket(String token,
                                                                       TicketProto.Ticket ticket);
 
-    Observable<UserRpcProto.UserBaseResponse> findConsumers(String token);
-
-    Observable<UserRpcProto.UserBaseResponse> findEmployees(String token);
-
-    Observable<TicketServiceRpcProto.TicketBaseResponse> findTags(String token);
 }

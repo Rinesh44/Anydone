@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.tickets;
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
+import com.treeleaf.anydone.rpc.UserRpcProto;
 
 import io.reactivex.Observable;
 
@@ -22,5 +23,11 @@ public interface TicketsRepository {
                           String status);
 
     Observable<ServiceRpcProto.ServiceBaseResponse> getServices(String token);
+
+    Observable<UserRpcProto.UserBaseResponse> findConsumers(String token);
+
+    Observable<UserRpcProto.UserBaseResponse> findEmployees(String token);
+
+    Observable<TicketServiceRpcProto.TicketBaseResponse> findTags(String token);
 }
 

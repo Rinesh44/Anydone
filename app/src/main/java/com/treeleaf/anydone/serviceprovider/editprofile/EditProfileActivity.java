@@ -82,6 +82,7 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
 
         btnSave.setOnClickListener(v -> {
             hideKeyBoard();
+            GlobalUtils.showLog(TAG, "employee type: " + userAccount.getAccountType());
             if (userAccount.getAccountType().equalsIgnoreCase(AnydoneProto.AccountType.EMPLOYEE.name())) {
                 employee = EmployeeRepo.getInstance().getEmployeeByAccountId
                         (userAccount.getAccountId());

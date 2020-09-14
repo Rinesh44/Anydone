@@ -1,5 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets;
 
+import android.widget.Toast;
+
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -12,7 +14,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import java.util.List;
 
@@ -139,7 +140,6 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
 
     @Override
     public void filterTickets(String searchQuery, long from, long to, int ticketState, Priority priority) {
-        getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -149,52 +149,54 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
         int priorityNum = GlobalUtils.getPriorityNum(priority);
         String filterUrl = getFilterUrl(searchQuery, from, to, ticketState, priorityNum);
 
-        ticketBaseResponseObservable = service.filterTickets(token, filterUrl);
-        addSubscription(ticketBaseResponseObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(
-                        new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
-                            @Override
-                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
-                                                       filterTicketBaseResponse) {
-                                GlobalUtils.showLog(TAG, "filter subscribeable ticket response: "
-                                        + filterTicketBaseResponse);
+        if (!filterUrl.isEmpty()) {
+            getView().showProgressBar("Filtering...");
+            ticketBaseResponseObservable = service.filterTickets(token, filterUrl);
+            addSubscription(ticketBaseResponseObservable
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(
+                            new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                                @Override
+                                public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                                           filterTicketBaseResponse) {
+                                    GlobalUtils.showLog(TAG, "filter subscribeable ticket response: "
+                                            + filterTicketBaseResponse);
 
-                                getView().hideProgressBar();
-                                if (filterTicketBaseResponse == null) {
-                                    getView().filterTicketsFailed("Filter subscribeable ticket failed");
-                                    return;
+                                    getView().hideProgressBar();
+                                    if (filterTicketBaseResponse == null) {
+                                        getView().filterTicketsFailed("Filter subscribeable ticket failed");
+                                        return;
+                                    }
+
+                                    if (filterTicketBaseResponse.getError()) {
+                                        getView().filterTicketsFailed(filterTicketBaseResponse.getMsg());
+                                        return;
+                                    }
+
+                                    if (!CollectionUtils.isEmpty(
+                                            filterTicketBaseResponse.getTicketsList())) {
+                                        List<Tickets> filteredTickets = TicketRepo.
+                                                getInstance().transformTicketProto(filterTicketBaseResponse.getTicketsList(), Constants.SUBSCRIBEABLE);
+                                        getView().updateTickets(filteredTickets);
+                                    } else {
+                                        getView().filterTicketsFailed("Not found");
+                                    }
                                 }
 
-                                if (filterTicketBaseResponse.getError()) {
-                                    getView().filterTicketsFailed(filterTicketBaseResponse.getMsg());
-                                    return;
+                                @Override
+                                public void onError(Throwable e) {
+                                    getView().hideProgressBar();
+                                    getView().filterTicketsFailed(e.getLocalizedMessage());
                                 }
 
-                                if (!CollectionUtils.isEmpty(
-                                        filterTicketBaseResponse.getTicketsList())) {
-                                    List<Tickets> filteredTickets = TicketRepo.
-                                            getInstance().transformTicketProto(filterTicketBaseResponse.getTicketsList(),
-                                            Constants.SUBSCRIBEABLE);
-                                    getView().updateTickets(filteredTickets);
-                                } else {
-                                    getView().filterTicketsFailed("Not found");
+                                @Override
+                                public void onComplete() {
+                                    getView().hideProgressBar();
                                 }
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                getView().hideProgressBar();
-                                getView().filterTicketsFailed(e.getLocalizedMessage());
-                            }
-
-                            @Override
-                            public void onComplete() {
-                                getView().hideProgressBar();
-                            }
-                        })
-        );
+                            })
+            );
+        }
     }
 
     private void saveSubscribeableTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
@@ -230,7 +232,14 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
     private String getFilterUrl(String query, long from, long to, int status, int priority) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
         StringBuilder filterUrlBuilder = new StringBuilder("ticket/subscribable/" + serviceId + "?");
-        if (query != null && !query.isEmpty()) {
+
+
+        if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1) {
+            Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();
+            return "";
+        }
+
+        if (!query.isEmpty()) {
             filterUrlBuilder.append("query=");
             filterUrlBuilder.append(query);
         }

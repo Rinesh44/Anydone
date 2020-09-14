@@ -85,6 +85,8 @@ public class ResetPasswordActivity extends MvpBaseActivity<ResetPasswordPresente
             ilOldPassword.setVisibility(View.VISIBLE);
             llOtpTimer.setVisibility(View.GONE);
             llResendCode.setVisibility(View.GONE);
+        } else {
+            ilOldPassword.setVisibility(View.GONE);
         }
 
         GlobalUtils.showLog(TAG, "accountId: " + accountId);

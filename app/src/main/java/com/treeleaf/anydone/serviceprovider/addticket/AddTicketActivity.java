@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,9 +20,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +40,6 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
-import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TeamAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
@@ -73,7 +75,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @BindView(R.id.search_employee)
     ScrollView svSearchEmployee;
     @BindView(R.id.search_teams)
-    ScrollView svSearchTeams;
+    NestedScrollView svSearchTeams;
     @BindView(R.id.civ_image_self)
     CircleImageView civSelfImage;
     @BindView(R.id.tv_name_self)
@@ -149,9 +151,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         setToolbar();
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
-        presenter.findCustomers();
-        presenter.findEmployees();
-        presenter.findTags();
+        employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
+        setUpRecyclerView();
+
+        customerList = CustomerRepo.getInstance().getAllCustomers();
+        customerSearchAdapter = new CustomerSearchAdapter(this, customerList);
+        etCustomerName.setAdapter(customerSearchAdapter);
+
+        tagsList = TagRepo.getInstance().getAllTags();
+        setUpTeamRecyclerView();
 
         setSelfDetails();
         etPriority.setText("a");
@@ -160,7 +168,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         spPriority.setSelection(2);
         selectedPriority = (Priority) spPriority.getSelectedItem();
 
-        tagsList = TagRepo.getInstance().getAllTags();
 
         Intent intent = getIntent();
         createTicketFromThread = intent.getBooleanExtra("create_ticket_from_thread", false);
@@ -168,6 +175,16 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         if (createTicketFromThread) {
             setDataFromThread(intent);
         }
+
+        etDesc.setOnTouchListener((v, event) -> {
+            if (v.getId() == R.id.et_description) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                }
+            }
+            return false;
+        });
 
         spPriority.setOnTouchListener((v, event) -> {
             etPriority.requestFocus();
@@ -257,6 +274,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() >= 1) {
+                    changeRecyclerViewHeightContentWise();
+
                     tagsList = TagRepo.getInstance().searchTags(s.toString());
                     GlobalUtils.showLog(TAG, "searched tags size: " + tagsList.size());
                     if (svSearchTeams.getVisibility() == View.GONE)
@@ -265,6 +284,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                         teamSearchAdapter.setData(tagsList);
                         teamSearchAdapter.notifyDataSetChanged();
                     }
+                } else {
+                    svSearchTeams.setVisibility(View.GONE);
                 }
             }
 
@@ -416,6 +437,12 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
+    private void changeRecyclerViewHeightContentWise() {
+        LinearLayout.LayoutParams rvTeamParams = (LinearLayout.LayoutParams) rvTeams.getLayoutParams();
+        rvTeamParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        rvTeams.setLayoutParams(rvTeamParams);
+    }
+
     private void setDataFromThread(Intent i) {
         String summaryText = i.getStringExtra("summary_text");
         String customerName = i.getStringExtra("customer_name");
@@ -434,6 +461,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         if (teamId != null) {
             Tags tags = TagRepo.getInstance().getTagById(teamId);
+            selectedTag = tags;
             addNewTagChip(tags);
         }
     }
@@ -507,6 +535,22 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 10, 20, 10);
         chip.setLayoutParams(params);
+
+        //check if tag already exists
+        if (fblLabel.getChildCount() > 1) {
+            for (int i = 0; i < fblLabel.getChildCount(); i++) {
+                View child = fblLabel.getChildAt(i);
+                if (child instanceof RelativeLayout) {
+                    TextView id = child.findViewById(R.id.tv_chip_id);
+                    if (id != null) {
+                        if (id.getText().toString().trim().equalsIgnoreCase(tvId.getText().toString().trim())) {
+                            Toast.makeText(this, "Selected tag is already added", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         fblLabel.addView(chip, fblLabel.getChildCount() - 1);
         ivCancel.setOnClickListener(v -> fblLabel.removeView(chip));
     }
@@ -517,11 +561,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         getActivityComponent().inject(this);
     }
 
-    @Override
-    public void findEmployeeSuccess() {
-        employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
-        setUpRecyclerView();
-    }
 
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -545,6 +584,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private void setUpTeamRecyclerView() {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvTeams.setLayoutManager(mLayoutManager);
+        rvTeams.setHasFixedSize(true);
 
         teamSearchAdapter = new TeamAdapter(tagsList, this);
         rvTeams.setAdapter(teamSearchAdapter);
@@ -561,55 +601,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 etLabel.setText("");
             });
         }
-    }
-
-    @Override
-    public void findEmployeeFail(String msg) {
-
-        employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
-        setUpRecyclerView();
-
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(this, msg);
-            onAuthorizationFailed(this);
-            return;
-        }
-        Banner.make(getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
-
-    }
-
-    @Override
-    public void findCustomerSuccess() {
-        customerList = CustomerRepo.getInstance().getAllCustomers();
-        customerSearchAdapter = new CustomerSearchAdapter(this, customerList);
-        etCustomerName.setAdapter(customerSearchAdapter);
-    }
-
-    @Override
-    public void findCustomerFail(String msg) {
-
-    }
-
-    @Override
-    public void findTagsSuccess() {
-        tagsList = TagRepo.getInstance().getAllTags();
-        setUpTeamRecyclerView();
-    }
-
-    @Override
-    public void findTagsFail(String msg) {
-        tagsList = TagRepo.getInstance().getAllTags();
-        setUpTeamRecyclerView();
-
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(this, msg);
-            onAuthorizationFailed(this);
-            return;
-        }
-        Banner.make(getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.BOTTOM, 2000).show();
-
     }
 
     @Override
@@ -739,4 +730,5 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         onBackPressed();
         return true;
     }
+
 }

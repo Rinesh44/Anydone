@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,11 +26,17 @@ public class WebLinkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_link);
 
         ButterKnife.bind(this);
-        mAnydoneWeb.setWebViewClient(new WebViewClient());
-        mAnydoneWeb.loadUrl("https://treeleaf.ai/");
 
-        WebSettings webSettings = mAnydoneWeb.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        String link = getIntent().getStringExtra("link");
+        if (link != null && !link.isEmpty()) {
+            mAnydoneWeb.setWebViewClient(new WebViewClient());
+            mAnydoneWeb.loadUrl(link);
+
+            WebSettings webSettings = mAnydoneWeb.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+        } else {
+            Toast.makeText(this, "Unsupported link", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

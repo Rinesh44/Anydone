@@ -175,6 +175,7 @@ public class ResetPasswordPresenterImpl extends
 
         if (ValidationUtils.isEmpty(code)) {
             getView().showToastMessage("Invalid code");
+            return false;
         }
 
         return true;

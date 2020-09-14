@@ -169,7 +169,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // 2
             uri = FileProvider.getUriForFile(this,
-                    "com.treeleaf.anydone.provider", file);
+                    "com.treeleaf.anydone.serviceprovider.provider", file);
         } else {
             uri = Uri.fromFile(file); // 3
         }

@@ -12,11 +12,13 @@ import androidx.annotation.Nullable;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.mapbox.mapboxsdk.plugins.places.common.utils.KeyboardUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.Objects;
@@ -49,6 +51,7 @@ public class ForgotPasswordActivity extends MvpBaseActivity<ForgotPasswordPresen
 
         etPhone.setText(Hawk.get(Constants.EMAIL_PHONE, ""));
         etPhone.requestFocus();
+
         btnSendCode.setOnClickListener(v -> {
             hideKeyBoard();
             presenter.sendResetCode(Objects.requireNonNull

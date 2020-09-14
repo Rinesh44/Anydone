@@ -112,7 +112,7 @@ public class ActivityFragment extends BaseFragment<ActivityPresenterImpl> implem
                         .getDrawable(R.drawable.ic_dropup));
             } else {
                 ivDropdownActivity.setImageDrawable(getActivity().getResources()
-                        .getDrawable(R.drawable.ic_dropdown));
+                        .getDrawable(R.drawable.ic_dropdown_toggle));
             }
             elActivities.toggle();
         });
@@ -125,7 +125,7 @@ public class ActivityFragment extends BaseFragment<ActivityPresenterImpl> implem
                         .getDrawable(R.drawable.ic_dropup));
             } else {
                 ivDropdownEmployee.setImageDrawable(getActivity().getResources()
-                        .getDrawable(R.drawable.ic_dropdown));
+                        .getDrawable(R.drawable.ic_dropdown_toggle));
             }
             elEmployee.toggle();
         });

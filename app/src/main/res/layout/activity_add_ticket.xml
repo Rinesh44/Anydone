@@ -60,6 +60,9 @@
                     android:layout_height="120dp"
                     android:gravity="start"
                     android:inputType="textVisiblePassword|textMultiLine"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>

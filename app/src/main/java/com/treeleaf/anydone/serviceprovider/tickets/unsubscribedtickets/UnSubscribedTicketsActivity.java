@@ -168,7 +168,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
      * manually opening / closing bottom sheet on button click
      */
     public void toggleBottomSheet() {
-        if (filterBottomSheet.isShowing()) filterBottomSheet.hide();
+        if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();
         else {
             int selectedRadioBtn = Hawk.get(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
             if (selectedRadioBtn != -1) {

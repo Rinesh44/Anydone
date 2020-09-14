@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -70,11 +68,10 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenterImpl> implements
-        TicketTimelineContract.TicketTimelineView,
-        TicketDetailsActivity.OnOutsideClickListener {
+        TicketTimelineContract.TicketTimelineView
+        /*      TicketDetailsActivity.OnOutsideClickListener*/ {
     private static final String TAG = "TicketTimelineFragment";
 
-    public static final int ASSIGN_EMPLOYEE_REQUEST = 8789;
     /*    @BindView(R.id.ll_activities)
         LinearLayout llActivities;*/
     @BindView(R.id.pb_progress)
@@ -220,9 +217,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
 
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
-        TicketDetailsActivity mActivity = (TicketDetailsActivity) getActivity();
+
+       /* TicketDetailsActivity mActivity = (TicketDetailsActivity) getActivity();
         assert mActivity != null;
-        mActivity.setOutSideTouchListener(this);
+        mActivity.setOutSideTouchListener(this);*/
 
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
 
@@ -374,6 +372,9 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             case "TICKET_STARTED":
                 onTicketStarted();
                 btnReopen.setVisibility(View.GONE);
+                if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
+                    removeScrollviewMargin();
+                }
                 break;
 
             case "TICKET_RESOLVED":
@@ -954,7 +955,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
 
-    @Override
+ /*   @Override
     public void onOutsideClick(MotionEvent event) {
         GlobalUtils.showLog(TAG, "on outside click second");
         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
@@ -964,7 +965,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             if (!outRect.contains((int) event.getRawX(), (int) event.getRawY()))
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
-    }
+    }*/
 
     @Override
     public void getTicketTimelineSuccess(Employee assignedEmployee) {

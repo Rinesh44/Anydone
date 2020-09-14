@@ -25,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +44,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
@@ -62,7 +64,6 @@ import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTi
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -141,6 +142,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        presenter.findCustomers();
+        presenter.findEmployees();
+        presenter.findTags();
 
         sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
 
@@ -257,6 +262,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Hawk.put(Constants.FETCH_CLOSED_LIST, true);
             }
 
+            assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
+            subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
+            closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
 
 //            Hawk.put(Constants.FETCH_CLOSED_LIST, true);
         });
@@ -439,6 +447,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         int fragmentIndex = mViewpager.getCurrentItem();
         if (fragmentIndex == 0) {
             if (!CollectionUtils.isEmpty(assignedTicketList)) {
+                GlobalUtils.showLog(TAG, "assigned list check: " + assignedTicketList);
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
                         .inflate(R.layout.layout_status_buttons_assigned, null);
                 rgStatus = statusView.findViewById(R.id.rg_status);
@@ -461,9 +470,13 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
                 hsvStatusContainer.removeAllViews();
                 hsvStatusContainer.addView(rgStatus);
+                toggleBottomSheet();
+            } else {
+                Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
             }
         } else if (fragmentIndex == 1) {
             if (!CollectionUtils.isEmpty(subscribedTicketList)) {
+                GlobalUtils.showLog(TAG, "subscribed list check: " + subscribedTicketList);
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
                         .inflate(R.layout.layout_status_buttons_alternate, null);
                 rgStatus = statusView.findViewById(R.id.rg_status);
@@ -487,9 +500,13 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
                 hsvStatusContainer.removeAllViews();
                 hsvStatusContainer.addView(rgStatus);
+                toggleBottomSheet();
+            } else {
+                Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
             }
         } else {
             if (!CollectionUtils.isEmpty(closedTicketList)) {
+                GlobalUtils.showLog(TAG, "closed list check: " + closedTicketList);
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
                         .inflate(R.layout.layout_status_buttons_closed, null);
                 rgStatus = statusView.findViewById(R.id.rg_status);
@@ -513,10 +530,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
                 hsvStatusContainer.removeAllViews();
                 hsvStatusContainer.addView(rgStatus);
+                toggleBottomSheet();
+            } else {
+                Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
             }
         }
         GlobalUtils.showLog(TAG, "fragment index: " + fragmentIndex);
-        toggleBottomSheet();
     }
 
 
@@ -593,7 +612,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
      * manually opening / closing bottom sheet on button click
      */
     public void toggleBottomSheet() {
-        if (filterBottomSheet.isShowing()) filterBottomSheet.hide();
+        if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();
         else {
             int selectedRadioBtn = Hawk.get(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
             if (selectedRadioBtn != -1) {
@@ -770,6 +789,55 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
+    }
+
+    @Override
+    public void findEmployeeSuccess() {
+
+    }
+
+    @Override
+    public void findEmployeeFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
+
+    }
+
+    @Override
+    public void findCustomerSuccess() {
+
+    }
+
+    @Override
+    public void findCustomerFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
+    }
+
+    @Override
+    public void findTagsSuccess() {
+
+    }
+
+    @Override
+    public void findTagsFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     @Override

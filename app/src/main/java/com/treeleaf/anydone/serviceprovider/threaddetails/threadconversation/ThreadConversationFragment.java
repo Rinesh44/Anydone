@@ -970,9 +970,11 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             } else if (longClickedMessage.getMessageType().equalsIgnoreCase("TEXT_RTC_MESSAGE")
                     && longClickedMessage.getSenderId().equalsIgnoreCase(userAccountId)) {
                 createTicketHolder.setVisibility(View.GONE);
+                llBottomSheetMessage.setWeightSum(2);
             } else {
                 copyHolder.setVisibility(View.VISIBLE);
                 createTicketHolder.setVisibility(View.VISIBLE);
+                llBottomSheetMessage.setWeightSum(3);
             }
             messageSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {

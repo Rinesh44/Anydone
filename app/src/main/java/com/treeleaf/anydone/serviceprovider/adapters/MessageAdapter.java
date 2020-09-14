@@ -1813,6 +1813,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (conversation.getSenderType()
                 .equalsIgnoreCase(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
             senderTitle.setText(Constants.ANYDONE_BOT);
+            civSender.setVisibility(View.VISIBLE);
         } else {
             if (conversation.getSenderName() != null && !conversation.getSenderName().isEmpty())
                 senderTitle.setText(conversation.getSenderName());
