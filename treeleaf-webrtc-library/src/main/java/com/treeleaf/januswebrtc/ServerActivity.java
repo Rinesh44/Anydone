@@ -792,7 +792,17 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         rlJoineeList.setVisibility(show ? View.VISIBLE : View.GONE);
                     }
                 });
-
+            }
+        });
+        joineeListAdapter.setOnItemClickListener(new JoineeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position, View v, String accountId, String accountName) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ServerActivity.this, "clicked on: " + accountName, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         rvJoinee = findViewById(R.id.rv_joinee);

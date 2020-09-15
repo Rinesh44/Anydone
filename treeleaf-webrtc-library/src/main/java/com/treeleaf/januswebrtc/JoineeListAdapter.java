@@ -28,6 +28,7 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     private LinkedHashMap<String, Joinee> mapTotalJoinees;
     private JoineeListToggleUpdate joineeListToggleUpdate;
     public JoineeListState joineeListState;
+    private OnItemClickListener onItemClickListener;
 
     public JoineeListAdapter(Context context) {
         this.mContext = context;
@@ -35,6 +36,10 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         mapRemainingJoinees = new LinkedHashMap<>();
         mapTotalJoinees = new LinkedHashMap<>();
         joineeListState = JoineeListState.CONTRACT;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     public Boolean isJoineePresent() {
@@ -138,8 +143,16 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
                 holder.tvCountAdditionalJoinees.setVisibility(View.VISIBLE);
                 int remaining = (mapTotalJoinees.size() - (MAX_IN_A_ROW - 1));
                 holder.tvCountAdditionalJoinees.setText("+" + remaining);
-            } else
+            } else {
                 holder.tvCountAdditionalJoinees.setVisibility(View.GONE);
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onItemClickListener.onItemClicked(position, holder.itemView,
+                                joinee.getAccountId(), joinee.getName());
+                    }
+                });
+            }
         }
     }
 
@@ -174,6 +187,10 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
 
     public enum JoineeListState {
         EXPAND, CONTRACT
+    }
+
+    public interface OnItemClickListener {
+        void onItemClicked(int position, View v, String accountId, String accountName);
     }
 
 }

@@ -632,6 +632,17 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             }
         });
+        joineeListAdapter.setOnItemClickListener(new JoineeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position, View v, String accountId, String accountName) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ClientActivity.this, "clicked on: " + accountName, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
         rvJoinee = findViewById(R.id.rv_joinee);
         GridLayoutManager layoutManager = new GridLayoutManager(this, JoineeListAdapter.MAX_IN_A_ROW, GridLayoutManager.VERTICAL, false);
         rvJoinee.setLayoutManager(layoutManager);
