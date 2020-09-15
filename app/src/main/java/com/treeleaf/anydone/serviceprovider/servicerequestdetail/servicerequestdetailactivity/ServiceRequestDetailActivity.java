@@ -294,7 +294,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         String participantId = broadcastVideoCall.getParticipantId();
 
         callerName = broadcastVideoCall.getSenderAccount().getFullName();
-        callerAccountId = broadcastVideoCall.getSenderAccount().getAccountId();
+        callerAccountId = broadcastVideoCall.getSenderAccountId();
         callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
 
         ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
@@ -361,7 +361,7 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         if (videoCallListenerServer != null) {
             UserProto.Account account = videoCallJoinResponse.getSenderAccount();
             videoCallListenerServer.onJoineeReceived(account.getFullName(),
-                    account.getProfilePic(), account.getAccountId());
+                    account.getProfilePic(), videoCallJoinResponse.getSenderAccountId());
 
             /**
              * add caller/call initiator on the joinee list
