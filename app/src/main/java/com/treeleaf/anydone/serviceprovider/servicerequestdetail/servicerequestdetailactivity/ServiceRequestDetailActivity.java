@@ -374,7 +374,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         Log.d(MQTT, "onParticipantLeft");
         if (videoCallListenerServer != null) {
             UserProto.Account account = participantLeft.getSenderAccount();
-            videoCallListenerServer.onJoineeRemoved(account.getAccountId());
+//            videoCallListenerServer.onJoineeRemoved(account.getAccountId());
+            videoCallListenerServer.onJoineeRemoved(participantLeft.getSenderAccountId());
         }
     }
 
