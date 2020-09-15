@@ -88,6 +88,9 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     private boolean paymentSuccess = false;
     private RestChannel.Role mRole;
     private Callback.DrawCallBack drawCallBack;
+    String callerName;
+    String callerAccountId;
+    String callerProfileUrl;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -290,11 +293,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         String roomNumber = broadcastVideoCall.getRoomId();
         String participantId = broadcastVideoCall.getParticipantId();
 
-        String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
-        String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+        callerName = broadcastVideoCall.getSenderAccount().getFullName();
+        callerAccountId = broadcastVideoCall.getSenderAccount().getAccountId();
+        callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
 
         ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                roomNumber, participantId, hostActivityCallbackServer, drawCallBack, calleeName, calleeProfileUrl);
+                roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
 
     }
 
@@ -358,6 +362,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             UserProto.Account account = videoCallJoinResponse.getSenderAccount();
             videoCallListenerServer.onJoineeReceived(account.getFullName(),
                     account.getProfilePic(), account.getAccountId());
+
+            /**
+             * add caller/call initiator on the joinee list
+             */
+            videoCallListenerServer.onJoineeReceived(callerName, callerProfileUrl, callerAccountId);
         }
     }
 
