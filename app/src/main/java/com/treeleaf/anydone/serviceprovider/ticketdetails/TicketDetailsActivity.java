@@ -139,6 +139,11 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, ticketId);
             }
 
+            @Override
+            public String getLocalAccountId() {
+                return accountId;
+            }
+
         };
     }
 

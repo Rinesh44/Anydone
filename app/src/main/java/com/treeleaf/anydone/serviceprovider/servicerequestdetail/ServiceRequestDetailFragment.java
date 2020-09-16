@@ -1369,8 +1369,8 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchDown(captureDrawParam);
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId);
     }
 
     @Override
@@ -1379,23 +1379,23 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onDrawTouchUp() {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchUp();
+    public void onDrawTouchUp(String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchUp(accountId);
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId);
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextChange(text, id);
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId);
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId);
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId);
     }
 
     @Override
