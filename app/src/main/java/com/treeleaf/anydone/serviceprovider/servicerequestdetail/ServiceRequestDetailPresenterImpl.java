@@ -841,7 +841,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                         captureDrawParam.setXCoordinate(drawTouchDown.getX());
                         captureDrawParam.setYCoordinate(drawTouchDown.getY());
-                        getView().onDrawTouchDown(captureDrawParam);
+                        getView().onDrawTouchDown(captureDrawParam, drawTouchDown.getSenderAccount().getAccountId());
                     }
                 }
 
@@ -864,7 +864,7 @@ public class ServiceRequestDetailPresenterImpl extends
                             .getDrawTouchUpResponse();
                     if (drawTouchUp != null &&
                             !drawTouchUp.getSenderAccount().getAccountId().equals(userAccountId)) {
-                        getView().onDrawTouchUp();
+                        getView().onDrawTouchUp(drawTouchUp.getSenderAccount().getAccountId());
                     }
                 }
 
@@ -875,7 +875,8 @@ public class ServiceRequestDetailPresenterImpl extends
                     if (receiveNewTextField != null &&
                             !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
-                                receiveNewTextField.getY(), receiveNewTextField.getTextId());
+                                receiveNewTextField.getY(), receiveNewTextField.getTextId(),
+                                receiveNewTextField.getSenderAccount().getAccountId());
                     }
                 }
 
@@ -886,7 +887,7 @@ public class ServiceRequestDetailPresenterImpl extends
                     if (textFieldChange != null &&
                             !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
-                                textFieldChange.getTextId());
+                                textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId());
                     }
                 }
 
@@ -896,7 +897,8 @@ public class ServiceRequestDetailPresenterImpl extends
                             .getTextFieldRemoveResponse();
                     if (textFieldRemove != null &&
                             !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
-                        getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId());
+                        getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId(),
+                                textFieldRemove.getSenderAccount().getAccountId());
                     }
                 }
 

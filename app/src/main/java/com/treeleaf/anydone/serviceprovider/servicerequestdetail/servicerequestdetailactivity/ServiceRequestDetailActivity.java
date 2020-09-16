@@ -386,11 +386,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam) {
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
                     captureDrawParam.getYCoordinate());
-            serverDrawingPadEventListener.onDrawTouchDown();
+            serverDrawingPadEventListener.onDrawTouchDown(accountId);
         }
     }
 
@@ -404,43 +404,43 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawTouchUp() {
+    public void onDrawTouchUp(String accountId) {
         if (serverDrawingPadEventListener != null) {
-            serverDrawingPadEventListener.onDrawTouchUp();
+            serverDrawingPadEventListener.onDrawTouchUp(accountId);
         }
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId);
+                    serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id) {
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id);
+                    serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id, accountId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId) {
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId);
+                    serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId, accountId);
                 }
             }
         });
