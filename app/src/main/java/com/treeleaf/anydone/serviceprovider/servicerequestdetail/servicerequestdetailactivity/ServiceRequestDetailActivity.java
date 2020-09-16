@@ -202,6 +202,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
 
+            @Override
+            public String getLocalAccountId() {
+                return accountId;
+            }
+
         };
 
         drawCallBack = new Callback.DrawCallBack() {
