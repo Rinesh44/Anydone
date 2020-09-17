@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_employee_holder"
+    android:id="@+id/rl_team_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dimen_10x1"
     android:padding="@dimen/dimen_10x1">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civ_employee"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_assigned_emp_placeholder" />
-
     <TextView
-        android:id="@+id/tv_employee_name"
+        android:id="@+id/tv_tag_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/dimen_10x1"
-        android:layout_toEndOf="@+id/civ_employee"
         android:text="ram bahadur"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textColor="@color/black" />
 
 
     <com.google.android.material.checkbox.MaterialCheckBox

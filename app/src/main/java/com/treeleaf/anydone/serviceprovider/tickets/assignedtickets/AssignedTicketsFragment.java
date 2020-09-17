@@ -113,13 +113,14 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
         } else {
             rvOpenTickets.setVisibility(View.GONE);
             final Handler handler = new Handler();
+
             handler.postDelayed(() -> {
                 if (rvOpenTickets != null) {
                     if (rvOpenTickets.getVisibility() != View.VISIBLE)
                         ivDataNotFound.setVisibility(View.VISIBLE);
                     else ivDataNotFound.setVisibility(View.GONE);
                 }
-            }, 2000);
+            }, 50);
 
         }
 
@@ -187,6 +188,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void getAssignedTicketFail(String msg) {
+        ivDataNotFound.setVisibility(View.VISIBLE);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -306,10 +305,17 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     public void onResume() {
         super.onResume();
 
+//        boolean botEnabled = Hawk.get(Constants.BOT_REPLY, true);
+
+//        GlobalUtils.showLog(TAG, "check bot boolean:" + botEnabled);
         //set bot reply to false when replied from our end
         if (!thread.isBotEnabled()) {
             botReply.setChecked(false);
         }
+
+      /*  if (!botEnabled) {
+            botReply.setChecked(false);
+        }*/
     }
 
 

@@ -8,12 +8,14 @@ import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.view.ViewTreeObserver;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -22,9 +24,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
-import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.core.widget.NestedScrollView;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,17 +32,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
-import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
-import com.treeleaf.anydone.serviceprovider.adapters.TeamAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.SearchTeamAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
-import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -57,6 +55,7 @@ import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -65,79 +64,70 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         AddTicketContract.AddTicketView {
 
     private static final String TAG = "AddTicketActivity";
-
+    @BindView(R.id.root)
+    LinearLayout llRoot;
     @BindView(R.id.et_customer_name)
     AutoCompleteTextView etCustomerName;
-    @BindView(R.id.et_label)
-    AppCompatAutoCompleteTextView etLabel;
-    @BindView(R.id.fbl_label)
-    FlexboxLayout fblLabel;
-    @BindView(R.id.search_employee)
-    ScrollView svSearchEmployee;
-    @BindView(R.id.search_teams)
-    NestedScrollView svSearchTeams;
-    @BindView(R.id.civ_image_self)
-    CircleImageView civSelfImage;
-    @BindView(R.id.tv_name_self)
-    TextView tvSelfName;
     @BindView(R.id.et_assign_employee)
     EditText etAssignEmployee;
-    @BindView(R.id.rv_all_users)
-    RecyclerView rvAllUsers;
-    @BindView(R.id.rv_teams)
-    RecyclerView rvTeams;
+    @BindView(R.id.search_employee)
+    ScrollView svSearchEmployee;
     @BindView(R.id.ll_self)
-    LinearLayout llSelf;
+    LinearLayout llEmployeeAsSelf;
+    @BindView(R.id.civ_image_self)
+    CircleImageView civEmployeeAsSelf;
+    @BindView(R.id.tv_name_self)
+    TextView tvEmployeeAsSelf;
+    @BindView(R.id.tv_all_users)
+    TextView tvEmployeeAllUsers;
+    @BindView(R.id.rv_all_users)
+    RecyclerView rvEmployeeAllUsers;
     @BindView(R.id.btn_create_ticket)
     MaterialButton btnCreateTicket;
     @BindView(R.id.et_email)
-    TextInputEditText etEmail;
+    AppCompatEditText etEmail;
     @BindView(R.id.et_phone)
-    TextInputEditText etPhone;
-    @BindView(R.id.il_phone)
-    TextInputLayout ilPhone;
-    @BindView(R.id.il_email)
-    TextInputLayout ilEmail;
-    @BindView(R.id.il_summary)
-    TextInputLayout ilSummary;
-    @BindView(R.id.il_description)
-    TextInputLayout ilDesc;
-    @BindView(R.id.il_customer_name)
-    TextInputLayout ilCustomerName;
+    AppCompatEditText etPhone;
     @BindView(R.id.et_summary)
-    TextInputEditText etSummary;
+    AppCompatEditText etSummary;
     @BindView(R.id.et_description)
-    TextInputEditText etDesc;
-    @BindView(R.id.rl_customer_self_holder)
-    RelativeLayout rlCustomerSelfHolder;
-    @BindView(R.id.civ_self)
-    CircleImageView civSelf;
-    @BindView(R.id.tv_customer_self)
-    TextView tvCustomerSelf;
+    AppCompatEditText etDesc;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
-    @BindView(R.id.il_priority)
-    TextInputLayout ilPriority;
     @BindView(R.id.et_priority)
-    TextInputEditText etPriority;
-    @BindView(R.id.sp_priority)
-    AppCompatSpinner spPriority;
-    @BindView(R.id.tv_all_users)
-    TextView tvAllUsers;
+    AppCompatEditText etPriority;
+    @BindView(R.id.rl_customer_self_holder)
+    RelativeLayout rlCustomerSelfHolder;
+    @BindView(R.id.tv_customer_self)
+    TextView tvCustomerSelf;
+    @BindView(R.id.civ_self)
+    CircleImageView civSelf;
+    @BindView(R.id.iv_priority)
+    ImageView ivPriority;
+    @BindView(R.id.civ_customer)
+    CircleImageView civCustomer;
+    @BindView(R.id.civ_assign_employee)
+    CircleImageView civAssignEmployee;
+    @BindView(R.id.fbl_label)
+    FlexboxLayout fblLabel;
 
     private List<AssignEmployee> employeeList;
     private List<Customer> customerList;
     private List<Tags> tagsList;
 
     private EmployeeSearchAdapter employeeSearchAdapter;
-    private CustomerSearchAdapter customerSearchAdapter;
-    private TeamAdapter teamSearchAdapter;
     private Customer selectedCustomer;
     private Tags selectedTag;
     private Employee selfEmployee;
-    private Priority selectedPriority;
     private String selectedEmployeeId;
     private boolean createTicketFromThread;
+    private BottomSheetDialog prioritySheet;
+    private BottomSheetDialog teamSheet;
+    private int priorityNum = 3;
+    private EditText etSearchTeam;
+    private SearchTeamAdapter teamAdapter;
+    List<String> tags = new ArrayList<>();
+    private RecyclerView rvTeams;
 
     @Override
     protected int getLayout() {
@@ -155,19 +145,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         setUpRecyclerView();
 
         customerList = CustomerRepo.getInstance().getAllCustomers();
-        customerSearchAdapter = new CustomerSearchAdapter(this, customerList);
+        CustomerSearchAdapter customerSearchAdapter = new CustomerSearchAdapter(this, customerList);
         etCustomerName.setAdapter(customerSearchAdapter);
 
         tagsList = TagRepo.getInstance().getAllTags();
-        setUpTeamRecyclerView();
+        createPriorityBottomSheet();
+        createTeamBottomSheet();
+//        setUpTeamRecyclerView();
 
         setSelfDetails();
-        etPriority.setText("a");
-        etPriority.setTextColor(getResources().getColor(R.color.white));
-        setUpPriorityDropdown();
-        spPriority.setSelection(2);
-        selectedPriority = (Priority) spPriority.getSelectedItem();
-
 
         Intent intent = getIntent();
         createTicketFromThread = intent.getBooleanExtra("create_ticket_from_thread", false);
@@ -186,42 +172,32 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             return false;
         });
 
-        spPriority.setOnTouchListener((v, event) -> {
-            etPriority.requestFocus();
-            setUpPriorityDropdown();
-            return false;
-        });
-
-        etPriority.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                etPriority.setText("a");
-                etPriority.setTextColor(getResources().getColor(R.color.transparent));
-            }
-        });
-
-        spPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedPriority = (Priority) spPriority.getItemAtPosition(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        fblLabel.setOnClickListener(v -> teamSheet.show());
 
         etCustomerName.setOnItemClickListener((parent, view, position, id) -> {
             UiUtils.hideKeyboard(this);
+            rlCustomerSelfHolder.setVisibility(View.GONE);
             if (!CollectionUtils.isEmpty(customerList)) {
                 selectedCustomer = customerList.get(position);
                 setEmailAndPhoneIfAvailable();
+                etCustomerName.setPadding(80, 0, 45, 0);
+                civCustomer.setVisibility(View.VISIBLE);
+
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_profile_icon)
+                        .error(R.drawable.ic_profile_icon);
+
+                Glide.with(this).load(selectedCustomer.getProfilePic()).apply(options).into(civCustomer);
             }
         });
 
+
         etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
-                tvCustomerSelf.setText(selfEmployee.getName() + " (Me)");
+                StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
+                selfCustomerText.append("(Me)");
+                tvCustomerSelf.setText(selfCustomerText);
 
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
@@ -265,43 +241,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             hideKeyBoard();
         });
 
-        etLabel.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 1) {
-                    changeRecyclerViewHeightContentWise();
-
-                    tagsList = TagRepo.getInstance().searchTags(s.toString());
-                    GlobalUtils.showLog(TAG, "searched tags size: " + tagsList.size());
-                    if (svSearchTeams.getVisibility() == View.GONE)
-                        svSearchTeams.setVisibility(View.VISIBLE);
-                    if (teamSearchAdapter != null) {
-                        teamSearchAdapter.setData(tagsList);
-                        teamSearchAdapter.notifyDataSetChanged();
-                    }
-                } else {
-                    svSearchTeams.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        etLabel.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                svSearchTeams.setVisibility(View.VISIBLE);
-            } else {
-                svSearchTeams.setVisibility(View.GONE);
-            }
-        });
+        etPriority.setOnClickListener(v -> prioritySheet.show());
 
         etCustomerName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -312,7 +252,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
-                    tvCustomerSelf.setText(selfEmployee.getName() + " (Me)");
+                    StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
+                    selfCustomerText.append("(Me)");
+                    tvCustomerSelf.setText(selfCustomerText);
 
                     RequestOptions options = new RequestOptions()
                             .fitCenter()
@@ -320,9 +262,11 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                             .error(R.drawable.ic_profile_icon);
 
                     Glide.with(AddTicketActivity.this).load(selfEmployee.getEmployeeImageUrl())
-                            .apply(options).into(civSelfImage);
+                            .apply(options).into(civSelf);
 
                     rlCustomerSelfHolder.setVisibility(View.VISIBLE);
+                    civCustomer.setVisibility(View.GONE);
+                    etCustomerName.setPadding(0, 0, 40, 0);
                 } else {
                     rlCustomerSelfHolder.setVisibility(View.GONE);
                     etEmail.setEnabled(true);
@@ -342,15 +286,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
 
-        etLabel.setOnItemClickListener((parent, view, position, id) -> {
-            if (!CollectionUtils.isEmpty(tagsList)) {
-                selectedTag = tagsList.get(position);
-                addNewTagChip(selectedTag);
-            }
-            etLabel.setText("");
-        });
-
-        llSelf.setOnClickListener(v -> {
+        llEmployeeAsSelf.setOnClickListener(v -> {
             Employee self = EmployeeRepo.getInstance().getEmployee();
             if (self != null) {
                 AssignEmployee selfEmployee = new AssignEmployee();
@@ -384,9 +320,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     GlobalUtils.showLog(TAG, "text changed");
                     employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
                     if (CollectionUtils.isEmpty(employeeList)) {
-                        tvAllUsers.setVisibility(View.GONE);
+                        tvEmployeeAllUsers.setVisibility(View.GONE);
                     } else {
-                        tvAllUsers.setVisibility(View.VISIBLE);
+                        tvEmployeeAllUsers.setVisibility(View.VISIBLE);
                     }
                     GlobalUtils.showLog(TAG, "searched list size: " + employeeList.size());
                     if (svSearchEmployee.getVisibility() == View.GONE)
@@ -397,6 +333,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     }
                 } else {
                     svSearchEmployee.setVisibility(View.GONE);
+                    etAssignEmployee.setPadding(0, 0, 40, 0);
+                    civAssignEmployee.setVisibility(View.GONE);
                 }
             }
 
@@ -406,23 +344,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
 
+        etAssignEmployee.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                svSearchEmployee.setVisibility(View.GONE);
+            }
+        });
 
         btnCreateTicket.setOnClickListener(v -> {
-            List<String> tags = new ArrayList<>();
-            List<String> assignedEmployees = new ArrayList<>();
-
-            if (fblLabel.getChildCount() > 1) {
-                for (int i = 0; i < fblLabel.getChildCount(); i++) {
-                    View tag = fblLabel.getChildAt(i);
-                    TextView tagId = tag.findViewById(R.id.tv_chip_id);
-                    if (tagId != null) {
-                        GlobalUtils.showLog(TAG, "tags ids: " + tagId.getText());
-                        tags.add(tagId.getText().toString().trim());
-                    }
-                }
-            }
-
-            int priorityNum = GlobalUtils.getPriorityNum(selectedPriority);
             if (selectedCustomer != null) {
                 presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
                         selectedCustomer.getCustomerId(), UiUtils.getString(etEmail),
@@ -437,10 +365,207 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
-    private void changeRecyclerViewHeightContentWise() {
-        LinearLayout.LayoutParams rvTeamParams = (LinearLayout.LayoutParams) rvTeams.getLayoutParams();
-        rvTeamParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        rvTeams.setLayoutParams(rvTeamParams);
+    private void createTeamBottomSheet() {
+        teamSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.layout_bottom_sheet_team, null);
+
+        teamSheet.setContentView(view);
+        TextView tvTeamDone = view.findViewById(R.id.tv_done);
+        etSearchTeam = view.findViewById(R.id.et_search_employee);
+        rvTeams = view.findViewById(R.id.rv_teams);
+
+        setUpTeamRecyclerView(tagsList, rvTeams);
+
+        teamSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+            setupFullHeight(d);
+            etSearchTeam.requestFocus();
+            UiUtils.showKeyboardForced(this);
+
+            //check mark selected teams
+            teamAdapter.setData(tags);
+
+            llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
+                ViewGroup.LayoutParams params = rvTeams.getLayoutParams();
+                params.height = getWindowHeight() - heightDiff + 100;
+            });
+        });
+
+
+        etSearchTeam.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                runOnUiThread(() -> teamAdapter.getFilter().filter(s));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        tvTeamDone.setOnClickListener(v -> teamSheet.dismiss());
+
+        teamSheet.setOnDismissListener(dialog -> {
+            GlobalUtils.showLog(TAG, "team dismissed");
+            //clear first then add
+            fblLabel.removeAllViews();
+
+            if (!CollectionUtils.isEmpty(tags)) {
+                wrapFlexBoxContent();
+            } else {
+                addStaticHeightToFlexBox();
+            }
+
+            addTeamsToLayout();
+
+            etSearchTeam.setText("");
+            UiUtils.hideKeyboardForced(this);
+        });
+    }
+
+    private void addTeamsToLayout() {
+        //add selected teams
+        for (String tagId : tags
+        ) {
+            Tags tag = TagRepo.getInstance().getTagById(tagId);
+
+            @SuppressLint("InflateParams") View view1 = getLayoutInflater()
+                    .inflate(R.layout.layout_tag, null);
+
+            TextView teamLabel = view1.findViewById(R.id.tv_tag);
+            teamLabel.setText(tag.getLabel());
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(15, 8, 0, 0);
+            view1.setLayoutParams(params);
+            fblLabel.addView(view1);
+        }
+    }
+
+
+    private void addStaticHeightToFlexBox() {
+        ViewGroup.LayoutParams params = fblLabel.getLayoutParams();
+        params.height = 60;
+    }
+
+    private void wrapFlexBoxContent() {
+        ViewGroup.LayoutParams params = fblLabel.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    }
+
+    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            Toast.makeText(this, "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
+    private void setUpTeamRecyclerView(List<Tags> tagsList, RecyclerView rvTeams) {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvTeams.setLayoutManager(mLayoutManager);
+
+        teamAdapter = new SearchTeamAdapter(tagsList, this);
+        rvTeams.setAdapter(teamAdapter);
+
+        teamAdapter.setOnItemClickListener(new SearchTeamAdapter.OnItemClickListener() {
+            @Override
+            public void onItemAdd(Tags tag) {
+                GlobalUtils.showLog(TAG, "item add");
+                if (!tags.contains(tag.getTagId())) {
+                    tags.add(tag.getTagId());
+                }
+                GlobalUtils.showLog(TAG, "tags: " + tags);
+            }
+
+            @Override
+            public void onItemRemove(Tags tag) {
+                GlobalUtils.showLog(TAG, "item remove");
+                tags.remove(tag.getTagId());
+                GlobalUtils.showLog(TAG, "tags: " + tags);
+
+            }
+        });
+    }
+
+    private void createPriorityBottomSheet() {
+        prioritySheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.layout_bottomsheet_priority, null);
+
+        prioritySheet.setContentView(view);
+        LinearLayout llLowestPriority = view.findViewById(R.id.ll_priority_lowest);
+        LinearLayout llLowPriority = view.findViewById(R.id.ll_priority_low);
+        LinearLayout llMediumPriority = view.findViewById(R.id.ll_priority_medium);
+        LinearLayout llHighestPriority = view.findViewById(R.id.ll_priority_highest);
+        LinearLayout llHighPriority = view.findViewById(R.id.ll_priority_high);
+
+        llLowPriority.setOnClickListener(v -> {
+            etPriority.setText(R.string.low);
+            priorityNum = 2;
+            ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_low));
+            prioritySheet.dismiss();
+        });
+
+        llLowestPriority.setOnClickListener(v -> {
+            etPriority.setText(R.string.lowest);
+            priorityNum = 1;
+            ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_lowest));
+            prioritySheet.dismiss();
+        });
+
+        llMediumPriority.setOnClickListener(v -> {
+            etPriority.setText(R.string.medium);
+            priorityNum = 3;
+            ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_medium));
+            prioritySheet.dismiss();
+        });
+
+        llHighPriority.setOnClickListener(v -> {
+            etPriority.setText(R.string.high);
+            priorityNum = 4;
+            ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_high));
+            prioritySheet.dismiss();
+        });
+
+        llHighestPriority.setOnClickListener(v -> {
+            etPriority.setText(R.string.highest);
+            priorityNum = 5;
+            ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_highest));
+            prioritySheet.dismiss();
+        });
     }
 
     private void setDataFromThread(Intent i) {
@@ -451,7 +576,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         etSummary.setText(summaryText);
         etCustomerName.setText(customerName);
-//        setEmailAndPhoneIfAvailable();
+        setEmailAndPhoneIfAvailable();
 
         if (employeeId != null) {
             Employee employee = EmployeeRepo.getInstance().getEmployeeByAccountId(employeeId);
@@ -460,9 +585,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         }
 
         if (teamId != null) {
-            Tags tags = TagRepo.getInstance().getTagById(teamId);
-            selectedTag = tags;
-            addNewTagChip(tags);
+            selectedTag = TagRepo.getInstance().getTagById(teamId);
+//            addNewTagChip(tags);
         }
     }
 
@@ -471,43 +595,44 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etEmail.setText(selectedCustomer.getEmail());
             etEmail.setFocusable(false);
             etEmail.setEnabled(false);
+        } else {
+            etEmail.setText("");
+            etEmail.setFocusable(true);
+            etEmail.setEnabled(true);
+            etEmail.setFocusableInTouchMode(true);
         }
 
         if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
             etPhone.setText(selectedCustomer.getPhone());
             etPhone.setFocusable(false);
             etPhone.setEnabled(false);
+        } else {
+            etPhone.setText("");
+            etPhone.setFocusable(true);
+            etPhone.setEnabled(true);
         }
-    }
+        etPhone.setFocusableInTouchMode(true);
 
+        if (selectedCustomer.getPhone() == null && selectedCustomer.getEmail() == null) {
+            etPhone.setText("");
+            etPhone.setEnabled(true);
+            etPhone.setFocusable(true);
+            etPhone.setFocusableInTouchMode(true);
 
-    private void setUpPriorityDropdown() {
-        List<Priority> priorityList = getPriorityList();
-        PriorityAdapter adapter = new PriorityAdapter(this,
-                R.layout.layout_proirity, priorityList);
-        spPriority.setAdapter(adapter);
-    }
-
-    private List<Priority> getPriorityList() {
-        List<Priority> priorityList = new ArrayList<>();
-        Priority highest = new Priority("Highest", R.drawable.ic_highest);
-        Priority high = new Priority("High", R.drawable.ic_high);
-        Priority medium = new Priority("Medium", R.drawable.ic_medium);
-        Priority low = new Priority("Low", R.drawable.ic_low);
-        Priority lowest = new Priority("Lowest", R.drawable.ic_lowest);
-        priorityList.add(highest);
-        priorityList.add(high);
-        priorityList.add(medium);
-        priorityList.add(low);
-        priorityList.add(lowest);
-        return priorityList;
+            etEmail.setText("");
+            etEmail.setEnabled(true);
+            etEmail.setFocusable(true);
+            etEmail.setFocusableInTouchMode(true);
+        }
     }
 
     private void setSelfDetails() {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
         GlobalUtils.showLog(TAG, "employee check: " + employee);
         if (employee != null) {
-            tvSelfName.setText(employee.getName() + " (Me)");
+            StringBuilder selfEmployeeText = new StringBuilder(employee.getName());
+            selfEmployeeText.append("(Me)");
+            tvEmployeeAsSelf.setText(selfEmployeeText);
 
             String profilePicUrl = employee.getEmployeeImageUrl();
             if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
@@ -516,45 +641,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                         .placeholder(R.drawable.ic_profile_icon)
                         .error(R.drawable.ic_profile_icon);
 
-                Glide.with(this).load(profilePicUrl).apply(options).into(civSelfImage);
+                Glide.with(this).load(profilePicUrl).apply(options).into(civEmployeeAsSelf);
             }
         }
     }
-
-    private void addNewTagChip(Tags selectedTag) {
-        View chip = getLayoutInflater().inflate(R.layout.custom_chip, null);
-        CircleImageView civEmployee = chip.findViewById(R.id.civ_employee);
-        TextView tvEmployee = chip.findViewById(R.id.tv_name);
-        ImageView ivCancel = chip.findViewById(R.id.iv_cancel);
-        TextView tvId = chip.findViewById(R.id.tv_chip_id);
-
-        civEmployee.setVisibility(View.GONE);
-        tvEmployee.setText(selectedTag.getLabel());
-        tvId.setText(selectedTag.getTagId());
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 10, 20, 10);
-        chip.setLayoutParams(params);
-
-        //check if tag already exists
-        if (fblLabel.getChildCount() > 1) {
-            for (int i = 0; i < fblLabel.getChildCount(); i++) {
-                View child = fblLabel.getChildAt(i);
-                if (child instanceof RelativeLayout) {
-                    TextView id = child.findViewById(R.id.tv_chip_id);
-                    if (id != null) {
-                        if (id.getText().toString().trim().equalsIgnoreCase(tvId.getText().toString().trim())) {
-                            Toast.makeText(this, "Selected tag is already added", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-        fblLabel.addView(chip, fblLabel.getChildCount() - 1);
-        ivCancel.setOnClickListener(v -> fblLabel.removeView(chip));
-    }
-
 
     @Override
     protected void injectDagger() {
@@ -564,10 +654,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
     private void setUpRecyclerView() {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        rvAllUsers.setLayoutManager(mLayoutManager);
+        rvEmployeeAllUsers.setLayoutManager(mLayoutManager);
 
         employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this);
-        rvAllUsers.setAdapter(employeeSearchAdapter);
+        rvEmployeeAllUsers.setAdapter(employeeSearchAdapter);
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
@@ -577,28 +667,16 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 etAssignEmployee.setText(employee.getName());
                 etAssignEmployee.setSelection(employee.getName().length());
                 svSearchEmployee.setVisibility(View.GONE);
-            });
-        }
-    }
 
-    private void setUpTeamRecyclerView() {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        rvTeams.setLayoutManager(mLayoutManager);
-        rvTeams.setHasFixedSize(true);
+                etAssignEmployee.setPadding(80, 0, 45, 0);
+                civAssignEmployee.setVisibility(View.VISIBLE);
 
-        teamSearchAdapter = new TeamAdapter(tagsList, this);
-        rvTeams.setAdapter(teamSearchAdapter);
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_profile_icon)
+                        .error(R.drawable.ic_profile_icon);
 
-        if (teamSearchAdapter != null) {
-            teamSearchAdapter.setOnItemClickListener((team) -> {
-                hideKeyBoard();
-
-                if (!CollectionUtils.isEmpty(tagsList)) {
-                    selectedTag = team;
-                    addNewTagChip(selectedTag);
-                    svSearchTeams.setVisibility(View.GONE);
-                }
-                etLabel.setText("");
+                Glide.with(this).load(employee.getEmployeeImageUrl()).apply(options).into(civAssignEmployee);
             });
         }
     }
@@ -627,62 +705,62 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @Override
     public void onInvalidSummary() {
         etSummary.requestFocus();
-        ilSummary.setErrorEnabled(true);
+     /*   ilSummary.setErrorEnabled(true);
         ilSummary.setError("Invalid Summary");
 
         ilDesc.setErrorEnabled(false);
-        ilCustomerName.setErrorEnabled(false);
-        ilPhone.setErrorEnabled(false);
-        ilEmail.setErrorEnabled(false);
+        ilCustomerName.setErrorEnabled(false);*/
+       /* ilPhone.setErrorEnabled(false);
+        ilEmail.setErrorEnabled(false);*/
 
     }
 
     @Override
     public void onInvalidDesc() {
         etDesc.requestFocus();
-        ilDesc.setErrorEnabled(true);
+  /*      ilDesc.setErrorEnabled(true);
         ilDesc.setError("Invalid Description");
 
         ilSummary.setErrorEnabled(false);
-        ilCustomerName.setErrorEnabled(false);
-        ilPhone.setErrorEnabled(false);
-        ilEmail.setErrorEnabled(false);
+        ilCustomerName.setErrorEnabled(false);*/
+   /*     ilPhone.setErrorEnabled(false);
+        ilEmail.setErrorEnabled(false);*/
     }
 
     @Override
     public void onInvalidCustomer() {
         etCustomerName.requestFocus();
-        ilCustomerName.setErrorEnabled(true);
+       /* ilCustomerName.setErrorEnabled(true);
         ilCustomerName.setError("Invalid Customer");
 
         ilDesc.setErrorEnabled(false);
-        ilSummary.setErrorEnabled(false);
-        ilPhone.setErrorEnabled(false);
-        ilEmail.setErrorEnabled(false);
+        ilSummary.setErrorEnabled(false);*/
+/*        ilPhone.setErrorEnabled(false);
+        ilEmail.setErrorEnabled(false);*/
     }
 
     @Override
     public void onInvalidPhone() {
         etPhone.requestFocus();
-        ilPhone.setErrorEnabled(true);
-        ilPhone.setError("Invalid Phone");
+      /*  ilPhone.setErrorEnabled(true);
+        ilPhone.setError("Invalid Phone");*/
 
-        ilDesc.setErrorEnabled(false);
+     /*   ilDesc.setErrorEnabled(false);
         ilCustomerName.setErrorEnabled(false);
-        ilSummary.setErrorEnabled(false);
-        ilEmail.setErrorEnabled(false);
+        ilSummary.setErrorEnabled(false);*/
+//        ilEmail.setErrorEnabled(false);
     }
 
     @Override
     public void onInvalidEmail() {
         etEmail.requestFocus();
-        ilEmail.setErrorEnabled(true);
+  /*      ilEmail.setErrorEnabled(true);
         ilEmail.setError("Invalid Email");
 
-        ilDesc.setErrorEnabled(false);
+        ilPhone.setErrorEnabled(false);*/
+  /*      ilDesc.setErrorEnabled(false);
         ilCustomerName.setErrorEnabled(false);
-        ilPhone.setErrorEnabled(false);
-        ilSummary.setErrorEnabled(false);
+        ilSummary.setErrorEnabled(false);*/
     }
 
     @Override
@@ -714,7 +792,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     }
 
     private void setToolbar() {
-        getSupportActionBar().setHomeButtonEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(getResources()
                 .getDrawable(R.drawable.white_bg));

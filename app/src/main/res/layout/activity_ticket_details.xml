@@ -63,6 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
+                        android:layout_marginEnd="@dimen/dimen_10x1"
                         android:padding="@dimen/dimen_10x1"
                         android:src="@drawable/ic_share" />
 

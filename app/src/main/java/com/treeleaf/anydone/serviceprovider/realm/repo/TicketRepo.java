@@ -218,6 +218,7 @@ public class TicketRepo extends Repo {
             tickets.setCustomerType(ticketPb.getCustomerType().name());
             tickets.setCreatedAt(ticketPb.getCreatedAt());
             tickets.setTicketType(type);
+            tickets.setPriority(ticketPb.getPriorityValue());
             tickets.setTicketStatus(ticketPb.getTicketState().name());
             tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
             tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
@@ -238,7 +239,7 @@ public class TicketRepo extends Repo {
         tickets.setServiceProvider(ProtoMapper.transformServiceProvider(ticketPb.getServiceProvider()));
         tickets.setTicketSource(ticketPb.getTicketSource().name());
         tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
-//            tickets.setServiceId(ticketPb.getService().getServiceId());
+        tickets.setServiceId(ticketPb.getService().getServiceId());
         tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeeAssigned()));
         tickets.setCustomerType(ticketPb.getCustomerType().name());
         tickets.setCreatedAt(ticketPb.getCreatedAt());

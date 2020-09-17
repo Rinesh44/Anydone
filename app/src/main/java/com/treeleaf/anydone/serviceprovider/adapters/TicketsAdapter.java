@@ -1,6 +1,4 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
-
-
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -138,6 +136,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         holder.summary.setText(tickets.getTitle());
         holder.customer.setText(tickets.getCustomer().getFullName());
         setPriority(tickets.getPriority(), holder);
+        GlobalUtils.showLog(TAG, "ticket priority check: " + tickets.getPriority());
         GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":

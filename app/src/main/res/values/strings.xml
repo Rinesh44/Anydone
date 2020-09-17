@@ -181,9 +181,8 @@
     <string name="employee_first_login_text">It seems its your first login, please set new password to continue.</string>
     <string name="add_ticket">Add Ticket</string>
     <string name="assigned_to">Assigned to</string>
-    <string name="description">Description</string>
-    <string name="summary">Summary*</string>
-    <string name="customer_name">Customer Name*</string>
+    <string name="summary">Summary</string>
+    <string name="customer_name">Customer Name</string>
     <string name="phone">Phone</string>
     <string name="assign_employee">Assign Employee</string>
     <string name="label">Label</string>
@@ -204,4 +203,14 @@
     <string name="sat">Sat</string>
     <string name="messenger">Messenger</string>
     <string name="viber">Viber</string>
+    <string name="description">Description</string>
+    <string name="team">Team</string>
+    <string name="prior">Priority</string>
+    <string name="required">*</string>
+    <string name="highest">Highest</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="lowest">Lowest</string>
+    <string name="low">Low</string>
+    <string name="done">Done</string>
 </resources>

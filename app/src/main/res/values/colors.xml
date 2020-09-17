@@ -19,6 +19,8 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
 
+    <color name="edit_text_color">#e7e7e7</color>
+
     <color name="grey_light">#e0e0e0</color>
     <color name="grey">#C4C4C4</color>
     <color name="grey_dark">#7F7F7F</color>
