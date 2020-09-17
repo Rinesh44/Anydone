@@ -77,8 +77,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private TextView tvRoomNumber, tvParticipantNumber;
     private ProgressDialog progressDialog;
     private View layoutDraw;
-    private ImageView fabStartDraw;
-    private ImageView fabDiscardDraw;
+    private ImageView fabStartDraw, imgMaximizeDraw;
+    private ImageView fabDiscardDraw, fabMinimizeDraw;
     private ImageView imageViewCaptureImage;
     private ImageView imageVideoToggle, imageAudioToggle, imageScreenShot, imageSwitchCamera,
             imageEndCall, ivScreenShotImage, ibToggleJoineeList, ivSignalStrength;
@@ -86,7 +86,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private ForwardTouchesView forwardTouchesView;
     private ConstraintLayout clCallSettings, clCallOtions;
     private RelativeLayout rlScreenShotImage;
-    private RelativeLayout rlJoineeList;
+    private RelativeLayout rlJoineeList, rlClientRoot;
     private View viewVideoCallStart;
     private ImageView ivCalleeProfile, ivTerminateCall;
     private TextView tvCalleeName;
@@ -98,6 +98,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Boolean showFullList = false;
 
     private String calleeName, calleeProfile;
+    private String mLocalAccountId;
 
     private RecyclerView rvJoinee;
     private JoineeListAdapter joineeListAdapter;
@@ -118,6 +119,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private boolean isJoineePresent;
     private int localDeviceHeight, localDeviceWidth;
     private int remoteDeviceHeight, remoteDeviceWidth;
+    private boolean remoteImage;
 
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
@@ -152,6 +154,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         layoutDraw = findViewById(R.id.layout_draw);
         fabStartDraw = findViewById(R.id.fab_start_draw);
         fabDiscardDraw = findViewById(R.id.fab_discard_draw);
+        fabMinimizeDraw = findViewById(R.id.fab_minimize_draw);
+        imgMaximizeDraw = findViewById(R.id.img_maximize_draw);
         imageViewCaptureImage = findViewById(R.id.iv_captured_image);
         treeleafDrawPadView = findViewById(R.id.treeleaf_draw_pad);
         localRender = findViewById(R.id.local_video_view);
@@ -165,6 +169,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         ivSignalStrength = findViewById(R.id.iv_signal_strength);
         rlScreenShotImage = findViewById(R.id.rl_screenshot_image);
         ivScreenShotImage = findViewById(R.id.iv_screenshot_image);
+        rlClientRoot = findViewById(R.id.rl_client_root);
         rlJoineeList = findViewById(R.id.rl_joinee_list);
         ibToggleJoineeList = findViewById(R.id.ib_toggle_joinee_list);
         viewVideoCallStart = findViewById(R.id.view_video_call_start);
@@ -185,6 +190,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         forwardTouchesView.setForwardTo(treeleafDrawPadView);
         fabStartDraw.setOnClickListener(startDrawClickListener);
         fabDiscardDraw.setOnClickListener(discardDrawClickListener);
+        fabMinimizeDraw.setOnClickListener(minimizeDrawClickListener);
+        imgMaximizeDraw.setOnClickListener(maximizeDrawClickListener);
 
         setUpProgressDialog();
 
@@ -244,13 +251,14 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onJanusCredentialsReceived(String baseUrl, String apiKey, String apiSecret,
-                                                   String serviceName, String serviceUri) {
+                                                   String serviceName, String serviceUri, String localAccountId) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         credentialsReceived = true;
                         calleeName = serviceName;
                         calleeProfile = serviceUri;
+                        mLocalAccountId = localAccountId;
 
                         mRestChannel = new RestChannel(ClientActivity.this, baseUrl, apiKey, apiSecret);
                         mRestChannel.setDelegate(ClientActivity.this);
@@ -279,7 +287,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes) {
-//                showHideDrawView(true);
                 Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
                 imageViewCaptureImage.setImageBitmap(receivedBitmap);
                 treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
@@ -289,7 +296,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                     localDeviceHeight = VideoCallUtil.getDeviceResolution(ClientActivity.this)[1];
                     remoteDeviceWidth = width;
                     remoteDeviceHeight = height;
-//                    onDrawShowProgress();
                     mDrawCallback.onNewImageAcknowledge(localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
                 }
             }
@@ -308,6 +314,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         showHideDrawView(true);
+                        remoteImage = true;
+                        showHideDiscardDrawButton();
                     }
                 });
             }
@@ -329,8 +337,15 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchDown() {
-                treeleafDrawPadView.onRemoteTouchDown(drawMetaDataRemote);
+            public void onDrawTouchDown(String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteTouchDown(drawMetaDataRemote);
+                        joineeListAdapter.highlightCurrentDrawer(accountId, true, drawMetaDataRemote.getTextColor());
+                    }
+                });
+
             }
 
             @Override
@@ -339,23 +354,51 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchUp() {
-                treeleafDrawPadView.onRemoteTouchUp();
+            public void onDrawTouchUp(String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteTouchUp();
+                        joineeListAdapter.highlightCurrentDrawer(accountId, false, drawMetaDataRemote.getTextColor());
+                    }
+                });
+
             }
 
             @Override
-            public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
-                treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getTextColor());
+            public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getTextColor());
+                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                    }
+                });
+
             }
 
             @Override
-            public void onDrawReceiveNewTextChange(String text, String id) {
-                treeleafDrawPadView.onRemoteChangedEditText(text, id);
+            public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteChangedEditText(text, id);
+                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                    }
+                });
+
             }
 
             @Override
-            public void onDrawReceiveEdiTextRemove(String editTextId) {
-                treeleafDrawPadView.onRemoteRemoveEditText(editTextId);
+            public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteRemoveEditText(editTextId);
+                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                    }
+                });
+
             }
 
             /**
@@ -491,6 +534,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetaDataLocal);
                     mDrawCallback.onStartDraw(x, y);
                 }
+                if (mLocalAccountId != null)
+                    joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, true, drawMetaDataLocal.getTextColor());
             }
 
             @Override
@@ -499,6 +544,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     mDrawCallback.onClientTouchUp();
                 }
+                if (mLocalAccountId != null)
+                    joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false, drawMetaDataLocal.getTextColor());
             }
 
             @Override
@@ -525,22 +572,39 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                     mDrawCallback.onReceiveNewTextField(x, y, editTextFieldId);
                 }
+                if (mLocalAccountId != null)
+                    highlightDrawerForTextEdit(mLocalAccountId, drawMetaDataLocal.getTextColor());
             }
 
             @Override
             public void onReceiveNewTextChange(String text, String id) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
                     mDrawCallback.onReceiveNewTextChange(text, id);
+                if (mLocalAccountId != null)
+                    highlightDrawerForTextEdit(mLocalAccountId, drawMetaDataLocal.getTextColor());
             }
 
             @Override
             public void onReceiveEdiTextRemove(String editTextId) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
                     mDrawCallback.onReceiveEdiTextRemove(editTextId);
+                if (mLocalAccountId != null)
+                    highlightDrawerForTextEdit(mLocalAccountId, drawMetaDataLocal.getTextColor());
             }
 
         };
         treeleafDrawPadView.setMetaDataUpdateListener(metaDataUpdateListener);
+
+    }
+
+    private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
+        joineeListAdapter.highlightCurrentDrawer(accountId, true, drawColor);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                joineeListAdapter.highlightCurrentDrawer(accountId, false, drawColor);
+            }
+        }, 500);
 
     }
 
@@ -630,6 +694,17 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                     }
                 });
 
+            }
+        });
+        joineeListAdapter.setOnItemClickListener(new JoineeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position, View v, String accountId, String accountName) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ClientActivity.this, "clicked on: " + accountName, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         rvJoinee = findViewById(R.id.rv_joinee);
@@ -990,7 +1065,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener startDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            remoteImage = false;
             showHideDrawView(true);
+            showHideDiscardDrawButton();
             //take screenshot
 
             localRender.addFrameListener(frameListener, 1);
@@ -1012,6 +1089,39 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         }
     };
 
+    private void switchDrawModeAndVideoMode(boolean drawMode) {
+        showHideDiscardDrawButton();
+        clCallSettings.setVisibility(drawMode ? View.GONE : View.VISIBLE);
+        clCallOtions.setVisibility(drawMode ? View.GONE : View.VISIBLE);
+        if (drawMode) {
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
+            params.addRule(ALIGN_PARENT_LEFT, 0);
+            params.addRule(RelativeLayout.CENTER_HORIZONTAL, TRUE);
+            rlJoineeList.setLayoutParams(params);
+        } else {
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
+            rlJoineeList.setLayoutParams(params);
+        }
+    }
+
+    View.OnClickListener minimizeDrawClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            DrawPadUtil.hideKeyboard(v.getRootView(), ClientActivity.this);
+            switchDrawModeAndVideoMode(false);
+            VideoCallUtil.materialContainerTransformVisibility(layoutDraw, imgMaximizeDraw, rlClientRoot);
+        }
+    };
+
+    View.OnClickListener maximizeDrawClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switchDrawModeAndVideoMode(true);
+            VideoCallUtil.materialContainerTransformVisibility(imgMaximizeDraw, layoutDraw, rlClientRoot);
+        }
+    };
+
     private void showHideDrawView(Boolean showDrawView) {
         layoutDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
         fabDiscardDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
@@ -1029,7 +1139,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
             rlJoineeList.setLayoutParams(params);
         }
+    }
 
+    private void showHideDiscardDrawButton() {
+        //dont show discard button if image comes from remote
+        fabDiscardDraw.setVisibility(remoteImage ? View.GONE : View.VISIBLE);
     }
 
     View.OnClickListener videoToggleClickListener = new View.OnClickListener() {
@@ -1192,8 +1306,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     public interface VideoCallListener extends Callback.AudioVideoCallbackListener {
 
-        void onJanusCredentialsReceived(String baseUrl, String apiKey,
-                                        String apiSecret, String calleeName, String calleeProfile);
+        void onJanusCredentialsReceived(String baseUrl, String apiKey, String apiSecret,
+                                        String calleeName, String calleeProfile, String localAccountId);
 
         void onJanusCredentialsFailure();
 

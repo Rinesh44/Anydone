@@ -80,8 +80,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private ProgressDialog progressDialog;
 
     private View layoutDraw;
-    private ImageView fabStartDraw;
-    private ImageView fabDiscardDraw;
+    private ImageView fabStartDraw, imgMaximizeDraw;
+    private ImageView fabDiscardDraw, fabMinimizeDraw;
     private ImageView imageViewCaptureImage;
     private ImageView imageAudioToggle, imageScreenShot,
             imageEndCall, imageAcceptCall, ivScreenShotImage,
@@ -90,7 +90,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private ForwardTouchesView forwardTouchesView;
     private ConstraintLayout clCallSettings, clCallOtions, clCallAcceptOptions;
     private RelativeLayout rlScreenShotImage;
-    private RelativeLayout rlJoineeList;
+    private RelativeLayout rlJoineeList, rlServerRoot;
     private View viewVideoCallStart;
     private ImageView ivCalleeProfile, ivTerminateCall;
     private TextView tvCalleeName, tvConnecting, tvIsCalling;
@@ -118,6 +118,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private CaptureDrawParam captureDrawParam;
     private int localDeviceHeight, localDeviceWidth;
     private int remoteDeviceHeight, remoteDeviceWidth;
+    private String mLocalAccountId;
+    private boolean remoteImage;
 
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
@@ -157,6 +159,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         layoutDraw = findViewById(R.id.layout_draw);
         fabStartDraw = findViewById(R.id.fab_start_draw);
         fabDiscardDraw = findViewById(R.id.fab_discard_draw);
+        fabMinimizeDraw = findViewById(R.id.fab_minimize_draw);
+        imgMaximizeDraw = findViewById(R.id.img_maximize_draw);
         imageViewCaptureImage = findViewById(R.id.iv_captured_image);
         treeleafDrawPadView = findViewById(R.id.treeleaf_draw_pad);
         remoteRender = findViewById(R.id.remote_video_view);
@@ -170,6 +174,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         ivSignalStrength = findViewById(R.id.iv_signal_strength);
         rlScreenShotImage = findViewById(R.id.rl_screenshot_image);
         ivScreenShotImage = findViewById(R.id.iv_screenshot_image);
+        rlServerRoot = findViewById(R.id.rl_server_root);
         rlJoineeList = findViewById(R.id.rl_joinee_list);
         ibToggleJoineeList = findViewById(R.id.ib_toggle_joinee_list);
         viewVideoCallStart = findViewById(R.id.view_video_call_start);
@@ -191,6 +196,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         forwardTouchesView.setForwardTo(treeleafDrawPadView);
         fabStartDraw.setOnClickListener(startDrawClickListener);
         fabDiscardDraw.setOnClickListener(discardDrawClickListener);
+        fabMinimizeDraw.setOnClickListener(minimizeDrawClickListener);
+        imgMaximizeDraw.setOnClickListener(maximizeDrawClickListener);
 
         setUpProgressDialog();
 
@@ -263,7 +270,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         serverDrawingPadEventListener = new ServerDrawingPadEventListener() {
             @Override
             public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes) {
-//                showHideDrawView(true);
                 Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
                 imageViewCaptureImage.setImageBitmap(receivedBitmap);
                 treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
@@ -274,7 +280,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     localDeviceHeight = VideoCallUtil.getDeviceResolution(ServerActivity.this)[1];
                     remoteDeviceWidth = width;
                     remoteDeviceHeight = height;
-//                    onDrawShowProgress();
                     mDrawCallback.onNewImageAcknowledge(localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
                 }
 
@@ -294,6 +299,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         showHideDrawView(true);
+                        remoteImage = true;
+                        showHideDiscardDrawButton();
                     }
                 });
             }
@@ -315,8 +322,14 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchDown() {
-                treeleafDrawPadView.onRemoteTouchDown(drawMetaDataRemote);
+            public void onDrawTouchDown(String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteTouchDown(drawMetaDataRemote);
+                        joineeListAdapter.highlightCurrentDrawer(accountId, true, drawMetaDataRemote.getTextColor());
+                    }
+                });
             }
 
             @Override
@@ -325,23 +338,47 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchUp() {
-                treeleafDrawPadView.onRemoteTouchUp();
+            public void onDrawTouchUp(String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteTouchUp();
+                        joineeListAdapter.highlightCurrentDrawer(accountId, false, drawMetaDataRemote.getTextColor());
+                    }
+                });
             }
 
             @Override
-            public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
-                treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getTextColor());
+            public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getTextColor());
+                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                    }
+                });
             }
 
             @Override
-            public void onDrawReceiveNewTextChange(String text, String id) {
-                treeleafDrawPadView.onRemoteChangedEditText(text, id);
+            public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteChangedEditText(text, id);
+                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                    }
+                });
             }
 
             @Override
-            public void onDrawReceiveEdiTextRemove(String editTextId) {
-                treeleafDrawPadView.onRemoteRemoveEditText(editTextId);
+            public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        treeleafDrawPadView.onRemoteRemoveEditText(editTextId);
+                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                    }
+                });
             }
 
             /**
@@ -434,6 +471,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
                     mDrawCallback.onStartDraw(x, y);
                 }
+                if (mLocalAccountId != null)
+                    joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, true, drawMetadataLocal.getTextColor());
             }
 
             @Override
@@ -442,6 +481,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     mDrawCallback.onClientTouchUp();
                 }
+                if (mLocalAccountId != null)
+                    joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false, drawMetadataLocal.getTextColor());
             }
 
             @Override
@@ -468,18 +509,24 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                             remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                     mDrawCallback.onReceiveNewTextField(x, y, editTextFieldId);
                 }
+                if (mLocalAccountId != null)
+                    highlightDrawerForTextEdit(mLocalAccountId, drawMetadataLocal.getTextColor());
             }
 
             @Override
             public void onReceiveNewTextChange(String text, String id) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
                     mDrawCallback.onReceiveNewTextChange(text, id);
+                if (mLocalAccountId != null)
+                    highlightDrawerForTextEdit(mLocalAccountId, drawMetadataLocal.getTextColor());
             }
 
             @Override
             public void onReceiveEdiTextRemove(String editTextId) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
                     mDrawCallback.onReceiveEdiTextRemove(editTextId);
+                if (mLocalAccountId != null)
+                    highlightDrawerForTextEdit(mLocalAccountId, drawMetadataLocal.getTextColor());
             }
 
         };
@@ -490,6 +537,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         if (mhostActivityCallback != null) {
             mhostActivityCallback.passJoineeReceivedCallback(videoCallListener);
             mhostActivityCallback.passDrawPadEventListenerCallback(serverDrawingPadEventListener);
+            mLocalAccountId = mhostActivityCallback.getLocalAccountId();
             mhostActivityCallback.specifyRole(RestChannel.Role.SERVER);
         }
 
@@ -511,6 +559,17 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }
         showVideoCallStartView(true);
         loadCallNameAndProfileIcon(calleeName, calleeProfile);
+    }
+
+    private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
+        joineeListAdapter.highlightCurrentDrawer(accountId, true, drawColor);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                joineeListAdapter.highlightCurrentDrawer(accountId, false, drawColor);
+            }
+        }, 500);
+
     }
 
     private void setUpNetworkStrengthHandler() {
@@ -792,7 +851,17 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         rlJoineeList.setVisibility(show ? View.VISIBLE : View.GONE);
                     }
                 });
-
+            }
+        });
+        joineeListAdapter.setOnItemClickListener(new JoineeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position, View v, String accountId, String accountName) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ServerActivity.this, "clicked on: " + accountName, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         rvJoinee = findViewById(R.id.rv_joinee);
@@ -959,7 +1028,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener startDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            remoteImage = false;
             showHideDrawView(true);
+            showHideDiscardDrawButton();
             //take screenshot
 
             remoteRender.addFrameListener(frameListener, 1);
@@ -981,6 +1052,39 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }
     };
 
+    private void switchDrawModeAndVideoMode(boolean drawMode) {
+        showHideDiscardDrawButton();
+        clCallSettings.setVisibility(drawMode ? View.GONE : View.VISIBLE);
+        clCallOtions.setVisibility(drawMode ? View.GONE : View.VISIBLE);
+        if (drawMode) {
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
+            params.addRule(ALIGN_PARENT_LEFT, 0);
+            params.addRule(RelativeLayout.CENTER_HORIZONTAL, TRUE);
+            rlJoineeList.setLayoutParams(params);
+        } else {
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
+            rlJoineeList.setLayoutParams(params);
+        }
+    }
+
+    View.OnClickListener minimizeDrawClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            DrawPadUtil.hideKeyboard(v.getRootView(), ServerActivity.this);
+            switchDrawModeAndVideoMode(false);
+            VideoCallUtil.materialContainerTransformVisibility(layoutDraw, imgMaximizeDraw, rlServerRoot);
+        }
+    };
+
+    View.OnClickListener maximizeDrawClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switchDrawModeAndVideoMode(true);
+            VideoCallUtil.materialContainerTransformVisibility(imgMaximizeDraw, layoutDraw, rlServerRoot);
+        }
+    };
+
     private void showHideDrawView(Boolean showDrawView) {
         layoutDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
         fabDiscardDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
@@ -998,7 +1102,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
             rlJoineeList.setLayoutParams(params);
         }
+    }
 
+    private void showHideDiscardDrawButton() {
+        //dont show discard button if image comes from remote
+        fabDiscardDraw.setVisibility(remoteImage ? View.GONE : View.VISIBLE);
     }
 
     View.OnClickListener audioToggleClickListener = new View.OnClickListener() {

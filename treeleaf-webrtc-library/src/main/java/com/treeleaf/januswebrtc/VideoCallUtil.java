@@ -2,8 +2,15 @@ package com.treeleaf.januswebrtc;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.transition.TransitionManager;
+
+import com.google.android.material.transition.MaterialArcMotion;
+import com.google.android.material.transition.MaterialContainerTransform;
 import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.DrawMetadata;
 import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.Position;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -72,5 +79,20 @@ public class VideoCallUtil {
         int height = displayMetrics.heightPixels;
         return new int[]{width, height};
     }
+
+    public static void materialContainerTransformVisibility(View startView, View endView, ViewGroup rootView) {
+        MaterialContainerTransform materialContainerTransform = new MaterialContainerTransform();
+        materialContainerTransform.setStartView(startView);
+        materialContainerTransform.setEndView(endView);
+        materialContainerTransform.addTarget(endView);
+        materialContainerTransform.setPathMotion(new MaterialArcMotion());
+        materialContainerTransform.setDuration(650);
+        materialContainerTransform.setScrimColor(Color.TRANSPARENT);
+
+        TransitionManager.beginDelayedTransition(rootView, materialContainerTransform);
+        startView.setVisibility(View.GONE);
+        endView.setVisibility(View.VISIBLE);
+    }
+
 
 }

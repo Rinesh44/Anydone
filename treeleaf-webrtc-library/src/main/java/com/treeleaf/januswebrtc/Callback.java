@@ -90,6 +90,8 @@ public class Callback {
 
         void onPublisherVideoStarted();
 
+        String getLocalAccountId();
+
     }
 
     public interface DrawCallBack {
@@ -143,17 +145,17 @@ public class Callback {
 
         void onDrawShowProgress();
 
-        void onDrawTouchDown();
+        void onDrawTouchDown(String accountId);
 
         void onDrawTouchMove();
 
-        void onDrawTouchUp();
+        void onDrawTouchUp(String accountId);
 
-        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId);
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId);
 
-        void onDrawReceiveNewTextChange(String text, String id);
+        void onDrawReceiveNewTextChange(String text, String id, String accountId);
 
-        void onDrawReceiveEdiTextRemove(String editTextId);
+        void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
 
         void onDrawParamChanged(CaptureDrawParam captureDrawParam);
 
@@ -167,17 +169,17 @@ public class Callback {
 
     public interface OnDrawEventListener {
 
-        void onDrawTouchDown(CaptureDrawParam captureDrawParam);
+        void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId);
 
         void onDrawTouchMove(CaptureDrawParam captureDrawParam);
 
-        void onDrawTouchUp();
+        void onDrawTouchUp(String accountId);
 
-        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId);
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId);
 
-        void onDrawReceiveNewTextChange(String text, String id);
+        void onDrawReceiveNewTextChange(String text, String id, String accountId);
 
-        void onDrawReceiveEdiTextRemove(String editTextId);
+        void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
 
         void onDrawParamChanged(CaptureDrawParam captureDrawParam);
 

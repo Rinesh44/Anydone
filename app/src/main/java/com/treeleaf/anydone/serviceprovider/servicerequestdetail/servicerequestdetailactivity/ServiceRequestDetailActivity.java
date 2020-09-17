@@ -88,6 +88,9 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     private boolean paymentSuccess = false;
     private RestChannel.Role mRole;
     private Callback.DrawCallBack drawCallBack;
+    String callerName;
+    String callerAccountId;
+    String callerProfileUrl;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -199,6 +202,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
                 presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
             }
 
+            @Override
+            public String getLocalAccountId() {
+                return accountId;
+            }
+
         };
 
         drawCallBack = new Callback.DrawCallBack() {
@@ -290,11 +298,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         String roomNumber = broadcastVideoCall.getRoomId();
         String participantId = broadcastVideoCall.getParticipantId();
 
-        String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
-        String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+        callerName = broadcastVideoCall.getSenderAccount().getFullName();
+        callerAccountId = broadcastVideoCall.getSenderAccountId();
+        callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
 
         ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                roomNumber, participantId, hostActivityCallbackServer, drawCallBack, calleeName, calleeProfileUrl);
+                roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
 
     }
 
@@ -357,7 +366,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         if (videoCallListenerServer != null) {
             UserProto.Account account = videoCallJoinResponse.getSenderAccount();
             videoCallListenerServer.onJoineeReceived(account.getFullName(),
-                    account.getProfilePic(), account.getAccountId());
+                    account.getProfilePic(), videoCallJoinResponse.getSenderAccountId());
+
+            /**
+             * add caller/call initiator on the joinee list
+             */
+            videoCallListenerServer.onJoineeReceived(callerName, callerProfileUrl, callerAccountId);
         }
     }
 
@@ -365,7 +379,8 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         Log.d(MQTT, "onParticipantLeft");
         if (videoCallListenerServer != null) {
             UserProto.Account account = participantLeft.getSenderAccount();
-            videoCallListenerServer.onJoineeRemoved(account.getAccountId());
+//            videoCallListenerServer.onJoineeRemoved(account.getAccountId());
+            videoCallListenerServer.onJoineeRemoved(participantLeft.getSenderAccountId());
         }
     }
 
@@ -376,11 +391,11 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam) {
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
                     captureDrawParam.getYCoordinate());
-            serverDrawingPadEventListener.onDrawTouchDown();
+            serverDrawingPadEventListener.onDrawTouchDown(accountId);
         }
     }
 
@@ -394,43 +409,43 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawTouchUp() {
+    public void onDrawTouchUp(String accountId) {
         if (serverDrawingPadEventListener != null) {
-            serverDrawingPadEventListener.onDrawTouchUp();
+            serverDrawingPadEventListener.onDrawTouchUp(accountId);
         }
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId) {
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId);
+                    serverDrawingPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id) {
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id);
+                    serverDrawingPadEventListener.onDrawReceiveNewTextChange(text, id, accountId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId) {
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId);
+                    serverDrawingPadEventListener.onDrawReceiveEdiTextRemove(editTextId, accountId);
                 }
             }
         });

@@ -10,6 +10,8 @@ public class Joinee {
 
     private String name, profileUrl;
     private String accountId;
+    private boolean isDrawing = false;
+    private Integer drawColor = -16777216;
 
     public String getName() {
         return name;
@@ -33,5 +35,21 @@ public class Joinee {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public boolean isDrawing() {
+        return isDrawing;
+    }
+
+    public void setDrawing(boolean drawing) {
+        this.isDrawing = drawing;
+    }
+
+    public Integer getDrawColor() {
+        return drawColor;
+    }
+
+    public void setDrawColor(Integer drawColor) {
+        this.drawColor = drawColor;
     }
 }

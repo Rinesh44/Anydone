@@ -1,9 +1,11 @@
 package com.treeleaf.januswebrtc;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     private LinkedHashMap<String, Joinee> mapTotalJoinees;
     private JoineeListToggleUpdate joineeListToggleUpdate;
     public JoineeListState joineeListState;
+    private OnItemClickListener onItemClickListener;
 
     public JoineeListAdapter(Context context) {
         this.mContext = context;
@@ -37,8 +40,12 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         joineeListState = JoineeListState.CONTRACT;
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public Boolean isJoineePresent() {
-        return mapTotalJoinees.size() > 0;
+        return mapTotalJoinees.size() > 1;
     }
 
     public void setJoineeListToggleUpdate(JoineeListToggleUpdate joineeListToggleUpdate) {
@@ -72,7 +79,7 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
             int i = 0;
             joinees.clear();
             if (mapTotalJoinees.size() > 0) {
-                while (i < MAX_IN_A_ROW) {
+                while (iterator.hasNext() && i < MAX_IN_A_ROW) {
                     joinees.add(mapTotalJoinees.get(iterator.next()));
                     i++;
                 }
@@ -82,7 +89,8 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     }
 
     public void removeJoinee(String accountId, Boolean showFullList) {
-        if (mapTotalJoinees != null && !mapTotalJoinees.isEmpty()) {
+        if (accountId != null && !accountId.isEmpty() &&
+                mapTotalJoinees != null && !mapTotalJoinees.isEmpty()) {
             Joinee joineeToRemove = mapTotalJoinees.get(accountId);
             if (joineeToRemove != null) {
                 if (mapRemainingJoinees.containsValue(joineeToRemove))
@@ -138,9 +146,32 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
                 holder.tvCountAdditionalJoinees.setVisibility(View.VISIBLE);
                 int remaining = (mapTotalJoinees.size() - (MAX_IN_A_ROW - 1));
                 holder.tvCountAdditionalJoinees.setText("+" + remaining);
-            } else
+            } else {
                 holder.tvCountAdditionalJoinees.setVisibility(View.GONE);
+                if (joinee.isDrawing()) {
+                    GradientDrawable drawable = (GradientDrawable) holder.flDrawHighlight.getBackground();
+                    drawable.setStroke(7, joinee.getDrawColor());
+                    holder.flDrawHighlight.setVisibility(View.VISIBLE);
+                } else {
+                    holder.flDrawHighlight.setVisibility(View.GONE);
+                }
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onItemClickListener.onItemClicked(position, holder.itemView,
+                                joinee.getAccountId(), joinee.getName());
+                    }
+                });
+            }
         }
+    }
+
+    public void highlightCurrentDrawer(String accountId, boolean isCurrentDrawing,
+                                       Integer drawColor) {
+        Joinee currentDrawer = mapTotalJoinees.get(accountId);
+        currentDrawer.setDrawing(isCurrentDrawing);
+        currentDrawer.setDrawColor(drawColor);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -153,11 +184,13 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         public View itemView;
         public ImageView ivJoinee;
         public TextView tvCountAdditionalJoinees;
+        public FrameLayout flDrawHighlight;
 
         ViewHolder(final View itemView) {
             super(itemView);
             this.itemView = itemView;
             ivJoinee = itemView.findViewById(R.id.iv_joinee);
+            flDrawHighlight = itemView.findViewById(R.id.fl_draw_highlight);
             tvCountAdditionalJoinees = itemView.findViewById(R.id.tv_count_additional_joinees);
         }
     }
@@ -174,6 +207,10 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
 
     public enum JoineeListState {
         EXPAND, CONTRACT
+    }
+
+    public interface OnItemClickListener {
+        void onItemClicked(int position, View v, String accountId, String accountName);
     }
 
 }
