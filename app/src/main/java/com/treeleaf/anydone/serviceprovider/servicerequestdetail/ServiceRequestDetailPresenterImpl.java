@@ -698,7 +698,7 @@ public class ServiceRequestDetailPresenterImpl extends
 
     @Override
     public void subscribeSuccessMessage(long orderId, String userAccountId) {
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + orderId + "/" + userAccountId;
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
         TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
