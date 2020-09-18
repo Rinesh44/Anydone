@@ -3,20 +3,24 @@ package com.treeleaf.anydone.serviceprovider.tickets;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -164,6 +168,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             }
         });
 
+
         EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
         rvServices = llBottomSheet.findViewById(R.id.rv_services);
 
@@ -202,7 +207,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
             }
         });
-
 
         assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
         subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
@@ -276,6 +280,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
                 .inflate(R.layout.layout_bottomsheet_filter_tickets, null);
+
+
         filterBottomSheet.setContentView(view);
         btnSearch = view.findViewById(R.id.btn_search);
         etSearchText = view.findViewById(R.id.et_search);
@@ -287,6 +293,16 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
 
 //        spPriority.setSelection(0);
+
+        filterBottomSheet.setOnShowListener((DialogInterface.OnShowListener) dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = (FrameLayout) d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+            setupFullHeight(d);
+        });
+
 
         spPriority.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -419,6 +435,30 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             }
             return false;
         });
+    }
+
+    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
     }
 
     private void updateFromDate() {
@@ -626,6 +666,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                     }
                 }
             }
+
             filterBottomSheet.show();
         }
     }

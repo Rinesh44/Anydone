@@ -41,6 +41,10 @@ public class TicketTimelineContract {
 
         void assignFail(String msg);
 
+        void showProgressEmployee();
+
+        void hideProgressEmployee();
+
     }
 
     public interface TicketTimelinePresenter extends Presenter<TicketTimelineView> {

@@ -3,8 +3,10 @@
     android:id="@+id/search_employee"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_2x1"
+    android:layout_marginEnd="@dimen/dimen_2x1"
     android:layout_marginBottom="@dimen/dimens_2x"
-    android:background="@color/grey_shade"
+    android:background="@color/white"
     android:elevation="8dp"
     android:fillViewport="true">
 
@@ -35,8 +37,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_image_self"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:src="@drawable/ic_assigned_emp_placeholder" />
 
             <TextView
@@ -45,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/dimen_10x1"
-                android:text="RInesh shakya" />
+                android:text="RInesh shakya"
+                android:textSize="@dimen/material_text_body2" />
 
 
         </LinearLayout>

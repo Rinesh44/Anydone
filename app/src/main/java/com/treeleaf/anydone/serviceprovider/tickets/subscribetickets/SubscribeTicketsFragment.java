@@ -233,6 +233,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
 
     @Override
     public void getSubscribedTicketsFail(String msg) {
+        ivDataNotFound.setVisibility(View.VISIBLE);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

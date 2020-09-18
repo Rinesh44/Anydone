@@ -1,271 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <ProgressBar
         android:id="@+id/pb_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:elevation="4dp"
         android:visibility="gone" />
 
-    <ScrollView
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:scrollbars="none">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/dimens_2x">
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_summary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/summary"
-                app:helperTextTextColor="@color/red">
+                android:orientation="vertical"
+                android:padding="@dimen/dimens_2x">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_5x1"
+                        android:text="@string/summary"
+                        android:textSize="@dimen/material_text_body2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/required"
+                        android:textColor="@color/red" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
+                    android:backgroundTint="@color/edit_text_color"
                     android:inputType="textVisiblePassword"
                     android:maxLength="45"
-                    android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
+                    android:textSize="@dimen/material_text_body1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="@string/description"
+                    android:textSize="@dimen/material_text_body2" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_description"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/description">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_description"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="80dp"
+                    android:backgroundTint="@color/edit_text_color"
                     android:gravity="start"
                     android:inputType="textVisiblePassword|textMultiLine"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
-                    android:textSize="@dimen/material_text_subhead" />
+                    android:textSize="@dimen/material_text_body1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_customer_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/customer_name"
-                app:helperTextTextColor="@color/red">
-
-                <AutoCompleteTextView
-                    android:id="@+id/et_customer_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_dropdown"
-                    android:inputType="textVisiblePassword"
-                    android:maxLength="45"
-                    android:paddingStart="12dp"
-                    android:paddingTop="@dimen/dimens_2x"
-                    android:paddingEnd="18dp"
-                    android:paddingBottom="@dimen/dimens_2x"
-                    android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:orientation="horizontal">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/tv_customer_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/customer_name"
+                        android:textSize="@dimen/material_text_body2" />
 
-            <RelativeLayout
-                android:id="@+id/rl_customer_self_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/grey_shade"
-                android:elevation="2dp"
-                android:padding="@dimen/dimen_10x1"
-                android:visibility="gone">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/required"
+                        android:textColor="@color/red" />
+                </LinearLayout>
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/civ_self"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_assigned_emp_placeholder" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_customer"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/dimen_2x2"
+                        android:src="@drawable/circle_user"
+                        android:visibility="gone" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/et_customer_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_10x4"
+                        android:backgroundTint="@color/edit_text_color"
+                        android:drawableEnd="@drawable/ic_dropdown"
+                        android:inputType="textVisiblePassword"
+                        android:maxLength="45"
+                        android:paddingEnd="@dimen/dimens_2x"
+                        android:textSize="@dimen/material_text_body1" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_customer_self_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_2x1"
+                    android:layout_marginEnd="@dimen/dimen_2x1"
+                    android:background="@color/white"
+                    android:elevation="8dp"
+                    android:padding="@dimen/dimen_2x4"
+                    android:visibility="gone">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_self"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_assigned_emp_placeholder" />
+
+                    <TextView
+                        android:id="@+id/tv_customer_self"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dimen_10x1"
+                        android:layout_toEndOf="@+id/civ_self"
+                        android:text="My name (Me)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/material_text_body2" />
+
+                </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/tv_customer_self"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dimen_10x1"
-                    android:layout_toEndOf="@+id/civ_self"
-                    android:text="My name (Me)"
-                    android:textColor="@color/black" />
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="@string/phone"
+                    android:textSize="@dimen/material_text_body2" />
 
-            </RelativeLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_phone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimens_2x"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/phone">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/edit_text_color"
                     android:inputType="numberSigned"
-                    android:maxLength="45"
+                    android:maxLength="15"
                     android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="@dimen/material_text_body1" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/email">
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="@string/email"
+                    android:textSize="@dimen/material_text_body2" />
 
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_10x2"
+                    android:backgroundTint="@color/edit_text_color"
                     android:inputType="textVisiblePassword"
                     android:maxLength="45"
                     android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
+                    android:textSize="@dimen/material_text_body1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <include
+                    layout="@layout/layout_assign_employee_result"
+                    android:visibility="gone" />
 
-            <include
-                layout="@layout/layout_assign_employee_result"
-                android:visibility="gone" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_assign_employee"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:hint="@string/assign_employee">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_assign_employee"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_dropdown"
-                    android:inputType="textVisiblePassword"
-                    android:maxLength="45"
-                    android:paddingEnd="18dp"
-                    android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="@string/assign_employee"
+                    android:textSize="@dimen/material_text_body2" />
 
-            <include
-                layout="@layout/layout_team_result"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimens_2x"
-                android:background="@drawable/et_rounded"
-                android:orientation="horizontal">
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/fbl_label"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:alignContent="space_around"
-                    app:alignItems="stretch"
-                    app:flexWrap="wrap"
-                    app:showDivider="beginning|middle|end">
+                    android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/et_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="@dimen/dimen_2x4"
-                        android:background="@android:color/transparent"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_assign_employee"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/dimen_2x2"
+                        android:src="@drawable/circle_user"
+                        android:visibility="gone" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_assign_employee"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_10x4"
+                        android:backgroundTint="@color/edit_text_color"
                         android:drawableEnd="@drawable/ic_dropdown"
-                        android:hint="Team"
-                        android:imeOptions="actionDone"
                         android:inputType="textVisiblePassword"
                         android:maxLength="45"
-                        android:textColorHint="@color/grey_dark"
-                        android:textSize="@dimen/material_text_subhead"
-                        app:layout_flexGrow="1" />
+                        android:paddingEnd="@dimen/dimens_2x"
+                        android:singleLine="true"
+                        android:textSize="@dimen/material_text_body1" />
+                </RelativeLayout>
 
-                </com.google.android.flexbox.FlexboxLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="@string/team"
+                    android:textSize="@dimen/material_text_body2" />
 
-            </LinearLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/il_priority"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/priority">
+                    android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <!--   <LinearLayout
+                           android:id="@+id/ll_team_holder"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginEnd="@dimen/dimen_10x3"
+                           android:orientation="horizontal" />-->
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/fbl_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="22dp"
+                        app:alignContent="center"
+                        app:flexWrap="wrap"
+                        app:showDivider="none">
+
+
+                        <!--     <androidx.appcompat.widget.AppCompatEditText
+                                 android:id="@+id/et_team"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="@dimen/dimen_10x3"
+                                 android:backgroundTint="@color/edit_text_color"
+                                 android:clickable="false"
+                                 android:cursorVisible="false"
+                                 android:drawableEnd="@drawable/ic_dropdown"
+                                 android:focusable="false"
+                                 android:imeOptions="actionDone"
+                                 android:inputType="textVisiblePassword"
+                                 android:maxLength="45"
+                                 android:paddingEnd="@dimen/dimens_2x"
+                                 android:textColorHint="@color/grey_dark"
+                                 android:textSize="@dimen/material_text_body1"
+                                 app:layout_flexGrow="1"
+                                 tools:ignore="RtlSymmetry" />-->
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.5dp"
+                        android:layout_marginStart="@dimen/dimen_5x1"
+                        android:layout_marginTop="@dimen/dimen_6x1"
+                        android:layout_marginEnd="@dimen/dimen_5x1"
+                        android:background="@color/grey_shade" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="@string/prior"
+                    android:textSize="@dimen/material_text_body2" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_priority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dimen_5x1"
+                        android:src="@drawable/ic_medium" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_priority"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:cursorVisible="false" />
+                        android:backgroundTint="@color/edit_text_color"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:drawableEnd="@drawable/ic_dropdown"
+                        android:focusable="false"
+                        android:inputType="textVisiblePassword"
+                        android:paddingStart="27dp"
+                        android:paddingEnd="@dimen/dimens_2x"
+                        android:text="Medium"
+                        android:textSize="@dimen/material_text_body1"
+                        tools:ignore="RtlSymmetry" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/sp_priority"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_create_ticket"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="25dp"
-                    android:elevation="@dimen/dimen_2x1" />
+                    android:layout_height="@dimen/dimen_10x6"
+                    android:layout_marginTop="@dimen/dimens_2x"
+                    android:text="@string/create_ticket"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorPrimary" />
 
+            </LinearLayout>
 
-            </RelativeLayout>
+        </ScrollView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_create_ticket"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_10x6"
-                android:layout_marginTop="@dimen/dimens_2x"
-                android:text="@string/create_ticket"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:backgroundTint="@color/colorPrimary" />
-
-        </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 </RelativeLayout>

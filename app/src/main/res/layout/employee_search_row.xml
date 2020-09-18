@@ -7,12 +7,12 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_employee"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dimen_10x1"
         android:layout_marginEnd="@dimen/dimen_10x1"
-        android:src="@drawable/ic_assigned_emp_placeholder" />
+        android:src="@drawable/ic_profile_icon" />
 
     <TextView
         android:id="@+id/tv_employee"
@@ -21,7 +21,8 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/civ_employee"
         android:text="Rinesh shakya"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/material_text_body2" />
 
     <View
         android:layout_width="match_parent"

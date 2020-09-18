@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tv_customer_details"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_customer_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dimen_10x1"
-    android:text="Rinesh Shakya (9849948119)"
-    android:textColor="@color/black" />
+    android:layout_marginStart="@dimen/dimen_10x1"
+    android:layout_marginEnd="@dimen/dimen_10x1"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/dimen_10x1"
+    android:paddingEnd="@dimen/dimen_10x1">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_customer"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_profile_icon" />
+
+    <TextView
+        android:id="@+id/tv_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_10x1"
+        android:text="Rinesh Shakya (9849948119)"
+        android:textColor="@color/black"
+        android:textSize="@dimen/material_text_body2" />
+
+</LinearLayout>

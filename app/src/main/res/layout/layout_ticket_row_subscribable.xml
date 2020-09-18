@@ -37,51 +37,61 @@
             android:layout_height="110dp"
             android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginTop="@dimen/dimens_2x"
+            android:paddingBottom="@dimen/dimen_6x1"
             android:background="@drawable/blue_round_bg"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/dimen_10x1"
-            android:paddingBottom="@dimen/dimen_10x1">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/date1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dimen_6x1"
-                android:layout_marginEnd="@dimen/dimen_6x1"
-                android:text="14"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/date2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dimen_6x1"
-                android:layout_marginEnd="@dimen/dimen_6x1"
-                android:text="Nov, 2020"
-                android:textColor="@color/white"
-                android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dimen_6x1"
+                    android:layout_marginEnd="@dimen/dimen_6x1"
+                    android:text="14"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dimen_6x1"
+                    android:layout_marginEnd="@dimen/dimen_6x1"
+                    android:text="Nov, 2020"
+                    android:textColor="@color/white"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/v_dots"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_6x1"
-                android:layout_marginTop="@dimen/dimen_6x1"
-                android:layout_marginBottom="@dimen/dimen_2x2"
                 android:background="@drawable/dotted_line" />
 
-
             <RelativeLayout
-                android:id="@+id/ll_assinged_employee_holder"
+                android:id="@+id/rl_assigned_employee_holder"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dimen_2x2"
-                android:layout_marginTop="@dimen/dimen_2x4"
-                android:layout_marginEnd="@dimen/dimen_2x2"
-                android:gravity="center" />
+                android:layout_height="51dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/assigned_employee"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/circle_user"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -105,7 +115,7 @@
                     android:layout_gravity="start"
                     android:gravity="bottom"
                     android:text="#124568"
-                    android:textColor="@color/black"
+                    android:textColor="@color/charcoal_text"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -119,7 +129,7 @@
                     android:drawablePadding="@dimen/dimen_2x2"
                     android:gravity="bottom"
                     android:text="Highest"
-                    android:textColor="@color/black"
+                    android:textColor="@color/charcoal_text"
                     android:textSize="11sp" />
 
 
@@ -134,7 +144,7 @@
                 android:paddingEnd="@dimen/dimen_10x2"
                 android:singleLine="true"
                 android:text="Broken tv, fallen from tv stand"
-                android:textColor="@color/black"
+                android:textColor="@color/charcoal_text"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -145,7 +155,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="@dimen/dimen_6x1"
                 android:text="Ram prasad yadav"
-                android:textColor="@color/black"
+                android:textColor="@color/charcoal_text"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 

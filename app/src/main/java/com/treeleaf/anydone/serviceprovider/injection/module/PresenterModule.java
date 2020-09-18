@@ -2,6 +2,8 @@ package com.treeleaf.anydone.serviceprovider.injection.module;
 
 import com.treeleaf.anydone.serviceprovider.account.AccountRepository;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorRepository;
+import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepository;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
@@ -251,5 +253,11 @@ public class PresenterModule {
     ThreadTimelineRepository getThreadTimelineRepository(AnyDoneService anyDoneService) {
         return new ThreadTimelineRepositoryImpl(anyDoneService);
     }
+
+    @Provides
+    AddContributorRepository getContributorRepository(AnyDoneService anyDoneService) {
+        return new AddContributorRepositoryImpl(anyDoneService);
+    }
+
 }
 

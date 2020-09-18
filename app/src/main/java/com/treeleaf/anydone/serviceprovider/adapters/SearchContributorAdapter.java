@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
@@ -27,38 +26,33 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SearchEmployeeAdapter extends RecyclerView.Adapter<SearchEmployeeAdapter.EmployeeHolder>
+public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContributorAdapter.ContributorHolder>
         implements Filterable {
-    private static final String TAG = "SearchEmployeeAdapter";
-    private List<Employee> employeeList;
+    private static final String TAG = "SearchContributorAdapte";
+    private List<Employee> contributorList;
     private Context mContext;
     private OnItemClickListener listener;
-    private List<Employee> assignEmployeeFiltered;
-    private String selfId;
+    private List<Employee> contributorsFiltered;
 
-    public SearchEmployeeAdapter(List<Employee> employeeList, Context mContext) {
-        this.employeeList = employeeList;
+    public SearchContributorAdapter(List<Employee> contributorList, Context mContext) {
+        this.contributorList = contributorList;
         this.mContext = mContext;
-        this.assignEmployeeFiltered = employeeList;
+        this.contributorsFiltered = contributorList;
     }
 
     @NonNull
     @Override
-    public EmployeeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ContributorHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.search_employee_row, parent, false);
-        return new EmployeeHolder(itemView);
+                .inflate(R.layout.search_contributor_row, parent, false);
+        return new ContributorHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EmployeeHolder holder, int position) {
-        Employee employee = assignEmployeeFiltered.get(position);
+    public void onBindViewHolder(@NonNull ContributorHolder holder, int position) {
+        Employee employee = contributorsFiltered.get(position);
 
-        if (employee.getEmployeeId().equalsIgnoreCase(selfId)) {
-            holder.tvEmployeeName.setText(employee.getName() + " (Me)");
-        } else {
-            holder.tvEmployeeName.setText(employee.getName());
-        }
+        holder.tvEmployeeName.setText(employee.getName());
 
         if (employee.getEmployeeImageUrl() != null) {
             RequestOptions options = new RequestOptions()
@@ -75,8 +69,8 @@ public class SearchEmployeeAdapter extends RecyclerView.Adapter<SearchEmployeeAd
 
     @Override
     public int getItemCount() {
-        if (assignEmployeeFiltered != null) {
-            return assignEmployeeFiltered.size();
+        if (contributorsFiltered != null) {
+            return contributorsFiltered.size();
         } else return 0;
     }
 
@@ -89,21 +83,21 @@ public class SearchEmployeeAdapter extends RecyclerView.Adapter<SearchEmployeeAd
                 ((Activity) mContext).runOnUiThread(() -> {
                     String charString = charSequence.toString();
                     if (charString.isEmpty()) {
-                        assignEmployeeFiltered = employeeList;
+                        contributorsFiltered = contributorList;
                     } else {
                         List<Employee> filteredList = new ArrayList<>();
-                        for (Employee row : employeeList) {
+                        for (Employee row : contributorList) {
                             if (row.getName().toLowerCase()
                                     .contains(charString.toLowerCase())) {
                                 filteredList.add(row);
                             }
                         }
-                        assignEmployeeFiltered = filteredList;
+                        contributorsFiltered = filteredList;
                     }
 
 
-                    filterResults.values = assignEmployeeFiltered;
-                    filterResults.count = assignEmployeeFiltered.size();
+                    filterResults.values = contributorsFiltered;
+                    filterResults.count = contributorsFiltered.size();
                 });
                 return filterResults;
             }
@@ -111,26 +105,24 @@ public class SearchEmployeeAdapter extends RecyclerView.Adapter<SearchEmployeeAd
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                assignEmployeeFiltered = (List<Employee>) filterResults.values;
+                contributorsFiltered = (List<Employee>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
     }
 
 
-    class EmployeeHolder extends RecyclerView.ViewHolder {
+    class ContributorHolder extends RecyclerView.ViewHolder {
         private TextView tvEmployeeName;
         private CircleImageView civEmployee;
         private AppCompatCheckBox cbCheck;
 
-        EmployeeHolder(@NonNull View itemView) {
+        ContributorHolder(@NonNull View itemView) {
             super(itemView);
             RelativeLayout rlEmployeeHolder = itemView.findViewById(R.id.rl_employee_holder);
             tvEmployeeName = itemView.findViewById(R.id.tv_employee_name);
             civEmployee = itemView.findViewById(R.id.civ_employee);
             cbCheck = itemView.findViewById(R.id.cb_check);
-
-            moveSelfEntryToTop();
 
             rlEmployeeHolder.setOnClickListener(view -> {
                 if (cbCheck.isChecked()) {
@@ -144,9 +136,9 @@ public class SearchEmployeeAdapter extends RecyclerView.Adapter<SearchEmployeeAd
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     if (cbCheck.isChecked()) {
-                        listener.onItemAdd(assignEmployeeFiltered.get(position));
+                        listener.onItemAdd(contributorsFiltered.get(position).getEmployeeId());
                     } else {
-                        listener.onItemRemove(assignEmployeeFiltered.get(position));
+                        listener.onItemRemove(contributorsFiltered.get(position).getEmployeeId());
                     }
                 }
 
@@ -154,31 +146,15 @@ public class SearchEmployeeAdapter extends RecyclerView.Adapter<SearchEmployeeAd
         }
     }
 
-    private void moveSelfEntryToTop() {
-        Employee self = EmployeeRepo.getInstance().getEmployee();
-        selfId = self.getEmployeeId();
-        Employee matchedEmployee = null;
-        for (Employee employee : assignEmployeeFiltered
-        ) {
-            if (employee.getEmployeeId().equalsIgnoreCase(selfId)) {
-                matchedEmployee = employee;
-            }
-        }
-
-        if (matchedEmployee != null) {
-            assignEmployeeFiltered.remove(matchedEmployee);
-            assignEmployeeFiltered.add(0, matchedEmployee);
-        }
-    }
-
 
     public interface OnItemClickListener {
-        void onItemAdd(Employee employee);
+        void onItemAdd(String employeeId);
 
-        void onItemRemove(Employee employee);
+        void onItemRemove(String employeeId);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }
+

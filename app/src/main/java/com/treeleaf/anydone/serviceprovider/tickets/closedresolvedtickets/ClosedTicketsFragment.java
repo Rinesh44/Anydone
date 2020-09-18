@@ -231,6 +231,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void getClosedTicketFail(String msg) {
+        ivDataNotFound.setVisibility(View.VISIBLE);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

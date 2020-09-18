@@ -5,12 +5,8 @@ import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
-import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -180,6 +176,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         TicketRepo.getInstance().saveTicket(ticketPb, Constants.ASSIGNED, new Repo.Callback() {
             @Override
             public void success(Object o) {
+                Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
                 getView().onCreateTicketSuccess();
             }
 

@@ -1813,35 +1813,30 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (conversation.getSenderType()
                 .equalsIgnoreCase(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
             senderTitle.setText(Constants.ANYDONE_BOT);
-            civSender.setVisibility(View.VISIBLE);
-        } else {
-            if (conversation.getSenderName() != null && !conversation.getSenderName().isEmpty())
-                senderTitle.setText(conversation.getSenderName());
-            else {
-                senderTitle.setText(Hawk.get(Constants.SERVICE_PROVIDER_NAME));
-            }
-        }
 
-        if (conversation.getSenderType()
-                .equalsIgnoreCase(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
             Glide.with(AnyDoneServiceProviderApplication.getContext())
                     .load(R.drawable.ic_bot_icon)
                     .into(civSender);
         } else {
-            RequestOptions options = new RequestOptions()
-                    .fitCenter();
-            if (conversation.getSenderImageUrl() != null &&
-                    !conversation.getSenderImageUrl().isEmpty()) {
-                Glide.with(AnyDoneServiceProviderApplication.getContext())
-                        .load(conversation.getSenderImageUrl())
-                        .apply(options)
-                        .into(civSender);
+//            GlobalUtils.showLog(TAG, "sender name: " + conversation.getSenderName());
+            if (conversation.getSenderName() != null && !conversation.getSenderName().isEmpty()) {
+                senderTitle.setText(conversation.getSenderName());
             } else {
-                Glide.with(AnyDoneServiceProviderApplication.getContext())
-                        .load((String) Hawk.get(Constants.SERVICE_PROVIDER_IMG))
-                        .apply(options)
-                        .into(civSender);
+                senderTitle.setText(Hawk.get(Constants.SERVICE_PROVIDER_NAME));
             }
+
+//            GlobalUtils.showLog(TAG, "sender image: " + );
+            RequestOptions options = new RequestOptions()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon)
+                    .fitCenter();
+
+            Glide.with(AnyDoneServiceProviderApplication.getContext())
+                    .load(conversation.getSenderImageUrl())
+                    .apply(options)
+                    .into(civSender);
+
+            civSender.setVisibility(View.VISIBLE);
         }
     }
 

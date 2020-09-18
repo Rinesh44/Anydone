@@ -16,8 +16,11 @@
 
     <color name="primary_text">#525252</color>
     <color name="secondary_text">#181818</color>
+    <color name="charcoal_text">#333333</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
+
+    <color name="edit_text_color">#e7e7e7</color>
 
     <color name="grey_light">#e0e0e0</color>
     <color name="grey">#C4C4C4</color>

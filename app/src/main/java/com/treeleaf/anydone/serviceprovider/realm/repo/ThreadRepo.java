@@ -113,7 +113,7 @@ public class ThreadRepo extends Repo {
         try {
             return realm.where(Thread.class)
                     .equalTo("serviceId", serviceId)
-                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("lastMessageDate", Sort.DESCENDING)
                     .findAll();
         } catch (Throwable throwable) {
             throwable.printStackTrace();

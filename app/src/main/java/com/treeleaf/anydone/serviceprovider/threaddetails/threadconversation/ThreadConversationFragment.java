@@ -566,6 +566,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         if (botReply) {
             showBotReplying();
         } else {
+            Hawk.put(Constants.BOT_REPLY, false);
             Objects.requireNonNull(getActivity()).runOnUiThread(() ->
                     llBotReplying.setVisibility(View.GONE));
 

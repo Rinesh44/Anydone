@@ -13,11 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CustomerSearchAdapter extends ArrayAdapter<Customer> {
     private static final String TAG = "CustomerSearchAdapter";
@@ -43,7 +47,8 @@ public class CustomerSearchAdapter extends ArrayAdapter<Customer> {
                     R.layout.customer_search_row, parent, false
             );
         }
-        TextView tvCustomer = convertView.findViewById(R.id.tv_customer_details);
+        TextView tvCustomer = convertView.findViewById(R.id.tv_customer);
+        CircleImageView civCustomer = convertView.findViewById(R.id.civ_customer);
         Customer customerItem = getItem(position);
         if (customerItem != null) {
             if (customerItem.getPhone() != null && !customerItem.getPhone().isEmpty()) {
@@ -51,6 +56,16 @@ public class CustomerSearchAdapter extends ArrayAdapter<Customer> {
             } else {
                 tvCustomer.setText(customerItem.getFullName());
             }
+
+            String customerImage = customerItem.getProfilePic();
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(mContext).load(customerImage)
+                    .apply(options).into(civCustomer);
+
         }
         return convertView;
     }
