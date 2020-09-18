@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:elevation="4dp"
         android:visibility="gone" />
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -42,7 +43,7 @@
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:layout_toEndOf="@+id/iv_back"
                         android:gravity="start"
-                        android:text="Assign Employee"
+                        android:text="Add Contributor"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -86,7 +87,7 @@
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="@dimen/dimen_10x1"
             android:drawableTint="#909090"
-            android:hint="Search employee"
+            android:hint="Search contributor"
             android:inputType="textVisiblePassword"
             android:textColor="#919191"
             android:textSize="14sp" />
@@ -110,6 +111,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_employees"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 </RelativeLayout>

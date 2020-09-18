@@ -2,98 +2,112 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/search_employee"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginStart="@dimen/dimen_2x1"
     android:layout_marginEnd="@dimen/dimen_2x1"
     android:layout_marginBottom="@dimen/dimens_2x"
     android:background="@color/white"
     android:fillViewport="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/et_search_employee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:layout_marginEnd="@dimen/dimens_2x"
-            android:background="@null"
-            android:drawablePadding="@dimen/dimen_10x1"
-            android:hint="Search Employee"
-            android:inputType="textVisiblePassword"
-            android:textColor="#919191"
-            android:textSize="14sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="@dimen/dimen_10x1"
-            android:background="#F0EDF1" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_6x1"
-            android:paddingStart="@dimen/dimens_2x"
-            android:text="Suggestions"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/ll_self"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/dimens_2x"
-            android:paddingTop="@dimen/dimen_10x1"
-            android:paddingBottom="@dimen/dimen_10x1">
+            android:orientation="vertical">
 
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_image_self"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_assigned_emp_placeholder" />
-
-            <TextView
-                android:id="@+id/tv_name_self"
+            <EditText
+                android:id="@+id/et_search_employee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dimen_10x1"
-                android:text="RInesh shakya"
-                android:textColor="@color/black"
-                android:textSize="@dimen/material_text_body2" />
+                android:layout_marginStart="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:layout_marginEnd="@dimen/dimens_2x"
+                android:background="@null"
+                android:drawablePadding="@dimen/dimen_10x1"
+                android:hint="Search Employee"
+                android:inputType="textVisiblePassword"
+                android:textColor="#919191"
+                android:textSize="14sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:background="#F0EDF1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6x1"
+                android:paddingStart="@dimen/dimens_2x"
+                android:text="Suggestions"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_self"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/dimens_2x"
+                android:paddingTop="@dimen/dimen_10x1"
+                android:paddingBottom="@dimen/dimen_10x1">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_image_self"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_assigned_emp_placeholder" />
+
+                <TextView
+                    android:id="@+id/tv_name_self"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dimen_10x1"
+                    android:text="RInesh shakya"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/material_text_body2" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F8F8F8" />
+
+            <TextView
+                android:id="@+id/tv_all_users"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dimens_2x"
+                android:paddingTop="@dimen/dimen_10x1"
+                android:text="All Users"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_all_users"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_6x1" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#F8F8F8" />
-
-        <TextView
-            android:id="@+id/tv_all_users"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/pb_progress_employee"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/dimens_2x"
-            android:paddingTop="@dimen/dimen_10x1"
-            android:text="All Users"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:layout_centerInParent="true"
+            android:elevation="@dimen/dimen_2x2"
+            android:visibility="gone" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_all_users"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_6x1" />
-
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>
 

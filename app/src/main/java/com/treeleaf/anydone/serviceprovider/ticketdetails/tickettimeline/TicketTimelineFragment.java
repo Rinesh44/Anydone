@@ -40,6 +40,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
@@ -67,11 +68,13 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.RealmList;
 
 public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenterImpl> implements
         TicketTimelineContract.TicketTimelineView
         /*      TicketDetailsActivity.OnOutsideClickListener*/ {
     private static final String TAG = "TicketTimelineFragment";
+    public static final int ADD_CONTRIBUTOR = 4560;
 
     /*    @BindView(R.id.ll_activities)
         LinearLayout llActivities;*/
@@ -165,6 +168,18 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     TextView tvAssignedEmployee;
     @BindView(R.id.civ_assigned_employee)
     CircleImageView civAssignedEmployee;
+    @BindView(R.id.ll_contributors)
+    LinearLayout llContributors;
+    @BindView(R.id.tv_contributors_dropdown)
+    TextView tvContributorDropDown;
+    @BindView(R.id.iv_dropdown_contributor)
+    ImageView ivContributorDropDown;
+    @BindView(R.id.expandable_layout_contributor)
+    ExpandableLayout elContributor;
+    @BindView(R.id.ll_contributor_list)
+    LinearLayout llContributorList;
+    @BindView(R.id.tv_contributor)
+    TextView tvContributor;
 
 
     private boolean expandActivity = true;
@@ -188,6 +203,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private RecyclerView rvAllUsers;
     private CircleImageView civSelf;
     private TextView tvSelf;
+    private ProgressBar pbEmployee;
 
 
     public TicketTimelineFragment() {
@@ -247,10 +263,46 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             elCustomer.toggle();
         });
 
+        tvContributorDropDown.setOnClickListener(v -> {
+            expandEmployee = !expandEmployee;
+            ivContributorDropDown.startAnimation(rotation);
+            if (expandEmployee) {
+                ivContributorDropDown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropup));
+            } else {
+                ivContributorDropDown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropdown_toggle));
+            }
+            elContributor.toggle();
+        });
+
+        tvContributor.setOnClickListener(v -> {
+            GlobalUtils.showLog(TAG, "sender ticket Id: " + ticketId);
+            Intent intent = new Intent(getActivity(), AddContributorActivity.class);
+            intent.putExtra("ticket_id", ticketId);
+            startActivityForResult(intent,
+                    ADD_CONTRIBUTOR);
+        });
 
        /* btnMarkComplete.setOnClickListener(v -> startActivity(new Intent(getActivity(),
                 PaymentSummary.class)));*/
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_CONTRIBUTOR && resultCode == 2) {
+            if (data != null) {
+                boolean employeeAssigned = data.getBooleanExtra("contributor_added", false);
+
+                if (employeeAssigned) {
+//                    presenter.getTicketTimeline(ticketId);
+                    presenter.getAssignedEmployees(ticketId);
+                }
+            }
+        }
     }
 
 
@@ -758,66 +810,95 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
     }
 
-/*
-    private void inflateAssignedEmployeeLayout(RealmList<Employee> assignedEmployee,
-                                               LinearLayout parent) {
+
+    private void inflateContributorLayout(RealmList<AssignEmployee> contributors,
+                                          LinearLayout parent) {
         parent.removeAllViews();
-        GlobalUtils.showLog(TAG, "assigned emp size check: " + assignedEmployee.size());
-        for (Employee serviceDoer : assignedEmployee
+        GlobalUtils.showLog(TAG, "contributors size check: " + contributors.size());
+        for (AssignEmployee contributor : contributors
         ) {
             @SuppressLint("InflateParams") View viewAssignedEmployee = getLayoutInflater()
-                    .inflate(R.layout.layout_task_assigned, null, false);
+                    .inflate(R.layout.layout_contributor_row, null, false);
             TextView employeeName = viewAssignedEmployee.findViewById(R.id.tv_field);
             CircleImageView employeePic = viewAssignedEmployee.findViewById(R.id.civ_field);
             ImageView deleteEmployee = viewAssignedEmployee.findViewById(R.id.iv_delete);
 
             deleteEmployee.setOnClickListener(v -> {
-                GlobalUtils.showLog(TAG, "employee id: " + serviceDoer.getEmployeeId());
+                GlobalUtils.showLog(TAG, "employee id: " + contributor.getEmployeeId());
                 int pos = parent.indexOfChild(v);
-                showDeleteDialog(serviceDoer.getEmployeeId());
+                showDeleteDialog(contributor.getEmployeeId());
             });
 
-            employeeName.setText(serviceDoer.getName());
-            if (serviceDoer.getEmployeeImageUrl() != null && !serviceDoer.getEmployeeImageUrl().isEmpty()) {
+            employeeName.setText(contributor.getName());
+            if (contributor.getEmployeeImageUrl() != null && !contributor.getEmployeeImageUrl().isEmpty()) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_profile_icon)
                         .error(R.drawable.ic_profile_icon);
 
-                Glide.with(this).load(serviceDoer.getEmployeeImageUrl())
+                Glide.with(this).load(contributor.getEmployeeImageUrl())
                         .apply(options).into(employeePic);
             }
 
             parent.addView(viewAssignedEmployee);
-     */
-/*       employeeName.setOnClickListener(v -> {
-                setUpProfileBottomSheet(serviceDoer.getName(),
-                        serviceDoer.getEmployeeImageUrl(), serviceDoer.get());
+ /*      employeeName.setOnClickListener(v -> {
+                setUpProfileBottomSheet(contributor.getName(),
+                        contributor.getEmployeeImageUrl(), contributor.get());
                 toggleBottomSheet();
-            });*//*
+            });
 
 
-     */
-/*      employeePic.setOnClickListener(v -> {
-                setUpProfileBottomSheet(serviceDoer.getFullName(),
-                        serviceDoer.getProfilePic(), serviceDoer.getAvgRating());
+      employeePic.setOnClickListener(v -> {
+                setUpProfileBottomSheet(contributor.getFullName(),
+                        contributor.getProfilePic(), contributor.getAvgRating());
                 toggleBottomSheet();
-            });*//*
-
-
+            });*/
         }
     }
-*/
 
     private void showConfirmationDialog(String employeeId) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Are you sure you want to assign to this employee?");
+        builder1.setMessage("Assign to employee?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
                 "Ok",
                 (dialog, id) -> {
                     presenter.assignTicket(ticketId, employeeId);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
+
+    private void showDeleteDialog(String employeeId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to delete?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                (dialog, id) -> {
+//                    presenter.unAssignEmployee(ticketId, employeeId);
                     dialog.dismiss();
                 });
 
@@ -914,7 +995,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void getTicketTimelineSuccess(Employee assignedEmployee) {
-        if (assignedEmployee == null) {
+        if (assignedEmployee.getEmployeeId().isEmpty()) {
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_assign_employee));
         } else {
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
@@ -936,6 +1017,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         civSelf = view.findViewById(R.id.civ_image_self);
         tvAllUsers = view.findViewById(R.id.tv_all_users);
         rvAllUsers = view.findViewById(R.id.rv_all_users);
+        pbEmployee = view.findViewById(R.id.pb_progress_employee);
 
         setSelfDetails();
         llSelf.setOnClickListener(v -> {
@@ -950,11 +1032,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 selfEmployee.setCreatedAt(self.getCreatedAt());
                 selfEmployee.setAccountId(self.getAccountId());
 
+                selectedEmployee = selfEmployee;
                 selectedEmployeeId = self.getEmployeeId();
+                showConfirmationDialog(selectedEmployeeId);
             }
-
-            etSearchEmployee.setText(selfEmployee.getName());
-            etSearchEmployee.setSelection(selfEmployee.getName().length());
         });
 
         setUpEmployeeRecyclerView();
@@ -1202,6 +1283,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     public void getEmployeeSuccess() {
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
         setUpEmployeeRecyclerView();
+
+        RealmList<AssignEmployee> dummyContributors = new RealmList<>();
+        dummyContributors.add(employeeList.get(0));
+        dummyContributors.add(employeeList.get(1));
+
+        inflateContributorLayout(dummyContributors, llContributorList);
     }
 
     @Override
@@ -1217,19 +1304,19 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     @Override
     public void assignSuccess() {
         Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
+        Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
         tvAssignedEmployee.setText(selectedEmployee.getName());
         String employeeImage = selectedEmployee.getEmployeeImageUrl();
-        if (employeeImage != null && !employeeImage.isEmpty()) {
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_profile_icon)
+                .error(R.drawable.ic_profile_icon);
 
-            Glide.with(Objects.requireNonNull(getActivity()))
-                    .load(employeeImage)
-                    .apply(options)
-                    .into(civAssignedEmployee);
-        }
+        Glide.with(Objects.requireNonNull(getActivity()))
+                .load(employeeImage)
+                .apply(options)
+                .into(civAssignedEmployee);
+
         ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
 
         employeeSheet.dismiss();
@@ -1251,6 +1338,20 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             return;
         }
         UiUtils.showSnackBar(getActivity(), getActivity().getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void showProgressEmployee() {
+        if (pbEmployee != null) {
+            pbEmployee.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void hideProgressEmployee() {
+        if (pbEmployee != null) {
+            pbEmployee.setVisibility(View.GONE);
+        }
     }
 
 

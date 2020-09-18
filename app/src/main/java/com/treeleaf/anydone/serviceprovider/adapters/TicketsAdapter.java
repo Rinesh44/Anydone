@@ -1,6 +1,9 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +13,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -123,10 +132,27 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     @Override
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
+        holder.setIsRecyclable(false);
         Tickets tickets = ticketsList.get(position);
         if (holder.swipeRevealLayout != null) {
             viewBinderHelper.bind(holder.swipeRevealLayout,
                     String.valueOf(tickets.getTicketId()));
+        }
+
+        //change layout design if no assigned employee found
+        if ((tickets.getAssignedEmployee().getEmployeeId().isEmpty())) {
+            holder.dots.setVisibility(View.GONE);
+            holder.rlAssignedEmployeeHolder.setVisibility(View.GONE);
+            holder.llTicketView.setGravity(Gravity.CENTER);
+        } else {
+            RequestOptions options = new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.ic_assigned_emp_placeholder)
+                    .error(R.drawable.ic_assigned_emp_placeholder);
+
+            Glide.with(mContext).load(tickets.getAssignedEmployee().getEmployeeImageUrl())
+                    .apply(options)
+                    .into(holder.civAssignedEmployee);
         }
 
         String date = GlobalUtils.getDateNormal(tickets.getCreatedAt());
@@ -215,7 +241,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         }
 
         holder.tags.removeAllViews();
-        holder.assignedEmployeeHolder.removeAllViews();
         for (Tags tag : tickets.getTagsRealmList()
         ) {
             TextView tagView = (TextView) LayoutInflater.from(mContext)
@@ -230,36 +255,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         }
 
         GlobalUtils.showLog(TAG, "ticket id: " + tickets.getTicketId());
-
-        if (tickets.getAssignedEmployee() != null) {
-            CircleImageView employeeImage = (CircleImageView) LayoutInflater.from(mContext)
-                    .inflate(R.layout.layout_assigned_employee, null);
-            Random random = new Random();
-            int randomId = random.nextInt(100);
-            employeeImage.setId(randomId);
-
-            RequestOptions options = new RequestOptions()
-                    .placeholder(R.drawable.ic_assigned_emp_placeholder)
-                    .error(R.drawable.ic_assigned_emp_placeholder);
-
-            Glide.with(mContext).load(tickets.getAssignedEmployee().getEmployeeImageUrl())
-                    .apply(options).into(employeeImage);
-
-            holder.assignedEmployeeHolder.addView(employeeImage);
-        }
-
-   /*     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-                (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        params.gravity = Gravity.CENTER;
-        params.setMargins(25, 25, 25, 25);
-        holder.assignedEmployeeHolder.setLayoutParams(params);*/
-
-        //change layout design if no assigned employee found
-        if ((tickets.getAssignedEmployee().getName().isEmpty())) {
-            holder.dots.setVisibility(View.GONE);
-            holder.assignedEmployeeHolder.setVisibility(View.GONE);
-            holder.llTicketView.setGravity(Gravity.CENTER);
-        }
     }
 
     private void setPriority(int priority, TicketHolder holder) {
@@ -298,11 +293,18 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         } else return 0;
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+
     class TicketHolder extends RecyclerView.ViewHolder {
         private TextView tvDate1;
         private TextView tvDate2;
-        private RelativeLayout assignedEmployeeHolder;
+        private CircleImageView civAssignedEmployee;
         private RelativeLayout rlTicketHolder;
+        private RelativeLayout rlAssignedEmployeeHolder;
         private TextView ticketId;
         private TextView summary;
         private TextView customer;
@@ -322,7 +324,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             rlTicketHolder = itemView.findViewById(R.id.rl_ticket_holder);
             tvDate1 = itemView.findViewById(R.id.date1);
             tvDate2 = itemView.findViewById(R.id.date2);
-            assignedEmployeeHolder = itemView.findViewById(R.id.ll_assinged_employee_holder);
+            civAssignedEmployee = itemView.findViewById(R.id.assigned_employee);
             ticketId = itemView.findViewById(R.id.tv_ticket_id_value);
             summary = itemView.findViewById(R.id.tv_summary);
             customer = itemView.findViewById(R.id.tv_customer_value);
@@ -336,6 +338,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             dots = itemView.findViewById(R.id.v_dots);
             llTicketView = itemView.findViewById(R.id.ll_ticket_view);
             ticketPriority = itemView.findViewById(R.id.tv_priority);
+            rlAssignedEmployeeHolder = itemView.findViewById(R.id.rl_assigned_employee_holder);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {

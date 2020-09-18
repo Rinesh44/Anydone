@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.injection.component;
 
+import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorActivity;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
@@ -70,4 +71,6 @@ public interface ActivityComponent {
     void inject(AddTicketActivity addTicketActivity);
 
     void inject(ThreadDetailActivity threadDetailActivity);
+
+    void inject(AddContributorActivity addContributorActivity);
 }

@@ -37,7 +37,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
 
     @Override
     public void assignTicket(long ticketId, String employeeId) {
-        getView().showProgressBar("Please wait...");
+        getView().showProgressEmployee();
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
         String token = Hawk.get(Constants.TOKEN);
 
@@ -68,7 +68,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                                 GlobalUtils.showLog(TAG, "assign tickets response: "
                                         + getTicketsBaseResponse);
 
-                                getView().hideProgressBar();
+                                getView().hideProgressEmployee();
                                 if (getTicketsBaseResponse == null) {
                                     getView().assignFail("assign ticket failed");
                                     return;

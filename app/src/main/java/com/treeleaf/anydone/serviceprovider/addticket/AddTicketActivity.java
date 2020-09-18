@@ -180,15 +180,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             if (!CollectionUtils.isEmpty(customerList)) {
                 selectedCustomer = customerList.get(position);
                 setEmailAndPhoneIfAvailable();
-                etCustomerName.setPadding(80, 0, 40, 0);
-                civCustomer.setVisibility(View.VISIBLE);
-
-                RequestOptions options = new RequestOptions()
-                        .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
-
-                Glide.with(this).load(selectedCustomer.getProfilePic()).apply(options).into(civCustomer);
+                showCustomerWithImage();
             }
         });
 
@@ -224,6 +216,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             etCustomerName.setText(selectedCustomer.getFullName());
             etCustomerName.dismissDropDown();
+            showCustomerWithImage();
+
             if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
                 etEmail.setText(selectedCustomer.getEmail());
                 etEmail.setFocusable(false);
@@ -299,6 +293,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 selfEmployee.setAccountId(self.getAccountId());
 
                 selectedEmployeeId = self.getEmployeeId();
+                showEmployeeWithImage(selfEmployee);
             }
 
             etAssignEmployee.setText(selfEmployee.getName());
@@ -363,6 +358,18 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                         selectedEmployeeId, priorityNum);
             }
         });
+    }
+
+    private void showCustomerWithImage() {
+        etCustomerName.setPadding(80, 0, 40, 0);
+        civCustomer.setVisibility(View.VISIBLE);
+
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_profile_icon)
+                .error(R.drawable.ic_profile_icon);
+
+        Glide.with(this).load(selectedCustomer.getProfilePic()).apply(options).into(civCustomer);
     }
 
     private void createTeamBottomSheet() {
@@ -668,17 +675,21 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 etAssignEmployee.setSelection(employee.getName().length());
                 svSearchEmployee.setVisibility(View.GONE);
 
-                etAssignEmployee.setPadding(80, 0, 40, 0);
-                civAssignEmployee.setVisibility(View.VISIBLE);
-
-                RequestOptions options = new RequestOptions()
-                        .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
-
-                Glide.with(this).load(employee.getEmployeeImageUrl()).apply(options).into(civAssignEmployee);
+                showEmployeeWithImage(employee);
             });
         }
+    }
+
+    private void showEmployeeWithImage(AssignEmployee employee) {
+        etAssignEmployee.setPadding(80, 0, 40, 0);
+        civAssignEmployee.setVisibility(View.VISIBLE);
+
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_profile_icon)
+                .error(R.drawable.ic_profile_icon);
+
+        Glide.with(this).load(employee.getEmployeeImageUrl()).apply(options).into(civAssignEmployee);
     }
 
     @Override

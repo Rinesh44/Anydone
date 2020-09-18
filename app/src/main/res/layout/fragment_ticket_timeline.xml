@@ -19,7 +19,8 @@
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:elevation="1dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/ll_status_options"
@@ -608,12 +609,83 @@
                         android:layout_marginTop="@dimen/dimen_10x1"
                         android:background="#F0EDF1" />
 
+                    <LinearLayout
+                        android:id="@+id/ll_contributors"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_10x2"
+                            android:layout_marginTop="@dimen/dimen_10x1"
+                            android:layout_marginEnd="@dimen/dimen_10x2">
+
+                            <TextView
+                                android:id="@+id/tv_contributors_dropdown"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Contributors"
+                                android:textColor="@color/charcoal_text"
+                                android:textSize="@dimen/material_text_subhead"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_dropdown_contributor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_dropup" />
+
+                        </RelativeLayout>
+
+                        <net.cachapa.expandablelayout.ExpandableLayout
+                            android:id="@+id/expandable_layout_contributor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:el_duration="500"
+                            android:layout_marginTop="@dimen/dimen_6x1"
+                            app:el_expanded="true"
+                            app:el_parallax="0.5">
+
+                            <LinearLayout
+                                android:id="@+id/ll_contributor_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_10x2"
+                                android:layout_marginEnd="@dimen/dimen_10x1"
+                                android:orientation="vertical" />
+
+                        </net.cachapa.expandablelayout.ExpandableLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/dimen_10x1"
+                            android:background="#F0EDF1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_contributor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_10x2"
+                        android:layout_marginTop="@dimen/dimen_10x1"
+                        android:layout_marginBottom="@dimen/dimen_10x1"
+                        android:drawableStart="@drawable/ic_add_contributor"
+                        android:drawablePadding="@dimen/dimen_10x1"
+                        android:gravity="center_vertical"
+                        android:text="Add Contributor"
+                        android:textColor="@color/colorPrimary" />
+
                 </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
-
 
     <include layout="@layout/bottomsheet_profile" />
 
