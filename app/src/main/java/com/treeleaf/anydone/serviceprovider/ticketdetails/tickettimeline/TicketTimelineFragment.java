@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -38,7 +36,6 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputLayout;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -986,6 +983,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
                     scrollView.fullScroll(View.FOCUS_DOWN);
                     etSearchEmployee.requestFocus();
+                } else {
+                    employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
+                    employeeSearchAdapter.setData(employeeList);
+                    employeeSearchAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -1056,7 +1057,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void setAssignedEmployee(Employee assignedEmployee) {
-        tvAssignedEmployee.setText(assignedEmployee.getName());
+        if (!assignedEmployee.getName().isEmpty()) {
+            tvAssignedEmployee.setText(assignedEmployee.getName());
+        } else {
+            tvAssignedEmployee.setText(R.string.unassigned);
+        }
 
         String employeeImage = assignedEmployee.getEmployeeImageUrl();
         if (employeeImage != null && !employeeImage.isEmpty()) {

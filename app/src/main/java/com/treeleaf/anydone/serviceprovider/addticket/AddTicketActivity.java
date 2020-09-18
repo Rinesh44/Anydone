@@ -180,7 +180,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             if (!CollectionUtils.isEmpty(customerList)) {
                 selectedCustomer = customerList.get(position);
                 setEmailAndPhoneIfAvailable();
-                etCustomerName.setPadding(80, 0, 45, 0);
+                etCustomerName.setPadding(80, 0, 40, 0);
                 civCustomer.setVisibility(View.VISIBLE);
 
                 RequestOptions options = new RequestOptions()
@@ -196,7 +196,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
-                selfCustomerText.append("(Me)");
+                selfCustomerText.append(" (Me)");
                 tvCustomerSelf.setText(selfCustomerText);
 
                 RequestOptions options = new RequestOptions()
@@ -253,7 +253,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
                     StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
-                    selfCustomerText.append("(Me)");
+                    selfCustomerText.append(" (Me)");
                     tvCustomerSelf.setText(selfCustomerText);
 
                     RequestOptions options = new RequestOptions()
@@ -266,7 +266,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
                     rlCustomerSelfHolder.setVisibility(View.VISIBLE);
                     civCustomer.setVisibility(View.GONE);
-                    etCustomerName.setPadding(0, 0, 40, 0);
+                    etCustomerName.setPadding(15, 0, 40, 0);
                 } else {
                     rlCustomerSelfHolder.setVisibility(View.GONE);
                     etEmail.setEnabled(true);
@@ -333,7 +333,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     }
                 } else {
                     svSearchEmployee.setVisibility(View.GONE);
-                    etAssignEmployee.setPadding(0, 0, 40, 0);
+                    etAssignEmployee.setPadding(15, 0, 40, 0);
                     civAssignEmployee.setVisibility(View.GONE);
                 }
             }
@@ -631,7 +631,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         GlobalUtils.showLog(TAG, "employee check: " + employee);
         if (employee != null) {
             StringBuilder selfEmployeeText = new StringBuilder(employee.getName());
-            selfEmployeeText.append("(Me)");
+            selfEmployeeText.append(" (Me)");
             tvEmployeeAsSelf.setText(selfEmployeeText);
 
             String profilePicUrl = employee.getEmployeeImageUrl();
@@ -668,7 +668,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 etAssignEmployee.setSelection(employee.getName().length());
                 svSearchEmployee.setVisibility(View.GONE);
 
-                etAssignEmployee.setPadding(80, 0, 45, 0);
+                etAssignEmployee.setPadding(80, 0, 40, 0);
                 civAssignEmployee.setVisibility(View.VISIBLE);
 
                 RequestOptions options = new RequestOptions()

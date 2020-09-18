@@ -1,4 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;

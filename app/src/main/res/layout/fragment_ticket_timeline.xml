@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
     android:orientation="vertical">
 
     <ProgressBar
@@ -11,13 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:elevation="@dimen/dimen_2x2"
         android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#FAFAFA"
+        android:background="@color/white"
         android:elevation="1dp"
         android:orientation="vertical">
 
@@ -171,7 +171,7 @@
                         android:layout_marginStart="@dimen/dimen_10x2"
                         android:paddingBottom="@dimen/dimen_10x1"
                         android:text="Enable Bot Reply"
-                        android:textColor="@color/black"
+                        android:textColor="@color/charcoal_text"
                         android:textSize="@dimen/material_text_subhead"
                         android:textStyle="bold" />
 
@@ -195,7 +195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_10x2"
-                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:layout_marginTop="@dimen/dimen_2x4"
                     android:layout_marginEnd="@dimen/dimen_10x2"
                     android:orientation="vertical">
 
@@ -214,7 +214,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dimen_6x1"
                                 android:text="Ticket Id"
-                                android:textColor="@color/black"
+                                android:textColor="@color/charcoal_text"
                                 android:textSize="@dimen/material_text_subhead"
                                 android:textStyle="bold" />
 
@@ -232,8 +232,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:layout_marginTop="@dimen/dimen_10x1"
-                                android:layout_toStartOf="@+id/iv_dropdown_ticket_details"
+                                android:layout_marginTop="@dimen/dimen_2x4"
                                 android:background="@drawable/started_bg"
                                 android:paddingStart="@dimen/dimen_10x1"
                                 android:paddingTop="@dimen/dimen_6x1"
@@ -250,9 +249,9 @@
                             android:id="@+id/tv_ticket_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:layout_marginTop="@dimen/dimens_2x"
                             android:text="Broken tv fallen from stand"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
@@ -269,7 +268,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Priority"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
@@ -303,7 +302,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Service"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
@@ -334,7 +333,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Created By"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
@@ -366,7 +365,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Assigned Employee"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
@@ -385,7 +384,7 @@
                                 android:id="@+id/tv_assigned_employee"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_centerVertical="true"
                                 android:layout_marginStart="@dimen/dimen_10x1"
                                 android:layout_toEndOf="@+id/civ_assigned_employee"
                                 android:text="Unassigned"
@@ -397,7 +396,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/ic_assign_employee" />
+                                android:src="@drawable/ic_switch_employee" />
 
                         </RelativeLayout>
 
@@ -406,7 +405,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Created Date"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
@@ -448,7 +447,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Team"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
@@ -457,7 +456,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_2x1"
-                            android:layout_marginBottom="@dimen/dimen_6x1"
                             android:orientation="horizontal" />
 
                     </LinearLayout>
@@ -467,7 +465,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:layout_marginTop="@dimen/dimens_2x"
                     android:background="#F0EDF1" />
 
 
@@ -490,7 +488,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Customer Details"
-                            android:textColor="@color/black"
+                            android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 

@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:elevation="4dp"
         android:visibility="gone" />
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -293,7 +294,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1.8dp"
+                        android:layout_height="1.5dp"
                         android:layout_marginStart="@dimen/dimen_5x1"
                         android:layout_marginTop="@dimen/dimen_6x1"
                         android:layout_marginEnd="@dimen/dimen_5x1"

@@ -105,7 +105,7 @@
                     android:layout_gravity="start"
                     android:gravity="bottom"
                     android:text="#124568"
-                    android:textColor="@color/black"
+                    android:textColor="@color/charcoal_text"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -134,7 +134,7 @@
                 android:paddingEnd="@dimen/dimen_10x2"
                 android:singleLine="true"
                 android:text="Broken tv, fallen from tv stand"
-                android:textColor="@color/black"
+                android:textColor="@color/charcoal_text"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="@dimen/dimen_6x1"
                 android:text="Ram prasad yadav"
-                android:textColor="@color/black"
+                android:textColor="@color/charcoal_text"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 

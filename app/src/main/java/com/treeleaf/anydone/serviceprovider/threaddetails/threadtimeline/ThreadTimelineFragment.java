@@ -83,12 +83,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     TextView tvCustomerPhone;
     @BindView(R.id.civ_customer)
     CircleImageView civCustomer;
-    @BindView(R.id.tv_conversation_details_dropdown)
-    TextView tvConversationDetailsDropdown;
-    @BindView(R.id.iv_dropdown_conversation_details)
-    ImageView ivDropdownConversationDetails;
-    @BindView(R.id.expandable_layout_conversation_details)
-    ExpandableLayout elConversationDetails;
     @BindView(R.id.tv_conversation_created_date)
     TextView tvConversationCreatedDate;
     @BindView(R.id.tv_conversation_created_time)
@@ -169,7 +163,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         tvCustomerDropdown.setOnClickListener(v -> {
             expandCustomer = !expandCustomer;
             ivDropdownCustomer.startAnimation(rotation);
-            if (!expandCustomer) {
+            if (expandCustomer) {
                 ivDropdownCustomer.setImageDrawable(getActivity().getResources()
                         .getDrawable(R.drawable.ic_dropup));
             } else {
@@ -179,18 +173,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             elCustomer.toggle();
         });
 
-        tvConversationDetailsDropdown.setOnClickListener(v -> {
-            expandTicketDetails = !expandTicketDetails;
-            ivDropdownConversationDetails.startAnimation(rotation);
-            if (!expandTicketDetails) {
-                ivDropdownConversationDetails.setImageDrawable(getActivity().getResources()
-                        .getDrawable(R.drawable.ic_dropup));
-            } else {
-                ivDropdownConversationDetails.setImageDrawable(getActivity().getResources()
-                        .getDrawable(R.drawable.ic_dropdown_toggle));
-            }
-            elConversationDetails.toggle();
-        });
 
        /* btnMarkComplete.setOnClickListener(v -> startActivity(new Intent(getActivity(),
                 PaymentSummary.class)));*/
