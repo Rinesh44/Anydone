@@ -6,6 +6,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class Tickets extends RealmObject {
     @PrimaryKey
+    String id;
     long ticketId;
     String title;
     String description;
@@ -24,6 +25,14 @@ public class Tickets extends RealmObject {
     int priority;
 
     public Tickets() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getPriority() {

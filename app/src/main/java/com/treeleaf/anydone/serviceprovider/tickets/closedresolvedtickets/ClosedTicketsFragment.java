@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.Unbinder;
+import io.realm.RealmList;
 
 public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImpl>
         implements ClosedTicketContract.ClosedTicketView,
@@ -50,6 +52,9 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     ProgressBar progressBar;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
+    @BindView(R.id.rl_root)
+    RelativeLayout rlRoot;
+
     private Unbinder unbinder;
     private TicketsAdapter adapter;
     private int reopenTicketPos;
@@ -65,7 +70,6 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void updateClosedList() {
         presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
-
     }
 
     @Override
@@ -123,7 +127,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
-                i.putExtra("selected_ticket_type", "closedResolved");
+                i.putExtra("selected_ticket_type", Constants.CLOSED_RESOLVED);
                 i.putExtra("ticket_desc", ticket.getTitle());
                 startActivity(i);
             });
@@ -223,10 +227,22 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void getClosedTicketSuccess() {
         List<Tickets> closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
-        setUpRecyclerView(closedTickets);
+        GlobalUtils.showLog(TAG, "closed ticket size checK:" + closedTickets.size());
+        if (!CollectionUtils.isEmpty(closedTickets)) {
+            setUpRecyclerView(closedTickets);
+            rvClosedTickets.setVisibility(View.VISIBLE);
 
-        Hawk.put(Constants.FETCH_CLOSED_LIST, false);
-        fetchList = true;
+            Hawk.put(Constants.FETCH_CLOSED_LIST, false);
+            fetchList = true;
+            ivDataNotFound.setVisibility(View.GONE);
+        } else {
+        /*    adapter = new TicketsAdapter(closedTickets, getContext());
+            adapter.setData(closedTickets);
+            adapter.notifyDataSetChanged();*/
+
+            rvClosedTickets.setVisibility(View.GONE);
+            ivDataNotFound.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -262,6 +278,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
+        rvClosedTickets.setVisibility(View.GONE);
     }
 
     @Override
@@ -273,6 +290,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void hideProgressBar() {
         if (progress != null) {
             progress.setVisibility(View.GONE);
+            rvClosedTickets.setVisibility(View.VISIBLE);
+            ivDataNotFound.setVisibility(View.GONE);
         }
     }
 

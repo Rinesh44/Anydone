@@ -113,7 +113,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
                 i.putExtra("ticket_desc", ticket.getTitle());
-                i.putExtra("selected_ticket_type", "subscribed");
+                i.putExtra("selected_ticket_type", Constants.SUBSCRIBED);
                 startActivity(i);
             });
 
@@ -277,6 +277,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
+        rvSubscribeTickets.setVisibility(View.GONE);
     }
 
     @Override
@@ -288,6 +289,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     public void hideProgressBar() {
         if (progress != null) {
             progress.setVisibility(View.GONE);
+            rvSubscribeTickets.setVisibility(View.VISIBLE);
         }
     }
 

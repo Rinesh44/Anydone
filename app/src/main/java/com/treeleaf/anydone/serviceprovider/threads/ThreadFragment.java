@@ -7,14 +7,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +30,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -56,10 +61,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     TextView tvToolbarTitle;
     @BindView(R.id.iv_service)
     ImageView ivService;
-    @BindView(R.id.bottom_sheet)
-    LinearLayout llBottomSheet;
-    @BindView(R.id.shadow)
-    View bottomSheetShadow;
+    /*    @BindView(R.id.bottom_sheet)
+        LinearLayout llBottomSheet;*/
+ /*   @BindView(R.id.shadow)
+    View bottomSheetShadow;*/
     @BindView(R.id.pb_search)
     ProgressBar pbSearch;
     @BindView(R.id.iv_thread_not_found)
@@ -70,9 +75,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     SwipeRefreshLayout swipeRefreshLayout;
 
     private RecyclerView rvServices;
-    private BottomSheetBehavior sheetBehavior;
+    //    private BottomSheetBehavior sheetBehavior;
     private SearchServiceAdapter adapter;
     private ThreadAdapter threadAdapter;
+    private BottomSheetDialog serviceSheet;
 
     @Override
     protected int getLayout() {
@@ -99,7 +105,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+    /*    sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
 
         sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -114,10 +120,50 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
 
             }
+        });*/
+
+        createServiceBottomSheet();
+        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> {
+                    GlobalUtils.showLog(TAG, "swipe refresh threads called");
+
+                    presenter.getConversationThreads(false);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        //Do something after 1 sec
+                        swipeRefreshLayout.setRefreshing(false);
+                    }, 1000);
+                }
+        );
+    }
+
+    private void createServiceBottomSheet() {
+        serviceSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_service, null);
+
+        serviceSheet.setContentView(llBottomSheet);
+
+        serviceSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
         EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
         rvServices = llBottomSheet.findViewById(R.id.rv_services);
+
+        searchService.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(serviceSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         if (CollectionUtils.isEmpty(serviceList)) {
@@ -161,26 +207,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
             }
         });
-
-        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
-
-        swipeRefreshLayout.setOnRefreshListener(
-                () -> {
-                    GlobalUtils.showLog(TAG, "swipe refresh threads called");
-
-                    presenter.getConversationThreads(false);
-                    final Handler handler = new Handler();
-                    handler.postDelayed(() -> {
-                        //Do something after 1 sec
-                        swipeRefreshLayout.setRefreshing(false);
-                    }, 1000);
-                }
-        );
     }
 
 
     public void toggleServiceBottomSheet() {
-        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
+     /*   if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
             bottomSheetShadow.setVisibility(View.VISIBLE);
             sheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
         } else if (sheetBehavior.getState() == BottomSheetBehavior.STATE_HALF_EXPANDED) {
@@ -190,6 +221,12 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             sheetBehavior.setPeekHeight(0);
             bottomSheetShadow.setVisibility(View.GONE);
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }*/
+
+        if (serviceSheet.isShowing()) {
+            serviceSheet.dismiss();
+        } else {
+            serviceSheet.show();
         }
     }
 
@@ -206,8 +243,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             Hawk.put(Constants.SERVICE_CHANGED_THREAD, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
             Glide.with(getContext()).load(service.getServiceIconUrl()).into(ivService);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            bottomSheetShadow.setVisibility(View.GONE);
+          /*  sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            bottomSheetShadow.setVisibility(View.GONE);*/
+            serviceSheet.dismiss();
 
             ivThreadNotFound.setVisibility(View.GONE);
             presenter.getConversationThreads(true);
@@ -229,6 +267,31 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             startActivity(i);
         });
     }
+
+    private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(state);
+        } else {
+            Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
 
     private void hideKeyBoard() {
         final InputMethodManager imm = (InputMethodManager)

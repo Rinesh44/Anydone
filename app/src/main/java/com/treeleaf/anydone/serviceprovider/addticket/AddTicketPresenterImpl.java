@@ -1,11 +1,15 @@
 package com.treeleaf.anydone.serviceprovider.addticket;
 
+import android.telecom.Call;
+
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -173,16 +177,53 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
     }
 
     private void saveTicket(TicketProto.Ticket ticketPb) {
-        TicketRepo.getInstance().saveTicket(ticketPb, Constants.ASSIGNED, new Repo.Callback() {
+        TicketRepo.getInstance().saveTicket(ticketPb, Constants.SUBSCRIBED, new Repo.Callback() {
             @Override
             public void success(Object o) {
-                Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
+                GlobalUtils.showLog(TAG, "saved as subscribed ticket");
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save subscribed ticket");
+            }
+        });
+
+        Account userAccount = AccountRepo.getInstance().getAccount();
+        if (ticketPb.getEmployeeAssigned().getAssignedTo()
+                .getAccount().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+            saveAssignedTicket(ticketPb);
+        } else {
+            saveAssignableTicket(ticketPb);
+        }
+    }
+
+    private void saveAssignableTicket(TicketProto.Ticket ticketPb) {
+        TicketRepo.getInstance().saveTicket(ticketPb, Constants.ASSIGNABLE, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved as assignable ticket");
                 getView().onCreateTicketSuccess();
             }
 
             @Override
             public void fail() {
-                GlobalUtils.showLog(TAG, "failed to save ticket");
+                GlobalUtils.showLog(TAG, "failed to save as assignable ticket");
+            }
+        });
+    }
+
+    private void saveAssignedTicket(TicketProto.Ticket ticketPb) {
+        TicketRepo.getInstance().saveTicket(ticketPb, Constants.ASSIGNED, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved as assigned ticket");
+                getView().onCreateTicketSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save assigned ticket");
             }
         });
     }

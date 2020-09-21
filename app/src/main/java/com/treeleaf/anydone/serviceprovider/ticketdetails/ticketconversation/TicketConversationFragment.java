@@ -172,6 +172,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
     private OnTicketStartListener onTicketStartListener;
+    private String ticketType;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
@@ -188,6 +189,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         ticketId = i.getLongExtra("selected_ticket_id", -1);
+        ticketType = i.getStringExtra("selected_ticket_type");
         if (ticketId != -1) {
             Hawk.put(Constants.CURRENT_SERVICE_ORDER_ID, ticketId);
             conversationList = ConversationRepo.getInstance()
@@ -525,6 +527,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             params.addRule(RelativeLayout.ABOVE, R.id.tv_closed);
         }
 
+        GlobalUtils.showLog(TAG, "ticket status checckkk: " + tickets.getTicketStatus());
+        GlobalUtils.showLog(TAG, "ticket type checkkkk: " + tickets.getTicketType());
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
                 || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
             llSearchContainer.setVisibility(View.GONE);
@@ -532,7 +536,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             tvClosed.setVisibility(View.GONE);
         }
 
-        if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
+        if (ticketType.equalsIgnoreCase(Constants.SUBSCRIBED)) {
             llSearchContainer.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.GONE);
         }

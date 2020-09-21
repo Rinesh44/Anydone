@@ -443,6 +443,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
+
     private void addTeamsToLayout() {
         //add selected teams
         for (String tagId : tags

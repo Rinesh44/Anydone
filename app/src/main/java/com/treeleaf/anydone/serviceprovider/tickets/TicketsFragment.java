@@ -87,8 +87,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     TabLayout mTabs;
     @BindView(R.id.viewpager)
     ViewPager mViewpager;
-    @BindView(R.id.bottom_sheet)
-    LinearLayout llBottomSheet;
+    /*    @BindView(R.id.bottom_sheet)
+        LinearLayout llBottomSheet;*/
     @BindView(R.id.iv_filter)
     ImageView ivFilter;
     @BindView(R.id.pb_search)
@@ -99,8 +99,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     ImageView ivService;
     @BindView(R.id.toolbar_title)
     TextView tvToolbarTitle;
-    @BindView(R.id.shadow)
-    View bottomSheetShadow;
+ /*   @BindView(R.id.shadow)
+    View bottomSheetShadow;*/
 
     private List<Tickets> assignedTicketList;
     private List<Tickets> subscribedTicketList;
@@ -109,6 +109,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private RadioGroup rgStatus;
     private boolean filter = false;
     private BottomSheetDialog filterBottomSheet;
+    private BottomSheetDialog serviceBottomSheet;
     private HorizontalScrollView hsvStatusContainer;
     private EditText etFromDate, etTillDate;
     private AppCompatSpinner spPriority;
@@ -119,7 +120,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private AssignedListListener assignedListListener;
     private SubscribedListListener subscribedListListener;
     private ClosedListListener closedListListener;
-    private BottomSheetBehavior sheetBehavior;
+    //    private BottomSheetBehavior sheetBehavior;
     private SearchServiceAdapter adapter;
     private RecyclerView rvServices;
     private Priority selectedPriority = new Priority("", -1);
@@ -151,7 +152,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         presenter.findEmployees();
         presenter.findTags();
 
-        sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+/*        sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
 
         sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -166,11 +167,45 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
 
             }
-        });
+        });*/
 
+        assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
+        subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
+        closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
+        createServiceBottomSheet();
+        createFilterBottomSheet();
+
+        setupViewPager(mViewpager);
+        mTabs.setupWithViewPager(mViewpager);
+
+        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+    }
+
+    private void createServiceBottomSheet() {
+        serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_service, null);
+
+        serviceBottomSheet.setContentView(llBottomSheet);
+
+        serviceBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
 
         EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
         rvServices = llBottomSheet.findViewById(R.id.rv_services);
+
+        searchService.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(serviceBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         if (CollectionUtils.isEmpty(serviceList)) {
@@ -208,20 +243,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             }
         });
 
-        assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
-        subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
-        closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
-        createFilterBottomSheet();
-
-        setupViewPager(mViewpager);
-        mTabs.setupWithViewPager(mViewpager);
-
-        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
     }
 
 
     public void toggleServiceBottomSheet() {
-        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
+     /*   if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
             bottomSheetShadow.setVisibility(View.VISIBLE);
             sheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
         } else if (sheetBehavior.getState() == BottomSheetBehavior.STATE_HALF_EXPANDED) {
@@ -231,6 +257,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             sheetBehavior.setPeekHeight(0);
             bottomSheetShadow.setVisibility(View.GONE);
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }*/
+
+        if (serviceBottomSheet.isShowing()) {
+            serviceBottomSheet.dismiss();
+        } else {
+            serviceBottomSheet.show();
         }
     }
 
@@ -246,8 +278,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
             tvToolbarTitle.setText(service.getName().replace("_", " "));
             Glide.with(getContext()).load(service.getServiceIconUrl()).into(ivService);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            bottomSheetShadow.setVisibility(View.GONE);
+//            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//            bottomSheetShadow.setVisibility(View.GONE);
+            serviceBottomSheet.dismiss();
 
             if (assignedListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for assigned");
@@ -281,7 +314,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         @SuppressLint("InflateParams") View view = getLayoutInflater()
                 .inflate(R.layout.layout_bottomsheet_filter_tickets, null);
 
-
         filterBottomSheet.setContentView(view);
         btnSearch = view.findViewById(R.id.btn_search);
         etSearchText = view.findViewById(R.id.et_search);
@@ -294,14 +326,14 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
 //        spPriority.setSelection(0);
 
-        filterBottomSheet.setOnShowListener((DialogInterface.OnShowListener) dialog -> {
+    /*    filterBottomSheet.setOnShowListener((DialogInterface.OnShowListener) dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
 
             FrameLayout bottomSheet = (FrameLayout) d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
             if (bottomSheet != null)
                 BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
             setupFullHeight(d);
-        });
+        });*/
 
 
         spPriority.setOnTouchListener((v, event) -> {
@@ -437,7 +469,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         });
     }
 
-    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+    private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
         FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
@@ -448,7 +480,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 layoutParams.height = windowHeight;
             }
             bottomSheet.setLayoutParams(layoutParams);
-            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            behavior.setState(state);
         } else {
             Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
         }
@@ -616,20 +648,27 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         UiUtils.hideKeyboardForced(getContext());
 
         boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_THREAD, false);
+        GlobalUtils.showLog(TAG, "service changed Check: " + serviceChanged);
         if (serviceChanged) {
             if (assignedListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for assigned");
                 assignedListListener.updateAssignedList();
+            } else {
+                Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
             }
 
             if (subscribedListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for subscribed");
                 subscribedListListener.updateSubscribedList();
+            } else {
+                Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
             }
 
             if (closedListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for closed");
                 closedListListener.updateClosedList();
+            } else {
+                Hawk.put(Constants.FETCH_CLOSED_LIST, true);
             }
 
             Hawk.put(Constants.SERVICE_CHANGED_THREAD, false);
@@ -646,7 +685,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     protected void injectDagger(ApplicationComponent applicationComponent) {
         applicationComponent.inject(this);
     }
-
 
     /**
      * manually opening / closing bottom sheet on button click

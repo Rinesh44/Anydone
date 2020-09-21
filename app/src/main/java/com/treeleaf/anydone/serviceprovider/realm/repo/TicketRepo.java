@@ -5,15 +5,18 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -112,6 +115,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_STARTED.name();
             result.setString("ticketStatus", status);
+            result.setString("ticketType", Constants.ASSIGNED);
         });
     }
 
@@ -124,6 +128,9 @@ public class TicketRepo extends Repo {
             String status = TicketProto.TicketState.TICKET_CLOSED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.CLOSED_RESOLVED);
+            if (result.size() > 1) {
+                result.deleteFirstFromRealm();
+            }
         });
     }
 
@@ -134,6 +141,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_REOPENED.name();
             result.setString("ticketStatus", status);
+            result.setString("ticketType", Constants.ASSIGNED);
 
         });
     }
@@ -146,6 +154,9 @@ public class TicketRepo extends Repo {
             String status = TicketProto.TicketState.TICKET_RESOLVED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.CLOSED_RESOLVED);
+            if (result.size() > 1) {
+                result.deleteFirstFromRealm();
+            }
         });
     }
 
@@ -206,6 +217,7 @@ public class TicketRepo extends Repo {
         for (TicketProto.Ticket ticketPb : ticketListPb
         ) {
             Tickets tickets = new Tickets();
+            tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
             tickets.setTitle(ticketPb.getTitle());
             tickets.setDescription(ticketPb.getDescription());
@@ -230,8 +242,9 @@ public class TicketRepo extends Repo {
 
     public Tickets transformTicket
             (TicketProto.Ticket ticketPb, String type) {
-
+        Account account = AccountRepo.getInstance().getAccount();
         Tickets tickets = new Tickets();
+        tickets.setId(UUID.randomUUID().toString().replace("-", ""));
         tickets.setTicketId(ticketPb.getTicketId());
         tickets.setTitle(ticketPb.getTitle());
         tickets.setDescription(ticketPb.getDescription());
@@ -244,8 +257,8 @@ public class TicketRepo extends Repo {
         tickets.setCustomerType(ticketPb.getCustomerType().name());
         tickets.setCreatedAt(ticketPb.getCreatedAt());
         tickets.setTicketType(type);
-        tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
-        tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
+        tickets.setCreatedByName(account.getFullName());
+        tickets.setCreatedByPic(account.getProfilePic());
         tickets.setTicketStatus(ticketPb.getTicketState().name());
         tickets.setPriority(ticketPb.getPriorityValue());
         return tickets;
@@ -356,6 +369,96 @@ public class TicketRepo extends Repo {
             RealmResults<Tickets> result = realm1.where(Tickets.class).equalTo("ticketId", ticketId).findAll();
             result.deleteAllFromRealm();
         });
+    }
+
+    public void deleteAssignedTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.ASSIGNED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "assigned ticket throwable: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteAssignableTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.ASSIGNABLE)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteSubscribedTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.SUBSCRIBED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteSubscribableTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.SUBSCRIBEABLE)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteClosedResolvedTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.CLOSED_RESOLVED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+
     }
 }
 

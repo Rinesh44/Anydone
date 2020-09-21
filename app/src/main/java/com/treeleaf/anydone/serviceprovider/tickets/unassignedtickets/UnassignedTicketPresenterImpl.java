@@ -261,18 +261,43 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
     }
 
     private void saveAssignableTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
-        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.ASSIGNABLE, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                getView().getAssignableTicketSuccess();
-            }
+        List<Tickets> assignableTickets = TicketRepo.getInstance().getAssignableTickets();
+        if (CollectionUtils.isEmpty(assignableTickets)) {
+            saveTickets(ticketsList);
+        } else {
 
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "failed to save assignable tickets");
-                getView().getAssignableTicketSuccess();
-            }
-        });
+            TicketRepo.getInstance().deleteAssignableTickets(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "deleted all assignable tickets");
+
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete assignable tickets");
+                }
+            });
+
+            saveTickets(ticketsList);
+        }
+
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.ASSIGNABLE,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getAssignableTicketSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG, "failed to save assignable tickets");
+                        getView().getAssignableTicketSuccess();
+                    }
+                });
     }
 
 

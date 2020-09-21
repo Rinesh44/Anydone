@@ -25,7 +25,8 @@ public class AssignEmployeeRepo extends Repo {
         return ASSIGN_EMPLOYEE_REPO;
     }
 
-    public void saveAssignEmployeeList(final List<UserProto.EmployeeProfile> employeeList, final Callback callback) {
+    public void saveAssignEmployeeList(final List<UserProto.EmployeeProfile> employeeList,
+                                       final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             realm.executeTransaction(realm1 -> {
