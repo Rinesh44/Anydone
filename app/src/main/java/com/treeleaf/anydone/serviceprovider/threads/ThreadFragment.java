@@ -40,13 +40,10 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
-import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
@@ -61,7 +58,6 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
-import io.realm.RealmList;
 
 public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         implements ThreadContract.ThreadView {
@@ -90,6 +86,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private SearchServiceAdapter adapter;
     private ThreadAdapter threadAdapter;
     private BottomSheetDialog serviceSheet;
+    private List<Thread> threadList;
 
     @Override
     protected int getLayout() {
@@ -148,6 +145,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                     }, 1000);
                 }
         );
+
+        listenConversationMessages();
     }
 
     private void createServiceBottomSheet() {
@@ -251,7 +250,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         }
     }
 
-    public static void listenConversationMessages() {
+    private void listenConversationMessages() {
         Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         if (userAccount != null) {
             String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
@@ -262,148 +261,45 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
                     RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                             .parseFrom(message.getPayload());
-                    String clientId = relayResponse.getRtcMessage().getClientId();
 
                     if (relayResponse.getResponseType().equals(RtcProto
                             .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
                         new Handler(Looper.getMainLooper()).post(() -> {
-                            Conversation conversation = ConversationRepo.getInstance()
-                                    .getConversationByClientId(clientId);
-                            if (conversation == null) {
-                                Conversation newConversation = createNewConversation(relayResponse);
-                                ConversationRepo.getInstance().saveConversation(newConversation,
-                                        new Repo.Callback() {
-                                            @Override
-                                            public void success(Object o) {
-                                                GlobalUtils.showLog(TAG, "incoming message saved");
-                                            }
-
-                                            @Override
-                                            public void fail() {
-                                                GlobalUtils.showLog(TAG,
-                                                        "failed to save incoming message");
-                                            }
-                                        });
-                            } else {
-                                updateConversation(conversation, relayResponse);
+                            String threadId = relayResponse.getRtcMessage().getRefId();
+                            for (Thread existingThread : threadList
+                            ) {
+                                if (existingThread.getThreadId().equalsIgnoreCase(threadId)) {
+                                    updateThread(existingThread, relayResponse);
+                                }
                             }
                         });
-
                     }
                 }
             });
         }
+
     }
 
-    public static Conversation createNewConversation(RtcProto.RelayResponse relayResponse) {
-        RealmList<Receiver> receiverList = new RealmList<>();
-        for (RtcProto.MsgReceiver receiverPb : relayResponse.getRtcMessage().getReceiversList()
-        ) {
-            Receiver receiver = new Receiver();
-            receiver.setReceiverId(receiverPb.getReceiverId());
-            receiver.setMessageStatus(receiverPb.getRtcMessageStatus().name());
-            receiver.setReceiverType(receiverPb.getReceiverActor().name());
-            receiver.setSenderId(receiverPb.getAccountId());
-            receiverList.add(receiver);
-        }
 
-        Conversation conversation = new Conversation();
-        conversation.setClientId(relayResponse.getRtcMessage().getClientId());
-        if (relayResponse.getRtcMessage().getSenderActor()
-                .equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE)) {
-            conversation.setSenderId("Anydone bot 101");
-        } else {
-            conversation.setSenderId(relayResponse.getRtcMessage().getSenderAccountId());
-        }
-        switch (relayResponse.getRtcMessage().getRtcMessageType().name()) {
-            case "TEXT_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
-                break;
-            case "LINK_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getLink().getTitle());
-                break;
+    private void updateThread(Thread thread,
+                              RtcProto.RelayResponse relayResponse) {
 
-            case "IMAGE_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getImage()
-                        .getImages(0).getUrl());
-                conversation.setImageDesc(relayResponse.getRtcMessage().getImage().getTitle());
-                break;
-
-            case "DOC_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getAttachment().getUrl());
-                conversation.setFileName(relayResponse.getRtcMessage().getAttachment().getTitle());
-                break;
-
-            case "AUDIO_RTC_MESSAGE":
-                break;
-
-            case "VIDEO_RTC_MESSAGE":
-                break;
-
-            case "VIDEO_CALL_RTC_MESSAGE":
-                break;
-
-            case "AUDIO_CALL_RTC_MESSAGE":
-                break;
-
-            case "UNRECOGNIZED":
-                break;
-
-            default:
-                break;
-        }
-
-        GlobalUtils.showLog(TAG, "create new conversation()");
-        conversation.setMessageType(relayResponse.getRtcMessage()
-                .getRtcMessageType().name());
-        conversation.setSenderType(relayResponse.getRtcMessage().getSenderActor().name());
-        conversation.setSenderName(relayResponse.getRtcMessage()
-                .getSenderAccountObj().getFullName());
-        conversation.setSenderImageUrl(relayResponse.getRtcMessage()
-                .getSenderAccountObj().getProfilePic());
-        conversation.setRefId((relayResponse.getRtcMessage().getRefId()));
-        conversation.setSent(true);
-        conversation.setSendFail(false);
-        conversation.setConversationId(relayResponse.getRtcMessage().getRtcMessageId());
-        conversation.setSentAt(relayResponse.getRtcMessage().getSentAt());
-        conversation.setSavedAt(relayResponse.getRtcMessage().getSavedAt());
-        conversation.setReceiverList(receiverList);
-        return conversation;
-    }
-
-    public static void updateConversation(Conversation conversation,
-                                          RtcProto.RelayResponse relayResponse) {
-        RealmList<Receiver> receiverList = new RealmList<>();
-        for (RtcProto.MsgReceiver receiverPb : relayResponse.getRtcMessage().getReceiversList()
-        ) {
-            Receiver receiver = new Receiver();
-            receiver.setSenderId(receiverPb.getAccountId());
-            receiver.setReceiverType(receiverPb.getReceiverActor().name());
-            receiver.setMessageStatus(receiverPb.getRtcMessageStatus().name());
-            receiver.setReceiverId(receiverPb.getReceiverId());
-            receiverList.add(receiver);
-        }
-
-        String message = getMessageFromConversationType(relayResponse);
-
-        new Handler(Looper.getMainLooper()).post(() -> ConversationRepo.getInstance()
-                .updateConversation(conversation,
-                        relayResponse.getRtcMessage().getRtcMessageId(),
+        new Handler(Looper.getMainLooper()).post(() -> ThreadRepo.getInstance()
+                .updateThread(thread,
+                        System.currentTimeMillis(),
                         relayResponse.getRtcMessage().getSentAt(),
-                        relayResponse.getRtcMessage().getSavedAt(),
-                        receiverList,
-                        message,
+                        relayResponse.getRtcMessage().getText().getMessage(),
+                        false,
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {
-                                GlobalUtils.showLog(TAG, "conversation updated");
-                           /*     getView().onSubscribeSuccessMsg(conversation,
-                                        relayResponse.getBotReply());*/
+                                GlobalUtils.showLog(TAG, "thread updated");
+                                threadAdapter.updateThread(thread.getThreadId());
                             }
 
                             @Override
                             public void fail() {
-                                GlobalUtils.showLog(TAG, "failed to update conversation");
+                                GlobalUtils.showLog(TAG, "failed to update thread");
                             }
                         }));
     }
@@ -429,41 +325,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             ivThreadNotFound.setVisibility(View.GONE);
             presenter.getConversationThreads(true);
         });
-    }
-
-    public static String getMessageFromConversationType(RtcProto.RelayResponse response) {
-        switch (response.getRtcMessage().getRtcMessageType().name()) {
-            case "TEXT_RTC_MESSAGE":
-                return response.getRtcMessage().getText().getMessage();
-            case "LINK_RTC_MESSAGE":
-                return response.getRtcMessage().getLink().getTitle();
-
-            case "IMAGE_RTC_MESSAGE":
-                return response.getRtcMessage().getImage().getImages(0).getUrl();
-
-         /*   case "DOC_RTC_MESSAGE":
-                return response.getRtcMessage().getAttachment().getUrl();
-
-            case "AUDIO_RTC_MESSAGE":
-                break;
-
-            case "VIDEO_RTC_MESSAGE":
-                break;
-
-            case "VIDEO_CALL_RTC_MESSAGE":
-                break;
-
-            case "AUDIO_CALL_RTC_MESSAGE":
-                break;
-
-            case "UNRECOGNIZED":
-                break;
-
-            default:
-                break;*/
-        }
-
-        return null;
     }
 
 
@@ -561,7 +422,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void getConversationThreadSuccess() {
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-        List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
+        threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         setUpThreadRecyclerView(threadList);
         rvThreads.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(threadList)) {

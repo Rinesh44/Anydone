@@ -3,6 +3,8 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +21,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Card;
+import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
@@ -42,6 +46,16 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
 
     public void setData(List<Thread> threadList) {
         this.threadList = threadList;
+    }
+
+
+    public void updateThread(String threadId) {
+        new Handler(Looper.getMainLooper()).post(() -> {
+            Thread updatedThread = ThreadRepo.getInstance().getThreadById(threadId);
+            int index = threadList.indexOf(updatedThread);
+            threadList.set(index, updatedThread);
+            notifyItemChanged(index);
+        });
     }
 
     @NonNull

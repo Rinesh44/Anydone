@@ -73,7 +73,7 @@ public class ThreadRepo extends Repo {
         });
     }
 
-    private List<Thread> transformThread(List<ConversationProto.ConversationThread> threadListPb) {
+/*    private List<Thread> transformThread(List<ConversationProto.ConversationThread> threadListPb) {
         List<Thread> threadList = new ArrayList<>();
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
         List<Thread> existingThreads = getThreadsByServiceId(serviceId);
@@ -99,6 +99,37 @@ public class ThreadRepo extends Repo {
                 Thread newThread = createNewThread(threadPb);
                 threadList.add(newThread);
             }
+        }
+        return threadList;
+    }*/
+
+    private List<Thread> transformThread(List<ConversationProto.ConversationThread> threadListPb) {
+        List<Thread> threadList = new ArrayList<>();
+        for (ConversationProto.ConversationThread threadPb : threadListPb
+        ) {
+            Thread thread = new Thread();
+            if (!CollectionUtils.isEmpty(threadPb.getEmployeeProfileList())) {
+                thread.setAssignedEmployee(ProtoMapper.transformEmployee(threadPb.getEmployeeProfileList()).get(0));
+            }
+            thread.setBotEnabled(true);
+            thread.setCreatedAt(threadPb.getCreatedAt());
+            thread.setCustomerEmail(threadPb.getCustomer().getEmail());
+            thread.setCustomerId(threadPb.getCustomer().getCustomerId());
+            thread.setCustomerImageUrl(threadPb.getCustomer().getProfilePic());
+            thread.setCustomerName(threadPb.getCustomer().getFullName());
+            thread.setCustomerPhone(threadPb.getCustomer().getPhone());
+            thread.setDefaultLabelId(threadPb.getTag().getTagId());
+            thread.setDefaultLabel(threadPb.getTag().getLabel());
+            thread.setFinalMessage(threadPb.getMessage().getMessage().getText());
+            thread.setLastMessageDate(threadPb.getMessage().getTimestamp());
+            thread.setServiceId(threadPb.getServiceId());
+            thread.setServiceProviderId(threadPb.getServiceProviderId());
+            thread.setSource(threadPb.getSource().name());
+            thread.setThreadId(threadPb.getConversationId());
+            thread.setUpdatedAt(threadPb.getUpdatedAt());
+            thread.setBotEnabled(threadPb.getBotEnabled());
+            thread.setSeen(true);
+            threadList.add(thread);
         }
         return threadList;
     }
@@ -146,8 +177,12 @@ public class ThreadRepo extends Repo {
         return newThread;
     }
 
-    public void updateThread(final Thread thread, long updatedAt,
-                             long lastMessageDate, String lastMessage, boolean seen) {
+    public void updateThread(final Thread thread,
+                             long updatedAt,
+                             long lastMessageDate,
+                             String lastMessage,
+                             boolean seen,
+                             final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             GlobalUtils.showLog(TAG, "updateThread()");
@@ -157,10 +192,12 @@ public class ThreadRepo extends Repo {
                 thread.setFinalMessage(lastMessage);
                 thread.setSeen(seen);
                 realm.copyToRealmOrUpdate(thread);
+                callback.success(null);
             });
         } catch (Throwable throwable) {
             GlobalUtils.showLog(TAG, "error thread update: " + throwable.getLocalizedMessage());
             throwable.printStackTrace();
+            callback.fail();
         } finally {
             close(realm);
         }
