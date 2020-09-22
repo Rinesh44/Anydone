@@ -21,6 +21,7 @@
         android:background="@color/transparent"
         android:gravity="center_vertical"
         android:hint="Search Service"
+        android:inputType="textVisiblePassword"
         android:paddingStart="@dimen/dimens_2x"
         android:paddingTop="@dimen/dimen_10x1"
         android:paddingEnd="@dimen/dimens_2x"

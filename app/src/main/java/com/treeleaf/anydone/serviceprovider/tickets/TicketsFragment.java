@@ -198,6 +198,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
+
         EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
         rvServices = llBottomSheet.findViewById(R.id.rv_services);
 
@@ -206,6 +207,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 setupSheetHeight(serviceBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
             }
         });
+
+        serviceBottomSheet.setOnDismissListener(dialog -> searchService.clearFocus());
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         if (CollectionUtils.isEmpty(serviceList)) {

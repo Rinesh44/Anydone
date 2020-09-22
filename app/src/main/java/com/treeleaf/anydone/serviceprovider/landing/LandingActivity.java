@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -30,13 +31,9 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        Intent i = getIntent();
-        boolean serviceOrder = i.getBooleanExtra("service_order", false);
-        if (serviceOrder) {
-            openFragment(ServiceRequestFragment.newInstance("", ""));
-        } else {
-            openFragment(TicketsFragment.newInstance("", ""));
-        }
+
+        openFragment(DashboardFragment.newInstance("", ""));
+        bottomNavigationView.getMenu().getItem(2).setChecked(true);
     }
 
     public void openFragment(Fragment fragment) {
@@ -92,6 +89,10 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
 
             case R.id.navigation_threads:
                 openFragment(ThreadFragment.newInstance("", ""));
+                return true;
+
+            case R.id.navigation_dashboard:
+                openFragment(DashboardFragment.newInstance("", ""));
                 return true;
 
             case R.id.navigation_account:

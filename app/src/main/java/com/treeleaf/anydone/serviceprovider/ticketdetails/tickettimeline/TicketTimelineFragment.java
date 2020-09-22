@@ -968,7 +968,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         alert11.show();
     }
 
-
     /**
      * manually opening / closing bottom sheet on button click
      */
@@ -999,6 +998,16 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_assign_employee));
         } else {
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
+            tvAssignedEmployee.setText(assignedEmployee.getName());
+
+
+            String employeeImage = assignedEmployee.getEmployeeImageUrl();
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(this).load(employeeImage).apply(options).into(civAssignedEmployee);
         }
 
         ivAssignEmployee.setOnClickListener(v -> employeeSheet.show());
