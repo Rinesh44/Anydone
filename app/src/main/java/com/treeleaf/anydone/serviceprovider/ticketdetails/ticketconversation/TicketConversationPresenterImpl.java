@@ -734,7 +734,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         int height = startDraw.getBitmapHeight();
                         long captureTime = startDraw.getCapturedTime();
                         byte[] convertedBytes = imageByteString.toByteArray();
-                        getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                        //TODO: paste here from Servicerequestdetailpresenterimpl
+                        getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, "accountId");
                     }
                 }
 

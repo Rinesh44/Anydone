@@ -766,9 +766,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
         ((TicketDetailsActivity) getActivity())
-                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
     }
 
     @Override

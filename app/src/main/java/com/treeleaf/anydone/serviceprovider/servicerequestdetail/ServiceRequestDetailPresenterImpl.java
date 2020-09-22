@@ -775,7 +775,7 @@ public class ServiceRequestDetailPresenterImpl extends
                             int height = startDraw.getBitmapHeight();
                             long captureTime = startDraw.getCapturedTime();
                             byte[] convertedBytes = imageByteString.toByteArray();
-                            getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                            getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
                         }
                     }
                 }
@@ -786,10 +786,10 @@ public class ServiceRequestDetailPresenterImpl extends
                     if (startDrawAckResponse != null) {
                         if (userAccountId.equals(accountId)) {
                             //sent and received id is same
-                            getView().onImageAckSent();
+                            getView().onImageAckSent(accountId);
                         } else {
                             //sent and received id is different
-                            getView().onRemoteDeviceConfigReceived(startDrawAckResponse);
+                            getView().onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
                         }
                     }
                 }
@@ -801,7 +801,7 @@ public class ServiceRequestDetailPresenterImpl extends
                                 equals(userAccountId)) {
                             getView().onImageDrawDiscardLocal();
                         } else
-                            getView().onImageDrawDiscardRemote();
+                            getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId());
                     }
                 }
 
@@ -854,7 +854,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                         captureDrawParam.setXCoordinate(drawTouchMove.getX());
                         captureDrawParam.setYCoordinate(drawTouchMove.getY());
-                        getView().onDrawTouchMove(captureDrawParam);
+                        getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId());
                     }
                 }
 
@@ -915,7 +915,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
                         captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
                         captureDrawParam.setTextColor(drawMetaDataChange.getTextColor());
-                        getView().onDrawParamChanged(captureDrawParam);
+                        getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId());
                     }
                 }
 
@@ -925,7 +925,7 @@ public class ServiceRequestDetailPresenterImpl extends
                             .getDrawCanvasClearResponse();
                     if (drawCanvasClear != null &&
                             !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
-                        getView().onDrawCanvasCleared();
+                        getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId());
                     }
                 }
 
