@@ -99,6 +99,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private Boolean audioOff = false;
     private Boolean justScreenShot = false;
     private Boolean showFullList = false;
+    private boolean remoteImage;
+    private boolean callTerminated = false;
+    private boolean isDrawMinized = false;
 
     private String calleeName, calleeProfile;
 
@@ -108,7 +111,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
     private ServerDrawingPadEventListener serverDrawingPadEventListener;
-    private boolean callTerminated = false;
+
     private Handler handler;
     private Runnable runnable;
     private int timerDelay = 10000;
@@ -119,7 +122,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private int localDeviceHeight, localDeviceWidth;
     private int remoteDeviceHeight, remoteDeviceWidth;
     private String mLocalAccountId;
-    private boolean remoteImage;
 
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
@@ -1028,15 +1030,18 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener startDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            remoteImage = false;
-            showHideDrawView(true);
-            showHideDiscardDrawButton();
-            //take screenshot
+            if (isDrawMinized) {
+                maximizeCurrentDrawing();
+            } else {
+                remoteImage = false;
+                showHideDrawView(true);
+                showHideDiscardDrawButton();
+                //take screenshot
 
-            remoteRender.addFrameListener(frameListener, 1);
-            treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
-            //after taking screenshot
-
+                remoteRender.addFrameListener(frameListener, 1);
+                treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
+                //after taking screenshot
+            }
         }
     };
 
@@ -1072,18 +1077,28 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         @Override
         public void onClick(View v) {
             DrawPadUtil.hideKeyboard(v.getRootView(), ServerActivity.this);
-            switchDrawModeAndVideoMode(false);
-            VideoCallUtil.materialContainerTransformVisibility(layoutDraw, imgMaximizeDraw, rlServerRoot);
+            minimizeCurrentDrawing();
         }
     };
 
     View.OnClickListener maximizeDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switchDrawModeAndVideoMode(true);
-            VideoCallUtil.materialContainerTransformVisibility(imgMaximizeDraw, layoutDraw, rlServerRoot);
+            maximizeCurrentDrawing();
         }
     };
+
+    private void minimizeCurrentDrawing() {
+        isDrawMinized = true;
+        switchDrawModeAndVideoMode(false);
+        VideoCallUtil.materialContainerTransformVisibility(layoutDraw, imgMaximizeDraw, rlServerRoot);
+    }
+
+    private void maximizeCurrentDrawing() {
+        isDrawMinized = false;
+        switchDrawModeAndVideoMode(true);
+        VideoCallUtil.materialContainerTransformVisibility(imgMaximizeDraw, layoutDraw, rlServerRoot);
+    }
 
     private void showHideDrawView(Boolean showDrawView) {
         layoutDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
@@ -1091,6 +1106,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         clCallSettings.setVisibility(showDrawView ? View.GONE : View.VISIBLE);
         clCallOtions.setVisibility(showDrawView ? View.GONE : View.VISIBLE);
+
+        if (!showDrawView) {
+            imgMaximizeDraw.setVisibility(View.GONE);
+            isDrawMinized = false;
+        }
 
         if (showDrawView) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();

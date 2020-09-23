@@ -96,6 +96,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Boolean audioOff = false;
     private Boolean justScreenShot = false;
     private Boolean showFullList = false;
+    private Boolean credentialsReceived;
+    private boolean isJoineePresent;
+    private boolean callTerminated = false;
+    private boolean remoteImage;
+    private boolean isDrawMinized = false;
 
     private String calleeName, calleeProfile;
     private String mLocalAccountId;
@@ -106,20 +111,17 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
     private ClientDrawingPadEventListener clientDrawingPadEventListener;
-    private boolean callTerminated = false;
     private Handler handler;
     private Runnable runnable;
     private int timerDelay = 10000;
-    private Boolean credentialsReceived;
     private String roomNumber;
     private AppRTCAudioManager audioManager;
     private DrawMetadata drawMetaDataLocal, drawMetaDataRemote;
     private MetaDataUpdateListener metaDataUpdateListener;
     private CaptureDrawParam captureDrawParam;
-    private boolean isJoineePresent;
+
     private int localDeviceHeight, localDeviceWidth;
     private int remoteDeviceHeight, remoteDeviceWidth;
-    private boolean remoteImage;
 
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
@@ -1065,15 +1067,17 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener startDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            remoteImage = false;
-            showHideDrawView(true);
-            showHideDiscardDrawButton();
-            //take screenshot
+            if (isDrawMinized) {
+                maximizeCurrentDrawing();
+            } else {
+                remoteImage = false;
+                showHideDrawView(true);
+                showHideDiscardDrawButton();
+                //take screenshot
 
-            localRender.addFrameListener(frameListener, 1);
-            treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
-            //after taking screenshot
-
+                localRender.addFrameListener(frameListener, 1);
+                treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
+            }
         }
     };
 
@@ -1109,18 +1113,28 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         @Override
         public void onClick(View v) {
             DrawPadUtil.hideKeyboard(v.getRootView(), ClientActivity.this);
-            switchDrawModeAndVideoMode(false);
-            VideoCallUtil.materialContainerTransformVisibility(layoutDraw, imgMaximizeDraw, rlClientRoot);
+            minimizeCurrentDrawing();
         }
     };
 
     View.OnClickListener maximizeDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switchDrawModeAndVideoMode(true);
-            VideoCallUtil.materialContainerTransformVisibility(imgMaximizeDraw, layoutDraw, rlClientRoot);
+            maximizeCurrentDrawing();
         }
     };
+
+    private void minimizeCurrentDrawing() {
+        isDrawMinized = true;
+        switchDrawModeAndVideoMode(false);
+        VideoCallUtil.materialContainerTransformVisibility(layoutDraw, imgMaximizeDraw, rlClientRoot);
+    }
+
+    private void maximizeCurrentDrawing() {
+        isDrawMinized = false;
+        switchDrawModeAndVideoMode(true);
+        VideoCallUtil.materialContainerTransformVisibility(imgMaximizeDraw, layoutDraw, rlClientRoot);
+    }
 
     private void showHideDrawView(Boolean showDrawView) {
         layoutDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
@@ -1128,6 +1142,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
         clCallSettings.setVisibility(showDrawView ? View.GONE : View.VISIBLE);
         clCallOtions.setVisibility(showDrawView ? View.GONE : View.VISIBLE);
+
+        if (!showDrawView) {
+            imgMaximizeDraw.setVisibility(View.GONE);
+            isDrawMinized = false;
+        }
 
         if (showDrawView) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
