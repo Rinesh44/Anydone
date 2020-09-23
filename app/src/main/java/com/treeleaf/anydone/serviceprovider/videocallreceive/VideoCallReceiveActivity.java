@@ -24,7 +24,7 @@ import java.math.BigInteger;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 
-public class VideoReceiveActivity extends MvpBaseActivity
+public class VideoCallReceiveActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
         VideoCallReceiveContract.VideoCallReceiveActivityView, Callback.OnDrawEventListener {
     private static final String MQTT = "MQTT_EVENT_CHECK";
@@ -190,8 +190,8 @@ public class VideoReceiveActivity extends MvpBaseActivity
             convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
-            int localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoReceiveActivity.this)[0];
-            int localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoReceiveActivity.this)[1];
+            int localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoCallReceiveActivity.this)[0];
+            int localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoCallReceiveActivity.this)[1];
             presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId, imageByteString,
                     localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
 
