@@ -121,7 +121,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="New" />
+                                android:text="New"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                         </RelativeLayout>
@@ -144,7 +145,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="Resoved" />
+                                android:text="Resoved"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                         </RelativeLayout>
@@ -166,7 +168,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="Unresolved" />
+                                android:text="Unresolved"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                         </RelativeLayout>
@@ -200,7 +203,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="Closed" />
+                                android:text="Closed"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                         </RelativeLayout>
@@ -223,7 +227,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="Re-opened" />
+                                android:text="Re-opened"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                         </RelativeLayout>
@@ -245,7 +250,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="Total" />
+                                android:text="Total"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                         </RelativeLayout>
@@ -256,7 +262,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="300dp"
                     app:cardElevation="4dp"
                     app:cardUseCompatPadding="true">
 
@@ -268,13 +274,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10x1"
-                            android:text="Trends" />
+                            android:layout_margin="@dimen/dimen_2x4"
+                            android:text="Trends"
+                            android:textSize="@dimen/material_text_caption" />
 
                         <com.github.mikephil.charting.charts.LineChart
                             android:id="@+id/line_chart"
                             android:layout_width="match_parent"
-                            android:layout_height="180dp"
+                            android:layout_height="220dp"
                             android:layout_marginStart="@dimen/dimen_4x1"
                             android:layout_marginEnd="@dimen/dimen_4x1" />
 
@@ -293,8 +300,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_10x1"
-                        android:text="Resolve Time" />
+                        android:layout_margin="@dimen/dimen_2x4"
+                        android:text="Resolve Time"
+                        android:textSize="@dimen/material_text_caption" />
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -323,8 +331,9 @@
                                 android:id="@+id/tv_by_source"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/dimen_10x1"
-                                android:text="By Source" />
+                                android:layout_margin="@dimen/dimen_2x4"
+                                android:text="By Source"
+                                android:textSize="@dimen/material_text_caption" />
 
                             <com.github.mikephil.charting.charts.PieChart
                                 android:id="@+id/pie_chart_by_source"
@@ -355,8 +364,9 @@
                                 android:id="@+id/tv_by_priority"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/dimen_10x1"
-                                android:text="By Priority" />
+                                android:layout_margin="@dimen/dimen_2x4"
+                                android:text="By Priority"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                             <com.github.mikephil.charting.charts.PieChart
@@ -387,8 +397,9 @@
                                 android:id="@+id/tv_by_status"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/dimen_10x1"
-                                android:text="By Status" />
+                                android:layout_margin="@dimen/dimen_2x4"
+                                android:text="By Status"
+                                android:textSize="@dimen/material_text_caption" />
 
 
                             <com.github.mikephil.charting.charts.PieChart

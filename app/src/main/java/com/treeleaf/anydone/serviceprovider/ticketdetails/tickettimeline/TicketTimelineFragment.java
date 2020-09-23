@@ -54,6 +54,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -225,6 +226,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             presenter.getTicketTimeline(ticketId);
             presenter.getEmployees();
             setTicketDetails();
+
+            setContributors();
         }
 
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
@@ -289,6 +292,16 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
     }
 
+    private void setContributors() {
+        Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
+        RealmList<Employee> contributorList = tickets.getContributorList();
+        if (!CollectionUtils.isEmpty(contributorList)) {
+            inflateContributorLayout(contributorList, llContributorList);
+        } else {
+            llContributors.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -296,13 +309,34 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (requestCode == ADD_CONTRIBUTOR && resultCode == 2) {
             if (data != null) {
                 boolean employeeAssigned = data.getBooleanExtra("contributor_added", false);
-
+                List<String> contributorIds = data.getStringArrayListExtra("contributors");
                 if (employeeAssigned) {
-//                    presenter.getTicketTimeline(ticketId);
-                    presenter.getAssignedEmployees(ticketId);
+                    addContributorsLocally(contributorIds);
                 }
             }
         }
+    }
+
+    private void addContributorsLocally(List<String> contributorIds) {
+        RealmList<Employee> contributorList = new RealmList<>();
+        for (String contributorId : contributorIds
+        ) {
+            Employee employee = EmployeeRepo.getInstance().getEmployeeByAccountId(contributorId);
+            contributorList.add(employee);
+        }
+
+        TicketRepo.getInstance().setContributors(ticketId, contributorList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "contributors added");
+                setContributors();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "error while adding contributors");
+            }
+        });
     }
 
 
@@ -811,11 +845,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
 
-    private void inflateContributorLayout(RealmList<AssignEmployee> contributors,
+    private void inflateContributorLayout(RealmList<Employee> contributors,
                                           LinearLayout parent) {
         parent.removeAllViews();
         GlobalUtils.showLog(TAG, "contributors size check: " + contributors.size());
-        for (AssignEmployee contributor : contributors
+        for (Employee contributor : contributors
         ) {
             @SuppressLint("InflateParams") View viewAssignedEmployee = getLayoutInflater()
                     .inflate(R.layout.layout_contributor_row, null, false);
@@ -898,7 +932,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         builder1.setPositiveButton(
                 "Ok",
                 (dialog, id) -> {
-//                    presenter.unAssignEmployee(ticketId, employeeId);
+                    presenter.unAssignContributor(ticketId, employeeId);
                     dialog.dismiss();
                 });
 
@@ -1168,12 +1202,22 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     @Override
-    public void onEmployeeUnAssignSuccess(String empId) {
-        presenter.getAssignedEmployees(ticketId);
+    public void onContributorUnAssignSuccess(String empId) {
+        TicketRepo.getInstance().removeContributor(ticketId, empId, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "removed contributors");
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "error while removing contributors");
+            }
+        });
     }
 
     @Override
-    public void onEmployeeUnAssignFail(String msg) {
+    public void onContributorUnAssignFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());
@@ -1292,12 +1336,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     public void getEmployeeSuccess() {
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
         setUpEmployeeRecyclerView();
-
-        RealmList<AssignEmployee> dummyContributors = new RealmList<>();
-        dummyContributors.add(employeeList.get(0));
-        dummyContributors.add(employeeList.get(1));
-
-        inflateContributorLayout(dummyContributors, llContributorList);
     }
 
     @Override

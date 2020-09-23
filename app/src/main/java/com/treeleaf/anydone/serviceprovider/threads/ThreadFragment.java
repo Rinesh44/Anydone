@@ -251,6 +251,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     }
 
     private void listenConversationMessages() {
+        GlobalUtils.showLog(TAG, "listen convo");
         Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         if (userAccount != null) {
             String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
@@ -259,16 +260,21 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    GlobalUtils.showLog(TAG, "message arrived");
                     RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                             .parseFrom(message.getPayload());
 
                     if (relayResponse.getResponseType().equals(RtcProto
                             .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
+                        GlobalUtils.showLog(TAG, "message type text");
                         new Handler(Looper.getMainLooper()).post(() -> {
                             String threadId = relayResponse.getRtcMessage().getRefId();
+
                             for (Thread existingThread : threadList
                             ) {
+                                GlobalUtils.showLog(TAG, "inside for loop");
                                 if (existingThread.getThreadId().equalsIgnoreCase(threadId)) {
+                                    GlobalUtils.showLog(TAG, "thread exists");
                                     updateThread(existingThread, relayResponse);
                                 }
                             }
@@ -294,7 +300,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                             @Override
                             public void success(Object o) {
                                 GlobalUtils.showLog(TAG, "thread updated");
-                                threadAdapter.updateThread(thread.getThreadId());
+                                String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+                                List<Thread> updatedThreadList = ThreadRepo.getInstance()
+                                        .getThreadsByServiceId(serviceId);
+                                threadAdapter.setData(updatedThreadList);
+                                threadAdapter.notifyDataSetChanged();
                             }
 
                             @Override
@@ -400,6 +410,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             Hawk.put(Constants.SERVICE_CHANGED_TICKET, false);
         }
 */
+        listenConversationMessages();
         presenter.getConversationThreads(false);
     }
 

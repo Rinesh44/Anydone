@@ -249,4 +249,21 @@ public final class ProtoMapper {
         return assignEmployeeList;
     }
 
+    public static RealmList<Employee> transformContributors(List<TicketProto.TicketContributor> employeeList) {
+        RealmList<Employee> assignEmployeeList = new RealmList<>();
+        for (TicketProto.TicketContributor profile : employeeList
+        ) {
+            Employee employee = new Employee();
+            employee.setAccountId(profile.getEmployee().getAccount().getAccountId());
+            employee.setCreatedAt(profile.getEmployee().getCreatedAt());
+            employee.setEmail(profile.getEmployee().getAccount().getEmail());
+            employee.setEmployeeId(profile.getEmployee().getEmployeeProfileId());
+            employee.setEmployeeImageUrl(profile.getEmployee().getAccount().getProfilePic());
+            employee.setName(profile.getEmployee().getAccount().getFullName());
+            employee.setPhone(profile.getEmployee().getAccount().getPhone());
+            assignEmployeeList.add(employee);
+        }
+        return assignEmployeeList;
+    }
+
 }

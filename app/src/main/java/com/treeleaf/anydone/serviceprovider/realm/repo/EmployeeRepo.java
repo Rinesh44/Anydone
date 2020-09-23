@@ -65,6 +65,13 @@ public class EmployeeRepo extends Repo {
                 .findFirst();
     }
 
+    public Employee getEmployeeById(String employeeId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        return realm.where(Employee.class)
+                .equalTo("employeeId", employeeId)
+                .findFirst();
+    }
+
     public Employee getEmployee() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {

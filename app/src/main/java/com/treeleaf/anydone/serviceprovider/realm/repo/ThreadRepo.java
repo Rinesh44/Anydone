@@ -39,8 +39,10 @@ public class ThreadRepo extends Repo {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             realm.executeTransaction(realm1 -> {
-                List<Thread> threadList =
+                RealmList<Thread> threadList =
                         transformThread(threadListPb);
+
+                removeDeletedItems(threadList);
                 if (!CollectionUtils.isEmpty(threadList))
                     realm1.copyToRealmOrUpdate(threadList);
                 callback.success(null);
@@ -52,6 +54,21 @@ public class ThreadRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
+
+    private void removeDeletedItems(RealmList<Thread> threadList) {
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        RealmResults<Thread> oldThreadList = getThreadsByServiceId(selectedService);
+        oldThreadList.deleteAllFromRealm();
+  /*      RealmList<Thread> diffList = new RealmList<>();
+        for (Thread thread : oldThreadList
+        ) {
+            if (!threadList.contains(thread)) {
+                diffList.add(thread);
+            }
+        }
+        if (!CollectionUtils.isEmpty(diffList))
+            diffList.deleteAllFromRealm();*/
     }
 
 
@@ -103,13 +120,14 @@ public class ThreadRepo extends Repo {
         return threadList;
     }*/
 
-    private List<Thread> transformThread(List<ConversationProto.ConversationThread> threadListPb) {
-        List<Thread> threadList = new ArrayList<>();
+    private RealmList<Thread> transformThread(List<ConversationProto.ConversationThread> threadListPb) {
+        RealmList<Thread> threadList = new RealmList<>();
         for (ConversationProto.ConversationThread threadPb : threadListPb
         ) {
             Thread thread = new Thread();
             if (!CollectionUtils.isEmpty(threadPb.getEmployeeProfileList())) {
-                thread.setAssignedEmployee(ProtoMapper.transformEmployee(threadPb.getEmployeeProfileList()).get(0));
+                thread.setAssignedEmployee(ProtoMapper.transformEmployee(
+                        threadPb.getEmployeeProfileList()).get(0));
             }
             thread.setBotEnabled(true);
             thread.setCreatedAt(threadPb.getCreatedAt());
@@ -216,7 +234,7 @@ public class ThreadRepo extends Repo {
         }
     }
 
-    public List<Thread> getThreadsByServiceId(String serviceId) {
+    public RealmResults<Thread> getThreadsByServiceId(String serviceId) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             return realm.where(Thread.class)

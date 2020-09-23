@@ -15,7 +15,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -147,6 +147,29 @@ public final class OrderServiceRpcProto {
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 15;</code>
      */
     com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    boolean hasLinkShareContext();
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> 
+        getLinkShareContextsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContexts(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    int getLinkShareContextsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.OrderServiceBaseRequest}
@@ -161,14 +184,15 @@ public final class OrderServiceRpcProto {
       stringValue_ = "";
       stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       serviceDoerAccounts_ = emptyProtobufList();
+      linkShareContexts_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -182,7 +206,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -210,11 +234,11 @@ public final class OrderServiceRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -228,7 +252,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -272,7 +296,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -293,7 +317,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -304,7 +328,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -315,7 +339,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -792,7 +816,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile serviceDoerAccounts = 13;</code>
      */
     private void addAllServiceDoerAccounts(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
       ensureServiceDoerAccountsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceDoerAccounts_);
@@ -915,6 +939,178 @@ public final class OrderServiceRpcProto {
       
     }
 
+    public static final int LINKSHARECONTEXT_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.AuthProto.LinkShareContext linkShareContext_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    public boolean hasLinkShareContext() {
+      return linkShareContext_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext() {
+      return linkShareContext_ == null ? com.treeleaf.anydone.entities.AuthProto.LinkShareContext.getDefaultInstance() : linkShareContext_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    private void setLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      linkShareContext_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    private void setLinkShareContext(
+        com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+      linkShareContext_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    private void mergeLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+      if (linkShareContext_ != null &&
+          linkShareContext_ != com.treeleaf.anydone.entities.AuthProto.LinkShareContext.getDefaultInstance()) {
+        linkShareContext_ =
+          com.treeleaf.anydone.entities.AuthProto.LinkShareContext.newBuilder(linkShareContext_).mergeFrom(value).buildPartial();
+      } else {
+        linkShareContext_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+     */
+    private void clearLinkShareContext() {  linkShareContext_ = null;
+      
+    }
+
+    public static final int LINKSHARECONTEXTS_FIELD_NUMBER = 17;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> linkShareContexts_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> getLinkShareContextsList() {
+      return linkShareContexts_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.AuthProto.LinkShareContextOrBuilder> 
+        getLinkShareContextsOrBuilderList() {
+      return linkShareContexts_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    public int getLinkShareContextsCount() {
+      return linkShareContexts_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContexts(int index) {
+      return linkShareContexts_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.LinkShareContextOrBuilder getLinkShareContextsOrBuilder(
+        int index) {
+      return linkShareContexts_.get(index);
+    }
+    private void ensureLinkShareContextsIsMutable() {
+      if (!linkShareContexts_.isModifiable()) {
+        linkShareContexts_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(linkShareContexts_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void setLinkShareContexts(
+        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLinkShareContextsIsMutable();
+      linkShareContexts_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void setLinkShareContexts(
+        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+      ensureLinkShareContextsIsMutable();
+      linkShareContexts_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void addLinkShareContexts(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLinkShareContextsIsMutable();
+      linkShareContexts_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void addLinkShareContexts(
+        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLinkShareContextsIsMutable();
+      linkShareContexts_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void addLinkShareContexts(
+        com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+      ensureLinkShareContextsIsMutable();
+      linkShareContexts_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void addLinkShareContexts(
+        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+      ensureLinkShareContextsIsMutable();
+      linkShareContexts_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void addAllLinkShareContexts(
+        Iterable<? extends com.treeleaf.anydone.entities.AuthProto.LinkShareContext> values) {
+      ensureLinkShareContextsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, linkShareContexts_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void clearLinkShareContexts() {
+      linkShareContexts_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+     */
+    private void removeLinkShareContexts(int index) {
+      ensureLinkShareContextsIsMutable();
+      linkShareContexts_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -961,6 +1157,12 @@ public final class OrderServiceRpcProto {
       }
       if (dataQuery_ != null) {
         output.writeMessage(15, getDataQuery());
+      }
+      if (linkShareContext_ != null) {
+        output.writeMessage(16, getLinkShareContext());
+      }
+      for (int i = 0; i < linkShareContexts_.size(); i++) {
+        output.writeMessage(17, linkShareContexts_.get(i));
       }
     }
 
@@ -1034,64 +1236,72 @@ public final class OrderServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getDataQuery());
       }
+      if (linkShareContext_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getLinkShareContext());
+      }
+      for (int i = 0; i < linkShareContexts_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, linkShareContexts_.get(i));
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(byte[] data)
+    public static OrderServiceBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(java.io.InputStream input)
+    public static OrderServiceBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static OrderServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseDelimitedFrom(
+    public static OrderServiceBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1102,7 +1312,7 @@ public final class OrderServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest prototype) {
+    public static Builder newBuilder(OrderServiceBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1111,9 +1321,9 @@ public final class OrderServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest, Builder> implements
+          OrderServiceBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.OrderServiceBaseRequest)
-        com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequestOrBuilder {
+        OrderServiceBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1123,7 +1333,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1137,7 +1347,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1163,7 +1373,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1177,7 +1387,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1217,7 +1427,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1231,7 +1441,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1240,7 +1450,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1249,7 +1459,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1664,7 +1874,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile serviceDoerAccounts = 13;</code>
        */
       public Builder addAllServiceDoerAccounts(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
         copyOnWrite();
         instance.addAllServiceDoerAccounts(values);
         return this;
@@ -1776,14 +1986,156 @@ public final class OrderServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+       */
+      public boolean hasLinkShareContext() {
+        return instance.hasLinkShareContext();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext() {
+        return instance.getLinkShareContext();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+       */
+      public Builder setLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+        copyOnWrite();
+        instance.setLinkShareContext(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+       */
+      public Builder setLinkShareContext(
+          com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLinkShareContext(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+       */
+      public Builder mergeLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+        copyOnWrite();
+        instance.mergeLinkShareContext(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 16;</code>
+       */
+      public Builder clearLinkShareContext() {  copyOnWrite();
+        instance.clearLinkShareContext();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> getLinkShareContextsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getLinkShareContextsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public int getLinkShareContextsCount() {
+        return instance.getLinkShareContextsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContexts(int index) {
+        return instance.getLinkShareContexts(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder setLinkShareContexts(
+          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+        copyOnWrite();
+        instance.setLinkShareContexts(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder setLinkShareContexts(
+          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLinkShareContexts(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder addLinkShareContexts(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+        copyOnWrite();
+        instance.addLinkShareContexts(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder addLinkShareContexts(
+          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+        copyOnWrite();
+        instance.addLinkShareContexts(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder addLinkShareContexts(
+          com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLinkShareContexts(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder addLinkShareContexts(
+          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLinkShareContexts(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder addAllLinkShareContexts(
+          Iterable<? extends com.treeleaf.anydone.entities.AuthProto.LinkShareContext> values) {
+        copyOnWrite();
+        instance.addAllLinkShareContexts(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder clearLinkShareContexts() {
+        copyOnWrite();
+        instance.clearLinkShareContexts();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 17;</code>
+       */
+      public Builder removeLinkShareContexts(int index) {
+        copyOnWrite();
+        instance.removeLinkShareContexts(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.OrderServiceBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest();
+          return new OrderServiceBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1791,6 +2143,7 @@ public final class OrderServiceRpcProto {
         case MAKE_IMMUTABLE: {
           stringValues_.makeImmutable();
           serviceDoerAccounts_.makeImmutable();
+          linkShareContexts_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -1798,7 +2151,7 @@ public final class OrderServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest other = (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest) arg1;
+          OrderServiceBaseRequest other = (OrderServiceBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1820,7 +2173,9 @@ public final class OrderServiceRpcProto {
           serviceDoerAccounts_= visitor.visitList(serviceDoerAccounts_, other.serviceDoerAccounts_);
           orderFilterRequest_ = visitor.visitMessage(orderFilterRequest_, other.orderFilterRequest_);
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          linkShareContext_ = visitor.visitMessage(linkShareContext_, other.linkShareContext_);
+          linkShareContexts_= visitor.visitList(linkShareContexts_, other.linkShareContexts_);
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1986,6 +2341,28 @@ public final class OrderServiceRpcProto {
 
                   break;
                 }
+                case 130: {
+                  com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder subBuilder = null;
+                  if (linkShareContext_ != null) {
+                    subBuilder = linkShareContext_.toBuilder();
+                  }
+                  linkShareContext_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LinkShareContext.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(linkShareContext_);
+                    linkShareContext_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 138: {
+                  if (!linkShareContexts_.isModifiable()) {
+                    linkShareContexts_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(linkShareContexts_);
+                  }
+                  linkShareContexts_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.AuthProto.LinkShareContext.parser(), extensionRegistry));
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2001,7 +2378,7 @@ public final class OrderServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest.class) {
+          if (PARSER == null) {    synchronized (OrderServiceBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2015,13 +2392,13 @@ public final class OrderServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.OrderServiceBaseRequest)
-    private static final com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest DEFAULT_INSTANCE;
+    private static final OrderServiceBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new OrderServiceBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest getDefaultInstance() {
+    public static OrderServiceBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2044,7 +2421,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -2082,7 +2459,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -2130,6 +2507,16 @@ public final class OrderServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentSummary paymentSummaries = 11;</code>
      */
     int getPaymentSummariesCount();
+
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    String getLink();
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getLinkBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.OrderServiceBaseResponse}
@@ -2144,6 +2531,7 @@ public final class OrderServiceRpcProto {
       refId_ = "";
       serviceOrders_ = emptyProtobufList();
       paymentSummaries_ = emptyProtobufList();
+      link_ = "";
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2170,11 +2558,11 @@ public final class OrderServiceRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -2188,7 +2576,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2353,11 +2741,11 @@ public final class OrderServiceRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -2371,7 +2759,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2551,7 +2939,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceOrder serviceOrders = 9;</code>
      */
     private void addAllServiceOrders(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
       ensureServiceOrdersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceOrders_);
@@ -2694,7 +3082,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentSummary paymentSummaries = 11;</code>
      */
     private void addAllPaymentSummaries(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
       ensurePaymentSummariesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, paymentSummaries_);
@@ -2711,6 +3099,52 @@ public final class OrderServiceRpcProto {
     private void removePaymentSummaries(int index) {
       ensurePaymentSummariesIsMutable();
       paymentSummaries_.remove(index);
+    }
+
+    public static final int LINK_FIELD_NUMBER = 12;
+    private String link_;
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    public String getLink() {
+      return link_;
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLinkBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(link_);
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void setLink(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      link_ = value;
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void clearLink() {
+      
+      link_ = getDefaultInstance().getLink();
+    }
+    /**
+     * <code>optional string link = 12;</code>
+     */
+    private void setLinkBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      link_ = value.toStringUtf8();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -2747,6 +3181,9 @@ public final class OrderServiceRpcProto {
       }
       for (int i = 0; i < paymentSummaries_.size(); i++) {
         output.writeMessage(11, paymentSummaries_.get(i));
+      }
+      if (!link_.isEmpty()) {
+        output.writeString(12, getLink());
       }
     }
 
@@ -2799,64 +3236,68 @@ public final class OrderServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, paymentSummaries_.get(i));
       }
+      if (!link_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getLink());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(byte[] data)
+    public static OrderServiceBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(java.io.InputStream input)
+    public static OrderServiceBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static OrderServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseDelimitedFrom(
+    public static OrderServiceBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2867,7 +3308,7 @@ public final class OrderServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse prototype) {
+    public static Builder newBuilder(OrderServiceBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2876,9 +3317,9 @@ public final class OrderServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse, Builder> implements
+          OrderServiceBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.OrderServiceBaseResponse)
-        com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponseOrBuilder {
+        OrderServiceBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2911,7 +3352,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2925,7 +3366,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -3079,7 +3520,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -3093,7 +3534,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -3236,7 +3677,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceOrder serviceOrders = 9;</code>
        */
       public Builder addAllServiceOrders(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
         copyOnWrite();
         instance.addAllServiceOrders(values);
         return this;
@@ -3356,7 +3797,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentSummary paymentSummaries = 11;</code>
        */
       public Builder addAllPaymentSummaries(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
         copyOnWrite();
         instance.addAllPaymentSummaries(values);
         return this;
@@ -3378,14 +3819,54 @@ public final class OrderServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public String getLink() {
+        return instance.getLink();
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLinkBytes() {
+        return instance.getLinkBytes();
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder setLink(
+          String value) {
+        copyOnWrite();
+        instance.setLink(value);
+        return this;
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder clearLink() {
+        copyOnWrite();
+        instance.clearLink();
+        return this;
+      }
+      /**
+       * <code>optional string link = 12;</code>
+       */
+      public Builder setLinkBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLinkBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.OrderServiceBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse();
+          return new OrderServiceBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3400,7 +3881,7 @@ public final class OrderServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse other = (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse) arg1;
+          OrderServiceBaseResponse other = (OrderServiceBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -3418,7 +3899,9 @@ public final class OrderServiceRpcProto {
           count_ = visitor.visitLong(count_ != 0L, count_,
               other.count_ != 0L, other.count_);
           paymentSummaries_= visitor.visitList(paymentSummaries_, other.paymentSummaries_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          link_ = visitor.visitString(!link_.isEmpty(), link_,
+              !other.link_.isEmpty(), other.link_);
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3525,6 +4008,12 @@ public final class OrderServiceRpcProto {
                       input.readMessage(com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary.parser(), extensionRegistry));
                   break;
                 }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  link_ = s;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -3540,7 +4029,7 @@ public final class OrderServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse.class) {
+          if (PARSER == null) {    synchronized (OrderServiceBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3554,13 +4043,13 @@ public final class OrderServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.OrderServiceBaseResponse)
-    private static final com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse DEFAULT_INSTANCE;
+    private static final OrderServiceBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new OrderServiceBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse getDefaultInstance() {
+    public static OrderServiceBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

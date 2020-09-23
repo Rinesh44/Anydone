@@ -454,12 +454,19 @@
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
-                        <LinearLayout
-                            android:id="@+id/ll_tags"
+                        <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_2x1"
-                            android:orientation="horizontal" />
+                            android:scrollbars="none"
+                            android:fillViewport="true">
+
+                            <LinearLayout
+                                android:id="@+id/ll_tags"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dimen_2x1"
+                                android:orientation="horizontal" />
+                        </HorizontalScrollView>
 
                     </LinearLayout>
 

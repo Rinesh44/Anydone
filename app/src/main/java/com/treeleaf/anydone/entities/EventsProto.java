@@ -49,7 +49,7 @@ public final class EventsProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static EventType valueOf(int value) {
       return forNumber(value);
     }
@@ -95,7 +95,7 @@ public final class EventsProto {
     /**
      * <code>optional .oyster.entities.pb.EventType type = 1;</code>
      */
-    com.treeleaf.anydone.entities.EventsProto.EventType getType();
+    EventType getType();
 
     /**
      * <code>optional bool immediate = 2;</code>
@@ -123,7 +123,7 @@ public final class EventsProto {
     /**
      * <code>optional string eventId = 5;</code>
      */
-    java.lang.String getEventId();
+    String getEventId();
     /**
      * <code>optional string eventId = 5;</code>
      */
@@ -137,7 +137,7 @@ public final class EventsProto {
     /**
      * <code>optional .treeleaf.protos.Debug debug = 6;</code>
      */
-    com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug();
+    TreeleafProto.Debug getDebug();
 
     /**
      * <pre>
@@ -146,7 +146,7 @@ public final class EventsProto {
      *
      * <code>optional string eventGeneratedHost = 7;</code>
      */
-    java.lang.String getEventGeneratedHost();
+    String getEventGeneratedHost();
     /**
      * <pre>
      *Ex: prod1-txn
@@ -160,7 +160,7 @@ public final class EventsProto {
     /**
      * <code>optional string emitter = 8;</code>
      */
-    java.lang.String getEmitter();
+    String getEmitter();
     /**
      * <code>optional string emitter = 8;</code>
      */
@@ -196,9 +196,9 @@ public final class EventsProto {
     /**
      * <code>optional .oyster.entities.pb.EventType type = 1;</code>
      */
-    public com.treeleaf.anydone.entities.EventsProto.EventType getType() {
-      com.treeleaf.anydone.entities.EventsProto.EventType result = com.treeleaf.anydone.entities.EventsProto.EventType.forNumber(type_);
-      return result == null ? com.treeleaf.anydone.entities.EventsProto.EventType.UNRECOGNIZED : result;
+    public EventType getType() {
+      EventType result = EventType.forNumber(type_);
+      return result == null ? EventType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .oyster.entities.pb.EventType type = 1;</code>
@@ -209,7 +209,7 @@ public final class EventsProto {
     /**
      * <code>optional .oyster.entities.pb.EventType type = 1;</code>
      */
-    private void setType(com.treeleaf.anydone.entities.EventsProto.EventType value) {
+    private void setType(EventType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -321,11 +321,11 @@ public final class EventsProto {
     }
 
     public static final int EVENTID_FIELD_NUMBER = 5;
-    private java.lang.String eventId_;
+    private String eventId_;
     /**
      * <code>optional string eventId = 5;</code>
      */
-    public java.lang.String getEventId() {
+    public String getEventId() {
       return eventId_;
     }
     /**
@@ -339,7 +339,7 @@ public final class EventsProto {
      * <code>optional string eventId = 5;</code>
      */
     private void setEventId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -367,7 +367,7 @@ public final class EventsProto {
     }
 
     public static final int DEBUG_FIELD_NUMBER = 6;
-    private com.treeleaf.anydone.entities.TreeleafProto.Debug debug_;
+    private TreeleafProto.Debug debug_;
     /**
      * <code>optional .treeleaf.protos.Debug debug = 6;</code>
      */
@@ -377,13 +377,13 @@ public final class EventsProto {
     /**
      * <code>optional .treeleaf.protos.Debug debug = 6;</code>
      */
-    public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
-      return debug_ == null ? com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance() : debug_;
+    public TreeleafProto.Debug getDebug() {
+      return debug_ == null ? TreeleafProto.Debug.getDefaultInstance() : debug_;
     }
     /**
      * <code>optional .treeleaf.protos.Debug debug = 6;</code>
      */
-    private void setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+    private void setDebug(TreeleafProto.Debug value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -394,18 +394,18 @@ public final class EventsProto {
      * <code>optional .treeleaf.protos.Debug debug = 6;</code>
      */
     private void setDebug(
-        com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
+        TreeleafProto.Debug.Builder builderForValue) {
       debug_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.protos.Debug debug = 6;</code>
      */
-    private void mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+    private void mergeDebug(TreeleafProto.Debug value) {
       if (debug_ != null &&
-          debug_ != com.treeleaf.anydone.entities.TreeleafProto.Debug.getDefaultInstance()) {
+          debug_ != TreeleafProto.Debug.getDefaultInstance()) {
         debug_ =
-          com.treeleaf.anydone.entities.TreeleafProto.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+          TreeleafProto.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
       } else {
         debug_ = value;
       }
@@ -419,7 +419,7 @@ public final class EventsProto {
     }
 
     public static final int EVENTGENERATEDHOST_FIELD_NUMBER = 7;
-    private java.lang.String eventGeneratedHost_;
+    private String eventGeneratedHost_;
     /**
      * <pre>
      *Ex: prod1-txn
@@ -427,7 +427,7 @@ public final class EventsProto {
      *
      * <code>optional string eventGeneratedHost = 7;</code>
      */
-    public java.lang.String getEventGeneratedHost() {
+    public String getEventGeneratedHost() {
       return eventGeneratedHost_;
     }
     /**
@@ -449,7 +449,7 @@ public final class EventsProto {
      * <code>optional string eventGeneratedHost = 7;</code>
      */
     private void setEventGeneratedHost(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -485,11 +485,11 @@ public final class EventsProto {
     }
 
     public static final int EMITTER_FIELD_NUMBER = 8;
-    private java.lang.String emitter_;
+    private String emitter_;
     /**
      * <code>optional string emitter = 8;</code>
      */
-    public java.lang.String getEmitter() {
+    public String getEmitter() {
       return emitter_;
     }
     /**
@@ -503,7 +503,7 @@ public final class EventsProto {
      * <code>optional string emitter = 8;</code>
      */
     private void setEmitter(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -532,7 +532,7 @@ public final class EventsProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (type_ != com.treeleaf.anydone.entities.EventsProto.EventType.UNKNOWN_EVENT_TYPE.getNumber()) {
+      if (type_ != EventType.UNKNOWN_EVENT_TYPE.getNumber()) {
         output.writeEnum(1, type_);
       }
       if (immediate_ != false) {
@@ -563,7 +563,7 @@ public final class EventsProto {
       if (size != -1) return size;
 
       size = 0;
-      if (type_ != com.treeleaf.anydone.entities.EventsProto.EventType.UNKNOWN_EVENT_TYPE.getNumber()) {
+      if (type_ != EventType.UNKNOWN_EVENT_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
@@ -599,60 +599,60 @@ public final class EventsProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(
+    public static Event parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(
+    public static Event parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(byte[] data)
+    public static Event parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(
+    public static Event parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(java.io.InputStream input)
+    public static Event parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(
+    public static Event parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseDelimitedFrom(java.io.InputStream input)
+    public static Event parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseDelimitedFrom(
+    public static Event parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(
+    public static Event parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.EventsProto.Event parseFrom(
+    public static Event parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -663,7 +663,7 @@ public final class EventsProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.EventsProto.Event prototype) {
+    public static Builder newBuilder(Event prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -676,9 +676,9 @@ public final class EventsProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.EventsProto.Event, Builder> implements
+          Event, Builder> implements
         // @@protoc_insertion_point(builder_implements:oyster.entities.pb.Event)
-        com.treeleaf.anydone.entities.EventsProto.EventOrBuilder {
+        EventOrBuilder {
       // Construct using com.treeleaf.anydone.entities.EventsProto.Event.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -702,13 +702,13 @@ public final class EventsProto {
       /**
        * <code>optional .oyster.entities.pb.EventType type = 1;</code>
        */
-      public com.treeleaf.anydone.entities.EventsProto.EventType getType() {
+      public EventType getType() {
         return instance.getType();
       }
       /**
        * <code>optional .oyster.entities.pb.EventType type = 1;</code>
        */
-      public Builder setType(com.treeleaf.anydone.entities.EventsProto.EventType value) {
+      public Builder setType(EventType value) {
         copyOnWrite();
         instance.setType(value);
         return this;
@@ -818,7 +818,7 @@ public final class EventsProto {
       /**
        * <code>optional string eventId = 5;</code>
        */
-      public java.lang.String getEventId() {
+      public String getEventId() {
         return instance.getEventId();
       }
       /**
@@ -832,7 +832,7 @@ public final class EventsProto {
        * <code>optional string eventId = 5;</code>
        */
       public Builder setEventId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setEventId(value);
         return this;
@@ -864,13 +864,13 @@ public final class EventsProto {
       /**
        * <code>optional .treeleaf.protos.Debug debug = 6;</code>
        */
-      public com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug() {
+      public TreeleafProto.Debug getDebug() {
         return instance.getDebug();
       }
       /**
        * <code>optional .treeleaf.protos.Debug debug = 6;</code>
        */
-      public Builder setDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+      public Builder setDebug(TreeleafProto.Debug value) {
         copyOnWrite();
         instance.setDebug(value);
         return this;
@@ -879,7 +879,7 @@ public final class EventsProto {
        * <code>optional .treeleaf.protos.Debug debug = 6;</code>
        */
       public Builder setDebug(
-          com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder builderForValue) {
+          TreeleafProto.Debug.Builder builderForValue) {
         copyOnWrite();
         instance.setDebug(builderForValue);
         return this;
@@ -887,7 +887,7 @@ public final class EventsProto {
       /**
        * <code>optional .treeleaf.protos.Debug debug = 6;</code>
        */
-      public Builder mergeDebug(com.treeleaf.anydone.entities.TreeleafProto.Debug value) {
+      public Builder mergeDebug(TreeleafProto.Debug value) {
         copyOnWrite();
         instance.mergeDebug(value);
         return this;
@@ -907,7 +907,7 @@ public final class EventsProto {
        *
        * <code>optional string eventGeneratedHost = 7;</code>
        */
-      public java.lang.String getEventGeneratedHost() {
+      public String getEventGeneratedHost() {
         return instance.getEventGeneratedHost();
       }
       /**
@@ -929,7 +929,7 @@ public final class EventsProto {
        * <code>optional string eventGeneratedHost = 7;</code>
        */
       public Builder setEventGeneratedHost(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setEventGeneratedHost(value);
         return this;
@@ -963,7 +963,7 @@ public final class EventsProto {
       /**
        * <code>optional string emitter = 8;</code>
        */
-      public java.lang.String getEmitter() {
+      public String getEmitter() {
         return instance.getEmitter();
       }
       /**
@@ -977,7 +977,7 @@ public final class EventsProto {
        * <code>optional string emitter = 8;</code>
        */
       public Builder setEmitter(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setEmitter(value);
         return this;
@@ -1003,11 +1003,11 @@ public final class EventsProto {
       // @@protoc_insertion_point(builder_scope:oyster.entities.pb.Event)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.EventsProto.Event();
+          return new Event();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1020,7 +1020,7 @@ public final class EventsProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.EventsProto.Event other = (com.treeleaf.anydone.entities.EventsProto.Event) arg1;
+          Event other = (Event) arg1;
           type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
           immediate_ = visitor.visitBoolean(immediate_ != false, immediate_,
               other.immediate_ != false, other.immediate_);
@@ -1035,7 +1035,7 @@ public final class EventsProto {
               !other.eventGeneratedHost_.isEmpty(), other.eventGeneratedHost_);
           emitter_ = visitor.visitString(!emitter_.isEmpty(), emitter_,
               !other.emitter_.isEmpty(), other.emitter_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1087,11 +1087,11 @@ public final class EventsProto {
                   break;
                 }
                 case 50: {
-                  com.treeleaf.anydone.entities.TreeleafProto.Debug.Builder subBuilder = null;
+                  TreeleafProto.Debug.Builder subBuilder = null;
                   if (debug_ != null) {
                     subBuilder = debug_.toBuilder();
                   }
-                  debug_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.Debug.parser(), extensionRegistry);
+                  debug_ = input.readMessage(TreeleafProto.Debug.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(debug_);
                     debug_ = subBuilder.buildPartial();
@@ -1126,7 +1126,7 @@ public final class EventsProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.EventsProto.Event.class) {
+          if (PARSER == null) {    synchronized (Event.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1140,13 +1140,13 @@ public final class EventsProto {
 
 
     // @@protoc_insertion_point(class_scope:oyster.entities.pb.Event)
-    private static final com.treeleaf.anydone.entities.EventsProto.Event DEFAULT_INSTANCE;
+    private static final Event DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Event();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.EventsProto.Event getDefaultInstance() {
+    public static Event getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

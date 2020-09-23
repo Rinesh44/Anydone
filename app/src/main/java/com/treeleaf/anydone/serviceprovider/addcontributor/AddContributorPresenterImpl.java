@@ -39,23 +39,26 @@ public class AddContributorPresenterImpl extends BasePresenter<AddContributorCon
         Observable<TicketServiceRpcProto.TicketBaseResponse> contributorObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        List<TicketProto.EmployeeAssigned> contributors = new ArrayList<>();
+        List<TicketProto.TicketContributor> contributors = new ArrayList<>();
         for (String employeeId : employeeIds
         ) {
+            GlobalUtils.showLog(TAG, "employeeIds: " + employeeId);
             UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
                     .setEmployeeProfileId(employeeId)
                     .build();
-            TicketProto.EmployeeAssigned employeesAssigned = TicketProto.EmployeeAssigned.newBuilder()
-                    .setAssignedAt(System.currentTimeMillis())
-                    .setAssignedTo(employeeProfile)
+            TicketProto.TicketContributor employeesAssigned = TicketProto.TicketContributor.newBuilder()
+                    .setTimestamp(System.currentTimeMillis())
+                    .setEmployee(employeeProfile)
                     .build();
 
             contributors.add(employeesAssigned);
         }
 
         TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
-//                .addAllEmployeesAssigned(assignedEmployee)
+                .addAllTicketContributor(contributors)
                 .build();
+
+        GlobalUtils.showLog(TAG, "ticket check: " + ticket);
 
         contributorObservable = addContributorRepository.addContributor(token, ticketId, ticket);
 
@@ -67,6 +70,8 @@ public class AddContributorPresenterImpl extends BasePresenter<AddContributorCon
                     public void onNext(TicketServiceRpcProto.TicketBaseResponse ticketBaseResponse) {
                         GlobalUtils.showLog(TAG, "add contributor response:"
                                 + ticketBaseResponse);
+
+                        getView().hideProgressBar();
 
                         if (ticketBaseResponse == null) {
                             getView().addContributorFail("Failed to add contributor");

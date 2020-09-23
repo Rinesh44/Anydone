@@ -1,11 +1,9 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
-import java.io.Serializable;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Thread extends RealmObject implements Serializable {
+public class Thread extends RealmObject {
     @PrimaryKey
     String threadId;
     String customerName;

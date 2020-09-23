@@ -14,6 +14,7 @@ public class Tickets extends RealmObject {
     ServiceProvider serviceProvider;
     String ticketSource;
     RealmList<Tags> tagsRealmList;
+    RealmList<Employee> contributorList;
     String serviceId;
     String customerType;
     String ticketType;
@@ -165,5 +166,13 @@ public class Tickets extends RealmObject {
 
     public void setTicketStatus(String ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    public RealmList<Employee> getContributorList() {
+        return contributorList;
+    }
+
+    public void setContributorList(RealmList<Employee> contributorList) {
+        this.contributorList = contributorList;
     }
 }

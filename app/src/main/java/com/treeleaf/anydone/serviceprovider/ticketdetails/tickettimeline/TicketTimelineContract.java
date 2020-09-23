@@ -17,9 +17,9 @@ public class TicketTimelineContract {
 
         void setAssignedEmployee(Employee assignedEmployee);
 
-        void onEmployeeUnAssignSuccess(String empId);
+        void onContributorUnAssignSuccess(String empId);
 
-        void onEmployeeUnAssignFail(String msg);
+        void onContributorUnAssignFail(String msg);
 
         void onTicketCloseSuccess();
 
@@ -55,7 +55,7 @@ public class TicketTimelineContract {
 
         void getAssignedEmployees(long ticketId);
 
-//        void unAssignEmployee(long ticketId, String employeeId);
+        void unAssignContributor(long ticketId, String contributorId);
 
         void closeTicket(long ticketId);
 
