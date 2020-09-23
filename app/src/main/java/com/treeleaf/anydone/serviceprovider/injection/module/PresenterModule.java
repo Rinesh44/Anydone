@@ -8,6 +8,8 @@ import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepository;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.dashboard.DashboardRepository;
+import com.treeleaf.anydone.serviceprovider.dashboard.DashboardRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepository;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordRepository;
@@ -259,5 +261,9 @@ public class PresenterModule {
         return new AddContributorRepositoryImpl(anyDoneService);
     }
 
+    @Provides
+    DashboardRepository getDashBoardRepository(AnyDoneService anyDoneService) {
+        return new DashboardRepositoryImpl(anyDoneService);
+    }
 }
 

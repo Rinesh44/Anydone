@@ -72,7 +72,6 @@ public class AnyDoneServiceProviderApplication extends Application {
                 }
             });
         }
-
     }
 
     public Application getApplicationObject() {

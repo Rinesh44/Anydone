@@ -664,7 +664,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void subscribeSuccessMessage(long ticketId, String userAccountId) {
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + ticketId + "/" + userAccountId;
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
         TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {

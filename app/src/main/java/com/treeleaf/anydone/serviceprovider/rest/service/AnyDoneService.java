@@ -426,6 +426,24 @@ public interface AnyDoneService {
                       @Query("to") long to,
                       @Query("pageSize") int pageSize,
                       @Query("context") int context);
+
+
+    @POST("ticket/contributor/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> addContributors(@Header(AUTHORIZATION)
+                                                                                 String token,
+                                                                         @Path(value = "ticketId")
+                                                                                 String ticketId,
+                                                                         @Body TicketProto.Ticket
+                                                                                 ticket);
+
+    @DELETE("ticket/contributor/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    deleteContributor(@Header(AUTHORIZATION)
+                              String token,
+                      @Path(value = "ticketId")
+                              String ticketId,
+                      @Body TicketProto.TicketContributor
+                              ticketContributor);
 }
 
 

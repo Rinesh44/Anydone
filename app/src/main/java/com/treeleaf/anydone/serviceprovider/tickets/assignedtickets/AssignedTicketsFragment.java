@@ -74,7 +74,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             assignedTickets = TicketRepo.getInstance().getAssignedTickets();
 
             if (CollectionUtils.isEmpty(assignedTickets)) {
-                presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+                presenter.getAssignedTickets(true, 0,
+                        System.currentTimeMillis(), 100);
             } else {
                 setUpRecyclerView(assignedTickets);
             }
@@ -105,7 +106,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
-                i.putExtra("selected_ticket_type", "assigned");
+                i.putExtra("selected_ticket_type", Constants.ASSIGNED);
                 i.putExtra("ticket_desc", ticket.getTitle());
                 startActivity(i);
             });
@@ -147,7 +148,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
         boolean fetchChanges = Hawk.get(Constants.FETCH__ASSIGNED_LIST, false);
         if (fetchChanges) {
-            presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getAssignedTickets(true, 0,
+                    System.currentTimeMillis(), 100);
         } else {
             assignedTickets = TicketRepo.getInstance().getAssignedTickets();
             setUpRecyclerView(assignedTickets);
@@ -166,7 +168,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh assigned called");
 
-                    presenter.getAssignedTickets(false, 0, System.currentTimeMillis(), 100);
+                    presenter.getAssignedTickets(false, 0,
+                            System.currentTimeMillis(), 100);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -194,13 +197,15 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             onAuthorizationFailed(getContext());
             return;
         }
-        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
+        UiUtils.showSnackBar(getContext(), Objects.requireNonNull(getActivity()).getWindow()
+                .getDecorView().getRootView(), msg);
     }
 
     @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
+        rvOpenTickets.setVisibility(View.GONE);
     }
 
     @Override
@@ -212,6 +217,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void hideProgressBar() {
         if (progress != null) {
             progress.setVisibility(View.GONE);
+            rvOpenTickets.setVisibility(View.VISIBLE);
         }
     }
 
@@ -236,12 +242,14 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void updateAssignedList() {
-        presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+        presenter.getAssignedTickets(true, 0,
+                System.currentTimeMillis(), 100);
     }
 
     @Override
     public void fetchList() {
-        presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+        presenter.getAssignedTickets(true, 0,
+                System.currentTimeMillis(), 100);
     }
 }
 

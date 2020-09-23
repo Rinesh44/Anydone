@@ -55,20 +55,23 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
 
                                 getView().hideProgressBar();
                                 if (conversationThreadBaseResponse == null) {
-                                    getView().getConversationThreadFail("get conversation thread failed");
+                                    getView().getConversationThreadFail(
+                                            "get conversation thread failed");
                                     return;
                                 }
 
                                 if (conversationThreadBaseResponse.getError()) {
-                                    getView().getConversationThreadFail(conversationThreadBaseResponse.getMsg());
+                                    getView().getConversationThreadFail(
+                                            conversationThreadBaseResponse.getMsg());
                                     return;
                                 }
 
-
-                                GlobalUtils.showLog(TAG, "conversation thread size: " + conversationThreadBaseResponse.getConversationsList().size());
+                                GlobalUtils.showLog(TAG, "conversation thread size: " +
+                                        conversationThreadBaseResponse.getConversationsList().size());
                                 if (!CollectionUtils.isEmpty(
                                         conversationThreadBaseResponse.getConversationsList())) {
-                                    saveConversationThreads(conversationThreadBaseResponse.getConversationsList());
+                                    saveConversationThreads(conversationThreadBaseResponse
+                                            .getConversationsList());
                                 } else {
                                     getView().getConversationThreadFail("Not found");
                                 }
@@ -97,10 +100,12 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
 
             @Override
             public void fail() {
-                GlobalUtils.showLog(TAG, "error on saving conversation threads");
+                GlobalUtils.showLog(TAG,
+                        "error on saving conversation threads");
             }
         });
     }
+
 
     @Override
     public void getServices() {
@@ -132,7 +137,8 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
 
                                 if (!CollectionUtils.isEmpty(
                                         getServicesBaseResponse.getAvailableServicesList())) {
-                                    saveAvailableServices(getServicesBaseResponse.getAvailableServicesList());
+                                    saveAvailableServices(getServicesBaseResponse.
+                                            getAvailableServicesList());
                                 } else {
                                     getView().getServiceFail("Services Not found");
                                 }

@@ -15,7 +15,7 @@ public final class BotHousekeepingRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class BotHousekeepingRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class BotHousekeepingRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -164,11 +164,11 @@ public final class BotHousekeepingRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -182,7 +182,7 @@ public final class BotHousekeepingRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -210,11 +210,11 @@ public final class BotHousekeepingRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -228,7 +228,7 @@ public final class BotHousekeepingRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -272,7 +272,7 @@ public final class BotHousekeepingRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -293,7 +293,7 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -304,7 +304,7 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -315,7 +315,7 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -688,7 +688,7 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated .treeleaf.anydone.entities.BotIntent intents = 11;</code>
      */
     private void addAllIntents(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
       ensureIntentsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, intents_);
@@ -1038,60 +1038,60 @@ public final class BotHousekeepingRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(
+    public static BotHousekeepingBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(
+    public static BotHousekeepingBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(byte[] data)
+    public static BotHousekeepingBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(
+    public static BotHousekeepingBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(java.io.InputStream input)
+    public static BotHousekeepingBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(
+    public static BotHousekeepingBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static BotHousekeepingBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseDelimitedFrom(
+    public static BotHousekeepingBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(
+    public static BotHousekeepingBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest parseFrom(
+    public static BotHousekeepingBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1102,7 +1102,7 @@ public final class BotHousekeepingRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest prototype) {
+    public static Builder newBuilder(BotHousekeepingBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1111,9 +1111,9 @@ public final class BotHousekeepingRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest, Builder> implements
+          BotHousekeepingBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
-        com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequestOrBuilder {
+        BotHousekeepingBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1123,7 +1123,7 @@ public final class BotHousekeepingRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1137,7 +1137,7 @@ public final class BotHousekeepingRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1163,7 +1163,7 @@ public final class BotHousekeepingRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1177,7 +1177,7 @@ public final class BotHousekeepingRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1217,7 +1217,7 @@ public final class BotHousekeepingRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1231,7 +1231,7 @@ public final class BotHousekeepingRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1240,7 +1240,7 @@ public final class BotHousekeepingRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1249,7 +1249,7 @@ public final class BotHousekeepingRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1574,7 +1574,7 @@ public final class BotHousekeepingRpcProto {
        * <code>repeated .treeleaf.anydone.entities.BotIntent intents = 11;</code>
        */
       public Builder addAllIntents(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
         copyOnWrite();
         instance.addAllIntents(values);
         return this;
@@ -1779,11 +1779,11 @@ public final class BotHousekeepingRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest();
+          return new BotHousekeepingBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1798,7 +1798,7 @@ public final class BotHousekeepingRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest other = (com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest) arg1;
+          BotHousekeepingBaseRequest other = (BotHousekeepingBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1820,7 +1820,7 @@ public final class BotHousekeepingRpcProto {
           trainingPhrase_ = visitor.visitMessage(trainingPhrase_, other.trainingPhrase_);
           intentResponse_ = visitor.visitMessage(intentResponse_, other.intentResponse_);
           trainRequest_ = visitor.visitMessage(trainRequest_, other.trainRequest_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2001,7 +2001,7 @@ public final class BotHousekeepingRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest.class) {
+          if (PARSER == null) {    synchronized (BotHousekeepingBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2015,13 +2015,13 @@ public final class BotHousekeepingRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
-    private static final com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest DEFAULT_INSTANCE;
+    private static final BotHousekeepingBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotHousekeepingBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseRequest getDefaultInstance() {
+    public static BotHousekeepingBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2044,7 +2044,7 @@ public final class BotHousekeepingRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -2082,7 +2082,7 @@ public final class BotHousekeepingRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -2192,11 +2192,11 @@ public final class BotHousekeepingRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -2210,7 +2210,7 @@ public final class BotHousekeepingRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2375,11 +2375,11 @@ public final class BotHousekeepingRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -2393,7 +2393,7 @@ public final class BotHousekeepingRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2573,7 +2573,7 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated .treeleaf.anydone.entities.BotIntent intents = 11;</code>
      */
     private void addAllIntents(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
       ensureIntentsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, intents_);
@@ -2745,7 +2745,7 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity entities = 13;</code>
      */
     private void addAllEntities(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
       ensureEntitiesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, entities_);
@@ -2972,60 +2972,60 @@ public final class BotHousekeepingRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(
+    public static BotHousekeepingBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(
+    public static BotHousekeepingBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(byte[] data)
+    public static BotHousekeepingBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(
+    public static BotHousekeepingBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(java.io.InputStream input)
+    public static BotHousekeepingBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(
+    public static BotHousekeepingBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static BotHousekeepingBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseDelimitedFrom(
+    public static BotHousekeepingBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(
+    public static BotHousekeepingBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse parseFrom(
+    public static BotHousekeepingBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3036,7 +3036,7 @@ public final class BotHousekeepingRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse prototype) {
+    public static Builder newBuilder(BotHousekeepingBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3045,9 +3045,9 @@ public final class BotHousekeepingRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse, Builder> implements
+          BotHousekeepingBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.BotHousekeepingBaseResponse)
-        com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponseOrBuilder {
+        BotHousekeepingBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3080,7 +3080,7 @@ public final class BotHousekeepingRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -3094,7 +3094,7 @@ public final class BotHousekeepingRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -3248,7 +3248,7 @@ public final class BotHousekeepingRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -3262,7 +3262,7 @@ public final class BotHousekeepingRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -3405,7 +3405,7 @@ public final class BotHousekeepingRpcProto {
        * <code>repeated .treeleaf.anydone.entities.BotIntent intents = 11;</code>
        */
       public Builder addAllIntents(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
         copyOnWrite();
         instance.addAllIntents(values);
         return this;
@@ -3547,7 +3547,7 @@ public final class BotHousekeepingRpcProto {
        * <code>repeated .treeleaf.anydone.entities.BotEntity entities = 13;</code>
        */
       public Builder addAllEntities(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
         copyOnWrite();
         instance.addAllEntities(values);
         return this;
@@ -3662,11 +3662,11 @@ public final class BotHousekeepingRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse();
+          return new BotHousekeepingBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3681,7 +3681,7 @@ public final class BotHousekeepingRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse other = (com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse) arg1;
+          BotHousekeepingBaseResponse other = (BotHousekeepingBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -3700,7 +3700,7 @@ public final class BotHousekeepingRpcProto {
           entities_= visitor.visitList(entities_, other.entities_);
           trainingPhrase_ = visitor.visitMessage(trainingPhrase_, other.trainingPhrase_);
           intentResponse_ = visitor.visitMessage(intentResponse_, other.intentResponse_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3856,7 +3856,7 @@ public final class BotHousekeepingRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse.class) {
+          if (PARSER == null) {    synchronized (BotHousekeepingBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3870,13 +3870,13 @@ public final class BotHousekeepingRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.BotHousekeepingBaseResponse)
-    private static final com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse DEFAULT_INSTANCE;
+    private static final BotHousekeepingBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotHousekeepingBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.BotHousekeepingRpcProto.BotHousekeepingBaseResponse getDefaultInstance() {
+    public static BotHousekeepingBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

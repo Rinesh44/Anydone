@@ -5,17 +5,21 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -105,6 +109,24 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public void setContributors(long ticketId, RealmList<Employee> contributors,
+                                final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> result = realm1.where(Tickets.class)
+                        .equalTo("ticketId", ticketId).findAll();
+                result.setList("contributorList", contributors);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void changeTicketStatusToStart(long ticketId) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
@@ -112,6 +134,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_STARTED.name();
             result.setString("ticketStatus", status);
+            result.setString("ticketType", Constants.ASSIGNED);
         });
     }
 
@@ -124,6 +147,9 @@ public class TicketRepo extends Repo {
             String status = TicketProto.TicketState.TICKET_CLOSED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.CLOSED_RESOLVED);
+            if (result.size() > 1) {
+                result.deleteFirstFromRealm();
+            }
         });
     }
 
@@ -134,6 +160,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_REOPENED.name();
             result.setString("ticketStatus", status);
+            result.setString("ticketType", Constants.ASSIGNED);
 
         });
     }
@@ -146,29 +173,32 @@ public class TicketRepo extends Repo {
             String status = TicketProto.TicketState.TICKET_RESOLVED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.CLOSED_RESOLVED);
+            if (result.size() > 1) {
+                result.deleteFirstFromRealm();
+            }
         });
     }
 
-/*    public void unAssignEmployee(long ticketId, String empId, final Callback callback) {
+    public void unAssignContributor(long ticketId, String empId, final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             try {
                 Tickets tickets = getTicketById(ticketId);
                 Employee employeeToDel = null;
-                for (Employee employee : tickets.getAssignedEmployee()
+                for (Employee employee : tickets.getContributorList()
                 ) {
                     if (employee.getEmployeeId().equalsIgnoreCase(empId)) {
                         employeeToDel = employee;
                     }
                 }
-                tickets.getAssignedEmployee().remove(employeeToDel);
+                tickets.getContributorList().remove(employeeToDel);
                 callback.success(null);
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
                 callback.fail();
             }
         });
-    }*/
+    }
 
 
     public void replaceAssignedEmployees(long ticketId, Employee employee, final Callback callback) {
@@ -177,6 +207,36 @@ public class TicketRepo extends Repo {
             try {
                 Tickets tickets = getTicketById(ticketId);
                 tickets.setAssignedEmployee(employee);
+                callback.success(null);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+                callback.fail();
+            }
+        });
+    }
+
+    public void removeContributor(long ticketId, String contributorId, final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            try {
+                RealmResults<Tickets> result = realm1.where(Tickets.class)
+                        .equalTo("ticketId", ticketId).findAll();
+                List<Employee> contributorsToRemove = new RealmList<>();
+                for (Tickets ticket : result
+                ) {
+                    for (Employee contributor : ticket.getContributorList()
+                    ) {
+                        if (contributor.getEmployeeId().equalsIgnoreCase(contributorId)) {
+                            contributorsToRemove.add(contributor);
+                        }
+                    }
+                }
+
+                for (Tickets tickets : result
+                ) {
+                    tickets.getContributorList().removeAll(contributorsToRemove);
+                }
+
                 callback.success(null);
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
@@ -206,6 +266,7 @@ public class TicketRepo extends Repo {
         for (TicketProto.Ticket ticketPb : ticketListPb
         ) {
             Tickets tickets = new Tickets();
+            tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
             tickets.setTitle(ticketPb.getTitle());
             tickets.setDescription(ticketPb.getDescription());
@@ -222,6 +283,7 @@ public class TicketRepo extends Repo {
             tickets.setTicketStatus(ticketPb.getTicketState().name());
             tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
             tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
+            tickets.setContributorList(ProtoMapper.transformContributors(ticketPb.getTicketContributorList()));
             ticketsList.add(tickets);
         }
 
@@ -230,8 +292,9 @@ public class TicketRepo extends Repo {
 
     public Tickets transformTicket
             (TicketProto.Ticket ticketPb, String type) {
-
+        Account account = AccountRepo.getInstance().getAccount();
         Tickets tickets = new Tickets();
+        tickets.setId(UUID.randomUUID().toString().replace("-", ""));
         tickets.setTicketId(ticketPb.getTicketId());
         tickets.setTitle(ticketPb.getTitle());
         tickets.setDescription(ticketPb.getDescription());
@@ -244,10 +307,11 @@ public class TicketRepo extends Repo {
         tickets.setCustomerType(ticketPb.getCustomerType().name());
         tickets.setCreatedAt(ticketPb.getCreatedAt());
         tickets.setTicketType(type);
-        tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
-        tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
+        tickets.setCreatedByName(account.getFullName());
+        tickets.setCreatedByPic(account.getProfilePic());
         tickets.setTicketStatus(ticketPb.getTicketState().name());
         tickets.setPriority(ticketPb.getPriorityValue());
+        tickets.setContributorList(ProtoMapper.transformContributors(ticketPb.getTicketContributorList()));
         return tickets;
     }
 
@@ -356,6 +420,96 @@ public class TicketRepo extends Repo {
             RealmResults<Tickets> result = realm1.where(Tickets.class).equalTo("ticketId", ticketId).findAll();
             result.deleteAllFromRealm();
         });
+    }
+
+    public void deleteAssignedTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.ASSIGNED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "assigned ticket throwable: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteAssignableTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.ASSIGNABLE)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteSubscribedTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.SUBSCRIBED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteSubscribableTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.SUBSCRIBEABLE)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteClosedResolvedTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.CLOSED_RESOLVED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+
     }
 }
 

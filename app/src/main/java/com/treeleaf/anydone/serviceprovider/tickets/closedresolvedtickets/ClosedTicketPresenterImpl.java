@@ -1,9 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets;
 
+import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -133,17 +135,35 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
 
 
     private void saveClosedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
-        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.CLOSED_RESOLVED, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                getView().getClosedTicketSuccess();
-            }
+        List<Tickets> closedResolvedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+        if (!CollectionUtils.isEmpty(closedResolvedTickets)) {
+            TicketRepo.getInstance().deleteClosedResolvedTickets(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                }
 
-            @Override
-            public void fail() {
-                getView().getClosedTicketSuccess();
-                GlobalUtils.showLog(TAG, "failed to save closed tickets");
-            }
-        });
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete closed resolved tickets");
+                }
+            });
+        }
+        saveTickets(ticketsList);
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.CLOSED_RESOLVED,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getClosedTicketSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        getView().getClosedTicketSuccess();
+                        GlobalUtils.showLog(TAG, "failed to save closed tickets");
+                    }
+                });
     }
 }

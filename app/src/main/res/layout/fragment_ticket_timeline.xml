@@ -20,7 +20,7 @@
         android:background="@color/white"
         android:elevation="1dp"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/ll_status_options"
@@ -97,7 +97,9 @@
             android:id="@+id/btn_reopen"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_10x6"
-            android:layout_margin="@dimen/dimen_10x1"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_2x4"
             android:backgroundTint="@color/colorPrimary"
             android:text="Re-Open"
             android:textAllCaps="true"
@@ -452,12 +454,19 @@
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
-                        <LinearLayout
-                            android:id="@+id/ll_tags"
+                        <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_2x1"
-                            android:orientation="horizontal" />
+                            android:scrollbars="none"
+                            android:fillViewport="true">
+
+                            <LinearLayout
+                                android:id="@+id/ll_tags"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dimen_2x1"
+                                android:orientation="horizontal" />
+                        </HorizontalScrollView>
 
                     </LinearLayout>
 
@@ -646,8 +655,8 @@
                             android:id="@+id/expandable_layout_contributor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:el_duration="500"
                             android:layout_marginTop="@dimen/dimen_6x1"
+                            app:el_duration="500"
                             app:el_expanded="true"
                             app:el_parallax="0.5">
 
