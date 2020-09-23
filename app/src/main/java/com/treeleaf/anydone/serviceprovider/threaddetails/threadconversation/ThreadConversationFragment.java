@@ -146,7 +146,6 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     @BindView(R.id.btn_start_task)
     MaterialButton btnStartTask;
 
-
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
     private String currentPhotoPath = "";

@@ -1,10 +1,10 @@
 package com.treeleaf.anydone.serviceprovider.addcontributor;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -23,6 +23,8 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchContributorAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -50,6 +52,7 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
     private ProgressDialog progress;
     List<String> employeeIds = new ArrayList<>();
     private SearchContributorAdapter adapter;
+    private long ticketId;
 
     @Override
     protected int getLayout() {
@@ -60,14 +63,14 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         Intent i = getIntent();
-        long ticketId = i.getLongExtra("ticket_id", -1);
+        ticketId = i.getLongExtra("ticket_id", -1);
         presenter.findContributors();
         ivBack.setOnClickListener(v -> onBackPressed());
         btnAdd.setOnClickListener(v -> {
             if (employeeIds.isEmpty()) {
-                Toast.makeText(AddContributorActivity.this, "Please select contributor to add", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddContributorActivity.this,
+                        "Please select contributor to add", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.addContributor(ticketId, employeeIds);
             }
@@ -141,6 +144,7 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
     public void addContributorSuccess() {
         Intent intent = new Intent();
         intent.putExtra("contributor_added", true);
+        intent.putExtra("contributors", (Parcelable) employeeIds);
         setResult(2, intent);
         finish();
     }
@@ -157,8 +161,21 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
     }
 
     @Override
-    public void getContributorSuccess(List<Employee> assignEmployeeList) {
-        setUpRecyclerView(assignEmployeeList);
+    public void getContributorSuccess(List<Employee> contributorsList) {
+        Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
+        Employee assignedEmployee = tickets.getAssignedEmployee();
+        GlobalUtils.showLog(TAG, "assigned employee: " + assignedEmployee);
+        Employee employeeToRemove = null;
+        if (assignedEmployee != null) {
+            for (Employee employee : contributorsList
+            ) {
+                if (employee.getEmployeeId().equalsIgnoreCase(assignedEmployee.getEmployeeId())) {
+                    employeeToRemove = employee;
+                }
+            }
+            contributorsList.remove(employeeToRemove);
+        }
+        setUpRecyclerView(contributorsList);
     }
 
     @Override

@@ -15,7 +15,7 @@ public final class ConversationProto {
     /**
      * <code>optional string conversationId = 1;</code>
      */
-    java.lang.String getConversationId();
+    String getConversationId();
     /**
      * <code>optional string conversationId = 1;</code>
      */
@@ -29,7 +29,7 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
+    UserProto.ThirdPartySource getSource();
 
     /**
      * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
@@ -38,12 +38,12 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.Customer getCustomer();
+    UserProto.Customer getCustomer();
 
     /**
      * <code>optional string serviceId = 4;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 4;</code>
      */
@@ -53,7 +53,7 @@ public final class ConversationProto {
     /**
      * <code>optional string serviceProviderId = 5;</code>
      */
-    java.lang.String getServiceProviderId();
+    String getServiceProviderId();
     /**
      * <code>optional string serviceProviderId = 5;</code>
      */
@@ -63,7 +63,7 @@ public final class ConversationProto {
     /**
      * <code>optional string defaultLabelId = 6;</code>
      */
-    java.lang.String getDefaultLabelId();
+    String getDefaultLabelId();
     /**
      * <code>optional string defaultLabelId = 6;</code>
      */
@@ -83,12 +83,12 @@ public final class ConversationProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> 
+    java.util.List<UserProto.EmployeeProfile>
         getEmployeeProfileList();
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployeeProfile(int index);
+    UserProto.EmployeeProfile getEmployeeProfile(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
@@ -101,7 +101,7 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
      */
-    com.treeleaf.anydone.entities.ThirdPartyProto.Messaging getMessage();
+    ThirdPartyProto.Messaging getMessage();
 
     /**
      * <code>optional bool botEnabled = 11;</code>
@@ -115,7 +115,7 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
      */
-    com.treeleaf.anydone.entities.TicketProto.TicketTag getTag();
+    TicketProto.TicketTag getTag();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationThread}
@@ -134,11 +134,11 @@ public final class ConversationProto {
     }
     private int bitField0_;
     public static final int CONVERSATIONID_FIELD_NUMBER = 1;
-    private java.lang.String conversationId_;
+    private String conversationId_;
     /**
      * <code>optional string conversationId = 1;</code>
      */
-    public java.lang.String getConversationId() {
+    public String getConversationId() {
       return conversationId_;
     }
     /**
@@ -152,7 +152,7 @@ public final class ConversationProto {
      * <code>optional string conversationId = 1;</code>
      */
     private void setConversationId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -190,9 +190,9 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
-      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
-      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    public UserProto.ThirdPartySource getSource() {
+      UserProto.ThirdPartySource result = UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? UserProto.ThirdPartySource.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
@@ -203,7 +203,7 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
      */
-    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+    private void setSource(UserProto.ThirdPartySource value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -219,7 +219,7 @@ public final class ConversationProto {
     }
 
     public static final int CUSTOMER_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.UserProto.Customer customer_;
+    private UserProto.Customer customer_;
     /**
      * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
      */
@@ -229,13 +229,13 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
-      return customer_ == null ? com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance() : customer_;
+    public UserProto.Customer getCustomer() {
+      return customer_ == null ? UserProto.Customer.getDefaultInstance() : customer_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
      */
-    private void setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+    private void setCustomer(UserProto.Customer value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -246,18 +246,18 @@ public final class ConversationProto {
      * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
      */
     private void setCustomer(
-        com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        UserProto.Customer.Builder builderForValue) {
       customer_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
      */
-    private void mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+    private void mergeCustomer(UserProto.Customer value) {
       if (customer_ != null &&
-          customer_ != com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance()) {
+          customer_ != UserProto.Customer.getDefaultInstance()) {
         customer_ =
-          com.treeleaf.anydone.entities.UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
+          UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
       } else {
         customer_ = value;
       }
@@ -271,11 +271,11 @@ public final class ConversationProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 4;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 4;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -289,7 +289,7 @@ public final class ConversationProto {
      * <code>optional string serviceId = 4;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -317,11 +317,11 @@ public final class ConversationProto {
     }
 
     public static final int SERVICEPROVIDERID_FIELD_NUMBER = 5;
-    private java.lang.String serviceProviderId_;
+    private String serviceProviderId_;
     /**
      * <code>optional string serviceProviderId = 5;</code>
      */
-    public java.lang.String getServiceProviderId() {
+    public String getServiceProviderId() {
       return serviceProviderId_;
     }
     /**
@@ -335,7 +335,7 @@ public final class ConversationProto {
      * <code>optional string serviceProviderId = 5;</code>
      */
     private void setServiceProviderId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -363,11 +363,11 @@ public final class ConversationProto {
     }
 
     public static final int DEFAULTLABELID_FIELD_NUMBER = 6;
-    private java.lang.String defaultLabelId_;
+    private String defaultLabelId_;
     /**
      * <code>optional string defaultLabelId = 6;</code>
      */
-    public java.lang.String getDefaultLabelId() {
+    public String getDefaultLabelId() {
       return defaultLabelId_;
     }
     /**
@@ -381,7 +381,7 @@ public final class ConversationProto {
      * <code>optional string defaultLabelId = 6;</code>
      */
     private void setDefaultLabelId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -455,17 +455,17 @@ public final class ConversationProto {
     }
 
     public static final int EMPLOYEEPROFILE_FIELD_NUMBER = 9;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> employeeProfile_;
+    private com.google.protobuf.Internal.ProtobufList<UserProto.EmployeeProfile> employeeProfile_;
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> getEmployeeProfileList() {
+    public java.util.List<UserProto.EmployeeProfile> getEmployeeProfileList() {
       return employeeProfile_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfileOrBuilder> 
+    public java.util.List<? extends UserProto.EmployeeProfileOrBuilder>
         getEmployeeProfileOrBuilderList() {
       return employeeProfile_;
     }
@@ -478,13 +478,13 @@ public final class ConversationProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployeeProfile(int index) {
+    public UserProto.EmployeeProfile getEmployeeProfile(int index) {
       return employeeProfile_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.EmployeeProfileOrBuilder getEmployeeProfileOrBuilder(
+    public UserProto.EmployeeProfileOrBuilder getEmployeeProfileOrBuilder(
         int index) {
       return employeeProfile_.get(index);
     }
@@ -499,7 +499,7 @@ public final class ConversationProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
     private void setEmployeeProfile(
-        int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+        int index, UserProto.EmployeeProfile value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -510,14 +510,14 @@ public final class ConversationProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
     private void setEmployeeProfile(
-        int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
+        int index, UserProto.EmployeeProfile.Builder builderForValue) {
       ensureEmployeeProfileIsMutable();
       employeeProfile_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
-    private void addEmployeeProfile(com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+    private void addEmployeeProfile(UserProto.EmployeeProfile value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -528,7 +528,7 @@ public final class ConversationProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
     private void addEmployeeProfile(
-        int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+        int index, UserProto.EmployeeProfile value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -539,7 +539,7 @@ public final class ConversationProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
     private void addEmployeeProfile(
-        com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
+        UserProto.EmployeeProfile.Builder builderForValue) {
       ensureEmployeeProfileIsMutable();
       employeeProfile_.add(builderForValue.build());
     }
@@ -547,7 +547,7 @@ public final class ConversationProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
     private void addEmployeeProfile(
-        int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
+        int index, UserProto.EmployeeProfile.Builder builderForValue) {
       ensureEmployeeProfileIsMutable();
       employeeProfile_.add(index, builderForValue.build());
     }
@@ -555,7 +555,7 @@ public final class ConversationProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
      */
     private void addAllEmployeeProfile(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+        Iterable<? extends UserProto.EmployeeProfile> values) {
       ensureEmployeeProfileIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, employeeProfile_);
@@ -575,7 +575,7 @@ public final class ConversationProto {
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 10;
-    private com.treeleaf.anydone.entities.ThirdPartyProto.Messaging message_;
+    private ThirdPartyProto.Messaging message_;
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
      */
@@ -585,13 +585,13 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
      */
-    public com.treeleaf.anydone.entities.ThirdPartyProto.Messaging getMessage() {
-      return message_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.getDefaultInstance() : message_;
+    public ThirdPartyProto.Messaging getMessage() {
+      return message_ == null ? ThirdPartyProto.Messaging.getDefaultInstance() : message_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
      */
-    private void setMessage(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+    private void setMessage(ThirdPartyProto.Messaging value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -602,18 +602,18 @@ public final class ConversationProto {
      * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
      */
     private void setMessage(
-        com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.Builder builderForValue) {
+        ThirdPartyProto.Messaging.Builder builderForValue) {
       message_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
      */
-    private void mergeMessage(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+    private void mergeMessage(ThirdPartyProto.Messaging value) {
       if (message_ != null &&
-          message_ != com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.getDefaultInstance()) {
+          message_ != ThirdPartyProto.Messaging.getDefaultInstance()) {
         message_ =
-          com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.newBuilder(message_).mergeFrom(value).buildPartial();
+          ThirdPartyProto.Messaging.newBuilder(message_).mergeFrom(value).buildPartial();
       } else {
         message_ = value;
       }
@@ -650,7 +650,7 @@ public final class ConversationProto {
     }
 
     public static final int TAG_FIELD_NUMBER = 12;
-    private com.treeleaf.anydone.entities.TicketProto.TicketTag tag_;
+    private TicketProto.TicketTag tag_;
     /**
      * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
      */
@@ -660,13 +660,13 @@ public final class ConversationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
      */
-    public com.treeleaf.anydone.entities.TicketProto.TicketTag getTag() {
-      return tag_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketTag.getDefaultInstance() : tag_;
+    public TicketProto.TicketTag getTag() {
+      return tag_ == null ? TicketProto.TicketTag.getDefaultInstance() : tag_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
      */
-    private void setTag(com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+    private void setTag(TicketProto.TicketTag value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -677,18 +677,18 @@ public final class ConversationProto {
      * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
      */
     private void setTag(
-        com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+        TicketProto.TicketTag.Builder builderForValue) {
       tag_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
      */
-    private void mergeTag(com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+    private void mergeTag(TicketProto.TicketTag value) {
       if (tag_ != null &&
-          tag_ != com.treeleaf.anydone.entities.TicketProto.TicketTag.getDefaultInstance()) {
+          tag_ != TicketProto.TicketTag.getDefaultInstance()) {
         tag_ =
-          com.treeleaf.anydone.entities.TicketProto.TicketTag.newBuilder(tag_).mergeFrom(value).buildPartial();
+          TicketProto.TicketTag.newBuilder(tag_).mergeFrom(value).buildPartial();
       } else {
         tag_ = value;
       }
@@ -706,7 +706,7 @@ public final class ConversationProto {
       if (!conversationId_.isEmpty()) {
         output.writeString(1, getConversationId());
       }
-      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         output.writeEnum(2, source_);
       }
       if (customer_ != null) {
@@ -750,7 +750,7 @@ public final class ConversationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getConversationId());
       }
-      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+      if (source_ != UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, source_);
       }
@@ -798,60 +798,60 @@ public final class ConversationProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(byte[] data)
+    public static ConversationThread parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(java.io.InputStream input)
+    public static ConversationThread parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseDelimitedFrom(java.io.InputStream input)
+    public static ConversationThread parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseDelimitedFrom(
+    public static ConversationThread parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread parseFrom(
+    public static ConversationThread parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -862,7 +862,7 @@ public final class ConversationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ConversationThread prototype) {
+    public static Builder newBuilder(ConversationThread prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -871,9 +871,9 @@ public final class ConversationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ConversationProto.ConversationThread, Builder> implements
+          ConversationThread, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationThread)
-        com.treeleaf.anydone.entities.ConversationProto.ConversationThreadOrBuilder {
+        ConversationThreadOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationThread.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -883,7 +883,7 @@ public final class ConversationProto {
       /**
        * <code>optional string conversationId = 1;</code>
        */
-      public java.lang.String getConversationId() {
+      public String getConversationId() {
         return instance.getConversationId();
       }
       /**
@@ -897,7 +897,7 @@ public final class ConversationProto {
        * <code>optional string conversationId = 1;</code>
        */
       public Builder setConversationId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setConversationId(value);
         return this;
@@ -937,13 +937,13 @@ public final class ConversationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      public UserProto.ThirdPartySource getSource() {
         return instance.getSource();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
        */
-      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+      public Builder setSource(UserProto.ThirdPartySource value) {
         copyOnWrite();
         instance.setSource(value);
         return this;
@@ -966,13 +966,13 @@ public final class ConversationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+      public UserProto.Customer getCustomer() {
         return instance.getCustomer();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
        */
-      public Builder setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      public Builder setCustomer(UserProto.Customer value) {
         copyOnWrite();
         instance.setCustomer(value);
         return this;
@@ -981,7 +981,7 @@ public final class ConversationProto {
        * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
        */
       public Builder setCustomer(
-          com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+          UserProto.Customer.Builder builderForValue) {
         copyOnWrite();
         instance.setCustomer(builderForValue);
         return this;
@@ -989,7 +989,7 @@ public final class ConversationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
        */
-      public Builder mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      public Builder mergeCustomer(UserProto.Customer value) {
         copyOnWrite();
         instance.mergeCustomer(value);
         return this;
@@ -1005,7 +1005,7 @@ public final class ConversationProto {
       /**
        * <code>optional string serviceId = 4;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -1019,7 +1019,7 @@ public final class ConversationProto {
        * <code>optional string serviceId = 4;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -1045,7 +1045,7 @@ public final class ConversationProto {
       /**
        * <code>optional string serviceProviderId = 5;</code>
        */
-      public java.lang.String getServiceProviderId() {
+      public String getServiceProviderId() {
         return instance.getServiceProviderId();
       }
       /**
@@ -1059,7 +1059,7 @@ public final class ConversationProto {
        * <code>optional string serviceProviderId = 5;</code>
        */
       public Builder setServiceProviderId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceProviderId(value);
         return this;
@@ -1085,7 +1085,7 @@ public final class ConversationProto {
       /**
        * <code>optional string defaultLabelId = 6;</code>
        */
-      public java.lang.String getDefaultLabelId() {
+      public String getDefaultLabelId() {
         return instance.getDefaultLabelId();
       }
       /**
@@ -1099,7 +1099,7 @@ public final class ConversationProto {
        * <code>optional string defaultLabelId = 6;</code>
        */
       public Builder setDefaultLabelId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setDefaultLabelId(value);
         return this;
@@ -1171,7 +1171,7 @@ public final class ConversationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeProfile> getEmployeeProfileList() {
+      public java.util.List<UserProto.EmployeeProfile> getEmployeeProfileList() {
         return java.util.Collections.unmodifiableList(
             instance.getEmployeeProfileList());
       }
@@ -1183,14 +1183,14 @@ public final class ConversationProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.EmployeeProfile getEmployeeProfile(int index) {
+      public UserProto.EmployeeProfile getEmployeeProfile(int index) {
         return instance.getEmployeeProfile(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
       public Builder setEmployeeProfile(
-          int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+          int index, UserProto.EmployeeProfile value) {
         copyOnWrite();
         instance.setEmployeeProfile(index, value);
         return this;
@@ -1199,7 +1199,7 @@ public final class ConversationProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
       public Builder setEmployeeProfile(
-          int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
+          int index, UserProto.EmployeeProfile.Builder builderForValue) {
         copyOnWrite();
         instance.setEmployeeProfile(index, builderForValue);
         return this;
@@ -1207,7 +1207,7 @@ public final class ConversationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
-      public Builder addEmployeeProfile(com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+      public Builder addEmployeeProfile(UserProto.EmployeeProfile value) {
         copyOnWrite();
         instance.addEmployeeProfile(value);
         return this;
@@ -1216,7 +1216,7 @@ public final class ConversationProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
       public Builder addEmployeeProfile(
-          int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile value) {
+          int index, UserProto.EmployeeProfile value) {
         copyOnWrite();
         instance.addEmployeeProfile(index, value);
         return this;
@@ -1225,7 +1225,7 @@ public final class ConversationProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
       public Builder addEmployeeProfile(
-          com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
+          UserProto.EmployeeProfile.Builder builderForValue) {
         copyOnWrite();
         instance.addEmployeeProfile(builderForValue);
         return this;
@@ -1234,7 +1234,7 @@ public final class ConversationProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
       public Builder addEmployeeProfile(
-          int index, com.treeleaf.anydone.entities.UserProto.EmployeeProfile.Builder builderForValue) {
+          int index, UserProto.EmployeeProfile.Builder builderForValue) {
         copyOnWrite();
         instance.addEmployeeProfile(index, builderForValue);
         return this;
@@ -1243,7 +1243,7 @@ public final class ConversationProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employeeProfile = 9;</code>
        */
       public Builder addAllEmployeeProfile(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+          Iterable<? extends UserProto.EmployeeProfile> values) {
         copyOnWrite();
         instance.addAllEmployeeProfile(values);
         return this;
@@ -1274,13 +1274,13 @@ public final class ConversationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
        */
-      public com.treeleaf.anydone.entities.ThirdPartyProto.Messaging getMessage() {
+      public ThirdPartyProto.Messaging getMessage() {
         return instance.getMessage();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
        */
-      public Builder setMessage(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+      public Builder setMessage(ThirdPartyProto.Messaging value) {
         copyOnWrite();
         instance.setMessage(value);
         return this;
@@ -1289,7 +1289,7 @@ public final class ConversationProto {
        * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
        */
       public Builder setMessage(
-          com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.Builder builderForValue) {
+          ThirdPartyProto.Messaging.Builder builderForValue) {
         copyOnWrite();
         instance.setMessage(builderForValue);
         return this;
@@ -1297,7 +1297,7 @@ public final class ConversationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
        */
-      public Builder mergeMessage(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging value) {
+      public Builder mergeMessage(ThirdPartyProto.Messaging value) {
         copyOnWrite();
         instance.mergeMessage(value);
         return this;
@@ -1342,13 +1342,13 @@ public final class ConversationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
        */
-      public com.treeleaf.anydone.entities.TicketProto.TicketTag getTag() {
+      public TicketProto.TicketTag getTag() {
         return instance.getTag();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
        */
-      public Builder setTag(com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+      public Builder setTag(TicketProto.TicketTag value) {
         copyOnWrite();
         instance.setTag(value);
         return this;
@@ -1357,7 +1357,7 @@ public final class ConversationProto {
        * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
        */
       public Builder setTag(
-          com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder builderForValue) {
+          TicketProto.TicketTag.Builder builderForValue) {
         copyOnWrite();
         instance.setTag(builderForValue);
         return this;
@@ -1365,7 +1365,7 @@ public final class ConversationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
        */
-      public Builder mergeTag(com.treeleaf.anydone.entities.TicketProto.TicketTag value) {
+      public Builder mergeTag(TicketProto.TicketTag value) {
         copyOnWrite();
         instance.mergeTag(value);
         return this;
@@ -1381,11 +1381,11 @@ public final class ConversationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationThread)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ConversationProto.ConversationThread();
+          return new ConversationThread();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1399,7 +1399,7 @@ public final class ConversationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ConversationProto.ConversationThread other = (com.treeleaf.anydone.entities.ConversationProto.ConversationThread) arg1;
+          ConversationThread other = (ConversationThread) arg1;
           conversationId_ = visitor.visitString(!conversationId_.isEmpty(), conversationId_,
               !other.conversationId_.isEmpty(), other.conversationId_);
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
@@ -1419,7 +1419,7 @@ public final class ConversationProto {
           botEnabled_ = visitor.visitBoolean(botEnabled_ != false, botEnabled_,
               other.botEnabled_ != false, other.botEnabled_);
           tag_ = visitor.visitMessage(tag_, other.tag_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1457,11 +1457,11 @@ public final class ConversationProto {
                   break;
                 }
                 case 26: {
-                  com.treeleaf.anydone.entities.UserProto.Customer.Builder subBuilder = null;
+                  UserProto.Customer.Builder subBuilder = null;
                   if (customer_ != null) {
                     subBuilder = customer_.toBuilder();
                   }
-                  customer_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry);
+                  customer_ = input.readMessage(UserProto.Customer.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(customer_);
                     customer_ = subBuilder.buildPartial();
@@ -1503,15 +1503,15 @@ public final class ConversationProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(employeeProfile_);
                   }
                   employeeProfile_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.UserProto.EmployeeProfile.parser(), extensionRegistry));
+                      input.readMessage(UserProto.EmployeeProfile.parser(), extensionRegistry));
                   break;
                 }
                 case 82: {
-                  com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.Builder subBuilder = null;
+                  ThirdPartyProto.Messaging.Builder subBuilder = null;
                   if (message_ != null) {
                     subBuilder = message_.toBuilder();
                   }
-                  message_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.Messaging.parser(), extensionRegistry);
+                  message_ = input.readMessage(ThirdPartyProto.Messaging.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(message_);
                     message_ = subBuilder.buildPartial();
@@ -1525,11 +1525,11 @@ public final class ConversationProto {
                   break;
                 }
                 case 98: {
-                  com.treeleaf.anydone.entities.TicketProto.TicketTag.Builder subBuilder = null;
+                  TicketProto.TicketTag.Builder subBuilder = null;
                   if (tag_ != null) {
                     subBuilder = tag_.toBuilder();
                   }
-                  tag_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketTag.parser(), extensionRegistry);
+                  tag_ = input.readMessage(TicketProto.TicketTag.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(tag_);
                     tag_ = subBuilder.buildPartial();
@@ -1552,7 +1552,7 @@ public final class ConversationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ConversationThread.class) {
+          if (PARSER == null) {    synchronized (ConversationThread.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1566,13 +1566,13 @@ public final class ConversationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationThread)
-    private static final com.treeleaf.anydone.entities.ConversationProto.ConversationThread DEFAULT_INSTANCE;
+    private static final ConversationThread DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ConversationThread();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ConversationProto.ConversationThread getDefaultInstance() {
+    public static ConversationThread getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

@@ -216,9 +216,9 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             searchEmployee.setSelection(selfEmployee.getName().length());
             svSearchEmployee.setVisibility(View.GONE);
 
-            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
+        /*    CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
             params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
-            llBottomSheet.setLayoutParams(params);
+            llBottomSheet.setLayoutParams(params);*/
             hideKeyBoard();
         });
 
@@ -255,6 +255,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
             }
         });
+
         searchEmployee.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
@@ -274,6 +275,11 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
                     params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
                     llBottomSheet.setLayoutParams(params);
                     hideKeyBoard();
+                    searchEmployee.setText("");
+                    searchEmployee.clearFocus();
+                }
+
+                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                     searchEmployee.setText("");
                     searchEmployee.clearFocus();
                 }
@@ -457,9 +463,9 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
                 searchEmployee.setSelection(employee.getName().length());
                 svSearchEmployee.setVisibility(View.GONE);
 
-                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
+              /*  CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) llBottomSheet.getLayoutParams();
                 params.height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
-                llBottomSheet.setLayoutParams(params);
+                llBottomSheet.setLayoutParams(params);*/
             });
         }
     }
@@ -626,7 +632,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
             bottomSheetShadow.setVisibility(View.VISIBLE);
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
+            searchEmployee.requestFocus();
         } else if (sheetBehavior.getState() == BottomSheetBehavior.STATE_HALF_EXPANDED) {
             bottomSheetShadow.setVisibility(View.GONE);
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -662,6 +668,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
     @Override
     public void assignSuccess() {
+
         presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 100);
         Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
     }

@@ -34,7 +34,6 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         this.ticketTimelineRepository = ticketTimelineRepository;
     }
 
-
     @Override
     public void assignTicket(long ticketId, String employeeId) {
         getView().showProgressEmployee();
@@ -199,27 +198,22 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         getView().setAssignedEmployee(tickets.getAssignedEmployee());
     }
 
-/*    @Override
-    public void unAssignEmployee(long ticketId, String employeeId) {
+    @Override
+    public void unAssignContributor(long ticketId, String contributorId) {
         getView().showProgressBar("Please wait");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         String token = Hawk.get(Constants.TOKEN);
 
         UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
-                .setEmployeeProfileId(employeeId)
+                .setEmployeeProfileId(contributorId)
                 .build();
 
-        TicketProto.EmployeeAssigned employeesAssigned = TicketProto.EmployeeAssigned.newBuilder()
-                .setAssignedAt(System.currentTimeMillis())
-                .setAssignedTo(employeeProfile)
+        TicketProto.TicketContributor ticketContributor = TicketProto.TicketContributor.newBuilder()
+                .setEmployee(employeeProfile)
                 .build();
 
-        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
-                .addEmployeesAssigned(employeesAssigned)
-                .build();
-
-        ticketObservable = ticketTimelineRepository.unAssignEmployee(token,
-                ticketId, ticket);
+        ticketObservable = ticketTimelineRepository.unAssignContributor(token,
+                String.valueOf(ticketId), ticketContributor);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
@@ -227,33 +221,33 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
                     public void onNext(TicketServiceRpcProto.TicketBaseResponse timelineResponse) {
-                        GlobalUtils.showLog(TAG, "unassign employee response:"
+                        GlobalUtils.showLog(TAG, "unassign contributor response:"
                                 + timelineResponse);
                         getView().hideProgressBar();
 
                         if (timelineResponse == null) {
-                            getView().onEmployeeUnAssignFail("Failed to unassign employee ");
+                            getView().onContributorUnAssignFail("Failed to unassign contributor");
                             return;
                         }
 
                         if (timelineResponse.getError()) {
-                            getView().onEmployeeUnAssignFail(timelineResponse.getMsg());
+                            getView().onContributorUnAssignFail(timelineResponse.getMsg());
                             return;
                         }
 
-                        TicketRepo.getInstance().unAssignEmployee(ticketId, employeeId, new Repo.Callback() {
-                            @Override
-                            public void success(Object o) {
-                                getView().onEmployeeUnAssignSuccess(employeeId);
-                            }
+                        TicketRepo.getInstance().unAssignContributor(ticketId, contributorId,
+                                new Repo.Callback() {
+                                    @Override
+                                    public void success(Object o) {
+                                        getView().onContributorUnAssignSuccess(contributorId);
+                                    }
 
-                            @Override
-                            public void fail() {
-                                getView().onEmployeeUnAssignFail("failed to remove employee");
-                            }
-                        });
-
-
+                                    @Override
+                                    public void fail() {
+                                        getView().onContributorUnAssignFail("failed to " +
+                                                "remove contributor");
+                                    }
+                                });
                     }
 
                     @Override
@@ -267,8 +261,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                         getView().hideProgressBar();
                     }
                 }));
-
-    }*/
+    }
 
     @Override
     public void closeTicket(long ticketId) {

@@ -616,7 +616,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
     @Override
     public void subscribeSuccessMessage(String threadId, String userAccountId) {
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + threadId + "/" + userAccountId;
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
         TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {

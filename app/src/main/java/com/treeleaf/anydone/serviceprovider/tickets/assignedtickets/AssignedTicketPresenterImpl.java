@@ -1,9 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
 
+import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -39,7 +41,8 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = assignedTicketRepository.getAssignedTickets(token, serviceId, from, to, page);
+        getTicketsObservable = assignedTicketRepository
+                .getAssignedTickets(token, serviceId, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -63,7 +66,8 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
                                 }
 
                                 GlobalUtils.showLog(TAG, "service id check: " + serviceId);
-                                GlobalUtils.showLog(TAG, "assigned ticket count: " + getTicketsBaseResponse.getTicketsList().size());
+                                GlobalUtils.showLog(TAG, "assigned ticket count: " +
+                                        getTicketsBaseResponse.getTicketsList().size());
                                 saveAssignedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
                             }
 
@@ -83,6 +87,27 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
 
 
     private void saveAssignedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
+        List<Tickets> assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+        if (CollectionUtils.isEmpty(assignedTickets)) {
+            saveTickets(ticketsList);
+        } else {
+            TicketRepo.getInstance().deleteAssignedTickets(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "deleted all assigned tickets");
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete assigned tickets");
+                }
+            });
+
+            saveTickets(ticketsList);
+        }
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
         TicketRepo.getInstance().saveTicketList(ticketsList, Constants.ASSIGNED, new Repo.Callback() {
             @Override
             public void success(Object o) {

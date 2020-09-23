@@ -2,6 +2,9 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +20,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.realm.model.Card;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +43,16 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
 
     public void setData(List<Thread> threadList) {
         this.threadList = threadList;
+    }
+
+
+    public void updateThread(String threadId) {
+        new Handler(Looper.getMainLooper()).post(() -> {
+            Thread updatedThread = ThreadRepo.getInstance().getThreadById(threadId);
+            int index = threadList.indexOf(updatedThread);
+            threadList.set(index, updatedThread);
+            notifyItemChanged(index);
+        });
     }
 
     @NonNull
@@ -63,14 +75,22 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
 
             Glide.with(mContext).load(thread.getCustomerImageUrl())
                     .apply(options).into(holder.civCustomer);
-
-            holder.tvCustomerName.setText(thread.getCustomerName());
-            holder.tvLastMsg.setText(thread.getFinalMessage());
-
-            GlobalUtils.showLog(TAG, "current date: " + thread.getLastMessageDate());
-            setSourceImg(holder.ivSource, thread);
-            showMessagedDateTime(holder.tvDate, thread);
         }
+
+        holder.tvCustomerName.setText(thread.getCustomerName());
+        holder.tvLastMsg.setText(thread.getFinalMessage());
+        GlobalUtils.showLog(TAG, "seedn status check: " + thread.isSeen());
+        if (!thread.isSeen()) {
+            holder.tvLastMsg.setTypeface(holder.tvLastMsg.getTypeface(), Typeface.BOLD);
+        } else {
+            holder.tvLastMsg.setTypeface(holder.tvLastMsg.getTypeface(), Typeface.NORMAL);
+        }
+
+        GlobalUtils.showLog(TAG, "current date: " + thread.getLastMessageDate());
+        setSourceImg(holder.ivSource, thread);
+        showMessagedDateTime(holder.tvDate, thread);
+
+
     }
 
     private void setSourceImg(ImageView ivSource, Thread thread) {
@@ -185,6 +205,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
 
     public interface OnItemClickListener {
         void onItemClick(Thread thread);
+
     }
 
     public void setOnItemClickListener(ThreadAdapter.OnItemClickListener listener) {

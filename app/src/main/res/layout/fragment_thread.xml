@@ -76,15 +76,15 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
-    <View
+<!--    <View
         android:id="@+id/shadow"
         android:layout_width="match_parent"
         android:layout_height="16dp"
         android:background="@drawable/bottomsheet_shadow"
         android:visibility="gone"
-        app:layout_anchor="@id/bottom_sheet" />
+        app:layout_anchor="@id/bottom_sheet" />-->
 
-    <include layout="@layout/bottomsheet_select_service" />
+<!--    <include layout="@layout/bottomsheet_select_service" />-->
 
     <ProgressBar
         android:id="@+id/pb_search"

@@ -1,9 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
 
+import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -131,18 +133,41 @@ public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketC
     }
 
     private void saveSubscribedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
-        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.SUBSCRIBED, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                getView().getSubscribedTicketsSuccess();
-            }
+        List<Tickets> subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
+        if (CollectionUtils.isEmpty(subscribedTickets)) {
+            saveTickets(ticketsList);
+        } else {
 
-            @Override
-            public void fail() {
-                getView().getSubscribedTicketsSuccess();
-                GlobalUtils.showLog(TAG, "failed to save subscribed tickets");
-            }
-        });
+            TicketRepo.getInstance().deleteSubscribedTickets(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete subscribed tickets");
+                }
+            });
+
+            saveTickets(ticketsList);
+        }
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.SUBSCRIBED,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getSubscribedTicketsSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        getView().getSubscribedTicketsSuccess();
+                        GlobalUtils.showLog(TAG, "failed to save subscribed tickets");
+                    }
+                });
     }
 
 }

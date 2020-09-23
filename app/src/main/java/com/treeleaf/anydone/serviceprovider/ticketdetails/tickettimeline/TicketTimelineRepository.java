@@ -11,10 +11,11 @@ public interface TicketTimelineRepository {
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(String token,
                                                                            long ticketId);
 
-    Observable<TicketServiceRpcProto.TicketBaseResponse> unAssignEmployee(String token,
-                                                                          long ticketId,
-                                                                          TicketProto.Ticket
-                                                                                  employeeUnAssign);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    unAssignContributor(String token,
+                        String ticketId,
+                        TicketProto.TicketContributor
+                                ticketContributor);
 
     Observable<TicketServiceRpcProto.TicketBaseResponse> resolveTicket(String token,
                                                                        long ticketId);

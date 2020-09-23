@@ -200,18 +200,39 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
     }
 
     private void saveSubscribeableTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
-        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.SUBSCRIBEABLE, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                getView().getSubscribeableTicketSuccess();
-            }
+        List<Tickets> subscribeableTickets = TicketRepo.getInstance().getSubscribeableTickets();
+        if (CollectionUtils.isEmpty(subscribeableTickets)) {
+            saveTickets(ticketsList);
+        } else {
+            TicketRepo.getInstance().deleteSubscribableTickets(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                }
 
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "failed to save subscribeable tickets");
-                getView().getSubscribeableTicketSuccess();
-            }
-        });
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete subscribable tickets");
+                }
+            });
+
+            saveTickets(ticketsList);
+        }
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.SUBSCRIBEABLE,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getSubscribeableTicketSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG, "failed to save subscribeable tickets");
+                        getView().getSubscribeableTicketSuccess();
+                    }
+                });
     }
 
     private Retrofit getRetrofitInstance() {

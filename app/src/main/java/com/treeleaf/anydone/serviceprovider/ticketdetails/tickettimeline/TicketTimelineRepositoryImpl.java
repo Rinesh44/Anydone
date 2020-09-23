@@ -21,10 +21,11 @@ public class TicketTimelineRepositoryImpl implements TicketTimelineRepository {
     }
 
     @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> unAssignEmployee(String token,
-                                                                                 long ticketId,
-                                                                                 TicketProto.Ticket employeeUnAssign) {
-        return anyDoneService.unAssignEmployee(token, ticketId, employeeUnAssign);
+    public Observable<TicketServiceRpcProto.TicketBaseResponse>
+    unAssignContributor(String token,
+                        String ticketId,
+                        TicketProto.TicketContributor ticketContributor) {
+        return anyDoneService.deleteContributor(token, ticketId, ticketContributor);
     }
 
     @Override
