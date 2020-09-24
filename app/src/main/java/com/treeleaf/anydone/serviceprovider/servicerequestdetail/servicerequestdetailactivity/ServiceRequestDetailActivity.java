@@ -27,6 +27,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceRequestRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestDetailFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityFragment;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
@@ -122,8 +123,8 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
 
-        super.setServiceRequestId(serviceRequestId);
-
+        super.setReferenceId(serviceRequestId);
+        super.setRtcContext(Constants.RTC_CONTEXT_SERVICE_REQUEST);
     }
 
     @Override

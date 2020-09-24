@@ -21,6 +21,7 @@ import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.math.BigInteger;
 
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 
@@ -42,8 +43,8 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
     String callerName;
     String callerAccountId;
     String callerProfileUrl;
-    private long serviceRequestId, ticketId;
-    private String rtcContext;
+    private long refId, ticketId;
+    private String rtcContext = RTC_CONTEXT_SERVICE_REQUEST;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +92,12 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
             @Override
             public void notifySubscriberLeft() {
-                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, serviceRequestId);
+                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, refId, rtcContext);
             }
 
             @Override
             public void onPublisherVideoStarted() {
-                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, serviceRequestId);
+                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, refId, rtcContext);
             }
 
             @Override
@@ -110,8 +111,8 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
             @Override
             public void onNewImageAcknowledge(int width, int height, long timeStamp) {
-                presenter.publishSendAckToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId,
-                        width, height, System.currentTimeMillis());
+                presenter.publishSendAckToRemoteEvent(accountId, accountName, accountPicture, refId,
+                        width, height, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
@@ -122,30 +123,30 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
             @Override
             public void onDiscardDraw() {
-                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, serviceRequestId, System.currentTimeMillis());
+                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
             public void onDrawCanvasCleared() {
-                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, serviceRequestId, System.currentTimeMillis());
+                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
             public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
                 presenter.publishDrawReceiveNewTextEvent(accountId, accountName, accountPicture, x, y,
-                        editTextFieldId, serviceRequestId, System.currentTimeMillis());
+                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
             public void onReceiveNewTextChange(String text, String id) {
                 presenter.publishTextFieldChangeEventEvent(accountId, accountName, accountPicture, text,
-                        id, serviceRequestId, System.currentTimeMillis());
+                        id, refId, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
             public void onReceiveEdiTextRemove(String editTextId) {
                 presenter.publishTextFieldRemoveEventEvent(accountId, accountName, accountPicture, editTextId,
-                        serviceRequestId, System.currentTimeMillis());
+                        refId, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
@@ -154,26 +155,26 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
                         captureDrawParam.getYCoordinate(), captureDrawParam.getBrushWidth(),
                         Float.parseFloat(captureDrawParam.getBrushOpacity().toString()),
                         captureDrawParam.getBrushColor(), captureDrawParam.getTextColor(),
-                        serviceRequestId, System.currentTimeMillis());
+                        refId, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
             public void onStartDraw(float x, float y) {
                 presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
-                        serviceRequestId, x, y, System.currentTimeMillis());
+                        refId, x, y, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
             public void onClientTouchMove(CaptureDrawParam captureDrawParam) {
                 presenter.publishDrawTouchMoveEvent(accountId, accountName, accountPicture,
-                        serviceRequestId, captureDrawParam.getXCoordinate(), captureDrawParam.getYCoordinate(),
-                        System.currentTimeMillis());
+                        refId, captureDrawParam.getXCoordinate(), captureDrawParam.getYCoordinate(),
+                        System.currentTimeMillis(), rtcContext);
             }
 
             @Override
             public void onClientTouchUp() {
                 presenter.publishDrawTouchUpEvent(accountId, accountName, accountPicture,
-                        serviceRequestId, System.currentTimeMillis());
+                        refId, System.currentTimeMillis(), rtcContext);
             }
 
             @Override
@@ -193,8 +194,8 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
             ByteString imageByteString = ByteString.copyFrom(bytes);
             int localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoCallReceiveActivity.this)[0];
             int localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoCallReceiveActivity.this)[1];
-            presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, serviceRequestId, imageByteString,
-                    localDeviceWidth, localDeviceHeight, System.currentTimeMillis());
+            presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, refId, imageByteString,
+                    localDeviceWidth, localDeviceHeight, System.currentTimeMillis(), rtcContext);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -206,8 +207,8 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
         return 0;
     }
 
-    public void setServiceRequestId(long serviceId) {
-        serviceRequestId = serviceId;
+    public void setReferenceId(long id) {
+        refId = id;
     }
 
     public void setTicketRequestId(long ticketId) {

@@ -24,6 +24,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
@@ -83,7 +84,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
 
-        super.setServiceRequestId(ticketId);
+        super.setReferenceId(ticketId);
+        super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
 
     }
 
