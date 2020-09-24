@@ -42,7 +42,8 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
     String callerName;
     String callerAccountId;
     String callerProfileUrl;
-    private long serviceRequestId;
+    private long serviceRequestId, ticketId;
+    private String rtcContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,6 +208,14 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
     public void setServiceRequestId(long serviceId) {
         serviceRequestId = serviceId;
+    }
+
+    public void setTicketRequestId(long ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public void setRtcContext(String context) {
+        this.rtcContext = context;
     }
 
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,

@@ -55,5 +55,7 @@ Constants {
     public static final String ASSIGNABLE = "ASSIGNABLE";
     public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
     public static final String BOT_REPLY = "BOT_REPLY";
+    public static final String RTC_CONTEXT_SERVICE_REQUEST = "RTC_CONTEXT_SERVICE_REQUEST";
+    public static final String RTC_CONTEXT_TICKET = "RTC_CONTEXT_TICKET";
 
 }
