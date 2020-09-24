@@ -34,11 +34,8 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
     private Account userAccount;
     private String accountId, accountName, accountPicture, rtcMessageId;
-    private String serviceName, serviceProfileUri;
     private ServerActivity.VideoCallListener videoCallListenerServer;
     private ServerActivity.ServerDrawingPadEventListener serverDrawingPadEventListener;
-    private boolean paymentSuccess = false;
-    private RestChannel.Role mRole;
     private Callback.DrawCallBack drawCallBack;
     String callerName;
     String callerAccountId;
@@ -63,7 +60,6 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
             @Override
             public void specifyRole(RestChannel.Role role) {
-                mRole = role;
             }
 
             @Override
@@ -310,7 +306,6 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
         Log.d(MQTT, "onParticipantLeft");
         if (videoCallListenerServer != null) {
             UserProto.Account account = participantLeft.getSenderAccount();
-//            videoCallListenerServer.onJoineeRemoved(account.getAccountId());
             videoCallListenerServer.onJoineeRemoved(participantLeft.getSenderAccountId());
         }
     }
