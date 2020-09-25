@@ -724,7 +724,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     SignalingProto.BroadcastVideoCall broadcastVideoCall =
                             relayResponse.getBroadcastVideoCall();
                     if (broadcastVideoCall != null) {
-                        if (userAccountId.equals(broadcastVideoCall.getSenderAccount().getAccountId())) {
+                        if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
                             getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
                         } else {
                             getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);

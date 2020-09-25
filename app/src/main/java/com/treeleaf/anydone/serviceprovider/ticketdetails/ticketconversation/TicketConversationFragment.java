@@ -765,41 +765,41 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
-        ((ServiceRequestDetailActivity) getActivity())
+        ((TicketDetailsActivity) getActivity())
                 .onVideoRoomInitiationSuccessClient(broadcastVideoCall);
     }
 
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
-        ((ServiceRequestDetailActivity) getActivity())
+        ((TicketDetailsActivity) getActivity())
                 .onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
     }
 
     @Override
     public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity())
+        ((TicketDetailsActivity) getActivity())
                 .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
     }
 
     @Override
     public void onImageDrawDiscardLocal() {
-        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardLocal();
+        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardLocal();
     }
 
     @Override
     public void onImageDrawDiscardRemote(String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote(accountId);
+        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardRemote(accountId);
     }
 
     @Override
     public void onImageAckSent(String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onImageAckSent(accountId);
+        ((TicketDetailsActivity) getActivity()).onImageAckSent(accountId);
     }
 
     @Override
     public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
+        ((TicketDetailsActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
     }
 
     @Override
