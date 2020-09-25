@@ -12,6 +12,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -584,6 +585,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public Context getContext() {
         return this;
+    }
+
+    public void checkConnection(){
+        presenter.checkConnection(TreeleafMqttClient.mqttClient);
     }
 
 }

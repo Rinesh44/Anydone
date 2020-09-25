@@ -21,9 +21,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
-import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceRequestRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestDetailFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityFragment;
@@ -70,8 +68,6 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
     private long serviceRequestId;
 
 
-    private Account userAccount;
-    private String accountId, accountName, accountPicture, rtcMessageId;
     private String serviceName, serviceProfileUri;
     private boolean paymentSuccess = false;
 
@@ -118,13 +114,11 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         setValuesFromIntent();
-        userAccount = AccountRepo.getInstance().getAccount();
-        accountId = userAccount.getAccountId();
-        accountName = userAccount.getFullName();
-        accountPicture = userAccount.getProfilePic();
 
-        super.setReferenceId(serviceRequestId);
         super.setRtcContext(Constants.RTC_CONTEXT_SERVICE_REQUEST);
+        super.setReferenceId(serviceRequestId);
+        super.setServiceName(serviceName);
+        super.setServiceProfileUri(serviceProfileUri);
     }
 
     @Override
