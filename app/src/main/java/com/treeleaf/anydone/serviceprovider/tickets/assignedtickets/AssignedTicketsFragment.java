@@ -108,6 +108,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
                 i.putExtra("selected_ticket_type", Constants.ASSIGNED);
                 i.putExtra("ticket_desc", ticket.getTitle());
+                i.putExtra("selected_ticket_name", ticket.getServiceProvider().getFullName());
+                i.putExtra("selected_ticket_icon_uri", ticket.getServiceProvider().getProfilePic());
                 startActivity(i);
             });
             rvOpenTickets.setAdapter(adapter);

@@ -69,6 +69,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         Intent i = getIntent();
         long ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
+        String serviceName = i.getStringExtra("selected_ticket_name");
+        String serviceProfileUri = i.getStringExtra("selected_ticket_icon_uri");
         setUpToolbar(ticketId, ticketTitle);
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
@@ -76,8 +78,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         super.setReferenceId(ticketId);
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
-//        super.setServiceName(serviceName);
-//        super.setServiceProfileUri(serviceProfileUri);
+        super.setServiceName(serviceName);
+        super.setServiceProfileUri(serviceProfileUri);
     }
 
     //TODO: remove this later
@@ -102,6 +104,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
                 onBackPressed();
                 return true;
             case R.id.action_video_call:
+                checkConnection();
                 return true;
         }
         return false;
