@@ -31,7 +31,7 @@ import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_S
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 
-public class VideoCallReceiveActivity extends MvpBaseActivity
+public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
         VideoCallReceiveContract.VideoCallReceiveActivityView, Callback.OnDrawEventListener {
     private static final String MQTT = "MQTT_EVENT_CHECK";
@@ -91,7 +91,7 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
             @Override
             public void passDrawPadEventListenerCallback(Callback.DrawPadEventListener drawPadEventListener) {
-                VideoCallReceiveActivity.this.drawPadEventListener = drawPadEventListener;
+                VideoCallHandleActivity.this.drawPadEventListener = drawPadEventListener;
             }
 
             @Override
@@ -158,7 +158,7 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
             @Override
             public void passDrawPadEventListenerCallback(Callback.DrawPadEventListener drawPadEventListener) {
-                VideoCallReceiveActivity.this.drawPadEventListener = drawPadEventListener;
+                VideoCallHandleActivity.this.drawPadEventListener = drawPadEventListener;
             }
 
             @Override
@@ -259,8 +259,8 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
             convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
-            int localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoCallReceiveActivity.this)[0];
-            int localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoCallReceiveActivity.this)[1];
+            int localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[0];
+            int localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[1];
             presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, refId, imageByteString,
                     localDeviceWidth, localDeviceHeight, System.currentTimeMillis(), rtcContext);
 
@@ -536,7 +536,7 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(VideoCallReceiveActivity.this, msg,
+                Toast.makeText(VideoCallHandleActivity.this, msg,
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -544,7 +544,7 @@ public class VideoCallReceiveActivity extends MvpBaseActivity
 
     @Override
     public void onConnectionSuccess() {
-        ClientActivity.launch(VideoCallReceiveActivity.this,
+        ClientActivity.launch(VideoCallHandleActivity.this,
                 false, hostActivityCallbackClient, drawCallBack,
                 serviceName, serviceProfileUri);
     }

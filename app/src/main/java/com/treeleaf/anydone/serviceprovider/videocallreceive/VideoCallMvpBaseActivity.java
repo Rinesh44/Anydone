@@ -12,7 +12,7 @@ import javax.inject.Inject;
  *
  * @param <T> {@link BasePresenter}
  */
-public abstract class VideoCallMvpBaseActivity<T extends BasePresenter> extends VideoCallReceiveActivity
+public abstract class VideoCallMvpBaseActivity<T extends BasePresenter> extends VideoCallHandleActivity
         implements BaseView {
 
     @Inject
