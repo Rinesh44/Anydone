@@ -824,7 +824,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
-                .onVideoRoomJoinSuccess(videoCallJoinResponse);
+                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
     }
 
     @Override

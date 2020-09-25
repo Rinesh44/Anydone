@@ -785,6 +785,12 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
+        ((ServiceRequestDetailActivity) getActivity())
+                .onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+    }
+
+    @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         ((ServiceRequestDetailActivity) getActivity())
@@ -864,9 +870,15 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
 
 
     @Override
-    public void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         ((ServiceRequestDetailActivity) Objects.requireNonNull(getActivity()))
-                .onVideoRoomJoinSuccess(videoCallJoinResponse);
+                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+        ((ServiceRequestDetailActivity) Objects.requireNonNull(getActivity()))
+                .onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
     }
 
     @Override

@@ -5,15 +5,35 @@ import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
 import com.google.protobuf.ByteString;
 
+import org.eclipse.paho.android.service.MqttAndroidClient;
+
 
 public class VideoCallReceiveContract {
 
     public interface VideoCallReceiveActivityView extends BaseView {
 
+        void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret);
+
+        void onUrlFetchFail(String msg);
+
+        void onConnectionSuccess();
+
+        void onConnectionFail(String msg);
+
     }
 
     public interface VideoCallReceiveActivityPresenter extends Presenter<VideoCallReceiveActivityView> {
 
+        void fetchJanusServerUrl(String token);
+
+        void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, long orderId,
+                                          String sessionId, String roomId, String participantId,
+                                          String janusBaseUrl, String apiSecret, String apiKey, String rtcContext);
+
+        void publishHostHangUpEvent(String userAccountId, String accountName, String accountPicture,
+                                    long orderId, String rtcMesssageId, boolean videoBroadCastPublish, String rtcContext);
+
+        void checkConnection(MqttAndroidClient client);
 
         void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
                                         long orderId, String rtcContext);

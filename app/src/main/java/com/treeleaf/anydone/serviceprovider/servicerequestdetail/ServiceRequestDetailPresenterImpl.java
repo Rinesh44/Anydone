@@ -757,7 +757,11 @@ public class ServiceRequestDetailPresenterImpl extends
                     SignalingProto.BroadcastVideoCall broadcastVideoCall =
                             relayResponse.getBroadcastVideoCall();
                     if (broadcastVideoCall != null) {
-                        getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
+                        if (userAccountId.equals(broadcastVideoCall.getSenderAccount().getAccountId())) {
+                            getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+                        } else {
+                            getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
+                        }
                     }
                 }
 
@@ -819,7 +823,11 @@ public class ServiceRequestDetailPresenterImpl extends
                     SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
                             relayResponse.getVideoCallJoinResponse();
                     if (videoCallJoinResponse != null) {
-                        getView().onVideoRoomJoinedSuccess(videoCallJoinResponse);
+                        if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
+                            getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
+                        } else {
+                            getView().onLocalVideoRoomJoinedSuccess(videoCallJoinResponse);
+                        }
                     }
                 }
 
@@ -827,7 +835,7 @@ public class ServiceRequestDetailPresenterImpl extends
                         .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
                     SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
                             .getVideoRoomHostLeftResponse();
-                    if (videoRoomHostLeft != null) {
+                    if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
                         getView().onHostHangUp(videoRoomHostLeft);
                     }
                 }
