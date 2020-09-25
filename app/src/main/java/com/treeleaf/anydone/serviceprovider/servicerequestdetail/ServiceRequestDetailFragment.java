@@ -814,11 +814,6 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onImageCaptured() {
-        ((ServiceRequestDetailActivity) getActivity()).onImageCaptured();
-    }
-
-    @Override
     public void onImageAckSent(String accountId) {
         ((ServiceRequestDetailActivity) getActivity()).onImageAckSent(accountId);
     }

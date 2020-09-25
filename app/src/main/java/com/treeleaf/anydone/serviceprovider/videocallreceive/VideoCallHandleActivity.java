@@ -373,12 +373,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
-    public void onImageCaptured() {
-        Log.d(TAG, "onImageReceivedFromConsumer");
-        if (drawPadEventListener != null)
-            drawPadEventListener.onDrawHideProgress();
-    }
-
     public void onImageAckSent(String accountId) {
         if (drawPadEventListener != null)
             drawPadEventListener.onDrawDisplayCapturedImage(accountId);
@@ -426,6 +420,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         Log.d(MQTT, "onParticipantLeft");
         if (videoCallListenerServer != null) {
             videoCallListenerServer.onJoineeRemoved(participantLeft.getSenderAccountId());
+        }
+        if (videoCallListenerClient != null) {
+            videoCallListenerClient.onJoineeRemoved(participantLeft.getSenderAccountId());
         }
     }
 

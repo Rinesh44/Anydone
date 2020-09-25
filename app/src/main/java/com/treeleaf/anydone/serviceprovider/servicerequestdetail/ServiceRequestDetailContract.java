@@ -102,8 +102,6 @@ public class ServiceRequestDetailContract {
 
         void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
 
-        void onImageCaptured();
-
         void onImageAckSent(String accountId);
 
         void onImageDrawDiscardLocal();

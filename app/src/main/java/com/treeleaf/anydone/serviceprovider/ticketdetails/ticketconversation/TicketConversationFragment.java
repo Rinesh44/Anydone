@@ -71,6 +71,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -763,21 +764,42 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
+        ((ServiceRequestDetailActivity) getActivity())
+                .onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+    }
+
+    @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
-        ((TicketDetailsActivity) getActivity())
+        ((ServiceRequestDetailActivity) getActivity())
                 .onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
     }
 
     @Override
     public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
-        ((TicketDetailsActivity) getActivity())
+        ((ServiceRequestDetailActivity) getActivity())
                 .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
     }
 
     @Override
-    public void onImageDrawDiscard() {
-        ((TicketDetailsActivity) getActivity()).onImageDrawDiscard();
+    public void onImageDrawDiscardLocal() {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardLocal();
+    }
+
+    @Override
+    public void onImageDrawDiscardRemote(String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote(accountId);
+    }
+
+    @Override
+    public void onImageAckSent(String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onImageAckSent(accountId);
+    }
+
+    @Override
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
     }
 
     @Override
@@ -820,11 +842,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     }
 
-
     @Override
-    public void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
                 .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
+                .onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
     }
 
     @Override
@@ -1318,6 +1345,46 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         llBotReplying.setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
+    }
+
+    @Override
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId);
+    }
+
+    @Override
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId);
+    }
+
+    @Override
+    public void onDrawTouchUp(String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchUp(accountId);
+    }
+
+    @Override
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
+    }
+
+    @Override
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId);
+    }
+
+    @Override
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId);
+    }
+
+    @Override
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId);
+    }
+
+    @Override
+    public void onDrawCanvasCleared(String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId);
     }
 
 }

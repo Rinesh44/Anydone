@@ -11,15 +11,13 @@ import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.ServiceAttributes;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 
 public class TicketConversationContract {
@@ -69,12 +67,16 @@ public class TicketConversationContract {
 
         void onSendDeliveredMsgFail(List<Conversation> conversationList);
 
-        void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
+        void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
+
+        void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
         void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
 
         void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                           boolean b);
+
+        void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall);
 
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
@@ -84,13 +86,35 @@ public class TicketConversationContract {
 
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
+        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
+
+        void onImageAckSent(String accountId);
+
+        void onImageDrawDiscardLocal();
+
+        void onImageDrawDiscardRemote(String accountId);
+
+        void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId);
+
+        void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId);
+
+        void onDrawTouchUp(String accountId);
+
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId);
+
+        void onDrawReceiveNewTextChange(String text, String id, String accountId);
+
+        void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
+
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId);
+
+        void onDrawCanvasCleared(String accountId);
+
+        void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId);
+
         void onTaskStartSuccess();
 
         void onTaskStartFail(String msg);
-
-        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
-
-        void onImageDrawDiscard();
 
     }
 

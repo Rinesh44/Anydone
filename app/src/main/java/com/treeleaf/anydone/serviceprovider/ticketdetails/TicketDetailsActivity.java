@@ -20,8 +20,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.realm.model.Account;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -54,10 +52,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
 
-
-    private Account userAccount;
-    private String accountId, accountName, accountPicture, rtcMessageId;
-
     @Override
     protected int getLayout() {
         return R.layout.activity_ticket_details;
@@ -79,14 +73,11 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
-        userAccount = AccountRepo.getInstance().getAccount();
-        accountId = userAccount.getAccountId();
-        accountName = userAccount.getFullName();
-        accountPicture = userAccount.getProfilePic();
 
         super.setReferenceId(ticketId);
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
-
+//        super.setServiceName(serviceName);
+//        super.setServiceProfileUri(serviceProfileUri);
     }
 
     //TODO: remove this later
@@ -110,8 +101,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             case android.R.id.home:
                 onBackPressed();
                 return true;
-//            case R.id.action_video_call:
-//                return true;
+            case R.id.action_video_call:
+                return true;
         }
         return false;
     }
@@ -119,7 +110,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_service_details, menu);
+        getMenuInflater().inflate(R.menu.menu_ticket_details, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
