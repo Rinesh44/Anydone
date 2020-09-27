@@ -42,6 +42,9 @@
             android:name=".addticket.AddTicketActivity"
             android:theme="@style/FormTheme" />
         <activity
+            android:name=".linkshare.LinkShareActivity"
+            android:theme="@style/FormTheme" />
+        <activity
             android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
             android:theme="@style/FormTheme" />
         <activity

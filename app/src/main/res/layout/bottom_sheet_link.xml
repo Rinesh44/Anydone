@@ -44,7 +44,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dimen_6x1"
                 android:text="Copy link"
-                android:textColor="@color/charcoal_text" />
+                android:textColor="@color/charcoal_text"
+                android:textSize="@dimen/material_text_caption" />
 
 
         </RelativeLayout>
@@ -70,7 +71,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dimen_6x1"
                 android:text="SMS"
-                android:textColor="@color/charcoal_text" />
+                android:textColor="@color/charcoal_text"
+                android:textSize="@dimen/material_text_caption" />
 
 
         </RelativeLayout>
@@ -97,7 +99,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dimen_6x1"
                 android:text="Email"
-                android:textColor="@color/charcoal_text" />
+                android:textColor="@color/charcoal_text"
+                android:textSize="@dimen/material_text_caption" />
 
 
         </RelativeLayout>
@@ -124,7 +127,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dimen_6x1"
                 android:text="Other"
-                android:textColor="@color/charcoal_text" />
+                android:textColor="@color/charcoal_text"
+                android:textSize="@dimen/material_text_caption" />
 
 
         </RelativeLayout>

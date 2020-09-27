@@ -4149,7 +4149,7 @@ public final class TicketProto {
 
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4158,7 +4158,7 @@ public final class TicketProto {
         getTagsList();
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4166,7 +4166,7 @@ public final class TicketProto {
     TicketTag getTags(int index);
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4700,7 +4700,7 @@ public final class TicketProto {
     private com.google.protobuf.Internal.ProtobufList<TicketTag> tags_;
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4710,7 +4710,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4721,7 +4721,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4731,7 +4731,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4741,7 +4741,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4759,7 +4759,7 @@ public final class TicketProto {
 
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4774,7 +4774,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4786,7 +4786,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4800,7 +4800,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4815,7 +4815,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4827,7 +4827,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4839,7 +4839,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4852,7 +4852,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -4862,7 +4862,7 @@ public final class TicketProto {
     }
     /**
      * <pre>
-     *ticket label / department 
+     *ticket label / department
      * </pre>
      *
      * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6529,7 +6529,7 @@ public final class TicketProto {
 
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6540,7 +6540,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6549,7 +6549,7 @@ public final class TicketProto {
         return instance.getTagsCount();
       }/**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6559,7 +6559,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6572,7 +6572,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6585,7 +6585,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6597,7 +6597,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6610,7 +6610,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6623,7 +6623,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6636,7 +6636,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6649,7 +6649,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -6661,7 +6661,7 @@ public final class TicketProto {
       }
       /**
        * <pre>
-       *ticket label / department 
+       *ticket label / department
        * </pre>
        *
        * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
@@ -10042,6 +10042,430 @@ public final class TicketProto {
     private static volatile com.google.protobuf.Parser<TicketStatBySource> PARSER;
 
     public static com.google.protobuf.Parser<TicketStatBySource> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface GetSharableLinkRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.GetSharableLinkRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string ticketId = 1;</code>
+     */
+    String getTicketId();
+    /**
+     * <code>optional string ticketId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTicketIdBytes();
+
+    /**
+     * <code>optional string emailOrPhone = 2;</code>
+     */
+    String getEmailOrPhone();
+    /**
+     * <code>optional string emailOrPhone = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getEmailOrPhoneBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.GetSharableLinkRequest}
+   */
+  public  static final class GetSharableLinkRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          GetSharableLinkRequest, GetSharableLinkRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.GetSharableLinkRequest)
+      GetSharableLinkRequestOrBuilder {
+    private GetSharableLinkRequest() {
+      ticketId_ = "";
+      emailOrPhone_ = "";
+    }
+    public static final int TICKETID_FIELD_NUMBER = 1;
+    private String ticketId_;
+    /**
+     * <code>optional string ticketId = 1;</code>
+     */
+    public String getTicketId() {
+      return ticketId_;
+    }
+    /**
+     * <code>optional string ticketId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTicketIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(ticketId_);
+    }
+    /**
+     * <code>optional string ticketId = 1;</code>
+     */
+    private void setTicketId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      ticketId_ = value;
+    }
+    /**
+     * <code>optional string ticketId = 1;</code>
+     */
+    private void clearTicketId() {
+      
+      ticketId_ = getDefaultInstance().getTicketId();
+    }
+    /**
+     * <code>optional string ticketId = 1;</code>
+     */
+    private void setTicketIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      ticketId_ = value.toStringUtf8();
+    }
+
+    public static final int EMAILORPHONE_FIELD_NUMBER = 2;
+    private String emailOrPhone_;
+    /**
+     * <code>optional string emailOrPhone = 2;</code>
+     */
+    public String getEmailOrPhone() {
+      return emailOrPhone_;
+    }
+    /**
+     * <code>optional string emailOrPhone = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEmailOrPhoneBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(emailOrPhone_);
+    }
+    /**
+     * <code>optional string emailOrPhone = 2;</code>
+     */
+    private void setEmailOrPhone(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      emailOrPhone_ = value;
+    }
+    /**
+     * <code>optional string emailOrPhone = 2;</code>
+     */
+    private void clearEmailOrPhone() {
+      
+      emailOrPhone_ = getDefaultInstance().getEmailOrPhone();
+    }
+    /**
+     * <code>optional string emailOrPhone = 2;</code>
+     */
+    private void setEmailOrPhoneBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      emailOrPhone_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!ticketId_.isEmpty()) {
+        output.writeString(1, getTicketId());
+      }
+      if (!emailOrPhone_.isEmpty()) {
+        output.writeString(2, getEmailOrPhone());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!ticketId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getTicketId());
+      }
+      if (!emailOrPhone_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getEmailOrPhone());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static GetSharableLinkRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static GetSharableLinkRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static GetSharableLinkRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static GetSharableLinkRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static GetSharableLinkRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static GetSharableLinkRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static GetSharableLinkRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static GetSharableLinkRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static GetSharableLinkRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static GetSharableLinkRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(GetSharableLinkRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.GetSharableLinkRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          GetSharableLinkRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.GetSharableLinkRequest)
+        GetSharableLinkRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string ticketId = 1;</code>
+       */
+      public String getTicketId() {
+        return instance.getTicketId();
+      }
+      /**
+       * <code>optional string ticketId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTicketIdBytes() {
+        return instance.getTicketIdBytes();
+      }
+      /**
+       * <code>optional string ticketId = 1;</code>
+       */
+      public Builder setTicketId(
+          String value) {
+        copyOnWrite();
+        instance.setTicketId(value);
+        return this;
+      }
+      /**
+       * <code>optional string ticketId = 1;</code>
+       */
+      public Builder clearTicketId() {
+        copyOnWrite();
+        instance.clearTicketId();
+        return this;
+      }
+      /**
+       * <code>optional string ticketId = 1;</code>
+       */
+      public Builder setTicketIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTicketIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string emailOrPhone = 2;</code>
+       */
+      public String getEmailOrPhone() {
+        return instance.getEmailOrPhone();
+      }
+      /**
+       * <code>optional string emailOrPhone = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getEmailOrPhoneBytes() {
+        return instance.getEmailOrPhoneBytes();
+      }
+      /**
+       * <code>optional string emailOrPhone = 2;</code>
+       */
+      public Builder setEmailOrPhone(
+          String value) {
+        copyOnWrite();
+        instance.setEmailOrPhone(value);
+        return this;
+      }
+      /**
+       * <code>optional string emailOrPhone = 2;</code>
+       */
+      public Builder clearEmailOrPhone() {
+        copyOnWrite();
+        instance.clearEmailOrPhone();
+        return this;
+      }
+      /**
+       * <code>optional string emailOrPhone = 2;</code>
+       */
+      public Builder setEmailOrPhoneBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setEmailOrPhoneBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.GetSharableLinkRequest)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new GetSharableLinkRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          GetSharableLinkRequest other = (GetSharableLinkRequest) arg1;
+          ticketId_ = visitor.visitString(!ticketId_.isEmpty(), ticketId_,
+              !other.ticketId_.isEmpty(), other.ticketId_);
+          emailOrPhone_ = visitor.visitString(!emailOrPhone_.isEmpty(), emailOrPhone_,
+              !other.emailOrPhone_.isEmpty(), other.emailOrPhone_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  ticketId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  emailOrPhone_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (GetSharableLinkRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.GetSharableLinkRequest)
+    private static final GetSharableLinkRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GetSharableLinkRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static GetSharableLinkRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GetSharableLinkRequest> PARSER;
+
+    public static com.google.protobuf.Parser<GetSharableLinkRequest> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

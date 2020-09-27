@@ -1,4 +1,4 @@
-package com.treeleaf.anydone.serviceprovider.ticketdetails;
+package com.treeleaf.anydone.serviceprovider.linkshare;
 
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
@@ -6,10 +6,10 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
 import io.reactivex.Observable;
 
-public class TicketDetailsRepositoryImpl implements TicketDetailsRepository {
+public class LinkShareRepositoryImpl implements LinkShareRepository {
     private AnyDoneService anyDoneService;
 
-    public TicketDetailsRepositoryImpl(AnyDoneService anyDoneService) {
+    public LinkShareRepositoryImpl(AnyDoneService anyDoneService) {
         this.anyDoneService = anyDoneService;
     }
 

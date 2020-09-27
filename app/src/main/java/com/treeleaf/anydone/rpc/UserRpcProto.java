@@ -238,6 +238,15 @@ public final class UserRpcProto {
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 29;</code>
      */
     com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    boolean hasAnydoneUser();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUser();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.UserBaseRequest}
@@ -1466,6 +1475,58 @@ public final class UserRpcProto {
       source_ = 0;
     }
 
+    public static final int ANYDONEUSER_FIELD_NUMBER = 30;
+    private com.treeleaf.anydone.entities.UserProto.AnydoneUser anydoneUser_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    public boolean hasAnydoneUser() {
+      return anydoneUser_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUser() {
+      return anydoneUser_ == null ? com.treeleaf.anydone.entities.UserProto.AnydoneUser.getDefaultInstance() : anydoneUser_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    private void setAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      anydoneUser_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    private void setAnydoneUser(
+        com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+      anydoneUser_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    private void mergeAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+      if (anydoneUser_ != null &&
+          anydoneUser_ != com.treeleaf.anydone.entities.UserProto.AnydoneUser.getDefaultInstance()) {
+        anydoneUser_ =
+          com.treeleaf.anydone.entities.UserProto.AnydoneUser.newBuilder(anydoneUser_).mergeFrom(value).buildPartial();
+      } else {
+        anydoneUser_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+     */
+    private void clearAnydoneUser() {  anydoneUser_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1545,6 +1606,9 @@ public final class UserRpcProto {
       }
       if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         output.writeEnum(29, source_);
+      }
+      if (anydoneUser_ != null) {
+        output.writeMessage(30, getAnydoneUser());
       }
     }
 
@@ -1661,6 +1725,10 @@ public final class UserRpcProto {
       if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(29, source_);
+      }
+      if (anydoneUser_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(30, getAnydoneUser());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2812,6 +2880,51 @@ public final class UserRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+       */
+      public boolean hasAnydoneUser() {
+        return instance.hasAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUser() {
+        return instance.getAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+       */
+      public Builder setAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.setAnydoneUser(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+       */
+      public Builder setAnydoneUser(
+          com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAnydoneUser(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+       */
+      public Builder mergeAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.mergeAnydoneUser(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
+       */
+      public Builder clearAnydoneUser() {  copyOnWrite();
+        instance.clearAnydoneUser();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2868,6 +2981,7 @@ public final class UserRpcProto {
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
           customer_ = visitor.visitMessage(customer_, other.customer_);
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
+          anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3157,6 +3271,19 @@ public final class UserRpcProto {
                   int rawValue = input.readEnum();
 
                   source_ = rawValue;
+                  break;
+                }
+                case 242: {
+                  com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder subBuilder = null;
+                  if (anydoneUser_ != null) {
+                    subBuilder = anydoneUser_.toBuilder();
+                  }
+                  anydoneUser_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.AnydoneUser.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(anydoneUser_);
+                    anydoneUser_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -3455,6 +3582,29 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
      */
     int getCustomersCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    boolean hasAnydoneUser();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUser();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.UserProto.AnydoneUser> 
+        getAnydoneUsersList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUsers(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    int getAnydoneUsersCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.UserBaseResponse}
@@ -3477,6 +3627,7 @@ public final class UserRpcProto {
       locations_ = emptyProtobufList();
       serviceRatings_ = emptyProtobufList();
       customers_ = emptyProtobufList();
+      anydoneUsers_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -5077,6 +5228,178 @@ public final class UserRpcProto {
       customers_.remove(index);
     }
 
+    public static final int ANYDONEUSER_FIELD_NUMBER = 24;
+    private com.treeleaf.anydone.entities.UserProto.AnydoneUser anydoneUser_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    public boolean hasAnydoneUser() {
+      return anydoneUser_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUser() {
+      return anydoneUser_ == null ? com.treeleaf.anydone.entities.UserProto.AnydoneUser.getDefaultInstance() : anydoneUser_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    private void setAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      anydoneUser_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    private void setAnydoneUser(
+        com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+      anydoneUser_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    private void mergeAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+      if (anydoneUser_ != null &&
+          anydoneUser_ != com.treeleaf.anydone.entities.UserProto.AnydoneUser.getDefaultInstance()) {
+        anydoneUser_ =
+          com.treeleaf.anydone.entities.UserProto.AnydoneUser.newBuilder(anydoneUser_).mergeFrom(value).buildPartial();
+      } else {
+        anydoneUser_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+     */
+    private void clearAnydoneUser() {  anydoneUser_ = null;
+      
+    }
+
+    public static final int ANYDONEUSERS_FIELD_NUMBER = 25;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.AnydoneUser> anydoneUsers_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.UserProto.AnydoneUser> getAnydoneUsersList() {
+      return anydoneUsers_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.UserProto.AnydoneUserOrBuilder> 
+        getAnydoneUsersOrBuilderList() {
+      return anydoneUsers_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    public int getAnydoneUsersCount() {
+      return anydoneUsers_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUsers(int index) {
+      return anydoneUsers_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.AnydoneUserOrBuilder getAnydoneUsersOrBuilder(
+        int index) {
+      return anydoneUsers_.get(index);
+    }
+    private void ensureAnydoneUsersIsMutable() {
+      if (!anydoneUsers_.isModifiable()) {
+        anydoneUsers_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(anydoneUsers_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void setAnydoneUsers(
+        int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAnydoneUsersIsMutable();
+      anydoneUsers_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void setAnydoneUsers(
+        int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+      ensureAnydoneUsersIsMutable();
+      anydoneUsers_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void addAnydoneUsers(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAnydoneUsersIsMutable();
+      anydoneUsers_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void addAnydoneUsers(
+        int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAnydoneUsersIsMutable();
+      anydoneUsers_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void addAnydoneUsers(
+        com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+      ensureAnydoneUsersIsMutable();
+      anydoneUsers_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void addAnydoneUsers(
+        int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+      ensureAnydoneUsersIsMutable();
+      anydoneUsers_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void addAllAnydoneUsers(
+        Iterable<? extends com.treeleaf.anydone.entities.UserProto.AnydoneUser> values) {
+      ensureAnydoneUsersIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, anydoneUsers_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void clearAnydoneUsers() {
+      anydoneUsers_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+     */
+    private void removeAnydoneUsers(int index) {
+      ensureAnydoneUsersIsMutable();
+      anydoneUsers_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -5147,6 +5470,12 @@ public final class UserRpcProto {
       }
       for (int i = 0; i < customers_.size(); i++) {
         output.writeMessage(23, customers_.get(i));
+      }
+      if (anydoneUser_ != null) {
+        output.writeMessage(24, getAnydoneUser());
+      }
+      for (int i = 0; i < anydoneUsers_.size(); i++) {
+        output.writeMessage(25, anydoneUsers_.get(i));
       }
     }
 
@@ -5246,6 +5575,14 @@ public final class UserRpcProto {
       for (int i = 0; i < customers_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(23, customers_.get(i));
+      }
+      if (anydoneUser_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(24, getAnydoneUser());
+      }
+      for (int i = 0; i < anydoneUsers_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, anydoneUsers_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -6681,6 +7018,148 @@ public final class UserRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+       */
+      public boolean hasAnydoneUser() {
+        return instance.hasAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUser() {
+        return instance.getAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+       */
+      public Builder setAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.setAnydoneUser(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+       */
+      public Builder setAnydoneUser(
+          com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAnydoneUser(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+       */
+      public Builder mergeAnydoneUser(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.mergeAnydoneUser(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 24;</code>
+       */
+      public Builder clearAnydoneUser() {  copyOnWrite();
+        instance.clearAnydoneUser();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.UserProto.AnydoneUser> getAnydoneUsersList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getAnydoneUsersList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public int getAnydoneUsersCount() {
+        return instance.getAnydoneUsersCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUsers(int index) {
+        return instance.getAnydoneUsers(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder setAnydoneUsers(
+          int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.setAnydoneUsers(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder setAnydoneUsers(
+          int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAnydoneUsers(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder addAnydoneUsers(com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.addAnydoneUsers(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder addAnydoneUsers(
+          int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.addAnydoneUsers(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder addAnydoneUsers(
+          com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.addAnydoneUsers(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder addAnydoneUsers(
+          int index, com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.addAnydoneUsers(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder addAllAnydoneUsers(
+          Iterable<? extends com.treeleaf.anydone.entities.UserProto.AnydoneUser> values) {
+        copyOnWrite();
+        instance.addAllAnydoneUsers(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder clearAnydoneUsers() {
+        copyOnWrite();
+        instance.clearAnydoneUsers();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
+       */
+      public Builder removeAnydoneUsers(int index) {
+        copyOnWrite();
+        instance.removeAnydoneUsers(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -6701,6 +7180,7 @@ public final class UserRpcProto {
           locations_.makeImmutable();
           serviceRatings_.makeImmutable();
           customers_.makeImmutable();
+          anydoneUsers_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -6740,6 +7220,8 @@ public final class UserRpcProto {
           serviceRatings_= visitor.visitList(serviceRatings_, other.serviceRatings_);
           customer_ = visitor.visitMessage(customer_, other.customer_);
           customers_= visitor.visitList(customers_, other.customers_);
+          anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
+          anydoneUsers_= visitor.visitList(anydoneUsers_, other.anydoneUsers_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -6968,6 +7450,28 @@ public final class UserRpcProto {
                   }
                   customers_.add(
                       input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry));
+                  break;
+                }
+                case 194: {
+                  com.treeleaf.anydone.entities.UserProto.AnydoneUser.Builder subBuilder = null;
+                  if (anydoneUser_ != null) {
+                    subBuilder = anydoneUser_.toBuilder();
+                  }
+                  anydoneUser_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.AnydoneUser.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(anydoneUser_);
+                    anydoneUser_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 202: {
+                  if (!anydoneUsers_.isModifiable()) {
+                    anydoneUsers_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(anydoneUsers_);
+                  }
+                  anydoneUsers_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.UserProto.AnydoneUser.parser(), extensionRegistry));
                   break;
                 }
               }

@@ -2,6 +2,8 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,10 +28,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
@@ -81,6 +85,8 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
     private String accountId, accountName, accountPicture, rtcMessageId;
     private ServerActivity.VideoCallListener videoCallListenerServer;
     private ServerActivity.ServerDrawingPadEventListener serverDrawingPadEventListener;
+    String shareLink = "";
+    private long ticketId;
 
     @Override
     protected int getLayout() {
@@ -97,7 +103,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
-        long ticketId = i.getLongExtra("selected_ticket_id", 0);
+        ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
         setUpToolbar(ticketId, ticketTitle);
 
@@ -176,26 +182,50 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         rlEmail = view.findViewById(R.id.rl_email);
         rlOther = view.findViewById(R.id.rl_other);
 
-        rlCopy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        rlCopy.setOnClickListener(v -> {
+            if (!shareLink.isEmpty()) {
+                ClipboardManager clipboard = (ClipboardManager) Objects.requireNonNull(getContext())
+                        .getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("copied_text", shareLink);
+                assert clipboard != null;
+                clipboard.setPrimaryClip(clip);
+                linkShareBottomSheet.dismiss();
+                Toast.makeText(this, "Link copied", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No link found", Toast.LENGTH_SHORT).show();
             }
         });
 
         rlOther.setOnClickListener(v -> {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Share link");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, shareLink);
             sendIntent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
         });
+
+        rlSms.setOnClickListener(v -> {
+            linkShareBottomSheet.dismiss();
+            Intent i = new Intent(this, LinkShareActivity.class);
+            i.putExtra("ticket_id", ticketId);
+            i.putExtra("is_email", false);
+            startActivity(i);
+        });
+
+        rlEmail.setOnClickListener(v -> {
+            linkShareBottomSheet.dismiss();
+            Intent i = new Intent(this, LinkShareActivity.class);
+            i.putExtra("ticket_id", ticketId);
+            i.putExtra("is_email", true);
+            startActivity(i);
+        });
     }
 
     @OnClick(R.id.iv_share)
     public void share() {
+        presenter.getShareLink(String.valueOf(ticketId));
         if (linkShareBottomSheet.isShowing()) {
             linkShareBottomSheet.dismiss();
         } else {
@@ -338,6 +368,22 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
             outsideClickListener.onOutsideClick(event);
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public void onLinkShareSuccess(String link) {
+        shareLink = link;
+    }
+
+    @Override
+    public void onLinkShareFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     public interface OnOutsideClickListener {

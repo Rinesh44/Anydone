@@ -7,6 +7,9 @@ public class TicketDetailsContract {
 
     public interface TicketDetailsView extends BaseView {
 
+        void onLinkShareSuccess(String link);
+
+        void onLinkShareFail(String msg);
 
     }
 
@@ -17,6 +20,8 @@ public class TicketDetailsContract {
 
         void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
                                          long ticketId);
+
+        void getShareLink(String ticketId);
 
     }
 }

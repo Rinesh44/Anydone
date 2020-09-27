@@ -516,6 +516,11 @@ public interface AnyDoneService {
                                                                                     @Query("from") long from,
                                                                                     @Query("to") long to);
 
+    @POST("ticket/link/generate")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getLink(@Header(AUTHORIZATION)
+                                                                         String token,
+                                                                 @Body TicketProto.GetSharableLinkRequest
+                                                                         sharableLinkRequest);
 
 }
 
