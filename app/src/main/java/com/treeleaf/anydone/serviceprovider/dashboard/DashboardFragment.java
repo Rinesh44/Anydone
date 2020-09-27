@@ -349,6 +349,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                     .into(ivService);
             serviceBottomSheet.dismiss();
 
+            lineChart.setVisibility(View.GONE);
+            pbLineChart.setVisibility(View.VISIBLE);
             presenter.getTicketByPriority();
             presenter.getTicketByResolveTime();
             presenter.getTicketBySource();
@@ -819,11 +821,14 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 int resolvedTicket = ticketStatByStatus.getResolvedTickets();
                 int newTicket = ticketStatByStatus.getNewTickets();
 
-                newTickets.add(new Entry(i, newTicket));
+                if (newTicket != 0)
+                    newTickets.add(new Entry(i, newTicket));
 
-                resolvedTickets.add(new Entry(i, resolvedTicket));
+                if (resolvedTicket != 0)
+                    resolvedTickets.add(new Entry(i, resolvedTicket));
 
-                closedTickets.add(new Entry(i, closedTicket));
+                if (closedTicket != 0)
+                    closedTickets.add(new Entry(i, closedTicket));
 
 
 

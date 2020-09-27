@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/top_round_corners"
+    android:clickable="true"
+    android:elevation="@dimen/dimens_2x"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Share to"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x2"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_link_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_link_copy" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_link_copy"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_6x1"
+                android:text="Copy link"
+                android:textColor="@color/charcoal_text" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_link_sms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_link_messge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_link_sms"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_6x1"
+                android:text="SMS"
+                android:textColor="@color/charcoal_text" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_link_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_link_email" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_link_email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_6x1"
+                android:text="Email"
+                android:textColor="@color/charcoal_text" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_link_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_link_more" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_link_other"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_6x1"
+                android:text="Other"
+                android:textColor="@color/charcoal_text" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

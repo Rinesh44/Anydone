@@ -1,5 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +24,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -28,6 +34,8 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
 import com.treeleaf.januswebrtc.ClientActivity;
@@ -35,6 +43,7 @@ import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 
 import java.math.BigInteger;
+import java.util.Calendar;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -60,6 +69,11 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
+    private BottomSheetDialog linkShareBottomSheet;
+    private RelativeLayout rlCopy;
+    private RelativeLayout rlSms;
+    private RelativeLayout rlEmail;
+    private RelativeLayout rlOther;
 
     Callback.HostActivityCallback hostActivityCallbackServer;
 
@@ -93,6 +107,8 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
+
+        createLinkShareBottomSheet();
 
         hostActivityCallbackServer = new Callback.HostActivityCallback() {
 
@@ -147,15 +163,44 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         };
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void createLinkShareBottomSheet() {
+        linkShareBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.bottom_sheet_link, null);
+
+        linkShareBottomSheet.setContentView(view);
+        rlCopy = view.findViewById(R.id.rl_copy);
+        rlSms = view.findViewById(R.id.rl_sms);
+        rlEmail = view.findViewById(R.id.rl_email);
+        rlOther = view.findViewById(R.id.rl_other);
+
+        rlCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        rlOther.setOnClickListener(v -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Share link");
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+        });
+    }
+
     @OnClick(R.id.iv_share)
     public void share() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Share link");
-        sendIntent.setType("text/plain");
-
-        Intent shareIntent = Intent.createChooser(sendIntent, null);
-        startActivity(shareIntent);
+        if (linkShareBottomSheet.isShowing()) {
+            linkShareBottomSheet.dismiss();
+        } else {
+            linkShareBottomSheet.show();
+        }
     }
 
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,

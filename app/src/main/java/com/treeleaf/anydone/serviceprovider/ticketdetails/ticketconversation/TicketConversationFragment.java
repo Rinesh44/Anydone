@@ -65,7 +65,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -968,7 +967,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             Objects.requireNonNull(getActivity()).getWindow()
                     .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(((ServiceRequestDetailActivity)
+            Objects.requireNonNull(((TicketDetailsActivity)
                     getActivity()).getSupportActionBar()).hide();
 
             uri = Uri.parse(currentPhotoPath);
@@ -1004,7 +1003,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 Objects.requireNonNull(getActivity()).getWindow()
                         .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                Objects.requireNonNull(((ServiceRequestDetailActivity)
+                Objects.requireNonNull(((TicketDetailsActivity)
                         getActivity()).getSupportActionBar()).hide();
 
                 uri = data.getData();
@@ -1025,7 +1024,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         } else if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_CANCELED) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(((ServiceRequestDetailActivity)
+            Objects.requireNonNull(((TicketDetailsActivity)
                     getActivity()).getSupportActionBar()).show();
         }
 
@@ -1059,7 +1058,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         UiUtils.hideKeyboard(Objects.requireNonNull(getActivity()));
         clCaptureView.setVisibility(View.INVISIBLE);
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(((ServiceRequestDetailActivity)
+        Objects.requireNonNull(((TicketDetailsActivity)
                 getActivity()).getSupportActionBar()).show();
 
         String imageCaption = UiUtils.getString(etImageDesc);
@@ -1190,7 +1189,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     clCaptureView.setVisibility(View.GONE);
                     Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.
                             LayoutParams.FLAG_FULLSCREEN);
-                    Objects.requireNonNull(((ServiceRequestDetailActivity)
+                    Objects.requireNonNull(((TicketDetailsActivity)
                             getActivity()).getSupportActionBar()).show();
                 } else {
                     Objects.requireNonNull(getActivity()).finish();
