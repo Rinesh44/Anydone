@@ -89,6 +89,8 @@ import io.realm.RealmList;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class TicketConversationFragment extends BaseFragment<TicketConversationPresenterImpl>
         implements TicketConversationContract.TicketConversationView,
@@ -1311,6 +1313,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void mqttConnected() {
+        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
         tvConnectionStatus.setText(R.string.connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
         tvConnectionStatus.setVisibility(View.VISIBLE);
@@ -1324,6 +1327,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void mqttNotConnected() {
+        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
         GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
         tvConnectionStatus.setText(R.string.not_connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));

@@ -31,6 +31,8 @@ import java.util.Objects;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
@@ -584,8 +586,26 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         return this;
     }
 
-    public void checkConnection(){
+    public void checkConnection() {
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
+    }
+
+    public void onMqttConnectionStatusChange(String connection) {
+        if (connection.equals(MQTT_CONNECTED)) {
+            if (videoCallListenerClient != null) {
+                videoCallListenerClient.onMqttConnectionChanged(MQTT_CONNECTED);
+            }
+            if (videoCallListenerServer != null) {
+                videoCallListenerServer.onMqttConnectionChanged(MQTT_CONNECTED);
+            }
+        } else {
+            if (videoCallListenerClient != null) {
+                videoCallListenerClient.onMqttConnectionChanged(MQTT_DISCONNECTED);
+            }
+            if (videoCallListenerServer != null) {
+                videoCallListenerServer.onMqttConnectionChanged(MQTT_DISCONNECTED);
+            }
+        }
     }
 
 }
