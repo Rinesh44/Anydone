@@ -56,6 +56,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private long refId, ticketId;
     private String rtcContext = RTC_CONTEXT_SERVICE_REQUEST;
     private boolean videoBroadCastPublish = false;
+    private boolean videoCallInitiated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -275,6 +276,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
+        videoCallInitiated = false;
         videoBroadCastPublish = false;//TODO: check if onresume gets called from child parent
     }
 
@@ -326,19 +328,21 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        rtcMessageId = broadcastVideoCall.getRtcMessageId();
-        String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-        String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-        String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
-        String roomNumber = broadcastVideoCall.getRoomId();
-        String participantId = broadcastVideoCall.getParticipantId();
+        if (!videoCallInitiated) {
+            rtcMessageId = broadcastVideoCall.getRtcMessageId();
+            String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
+            String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
+            String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
+            String roomNumber = broadcastVideoCall.getRoomId();
+            String participantId = broadcastVideoCall.getParticipantId();
 
-        callerName = broadcastVideoCall.getSenderAccount().getFullName();
-        callerAccountId = broadcastVideoCall.getSenderAccountId();
-        callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+            callerName = broadcastVideoCall.getSenderAccount().getFullName();
+            callerAccountId = broadcastVideoCall.getSenderAccountId();
+            callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+            ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
+        }
 
-        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
 
     }
 
@@ -587,6 +591,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     public void checkConnection() {
+        videoCallInitiated = true;
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
     }
 
