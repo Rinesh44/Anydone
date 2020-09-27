@@ -24,6 +24,7 @@ import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
@@ -436,7 +437,7 @@ public interface AnyDoneService {
                                                                          @Body TicketProto.Ticket
                                                                                  ticket);
 
-    @DELETE("ticket/contributor/{ticketId}")
+    @HTTP(method = "DELETE", path = "ticket/contributor/{ticketId}", hasBody = true)
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     deleteContributor(@Header(AUTHORIZATION)
                               String token,
@@ -444,6 +445,78 @@ public interface AnyDoneService {
                               String ticketId,
                       @Body TicketProto.TicketContributor
                               ticketContributor);
+
+    @GET("tickets/date/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByDate(@Header(AUTHORIZATION)
+                                                                                    String token,
+                                                                            @Path(value = "serviceId")
+                                                                                    String serviceId,
+                                                                            @Query("from") long from,
+                                                                            @Query("to") long to);
+
+    @GET("tickets/date/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByDate(@Header(AUTHORIZATION)
+                                                                                 String token,
+                                                                         @Path(value = "serviceId")
+                                                                                 String serviceId);
+
+    @GET("tickets/status/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByStatus(@Header(AUTHORIZATION)
+                                                                                   String token,
+                                                                           @Path(value = "serviceId")
+                                                                                   String serviceId);
+
+    @GET("tickets/status/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByStatus(@Header(AUTHORIZATION)
+                                                                                      String token,
+                                                                              @Path(value = "serviceId")
+                                                                                      String serviceId,
+                                                                              @Query("from") long from,
+                                                                              @Query("to") long to);
+
+    @GET("tickets/source/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketBySource(@Header(AUTHORIZATION)
+                                                                                   String token,
+                                                                           @Path(value = "serviceId")
+                                                                                   String serviceId);
+
+    @GET("tickets/source/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketBySource(@Header(AUTHORIZATION)
+                                                                                      String token,
+                                                                              @Path(value = "serviceId")
+                                                                                      String serviceId,
+                                                                              @Query("from") long from,
+                                                                              @Query("to") long to);
+
+    @GET("tickets/priority/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByPriority(@Header(AUTHORIZATION)
+                                                                                     String token,
+                                                                             @Path(value = "serviceId")
+                                                                                     String serviceId);
+
+    @GET("tickets/priority/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByPriority(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Path(value = "serviceId")
+                                                                                        String serviceId,
+                                                                                @Query("from") long from,
+                                                                                @Query("to") long to);
+
+    @GET("tickets/resolve/time/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByResolvedTime(@Header(AUTHORIZATION)
+                                                                                         String token,
+                                                                                 @Path(value = "serviceId")
+                                                                                         String serviceId);
+
+    @GET("tickets/resolve/time/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByResolvedTime(@Header(AUTHORIZATION)
+                                                                                            String token,
+                                                                                    @Path(value = "serviceId")
+                                                                                            String serviceId,
+                                                                                    @Query("from") long from,
+                                                                                    @Query("to") long to);
+
+
 }
 
 

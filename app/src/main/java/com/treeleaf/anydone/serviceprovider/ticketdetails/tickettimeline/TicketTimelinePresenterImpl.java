@@ -212,6 +212,8 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                 .setEmployee(employeeProfile)
                 .build();
 
+        GlobalUtils.showLog(TAG, "delete contributor: " + ticketContributor);
+
         ticketObservable = ticketTimelineRepository.unAssignContributor(token,
                 String.valueOf(ticketId), ticketContributor);
 
@@ -235,7 +237,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             return;
                         }
 
-                        TicketRepo.getInstance().unAssignContributor(ticketId, contributorId,
+                        TicketRepo.getInstance().removeContributor(ticketId, contributorId,
                                 new Repo.Callback() {
                                     @Override
                                     public void success(Object o) {
@@ -290,6 +292,8 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             getView().onTicketCloseFail(closeTicketResponse.getMsg());
                             return;
                         }
+
+                        Hawk.put(Constants.REFETCH_TICKET_STAT, true);
                         getView().onTicketCloseSuccess();
                     }
 
@@ -333,6 +337,8 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             getView().onTicketReopenFail(reopenTicketResponse.getMsg());
                             return;
                         }
+
+                        Hawk.put(Constants.REFETCH_TICKET_STAT, true);
                         getView().onTicketReopenSuccess();
 
                     }
@@ -377,6 +383,8 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             getView().onTicketResolveFail(resolveTicketResponse.getMsg());
                             return;
                         }
+
+                        Hawk.put(Constants.REFETCH_TICKET_STAT, true);
                         getView().onTicketResolveSuccess();
                     }
 
