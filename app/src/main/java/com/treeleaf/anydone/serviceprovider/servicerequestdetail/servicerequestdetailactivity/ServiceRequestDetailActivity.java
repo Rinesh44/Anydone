@@ -46,6 +46,9 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
+import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
+import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
+
 public class ServiceRequestDetailActivity extends MvpBaseActivity
         <ServiceRequestDetailActivityPresenterImpl> implements
         ServiceRequestDetailActivityContract.ServiceRequestDetailActivityView,
@@ -307,25 +310,25 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
 
     }
 
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes);
+                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes, accountId);
                 }
             }
         });
 
     }
 
-    public void onImageDrawDiscardRemote() {
+    public void onImageDrawDiscardRemote(String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "onImageReceivedFromConsumer");
                 if (serverDrawingPadEventListener != null)
-                    serverDrawingPadEventListener.onDrawDiscard();
+                    serverDrawingPadEventListener.onDrawDiscard(accountId);
             }
         });
     }
@@ -346,17 +349,17 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
             serverDrawingPadEventListener.onDrawHideProgress();
     }
 
-    public void onImageAckSent() {
+    public void onImageAckSent(String accountId) {
         if (serverDrawingPadEventListener != null)
-            serverDrawingPadEventListener.onDrawDisplayCapturedImage();
+            serverDrawingPadEventListener.onDrawDisplayCapturedImage(accountId);
     }
 
-    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse) {
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
         if (serverDrawingPadEventListener != null) {
             int width = startDrawAckResponse.getBitmapWidth();
             int height = startDrawAckResponse.getBitmapHeight();
             long timeStamp = startDrawAckResponse.getCapturedTime();
-            serverDrawingPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp);
+            serverDrawingPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp, accountId);
             serverDrawingPadEventListener.onDrawHideProgress();
         }
     }
@@ -366,12 +369,12 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
         if (videoCallListenerServer != null) {
             UserProto.Account account = videoCallJoinResponse.getSenderAccount();
             videoCallListenerServer.onJoineeReceived(account.getFullName(),
-                    account.getProfilePic(), videoCallJoinResponse.getSenderAccountId());
+                    account.getProfilePic(), videoCallJoinResponse.getSenderAccountId(), JOINEE_LOCAL);
 
             /**
              * add caller/call initiator on the joinee list
              */
-            videoCallListenerServer.onJoineeReceived(callerName, callerProfileUrl, callerAccountId);
+            videoCallListenerServer.onJoineeReceived(callerName, callerProfileUrl, callerAccountId, JOINEE_REMOTE);
         }
     }
 
@@ -394,17 +397,17 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
-                    captureDrawParam.getYCoordinate());
+                    captureDrawParam.getYCoordinate(), accountId);
             serverDrawingPadEventListener.onDrawTouchDown(accountId);
         }
     }
 
     @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam) {
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
         if (serverDrawingPadEventListener != null) {
             serverDrawingPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
-                    captureDrawParam.getYCoordinate());
-            serverDrawingPadEventListener.onDrawTouchMove();
+                    captureDrawParam.getYCoordinate(), accountId);
+            serverDrawingPadEventListener.onDrawTouchMove(accountId);
         }
     }
 
@@ -452,19 +455,19 @@ public class ServiceRequestDetailActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
         if (serverDrawingPadEventListener != null) {
-            serverDrawingPadEventListener.onDrawParamChanged(captureDrawParam);
+            serverDrawingPadEventListener.onDrawParamChanged(captureDrawParam, accountId);
         }
     }
 
     @Override
-    public void onDrawCanvasCleared() {
+    public void onDrawCanvasCleared(String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawCanvasCleared();
+                    serverDrawingPadEventListener.onDrawCanvasCleared(accountId);
                 }
             }
         });

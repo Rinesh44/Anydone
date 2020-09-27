@@ -18,6 +18,8 @@ public class Const {
     public static final String JANUS_ROOM_NUMBER = "janus_room_number";
     public static final String JANUS_PARTICIPANT_ID = "janus_participant_id";
 
+    public static final String JOINEE_REMOTE = "joinee_remote";
+    public static final String JOINEE_LOCAL = "joinee_local";
 
     public static void setRoomNumber(BigInteger roomNumber) {
         ROOM_NUMBER = roomNumber;

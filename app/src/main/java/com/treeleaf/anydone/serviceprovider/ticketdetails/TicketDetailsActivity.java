@@ -222,12 +222,12 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
 
     }
 
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes);
+                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes, accountId);
                 }
             }
         });
@@ -240,7 +240,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
             public void run() {
                 Log.d(TAG, "onImageReceivedFromConsumer");
                 if (serverDrawingPadEventListener != null)
-                    serverDrawingPadEventListener.onDrawDiscard();
+                    serverDrawingPadEventListener.onDrawDiscard("accountId");//TODO: paste here from ServiceRequestDetailActivity
             }
         });
     }
@@ -250,7 +250,7 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         if (videoCallListenerServer != null) {
             UserProto.Account account = videoCallJoinResponse.getSenderAccount();
             videoCallListenerServer.onJoineeReceived(account.getFullName(),
-                    account.getProfilePic(), account.getAccountId());
+                    account.getProfilePic(), account.getAccountId(), "accountId");//TODO: paste here from ServiceRequestDetailActivity
         }
     }
 

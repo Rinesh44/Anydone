@@ -96,19 +96,19 @@ public class ServiceRequestDetailContract {
 
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
-        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes);
+        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
 
         void onImageCaptured();
 
-        void onImageAckSent();
+        void onImageAckSent(String accountId);
 
         void onImageDrawDiscardLocal();
 
-        void onImageDrawDiscardRemote();
+        void onImageDrawDiscardRemote(String accountId);
 
         void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId);
 
-        void onDrawTouchMove(CaptureDrawParam captureDrawParam);
+        void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId);
 
         void onDrawTouchUp(String accountId);
 
@@ -118,11 +118,11 @@ public class ServiceRequestDetailContract {
 
         void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
 
-        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId);
 
-        void onDrawCanvasCleared();
+        void onDrawCanvasCleared(String accountId);
 
-        void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse);
+        void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId);
     }
 
     public interface ServiceRequestDetailPresenter extends Presenter<ServiceRequestDetailView> {

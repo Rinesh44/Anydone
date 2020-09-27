@@ -88,7 +88,7 @@ public class TicketConversationContract {
 
         void onTaskStartFail(String msg);
 
-        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes);
+        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
 
         void onImageDrawDiscard();
 

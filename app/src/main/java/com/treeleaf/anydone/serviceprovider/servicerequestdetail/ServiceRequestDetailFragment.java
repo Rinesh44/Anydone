@@ -792,9 +792,9 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes) {
+    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
         ((ServiceRequestDetailActivity) getActivity())
-                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes);
+                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
     }
 
     @Override
@@ -803,8 +803,8 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onImageDrawDiscardRemote() {
-        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote();
+    public void onImageDrawDiscardRemote(String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote(accountId);
     }
 
     @Override
@@ -813,13 +813,13 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onImageAckSent() {
-        ((ServiceRequestDetailActivity) getActivity()).onImageAckSent();
+    public void onImageAckSent(String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onImageAckSent(accountId);
     }
 
     @Override
-    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse) {
-        ((ServiceRequestDetailActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse);
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
     }
 
     @Override
@@ -1374,8 +1374,8 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchMove(captureDrawParam);
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId);
     }
 
     @Override
@@ -1399,13 +1399,13 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawParamChanged(captureDrawParam);
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId);
     }
 
     @Override
-    public void onDrawCanvasCleared() {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawCanvasCleared();
+    public void onDrawCanvasCleared(String accountId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawCanvasCleared(accountId);
     }
 
 }

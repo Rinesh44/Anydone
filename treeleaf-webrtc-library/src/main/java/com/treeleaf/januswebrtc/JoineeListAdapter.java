@@ -9,7 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +30,8 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     private JoineeListToggleUpdate joineeListToggleUpdate;
     public JoineeListState joineeListState;
     private OnItemClickListener onItemClickListener;
+    private ModeListener mModeListener;
+    private boolean isJoineeSoloDrawing = false;
 
     public JoineeListAdapter(Context context) {
         this.mContext = context;
@@ -42,6 +43,10 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setModeListener(ModeListener modeListener) {
+        mModeListener = modeListener;
     }
 
     public Boolean isJoineePresent() {
@@ -148,22 +153,58 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
                 holder.tvCountAdditionalJoinees.setText("+" + remaining);
             } else {
                 holder.tvCountAdditionalJoinees.setVisibility(View.GONE);
-                if (joinee.isDrawing()) {
+                //TODO: for highlighting profile during draw
+                /*if (joinee.isDrawing()) {
                     GradientDrawable drawable = (GradientDrawable) holder.flDrawHighlight.getBackground();
                     drawable.setStroke(7, joinee.getDrawColor());
                     holder.flDrawHighlight.setVisibility(View.VISIBLE);
                 } else {
                     holder.flDrawHighlight.setVisibility(View.GONE);
+                }*/
+
+                if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW)) {
+                    GradientDrawable drawable = (GradientDrawable) holder.flDrawHighlight.getBackground();
+                    drawable.setStroke(6, joinee.getDrawColor());
+                    holder.flDrawHighlight.setVisibility(View.VISIBLE);
+                } else {
+                    holder.flDrawHighlight.setVisibility(View.GONE);
                 }
+
+
+                if (joinee.isSoloDrawing()) {
+                    holder.ivJoinee.setAlpha(255);//255 is fully opaque
+                } else if (isJoineeSoloDrawing) {
+                    holder.ivJoinee.setAlpha(90);
+                } else
+                    holder.ivJoinee.setAlpha(255);
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onItemClickListener.onItemClicked(position, holder.itemView,
-                                joinee.getAccountId(), joinee.getName());
+                        onItemClickListener.onItemClicked(position, holder.itemView, joinee);
                     }
                 });
             }
         }
+    }
+
+    public void onJoineeItemClicked(String joineeId) {
+        Joinee joinee = mapTotalJoinees.get(joineeId);
+        joinee.setSoloDrawing(!joinee.isSoloDrawing());
+        isJoineeSoloDrawing = joinee.isSoloDrawing();
+        for (Joinee otherJoinee : mapTotalJoinees.values()) {
+            if (otherJoinee.getAccountId() != joineeId) {
+                otherJoinee.setSoloDrawing(false);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void makeAllJoineesVisible() {
+        for (Joinee joinee : mapTotalJoinees.values()) {
+            joinee.setSoloDrawing(false);
+        }
+        isJoineeSoloDrawing = false;
+        notifyDataSetChanged();
     }
 
     public void highlightCurrentDrawer(String accountId, boolean isCurrentDrawing,
@@ -209,8 +250,16 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         EXPAND, CONTRACT
     }
 
+    public enum Mode {
+        IMAGE_DRAW, VIDEO_STREAM
+    }
+
     public interface OnItemClickListener {
-        void onItemClicked(int position, View v, String accountId, String accountName);
+        void onItemClicked(int position, View v, Joinee joinee);
+    }
+
+    public interface ModeListener {
+        Mode getCurrentMode();
     }
 
 }

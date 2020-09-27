@@ -36,6 +36,7 @@ import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionEvents;
 import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionParameters;
 import com.treeleaf.januswebrtc.audio.AppRTCAudioManager;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
+import com.treeleaf.januswebrtc.JoineeListAdapter.Mode;
 
 import org.json.JSONObject;
 import org.webrtc.Camera1Enumerator;
@@ -54,6 +55,10 @@ import java.math.BigInteger;
 
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.TRUE;
+import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.SHOW_ALL;
+import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.SHOW_ONE;
+import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.TYPE.LOCAL;
+import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.TYPE.REMOTE;
 import static com.treeleaf.januswebrtc.Const.CALLEE_NAME;
 import static com.treeleaf.januswebrtc.Const.CALLEE_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.JANUS_API_KEY;
@@ -61,6 +66,7 @@ import static com.treeleaf.januswebrtc.Const.JANUS_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.JANUS_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.JANUS_ROOM_NUMBER;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
+import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 
 public class ServerActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback,
@@ -116,12 +122,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private Runnable runnable;
     private int timerDelay = 10000;
     private AppRTCAudioManager audioManager;
-    private DrawMetadata drawMetaDataRemote, drawMetadataLocal;
+    private DrawMetadata drawMetadataLocal;
     private MetaDataUpdateListener metaDataUpdateListener;
     private CaptureDrawParam captureDrawParam;
     private int localDeviceHeight, localDeviceWidth;
     private int remoteDeviceHeight, remoteDeviceWidth;
     private String mLocalAccountId;
+    private Mode mode = Mode.VIDEO_STREAM;
 
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
@@ -233,13 +240,16 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         videoCallListener = new VideoCallListener() {
             @Override
-            public void onJoineeReceived(String joineeName, String joineedProfileUrl, String accountId) {
+            public void onJoineeReceived(String joineeName, String joineedProfileUrl, String accountId, String joineeType) {
                 //add new joinee information in view
                 Log.d(TAG, "onjoineereceived");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         joineeListAdapter.addNewJoinee(new Joinee(joineeName, joineedProfileUrl, accountId), showFullList);
+                        if (joineeType.equals(JOINEE_REMOTE)) {
+                            treeleafDrawPadView.addNewDrawView(accountId, ServerActivity.this);
+                        }
                     }
                 });
 
@@ -271,10 +281,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         serverDrawingPadEventListener = new ServerDrawingPadEventListener() {
             @Override
-            public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes) {
+            public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
                 Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
                 imageViewCaptureImage.setImageBitmap(receivedBitmap);
                 treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
+                treeleafDrawPadView.showLocalAndRemoteViews();
 
 
                 if (mDrawCallback != null) {
@@ -288,7 +299,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawRemoteDeviceConfigReceived(int width, int height, long timeStamp) {
+            public void onDrawRemoteDeviceConfigReceived(int width, int height, long timeStamp, String accountId) {
                 remoteDeviceWidth = width;
                 remoteDeviceHeight = height;
                 localDeviceWidth = VideoCallUtil.getDeviceResolution(ServerActivity.this)[0];
@@ -296,10 +307,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawDisplayCapturedImage() {
+            public void onDrawDisplayCapturedImage(String accountId) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        mode = Mode.IMAGE_DRAW;
+                        joineeListAdapter.notifyDataSetChanged();
                         showHideDrawView(true);
                         remoteImage = true;
                         showHideDiscardDrawButton();
@@ -308,9 +321,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawDiscard() {
+            public void onDrawDiscard(String accountId) {
                 DrawPadUtil.hideKeyboard(findViewById(android.R.id.content).getRootView(), ServerActivity.this);
                 showHideDrawView(false);
+                joineeListAdapter.makeAllJoineesVisible();
+                mode = Mode.VIDEO_STREAM;
+                joineeListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -328,15 +344,16 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        treeleafDrawPadView.onRemoteTouchDown(drawMetaDataRemote);
-                        joineeListAdapter.highlightCurrentDrawer(accountId, true, drawMetaDataRemote.getTextColor());
+                        treeleafDrawPadView.onRemoteTouchDown(accountId);
+                        joineeListAdapter.highlightCurrentDrawer(accountId, true,
+                                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata().getTextColor());
                     }
                 });
             }
 
             @Override
-            public void onDrawTouchMove() {
-                treeleafDrawPadView.onRemoteTouchMove(drawMetaDataRemote);
+            public void onDrawTouchMove(String accountId) {
+                treeleafDrawPadView.onRemoteTouchMove(accountId);
             }
 
             @Override
@@ -344,8 +361,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        treeleafDrawPadView.onRemoteTouchUp();
-                        joineeListAdapter.highlightCurrentDrawer(accountId, false, drawMetaDataRemote.getTextColor());
+                        treeleafDrawPadView.onRemoteTouchUp(accountId);
+                        joineeListAdapter.highlightCurrentDrawer(accountId, false,
+                                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata().getTextColor());
                     }
                 });
             }
@@ -355,8 +373,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId, drawMetaDataRemote.getTextColor());
-                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+
+                        treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId,
+                                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata().getTextColor(), accountId);
+                        highlightDrawerForTextEdit(accountId,
+                                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata().getTextColor());
                     }
                 });
             }
@@ -366,8 +387,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        treeleafDrawPadView.onRemoteChangedEditText(text, id);
-                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                        treeleafDrawPadView.onRemoteChangedEditText(text, id, accountId);
+                        highlightDrawerForTextEdit(accountId,
+                                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata().getTextColor());
                     }
                 });
             }
@@ -377,8 +399,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        treeleafDrawPadView.onRemoteRemoveEditText(editTextId);
-                        highlightDrawerForTextEdit(accountId, drawMetaDataRemote.getTextColor());
+                        treeleafDrawPadView.onRemoteRemoveEditText(editTextId, accountId);
+                        highlightDrawerForTextEdit(accountId,
+                                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata().getTextColor());
                     }
                 });
             }
@@ -390,23 +413,24 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
              * @param y
              */
             @Override
-            public void onDrawNewDrawCoordinatesReceived(Float x, Float y) {
-                drawMetaDataRemote.setCurrentDrawPosition(new Position(x, y));
+            public void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId) {
+                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata()
+                        .setCurrentDrawPosition(new Position(x, y));
             }
 
             @Override
-            public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
-                drawMetaDataRemote = VideoCallUtil.getDrawMetaData(captureDrawParam);
+            public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
+                treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId)
+                        .setDrawMetadata(VideoCallUtil.getDrawMetaData(captureDrawParam));
             }
 
             @Override
-            public void onDrawCanvasCleared() {
-                treeleafDrawPadView.onRemoteClearCanvas();
+            public void onDrawCanvasCleared(String accountId) {
+                treeleafDrawPadView.onRemoteClearCanvas(accountId);
             }
 
         };
 
-        drawMetaDataRemote = new DrawMetadata();
         drawMetadataLocal = new DrawMetadata();
 
         metaDataUpdateListener = new MetaDataUpdateListener() {
@@ -857,13 +881,24 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         });
         joineeListAdapter.setOnItemClickListener(new JoineeListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(int position, View v, String accountId, String accountName) {
+            public void onItemClicked(int position, View v, Joinee joinee) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(ServerActivity.this, "clicked on: " + accountName, Toast.LENGTH_SHORT).show();
+                        String accountId = joinee.getAccountId();
+                        if (mode.equals(Mode.IMAGE_DRAW)) {
+                            treeleafDrawPadView.switchDrawPadOfIndividualUsers((mLocalAccountId.equals(accountId) ? LOCAL : REMOTE),
+                                    joinee.isSoloDrawing() ? SHOW_ALL : SHOW_ONE, accountId);
+                            joineeListAdapter.onJoineeItemClicked(accountId);
+                        }
                     }
                 });
+            }
+        });
+        joineeListAdapter.setModeListener(new JoineeListAdapter.ModeListener() {
+            @Override
+            public Mode getCurrentMode() {
+                return mode;
             }
         });
         rvJoinee = findViewById(R.id.rv_joinee);
@@ -1034,12 +1069,15 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 maximizeCurrentDrawing();
             } else {
                 remoteImage = false;
+                mode = Mode.IMAGE_DRAW;
+                joineeListAdapter.notifyDataSetChanged();
                 showHideDrawView(true);
                 showHideDiscardDrawButton();
                 //take screenshot
 
                 remoteRender.addFrameListener(frameListener, 1);
                 treeleafDrawPadView.addViewToDrawOver(imageViewCaptureImage);
+                treeleafDrawPadView.showLocalAndRemoteViews();
                 //after taking screenshot
             }
         }
@@ -1048,8 +1086,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener discardDrawClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            mode = Mode.VIDEO_STREAM;
+            joineeListAdapter.notifyDataSetChanged();
             DrawPadUtil.hideKeyboard(v.getRootView(), ServerActivity.this);
             showHideDrawView(false);
+            joineeListAdapter.makeAllJoineesVisible();
             if (mDrawCallback != null) {
                 mDrawCallback.onDiscardDraw();//TODO: uncomment this later
                 mDrawCallback.onHoldDraw();
@@ -1064,11 +1105,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         if (drawMode) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
             params.addRule(ALIGN_PARENT_LEFT, 0);
-            params.addRule(RelativeLayout.CENTER_HORIZONTAL, TRUE);
+            params.leftMargin = (int) DrawPadUtil.convertPixelsToDp(400f, this);
             rlJoineeList.setLayoutParams(params);
         } else {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
+            params.leftMargin = (int) DrawPadUtil.convertPixelsToDp(40f, this);
             rlJoineeList.setLayoutParams(params);
         }
     }
@@ -1089,12 +1131,16 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     };
 
     private void minimizeCurrentDrawing() {
+        mode = Mode.VIDEO_STREAM;
+        joineeListAdapter.notifyDataSetChanged();
         isDrawMinized = true;
         switchDrawModeAndVideoMode(false);
         VideoCallUtil.materialContainerTransformVisibility(layoutDraw, imgMaximizeDraw, rlServerRoot);
     }
 
     private void maximizeCurrentDrawing() {
+        mode = Mode.IMAGE_DRAW;
+        joineeListAdapter.notifyDataSetChanged();
         isDrawMinized = false;
         switchDrawModeAndVideoMode(true);
         VideoCallUtil.materialContainerTransformVisibility(imgMaximizeDraw, layoutDraw, rlServerRoot);
@@ -1115,11 +1161,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         if (showDrawView) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
             params.addRule(ALIGN_PARENT_LEFT, 0);
-            params.addRule(RelativeLayout.CENTER_HORIZONTAL, TRUE);
+            params.leftMargin = (int) DrawPadUtil.convertPixelsToDp(400f, this);
             rlJoineeList.setLayoutParams(params);
         } else {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
+            params.leftMargin = (int) DrawPadUtil.convertPixelsToDp(40f, this);
             rlJoineeList.setLayoutParams(params);
         }
     }

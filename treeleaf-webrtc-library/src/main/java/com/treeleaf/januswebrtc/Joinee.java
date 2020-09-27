@@ -12,6 +12,7 @@ public class Joinee {
     private String accountId;
     private boolean isDrawing = false;
     private Integer drawColor = -16777216;
+    private boolean soloDrawing = false;
 
     public String getName() {
         return name;
@@ -52,4 +53,13 @@ public class Joinee {
     public void setDrawColor(Integer drawColor) {
         this.drawColor = drawColor;
     }
+
+    public boolean isSoloDrawing() {
+        return soloDrawing;
+    }
+
+    public void setSoloDrawing(boolean soloDrawing) {
+        this.soloDrawing = soloDrawing;
+    }
+
 }

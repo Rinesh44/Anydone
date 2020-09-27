@@ -124,7 +124,8 @@ public class Callback {
 
     public interface AudioVideoCallbackListener {
 
-        void onJoineeReceived(String joineedName, String joineedProfileUrl, String accountId);
+        void onJoineeReceived(String joineeName, String joineedProfileUrl,
+                              String accountId, String joineeType);
 
         void onJoineeRemoved(String accountId);
 
@@ -135,11 +136,11 @@ public class Callback {
          * common events for draw between Client and Server
          */
 
-        void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes);
+        void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
 
-        void onDrawDisplayCapturedImage();
+        void onDrawDisplayCapturedImage(String accountId);
 
-        void onDrawDiscard();
+        void onDrawDiscard(String accountId);
 
         void onDrawHideProgress();
 
@@ -147,7 +148,7 @@ public class Callback {
 
         void onDrawTouchDown(String accountId);
 
-        void onDrawTouchMove();
+        void onDrawTouchMove(String accountId);
 
         void onDrawTouchUp(String accountId);
 
@@ -157,13 +158,13 @@ public class Callback {
 
         void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
 
-        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId);
 
-        void onDrawNewDrawCoordinatesReceived(Float x, Float y);
+        void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId);
 
-        void onDrawCanvasCleared();
+        void onDrawCanvasCleared(String accountId);
 
-        void onDrawRemoteDeviceConfigReceived(int width, int height, long timeStamp);
+        void onDrawRemoteDeviceConfigReceived(int width, int height, long timeStamp, String accountId);
 
     }
 
@@ -171,7 +172,7 @@ public class Callback {
 
         void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId);
 
-        void onDrawTouchMove(CaptureDrawParam captureDrawParam);
+        void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId);
 
         void onDrawTouchUp(String accountId);
 
@@ -181,9 +182,9 @@ public class Callback {
 
         void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
 
-        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId);
 
-        void onDrawCanvasCleared();
+        void onDrawCanvasCleared(String accountId);
 
     }
 
