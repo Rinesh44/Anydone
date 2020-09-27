@@ -26,6 +26,8 @@ import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
@@ -54,6 +56,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private long refId, ticketId;
     private String rtcContext = RTC_CONTEXT_SERVICE_REQUEST;
     private boolean videoBroadCastPublish = false;
+    int localDeviceWidth, localDeviceHeight;
+    private Map<String, Integer[]> remoteDeviceResolutions = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
+        localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[0];
+        localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[1];
 
         //server callback
         hostActivityCallbackServer = new Callback.HostActivityCallback() {
@@ -345,6 +351,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
+                    remoteDeviceResolutions.put(accountId, new Integer[]{width, height});
                     drawPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes, accountId);
                 }
             }
@@ -382,6 +389,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         if (drawPadEventListener != null) {
             int width = startDrawAckResponse.getBitmapWidth();
             int height = startDrawAckResponse.getBitmapHeight();
+            remoteDeviceResolutions.put(accountId, new Integer[]{width, height});
             long timeStamp = startDrawAckResponse.getCapturedTime();
             drawPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp, accountId);
             drawPadEventListener.onDrawHideProgress();
@@ -435,8 +443,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
-                    captureDrawParam.getYCoordinate(), accountId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustPixelResolutions(captureDrawParam.getXCoordinate(),
+                    captureDrawParam.getYCoordinate(), accountId)[0],
+                    adjustPixelResolutions(captureDrawParam.getXCoordinate(),
+                            captureDrawParam.getYCoordinate(), accountId)[1], accountId);
             drawPadEventListener.onDrawTouchDown(accountId);
         }
     }
@@ -444,8 +454,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(captureDrawParam.getXCoordinate(),
-                    captureDrawParam.getYCoordinate(), accountId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustPixelResolutions(captureDrawParam.getXCoordinate(),
+                    captureDrawParam.getYCoordinate(), accountId)[0],
+                    adjustPixelResolutions(captureDrawParam.getXCoordinate(),
+                            captureDrawParam.getYCoordinate(), accountId)[1], accountId);
             drawPadEventListener.onDrawTouchMove(accountId);
         }
     }
@@ -463,7 +475,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
+                    drawPadEventListener.onDrawReceiveNewTextField(adjustPixelResolutions(x, y, accountId)[0],
+                            adjustPixelResolutions(x, y, accountId)[1], editTextFieldId, accountId);
                 }
             }
         });
@@ -584,8 +597,18 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         return this;
     }
 
-    public void checkConnection(){
+    public void checkConnection() {
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
+    }
+
+    private float[] adjustPixelResolutions(float remoteX, float remoteY, String accountId) {
+        float adjustedWidth = VideoCallUtil.adjustPixelResolutionInLocalDevice(localDeviceWidth, localDeviceHeight,
+                remoteDeviceResolutions.get(accountId)[0], remoteDeviceResolutions.get(accountId)[1],
+                remoteX, remoteY)[0];
+        float adjustedHeight = VideoCallUtil.adjustPixelResolutionInLocalDevice(localDeviceWidth, localDeviceHeight,
+                remoteDeviceResolutions.get(accountId)[0], remoteDeviceResolutions.get(accountId)[1],
+                remoteX, remoteY)[1];
+        return new float[]{adjustedWidth, adjustedHeight};
     }
 
 }
