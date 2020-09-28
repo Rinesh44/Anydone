@@ -617,7 +617,7 @@
                                         android:elevation="4dp"
                                         android:paddingBottom="@dimen/dimen_10x1"
                                         android:text="Not available"
-                                        android:visibility="visible" />
+                                        android:visibility="gone" />
 
                                     <com.github.mikephil.charting.charts.PieChart
                                         android:id="@+id/pie_chart_by_source"

@@ -23,6 +23,7 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -318,7 +319,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                     if (!CollectionUtils.isEmpty(
                                             filterTicketBaseResponse.getTicketsList())) {
                                         List<Tickets> filteredTickets = TicketRepo.
-                                                getInstance().transformTicketProto(filterTicketBaseResponse.getTicketsList(), Constants.SUBSCRIBED);
+                                                getInstance().transformTicketProto(filterTicketBaseResponse.
+                                                        getTicketsList(),
+                                                Constants.SUBSCRIBED);
 
                                         getView().updateSubscribedTicketList(filteredTickets);
                                     } else {
@@ -434,8 +437,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                 }
 
                                 if (!CollectionUtils.isEmpty(
-                                        getServicesBaseResponse.getAvailableServicesList())) {
-                                    saveAvailableServices(getServicesBaseResponse.getAvailableServicesList());
+                                        getServicesBaseResponse.getServicesList())) {
+                                    saveAvailableServices(getServicesBaseResponse.getServicesList());
                                 } else {
                                     getView().getServiceFail("Services Not found");
                                 }
@@ -456,7 +459,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
     private void saveAvailableServices
-            (List<ServiceProto.AvailableService> availableServicesList) {
+            (List<ServiceProto.Service> availableServicesList) {
         AvailableServicesRepo.getInstance().saveAvailableServices(availableServicesList,
                 new Repo.Callback() {
                     @Override

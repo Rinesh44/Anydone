@@ -67,8 +67,8 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
                                 }
 
                                 if (!CollectionUtils.isEmpty(
-                                        getServicesBaseResponse.getAvailableServicesList())) {
-                                    saveAvailableServices(getServicesBaseResponse.getAvailableServicesList());
+                                        getServicesBaseResponse.getServicesList())) {
+                                    saveAvailableServices(getServicesBaseResponse.getServicesList());
                                 } else {
                                     getView().getServicesFail("Services Not found");
                                 }
@@ -664,7 +664,7 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     }
 
     private void saveAvailableServices
-            (List<ServiceProto.AvailableService> availableServicesList) {
+            (List<ServiceProto.Service> availableServicesList) {
         AvailableServicesRepo.getInstance().saveAvailableServices(availableServicesList,
                 new Repo.Callback() {
                     @Override

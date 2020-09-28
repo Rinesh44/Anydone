@@ -161,7 +161,7 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
 
                     @Override
                     public void fail() {
-                        getView().getClosedTicketSuccess();
+                        getView().getClosedTicketFail("failed to save closed tickets");
                         GlobalUtils.showLog(TAG, "failed to save closed tickets");
                     }
                 });

@@ -1,8 +1,13 @@
 package com.treeleaf.anydone.serviceprovider.utils;
 
 
+import android.annotation.SuppressLint;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class DateUtils {
 /*
@@ -196,6 +201,21 @@ public class DateUtils {
         int day = calendar.get(Calendar.DATE);
         calendar.set(year, month, day, 23, 59, 59);
         return calendar.getTimeInMillis();
+    }
+
+    public static Date getDateLocal(long time) {
+        Calendar cal = Calendar.getInstance();
+        TimeZone tz = cal.getTimeZone();//get your local time zone.
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        sdf.setTimeZone(tz);//set time zone.
+        String localTime = sdf.format(new Date(time * 1000));
+        Date date = new Date();
+        try {
+            date = sdf.parse(localTime);//get local date
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
 }

@@ -628,110 +628,112 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
 
-                if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
-                        .getKGraphResultsList())) {
-                    RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                            .getKGraphReply().getKGraphResultsList());
-                    Conversation conversation = new Conversation();
-                    String kgraphId = UUID.randomUUID().toString().replace("-",
-                            "");
-                    conversation.setClientId(kgraphId);
-                    conversation.setMessageType("MSG_BOT_SUGGESTIONS");
-                    conversation.setkGraphList(kGraphList);
-                    conversation.setSenderId("Anydone bot 101");
-                    conversation.setSentAt(System.currentTimeMillis());
-                    conversation.setkGraphBack(false);
-                    conversation.setkGraphTitle(relayResponse.getRtcMessage()
-                            .getText().getMessage());
-                    conversation.setRefId((relayResponse
-                            .getRtcMessage().getRefId()));
+                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(threadId))) {
+                    if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
+                            .getKGraphResultsList())) {
+                        RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
+                                .getKGraphReply().getKGraphResultsList());
+                        Conversation conversation = new Conversation();
+                        String kgraphId = UUID.randomUUID().toString().replace("-",
+                                "");
+                        conversation.setClientId(kgraphId);
+                        conversation.setMessageType("MSG_BOT_SUGGESTIONS");
+                        conversation.setkGraphList(kGraphList);
+                        conversation.setSenderId("Anydone bot 101");
+                        conversation.setSentAt(System.currentTimeMillis());
+                        conversation.setkGraphBack(false);
+                        conversation.setkGraphTitle(relayResponse.getRtcMessage()
+                                .getText().getMessage());
+                        conversation.setRefId((relayResponse
+                                .getRtcMessage().getRefId()));
 
-                    ConversationRepo.getInstance().saveConversation(conversation,
-                            new Repo.Callback() {
-                                @Override
-                                public void success(Object o) {
-                                    getView().onKgraphReply(conversation);
-                                }
-
-                                @Override
-                                public void fail() {
-                                    GlobalUtils.showLog(TAG, "failed to save k-graph message");
-                                }
-                            });
-
-                    return;
-                }
-
-                String clientId = relayResponse.getRtcMessage().getClientId();
-
-                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
-                        .RelayResponseType.RTC_MESSAGE_DELETE)) {
-                    getView().onDeleteMessageSuccess();
-                }
-
-                GlobalUtils.showLog(TAG, "deleted message response: " +
-                        relayResponse.getDeletedMsgResponse().getClientId());
-                if (relayResponse.getResponseType().equals
-                        (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        String deliveryClientId = relayResponse
-                                .getMessageDeliveredResponse().getClientId();
-                        Conversation conversation = ConversationRepo.getInstance()
-                                .getConversationByClientId(deliveryClientId);
-                        ConversationRepo.getInstance().updateSeenStatus(conversation,
+                        ConversationRepo.getInstance().saveConversation(conversation,
                                 new Repo.Callback() {
                                     @Override
                                     public void success(Object o) {
-                                        GlobalUtils.showLog(TAG, "seen status updated");
-                                        getView().setSeenStatus(conversation);
+                                        getView().onKgraphReply(conversation);
                                     }
 
                                     @Override
                                     public void fail() {
-                                        GlobalUtils.showLog(TAG,
-                                                "failed to update seen status");
+                                        GlobalUtils.showLog(TAG, "failed to save k-graph message");
                                     }
                                 });
-                    });
-                }
 
-                if (relayResponse.getResponseType().equals(RtcProto
-                        .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        Conversation conversation = ConversationRepo.getInstance()
-                                .getConversationByClientId(clientId);
-                        if (conversation == null) {
-                            Conversation newConversation = createNewConversation(relayResponse);
-                            ConversationRepo.getInstance().saveConversation(newConversation,
+                        return;
+                    }
+
+                    String clientId = relayResponse.getRtcMessage().getClientId();
+
+                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
+                            .RelayResponseType.RTC_MESSAGE_DELETE)) {
+                        getView().onDeleteMessageSuccess();
+                    }
+
+                    GlobalUtils.showLog(TAG, "deleted message response: " +
+                            relayResponse.getDeletedMsgResponse().getClientId());
+                    if (relayResponse.getResponseType().equals
+                            (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            String deliveryClientId = relayResponse
+                                    .getMessageDeliveredResponse().getClientId();
+                            Conversation conversation = ConversationRepo.getInstance()
+                                    .getConversationByClientId(deliveryClientId);
+                            ConversationRepo.getInstance().updateSeenStatus(conversation,
                                     new Repo.Callback() {
                                         @Override
                                         public void success(Object o) {
-                                            GlobalUtils.showLog(TAG, "incoming message saved");
-                                            if (getView() != null)
-                                                getView().onSubscribeSuccessMsg(newConversation,
-                                                        false);
+                                            GlobalUtils.showLog(TAG, "seen status updated");
+                                            getView().setSeenStatus(conversation);
                                         }
 
                                         @Override
                                         public void fail() {
                                             GlobalUtils.showLog(TAG,
-                                                    "failed to save incoming message");
+                                                    "failed to update seen status");
                                         }
                                     });
-                        } else {
-                            updateConversation(conversation, relayResponse);
-                        }
-                    });
-
-
-                    GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
-                    if (!relayResponse.getRtcMessage().getSenderAccountId()
-                            .equalsIgnoreCase(userAccountId)) {
-                        sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
-                                relayResponse.getRtcMessage().getSenderAccountId(),
-                                relayResponse.getRtcMessage().getRtcMessageId());
+                        });
                     }
 
+                    if (relayResponse.getResponseType().equals(RtcProto
+                            .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            Conversation conversation = ConversationRepo.getInstance()
+                                    .getConversationByClientId(clientId);
+                            if (conversation == null) {
+                                Conversation newConversation = createNewConversation(relayResponse);
+                                ConversationRepo.getInstance().saveConversation(newConversation,
+                                        new Repo.Callback() {
+                                            @Override
+                                            public void success(Object o) {
+                                                GlobalUtils.showLog(TAG, "incoming message saved");
+                                                if (getView() != null)
+                                                    getView().onSubscribeSuccessMsg(newConversation,
+                                                            false);
+                                            }
+
+                                            @Override
+                                            public void fail() {
+                                                GlobalUtils.showLog(TAG,
+                                                        "failed to save incoming message");
+                                            }
+                                        });
+                            } else {
+                                updateConversation(conversation, relayResponse);
+                            }
+                        });
+
+
+                        GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
+                        if (!relayResponse.getRtcMessage().getSenderAccountId()
+                                .equalsIgnoreCase(userAccountId)) {
+                            sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
+                                    relayResponse.getRtcMessage().getSenderAccountId(),
+                                    relayResponse.getRtcMessage().getRtcMessageId());
+                        }
+
+                    }
                 }
             }
 
