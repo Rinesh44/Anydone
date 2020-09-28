@@ -90,16 +90,16 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (fetchList) {
-            closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+//        if (fetchList) {
+        closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
 
-            if (CollectionUtils.isEmpty(closedTickets)) {
-                presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
-            } else {
-                setUpRecyclerView(closedTickets);
-            }
+        if (CollectionUtils.isEmpty(closedTickets)) {
+            ivDataNotFound.setVisibility(View.GONE);
+            presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
+        } else {
+            setUpRecyclerView(closedTickets);
         }
-
+//        }
     }
 
 

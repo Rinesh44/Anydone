@@ -18,6 +18,8 @@ import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPa
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeRepository;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepository;
+import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepository;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationRepository;
@@ -264,6 +266,11 @@ public class PresenterModule {
     @Provides
     DashboardRepository getDashBoardRepository(AnyDoneService anyDoneService) {
         return new DashboardRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    LinkShareRepository getLinkShareRepository(AnyDoneService anyDoneService) {
+        return new LinkShareRepositoryImpl(anyDoneService);
     }
 }
 

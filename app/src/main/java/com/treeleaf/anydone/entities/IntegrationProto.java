@@ -178,6 +178,109 @@ public final class IntegrationProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ThirdPartyApiParameterType)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.ThirdPartyApiBodyType}
+   */
+  public enum ThirdPartyApiBodyType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_BODY_TYPE = 0;</code>
+     */
+    UNKNOWN_BODY_TYPE(0),
+    /**
+     * <code>URL_ENCODED = 1;</code>
+     */
+    URL_ENCODED(1),
+    /**
+     * <code>QUERY_PARAMETERS = 2;</code>
+     */
+    QUERY_PARAMETERS(2),
+    /**
+     * <code>FORM_DATA = 3;</code>
+     */
+    FORM_DATA(3),
+    /**
+     * <code>APPLICATION_JSON = 4;</code>
+     */
+    APPLICATION_JSON(4),
+    /**
+     * <code>APPLICATION_XML = 5;</code>
+     */
+    APPLICATION_XML(5),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_BODY_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_BODY_TYPE_VALUE = 0;
+    /**
+     * <code>URL_ENCODED = 1;</code>
+     */
+    public static final int URL_ENCODED_VALUE = 1;
+    /**
+     * <code>QUERY_PARAMETERS = 2;</code>
+     */
+    public static final int QUERY_PARAMETERS_VALUE = 2;
+    /**
+     * <code>FORM_DATA = 3;</code>
+     */
+    public static final int FORM_DATA_VALUE = 3;
+    /**
+     * <code>APPLICATION_JSON = 4;</code>
+     */
+    public static final int APPLICATION_JSON_VALUE = 4;
+    /**
+     * <code>APPLICATION_XML = 5;</code>
+     */
+    public static final int APPLICATION_XML_VALUE = 5;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static ThirdPartyApiBodyType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ThirdPartyApiBodyType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_BODY_TYPE;
+        case 1: return URL_ENCODED;
+        case 2: return QUERY_PARAMETERS;
+        case 3: return FORM_DATA;
+        case 4: return APPLICATION_JSON;
+        case 5: return APPLICATION_XML;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ThirdPartyApiBodyType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ThirdPartyApiBodyType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ThirdPartyApiBodyType>() {
+            public ThirdPartyApiBodyType findValueByNumber(int number) {
+              return ThirdPartyApiBodyType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private ThirdPartyApiBodyType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ThirdPartyApiBodyType)
+  }
+
   public interface IntegrationOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Integration)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -2252,6 +2355,15 @@ public final class IntegrationProto {
      * <code>optional int64 updatedAt = 10;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+     */
+    int getBodyTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+     */
+    ThirdPartyApiBodyType getBodyType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ThirdPartyApi}
@@ -2826,6 +2938,45 @@ public final class IntegrationProto {
       updatedAt_ = 0L;
     }
 
+    public static final int BODYTYPE_FIELD_NUMBER = 11;
+    private int bodyType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+     */
+    public int getBodyTypeValue() {
+      return bodyType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+     */
+    public ThirdPartyApiBodyType getBodyType() {
+      ThirdPartyApiBodyType result = ThirdPartyApiBodyType.forNumber(bodyType_);
+      return result == null ? ThirdPartyApiBodyType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+     */
+    private void setBodyTypeValue(int value) {
+        bodyType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+     */
+    private void setBodyType(ThirdPartyApiBodyType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      bodyType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+     */
+    private void clearBodyType() {
+      
+      bodyType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!apiId_.isEmpty()) {
@@ -2857,6 +3008,9 @@ public final class IntegrationProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(10, updatedAt_);
+      }
+      if (bodyType_ != ThirdPartyApiBodyType.UNKNOWN_BODY_TYPE.getNumber()) {
+        output.writeEnum(11, bodyType_);
       }
     }
 
@@ -2904,6 +3058,10 @@ public final class IntegrationProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(10, updatedAt_);
+      }
+      if (bodyType_ != ThirdPartyApiBodyType.UNKNOWN_BODY_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(11, bodyType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3468,6 +3626,43 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+       */
+      public int getBodyTypeValue() {
+        return instance.getBodyTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+       */
+      public Builder setBodyTypeValue(int value) {
+        copyOnWrite();
+        instance.setBodyTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+       */
+      public ThirdPartyApiBodyType getBodyType() {
+        return instance.getBodyType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+       */
+      public Builder setBodyType(ThirdPartyApiBodyType value) {
+        copyOnWrite();
+        instance.setBodyType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApiBodyType bodyType = 11;</code>
+       */
+      public Builder clearBodyType() {
+        copyOnWrite();
+        instance.clearBodyType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ThirdPartyApi)
     }
     protected final Object dynamicMethod(
@@ -3508,6 +3703,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          bodyType_ = visitor.visitInt(bodyType_ != 0, bodyType_,    other.bodyType_ != 0, other.bodyType_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3595,6 +3791,12 @@ public final class IntegrationProto {
                 case 80: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 88: {
+                  int rawValue = input.readEnum();
+
+                  bodyType_ = rawValue;
                   break;
                 }
               }

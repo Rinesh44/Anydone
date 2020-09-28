@@ -76,16 +76,17 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (fetchList) {
-            subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
+//        if (fetchList) {
+        subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
 
-            if (CollectionUtils.isEmpty(subscribedTickets)) {
-                GlobalUtils.showLog(TAG, "subscribe tickets empty");
-                presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
-            } else {
-                setUpRecyclerView(subscribedTickets);
-            }
+        if (CollectionUtils.isEmpty(subscribedTickets)) {
+            GlobalUtils.showLog(TAG, "subscribe tickets empty");
+            ivDataNotFound.setVisibility(View.GONE);
+            presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
+        } else {
+            setUpRecyclerView(subscribedTickets);
         }
+//        }
     }
 
     @Override

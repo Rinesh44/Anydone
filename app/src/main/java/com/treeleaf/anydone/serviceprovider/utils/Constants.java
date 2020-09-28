@@ -45,10 +45,10 @@ Constants {
     public static final String FETCH_CLOSED_LIST = "fetch_closed_list";
     public static final String TICKET_STARTED = "ticket_started";
     public static final String REFETCH_TICKET = "refetch_ticket";
-    public static final String REFETCH_TICKET_TYPE = "refetch_type";
     public static final String SELECTED_SERVICE = "selected_service";
-    public static final String SERVICE_CHANGED_TICKET = "service_changed_ticket";
     public static final String SERVICE_CHANGED_THREAD = "service_changed_thread";
+    public static final String SERVICE_CHANGED_TICKET = "service_changed_tickets";
+    public static final String SERVICE_CHANGED_DASHBOARD = "service_changed_dashboard";
     public static final String ASSIGNED = "ASSIGNED";
     public static final String SUBSCRIBED = "SUBSCRIBED";
     public static final String CLOSED_RESOLVED = "CLOSED_RESOLVED";
@@ -57,5 +57,12 @@ Constants {
     public static final String BOT_REPLY = "BOT_REPLY";
     public static final String RTC_CONTEXT_SERVICE_REQUEST = "RTC_CONTEXT_SERVICE_REQUEST";
     public static final String RTC_CONTEXT_TICKET = "RTC_CONTEXT_TICKET";
+    public static final String TICKET_STAT_STATUS = "TICKET_STAT_STATUS";
+    public static final String TICKET_STAT_SOURCE = "TICKET_STAT_SOURCE";
+    public static final String TICKET_STAT_PRIORITY = "TICKET_STAT_PRIORITY";
+    public static final String TICKET_STAT_DATE = "TICKET_STAT_DATE";
+    public static final String TICKET_STAT_RESOLVED_TIME = "TICKET_STAT_RESOLVED_TIME";
+    public static final String REFETCH_TICKET_STAT = "REFETCH_TICKET_STAT";
+    public static final String XA_XIS_TYPE = "X_AXIS_TYPE";
 
 }

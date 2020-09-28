@@ -116,6 +116,7 @@ public class TicketRepo extends Repo {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> result = realm1.where(Tickets.class)
                         .equalTo("ticketId", ticketId).findAll();
+                GlobalUtils.showLog(TAG, "contributors: " + contributors);
                 result.setList("contributorList", contributors);
                 callback.success(null);
             });
@@ -271,11 +272,13 @@ public class TicketRepo extends Repo {
             tickets.setTitle(ticketPb.getTitle());
             tickets.setDescription(ticketPb.getDescription());
             tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
-            tickets.setServiceProvider(ProtoMapper.transformServiceProvider(ticketPb.getServiceProvider()));
+            tickets.setServiceProvider(ProtoMapper.transformServiceProvider
+                    (ticketPb.getServiceProvider()));
             tickets.setTicketSource(ticketPb.getTicketSource().name());
             tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
             tickets.setServiceId(ticketPb.getService().getServiceId());
-            tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeeAssigned()));
+            tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee
+                    (ticketPb.getEmployeeAssigned()));
             tickets.setCustomerType(ticketPb.getCustomerType().name());
             tickets.setCreatedAt(ticketPb.getCreatedAt());
             tickets.setTicketType(type);
@@ -283,8 +286,14 @@ public class TicketRepo extends Repo {
             tickets.setTicketStatus(ticketPb.getTicketState().name());
             tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
             tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
-            tickets.setContributorList(ProtoMapper.transformContributors(ticketPb.getTicketContributorList()));
+            tickets.setContributorList(ProtoMapper.transformContributors
+                    (ticketPb.getTicketContributorList()));
             ticketsList.add(tickets);
+
+
+            if (ticketPb.getTicketId() == 92) {
+                GlobalUtils.showLog(TAG, "contributor list 92:" + ticketPb.getTicketContributorList());
+            }
         }
 
         return ticketsList;

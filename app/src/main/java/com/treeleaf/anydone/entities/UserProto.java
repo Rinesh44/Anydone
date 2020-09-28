@@ -8009,6 +8009,15 @@ public final class UserProto {
      * <code>optional .treeleaf.anydone.entities.AccountType accountType = 4;</code>
      */
     AnydoneProto.AccountType getAccountType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    boolean hasAnydoneUser();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    AnydoneUser getAnydoneUser();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.User}
@@ -8215,6 +8224,58 @@ public final class UserProto {
       accountType_ = 0;
     }
 
+    public static final int ANYDONEUSER_FIELD_NUMBER = 5;
+    private AnydoneUser anydoneUser_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    public boolean hasAnydoneUser() {
+      return anydoneUser_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    public AnydoneUser getAnydoneUser() {
+      return anydoneUser_ == null ? AnydoneUser.getDefaultInstance() : anydoneUser_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    private void setAnydoneUser(AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      anydoneUser_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    private void setAnydoneUser(
+        AnydoneUser.Builder builderForValue) {
+      anydoneUser_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    private void mergeAnydoneUser(AnydoneUser value) {
+      if (anydoneUser_ != null &&
+          anydoneUser_ != AnydoneUser.getDefaultInstance()) {
+        anydoneUser_ =
+          AnydoneUser.newBuilder(anydoneUser_).mergeFrom(value).buildPartial();
+      } else {
+        anydoneUser_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+     */
+    private void clearAnydoneUser() {  anydoneUser_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (consumer_ != null) {
@@ -8228,6 +8289,9 @@ public final class UserProto {
       }
       if (accountType_ != AnydoneProto.AccountType.UNKNOWN_USER_TYPE.getNumber()) {
         output.writeEnum(4, accountType_);
+      }
+      if (anydoneUser_ != null) {
+        output.writeMessage(5, getAnydoneUser());
       }
     }
 
@@ -8251,6 +8315,10 @@ public final class UserProto {
       if (accountType_ != AnydoneProto.AccountType.UNKNOWN_USER_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, accountType_);
+      }
+      if (anydoneUser_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getAnydoneUser());
       }
       memoizedSerializedSize = size;
       return size;
@@ -8510,6 +8578,51 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+       */
+      public boolean hasAnydoneUser() {
+        return instance.hasAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+       */
+      public AnydoneUser getAnydoneUser() {
+        return instance.getAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+       */
+      public Builder setAnydoneUser(AnydoneUser value) {
+        copyOnWrite();
+        instance.setAnydoneUser(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+       */
+      public Builder setAnydoneUser(
+          AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAnydoneUser(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+       */
+      public Builder mergeAnydoneUser(AnydoneUser value) {
+        copyOnWrite();
+        instance.mergeAnydoneUser(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 5;</code>
+       */
+      public Builder clearAnydoneUser() {  copyOnWrite();
+        instance.clearAnydoneUser();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.User)
     }
     protected final Object dynamicMethod(
@@ -8535,6 +8648,7 @@ public final class UserProto {
           serviceProvider_ = visitor.visitMessage(serviceProvider_, other.serviceProvider_);
           employee_ = visitor.visitMessage(employee_, other.employee_);
           accountType_ = visitor.visitInt(accountType_ != 0, accountType_,    other.accountType_ != 0, other.accountType_);
+          anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -8602,6 +8716,19 @@ public final class UserProto {
                   int rawValue = input.readEnum();
 
                   accountType_ = rawValue;
+                  break;
+                }
+                case 42: {
+                  AnydoneUser.Builder subBuilder = null;
+                  if (anydoneUser_ != null) {
+                    subBuilder = anydoneUser_.toBuilder();
+                  }
+                  anydoneUser_ = input.readMessage(AnydoneUser.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(anydoneUser_);
+                    anydoneUser_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -8699,6 +8826,15 @@ public final class UserProto {
      * <code>optional .treeleaf.anydone.entities.AccountType accountType = 5;</code>
      */
     AnydoneProto.AccountType getAccountType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    boolean hasAnydoneUser();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    AnydoneUser getAnydoneUser();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.LoginUser}
@@ -8952,6 +9088,58 @@ public final class UserProto {
       accountType_ = 0;
     }
 
+    public static final int ANYDONEUSER_FIELD_NUMBER = 6;
+    private AnydoneUser anydoneUser_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    public boolean hasAnydoneUser() {
+      return anydoneUser_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    public AnydoneUser getAnydoneUser() {
+      return anydoneUser_ == null ? AnydoneUser.getDefaultInstance() : anydoneUser_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    private void setAnydoneUser(AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      anydoneUser_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    private void setAnydoneUser(
+        AnydoneUser.Builder builderForValue) {
+      anydoneUser_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    private void mergeAnydoneUser(AnydoneUser value) {
+      if (anydoneUser_ != null &&
+          anydoneUser_ != AnydoneUser.getDefaultInstance()) {
+        anydoneUser_ =
+          AnydoneUser.newBuilder(anydoneUser_).mergeFrom(value).buildPartial();
+      } else {
+        anydoneUser_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+     */
+    private void clearAnydoneUser() {  anydoneUser_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (consumer_ != null) {
@@ -8968,6 +9156,9 @@ public final class UserProto {
       }
       if (accountType_ != AnydoneProto.AccountType.UNKNOWN_USER_TYPE.getNumber()) {
         output.writeEnum(5, accountType_);
+      }
+      if (anydoneUser_ != null) {
+        output.writeMessage(6, getAnydoneUser());
       }
     }
 
@@ -8995,6 +9186,10 @@ public final class UserProto {
       if (accountType_ != AnydoneProto.AccountType.UNKNOWN_USER_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, accountType_);
+      }
+      if (anydoneUser_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getAnydoneUser());
       }
       memoizedSerializedSize = size;
       return size;
@@ -9294,6 +9489,51 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+       */
+      public boolean hasAnydoneUser() {
+        return instance.hasAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+       */
+      public AnydoneUser getAnydoneUser() {
+        return instance.getAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+       */
+      public Builder setAnydoneUser(AnydoneUser value) {
+        copyOnWrite();
+        instance.setAnydoneUser(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+       */
+      public Builder setAnydoneUser(
+          AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAnydoneUser(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+       */
+      public Builder mergeAnydoneUser(AnydoneUser value) {
+        copyOnWrite();
+        instance.mergeAnydoneUser(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 6;</code>
+       */
+      public Builder clearAnydoneUser() {  copyOnWrite();
+        instance.clearAnydoneUser();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LoginUser)
     }
     protected final Object dynamicMethod(
@@ -9321,6 +9561,7 @@ public final class UserProto {
           password_ = visitor.visitString(!password_.isEmpty(), password_,
               !other.password_.isEmpty(), other.password_);
           accountType_ = visitor.visitInt(accountType_ != 0, accountType_,    other.accountType_ != 0, other.accountType_);
+          anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -9394,6 +9635,19 @@ public final class UserProto {
                   int rawValue = input.readEnum();
 
                   accountType_ = rawValue;
+                  break;
+                }
+                case 50: {
+                  AnydoneUser.Builder subBuilder = null;
+                  if (anydoneUser_ != null) {
+                    subBuilder = anydoneUser_.toBuilder();
+                  }
+                  anydoneUser_ = input.readMessage(AnydoneUser.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(anydoneUser_);
+                    anydoneUser_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -18971,6 +19225,575 @@ public final class UserProto {
     private static volatile com.google.protobuf.Parser<Customer> PARSER;
 
     public static com.google.protobuf.Parser<Customer> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface AnydoneUserOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.AnydoneUser)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string anydoneUserId = 1;</code>
+     */
+    String getAnydoneUserId();
+    /**
+     * <code>optional string anydoneUserId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getAnydoneUserIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    boolean hasAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    Account getAccount();
+
+    /**
+     * <code>optional int64 createdAt = 3;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 4;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.AnydoneUser}
+   */
+  public  static final class AnydoneUser extends
+      com.google.protobuf.GeneratedMessageLite<
+          AnydoneUser, AnydoneUser.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.AnydoneUser)
+      AnydoneUserOrBuilder {
+    private AnydoneUser() {
+      anydoneUserId_ = "";
+    }
+    public static final int ANYDONEUSERID_FIELD_NUMBER = 1;
+    private String anydoneUserId_;
+    /**
+     * <code>optional string anydoneUserId = 1;</code>
+     */
+    public String getAnydoneUserId() {
+      return anydoneUserId_;
+    }
+    /**
+     * <code>optional string anydoneUserId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAnydoneUserIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(anydoneUserId_);
+    }
+    /**
+     * <code>optional string anydoneUserId = 1;</code>
+     */
+    private void setAnydoneUserId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      anydoneUserId_ = value;
+    }
+    /**
+     * <code>optional string anydoneUserId = 1;</code>
+     */
+    private void clearAnydoneUserId() {
+      
+      anydoneUserId_ = getDefaultInstance().getAnydoneUserId();
+    }
+    /**
+     * <code>optional string anydoneUserId = 1;</code>
+     */
+    private void setAnydoneUserIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      anydoneUserId_ = value.toStringUtf8();
+    }
+
+    public static final int ACCOUNT_FIELD_NUMBER = 2;
+    private Account account_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    public boolean hasAccount() {
+      return account_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    public Account getAccount() {
+      return account_ == null ? Account.getDefaultInstance() : account_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void setAccount(Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      account_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void setAccount(
+        Account.Builder builderForValue) {
+      account_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void mergeAccount(Account value) {
+      if (account_ != null &&
+          account_ != Account.getDefaultInstance()) {
+        account_ =
+          Account.newBuilder(account_).mergeFrom(value).buildPartial();
+      } else {
+        account_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void clearAccount() {  account_ = null;
+      
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 3;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 3;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 3;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 3;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 4;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 4;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 4;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 4;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!anydoneUserId_.isEmpty()) {
+        output.writeString(1, getAnydoneUserId());
+      }
+      if (account_ != null) {
+        output.writeMessage(2, getAccount());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(3, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(4, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!anydoneUserId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getAnydoneUserId());
+      }
+      if (account_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getAccount());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static AnydoneUser parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static AnydoneUser parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static AnydoneUser parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static AnydoneUser parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static AnydoneUser parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static AnydoneUser parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static AnydoneUser parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static AnydoneUser parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static AnydoneUser parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static AnydoneUser parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(AnydoneUser prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.AnydoneUser}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          AnydoneUser, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AnydoneUser)
+        AnydoneUserOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.UserProto.AnydoneUser.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string anydoneUserId = 1;</code>
+       */
+      public String getAnydoneUserId() {
+        return instance.getAnydoneUserId();
+      }
+      /**
+       * <code>optional string anydoneUserId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAnydoneUserIdBytes() {
+        return instance.getAnydoneUserIdBytes();
+      }
+      /**
+       * <code>optional string anydoneUserId = 1;</code>
+       */
+      public Builder setAnydoneUserId(
+          String value) {
+        copyOnWrite();
+        instance.setAnydoneUserId(value);
+        return this;
+      }
+      /**
+       * <code>optional string anydoneUserId = 1;</code>
+       */
+      public Builder clearAnydoneUserId() {
+        copyOnWrite();
+        instance.clearAnydoneUserId();
+        return this;
+      }
+      /**
+       * <code>optional string anydoneUserId = 1;</code>
+       */
+      public Builder setAnydoneUserIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAnydoneUserIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public boolean hasAccount() {
+        return instance.hasAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Account getAccount() {
+        return instance.getAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder setAccount(Account value) {
+        copyOnWrite();
+        instance.setAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder setAccount(
+          Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder mergeAccount(Account value) {
+        copyOnWrite();
+        instance.mergeAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder clearAccount() {  copyOnWrite();
+        instance.clearAccount();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 3;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 3;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 3;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 4;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 4;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 4;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AnydoneUser)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new AnydoneUser();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          AnydoneUser other = (AnydoneUser) arg1;
+          anydoneUserId_ = visitor.visitString(!anydoneUserId_.isEmpty(), anydoneUserId_,
+              !other.anydoneUserId_.isEmpty(), other.anydoneUserId_);
+          account_ = visitor.visitMessage(account_, other.account_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  anydoneUserId_ = s;
+                  break;
+                }
+                case 18: {
+                  Account.Builder subBuilder = null;
+                  if (account_ != null) {
+                    subBuilder = account_.toBuilder();
+                  }
+                  account_ = input.readMessage(Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(account_);
+                    account_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 24: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 32: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (AnydoneUser.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AnydoneUser)
+    private static final AnydoneUser DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new AnydoneUser();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static AnydoneUser getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<AnydoneUser> PARSER;
+
+    public static com.google.protobuf.Parser<AnydoneUser> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

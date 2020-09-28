@@ -108,17 +108,18 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
     }
 
     private void saveTickets(List<TicketProto.Ticket> ticketsList) {
-        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.ASSIGNED, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                getView().getAssignedTicketSuccess();
-            }
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.ASSIGNED,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getAssignedTicketSuccess();
+                    }
 
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "failed to save assigned tickets");
-                getView().getAssignedTicketSuccess();
-            }
-        });
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG, "failed to save assigned tickets");
+                        getView().getAssignedTicketSuccess();
+                    }
+                });
     }
 }

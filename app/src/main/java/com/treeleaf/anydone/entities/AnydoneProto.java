@@ -29,6 +29,14 @@ public final class AnydoneProto {
      * <code>EMPLOYEE = 3;</code>
      */
     EMPLOYEE(3),
+    /**
+     * <code>ANYDONE_USER = 4;</code>
+     */
+    ANYDONE_USER(4),
+    /**
+     * <code>SERVICE_PROVIDER_CUSTOMER = 5;</code>
+     */
+    SERVICE_PROVIDER_CUSTOMER(5),
     UNRECOGNIZED(-1),
     ;
 
@@ -48,6 +56,14 @@ public final class AnydoneProto {
      * <code>EMPLOYEE = 3;</code>
      */
     public static final int EMPLOYEE_VALUE = 3;
+    /**
+     * <code>ANYDONE_USER = 4;</code>
+     */
+    public static final int ANYDONE_USER_VALUE = 4;
+    /**
+     * <code>SERVICE_PROVIDER_CUSTOMER = 5;</code>
+     */
+    public static final int SERVICE_PROVIDER_CUSTOMER_VALUE = 5;
 
 
     public final int getNumber() {
@@ -68,6 +84,8 @@ public final class AnydoneProto {
         case 1: return SERVICE_PROVIDER;
         case 2: return SERVICE_CONSUMER;
         case 3: return EMPLOYEE;
+        case 4: return ANYDONE_USER;
+        case 5: return SERVICE_PROVIDER_CUSTOMER;
         default: return null;
       }
     }

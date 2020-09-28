@@ -296,8 +296,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
         RealmList<Employee> contributorList = tickets.getContributorList();
         if (!CollectionUtils.isEmpty(contributorList)) {
+            GlobalUtils.showLog(TAG, "contributors list not empty");
+            llContributors.setVisibility(View.VISIBLE);
             inflateContributorLayout(contributorList, llContributorList);
         } else {
+            GlobalUtils.showLog(TAG, "contirbutors empty");
             llContributors.setVisibility(View.GONE);
         }
     }
@@ -321,15 +324,17 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         RealmList<Employee> contributorList = new RealmList<>();
         for (String contributorId : contributorIds
         ) {
-            Employee employee = EmployeeRepo.getInstance().getEmployeeByAccountId(contributorId);
+            Employee employee = EmployeeRepo.getInstance().getEmployeeById(contributorId);
             contributorList.add(employee);
         }
 
+        Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
+        contributorList.addAll(ticket.getContributorList());
         TicketRepo.getInstance().setContributors(ticketId, contributorList, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "contributors added");
-                setContributors();
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> setContributors());
             }
 
             @Override
@@ -1203,17 +1208,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onContributorUnAssignSuccess(String empId) {
-        TicketRepo.getInstance().removeContributor(ticketId, empId, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                GlobalUtils.showLog(TAG, "removed contributors");
-            }
-
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "error while removing contributors");
-            }
-        });
+        setContributors();
     }
 
     @Override

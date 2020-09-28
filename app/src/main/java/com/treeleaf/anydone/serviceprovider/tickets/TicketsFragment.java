@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.tickets;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,7 +22,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -226,6 +224,19 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Glide.with(Objects.requireNonNull(getContext())).load(selectedService.getServiceIconUrl()).into(ivService);
             }
             setUpRecyclerView(serviceList);
+
+
+            if (assignedListListener != null) {
+                assignedListListener.fetchList();
+            }
+
+            if (subscribedListListener != null) {
+                subscribedListListener.fetchList();
+            }
+
+            if (closedListListener != null) {
+                closedListListener.fetchList();
+            }
         }
 
 
@@ -279,6 +290,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         adapter.setOnItemClickListener(service -> {
             hideKeyBoard();
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
+            Hawk.put(Constants.SERVICE_CHANGED_TICKET, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
             Glide.with(getContext()).load(service.getServiceIconUrl()).into(ivService);
 //            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -843,17 +855,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
         GlobalUtils.showLog(TAG, "first service id saved");
 
-        if (assignedListListener != null) {
-            assignedListListener.fetchList();
-        }
-
-        if (subscribedListListener != null) {
-            subscribedListListener.fetchList();
-        }
-
-        if (closedListListener != null) {
-            closedListListener.fetchList();
-        }
 
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));
         Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);

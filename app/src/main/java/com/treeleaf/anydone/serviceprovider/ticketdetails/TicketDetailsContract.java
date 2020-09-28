@@ -7,10 +7,15 @@ public class TicketDetailsContract {
 
     public interface TicketDetailsView extends BaseView {
 
+        void onLinkShareSuccess(String link);
+
+        void onLinkShareFail(String msg);
 
     }
 
     public interface TicketDetailsPresenter extends Presenter<TicketDetailsView> {
+
+        void getShareLink(String ticketId);
 
     }
 }

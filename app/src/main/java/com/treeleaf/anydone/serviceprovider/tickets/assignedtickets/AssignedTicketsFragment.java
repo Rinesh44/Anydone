@@ -70,16 +70,17 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (fetchList) {
-            assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+//        if (fetchList) {
+        assignedTickets = TicketRepo.getInstance().getAssignedTickets();
 
-            if (CollectionUtils.isEmpty(assignedTickets)) {
-                presenter.getAssignedTickets(true, 0,
-                        System.currentTimeMillis(), 100);
-            } else {
-                setUpRecyclerView(assignedTickets);
-            }
+        if (CollectionUtils.isEmpty(assignedTickets)) {
+            ivDataNotFound.setVisibility(View.GONE);
+            presenter.getAssignedTickets(true, 0,
+                    System.currentTimeMillis(), 100);
+        } else {
+            setUpRecyclerView(assignedTickets);
         }
+//        }
     }
 
     @Override
@@ -117,13 +118,13 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             rvOpenTickets.setVisibility(View.GONE);
             final Handler handler = new Handler();
 
-            handler.postDelayed(() -> {
+      /*      handler.postDelayed(() -> {
                 if (rvOpenTickets != null) {
                     if (rvOpenTickets.getVisibility() != View.VISIBLE)
                         ivDataNotFound.setVisibility(View.VISIBLE);
                     else ivDataNotFound.setVisibility(View.GONE);
                 }
-            }, 50);
+            }, 50);*/
 
         }
 
@@ -250,6 +251,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void fetchList() {
+        GlobalUtils.showLog(TAG, "fetch list called");
         presenter.getAssignedTickets(true, 0,
                 System.currentTimeMillis(), 100);
     }

@@ -144,7 +144,7 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
     public void addContributorSuccess() {
         Intent intent = new Intent();
         intent.putExtra("contributor_added", true);
-        intent.putExtra("contributors", (Parcelable) employeeIds);
+        intent.putStringArrayListExtra("contributors", (ArrayList<String>) employeeIds);
         setResult(2, intent);
         finish();
     }

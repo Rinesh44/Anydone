@@ -14,9 +14,15 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceAttributes;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByDate;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.realm.RealmList;
 
@@ -266,4 +272,71 @@ public final class ProtoMapper {
         return assignEmployeeList;
     }
 
+    public static TicketStatByStatus transfromTicketByStatus(TicketProto.TicketStatByStatus
+                                                                     ticketStatByStatusPb,
+                                                             boolean multiple) {
+        TicketStatByStatus ticketStatByStatus = new TicketStatByStatus();
+        if (multiple) {
+            ticketStatByStatus.setId(UUID.randomUUID().toString().replace("-", ""));
+        } else {
+            ticketStatByStatus.setId(Constants.TICKET_STAT_STATUS);
+        }
+        ticketStatByStatus.setClosedTickets(ticketStatByStatusPb.getClosedTickets());
+        ticketStatByStatus.setResolvedTickets(ticketStatByStatusPb.getResolvedTickets());
+        ticketStatByStatus.setUnResolvedTickets(ticketStatByStatusPb.getUnresolvedTickets());
+        ticketStatByStatus.setNewTickets(ticketStatByStatusPb.getNewTickets());
+        ticketStatByStatus.setTotalTickets(ticketStatByStatusPb.getTotalTickets());
+        ticketStatByStatus.setReOpenedTickets(ticketStatByStatusPb.getReopenedTickets());
+        ticketStatByStatus.setTimestamp(ticketStatByStatusPb.getTimestamp());
+        return ticketStatByStatus;
+    }
+
+    public static TicketStatBySource transfromTicketBySource(TicketProto.TicketStatBySource
+                                                                     ticketStatBySourcePb) {
+        TicketStatBySource ticketStatBySource = new TicketStatBySource();
+        ticketStatBySource.setId(Constants.TICKET_STAT_SOURCE);
+        ticketStatBySource.setBot(ticketStatBySourcePb.getBotTickets());
+        ticketStatBySource.setManual(ticketStatBySourcePb.getManualTickets());
+        ticketStatBySource.setPhoneCall(ticketStatBySourcePb.getCallTickets());
+        ticketStatBySource.setThirdParty(ticketStatBySourcePb.getConversationTickets());
+        return ticketStatBySource;
+    }
+
+    public static TicketStatByPriority transfromTicketByPriority(TicketProto.TicketStatByPriority
+                                                                         ticketStatByPriorityPb) {
+        TicketStatByPriority ticketStatByPriority = new TicketStatByPriority();
+        ticketStatByPriority.setId(Constants.TICKET_STAT_PRIORITY);
+        ticketStatByPriority.setLowest(ticketStatByPriorityPb.getLowestPriorityTickets());
+        ticketStatByPriority.setLow(ticketStatByPriorityPb.getLowPriorityTickets());
+        ticketStatByPriority.setMedium(ticketStatByPriorityPb.getMediumPriorityTickets());
+        ticketStatByPriority.setHigh(ticketStatByPriorityPb.getHighPriorityTickets());
+        ticketStatByPriority.setHighest(ticketStatByPriorityPb.getHighestPriorityTickets());
+        return ticketStatByPriority;
+    }
+
+    public static TicketStatByResolvedTime transfromTicketByResolvedTime(TicketProto.TicketStatResolveTime
+                                                                                 ticketStatResolveTimePb) {
+        TicketStatByResolvedTime ticketStatByResolvedTime = new TicketStatByResolvedTime();
+        ticketStatByResolvedTime.setId(Constants.TICKET_STAT_RESOLVED_TIME);
+        ticketStatByResolvedTime.setAvg(ticketStatResolveTimePb.getAverageResolveTime());
+        ticketStatByResolvedTime.setMax(ticketStatResolveTimePb.getMaximumResolveTime());
+        ticketStatByResolvedTime.setMin(ticketStatResolveTimePb.getMinimumResolveTime());
+        return ticketStatByResolvedTime;
+    }
+
+    public static TicketStatByDate transfromTicketStatByDate(List<TicketProto.TicketStatByStatus>
+                                                                     ticketStatByStatusListPb) {
+        TicketStatByDate ticketStatByDate = new TicketStatByDate();
+        RealmList<TicketStatByStatus> ticketStatByStatusList = new RealmList<>();
+        for (TicketProto.TicketStatByStatus ticketStatByStatusPb : ticketStatByStatusListPb
+        ) {
+            TicketStatByStatus ticketStatByStatus = transfromTicketByStatus(ticketStatByStatusPb,
+                    true);
+            ticketStatByStatusList.add(ticketStatByStatus);
+        }
+
+        ticketStatByDate.setId(Constants.TICKET_STAT_DATE);
+        ticketStatByDate.setTicketStatByStatusRealmList(ticketStatByStatusList);
+        return ticketStatByDate;
+    }
 }
