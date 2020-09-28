@@ -611,10 +611,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private float[] adjustPixelResolutions(float remoteX, float remoteY, String accountId) {
         float adjustedWidth = VideoCallUtil.adjustPixelResolutionInLocalDevice(localDeviceWidth, localDeviceHeight,
                 remoteDeviceResolutions.get(accountId)[0], remoteDeviceResolutions.get(accountId)[1],
-                remoteX, remoteY)[0];
+                remoteX, remoteY)[0] + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
         float adjustedHeight = VideoCallUtil.adjustPixelResolutionInLocalDevice(localDeviceWidth, localDeviceHeight,
                 remoteDeviceResolutions.get(accountId)[0], remoteDeviceResolutions.get(accountId)[1],
-                remoteX, remoteY)[1];
+                remoteX, remoteY)[1] + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
         return new float[]{adjustedWidth, adjustedHeight};
     }
 
