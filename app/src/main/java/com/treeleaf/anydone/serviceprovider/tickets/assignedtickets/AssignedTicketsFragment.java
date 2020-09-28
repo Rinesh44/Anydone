@@ -20,8 +20,10 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -57,6 +59,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     private TicketsAdapter adapter;
     private List<Tickets> assignedTickets;
     private boolean fetchList = false;
+    private Account userAccount;
+    private String localAccountId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
         mFragment.setAssignedListListener(this);
+        userAccount = AccountRepo.getInstance().getAccount();
+        localAccountId = userAccount.getAccountId();
     }
 
     @Override
@@ -108,15 +114,18 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             adapter.setOnItemClickListener(ticket -> {
 
                 StringBuilder builder = new StringBuilder();
-                String assignedEmployeeName = ticket.getAssignedEmployee().getName();
-                if (assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
+                Employee assignedEmployee = ticket.getAssignedEmployee();
+                String assignedEmployeeName = assignedEmployee.getName();
+                if (!localAccountId.equals(assignedEmployee.getAccountId()) &&
+                        assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
                     builder.append(assignedEmployeeName);
                     builder.append(", ");
                 }
-
                 for (Employee employee : ticket.getContributorList()) {
-                    builder.append(employee.getName());
-                    builder.append(", ");
+                    if (!localAccountId.equals(employee.getAccountId())) {
+                        builder.append(employee.getName());
+                        builder.append(", ");
+                    }
                 }
                 String assignedEmployeeList = builder.toString().trim();
                 String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
