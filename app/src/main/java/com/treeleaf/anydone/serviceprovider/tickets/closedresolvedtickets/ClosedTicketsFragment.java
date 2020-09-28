@@ -95,6 +95,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
         if (CollectionUtils.isEmpty(closedTickets)) {
             ivDataNotFound.setVisibility(View.GONE);
+            rvClosedTickets.setVisibility(View.VISIBLE);
             presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(closedTickets);
@@ -212,10 +213,10 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         boolean fetchChanges = Hawk.get(Constants.FETCH_CLOSED_LIST, false);
         if (fetchChanges) {
             presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
-        } else {
+        }/* else {
             closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
             setUpRecyclerView(closedTickets);
-        }
+        }*/
     }
 
     @Override
@@ -228,7 +229,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void getClosedTicketSuccess() {
         List<Tickets> closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
         GlobalUtils.showLog(TAG, "closed ticket size checK:" + closedTickets.size());
-        if (!CollectionUtils.isEmpty(closedTickets)) {
+        if (closedTickets.size() != 0) {
             setUpRecyclerView(closedTickets);
             rvClosedTickets.setVisibility(View.VISIBLE);
 
@@ -248,12 +249,13 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void getClosedTicketFail(String msg) {
         ivDataNotFound.setVisibility(View.VISIBLE);
+        rvClosedTickets.setVisibility(View.GONE);
+
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
-            return;
         }
-        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
+//        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
     }
 
     @Override

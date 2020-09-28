@@ -533,6 +533,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         statusValue = null;
         int fragmentIndex = mViewpager.getCurrentItem();
         if (fragmentIndex == 0) {
+            assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
             if (!CollectionUtils.isEmpty(assignedTicketList)) {
                 GlobalUtils.showLog(TAG, "assigned list check: " + assignedTicketList);
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -562,6 +563,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
             }
         } else if (fragmentIndex == 1) {
+            subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
             if (!CollectionUtils.isEmpty(subscribedTicketList)) {
                 GlobalUtils.showLog(TAG, "subscribed list check: " + subscribedTicketList);
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -592,6 +594,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
             }
         } else {
+            closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
             if (!CollectionUtils.isEmpty(closedTicketList)) {
                 GlobalUtils.showLog(TAG, "closed list check: " + closedTicketList);
                 @SuppressLint("InflateParams") View statusView = getLayoutInflater()

@@ -75,6 +75,7 @@
                     android:backgroundTint="@color/edit_text_color"
                     android:gravity="start"
                     android:inputType="textVisiblePassword|textMultiLine"
+                    android:maxLines="7"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"

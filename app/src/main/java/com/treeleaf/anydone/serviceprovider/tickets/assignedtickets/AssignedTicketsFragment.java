@@ -75,6 +75,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
         if (CollectionUtils.isEmpty(assignedTickets)) {
             ivDataNotFound.setVisibility(View.GONE);
+            rvOpenTickets.setVisibility(View.VISIBLE);
             presenter.getAssignedTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else {
@@ -152,8 +153,12 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             presenter.getAssignedTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else {
-            assignedTickets = TicketRepo.getInstance().getAssignedTickets();
-            setUpRecyclerView(assignedTickets);
+            boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
+            if (ticketAssigned) {
+                assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+                setUpRecyclerView(assignedTickets);
+                Hawk.put(Constants.TICKET_ASSIGNED, false);
+            }
         }
     }
 
@@ -192,7 +197,9 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void getAssignedTicketFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to get assigned tickets");
         ivDataNotFound.setVisibility(View.VISIBLE);
+        rvOpenTickets.setVisibility(View.GONE);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

@@ -128,6 +128,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private SearchTeamAdapter teamAdapter;
     List<String> tags = new ArrayList<>();
     private RecyclerView rvTeams;
+    private int lastDescCursorPosition = 0;
+    private String description = "";
 
     @Override
     protected int getLayout() {
@@ -170,6 +172,31 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 }
             }
             return false;
+        });
+
+        etDesc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                lastDescCursorPosition = etDesc.getSelectionStart();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                etDesc.removeTextChangedListener(this);
+
+                if (etDesc.getLineCount() > 7) {
+                    etDesc.setText(description);
+                    etDesc.setSelection(lastDescCursorPosition);
+                } else
+                    description = Objects.requireNonNull(etDesc.getText()).toString();
+
+                etDesc.addTextChangedListener(this);
+            }
         });
 
         fblLabel.setOnClickListener(v -> teamSheet.show());

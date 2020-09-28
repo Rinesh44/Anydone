@@ -676,165 +676,167 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
 
-                if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
-                        .getKGraphResultsList())) {
-                    RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                            .getKGraphReply().getKGraphResultsList());
-                    Conversation conversation = new Conversation();
-                    String kgraphId = UUID.randomUUID().toString().replace("-",
-                            "");
-                    conversation.setClientId(kgraphId);
-                    conversation.setMessageType("MSG_BOT_SUGGESTIONS");
-                    conversation.setkGraphList(kGraphList);
-                    conversation.setSenderId("Anydone bot 101");
-                    conversation.setSentAt(System.currentTimeMillis());
-                    conversation.setkGraphBack(false);
-                    conversation.setkGraphTitle(relayResponse.getRtcMessage()
-                            .getText().getMessage());
-                    conversation.setRefId((relayResponse
-                            .getRtcMessage().getRefId()));
+                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+                    if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
+                            .getKGraphResultsList())) {
+                        RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
+                                .getKGraphReply().getKGraphResultsList());
+                        Conversation conversation = new Conversation();
+                        String kgraphId = UUID.randomUUID().toString().replace("-",
+                                "");
+                        conversation.setClientId(kgraphId);
+                        conversation.setMessageType("MSG_BOT_SUGGESTIONS");
+                        conversation.setkGraphList(kGraphList);
+                        conversation.setSenderId("Anydone bot 101");
+                        conversation.setSentAt(System.currentTimeMillis());
+                        conversation.setkGraphBack(false);
+                        conversation.setkGraphTitle(relayResponse.getRtcMessage()
+                                .getText().getMessage());
+                        conversation.setRefId((relayResponse
+                                .getRtcMessage().getRefId()));
 
-                    ConversationRepo.getInstance().saveConversation(conversation,
-                            new Repo.Callback() {
-                                @Override
-                                public void success(Object o) {
-                                    getView().onKgraphReply(conversation);
-                                }
-
-                                @Override
-                                public void fail() {
-                                    GlobalUtils.showLog(TAG, "failed to save k-graph message");
-                                }
-                            });
-
-                    return;
-                }
-
-                String clientId = relayResponse.getRtcMessage().getClientId();
-
-                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
-                        .RelayResponseType.RTC_MESSAGE_DELETE)) {
-                    getView().onDeleteMessageSuccess();
-                }
-
-                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                        .VIDEO_CALL_BROADCAST_RESPONSE)) {
-                    SignalingProto.BroadcastVideoCall broadcastVideoCall =
-                            relayResponse.getBroadcastVideoCall();
-                    if (broadcastVideoCall != null) {
-                        getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
-                    }
-                }
-
-                if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
-                    SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
-                    if (startDraw != null) {
-                        ByteString imageByteString = startDraw.getCapturedImage();
-                        int width = startDraw.getBitmapWidth();
-                        int height = startDraw.getBitmapHeight();
-                        long captureTime = startDraw.getCapturedTime();
-                        byte[] convertedBytes = imageByteString.toByteArray();
-                        //TODO: paste here from Servicerequestdetailpresenterimpl
-                        getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, "accountId");
-                    }
-                }
-
-                if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
-                    SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
-                    if (cancelDrawing != null) {
-                        getView().onImageDrawDiscard();
-                    }
-                }
-
-                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                        .PARTICIPANT_LEFT_RESPONSE)) {
-                    SignalingProto.ParticipantLeft participantLeft =
-                            relayResponse.getParticipantLeftResponse();
-                    if (participantLeft != null) {
-                        getView().onParticipantLeft(participantLeft);
-                    }
-                }
-
-                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                        .VIDEO_CALL_JOIN_RESPONSE)) {
-                    SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
-                            relayResponse.getVideoCallJoinResponse();
-                    if (videoCallJoinResponse != null) {
-                        getView().onVideoRoomJoinedSuccess(videoCallJoinResponse);
-                    }
-                }
-
-                if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                        .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
-                    SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
-                            .getVideoRoomHostLeftResponse();
-                    if (videoRoomHostLeft != null) {
-                        getView().onHostHangUp(videoRoomHostLeft);
-                    }
-                }
-
-                GlobalUtils.showLog(TAG, "deleted message response: " +
-                        relayResponse.getDeletedMsgResponse().getClientId());
-                if (relayResponse.getResponseType().equals
-                        (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        String deliveryClientId = relayResponse
-                                .getMessageDeliveredResponse().getClientId();
-                        Conversation conversation = ConversationRepo.getInstance()
-                                .getConversationByClientId(deliveryClientId);
-                        ConversationRepo.getInstance().updateSeenStatus(conversation,
+                        ConversationRepo.getInstance().saveConversation(conversation,
                                 new Repo.Callback() {
                                     @Override
                                     public void success(Object o) {
-                                        GlobalUtils.showLog(TAG, "seen status updated");
-                                        getView().setSeenStatus(conversation);
+                                        getView().onKgraphReply(conversation);
                                     }
 
                                     @Override
                                     public void fail() {
-                                        GlobalUtils.showLog(TAG,
-                                                "failed to update seen status");
+                                        GlobalUtils.showLog(TAG, "failed to save k-graph message");
                                     }
                                 });
-                    });
-                }
 
-                if (relayResponse.getResponseType().equals(RtcProto
-                        .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        Conversation conversation = ConversationRepo.getInstance()
-                                .getConversationByClientId(clientId);
-                        if (conversation == null) {
-                            Conversation newConversation = createNewConversation(relayResponse);
-                            ConversationRepo.getInstance().saveConversation(newConversation,
+                        return;
+                    }
+
+                    String clientId = relayResponse.getRtcMessage().getClientId();
+
+                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
+                            .RelayResponseType.RTC_MESSAGE_DELETE)) {
+                        getView().onDeleteMessageSuccess();
+                    }
+
+                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                            .VIDEO_CALL_BROADCAST_RESPONSE)) {
+                        SignalingProto.BroadcastVideoCall broadcastVideoCall =
+                                relayResponse.getBroadcastVideoCall();
+                        if (broadcastVideoCall != null) {
+                            getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
+                        }
+                    }
+
+                    if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
+                        SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
+                        if (startDraw != null) {
+                            ByteString imageByteString = startDraw.getCapturedImage();
+                            int width = startDraw.getBitmapWidth();
+                            int height = startDraw.getBitmapHeight();
+                            long captureTime = startDraw.getCapturedTime();
+                            byte[] convertedBytes = imageByteString.toByteArray();
+                            //TODO: paste here from Servicerequestdetailpresenterimpl
+                            getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, "accountId");
+                        }
+                    }
+
+                    if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
+                        SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
+                        if (cancelDrawing != null) {
+                            getView().onImageDrawDiscard();
+                        }
+                    }
+
+                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                            .PARTICIPANT_LEFT_RESPONSE)) {
+                        SignalingProto.ParticipantLeft participantLeft =
+                                relayResponse.getParticipantLeftResponse();
+                        if (participantLeft != null) {
+                            getView().onParticipantLeft(participantLeft);
+                        }
+                    }
+
+                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                            .VIDEO_CALL_JOIN_RESPONSE)) {
+                        SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
+                                relayResponse.getVideoCallJoinResponse();
+                        if (videoCallJoinResponse != null) {
+                            getView().onVideoRoomJoinedSuccess(videoCallJoinResponse);
+                        }
+                    }
+
+                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                            .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
+                        SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
+                                .getVideoRoomHostLeftResponse();
+                        if (videoRoomHostLeft != null) {
+                            getView().onHostHangUp(videoRoomHostLeft);
+                        }
+                    }
+
+                    GlobalUtils.showLog(TAG, "deleted message response: " +
+                            relayResponse.getDeletedMsgResponse().getClientId());
+                    if (relayResponse.getResponseType().equals
+                            (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            String deliveryClientId = relayResponse
+                                    .getMessageDeliveredResponse().getClientId();
+                            Conversation conversation = ConversationRepo.getInstance()
+                                    .getConversationByClientId(deliveryClientId);
+                            ConversationRepo.getInstance().updateSeenStatus(conversation,
                                     new Repo.Callback() {
                                         @Override
                                         public void success(Object o) {
-                                            GlobalUtils.showLog(TAG, "incoming message saved");
-                                            if (getView() != null)
-                                                getView().onSubscribeSuccessMsg(newConversation,
-                                                        false);
+                                            GlobalUtils.showLog(TAG, "seen status updated");
+                                            getView().setSeenStatus(conversation);
                                         }
 
                                         @Override
                                         public void fail() {
                                             GlobalUtils.showLog(TAG,
-                                                    "failed to save incoming message");
+                                                    "failed to update seen status");
                                         }
                                     });
-                        } else {
-                            updateConversation(conversation, relayResponse);
-                        }
-                    });
-
-                    GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
-                    if (!relayResponse.getRtcMessage().getSenderAccountId()
-                            .equalsIgnoreCase(userAccountId)) {
-                        sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
-                                relayResponse.getRtcMessage().getSenderAccountId(),
-                                relayResponse.getRtcMessage().getRtcMessageId());
+                        });
                     }
 
+                    if (relayResponse.getResponseType().equals(RtcProto
+                            .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            Conversation conversation = ConversationRepo.getInstance()
+                                    .getConversationByClientId(clientId);
+                            if (conversation == null) {
+                                Conversation newConversation = createNewConversation(relayResponse);
+                                ConversationRepo.getInstance().saveConversation(newConversation,
+                                        new Repo.Callback() {
+                                            @Override
+                                            public void success(Object o) {
+                                                GlobalUtils.showLog(TAG, "incoming message saved");
+                                                if (getView() != null)
+                                                    getView().onSubscribeSuccessMsg(newConversation,
+                                                            false);
+                                            }
+
+                                            @Override
+                                            public void fail() {
+                                                GlobalUtils.showLog(TAG,
+                                                        "failed to save incoming message");
+                                            }
+                                        });
+                            } else {
+                                updateConversation(conversation, relayResponse);
+                            }
+                        });
+
+                        GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
+                        if (!relayResponse.getRtcMessage().getSenderAccountId()
+                                .equalsIgnoreCase(userAccountId)) {
+                            sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
+                                    relayResponse.getRtcMessage().getSenderAccountId(),
+                                    relayResponse.getRtcMessage().getRtcMessageId());
+                        }
+
+                    }
                 }
             }
 

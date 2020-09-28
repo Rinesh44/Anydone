@@ -185,7 +185,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     private AppCompatSpinner spTime;
     private long from, to;
     final Calendar myCalendar = Calendar.getInstance();
-    private String trend = "THIS MONTH";
+    private String trend = "past 30 days";
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -231,6 +231,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                     trend = "past 30 days";
                     pbLineChart.setVisibility(View.VISIBLE);
                     lineChart.setVisibility(View.GONE);
+                    tvLineChartNotAvailable.setVisibility(View.GONE);
                     Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
                     presenter.getTicketByPriority();
                     presenter.getTicketByResolveTime();
@@ -497,12 +498,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         pieEntries.add(new PieEntry(botPercent, String.format("%.0f", botPercent) + "%"));
 
-        if ((thirdPartyPercent == 0) && (manualPercent == 0) && (phoneCallPercent == 0) &&
-                (botPercent == 0)) {
-            tvPieChartSourceNotAvailable.setVisibility(View.VISIBLE);
-        } else {
-            tvPieChartSourceNotAvailable.setVisibility(View.GONE);
-        }
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By source");
         pieDataSet.setSliceSpace(1);
         pieDataSet.setColors(SOURCE_COLORS);
@@ -605,6 +600,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             pbLineChart.setVisibility(View.VISIBLE);
             lineChart.setVisibility(View.GONE);
             Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
+            trend = "past 30 days";
             presenter.getTicketByPriority();
             presenter.getTicketByResolveTime();
             presenter.getTicketBySource();
@@ -854,8 +850,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         if ((closedTickets.isEmpty()) && (resolvedTickets.isEmpty()) && (newTickets.isEmpty())) {
             tvLineChartNotAvailable.setVisibility(View.VISIBLE);
+            lineChart.setVisibility(View.GONE);
         } else {
             tvLineChartNotAvailable.setVisibility(View.GONE);
+            lineChart.setVisibility(View.VISIBLE);
         }
 
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
@@ -1038,9 +1036,13 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         TicketStatByDate ticketStatByDate = TicketStatRepo.getInstance().getTicketStatByDate();
         GlobalUtils.showLog(TAG, "list count: " + ticketStatByDate.getTicketStatByStatusRealmList().size());
         String xAXisType = Hawk.get(Constants.XA_XIS_TYPE, "MONTH");
-        if (!CollectionUtils.isEmpty(ticketStatByDate.getTicketStatByStatusRealmList()))
+        if (!CollectionUtils.isEmpty(ticketStatByDate.getTicketStatByStatusRealmList())) {
+            lineChart.setVisibility(View.VISIBLE);
             setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAXisType);
-        else tvLineChartNotAvailable.setVisibility(View.VISIBLE);
+        } else {
+            tvLineChartNotAvailable.setVisibility(View.VISIBLE);
+            lineChart.setVisibility(View.GONE);
+        }
     }
 
     private void setTrendText() {
@@ -1139,7 +1141,17 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         tvPhoneCallValue.setText(Math.round(phoneCallPercent) + "%");
         tvBotValue.setText(Math.round(botPercent) + "%");
 
-        setUpPieChartBySource(thirdPartyPercent, manualPercent, phoneCallPercent, botPercent);
+
+        if ((thirdParty == 0) && (manual == 0) && (phoneCall == 0) &&
+                (bot == 0)) {
+            tvPieChartSourceNotAvailable.setVisibility(View.VISIBLE);
+            pieChartBySource.setVisibility(View.GONE);
+        } else {
+            pieChartBySource.setVisibility(View.VISIBLE);
+            tvPieChartSourceNotAvailable.setVisibility(View.GONE);
+            setUpPieChartBySource(thirdPartyPercent, manualPercent, phoneCallPercent, botPercent);
+        }
+
     }
 
     @Override
