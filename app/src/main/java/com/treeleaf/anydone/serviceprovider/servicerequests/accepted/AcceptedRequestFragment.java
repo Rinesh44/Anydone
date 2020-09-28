@@ -30,6 +30,8 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -122,8 +124,8 @@ public class AcceptedRequestFragment extends BaseFragment<AcceptedPresenterImpl>
                 i.putExtra("selected_service_id", service.getServiceOrderId());
                 i.putExtra("selected_service_name",
                         service.getServiceProvider().getFullName());
-                i.putExtra("selected_service_icon_uri",
-                        service.getServiceProvider().getProfilePic());
+                i.putStringArrayListExtra("selected_service_icon_uri",
+                        new ArrayList<>(Arrays.asList(service.getServiceProvider().getProfilePic())));
                 startActivity(i);
             });
             rvAcceptedRequests.setAdapter(adapter);
