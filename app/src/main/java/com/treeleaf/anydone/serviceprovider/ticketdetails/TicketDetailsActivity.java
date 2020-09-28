@@ -34,6 +34,7 @@ import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -90,7 +91,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
         String serviceName = i.getStringExtra("selected_ticket_name");
-        String serviceProfileUri = i.getStringExtra("selected_ticket_icon_uri");
+        ArrayList<String> serviceProfileUri = i.getStringArrayListExtra("selected_ticket_icon_uri");
         setUpToolbar(ticketId, ticketTitle);
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());

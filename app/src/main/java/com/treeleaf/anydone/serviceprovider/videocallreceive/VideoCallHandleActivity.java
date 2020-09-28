@@ -26,6 +26,7 @@ import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -46,7 +47,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     private Account userAccount;
     private String janusBaseUrl, apiKey, apiSecret;
-    private String serviceName, serviceProfileUri;
+    private String serviceName;
+    private ArrayList<String> serviceProfileUri;
     private String accountId, accountName, accountPicture, rtcMessageId;
     private ServerActivity.VideoCallListener videoCallListenerServer;
     private ClientActivity.VideoCallListener videoCallListenerClient;
@@ -298,7 +300,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     //gets called from consumer
-    public void setServiceProfileUri(String uri) {
+    public void setServiceProfileUri(ArrayList<String> uri) {
         this.serviceProfileUri = uri;
     }
 

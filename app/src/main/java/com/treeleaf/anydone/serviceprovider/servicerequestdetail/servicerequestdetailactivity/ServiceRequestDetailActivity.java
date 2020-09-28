@@ -30,6 +30,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -68,7 +69,8 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
     private long serviceRequestId;
 
 
-    private String serviceName, serviceProfileUri;
+    private String serviceName;
+    private ArrayList<String> serviceProfileUri;
     private boolean paymentSuccess = false;
 
     @Override
@@ -138,7 +140,7 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         Intent i = getIntent();
         serviceRequestId = i.getLongExtra("selected_service_id", -1);
         serviceName = i.getStringExtra("selected_service_name");
-        serviceProfileUri = i.getStringExtra("selected_service_icon_uri");
+        serviceProfileUri = i.getStringArrayListExtra("selected_service_icon_uri");
         serviceRequest = ServiceRequestRepo.getInstance().
                 getServiceRequestById(serviceRequestId);
         paymentSuccess = i.getBooleanExtra("payment_success", false);

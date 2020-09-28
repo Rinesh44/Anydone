@@ -32,6 +32,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -114,19 +115,23 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
 
+                ArrayList<String> employeeProfileUris = new ArrayList<>();
                 StringBuilder builder = new StringBuilder();
                 Employee assignedEmployee = ticket.getAssignedEmployee();
                 String assignedEmployeeName = assignedEmployee.getName();
+
                 if (!localAccountId.equals(assignedEmployee.getAccountId()) &&
                         assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
                     builder.append(assignedEmployeeName);
                     builder.append(", ");
+                    employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
                 }
                 for (Employee employee : ticket.getContributorList()) {
                     if (!localAccountId.equals(employee.getAccountId())) {
                         builder.append(employee.getName());
                         builder.append(", ");
                     }
+                    employeeProfileUris.add(employee.getEmployeeImageUrl());
                 }
                 String assignedEmployeeList = builder.toString().trim();
                 String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
@@ -136,7 +141,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
                 i.putExtra("selected_ticket_type", Constants.ASSIGNED);
                 i.putExtra("ticket_desc", ticket.getTitle());
                 i.putExtra("selected_ticket_name", callees);
-                i.putExtra("selected_ticket_icon_uri", ticket.getServiceProvider().getProfilePic());
+                i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                 startActivity(i);
             });
             rvOpenTickets.setAdapter(adapter);
