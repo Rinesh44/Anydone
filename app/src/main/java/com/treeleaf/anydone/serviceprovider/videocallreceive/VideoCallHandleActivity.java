@@ -33,6 +33,8 @@ import java.util.Objects;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
@@ -58,6 +60,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private boolean videoBroadCastPublish = false;
     int localDeviceWidth, localDeviceHeight;
     private Map<String, Integer[]> remoteDeviceResolutions = new HashMap<>();
+    private boolean videoCallInitiated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,6 +282,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
+        videoCallInitiated = false;
         videoBroadCastPublish = false;//TODO: check if onresume gets called from child parent
     }
 
@@ -330,19 +334,21 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        rtcMessageId = broadcastVideoCall.getRtcMessageId();
-        String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-        String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-        String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
-        String roomNumber = broadcastVideoCall.getRoomId();
-        String participantId = broadcastVideoCall.getParticipantId();
+        if (!videoCallInitiated) {
+            rtcMessageId = broadcastVideoCall.getRtcMessageId();
+            String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
+            String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
+            String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
+            String roomNumber = broadcastVideoCall.getRoomId();
+            String participantId = broadcastVideoCall.getParticipantId();
 
-        callerName = broadcastVideoCall.getSenderAccount().getFullName();
-        callerAccountId = broadcastVideoCall.getSenderAccountId();
-        callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+            callerName = broadcastVideoCall.getSenderAccount().getFullName();
+            callerAccountId = broadcastVideoCall.getSenderAccountId();
+            callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+            ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
+        }
 
-        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
 
     }
 
@@ -598,6 +604,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     public void checkConnection() {
+        videoCallInitiated = true;
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
     }
 
@@ -609,6 +616,24 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 remoteDeviceResolutions.get(accountId)[0], remoteDeviceResolutions.get(accountId)[1],
                 remoteX, remoteY)[1];
         return new float[]{adjustedWidth, adjustedHeight};
+    }
+
+    public void onMqttConnectionStatusChange(String connection) {
+        if (connection.equals(MQTT_CONNECTED)) {
+            if (videoCallListenerClient != null) {
+                videoCallListenerClient.onMqttConnectionChanged(MQTT_CONNECTED);
+            }
+            if (videoCallListenerServer != null) {
+                videoCallListenerServer.onMqttConnectionChanged(MQTT_CONNECTED);
+            }
+        } else {
+            if (videoCallListenerClient != null) {
+                videoCallListenerClient.onMqttConnectionChanged(MQTT_DISCONNECTED);
+            }
+            if (videoCallListenerServer != null) {
+                videoCallListenerServer.onMqttConnectionChanged(MQTT_DISCONNECTED);
+            }
+        }
     }
 
 }

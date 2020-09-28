@@ -214,4 +214,9 @@
     <string name="low">Low</string>
     <string name="done">Done</string>
     <string name="unassigned">Unassigned</string>
+    <string name="resolved">Resolved</string>
+    <string name="bot">Bot</string>
+    <string name="phone_call">Phone call</string>
+    <string name="manual">Manual</string>
+    <string name="_3rd_party_app">3rd party</string>
 </resources>

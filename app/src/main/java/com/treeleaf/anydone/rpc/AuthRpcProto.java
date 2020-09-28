@@ -99,32 +99,22 @@ public final class AuthRpcProto {
     com.treeleaf.anydone.entities.AuthProto.LoginRequest getLoginRequest();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-     */
-    int getServiceContextValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-     */
-    com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getServiceContext();
-
-    /**
-     * <code>optional string customerId = 12;</code>
-     */
-    String getCustomerId();
-    /**
-     * <code>optional string customerId = 12;</code>
-     */
-    com.google.protobuf.ByteString
-        getCustomerIdBytes();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     boolean hasLinkShareContext();
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    boolean hasLinkShareTokenReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq getLinkShareTokenReq();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
@@ -138,7 +128,6 @@ public final class AuthRpcProto {
       refId_ = "";
       stringValue_ = "";
       stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-      customerId_ = "";
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
@@ -565,107 +554,22 @@ public final class AuthRpcProto {
       
     }
 
-    public static final int SERVICECONTEXT_FIELD_NUMBER = 11;
-    private int serviceContext_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-     */
-    public int getServiceContextValue() {
-      return serviceContext_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-     */
-    public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getServiceContext() {
-      com.treeleaf.anydone.entities.AnydoneProto.ServiceContext result = com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.forNumber(serviceContext_);
-      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-     */
-    private void setServiceContextValue(int value) {
-        serviceContext_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-     */
-    private void setServiceContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      serviceContext_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-     */
-    private void clearServiceContext() {
-      
-      serviceContext_ = 0;
-    }
-
-    public static final int CUSTOMERID_FIELD_NUMBER = 12;
-    private String customerId_;
-    /**
-     * <code>optional string customerId = 12;</code>
-     */
-    public String getCustomerId() {
-      return customerId_;
-    }
-    /**
-     * <code>optional string customerId = 12;</code>
-     */
-    public com.google.protobuf.ByteString
-        getCustomerIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(customerId_);
-    }
-    /**
-     * <code>optional string customerId = 12;</code>
-     */
-    private void setCustomerId(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      customerId_ = value;
-    }
-    /**
-     * <code>optional string customerId = 12;</code>
-     */
-    private void clearCustomerId() {
-      
-      customerId_ = getDefaultInstance().getCustomerId();
-    }
-    /**
-     * <code>optional string customerId = 12;</code>
-     */
-    private void setCustomerIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      customerId_ = value.toStringUtf8();
-    }
-
-    public static final int LINKSHARECONTEXT_FIELD_NUMBER = 13;
+    public static final int LINKSHARECONTEXT_FIELD_NUMBER = 11;
     private com.treeleaf.anydone.entities.AuthProto.LinkShareContext linkShareContext_;
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     public boolean hasLinkShareContext() {
       return linkShareContext_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext() {
       return linkShareContext_ == null ? com.treeleaf.anydone.entities.AuthProto.LinkShareContext.getDefaultInstance() : linkShareContext_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     private void setLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
       if (value == null) {
@@ -675,7 +579,7 @@ public final class AuthRpcProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     private void setLinkShareContext(
         com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
@@ -683,7 +587,7 @@ public final class AuthRpcProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     private void mergeLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
       if (linkShareContext_ != null &&
@@ -696,9 +600,61 @@ public final class AuthRpcProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
      */
     private void clearLinkShareContext() {  linkShareContext_ = null;
+      
+    }
+
+    public static final int LINKSHARETOKENREQ_FIELD_NUMBER = 12;
+    private com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq linkShareTokenReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    public boolean hasLinkShareTokenReq() {
+      return linkShareTokenReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq getLinkShareTokenReq() {
+      return linkShareTokenReq_ == null ? com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.getDefaultInstance() : linkShareTokenReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    private void setLinkShareTokenReq(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      linkShareTokenReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    private void setLinkShareTokenReq(
+        com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.Builder builderForValue) {
+      linkShareTokenReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    private void mergeLinkShareTokenReq(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq value) {
+      if (linkShareTokenReq_ != null &&
+          linkShareTokenReq_ != com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.getDefaultInstance()) {
+        linkShareTokenReq_ =
+          com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.newBuilder(linkShareTokenReq_).mergeFrom(value).buildPartial();
+      } else {
+        linkShareTokenReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+     */
+    private void clearLinkShareTokenReq() {  linkShareTokenReq_ = null;
       
     }
 
@@ -734,14 +690,11 @@ public final class AuthRpcProto {
       if (loginRequest_ != null) {
         output.writeMessage(10, getLoginRequest());
       }
-      if (serviceContext_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
-        output.writeEnum(11, serviceContext_);
-      }
-      if (!customerId_.isEmpty()) {
-        output.writeString(12, getCustomerId());
-      }
       if (linkShareContext_ != null) {
-        output.writeMessage(13, getLinkShareContext());
+        output.writeMessage(11, getLinkShareContext());
+      }
+      if (linkShareTokenReq_ != null) {
+        output.writeMessage(12, getLinkShareTokenReq());
       }
     }
 
@@ -795,17 +748,13 @@ public final class AuthRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getLoginRequest());
       }
-      if (serviceContext_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(11, serviceContext_);
-      }
-      if (!customerId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(12, getCustomerId());
-      }
       if (linkShareContext_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, getLinkShareContext());
+          .computeMessageSize(11, getLinkShareContext());
+      }
+      if (linkShareTokenReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getLinkShareTokenReq());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1273,96 +1222,19 @@ public final class AuthRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-       */
-      public int getServiceContextValue() {
-        return instance.getServiceContextValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-       */
-      public Builder setServiceContextValue(int value) {
-        copyOnWrite();
-        instance.setServiceContextValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-       */
-      public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getServiceContext() {
-        return instance.getServiceContext();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-       */
-      public Builder setServiceContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
-        copyOnWrite();
-        instance.setServiceContext(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext serviceContext = 11;</code>
-       */
-      public Builder clearServiceContext() {
-        copyOnWrite();
-        instance.clearServiceContext();
-        return this;
-      }
-
-      /**
-       * <code>optional string customerId = 12;</code>
-       */
-      public String getCustomerId() {
-        return instance.getCustomerId();
-      }
-      /**
-       * <code>optional string customerId = 12;</code>
-       */
-      public com.google.protobuf.ByteString
-          getCustomerIdBytes() {
-        return instance.getCustomerIdBytes();
-      }
-      /**
-       * <code>optional string customerId = 12;</code>
-       */
-      public Builder setCustomerId(
-          String value) {
-        copyOnWrite();
-        instance.setCustomerId(value);
-        return this;
-      }
-      /**
-       * <code>optional string customerId = 12;</code>
-       */
-      public Builder clearCustomerId() {
-        copyOnWrite();
-        instance.clearCustomerId();
-        return this;
-      }
-      /**
-       * <code>optional string customerId = 12;</code>
-       */
-      public Builder setCustomerIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setCustomerIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
        */
       public boolean hasLinkShareContext() {
         return instance.hasLinkShareContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
        */
       public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext() {
         return instance.getLinkShareContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
        */
       public Builder setLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
         copyOnWrite();
@@ -1370,7 +1242,7 @@ public final class AuthRpcProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
        */
       public Builder setLinkShareContext(
           com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
@@ -1379,7 +1251,7 @@ public final class AuthRpcProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
        */
       public Builder mergeLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
         copyOnWrite();
@@ -1387,10 +1259,55 @@ public final class AuthRpcProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 13;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 11;</code>
        */
       public Builder clearLinkShareContext() {  copyOnWrite();
         instance.clearLinkShareContext();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+       */
+      public boolean hasLinkShareTokenReq() {
+        return instance.hasLinkShareTokenReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq getLinkShareTokenReq() {
+        return instance.getLinkShareTokenReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+       */
+      public Builder setLinkShareTokenReq(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq value) {
+        copyOnWrite();
+        instance.setLinkShareTokenReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+       */
+      public Builder setLinkShareTokenReq(
+          com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLinkShareTokenReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+       */
+      public Builder mergeLinkShareTokenReq(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq value) {
+        copyOnWrite();
+        instance.mergeLinkShareTokenReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
+       */
+      public Builder clearLinkShareTokenReq() {  copyOnWrite();
+        instance.clearLinkShareTokenReq();
         return this;
       }
 
@@ -1432,10 +1349,8 @@ public final class AuthRpcProto {
           authorization_ = visitor.visitMessage(authorization_, other.authorization_);
           debug_ = visitor.visitMessage(debug_, other.debug_);
           loginRequest_ = visitor.visitMessage(loginRequest_, other.loginRequest_);
-          serviceContext_ = visitor.visitInt(serviceContext_ != 0, serviceContext_,    other.serviceContext_ != 0, other.serviceContext_);
-          customerId_ = visitor.visitString(!customerId_.isEmpty(), customerId_,
-              !other.customerId_.isEmpty(), other.customerId_);
           linkShareContext_ = visitor.visitMessage(linkShareContext_, other.linkShareContext_);
+          linkShareTokenReq_ = visitor.visitMessage(linkShareTokenReq_, other.linkShareTokenReq_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1541,19 +1456,7 @@ public final class AuthRpcProto {
 
                   break;
                 }
-                case 88: {
-                  int rawValue = input.readEnum();
-
-                  serviceContext_ = rawValue;
-                  break;
-                }
-                case 98: {
-                  String s = input.readStringRequireUtf8();
-
-                  customerId_ = s;
-                  break;
-                }
-                case 106: {
+                case 90: {
                   com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder subBuilder = null;
                   if (linkShareContext_ != null) {
                     subBuilder = linkShareContext_.toBuilder();
@@ -1562,6 +1465,19 @@ public final class AuthRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(linkShareContext_);
                     linkShareContext_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 98: {
+                  com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.Builder subBuilder = null;
+                  if (linkShareTokenReq_ != null) {
+                    subBuilder = linkShareTokenReq_.toBuilder();
+                  }
+                  linkShareTokenReq_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(linkShareTokenReq_);
+                    linkShareTokenReq_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -1710,14 +1626,13 @@ public final class AuthRpcProto {
     com.treeleaf.anydone.entities.UserProto.User getUser();
 
     /**
-     * <code>optional string link = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
-    String getLink();
+    boolean hasLinkShareTokenRes();
     /**
-     * <code>optional string link = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
-    com.google.protobuf.ByteString
-        getLinkBytes();
+    com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes getLinkShareTokenRes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseResponse}
@@ -1730,7 +1645,6 @@ public final class AuthRpcProto {
     private AuthBaseResponse() {
       msg_ = "";
       sessions_ = emptyProtobufList();
-      link_ = "";
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2267,50 +2181,56 @@ public final class AuthRpcProto {
       
     }
 
-    public static final int LINK_FIELD_NUMBER = 12;
-    private String link_;
+    public static final int LINKSHARETOKENRES_FIELD_NUMBER = 12;
+    private com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes linkShareTokenRes_;
     /**
-     * <code>optional string link = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
-    public String getLink() {
-      return link_;
+    public boolean hasLinkShareTokenRes() {
+      return linkShareTokenRes_ != null;
     }
     /**
-     * <code>optional string link = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
-    public com.google.protobuf.ByteString
-        getLinkBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(link_);
+    public com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes getLinkShareTokenRes() {
+      return linkShareTokenRes_ == null ? com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.getDefaultInstance() : linkShareTokenRes_;
     }
     /**
-     * <code>optional string link = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
-    private void setLink(
-        String value) {
+    private void setLinkShareTokenRes(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      link_ = value;
+        throw new NullPointerException();
+      }
+      linkShareTokenRes_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
+     */
+    private void setLinkShareTokenRes(
+        com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.Builder builderForValue) {
+      linkShareTokenRes_ = builderForValue.build();
+      
     }
     /**
-     * <code>optional string link = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
-    private void clearLink() {
+    private void mergeLinkShareTokenRes(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes value) {
+      if (linkShareTokenRes_ != null &&
+          linkShareTokenRes_ != com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.getDefaultInstance()) {
+        linkShareTokenRes_ =
+          com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.newBuilder(linkShareTokenRes_).mergeFrom(value).buildPartial();
+      } else {
+        linkShareTokenRes_ = value;
+      }
       
-      link_ = getDefaultInstance().getLink();
     }
     /**
-     * <code>optional string link = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
-    private void setLinkBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    private void clearLinkShareTokenRes() {  linkShareTokenRes_ = null;
       
-      link_ = value.toStringUtf8();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -2348,8 +2268,8 @@ public final class AuthRpcProto {
       if (user_ != null) {
         output.writeMessage(11, getUser());
       }
-      if (!link_.isEmpty()) {
-        output.writeString(12, getLink());
+      if (linkShareTokenRes_ != null) {
+        output.writeMessage(12, getLinkShareTokenRes());
       }
     }
 
@@ -2402,9 +2322,9 @@ public final class AuthRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getUser());
       }
-      if (!link_.isEmpty()) {
+      if (linkShareTokenRes_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(12, getLink());
+          .computeMessageSize(12, getLinkShareTokenRes());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2961,42 +2881,47 @@ public final class AuthRpcProto {
       }
 
       /**
-       * <code>optional string link = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
        */
-      public String getLink() {
-        return instance.getLink();
+      public boolean hasLinkShareTokenRes() {
+        return instance.hasLinkShareTokenRes();
       }
       /**
-       * <code>optional string link = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
        */
-      public com.google.protobuf.ByteString
-          getLinkBytes() {
-        return instance.getLinkBytes();
+      public com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes getLinkShareTokenRes() {
+        return instance.getLinkShareTokenRes();
       }
       /**
-       * <code>optional string link = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
        */
-      public Builder setLink(
-          String value) {
+      public Builder setLinkShareTokenRes(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes value) {
         copyOnWrite();
-        instance.setLink(value);
+        instance.setLinkShareTokenRes(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
+       */
+      public Builder setLinkShareTokenRes(
+          com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLinkShareTokenRes(builderForValue);
         return this;
       }
       /**
-       * <code>optional string link = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
        */
-      public Builder clearLink() {
+      public Builder mergeLinkShareTokenRes(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes value) {
         copyOnWrite();
-        instance.clearLink();
+        instance.mergeLinkShareTokenRes(value);
         return this;
       }
       /**
-       * <code>optional string link = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
        */
-      public Builder setLinkBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setLinkBytes(value);
+      public Builder clearLinkShareTokenRes() {  copyOnWrite();
+        instance.clearLinkShareTokenRes();
         return this;
       }
 
@@ -3037,8 +2962,7 @@ public final class AuthRpcProto {
           loginResponse_ = visitor.visitMessage(loginResponse_, other.loginResponse_);
           authResponse_ = visitor.visitMessage(authResponse_, other.authResponse_);
           user_ = visitor.visitMessage(user_, other.user_);
-          link_ = visitor.visitString(!link_.isEmpty(), link_,
-              !other.link_.isEmpty(), other.link_);
+          linkShareTokenRes_ = visitor.visitMessage(linkShareTokenRes_, other.linkShareTokenRes_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3166,9 +3090,16 @@ public final class AuthRpcProto {
                   break;
                 }
                 case 98: {
-                  String s = input.readStringRequireUtf8();
+                  com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.Builder subBuilder = null;
+                  if (linkShareTokenRes_ != null) {
+                    subBuilder = linkShareTokenRes_.toBuilder();
+                  }
+                  linkShareTokenRes_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(linkShareTokenRes_);
+                    linkShareTokenRes_ = subBuilder.buildPartial();
+                  }
 
-                  link_ = s;
                   break;
                 }
               }

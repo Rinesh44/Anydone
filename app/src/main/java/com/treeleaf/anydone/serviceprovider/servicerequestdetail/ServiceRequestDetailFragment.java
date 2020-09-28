@@ -90,6 +90,8 @@ import io.realm.RealmList;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDetailPresenterImpl>
         implements ServiceRequestDetailContract.ServiceRequestDetailView,
@@ -1339,6 +1341,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
 
     @Override
     public void mqttConnected() {
+        ((ServiceRequestDetailActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
         tvConnectionStatus.setText(R.string.connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
         tvConnectionStatus.setVisibility(View.VISIBLE);
@@ -1352,6 +1355,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
 
     @Override
     public void mqttNotConnected() {
+        ((ServiceRequestDetailActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
         GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
         tvConnectionStatus.setText(R.string.not_connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));

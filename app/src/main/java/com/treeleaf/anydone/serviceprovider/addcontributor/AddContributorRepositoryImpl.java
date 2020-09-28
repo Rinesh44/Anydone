@@ -15,9 +15,10 @@ public class AddContributorRepositoryImpl implements AddContributorRepository {
     }
 
     @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> addContributor(String token, long ticketId,
-                                                                               TicketProto.Ticket employees) {
-        return anyDoneService.assignEmployee(token, ticketId, employees);
+    public Observable<TicketServiceRpcProto.TicketBaseResponse>
+    addContributor(String token, long ticketId,
+                   TicketProto.Ticket employees) {
+        return anyDoneService.addContributors(token, String.valueOf(ticketId), employees);
     }
 
     @Override

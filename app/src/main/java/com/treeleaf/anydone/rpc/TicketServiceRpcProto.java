@@ -182,27 +182,13 @@ public final class TicketServiceRpcProto {
     int getTagsCount();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    boolean hasLinkShareContext();
+    boolean hasGetSharableLinkRequest();
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext();
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    java.util.List<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> 
-        getLinkShareContextsList();
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContexts(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    int getLinkShareContextsCount();
+    com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest getGetSharableLinkRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -218,7 +204,6 @@ public final class TicketServiceRpcProto {
       stringValues_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       employees_ = emptyProtobufList();
       tags_ = emptyProtobufList();
-      linkShareContexts_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
@@ -1191,176 +1176,56 @@ public final class TicketServiceRpcProto {
       tags_.remove(index);
     }
 
-    public static final int LINKSHARECONTEXT_FIELD_NUMBER = 20;
-    private com.treeleaf.anydone.entities.AuthProto.LinkShareContext linkShareContext_;
+    public static final int GETSHARABLELINKREQUEST_FIELD_NUMBER = 20;
+    private com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest getSharableLinkRequest_;
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    public boolean hasLinkShareContext() {
-      return linkShareContext_ != null;
+    public boolean hasGetSharableLinkRequest() {
+      return getSharableLinkRequest_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext() {
-      return linkShareContext_ == null ? com.treeleaf.anydone.entities.AuthProto.LinkShareContext.getDefaultInstance() : linkShareContext_;
+    public com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest getGetSharableLinkRequest() {
+      return getSharableLinkRequest_ == null ? com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.getDefaultInstance() : getSharableLinkRequest_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    private void setLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+    private void setGetSharableLinkRequest(com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      linkShareContext_ = value;
+      getSharableLinkRequest_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    private void setLinkShareContext(
-        com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
-      linkShareContext_ = builderForValue.build();
+    private void setGetSharableLinkRequest(
+        com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.Builder builderForValue) {
+      getSharableLinkRequest_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    private void mergeLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
-      if (linkShareContext_ != null &&
-          linkShareContext_ != com.treeleaf.anydone.entities.AuthProto.LinkShareContext.getDefaultInstance()) {
-        linkShareContext_ =
-          com.treeleaf.anydone.entities.AuthProto.LinkShareContext.newBuilder(linkShareContext_).mergeFrom(value).buildPartial();
+    private void mergeGetSharableLinkRequest(com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest value) {
+      if (getSharableLinkRequest_ != null &&
+          getSharableLinkRequest_ != com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.getDefaultInstance()) {
+        getSharableLinkRequest_ =
+          com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.newBuilder(getSharableLinkRequest_).mergeFrom(value).buildPartial();
       } else {
-        linkShareContext_ = value;
+        getSharableLinkRequest_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+     * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
      */
-    private void clearLinkShareContext() {  linkShareContext_ = null;
+    private void clearGetSharableLinkRequest() {  getSharableLinkRequest_ = null;
       
-    }
-
-    public static final int LINKSHARECONTEXTS_FIELD_NUMBER = 21;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> linkShareContexts_;
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    public java.util.List<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> getLinkShareContextsList() {
-      return linkShareContexts_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.AuthProto.LinkShareContextOrBuilder> 
-        getLinkShareContextsOrBuilderList() {
-      return linkShareContexts_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    public int getLinkShareContextsCount() {
-      return linkShareContexts_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContexts(int index) {
-      return linkShareContexts_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    public com.treeleaf.anydone.entities.AuthProto.LinkShareContextOrBuilder getLinkShareContextsOrBuilder(
-        int index) {
-      return linkShareContexts_.get(index);
-    }
-    private void ensureLinkShareContextsIsMutable() {
-      if (!linkShareContexts_.isModifiable()) {
-        linkShareContexts_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(linkShareContexts_);
-       }
-    }
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void setLinkShareContexts(
-        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureLinkShareContextsIsMutable();
-      linkShareContexts_.set(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void setLinkShareContexts(
-        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
-      ensureLinkShareContextsIsMutable();
-      linkShareContexts_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void addLinkShareContexts(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureLinkShareContextsIsMutable();
-      linkShareContexts_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void addLinkShareContexts(
-        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureLinkShareContextsIsMutable();
-      linkShareContexts_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void addLinkShareContexts(
-        com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
-      ensureLinkShareContextsIsMutable();
-      linkShareContexts_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void addLinkShareContexts(
-        int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
-      ensureLinkShareContextsIsMutable();
-      linkShareContexts_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void addAllLinkShareContexts(
-        Iterable<? extends com.treeleaf.anydone.entities.AuthProto.LinkShareContext> values) {
-      ensureLinkShareContextsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, linkShareContexts_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void clearLinkShareContexts() {
-      linkShareContexts_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-     */
-    private void removeLinkShareContexts(int index) {
-      ensureLinkShareContextsIsMutable();
-      linkShareContexts_.remove(index);
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -1422,11 +1287,8 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < tags_.size(); i++) {
         output.writeMessage(19, tags_.get(i));
       }
-      if (linkShareContext_ != null) {
-        output.writeMessage(20, getLinkShareContext());
-      }
-      for (int i = 0; i < linkShareContexts_.size(); i++) {
-        output.writeMessage(21, linkShareContexts_.get(i));
+      if (getSharableLinkRequest_ != null) {
+        output.writeMessage(20, getGetSharableLinkRequest());
       }
     }
 
@@ -1516,13 +1378,9 @@ public final class TicketServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(19, tags_.get(i));
       }
-      if (linkShareContext_ != null) {
+      if (getSharableLinkRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20, getLinkShareContext());
-      }
-      for (int i = 0; i < linkShareContexts_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(21, linkShareContexts_.get(i));
+          .computeMessageSize(20, getGetSharableLinkRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2455,144 +2313,47 @@ public final class TicketServiceRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+       * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
        */
-      public boolean hasLinkShareContext() {
-        return instance.hasLinkShareContext();
+      public boolean hasGetSharableLinkRequest() {
+        return instance.hasGetSharableLinkRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+       * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
        */
-      public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContext() {
-        return instance.getLinkShareContext();
+      public com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest getGetSharableLinkRequest() {
+        return instance.getGetSharableLinkRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+       * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
        */
-      public Builder setLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+      public Builder setGetSharableLinkRequest(com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest value) {
         copyOnWrite();
-        instance.setLinkShareContext(value);
+        instance.setGetSharableLinkRequest(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+       * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
        */
-      public Builder setLinkShareContext(
-          com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
+      public Builder setGetSharableLinkRequest(
+          com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.Builder builderForValue) {
         copyOnWrite();
-        instance.setLinkShareContext(builderForValue);
+        instance.setGetSharableLinkRequest(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+       * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
        */
-      public Builder mergeLinkShareContext(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
+      public Builder mergeGetSharableLinkRequest(com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest value) {
         copyOnWrite();
-        instance.mergeLinkShareContext(value);
+        instance.mergeGetSharableLinkRequest(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 20;</code>
+       * <code>optional .treeleaf.anydone.entities.GetSharableLinkRequest getSharableLinkRequest = 20;</code>
        */
-      public Builder clearLinkShareContext() {  copyOnWrite();
-        instance.clearLinkShareContext();
-        return this;
-      }
-
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public java.util.List<com.treeleaf.anydone.entities.AuthProto.LinkShareContext> getLinkShareContextsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getLinkShareContextsList());
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public int getLinkShareContextsCount() {
-        return instance.getLinkShareContextsCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public com.treeleaf.anydone.entities.AuthProto.LinkShareContext getLinkShareContexts(int index) {
-        return instance.getLinkShareContexts(index);
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder setLinkShareContexts(
-          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
-        copyOnWrite();
-        instance.setLinkShareContexts(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder setLinkShareContexts(
-          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
-        copyOnWrite();
-        instance.setLinkShareContexts(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder addLinkShareContexts(com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
-        copyOnWrite();
-        instance.addLinkShareContexts(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder addLinkShareContexts(
-          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext value) {
-        copyOnWrite();
-        instance.addLinkShareContexts(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder addLinkShareContexts(
-          com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
-        copyOnWrite();
-        instance.addLinkShareContexts(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder addLinkShareContexts(
-          int index, com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder builderForValue) {
-        copyOnWrite();
-        instance.addLinkShareContexts(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder addAllLinkShareContexts(
-          Iterable<? extends com.treeleaf.anydone.entities.AuthProto.LinkShareContext> values) {
-        copyOnWrite();
-        instance.addAllLinkShareContexts(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder clearLinkShareContexts() {
-        copyOnWrite();
-        instance.clearLinkShareContexts();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.LinkShareContext linkShareContexts = 21;</code>
-       */
-      public Builder removeLinkShareContexts(int index) {
-        copyOnWrite();
-        instance.removeLinkShareContexts(index);
+      public Builder clearGetSharableLinkRequest() {  copyOnWrite();
+        instance.clearGetSharableLinkRequest();
         return this;
       }
 
@@ -2612,7 +2373,6 @@ public final class TicketServiceRpcProto {
           stringValues_.makeImmutable();
           employees_.makeImmutable();
           tags_.makeImmutable();
-          linkShareContexts_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2648,8 +2408,7 @@ public final class TicketServiceRpcProto {
               other.timeRangeEnd_ != 0L, other.timeRangeEnd_);
           employeeTag_ = visitor.visitMessage(employeeTag_, other.employeeTag_);
           tags_= visitor.visitList(tags_, other.tags_);
-          linkShareContext_ = visitor.visitMessage(linkShareContext_, other.linkShareContext_);
-          linkShareContexts_= visitor.visitList(linkShareContexts_, other.linkShareContexts_);
+          getSharableLinkRequest_ = visitor.visitMessage(getSharableLinkRequest_, other.getSharableLinkRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2849,25 +2608,16 @@ public final class TicketServiceRpcProto {
                   break;
                 }
                 case 162: {
-                  com.treeleaf.anydone.entities.AuthProto.LinkShareContext.Builder subBuilder = null;
-                  if (linkShareContext_ != null) {
-                    subBuilder = linkShareContext_.toBuilder();
+                  com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.Builder subBuilder = null;
+                  if (getSharableLinkRequest_ != null) {
+                    subBuilder = getSharableLinkRequest_.toBuilder();
                   }
-                  linkShareContext_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.LinkShareContext.parser(), extensionRegistry);
+                  getSharableLinkRequest_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.GetSharableLinkRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(linkShareContext_);
-                    linkShareContext_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(getSharableLinkRequest_);
+                    getSharableLinkRequest_ = subBuilder.buildPartial();
                   }
 
-                  break;
-                }
-                case 170: {
-                  if (!linkShareContexts_.isModifiable()) {
-                    linkShareContexts_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(linkShareContexts_);
-                  }
-                  linkShareContexts_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.AuthProto.LinkShareContext.parser(), extensionRegistry));
                   break;
                 }
               }

@@ -138,6 +138,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                             return;
                         }
 
+                        Hawk.put(Constants.REFETCH_TICKET_STAT, true);
                         saveTicket(createTicketResponse.getTicket());
 
                     }

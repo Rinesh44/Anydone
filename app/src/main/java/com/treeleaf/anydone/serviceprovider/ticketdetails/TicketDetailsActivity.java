@@ -1,5 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails;
 
+import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +28,9 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
@@ -30,6 +38,8 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.CLOSED_RESOLVED;
 
 public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView {
@@ -51,6 +61,15 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
+    private BottomSheetDialog linkShareBottomSheet;
+    private RelativeLayout rlCopy;
+    private RelativeLayout rlSms;
+    private RelativeLayout rlEmail;
+    private RelativeLayout rlOther;
+    private String ticketType;
+
+    String shareLink = "";
+    private long ticketId;
 
     @Override
     protected int getLayout() {
@@ -67,7 +86,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
-        long ticketId = i.getLongExtra("selected_ticket_id", 0);
+        ticketType = i.getStringExtra("selected_ticket_type");
+        ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
         String serviceName = i.getStringExtra("selected_ticket_name");
         String serviceProfileUri = i.getStringExtra("selected_ticket_icon_uri");
@@ -76,25 +96,76 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
 
+        createLinkShareBottomSheet();
+
         super.setReferenceId(ticketId);
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
     }
 
-    //TODO: remove this later
-    public void onImageDrawDiscard() {
+    @SuppressLint("ClickableViewAccessibility")
+    private void createLinkShareBottomSheet() {
+        linkShareBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.bottom_sheet_link, null);
+
+        linkShareBottomSheet.setContentView(view);
+        rlCopy = view.findViewById(R.id.rl_copy);
+        rlSms = view.findViewById(R.id.rl_sms);
+        rlEmail = view.findViewById(R.id.rl_email);
+        rlOther = view.findViewById(R.id.rl_other);
+
+        rlCopy.setOnClickListener(v -> {
+            if (!shareLink.isEmpty()) {
+                ClipboardManager clipboard = (ClipboardManager) Objects.requireNonNull(getContext())
+                        .getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("copied_text", shareLink);
+                assert clipboard != null;
+                clipboard.setPrimaryClip(clip);
+                linkShareBottomSheet.dismiss();
+                Toast.makeText(this, "Link copied", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No link found", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rlOther.setOnClickListener(v -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, shareLink);
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+        });
+
+        rlSms.setOnClickListener(v -> {
+            linkShareBottomSheet.dismiss();
+            Intent i = new Intent(this, LinkShareActivity.class);
+            i.putExtra("ticket_id", ticketId);
+            i.putExtra("is_email", false);
+            startActivity(i);
+        });
+
+        rlEmail.setOnClickListener(v -> {
+            linkShareBottomSheet.dismiss();
+            Intent i = new Intent(this, LinkShareActivity.class);
+            i.putExtra("ticket_id", ticketId);
+            i.putExtra("is_email", true);
+            startActivity(i);
+        });
     }
 
     @OnClick(R.id.iv_share)
     public void share() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Share link");
-        sendIntent.setType("text/plain");
-
-        Intent shareIntent = Intent.createChooser(sendIntent, null);
-        startActivity(shareIntent);
+        presenter.getShareLink(String.valueOf(ticketId));
+        if (linkShareBottomSheet.isShowing()) {
+            linkShareBottomSheet.dismiss();
+        } else {
+            linkShareBottomSheet.show();
+        }
     }
 
     @Override
@@ -114,6 +185,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ticket_details, menu);
+        if (ticketType.equals(CLOSED_RESOLVED)) {
+            MenuItem item = menu.findItem(R.id.action_video_call);
+            item.setVisible(false);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -168,6 +243,22 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             outsideClickListener.onOutsideClick(event);
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public void onLinkShareSuccess(String link) {
+        shareLink = link;
+    }
+
+    @Override
+    public void onLinkShareFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     public interface OnOutsideClickListener {

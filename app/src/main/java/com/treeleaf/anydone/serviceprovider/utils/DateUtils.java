@@ -1,6 +1,9 @@
 package com.treeleaf.anydone.serviceprovider.utils;
 
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class DateUtils {
 /*
     public static void main(String[] args) {
@@ -80,6 +83,119 @@ public class DateUtils {
 //        elapsedTime.append(elapsedSeconds);
         return elapsedTime.toString();
 
+    }
+
+    public static String getElapsedTime(long time) {
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
+
+        long elapsedDays = time / daysInMilli;
+        time = time % daysInMilli;
+
+        long elapsedHours = time / hoursInMilli;
+        time = time % hoursInMilli;
+
+        long elapsedMinutes = time / minutesInMilli;
+        time = time % minutesInMilli;
+
+        long elapsedSeconds = time / secondsInMilli;
+
+        System.out.printf(
+                "%d days %d hours %d minutes %d seconds%n",
+                elapsedDays,
+                elapsedHours, elapsedMinutes, elapsedSeconds);
+
+        StringBuilder elapsedTime = new StringBuilder();
+        if (elapsedDays != 0) {
+            elapsedTime.append(elapsedDays);
+            if (elapsedDays > 1)
+                elapsedTime.append(" days ");
+            else
+                elapsedTime.append(" day ");
+        }
+        if (elapsedHours != 0) {
+            elapsedTime.append(elapsedHours);
+            if (elapsedHours > 1)
+                elapsedTime.append(" hrs ");
+            else
+                elapsedTime.append(" hr ");
+        }
+        if (elapsedMinutes != 0) {
+            elapsedTime.append(elapsedMinutes);
+            if (elapsedMinutes > 1)
+                elapsedTime.append(" mins ");
+            else
+                elapsedTime.append(" min ");
+        }
+
+        if (elapsedTime.toString().isEmpty()) {
+            if (elapsedSeconds != 0) {
+                elapsedTime.append(elapsedSeconds);
+                if (elapsedSeconds > 1)
+                    elapsedTime.append(" secs");
+                else
+                    elapsedTime.append(" sec");
+            }
+        }
+
+        return elapsedTime.toString();
+    }
+
+    public static long getStartOfDay() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(year, month, day, 0, 0, 0);
+        return calendar.getTimeInMillis();
+    }
+
+    public static long getEndOfDay() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(year, month, day, 23, 59, 59);
+        return calendar.getTimeInMillis();
+    }
+
+    public static long getStartOfDayYesterday() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(year, month, day, 0, 0, 0);
+        return calendar.getTimeInMillis();
+    }
+
+    public static long getEndOfDayYesterday() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(year, month, day, 23, 59, 59);
+        return calendar.getTimeInMillis();
+    }
+
+
+    public static long getStartOfDay(Calendar calendar) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(year, month, day, 0, 0, 0);
+        return calendar.getTimeInMillis();
+    }
+
+    public static long getEndOfDay(Calendar calendar) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(year, month, day, 23, 59, 59);
+        return calendar.getTimeInMillis();
     }
 
 }

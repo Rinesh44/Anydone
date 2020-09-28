@@ -161,13 +161,31 @@ public final class AuthProto {
     AnydoneProto.SessionType getSessionType();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    boolean hasContext();
+    boolean hasLinkShareContext();
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    LinkShareContext getContext();
+    LinkShareContext getLinkShareContext();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    boolean hasCustomer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    UserProto.Customer getCustomer();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    boolean hasAnydoneUser();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    UserProto.AnydoneUser getAnydoneUser();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Session}
@@ -944,55 +962,159 @@ public final class AuthProto {
       sessionType_ = 0;
     }
 
-    public static final int CONTEXT_FIELD_NUMBER = 19;
-    private LinkShareContext context_;
+    public static final int LINKSHARECONTEXT_FIELD_NUMBER = 19;
+    private LinkShareContext linkShareContext_;
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    public boolean hasContext() {
-      return context_ != null;
+    public boolean hasLinkShareContext() {
+      return linkShareContext_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    public LinkShareContext getContext() {
-      return context_ == null ? LinkShareContext.getDefaultInstance() : context_;
+    public LinkShareContext getLinkShareContext() {
+      return linkShareContext_ == null ? LinkShareContext.getDefaultInstance() : linkShareContext_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    private void setContext(LinkShareContext value) {
+    private void setLinkShareContext(LinkShareContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      context_ = value;
+      linkShareContext_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    private void setContext(
+    private void setLinkShareContext(
         LinkShareContext.Builder builderForValue) {
-      context_ = builderForValue.build();
+      linkShareContext_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    private void mergeContext(LinkShareContext value) {
-      if (context_ != null &&
-          context_ != LinkShareContext.getDefaultInstance()) {
-        context_ =
-          LinkShareContext.newBuilder(context_).mergeFrom(value).buildPartial();
+    private void mergeLinkShareContext(LinkShareContext value) {
+      if (linkShareContext_ != null &&
+          linkShareContext_ != LinkShareContext.getDefaultInstance()) {
+        linkShareContext_ =
+          LinkShareContext.newBuilder(linkShareContext_).mergeFrom(value).buildPartial();
       } else {
-        context_ = value;
+        linkShareContext_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
      */
-    private void clearContext() {  context_ = null;
+    private void clearLinkShareContext() {  linkShareContext_ = null;
+      
+    }
+
+    public static final int CUSTOMER_FIELD_NUMBER = 20;
+    private UserProto.Customer customer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    public boolean hasCustomer() {
+      return customer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    public UserProto.Customer getCustomer() {
+      return customer_ == null ? UserProto.Customer.getDefaultInstance() : customer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    private void setCustomer(UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      customer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    private void setCustomer(
+        UserProto.Customer.Builder builderForValue) {
+      customer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    private void mergeCustomer(UserProto.Customer value) {
+      if (customer_ != null &&
+          customer_ != UserProto.Customer.getDefaultInstance()) {
+        customer_ =
+          UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
+      } else {
+        customer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+     */
+    private void clearCustomer() {  customer_ = null;
+      
+    }
+
+    public static final int ANYDONEUSER_FIELD_NUMBER = 21;
+    private UserProto.AnydoneUser anydoneUser_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    public boolean hasAnydoneUser() {
+      return anydoneUser_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    public UserProto.AnydoneUser getAnydoneUser() {
+      return anydoneUser_ == null ? UserProto.AnydoneUser.getDefaultInstance() : anydoneUser_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    private void setAnydoneUser(UserProto.AnydoneUser value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      anydoneUser_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    private void setAnydoneUser(
+        UserProto.AnydoneUser.Builder builderForValue) {
+      anydoneUser_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    private void mergeAnydoneUser(UserProto.AnydoneUser value) {
+      if (anydoneUser_ != null &&
+          anydoneUser_ != UserProto.AnydoneUser.getDefaultInstance()) {
+        anydoneUser_ =
+          UserProto.AnydoneUser.newBuilder(anydoneUser_).mergeFrom(value).buildPartial();
+      } else {
+        anydoneUser_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+     */
+    private void clearAnydoneUser() {  anydoneUser_ = null;
       
     }
 
@@ -1040,8 +1162,14 @@ public final class AuthProto {
       if (sessionType_ != AnydoneProto.SessionType.UNKNOWN_SESSION_TYPE.getNumber()) {
         output.writeEnum(18, sessionType_);
       }
-      if (context_ != null) {
-        output.writeMessage(19, getContext());
+      if (linkShareContext_ != null) {
+        output.writeMessage(19, getLinkShareContext());
+      }
+      if (customer_ != null) {
+        output.writeMessage(20, getCustomer());
+      }
+      if (anydoneUser_ != null) {
+        output.writeMessage(21, getAnydoneUser());
       }
     }
 
@@ -1106,9 +1234,17 @@ public final class AuthProto {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(18, sessionType_);
       }
-      if (context_ != null) {
+      if (linkShareContext_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(19, getContext());
+          .computeMessageSize(19, getLinkShareContext());
+      }
+      if (customer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, getCustomer());
+      }
+      if (anydoneUser_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(21, getAnydoneUser());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1862,47 +1998,137 @@ public final class AuthProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
        */
-      public boolean hasContext() {
-        return instance.hasContext();
+      public boolean hasLinkShareContext() {
+        return instance.hasLinkShareContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
        */
-      public LinkShareContext getContext() {
-        return instance.getContext();
+      public LinkShareContext getLinkShareContext() {
+        return instance.getLinkShareContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
        */
-      public Builder setContext(LinkShareContext value) {
+      public Builder setLinkShareContext(LinkShareContext value) {
         copyOnWrite();
-        instance.setContext(value);
+        instance.setLinkShareContext(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
        */
-      public Builder setContext(
+      public Builder setLinkShareContext(
           LinkShareContext.Builder builderForValue) {
         copyOnWrite();
-        instance.setContext(builderForValue);
+        instance.setLinkShareContext(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
        */
-      public Builder mergeContext(LinkShareContext value) {
+      public Builder mergeLinkShareContext(LinkShareContext value) {
         copyOnWrite();
-        instance.mergeContext(value);
+        instance.mergeLinkShareContext(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.LinkShareContext context = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 19;</code>
        */
-      public Builder clearContext() {  copyOnWrite();
-        instance.clearContext();
+      public Builder clearLinkShareContext() {  copyOnWrite();
+        instance.clearLinkShareContext();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+       */
+      public boolean hasCustomer() {
+        return instance.hasCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+       */
+      public UserProto.Customer getCustomer() {
+        return instance.getCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+       */
+      public Builder setCustomer(UserProto.Customer value) {
+        copyOnWrite();
+        instance.setCustomer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+       */
+      public Builder setCustomer(
+          UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+       */
+      public Builder mergeCustomer(UserProto.Customer value) {
+        copyOnWrite();
+        instance.mergeCustomer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 20;</code>
+       */
+      public Builder clearCustomer() {  copyOnWrite();
+        instance.clearCustomer();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+       */
+      public boolean hasAnydoneUser() {
+        return instance.hasAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+       */
+      public UserProto.AnydoneUser getAnydoneUser() {
+        return instance.getAnydoneUser();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+       */
+      public Builder setAnydoneUser(UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.setAnydoneUser(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+       */
+      public Builder setAnydoneUser(
+          UserProto.AnydoneUser.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAnydoneUser(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+       */
+      public Builder mergeAnydoneUser(UserProto.AnydoneUser value) {
+        copyOnWrite();
+        instance.mergeAnydoneUser(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 21;</code>
+       */
+      public Builder clearAnydoneUser() {  copyOnWrite();
+        instance.clearAnydoneUser();
         return this;
       }
 
@@ -1949,7 +2175,9 @@ public final class AuthProto {
               !other.currentServiceProviderIdContext_.isEmpty(), other.currentServiceProviderIdContext_);
           permissions_= visitor.visitList(permissions_, other.permissions_);
           sessionType_ = visitor.visitInt(sessionType_ != 0, sessionType_,    other.sessionType_ != 0, other.sessionType_);
-          context_ = visitor.visitMessage(context_, other.context_);
+          linkShareContext_ = visitor.visitMessage(linkShareContext_, other.linkShareContext_);
+          customer_ = visitor.visitMessage(customer_, other.customer_);
+          anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2090,13 +2318,39 @@ public final class AuthProto {
                 }
                 case 154: {
                   LinkShareContext.Builder subBuilder = null;
-                  if (context_ != null) {
-                    subBuilder = context_.toBuilder();
+                  if (linkShareContext_ != null) {
+                    subBuilder = linkShareContext_.toBuilder();
                   }
-                  context_ = input.readMessage(LinkShareContext.parser(), extensionRegistry);
+                  linkShareContext_ = input.readMessage(LinkShareContext.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(context_);
-                    context_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(linkShareContext_);
+                    linkShareContext_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 162: {
+                  UserProto.Customer.Builder subBuilder = null;
+                  if (customer_ != null) {
+                    subBuilder = customer_.toBuilder();
+                  }
+                  customer_ = input.readMessage(UserProto.Customer.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(customer_);
+                    customer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 170: {
+                  UserProto.AnydoneUser.Builder subBuilder = null;
+                  if (anydoneUser_ != null) {
+                    subBuilder = anydoneUser_.toBuilder();
+                  }
+                  anydoneUser_ = input.readMessage(UserProto.AnydoneUser.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(anydoneUser_);
+                    anydoneUser_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -5231,73 +5485,64 @@ public final class AuthProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string spAccountId = 3;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     String getSpAccountId();
     /**
-     * <code>optional string spAccountId = 3;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     com.google.protobuf.ByteString
         getSpAccountIdBytes();
 
     /**
-     * <code>optional string employeeAccountId = 4;</code>
+     * <code>optional string employeeAccountId = 2;</code>
      */
     String getEmployeeAccountId();
     /**
-     * <code>optional string employeeAccountId = 4;</code>
+     * <code>optional string employeeAccountId = 2;</code>
      */
     com.google.protobuf.ByteString
         getEmployeeAccountIdBytes();
 
     /**
-     * <code>optional string customerId = 5;</code>
+     * <code>optional string customerId = 3;</code>
      */
     String getCustomerId();
     /**
-     * <code>optional string customerId = 5;</code>
+     * <code>optional string customerId = 3;</code>
      */
     com.google.protobuf.ByteString
         getCustomerIdBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
      */
     int getContextValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
      */
     AnydoneProto.ServiceContext getContext();
 
     /**
      * <pre>
-     *service order id, ticket id
+     *service order id, ticket id, conversation id
      * </pre>
      *
-     * <code>optional int64 refId = 7;</code>
+     * <code>optional string refId = 5;</code>
      */
-    long getRefId();
-
+    String getRefId();
     /**
      * <pre>
-     *conversation id
+     *service order id, ticket id, conversation id
      * </pre>
      *
-     * <code>optional string conversationId = 8;</code>
-     */
-    String getConversationId();
-    /**
-     * <pre>
-     *conversation id
-     * </pre>
-     *
-     * <code>optional string conversationId = 8;</code>
+     * <code>optional string refId = 5;</code>
      */
     com.google.protobuf.ByteString
-        getConversationIdBytes();
+        getRefIdBytes();
 
     /**
-     * <code>optional int64 timestamp = 9;</code>
+     * <code>optional int64 timestamp = 6;</code>
      */
     long getTimestamp();
   }
@@ -5313,25 +5558,25 @@ public final class AuthProto {
       spAccountId_ = "";
       employeeAccountId_ = "";
       customerId_ = "";
-      conversationId_ = "";
+      refId_ = "";
     }
-    public static final int SPACCOUNTID_FIELD_NUMBER = 3;
+    public static final int SPACCOUNTID_FIELD_NUMBER = 1;
     private String spAccountId_;
     /**
-     * <code>optional string spAccountId = 3;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     public String getSpAccountId() {
       return spAccountId_;
     }
     /**
-     * <code>optional string spAccountId = 3;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSpAccountIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
     }
     /**
-     * <code>optional string spAccountId = 3;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     private void setSpAccountId(
         String value) {
@@ -5342,14 +5587,14 @@ public final class AuthProto {
       spAccountId_ = value;
     }
     /**
-     * <code>optional string spAccountId = 3;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     private void clearSpAccountId() {
       
       spAccountId_ = getDefaultInstance().getSpAccountId();
     }
     /**
-     * <code>optional string spAccountId = 3;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     private void setSpAccountIdBytes(
         com.google.protobuf.ByteString value) {
@@ -5361,23 +5606,23 @@ public final class AuthProto {
       spAccountId_ = value.toStringUtf8();
     }
 
-    public static final int EMPLOYEEACCOUNTID_FIELD_NUMBER = 4;
+    public static final int EMPLOYEEACCOUNTID_FIELD_NUMBER = 2;
     private String employeeAccountId_;
     /**
-     * <code>optional string employeeAccountId = 4;</code>
+     * <code>optional string employeeAccountId = 2;</code>
      */
     public String getEmployeeAccountId() {
       return employeeAccountId_;
     }
     /**
-     * <code>optional string employeeAccountId = 4;</code>
+     * <code>optional string employeeAccountId = 2;</code>
      */
     public com.google.protobuf.ByteString
         getEmployeeAccountIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(employeeAccountId_);
     }
     /**
-     * <code>optional string employeeAccountId = 4;</code>
+     * <code>optional string employeeAccountId = 2;</code>
      */
     private void setEmployeeAccountId(
         String value) {
@@ -5388,14 +5633,14 @@ public final class AuthProto {
       employeeAccountId_ = value;
     }
     /**
-     * <code>optional string employeeAccountId = 4;</code>
+     * <code>optional string employeeAccountId = 2;</code>
      */
     private void clearEmployeeAccountId() {
       
       employeeAccountId_ = getDefaultInstance().getEmployeeAccountId();
     }
     /**
-     * <code>optional string employeeAccountId = 4;</code>
+     * <code>optional string employeeAccountId = 2;</code>
      */
     private void setEmployeeAccountIdBytes(
         com.google.protobuf.ByteString value) {
@@ -5407,23 +5652,23 @@ public final class AuthProto {
       employeeAccountId_ = value.toStringUtf8();
     }
 
-    public static final int CUSTOMERID_FIELD_NUMBER = 5;
+    public static final int CUSTOMERID_FIELD_NUMBER = 3;
     private String customerId_;
     /**
-     * <code>optional string customerId = 5;</code>
+     * <code>optional string customerId = 3;</code>
      */
     public String getCustomerId() {
       return customerId_;
     }
     /**
-     * <code>optional string customerId = 5;</code>
+     * <code>optional string customerId = 3;</code>
      */
     public com.google.protobuf.ByteString
         getCustomerIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(customerId_);
     }
     /**
-     * <code>optional string customerId = 5;</code>
+     * <code>optional string customerId = 3;</code>
      */
     private void setCustomerId(
         String value) {
@@ -5434,14 +5679,14 @@ public final class AuthProto {
       customerId_ = value;
     }
     /**
-     * <code>optional string customerId = 5;</code>
+     * <code>optional string customerId = 3;</code>
      */
     private void clearCustomerId() {
       
       customerId_ = getDefaultInstance().getCustomerId();
     }
     /**
-     * <code>optional string customerId = 5;</code>
+     * <code>optional string customerId = 3;</code>
      */
     private void setCustomerIdBytes(
         com.google.protobuf.ByteString value) {
@@ -5453,29 +5698,29 @@ public final class AuthProto {
       customerId_ = value.toStringUtf8();
     }
 
-    public static final int CONTEXT_FIELD_NUMBER = 6;
+    public static final int CONTEXT_FIELD_NUMBER = 4;
     private int context_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
      */
     public int getContextValue() {
       return context_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
      */
     public AnydoneProto.ServiceContext getContext() {
       AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
       return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
      */
     private void setContextValue(int value) {
         context_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
      */
     private void setContext(AnydoneProto.ServiceContext value) {
       if (value == null) {
@@ -5485,131 +5730,96 @@ public final class AuthProto {
       context_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
      */
     private void clearContext() {
       
       context_ = 0;
     }
 
-    public static final int REFID_FIELD_NUMBER = 7;
-    private long refId_;
+    public static final int REFID_FIELD_NUMBER = 5;
+    private String refId_;
     /**
      * <pre>
-     *service order id, ticket id
+     *service order id, ticket id, conversation id
      * </pre>
      *
-     * <code>optional int64 refId = 7;</code>
+     * <code>optional string refId = 5;</code>
      */
-    public long getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
      * <pre>
-     *service order id, ticket id
+     *service order id, ticket id, conversation id
      * </pre>
      *
-     * <code>optional int64 refId = 7;</code>
-     */
-    private void setRefId(long value) {
-      
-      refId_ = value;
-    }
-    /**
-     * <pre>
-     *service order id, ticket id
-     * </pre>
-     *
-     * <code>optional int64 refId = 7;</code>
-     */
-    private void clearRefId() {
-      
-      refId_ = 0L;
-    }
-
-    public static final int CONVERSATIONID_FIELD_NUMBER = 8;
-    private String conversationId_;
-    /**
-     * <pre>
-     *conversation id
-     * </pre>
-     *
-     * <code>optional string conversationId = 8;</code>
-     */
-    public String getConversationId() {
-      return conversationId_;
-    }
-    /**
-     * <pre>
-     *conversation id
-     * </pre>
-     *
-     * <code>optional string conversationId = 8;</code>
+     * <code>optional string refId = 5;</code>
      */
     public com.google.protobuf.ByteString
-        getConversationIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(conversationId_);
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
     }
     /**
      * <pre>
-     *conversation id
+     *service order id, ticket id, conversation id
      * </pre>
      *
-     * <code>optional string conversationId = 8;</code>
+     * <code>optional string refId = 5;</code>
      */
-    private void setConversationId(
+    private void setRefId(
         String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      conversationId_ = value;
+      refId_ = value;
     }
     /**
      * <pre>
-     *conversation id
+     *service order id, ticket id, conversation id
      * </pre>
      *
-     * <code>optional string conversationId = 8;</code>
+     * <code>optional string refId = 5;</code>
      */
-    private void clearConversationId() {
+    private void clearRefId() {
       
-      conversationId_ = getDefaultInstance().getConversationId();
+      refId_ = getDefaultInstance().getRefId();
     }
     /**
      * <pre>
-     *conversation id
+     *service order id, ticket id, conversation id
      * </pre>
      *
-     * <code>optional string conversationId = 8;</code>
+     * <code>optional string refId = 5;</code>
      */
-    private void setConversationIdBytes(
+    private void setRefIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      conversationId_ = value.toStringUtf8();
+      refId_ = value.toStringUtf8();
     }
 
-    public static final int TIMESTAMP_FIELD_NUMBER = 9;
+    public static final int TIMESTAMP_FIELD_NUMBER = 6;
     private long timestamp_;
     /**
-     * <code>optional int64 timestamp = 9;</code>
+     * <code>optional int64 timestamp = 6;</code>
      */
     public long getTimestamp() {
       return timestamp_;
     }
     /**
-     * <code>optional int64 timestamp = 9;</code>
+     * <code>optional int64 timestamp = 6;</code>
      */
     private void setTimestamp(long value) {
       
       timestamp_ = value;
     }
     /**
-     * <code>optional int64 timestamp = 9;</code>
+     * <code>optional int64 timestamp = 6;</code>
      */
     private void clearTimestamp() {
       
@@ -5619,25 +5829,22 @@ public final class AuthProto {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!spAccountId_.isEmpty()) {
-        output.writeString(3, getSpAccountId());
+        output.writeString(1, getSpAccountId());
       }
       if (!employeeAccountId_.isEmpty()) {
-        output.writeString(4, getEmployeeAccountId());
+        output.writeString(2, getEmployeeAccountId());
       }
       if (!customerId_.isEmpty()) {
-        output.writeString(5, getCustomerId());
+        output.writeString(3, getCustomerId());
       }
       if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
-        output.writeEnum(6, context_);
+        output.writeEnum(4, context_);
       }
-      if (refId_ != 0L) {
-        output.writeInt64(7, refId_);
-      }
-      if (!conversationId_.isEmpty()) {
-        output.writeString(8, getConversationId());
+      if (!refId_.isEmpty()) {
+        output.writeString(5, getRefId());
       }
       if (timestamp_ != 0L) {
-        output.writeInt64(9, timestamp_);
+        output.writeInt64(6, timestamp_);
       }
     }
 
@@ -5648,31 +5855,27 @@ public final class AuthProto {
       size = 0;
       if (!spAccountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getSpAccountId());
+          .computeStringSize(1, getSpAccountId());
       }
       if (!employeeAccountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(4, getEmployeeAccountId());
+          .computeStringSize(2, getEmployeeAccountId());
       }
       if (!customerId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getCustomerId());
+          .computeStringSize(3, getCustomerId());
       }
       if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, context_);
+          .computeEnumSize(4, context_);
       }
-      if (refId_ != 0L) {
+      if (!refId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(7, refId_);
-      }
-      if (!conversationId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(8, getConversationId());
+          .computeStringSize(5, getRefId());
       }
       if (timestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(9, timestamp_);
+          .computeInt64Size(6, timestamp_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -5761,20 +5964,20 @@ public final class AuthProto {
 
 
       /**
-       * <code>optional string spAccountId = 3;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
       public String getSpAccountId() {
         return instance.getSpAccountId();
       }
       /**
-       * <code>optional string spAccountId = 3;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
       public com.google.protobuf.ByteString
           getSpAccountIdBytes() {
         return instance.getSpAccountIdBytes();
       }
       /**
-       * <code>optional string spAccountId = 3;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
       public Builder setSpAccountId(
           String value) {
@@ -5783,7 +5986,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional string spAccountId = 3;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
       public Builder clearSpAccountId() {
         copyOnWrite();
@@ -5791,7 +5994,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional string spAccountId = 3;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
       public Builder setSpAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -5801,20 +6004,20 @@ public final class AuthProto {
       }
 
       /**
-       * <code>optional string employeeAccountId = 4;</code>
+       * <code>optional string employeeAccountId = 2;</code>
        */
       public String getEmployeeAccountId() {
         return instance.getEmployeeAccountId();
       }
       /**
-       * <code>optional string employeeAccountId = 4;</code>
+       * <code>optional string employeeAccountId = 2;</code>
        */
       public com.google.protobuf.ByteString
           getEmployeeAccountIdBytes() {
         return instance.getEmployeeAccountIdBytes();
       }
       /**
-       * <code>optional string employeeAccountId = 4;</code>
+       * <code>optional string employeeAccountId = 2;</code>
        */
       public Builder setEmployeeAccountId(
           String value) {
@@ -5823,7 +6026,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional string employeeAccountId = 4;</code>
+       * <code>optional string employeeAccountId = 2;</code>
        */
       public Builder clearEmployeeAccountId() {
         copyOnWrite();
@@ -5831,7 +6034,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional string employeeAccountId = 4;</code>
+       * <code>optional string employeeAccountId = 2;</code>
        */
       public Builder setEmployeeAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -5841,20 +6044,20 @@ public final class AuthProto {
       }
 
       /**
-       * <code>optional string customerId = 5;</code>
+       * <code>optional string customerId = 3;</code>
        */
       public String getCustomerId() {
         return instance.getCustomerId();
       }
       /**
-       * <code>optional string customerId = 5;</code>
+       * <code>optional string customerId = 3;</code>
        */
       public com.google.protobuf.ByteString
           getCustomerIdBytes() {
         return instance.getCustomerIdBytes();
       }
       /**
-       * <code>optional string customerId = 5;</code>
+       * <code>optional string customerId = 3;</code>
        */
       public Builder setCustomerId(
           String value) {
@@ -5863,7 +6066,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional string customerId = 5;</code>
+       * <code>optional string customerId = 3;</code>
        */
       public Builder clearCustomerId() {
         copyOnWrite();
@@ -5871,7 +6074,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional string customerId = 5;</code>
+       * <code>optional string customerId = 3;</code>
        */
       public Builder setCustomerIdBytes(
           com.google.protobuf.ByteString value) {
@@ -5881,13 +6084,13 @@ public final class AuthProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
        */
       public int getContextValue() {
         return instance.getContextValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
        */
       public Builder setContextValue(int value) {
         copyOnWrite();
@@ -5895,13 +6098,13 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
        */
       public AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
        */
       public Builder setContext(AnydoneProto.ServiceContext value) {
         copyOnWrite();
@@ -5909,7 +6112,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 4;</code>
        */
       public Builder clearContext() {
         copyOnWrite();
@@ -5919,107 +6122,72 @@ public final class AuthProto {
 
       /**
        * <pre>
-       *service order id, ticket id
+       *service order id, ticket id, conversation id
        * </pre>
        *
-       * <code>optional int64 refId = 7;</code>
+       * <code>optional string refId = 5;</code>
        */
-      public long getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
        * <pre>
-       *service order id, ticket id
+       *service order id, ticket id, conversation id
        * </pre>
        *
-       * <code>optional int64 refId = 7;</code>
+       * <code>optional string refId = 5;</code>
        */
-      public Builder setRefId(long value) {
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <pre>
+       *service order id, ticket id, conversation id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefId(
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
       }
       /**
        * <pre>
-       *service order id, ticket id
+       *service order id, ticket id, conversation id
        * </pre>
        *
-       * <code>optional int64 refId = 7;</code>
+       * <code>optional string refId = 5;</code>
        */
       public Builder clearRefId() {
         copyOnWrite();
         instance.clearRefId();
         return this;
       }
-
       /**
        * <pre>
-       *conversation id
+       *service order id, ticket id, conversation id
        * </pre>
        *
-       * <code>optional string conversationId = 8;</code>
+       * <code>optional string refId = 5;</code>
        */
-      public String getConversationId() {
-        return instance.getConversationId();
-      }
-      /**
-       * <pre>
-       *conversation id
-       * </pre>
-       *
-       * <code>optional string conversationId = 8;</code>
-       */
-      public com.google.protobuf.ByteString
-          getConversationIdBytes() {
-        return instance.getConversationIdBytes();
-      }
-      /**
-       * <pre>
-       *conversation id
-       * </pre>
-       *
-       * <code>optional string conversationId = 8;</code>
-       */
-      public Builder setConversationId(
-          String value) {
-        copyOnWrite();
-        instance.setConversationId(value);
-        return this;
-      }
-      /**
-       * <pre>
-       *conversation id
-       * </pre>
-       *
-       * <code>optional string conversationId = 8;</code>
-       */
-      public Builder clearConversationId() {
-        copyOnWrite();
-        instance.clearConversationId();
-        return this;
-      }
-      /**
-       * <pre>
-       *conversation id
-       * </pre>
-       *
-       * <code>optional string conversationId = 8;</code>
-       */
-      public Builder setConversationIdBytes(
+      public Builder setRefIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setConversationIdBytes(value);
+        instance.setRefIdBytes(value);
         return this;
       }
 
       /**
-       * <code>optional int64 timestamp = 9;</code>
+       * <code>optional int64 timestamp = 6;</code>
        */
       public long getTimestamp() {
         return instance.getTimestamp();
       }
       /**
-       * <code>optional int64 timestamp = 9;</code>
+       * <code>optional int64 timestamp = 6;</code>
        */
       public Builder setTimestamp(long value) {
         copyOnWrite();
@@ -6027,7 +6195,7 @@ public final class AuthProto {
         return this;
       }
       /**
-       * <code>optional int64 timestamp = 9;</code>
+       * <code>optional int64 timestamp = 6;</code>
        */
       public Builder clearTimestamp() {
         copyOnWrite();
@@ -6063,10 +6231,8 @@ public final class AuthProto {
           customerId_ = visitor.visitString(!customerId_.isEmpty(), customerId_,
               !other.customerId_.isEmpty(), other.customerId_);
           context_ = visitor.visitInt(context_ != 0, context_,    other.context_ != 0, other.context_);
-          refId_ = visitor.visitLong(refId_ != 0L, refId_,
-              other.refId_ != 0L, other.refId_);
-          conversationId_ = visitor.visitString(!conversationId_.isEmpty(), conversationId_,
-              !other.conversationId_.isEmpty(), other.conversationId_);
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
           timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
               other.timestamp_ != 0L, other.timestamp_);
           if (visitor == MergeFromVisitor
@@ -6093,42 +6259,37 @@ public final class AuthProto {
                   }
                   break;
                 }
-                case 26: {
+                case 10: {
                   String s = input.readStringRequireUtf8();
 
                   spAccountId_ = s;
                   break;
                 }
-                case 34: {
+                case 18: {
                   String s = input.readStringRequireUtf8();
 
                   employeeAccountId_ = s;
                   break;
                 }
-                case 42: {
+                case 26: {
                   String s = input.readStringRequireUtf8();
 
                   customerId_ = s;
                   break;
                 }
-                case 48: {
+                case 32: {
                   int rawValue = input.readEnum();
 
                   context_ = rawValue;
                   break;
                 }
-                case 56: {
-
-                  refId_ = input.readInt64();
-                  break;
-                }
-                case 66: {
+                case 42: {
                   String s = input.readStringRequireUtf8();
 
-                  conversationId_ = s;
+                  refId_ = s;
                   break;
                 }
-                case 72: {
+                case 48: {
 
                   timestamp_ = input.readInt64();
                   break;
@@ -6175,6 +6336,899 @@ public final class AuthProto {
     private static volatile com.google.protobuf.Parser<LinkShareContext> PARSER;
 
     public static com.google.protobuf.Parser<LinkShareContext> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface LinkShareTokenReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.LinkShareTokenReq)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    boolean hasLinkShareContext();
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    LinkShareContext getLinkShareContext();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    boolean hasLoggedInSession();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    Session getLoggedInSession();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    boolean hasCustomer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    UserProto.Customer getCustomer();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.LinkShareTokenReq}
+   */
+  public  static final class LinkShareTokenReq extends
+      com.google.protobuf.GeneratedMessageLite<
+          LinkShareTokenReq, LinkShareTokenReq.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.LinkShareTokenReq)
+      LinkShareTokenReqOrBuilder {
+    private LinkShareTokenReq() {
+    }
+    public static final int LINKSHARECONTEXT_FIELD_NUMBER = 1;
+    private LinkShareContext linkShareContext_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    public boolean hasLinkShareContext() {
+      return linkShareContext_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    public LinkShareContext getLinkShareContext() {
+      return linkShareContext_ == null ? LinkShareContext.getDefaultInstance() : linkShareContext_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    private void setLinkShareContext(LinkShareContext value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      linkShareContext_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    private void setLinkShareContext(
+        LinkShareContext.Builder builderForValue) {
+      linkShareContext_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    private void mergeLinkShareContext(LinkShareContext value) {
+      if (linkShareContext_ != null &&
+          linkShareContext_ != LinkShareContext.getDefaultInstance()) {
+        linkShareContext_ =
+          LinkShareContext.newBuilder(linkShareContext_).mergeFrom(value).buildPartial();
+      } else {
+        linkShareContext_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+     */
+    private void clearLinkShareContext() {  linkShareContext_ = null;
+      
+    }
+
+    public static final int LOGGEDINSESSION_FIELD_NUMBER = 2;
+    private Session loggedInSession_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    public boolean hasLoggedInSession() {
+      return loggedInSession_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    public Session getLoggedInSession() {
+      return loggedInSession_ == null ? Session.getDefaultInstance() : loggedInSession_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    private void setLoggedInSession(Session value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      loggedInSession_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    private void setLoggedInSession(
+        Session.Builder builderForValue) {
+      loggedInSession_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    private void mergeLoggedInSession(Session value) {
+      if (loggedInSession_ != null &&
+          loggedInSession_ != Session.getDefaultInstance()) {
+        loggedInSession_ =
+          Session.newBuilder(loggedInSession_).mergeFrom(value).buildPartial();
+      } else {
+        loggedInSession_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+     */
+    private void clearLoggedInSession() {  loggedInSession_ = null;
+      
+    }
+
+    public static final int CUSTOMER_FIELD_NUMBER = 3;
+    private UserProto.Customer customer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    public boolean hasCustomer() {
+      return customer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    public UserProto.Customer getCustomer() {
+      return customer_ == null ? UserProto.Customer.getDefaultInstance() : customer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    private void setCustomer(UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      customer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    private void setCustomer(
+        UserProto.Customer.Builder builderForValue) {
+      customer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    private void mergeCustomer(UserProto.Customer value) {
+      if (customer_ != null &&
+          customer_ != UserProto.Customer.getDefaultInstance()) {
+        customer_ =
+          UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
+      } else {
+        customer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+     */
+    private void clearCustomer() {  customer_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (linkShareContext_ != null) {
+        output.writeMessage(1, getLinkShareContext());
+      }
+      if (loggedInSession_ != null) {
+        output.writeMessage(2, getLoggedInSession());
+      }
+      if (customer_ != null) {
+        output.writeMessage(3, getCustomer());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (linkShareContext_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getLinkShareContext());
+      }
+      if (loggedInSession_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getLoggedInSession());
+      }
+      if (customer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getCustomer());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static LinkShareTokenReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static LinkShareTokenReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static LinkShareTokenReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static LinkShareTokenReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static LinkShareTokenReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static LinkShareTokenReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static LinkShareTokenReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static LinkShareTokenReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static LinkShareTokenReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static LinkShareTokenReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(LinkShareTokenReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.LinkShareTokenReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          LinkShareTokenReq, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.LinkShareTokenReq)
+        LinkShareTokenReqOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+       */
+      public boolean hasLinkShareContext() {
+        return instance.hasLinkShareContext();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+       */
+      public LinkShareContext getLinkShareContext() {
+        return instance.getLinkShareContext();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+       */
+      public Builder setLinkShareContext(LinkShareContext value) {
+        copyOnWrite();
+        instance.setLinkShareContext(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+       */
+      public Builder setLinkShareContext(
+          LinkShareContext.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLinkShareContext(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+       */
+      public Builder mergeLinkShareContext(LinkShareContext value) {
+        copyOnWrite();
+        instance.mergeLinkShareContext(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkShareContext linkShareContext = 1;</code>
+       */
+      public Builder clearLinkShareContext() {  copyOnWrite();
+        instance.clearLinkShareContext();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+       */
+      public boolean hasLoggedInSession() {
+        return instance.hasLoggedInSession();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+       */
+      public Session getLoggedInSession() {
+        return instance.getLoggedInSession();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+       */
+      public Builder setLoggedInSession(Session value) {
+        copyOnWrite();
+        instance.setLoggedInSession(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+       */
+      public Builder setLoggedInSession(
+          Session.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLoggedInSession(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+       */
+      public Builder mergeLoggedInSession(Session value) {
+        copyOnWrite();
+        instance.mergeLoggedInSession(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Session loggedInSession = 2;</code>
+       */
+      public Builder clearLoggedInSession() {  copyOnWrite();
+        instance.clearLoggedInSession();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+       */
+      public boolean hasCustomer() {
+        return instance.hasCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+       */
+      public UserProto.Customer getCustomer() {
+        return instance.getCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+       */
+      public Builder setCustomer(UserProto.Customer value) {
+        copyOnWrite();
+        instance.setCustomer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+       */
+      public Builder setCustomer(
+          UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+       */
+      public Builder mergeCustomer(UserProto.Customer value) {
+        copyOnWrite();
+        instance.mergeCustomer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 3;</code>
+       */
+      public Builder clearCustomer() {  copyOnWrite();
+        instance.clearCustomer();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LinkShareTokenReq)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new LinkShareTokenReq();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          LinkShareTokenReq other = (LinkShareTokenReq) arg1;
+          linkShareContext_ = visitor.visitMessage(linkShareContext_, other.linkShareContext_);
+          loggedInSession_ = visitor.visitMessage(loggedInSession_, other.loggedInSession_);
+          customer_ = visitor.visitMessage(customer_, other.customer_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  LinkShareContext.Builder subBuilder = null;
+                  if (linkShareContext_ != null) {
+                    subBuilder = linkShareContext_.toBuilder();
+                  }
+                  linkShareContext_ = input.readMessage(LinkShareContext.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(linkShareContext_);
+                    linkShareContext_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 18: {
+                  Session.Builder subBuilder = null;
+                  if (loggedInSession_ != null) {
+                    subBuilder = loggedInSession_.toBuilder();
+                  }
+                  loggedInSession_ = input.readMessage(Session.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(loggedInSession_);
+                    loggedInSession_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 26: {
+                  UserProto.Customer.Builder subBuilder = null;
+                  if (customer_ != null) {
+                    subBuilder = customer_.toBuilder();
+                  }
+                  customer_ = input.readMessage(UserProto.Customer.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(customer_);
+                    customer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (LinkShareTokenReq.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.LinkShareTokenReq)
+    private static final LinkShareTokenReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new LinkShareTokenReq();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static LinkShareTokenReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<LinkShareTokenReq> PARSER;
+
+    public static com.google.protobuf.Parser<LinkShareTokenReq> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface LinkShareTokenResOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.LinkShareTokenRes)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    String getToken();
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.LinkShareTokenRes}
+   */
+  public  static final class LinkShareTokenRes extends
+      com.google.protobuf.GeneratedMessageLite<
+          LinkShareTokenRes, LinkShareTokenRes.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.LinkShareTokenRes)
+      LinkShareTokenResOrBuilder {
+    private LinkShareTokenRes() {
+      token_ = "";
+    }
+    public static final int TOKEN_FIELD_NUMBER = 1;
+    private String token_;
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    public String getToken() {
+      return token_;
+    }
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+    }
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    private void setToken(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      token_ = value;
+    }
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    private void clearToken() {
+      
+      token_ = getDefaultInstance().getToken();
+    }
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    private void setTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      token_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!token_.isEmpty()) {
+        output.writeString(1, getToken());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!token_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getToken());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static LinkShareTokenRes parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static LinkShareTokenRes parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static LinkShareTokenRes parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static LinkShareTokenRes parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static LinkShareTokenRes parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static LinkShareTokenRes parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static LinkShareTokenRes parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static LinkShareTokenRes parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static LinkShareTokenRes parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static LinkShareTokenRes parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(LinkShareTokenRes prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.LinkShareTokenRes}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          LinkShareTokenRes, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.LinkShareTokenRes)
+        LinkShareTokenResOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public String getToken() {
+        return instance.getToken();
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        return instance.getTokenBytes();
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public Builder setToken(
+          String value) {
+        copyOnWrite();
+        instance.setToken(value);
+        return this;
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public Builder clearToken() {
+        copyOnWrite();
+        instance.clearToken();
+        return this;
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTokenBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LinkShareTokenRes)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new LinkShareTokenRes();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          LinkShareTokenRes other = (LinkShareTokenRes) arg1;
+          token_ = visitor.visitString(!token_.isEmpty(), token_,
+              !other.token_.isEmpty(), other.token_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  token_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (LinkShareTokenRes.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.LinkShareTokenRes)
+    private static final LinkShareTokenRes DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new LinkShareTokenRes();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static LinkShareTokenRes getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<LinkShareTokenRes> PARSER;
+
+    public static com.google.protobuf.Parser<LinkShareTokenRes> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

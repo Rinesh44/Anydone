@@ -20,7 +20,10 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -56,6 +59,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     private TicketsAdapter adapter;
     private List<Tickets> assignedTickets;
     private boolean fetchList = false;
+    private Account userAccount;
+    private String localAccountId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,22 +69,25 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
         mFragment.setAssignedListListener(this);
+        userAccount = AccountRepo.getInstance().getAccount();
+        localAccountId = userAccount.getAccountId();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (fetchList) {
-            assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+//        if (fetchList) {
+        assignedTickets = TicketRepo.getInstance().getAssignedTickets();
 
-            if (CollectionUtils.isEmpty(assignedTickets)) {
-                presenter.getAssignedTickets(true, 0,
-                        System.currentTimeMillis(), 100);
-            } else {
-                setUpRecyclerView(assignedTickets);
-            }
+        if (CollectionUtils.isEmpty(assignedTickets)) {
+            ivDataNotFound.setVisibility(View.GONE);
+            presenter.getAssignedTickets(true, 0,
+                    System.currentTimeMillis(), 100);
+        } else {
+            setUpRecyclerView(assignedTickets);
         }
+//        }
     }
 
     @Override
@@ -104,11 +112,29 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
+
+                StringBuilder builder = new StringBuilder();
+                Employee assignedEmployee = ticket.getAssignedEmployee();
+                String assignedEmployeeName = assignedEmployee.getName();
+                if (!localAccountId.equals(assignedEmployee.getAccountId()) &&
+                        assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
+                    builder.append(assignedEmployeeName);
+                    builder.append(", ");
+                }
+                for (Employee employee : ticket.getContributorList()) {
+                    if (!localAccountId.equals(employee.getAccountId())) {
+                        builder.append(employee.getName());
+                        builder.append(", ");
+                    }
+                }
+                String assignedEmployeeList = builder.toString().trim();
+                String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
+
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
                 i.putExtra("selected_ticket_type", Constants.ASSIGNED);
                 i.putExtra("ticket_desc", ticket.getTitle());
-                i.putExtra("selected_ticket_name", ticket.getServiceProvider().getFullName());
+                i.putExtra("selected_ticket_name", callees);
                 i.putExtra("selected_ticket_icon_uri", ticket.getServiceProvider().getProfilePic());
                 startActivity(i);
             });
@@ -117,13 +143,13 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             rvOpenTickets.setVisibility(View.GONE);
             final Handler handler = new Handler();
 
-            handler.postDelayed(() -> {
+      /*      handler.postDelayed(() -> {
                 if (rvOpenTickets != null) {
                     if (rvOpenTickets.getVisibility() != View.VISIBLE)
                         ivDataNotFound.setVisibility(View.VISIBLE);
                     else ivDataNotFound.setVisibility(View.GONE);
                 }
-            }, 50);
+            }, 50);*/
 
         }
 
@@ -250,6 +276,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
     @Override
     public void fetchList() {
+        GlobalUtils.showLog(TAG, "fetch list called");
         presenter.getAssignedTickets(true, 0,
                 System.currentTimeMillis(), 100);
     }

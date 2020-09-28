@@ -1,36 +1,195 @@
 package com.treeleaf.anydone.serviceprovider.dashboard;
 
-
-import android.graphics.Color;
-import android.graphics.DashPathEffect;
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnDrawListener;
+import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByDate;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketStatRepo;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
+import io.realm.RealmList;
+
+import static com.github.mikephil.charting.utils.ColorTemplate.rgb;
 
 public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         implements DashboardContract.DashboardView {
 
+    private static final String TAG = "DashboardFragment";
+    public static final int[] STATUS_COLORS = {
+            rgb("#F41803"), rgb("#3A5090"), rgb("#8808FF"), rgb("#0DED6E"),
+            rgb("#117BFF")};
+    public static final int[] PRIORITY_COLORS = {
+            rgb("#F50000"), rgb("#FF7A00"), rgb("#FFC700"), rgb("#008F40"),
+            rgb("#00DF63")};
+    public static final int[] SOURCE_COLORS = {
+            rgb("#3A5090"), rgb("#00C156"), rgb("#FBC400"), rgb("#FF2626")};
+
+    private final String[] AXIS_HOURS = {"1 AM", "2 AM", "3 AM", "4 AM", "5 AM", "6 AM",
+            "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM",
+            "5 PM", "6 PM", "7 PM", "8 PM ", "9 PM", "10 PM", "11 PM", "0 AM"};
+
+    private final String[] AXIS_WEEK = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    private final String[] AXIS_YEAR = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+            "Sep", "Oct", "Nov", "Dec"};
+
     @BindView(R.id.line_chart)
     LineChart lineChart;
+    @BindView(R.id.toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.iv_service)
+    ImageView ivService;
+    @BindView(R.id.tv_new_tickets)
+    TextView tvNewTickets;
+    @BindView(R.id.tv_resolved_tickets)
+    TextView tvResolvedTickets;
+    @BindView(R.id.tv_unresolved_tickets)
+    TextView tvUnresolvedTickets;
+    @BindView(R.id.tv_closed_tickets)
+    TextView tvClosedTickets;
+    @BindView(R.id.tv_reopened_tickets)
+    TextView tvReopenedTickets;
+    @BindView(R.id.tv_total_tickets)
+    TextView tvTotalTickets;
+    @BindView(R.id.tv_max)
+    TextView tvMax;
+    @BindView(R.id.tv_min)
+    TextView tvMin;
+    @BindView(R.id.tv_average)
+    TextView tvAverage;
+    @BindView(R.id.pie_chart_by_status)
+    PieChart pieChartByStatus;
+    @BindView(R.id.tv_started_value)
+    TextView tvStartedValue;
+    @BindView(R.id.tv_todo_value)
+    TextView tvTodoValue;
+    @BindView(R.id.tv_resolved_value)
+    TextView tvResolvedValue;
+    @BindView(R.id.tv_closed_value)
+    TextView tvClosedValue;
+    @BindView(R.id.tv_reopen_value)
+    TextView tvReopenValue;
+    @BindView(R.id.pie_chart_by_priority)
+    PieChart pieChartByPriority;
+    @BindView(R.id.tv_highest_value)
+    TextView tvHighestValue;
+    @BindView(R.id.tv_high_value)
+    TextView tvHighValue;
+    @BindView(R.id.tv_medium_value)
+    TextView tvMediumValue;
+    @BindView(R.id.tv_low_value)
+    TextView tvLowValue;
+    @BindView(R.id.tv_lowest_value)
+    TextView tvLowestValue;
+    @BindView(R.id.tv_third_party_value)
+    TextView tvThirdPartyValue;
+    @BindView(R.id.tv_manual_value)
+    TextView tvManualValue;
+    @BindView(R.id.tv_phone_call_value)
+    TextView tvPhoneCallValue;
+    @BindView(R.id.tv_bot_value)
+    TextView tvBotValue;
+    @BindView(R.id.pie_chart_by_source)
+    PieChart pieChartBySource;
+    @BindView(R.id.pb_line_chart_progress)
+    ProgressBar pbLineChart;
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.iv_filter)
+    ImageView ivFilter;
+    @BindView(R.id.tv_line_chart_not_available)
+    TextView tvLineChartNotAvailable;
+    @BindView(R.id.tv_pie_chart_priority_not_available)
+    TextView tvPieChartPriorityNotAvailable;
+    @BindView(R.id.tv_pie_chart_source_not_available)
+    TextView tvPieChartSourceNotAvailable;
+    @BindView(R.id.tv_pie_chart_status_not_available)
+    TextView tvPieChartStatusNotAvailable;
+    @BindView(R.id.tv_selection)
+    TextView tvSelection;
+    @BindView(R.id.tv_trends_selection)
+    TextView tvTrendSelection;
+
+    private BottomSheetDialog serviceBottomSheet;
+    private RecyclerView rvServices;
+    private String selectedServiceId;
+    private SearchServiceAdapter adapter;
+    private BottomSheetDialog filterBottomSheet;
+    private MaterialButton btnSearch;
+    private EditText etFromDate, etTillDate;
+    private TextView tvReset;
+    private AppCompatSpinner spTime;
+    private long from, to;
+    final Calendar myCalendar = Calendar.getInstance();
+    private String trend = "THIS MONTH";
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
 
     public static DashboardFragment newInstance(String param1, String param2) {
         DashboardFragment fragment = new DashboardFragment();
@@ -42,72 +201,757 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        createServiceBottomSheet();
+        createFilterBottomSheet();
 
-        setUpLineChart();
-        setUpPieChartBySource();
-        setUpPieChartByPriority();
-        setUpPieChartByStatus();
+        ivFilter.setOnClickListener(v -> toggleBottomSheet());
 
+        boolean reFetchData = Hawk.get(Constants.REFETCH_TICKET_STAT, true);
+        GlobalUtils.showLog(TAG, "check refetch: " + reFetchData);
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE, "");
+        if (reFetchData && !selectedService.isEmpty()) {
+            presenter.getTicketByPriority();
+            presenter.getTicketByResolveTime();
+            presenter.getTicketBySource();
+            presenter.getTicketByStatus();
+            presenter.getTicketsByDate();
+        } else {
+            if (!reFetchData)
+                loadDataFromDb();
+        }
+
+        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> {
+                    GlobalUtils.showLog(TAG, "swipe refresh called");
+                    trend = "past 30 days";
+                    pbLineChart.setVisibility(View.VISIBLE);
+                    lineChart.setVisibility(View.GONE);
+                    Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
+                    presenter.getTicketByPriority();
+                    presenter.getTicketByResolveTime();
+                    presenter.getTicketBySource();
+                    presenter.getTicketByStatus();
+                    presenter.getTicketsByDate();
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        //Do something after 1 sec
+                        swipeRefreshLayout.setRefreshing(false);
+                    }, 1000);
+                }
+        );
     }
 
-    private void setUpPieChartByStatus() {
-        ArrayList NoOfEmp = new ArrayList();
-
+    private void loadDataFromDb() {
+        getTicketByDateSuccess();
+        getTicketByPrioritySuccess();
+        getTicketBySourceSuccess();
+        getTicketByStatusSuccess();
+        getTicketByResolvedTimeSuccess();
     }
 
-    private void setUpPieChartByPriority() {
+    public void toggleServiceBottomSheet() {
+        if (serviceBottomSheet.isShowing()) {
+            serviceBottomSheet.dismiss();
+        } else {
+            serviceBottomSheet.show();
+        }
     }
 
-    private void setUpPieChartBySource() {
+    private void createServiceBottomSheet() {
+        serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_service, null);
+
+        serviceBottomSheet.setContentView(llBottomSheet);
+
+        serviceBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+
+        EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
+        rvServices = llBottomSheet.findViewById(R.id.rv_services);
+
+        searchService.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(serviceBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        serviceBottomSheet.setOnDismissListener(dialog -> searchService.clearFocus());
+
+        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
+        if (CollectionUtils.isEmpty(serviceList)) {
+            presenter.getServices();
+        } else {
+            selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+            if (selectedServiceId == null) {
+                Service firstService = serviceList.get(0);
+                tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext()))
+                        .load(firstService.getServiceIconUrl()).into(ivService);
+                Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+            } else {
+                Service selectedService = AvailableServicesRepo.getInstance()
+                        .getAvailableServiceById(selectedServiceId);
+                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext()))
+                        .load(selectedService.getServiceIconUrl()).into(ivService);
+            }
+            setUpRecyclerView(serviceList);
+        }
+
+
+        searchService.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
-    private void setUpLineChart() {
+    private void setUpRecyclerView(List<Service> serviceList) {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        rvServices.setLayoutManager(mLayoutManager);
+
+        adapter = new SearchServiceAdapter(serviceList, getActivity());
+        rvServices.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(service -> {
+            hideKeyBoard();
+            Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
+            Hawk.put(Constants.SERVICE_CHANGED_DASHBOARD, true);
+            tvToolbarTitle.setText(service.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext()))
+                    .load(service.getServiceIconUrl())
+                    .into(ivService);
+            serviceBottomSheet.dismiss();
+
+            lineChart.setVisibility(View.GONE);
+            pbLineChart.setVisibility(View.VISIBLE);
+            presenter.getTicketByPriority();
+            presenter.getTicketByResolveTime();
+            presenter.getTicketBySource();
+            presenter.getTicketByStatus();
+            presenter.getTicketsByDate();
+        });
+    }
+
+    private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(state);
+        } else {
+            Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @SuppressLint("DefaultLocale")
+    private void setUpPieChartByStatus(TicketStatByStatus ticketStatByStatus) {
+        List<PieEntry> pieEntries = new ArrayList<>();
+
+        float closedTickets = (float) ticketStatByStatus.getClosedTickets();
+        float newTickets = (float) ticketStatByStatus.getNewTickets();
+        float reopenedTickets = (float) ticketStatByStatus.getReOpenedTickets();
+        float resolvedTickets = (float) ticketStatByStatus.getResolvedTickets();
+        float unResolvedTickets = (float) ticketStatByStatus.getUnResolvedTickets();
+
+        pieEntries.add(new PieEntry(closedTickets, String.format("%.0f", closedTickets)));
+
+        pieEntries.add(new PieEntry(newTickets, String.format("%.0f", newTickets)));
+
+        pieEntries.add(new PieEntry(reopenedTickets, String.format("%.0f", reopenedTickets)));
+
+        pieEntries.add(new PieEntry(resolvedTickets, String.format("%.0f", resolvedTickets)));
+
+        pieEntries.add(new PieEntry(unResolvedTickets, String.format("%.0f", unResolvedTickets)));
+
+        if ((closedTickets == 0) && (newTickets == 0) && (reopenedTickets == 0) &&
+                resolvedTickets == 0 && (unResolvedTickets == 0)) {
+            tvPieChartStatusNotAvailable.setVisibility(View.VISIBLE);
+        } else {
+            tvPieChartStatusNotAvailable.setVisibility(View.GONE);
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "By status");
+        pieDataSet.setSliceSpace(1);
+        pieDataSet.setColors(STATUS_COLORS);
+        pieDataSet.setValueLinePart1OffsetPercentage(100f);
+        pieDataSet.setValueLinePart1Length(0.4f);
+        pieDataSet.setValueLinePart2Length(0);
+        pieDataSet.setValueTextColor(getResources().getColor(R.color.black));
+        pieDataSet.setDrawValues(false);
+        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+
+        PieData pieData = new PieData(pieDataSet);
+        pieChartByStatus.setData(pieData);
+        pieChartByStatus.animateY(1000);
+        pieChartByStatus.getDescription().setEnabled(false);
+        pieChartByStatus.setHoleRadius(74);
+        pieChartByStatus.setDrawEntryLabels(true);
+        pieChartByStatus.setEntryLabelTextSize(9);
+        pieChartByStatus.setEntryLabelColor(getResources().getColor(R.color.charcoal_text));
+        pieChartByStatus.getLegend().setEnabled(false);
+        pieChartByStatus.setExtraBottomOffset(8.5f);
+        pieChartByStatus.setExtraLeftOffset(7.5f);
+        pieChartByStatus.setExtraRightOffset(7.5f);
+        pieChartByStatus.setExtraTopOffset(7.5f);
+        pieChartByStatus.invalidate();
+    }
+
+    @SuppressLint("DefaultLocale")
+    private void setUpPieChartByPriority(TicketStatByPriority ticketStatByPriority) {
+        List<PieEntry> pieEntries = new ArrayList<>();
+
+        float highest = (float) ticketStatByPriority.getHighest();
+        float high = (float) ticketStatByPriority.getHigh();
+        float medium = (float) ticketStatByPriority.getMedium();
+        float low = (float) ticketStatByPriority.getLow();
+        float lowest = (float) ticketStatByPriority.getLowest();
+
+        pieEntries.add(new PieEntry(highest, String.format("%.0f", highest)));
+
+        pieEntries.add(new PieEntry(high, String.format("%.0f", high)));
+
+        pieEntries.add(new PieEntry(medium, String.format("%.0f", medium)));
+
+        pieEntries.add(new PieEntry(low, String.format("%.0f", low)));
+
+        pieEntries.add(new PieEntry(lowest, String.format("%.0f", lowest)));
+
+        if ((highest == 0) && (high == 0) && (medium == 0) &&
+                low == 0 && (lowest == 0)) {
+            tvPieChartPriorityNotAvailable.setVisibility(View.VISIBLE);
+        } else {
+            tvPieChartPriorityNotAvailable.setVisibility(View.GONE);
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "By priority");
+        pieDataSet.setSliceSpace(1);
+        pieDataSet.setColors(PRIORITY_COLORS);
+        pieDataSet.setValueLinePart1OffsetPercentage(100f);
+        pieDataSet.setValueLinePart1Length(0.4f);
+        pieDataSet.setValueLinePart2Length(0);
+        pieDataSet.setValueTextColor(getResources().getColor(R.color.black));
+        pieDataSet.setDrawValues(false);
+        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        PieData pieData = new PieData(pieDataSet);
+        pieChartByPriority.setData(pieData);
+        pieChartByPriority.animateY(1000);
+        pieChartByPriority.getDescription().setEnabled(false);
+        pieChartByPriority.setHoleRadius(74);
+        pieChartByPriority.setDrawEntryLabels(true);
+        pieChartByPriority.setEntryLabelTextSize(9);
+        pieChartByPriority.setEntryLabelColor(getResources().getColor(R.color.charcoal_text));
+        pieChartByPriority.getLegend().setEnabled(false);
+        pieChartByPriority.setExtraBottomOffset(8.5f);
+        pieChartByPriority.setExtraLeftOffset(7.5f);
+        pieChartByPriority.setExtraRightOffset(7.5f);
+        pieChartByPriority.setExtraTopOffset(7.5f);
+        pieChartByPriority.invalidate();
+    }
+
+    @SuppressLint("DefaultLocale")
+    private void setUpPieChartBySource(float thirdPartyPercent, float manualPercent,
+                                       float phoneCallPercent, float botPercent) {
+        List<PieEntry> pieEntries = new ArrayList<>();
+
+        pieEntries.add(new PieEntry(thirdPartyPercent, String.format("%.0f",
+                thirdPartyPercent) + "%"));
+
+        pieEntries.add(new PieEntry(manualPercent, String.format("%.0f",
+                manualPercent) + "%"));
+
+        pieEntries.add(new PieEntry(phoneCallPercent, String.format("%.0f",
+                phoneCallPercent) + "%"));
+
+        pieEntries.add(new PieEntry(botPercent, String.format("%.0f", botPercent) + "%"));
+
+        if ((thirdPartyPercent == 0) && (manualPercent == 0) && (phoneCallPercent == 0) &&
+                (botPercent == 0)) {
+            tvPieChartSourceNotAvailable.setVisibility(View.VISIBLE);
+        } else {
+            tvPieChartSourceNotAvailable.setVisibility(View.GONE);
+        }
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "By source");
+        pieDataSet.setSliceSpace(1);
+        pieDataSet.setColors(SOURCE_COLORS);
+        pieDataSet.setValueLinePart1OffsetPercentage(100f);
+        pieDataSet.setValueLinePart1Length(0.4f);
+        pieDataSet.setValueLinePart2Length(0);
+        pieDataSet.setValueTextColor(getResources().getColor(R.color.black));
+        pieDataSet.setDrawValues(false);
+        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        PieData pieData = new PieData(pieDataSet);
+        pieChartBySource.setData(pieData);
+        pieChartBySource.animateY(1000);
+        pieChartBySource.getDescription().setEnabled(false);
+        pieChartBySource.setHoleRadius(74);
+        pieChartBySource.setDrawEntryLabels(true);
+        pieChartBySource.setEntryLabelTextSize(9);
+        pieChartBySource.setEntryLabelColor(getResources().getColor(R.color.charcoal_text));
+        pieChartBySource.getLegend().setEnabled(false);
+        pieChartBySource.setExtraBottomOffset(8.5f);
+        pieChartBySource.setExtraLeftOffset(7.5f);
+        pieChartBySource.setExtraRightOffset(7.5f);
+        pieChartBySource.setExtraTopOffset(7.5f);
+        pieChartBySource.invalidate();
+    }
+
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay()
+                .getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void createFilterBottomSheet() {
+        filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.layout_bottom_sheet_filter_stats, null);
+
+        filterBottomSheet.setContentView(view);
+        btnSearch = view.findViewById(R.id.btn_search);
+        etFromDate = view.findViewById(R.id.et_from_date);
+        etTillDate = view.findViewById(R.id.et_till_date);
+        tvReset = view.findViewById(R.id.tv_reset);
+        spTime = view.findViewById(R.id.sp_time);
+
+        createTimeSpinner();
+
+        DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateFromDate();
+
+            Calendar calendarFromDate = Calendar.getInstance();
+            String[] fromDateSeparated = etFromDate.getText().toString().trim().split("/");
+
+            calendarFromDate.set(Integer.parseInt(fromDateSeparated[0]),
+                    Integer.parseInt(fromDateSeparated[1]) - 1,
+                    Integer.parseInt(fromDateSeparated[2]));
+            calendarFromDate.set(year, month, dayOfMonth, 0, 0, 0);
+            from = calendarFromDate.getTimeInMillis();
+            GlobalUtils.showLog(TAG, "manual from: " + from);
+        };
+
+        DatePickerDialog.OnDateSetListener tillDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateToDate();
+
+            Calendar calendarTillDate = Calendar.getInstance();
+            String[] tillDateSeparated = etTillDate.getText().toString().trim().split("/");
+
+            calendarTillDate.set(Integer.parseInt(tillDateSeparated[0]),
+                    Integer.parseInt(tillDateSeparated[1]) - 1,
+                    Integer.parseInt(tillDateSeparated[2]));
+            calendarTillDate.set(year, month, dayOfMonth, 23, 59, 59);
+            to = calendarTillDate.getTimeInMillis();
+            GlobalUtils.showLog(TAG, "manual to: " + to);
+        };
+
+        etFromDate.setOnClickListener(v -> new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                fromDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+
+        etTillDate.setOnClickListener(v -> new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                tillDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+
+        tvReset.setOnClickListener(v -> {
+            toggleBottomSheet();
+            etFromDate.setText("");
+            etTillDate.setText("");
+            spTime.setSelection(8);
+
+            pbLineChart.setVisibility(View.VISIBLE);
+            lineChart.setVisibility(View.GONE);
+            Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
+            presenter.getTicketByPriority();
+            presenter.getTicketByResolveTime();
+            presenter.getTicketBySource();
+            presenter.getTicketByStatus();
+            presenter.getTicketsByDate();
+            hideKeyBoard();
+
+        });
+
+        btnSearch.setOnClickListener(v -> {
+            String fromDate = etFromDate.getText().toString().trim();
+            String tillDate = etTillDate.getText().toString().trim();
+
+            if (!fromDate.isEmpty() && !tillDate.isEmpty()) {
+
+                GlobalUtils.showLog(TAG, "final from: " + from);
+                GlobalUtils.showLog(TAG, "final to: " + to);
+
+                lineChart.setVisibility(View.GONE);
+                presenter.filterByDate(from, to);
+                presenter.filterByPriority(from, to);
+                presenter.filterByResolvedTime(from, to);
+                presenter.filterBySource(from, to);
+                presenter.filterByStatus(from, to);
+                toggleBottomSheet();
+            } else {
+                Toast.makeText(getContext(), "Please enter dates", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+    }
+
+    private void createTimeSpinner() {
+        String[] arraySpinner = new String[]{"Today", "Yesterday", "This week", "Last week",
+                "This month", "Last month", "This year", "Last year", "Select"};
+
+        final int listSize = arraySpinner.length - 1;
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
+                R.layout.layout_commonly_use, arraySpinner) {
+
+            @Override
+            public int getCount() {
+                return listSize;
+            }
+        };
+
+        spTime.setAdapter(adapter);
+        spTime.setSelection(listSize);
+
+        spTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = arraySpinner[position];
+
+                TextView textView = (TextView) spTime.getSelectedView();
+                textView.setText(selectedItem);
+
+                switch (selectedItem) {
+                    case "Select":
+                        etFromDate.setText("");
+                        etTillDate.setText("");
+                        break;
+
+                    case "Today":
+                        trend = "TODAY";
+                        Hawk.put(Constants.XA_XIS_TYPE, "HOUR");
+                        from = DateUtils.getStartOfDay();
+                        to = DateUtils.getEndOfDay();
+
+                        GlobalUtils.showLog(TAG, "from: " + from);
+                        GlobalUtils.showLog(TAG, "to: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+
+                    case "Yesterday":
+                        trend = "YESTERDAY";
+                        Hawk.put(Constants.XA_XIS_TYPE, "HOUR");
+                        from = DateUtils.getStartOfDayYesterday();
+                        to = DateUtils.getEndOfDayYesterday();
+
+                        GlobalUtils.showLog(TAG, "from1: " + from);
+                        GlobalUtils.showLog(TAG, "to2: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+
+                    case "This week":
+                        trend = "THIS WEEK";
+                        Hawk.put(Constants.XA_XIS_TYPE, "WEEK");
+                        Calendar thisWeek = Calendar.getInstance();
+                        thisWeek.set(Calendar.DAY_OF_WEEK, thisWeek.getFirstDayOfWeek());
+                        from = DateUtils.getStartOfDay(thisWeek);
+                        thisWeek.set(Calendar.DAY_OF_WEEK, 7);
+                        to = DateUtils.getEndOfDay(thisWeek);
+                        GlobalUtils.showLog(TAG, "weekFrom: " + from);
+                        GlobalUtils.showLog(TAG, "weekTo: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+
+                    case "Last week":
+                        trend = "LAST WEEK";
+                        Hawk.put(Constants.XA_XIS_TYPE, "WEEK");
+                        Calendar lastWeek = Calendar.getInstance();
+                        lastWeek.set(Calendar.DAY_OF_WEEK, lastWeek.getFirstDayOfWeek());
+                        lastWeek.add(Calendar.WEEK_OF_YEAR, -1);
+                        from = DateUtils.getStartOfDay(lastWeek);
+                        lastWeek.set(Calendar.DAY_OF_WEEK, 7);
+                        to = DateUtils.getEndOfDay(lastWeek);
+                        GlobalUtils.showLog(TAG, "weekFrom1: " + from);
+                        GlobalUtils.showLog(TAG, "weekTo1: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+
+                    case "This month":
+                        trend = "THIS MONTH";
+                        Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
+                        Calendar thisMonth = Calendar.getInstance();
+                        thisMonth.set(Calendar.DAY_OF_MONTH, 1);
+                        from = DateUtils.getStartOfDay(thisMonth);
+                        thisMonth.set(Calendar.DAY_OF_MONTH, thisMonth.getActualMaximum(Calendar.DAY_OF_MONTH));
+                        to = DateUtils.getEndOfDay(thisMonth);
+                        GlobalUtils.showLog(TAG, "monthFrom: " + from);
+                        GlobalUtils.showLog(TAG, "monthTo: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+
+                    case "Last month":
+                        trend = "LAST MONTH";
+                        Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
+                        Calendar lastMonth = Calendar.getInstance();
+                        lastMonth.set(Calendar.DAY_OF_MONTH, 1);
+                        lastMonth.add(Calendar.MONTH, -1);
+                        from = DateUtils.getStartOfDay(lastMonth);
+                        lastMonth.set(Calendar.DAY_OF_MONTH, lastMonth.getActualMaximum(Calendar.DAY_OF_MONTH));
+                        to = DateUtils.getEndOfDay(lastMonth);
+                        GlobalUtils.showLog(TAG, "monthFrom: " + from);
+                        GlobalUtils.showLog(TAG, "monthTo: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+
+                    case "This year":
+                        trend = "THIS YEAR";
+                        Hawk.put(Constants.XA_XIS_TYPE, "YEAR");
+                        Calendar thisYear = Calendar.getInstance();
+                        thisYear.set(Calendar.DAY_OF_YEAR, 1);
+                        from = DateUtils.getStartOfDay(thisYear);
+                        thisYear.set(Calendar.DAY_OF_YEAR, thisYear.getActualMaximum(Calendar.DAY_OF_YEAR));
+                        to = DateUtils.getEndOfDay(thisYear);
+                        GlobalUtils.showLog(TAG, "yearFrom: " + from);
+                        GlobalUtils.showLog(TAG, "yearTo: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+
+
+                    case "Last year":
+                        trend = "LAST YEAR";
+                        Hawk.put(Constants.XA_XIS_TYPE, "YEAR");
+                        Calendar lastYear = Calendar.getInstance();
+                        lastYear.set(Calendar.DAY_OF_YEAR, 1);
+                        lastYear.add(Calendar.YEAR, -1);
+                        from = DateUtils.getStartOfDay(lastYear);
+                        lastYear.set(Calendar.DAY_OF_YEAR, lastYear.getActualMaximum(Calendar.DAY_OF_YEAR));
+                        to = DateUtils.getEndOfDay(lastYear);
+                        GlobalUtils.showLog(TAG, "yearFrom1: " + from);
+                        GlobalUtils.showLog(TAG, "yearTo1: " + to);
+                        etFromDate.setText(GlobalUtils.getDateTimeline(from));
+                        etTillDate.setText(GlobalUtils.getDateTimeline(to));
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void updateFromDate() {
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etFromDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateToDate() {
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etTillDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void setUpLineChart(RealmList<TicketStatByStatus> ticketStatByStatusList,
+                                String xAXisType) {
         lineChart.setTouchEnabled(true);
         lineChart.setPinchZoom(true);
 
-        ArrayList<Entry> values = new ArrayList<>();
-        values.add(new Entry(1, 50));
-        values.add(new Entry(2, 60));
-        values.add(new Entry(3, 30));
-        values.add(new Entry(5, 80));
-        values.add(new Entry(6, 10));
+        ArrayList<String> dayInMonth = new ArrayList<>();
+        ArrayList<Entry> newTickets = new ArrayList<>();
+        ArrayList<Entry> resolvedTickets = new ArrayList<>();
+        ArrayList<Entry> closedTickets = new ArrayList<>();
 
-        LineDataSet set1;
-        if (lineChart.getData() != null &&
-                lineChart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet) lineChart.getData().getDataSetByIndex(0);
-            set1.setValues(values);
-            lineChart.getData().notifyDataChanged();
-            lineChart.notifyDataSetChanged();
-        } else {
-            set1 = new LineDataSet(values, "Sample Data");
-            set1.setDrawIcons(false);
-            set1.enableDashedLine(10f, 5f, 0f);
-            set1.enableDashedHighlightLine(10f, 5f, 0f);
-            set1.setColor(Color.DKGRAY);
-            set1.setCircleColor(Color.DKGRAY);
-            set1.setLineWidth(1f);
-            set1.setCircleRadius(3f);
-            set1.setDrawCircleHole(false);
-            set1.setValueTextSize(9f);
-            set1.setDrawFilled(true);
-            set1.setFormLineWidth(1f);
-            set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
-            set1.setFormSize(15.f);
-      /*      if (Utils.getSDKInt() >= 18) {
-                Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.circle_green);
-                set1.setFillDrawable(drawable);
-            } else {
-                set1.setFillColor(Color.DKGRAY);
+        for (int i = 0; i < ticketStatByStatusList.size(); i++) {
+            //inflating data in y-axis
+            TicketStatByStatus ticketStatByStatus = ticketStatByStatusList.get(i);
+            if (ticketStatByStatus != null) {
+                int closedTicket = ticketStatByStatus.getClosedTickets();
+                int resolvedTicket = ticketStatByStatus.getResolvedTickets();
+                int newTicket = ticketStatByStatus.getNewTickets();
+
+                if (newTicket != 0)
+                    newTickets.add(new Entry(i, newTicket));
+
+                if (resolvedTicket != 0)
+                    resolvedTickets.add(new Entry(i, resolvedTicket));
+
+                if (closedTicket != 0)
+                    closedTickets.add(new Entry(i, closedTicket));
+
+
+
+         /*   //inflate xAxis data
+            if (formatXAxis) {
+                long initialTimeStamp = ticketStatByStatusList.get(i).getTimestamp();
+                String initialDate = getDateFromTimeStamp(initialTimeStamp);
+                dayInMonth.add(initialDate);
+
+                // (step 3 in loop)
+                long timestamp = ticketStatByStatusList.get(i + 3).getTimestamp();
+                String date = getDateFromTimeStamp(timestamp);
+                dayInMonth.add(date);
             }*/
-            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-            dataSets.add(set1);
-            LineData data = new LineData(dataSets);
-            lineChart.setData(data);
+
+                long timeStamp = ticketStatByStatus.getTimestamp();
+                String date = getDateFromTimeStamp(timeStamp);
+                dayInMonth.add(date);
+
+            }
+
         }
+
+        if ((closedTickets.isEmpty()) && (resolvedTickets.isEmpty()) && (newTickets.isEmpty())) {
+            tvLineChartNotAvailable.setVisibility(View.VISIBLE);
+        } else {
+            tvLineChartNotAvailable.setVisibility(View.GONE);
+        }
+
+        ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+
+        LineDataSet newTicketDataSet = new LineDataSet(newTickets, "New Tickets");
+        newTicketDataSet.setDrawCircles(false);
+        newTicketDataSet.enableDashedLine(10f, 5f, 0f);
+        newTicketDataSet.setDrawValues(false);
+        newTicketDataSet.setColor(getResources().getColor(R.color.ticket_created_text));
+
+        LineDataSet resolvedTicketDataSet = new LineDataSet(resolvedTickets, "Resolved Tickets");
+        resolvedTicketDataSet.setDrawCircles(false);
+        resolvedTicketDataSet.setDrawValues(false);
+        resolvedTicketDataSet.enableDashedLine(10f, 5f, 0f);
+        resolvedTicketDataSet.setColor(getResources().getColor(R.color.ticket_resolved_text));
+
+        LineDataSet closedTicketDataSet = new LineDataSet(closedTickets, "Closed Tickets");
+        closedTicketDataSet.setDrawCircles(false);
+        closedTicketDataSet.setDrawValues(false);
+        closedTicketDataSet.enableDashedLine(10f, 5f, 0f);
+        closedTicketDataSet.setColor(getResources().getColor(R.color.ticket_closed_text));
+
+        lineDataSets.add(newTicketDataSet);
+        lineDataSets.add(resolvedTicketDataSet);
+        lineDataSets.add(closedTicketDataSet);
+
+/*        lineChart.getAxisLeft().setAxisMinimum(0f);
+        lineChart.getAxisRight().setAxisMinimum(0f);*/
+
+        switch (xAXisType) {
+            case "HOUR":
+                lineChart.getXAxis().setLabelCount(2);
+                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_HOURS));
+                break;
+
+            case "WEEK":
+                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_WEEK));
+                lineChart.getXAxis().setLabelCount(5);
+                break;
+
+            case "MONTH":
+                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(dayInMonth));
+                lineChart.getXAxis().setLabelCount(10);
+                break;
+
+            case "YEAR":
+                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_YEAR));
+                lineChart.getXAxis().setLabelCount(40);
+                break;
+
+        }
+
+        lineChart.setOnDrawListener(new OnDrawListener() {
+            @Override
+            public void onEntryAdded(Entry entry) {
+
+            }
+
+            @Override
+            public void onEntryMoved(Entry entry) {
+
+            }
+
+            @Override
+            public void onDrawFinished(DataSet<?> dataSet) {
+                pbLineChart.setVisibility(View.GONE);
+                lineChart.setVisibility(View.VISIBLE);
+            }
+        });
+
+        lineChart.setData(new LineData(lineDataSets));
+//        lineChart.setVisibleXRangeMaximum(65f);
+        lineChart.animateXY(500, 500);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.getDescription().setEnabled(false);
+        lineChart.getAxisRight().setEnabled(false);
+        lineChart.getXAxis().setTextSize(9);
+        lineChart.getAxis(YAxis.AxisDependency.LEFT).setTextSize(9);
+        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChart.invalidate();
+
+        lineChart.setVisibility(View.VISIBLE);
+        pbLineChart.setVisibility(View.GONE);
+    }
+
+    private String getDateFromTimeStamp(long initialTimeStamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(initialTimeStamp);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        String monthInWords = GlobalUtils.getMonth(month);
+        if (!monthInWords.isEmpty()) {
+            return day + monthInWords;
+        }
+
+        return "";
     }
 
     @Override
@@ -122,7 +966,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void showProgressBar(String message) {
-//        progress.setVisibility(View.VISIBLE);
+        pbLineChart.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -132,13 +976,296 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void hideProgressBar() {
-//        progress.setVisibility(View.GONE);
+        pbLineChart.setVisibility(View.GONE);
     }
 
     @Override
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity()).getWindow()
                 .getDecorView().getRootView(), message);
+    }
+
+    @Override
+    public void getServicesSuccess() {
+        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
+        Service firstService = serviceList.get(0);
+        Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        GlobalUtils.showLog(TAG, "first service id saved");
+
+        tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+        setUpRecyclerView(serviceList);
+
+        presenter.getTicketByPriority();
+        presenter.getTicketByResolveTime();
+        presenter.getTicketBySource();
+        presenter.getTicketByStatus();
+        presenter.getTicketsByDate();
+    }
+
+    public void toggleBottomSheet() {
+        if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();
+        else {
+            filterBottomSheet.show();
+        }
+    }
+
+    private void hideKeyBoard() {
+        final InputMethodManager imm = (InputMethodManager)
+                Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+    }
+
+    @Override
+    public void getServicesFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void getTicketByDateSuccess() {
+        setTrendText();
+        Hawk.put(Constants.REFETCH_TICKET_STAT, false);
+        tvLineChartNotAvailable.setVisibility(View.GONE);
+        TicketStatByDate ticketStatByDate = TicketStatRepo.getInstance().getTicketStatByDate();
+        GlobalUtils.showLog(TAG, "list count: " + ticketStatByDate.getTicketStatByStatusRealmList().size());
+        String xAXisType = Hawk.get(Constants.XA_XIS_TYPE, "MONTH");
+        if (!CollectionUtils.isEmpty(ticketStatByDate.getTicketStatByStatusRealmList()))
+            setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAXisType);
+        else tvLineChartNotAvailable.setVisibility(View.VISIBLE);
+    }
+
+    private void setTrendText() {
+        StringBuilder trendTextBuilder = new StringBuilder("of ");
+        trendTextBuilder.append(trend.toLowerCase());
+        tvTrendSelection.setText(trendTextBuilder);
+    }
+
+    @Override
+    public void getTicketByDateFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void getTicketByStatusSuccess() {
+        tvPieChartStatusNotAvailable.setVisibility(View.GONE);
+        TicketStatByStatus ticketStatByStatus = TicketStatRepo.getInstance().getTicketStatByStatus();
+        tvNewTickets.setText(String.valueOf(ticketStatByStatus.getNewTickets()));
+        tvResolvedTickets.setText(String.valueOf(ticketStatByStatus.getResolvedTickets()));
+        tvUnresolvedTickets.setText(String.valueOf(ticketStatByStatus.getUnResolvedTickets()));
+        tvClosedTickets.setText(String.valueOf(ticketStatByStatus.getClosedTickets()));
+        tvReopenedTickets.setText(String.valueOf(ticketStatByStatus.getReOpenedTickets()));
+        tvTotalTickets.setText(String.valueOf(ticketStatByStatus.getTotalTickets()));
+
+        tvStartedValue.setText(String.valueOf(ticketStatByStatus.getUnResolvedTickets()));
+        tvTodoValue.setText(String.valueOf(ticketStatByStatus.getNewTickets()));
+        tvResolvedValue.setText(String.valueOf(ticketStatByStatus.getResolvedTickets()));
+        tvReopenValue.setText(String.valueOf(ticketStatByStatus.getReOpenedTickets()));
+        tvClosedValue.setText(String.valueOf(ticketStatByStatus.getClosedTickets()));
+        setUpPieChartByStatus(ticketStatByStatus);
+    }
+
+    @Override
+    public void getTicketByStatusFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void getTicketByPrioritySuccess() {
+        TicketStatByPriority ticketStatByPriority = TicketStatRepo.getInstance().getTicketStatByPriority();
+        tvHighestValue.setText(String.valueOf(ticketStatByPriority.getHighest()));
+        tvHighValue.setText(String.valueOf(ticketStatByPriority.getHigh()));
+        tvMediumValue.setText(String.valueOf(ticketStatByPriority.getMedium()));
+        tvLowValue.setText(String.valueOf(ticketStatByPriority.getLow()));
+        tvLowestValue.setText(String.valueOf(ticketStatByPriority.getLowest()));
+
+        setUpPieChartByPriority(ticketStatByPriority);
+    }
+
+    @Override
+    public void getTicketByPriorityFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void getTicketBySourceSuccess() {
+        TicketStatBySource ticketStatBySource = TicketStatRepo.getInstance().getTicketStatBySource();
+        float thirdParty = (float) ticketStatBySource.getThirdParty();
+        float manual = (float) ticketStatBySource.getManual();
+        float phoneCall = (float) ticketStatBySource.getPhoneCall();
+        float bot = (float) ticketStatBySource.getBot();
+
+        float total = thirdParty + manual + phoneCall + bot;
+        float thirdPartyPercent = thirdParty / total * 100;
+        float manualPercent = manual / total * 100;
+        float phoneCallPercent = phoneCall / total * 100;
+        float botPercent = bot / total * 100;
+
+        tvThirdPartyValue.setText(Math.round(thirdPartyPercent) + "%");
+        tvManualValue.setText(Math.round(manualPercent) + "%");
+        tvPhoneCallValue.setText(Math.round(phoneCallPercent) + "%");
+        tvBotValue.setText(Math.round(botPercent) + "%");
+
+        setUpPieChartBySource(thirdPartyPercent, manualPercent, phoneCallPercent, botPercent);
+    }
+
+    @Override
+    public void getTicketBySourceFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void getTicketByResolvedTimeSuccess() {
+        TicketStatByResolvedTime ticketStatResolveTime = TicketStatRepo.getInstance()
+                .getTicketStatByResolvedTime();
+        if (ticketStatResolveTime.getMax() != 0)
+            tvMax.setText(DateUtils.getElapsedTime(ticketStatResolveTime.getMax()));
+        else
+            tvMax.setText("N/A");
+        if (ticketStatResolveTime.getAvg() != 0)
+            tvAverage.setText(DateUtils.getElapsedTime(ticketStatResolveTime.getAvg()));
+        else
+            tvAverage.setText("N/A");
+        if (ticketStatResolveTime.getMin() != 0)
+            tvMin.setText(DateUtils.getElapsedTime
+                    (ticketStatResolveTime.getMin()));
+        else
+            tvMin.setText("N/A");
+    }
+
+    @Override
+    public void getTicketByResolvedTimeFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onFilterByDateFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onFilterByStatusFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onFilterByPriorityFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onFilterBySourceFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onFilterByResolvedTimeFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    /*    boolean reFetchData = Hawk.get(Constants.REFETCH_TICKET_STAT, false);
+        if (reFetchData) {
+            presenter.getTicketByPriority();
+            presenter.getTicketByResolveTime();
+            presenter.getTicketBySource();
+            presenter.getTicketByStatus();
+            presenter.getTicketsByDate();
+        }
+        */
+
     }
 
 }

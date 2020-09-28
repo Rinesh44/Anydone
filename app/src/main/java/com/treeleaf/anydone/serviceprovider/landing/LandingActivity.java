@@ -33,7 +33,7 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         openFragment(DashboardFragment.newInstance("", ""));
-        bottomNavigationView.getMenu().getItem(2).setChecked(true);
+        bottomNavigationView.getMenu().getItem(0).setChecked(true);
     }
 
     public void openFragment(Fragment fragment) {
@@ -99,10 +99,11 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
 //                setActionTitle(ACCOUNT);
                 openFragment(AccountFragment.newInstance("", ""));
                 return true;
-            case R.id.navigation_service_requests:
+
+       /*     case R.id.navigation_service_requests:
 //                setActionTitle(SERVICE_REQUESTS);
                 openFragment(ServiceRequestFragment.newInstance("", ""));
-                return true;
+                return true;*/
         }
         return false;
     }
