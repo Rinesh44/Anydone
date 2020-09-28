@@ -451,10 +451,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustPixelResolutions(captureDrawParam.getXCoordinate(),
-                    captureDrawParam.getYCoordinate(), accountId)[0],
-                    adjustPixelResolutions(captureDrawParam.getXCoordinate(),
-                            captureDrawParam.getYCoordinate(), accountId)[1], accountId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(), accountId),
+                    adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId);
             drawPadEventListener.onDrawTouchDown(accountId);
         }
     }
@@ -462,10 +460,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustPixelResolutions(captureDrawParam.getXCoordinate(),
-                    captureDrawParam.getYCoordinate(), accountId)[0],
-                    adjustPixelResolutions(captureDrawParam.getXCoordinate(),
-                            captureDrawParam.getYCoordinate(), accountId)[1], accountId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
+                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId);
             drawPadEventListener.onDrawTouchMove(accountId);
         }
     }
@@ -483,8 +479,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextField(adjustPixelResolutions(x, y, accountId)[0],
-                            adjustPixelResolutions(x, y, accountId)[1], editTextFieldId, accountId);
+                    drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
+                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId);
                 }
             }
         });
@@ -610,14 +606,24 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
     }
 
-    private float[] adjustPixelResolutions(float remoteX, float remoteY, String accountId) {
-        float adjustedWidth = VideoCallUtil.adjustPixelResolutionInLocalDevice(localDeviceWidth, localDeviceHeight,
-                remoteDeviceResolutions.get(accountId)[0], remoteDeviceResolutions.get(accountId)[1],
-                remoteX, remoteY)[0] + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
-        float adjustedHeight = VideoCallUtil.adjustPixelResolutionInLocalDevice(localDeviceWidth, localDeviceHeight,
-                remoteDeviceResolutions.get(accountId)[0], remoteDeviceResolutions.get(accountId)[1],
-                remoteX, remoteY)[1] + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
-        return new float[]{adjustedWidth, adjustedHeight};
+    private float adjustXPixelResolutions(float remoteX, String accountId) {
+        if (remoteDeviceResolutions.get(accountId) == null) {
+            return remoteX;
+        }
+        float adjustedWidth = VideoCallUtil.adjustXPixelResolutionInLocalDevice(localDeviceWidth,
+                remoteDeviceResolutions.get(accountId)[0],
+                remoteX) + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
+        return adjustedWidth;
+    }
+
+    private float adjustYPixelResolutions(float remoteY, String accountId) {
+        if (remoteDeviceResolutions.get(accountId) == null) {
+            return remoteY;
+        }
+        float adjustedHeight = VideoCallUtil.adjustYPixelResolutionInLocalDevice(localDeviceHeight,
+                remoteDeviceResolutions.get(accountId)[1],
+                remoteY) + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
+        return adjustedHeight;
     }
 
     public void onMqttConnectionStatusChange(String connection) {
