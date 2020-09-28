@@ -55,11 +55,13 @@ import com.treeleaf.anydone.serviceprovider.adapters.MessageAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -270,6 +272,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.btn_start_task)
     void startTask() {
+        GlobalUtils.showLog(TAG, "start task ticket id: " + ticketId);
         presenter.startTask(ticketId);
     }
 
@@ -542,7 +545,17 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             llSearchContainer.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.GONE);
         }
+
+
+        //enable chat if ticket is created by user
+        Account userAccount = AccountRepo.getInstance().getAccount();
+        if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById()) &&
+                tickets.getTicketStatus().equalsIgnoreCase(
+                        TicketProto.TicketState.TICKET_STARTED.name())) {
+            llSearchContainer.setVisibility(View.VISIBLE);
+        }
     }
+
 
     private void setInitialTicketDetail(Tickets tickets) {
         Conversation conversation = new Conversation();

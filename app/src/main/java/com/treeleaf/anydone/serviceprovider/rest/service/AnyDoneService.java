@@ -366,6 +366,7 @@ public interface AnyDoneService {
     Observable<UserRpcProto.UserBaseResponse> findConsumers(@Header(AUTHORIZATION)
                                                                     String token);
 
+
     @GET("ticket/{ticketId}/timeline")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(@Header(AUTHORIZATION)
                                                                                    String token,
@@ -391,7 +392,7 @@ public interface AnyDoneService {
                                                                                   long ticketId,
                                                                           @Body TicketProto.Ticket employeeUnAssigned);
 
-    @GET("/service/available/self")
+    @GET("/service/enabled")
     Observable<ServiceRpcProto.ServiceBaseResponse> getServices(@Header(AUTHORIZATION) String token);
 
 

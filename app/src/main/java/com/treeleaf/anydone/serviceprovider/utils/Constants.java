@@ -64,5 +64,6 @@ Constants {
     public static final String TICKET_STAT_RESOLVED_TIME = "TICKET_STAT_RESOLVED_TIME";
     public static final String REFETCH_TICKET_STAT = "REFETCH_TICKET_STAT";
     public static final String XA_XIS_TYPE = "X_AXIS_TYPE";
+    public static final String TICKET_ASSIGNED = "TICKET_ASSIGNED";
 
 }

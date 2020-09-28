@@ -38,11 +38,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -50,7 +52,9 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceOrderEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
@@ -223,7 +227,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
             presenter.getCustomerDetails(ticketId);
             presenter.getAssignedEmployees(ticketId);
-            presenter.getTicketTimeline(ticketId);
+//            presenter.getTicketTimeline(ticketId);
             presenter.getEmployees();
             setTicketDetails();
 
@@ -497,6 +501,31 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED)) {
             hideActions();
+        }
+
+        Account userAccount = AccountRepo.getInstance().getAccount();
+        handleAssignedCase(tickets, userAccount);
+        handleSubscriberCase(tickets, userAccount);
+    }
+
+    private void handleSubscriberCase(Tickets tickets, Account userAccount) {
+        if (!tickets.getCreatedById().equalsIgnoreCase(userAccount.getAccountId()) &&
+                !tickets.getAssignedEmployee().getAccountId().equalsIgnoreCase
+                        (userAccount.getAccountId())) {
+            rlBotReplyHolder.setVisibility(View.GONE);
+            rlBotReplyHolder.setVisibility(View.GONE);
+            tvContributor.setVisibility(View.GONE);
+            ivAssignEmployee.setVisibility(View.GONE);
+        }
+    }
+
+    private void handleAssignedCase(Tickets tickets, Account userAccount) {
+        if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_STARTED.name())) {
+
+            if (userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())) {
+                rlSelectedStatus.setVisibility(View.VISIBLE);
+                addScrollviewMargin();
+            }
         }
     }
 
@@ -1209,6 +1238,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     @Override
     public void onContributorUnAssignSuccess(String empId) {
         setContributors();
+        Hawk.put(Constants.TICKET_ASSIGNED, true);
     }
 
     @Override

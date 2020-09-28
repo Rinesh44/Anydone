@@ -136,9 +136,9 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
                                 }
 
                                 if (!CollectionUtils.isEmpty(
-                                        getServicesBaseResponse.getAvailableServicesList())) {
+                                        getServicesBaseResponse.getServicesList())) {
                                     saveAvailableServices(getServicesBaseResponse.
-                                            getAvailableServicesList());
+                                            getServicesList());
                                 } else {
                                     getView().getServiceFail("Services Not found");
                                 }
@@ -158,7 +158,7 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
         );
     }
 
-    private void saveAvailableServices(List<ServiceProto.AvailableService> availableServicesList) {
+    private void saveAvailableServices(List<ServiceProto.Service> availableServicesList) {
         AvailableServicesRepo.getInstance().saveAvailableServices(availableServicesList,
                 new Repo.Callback() {
                     @Override

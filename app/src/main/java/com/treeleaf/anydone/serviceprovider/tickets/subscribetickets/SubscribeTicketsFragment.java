@@ -89,6 +89,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         if (CollectionUtils.isEmpty(subscribedTickets)) {
             GlobalUtils.showLog(TAG, "subscribe tickets empty");
             ivDataNotFound.setVisibility(View.GONE);
+            rvSubscribeTickets.setVisibility(View.VISIBLE);
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(subscribedTickets);
@@ -262,6 +263,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     @Override
     public void getSubscribedTicketsFail(String msg) {
         ivDataNotFound.setVisibility(View.VISIBLE);
+        rvSubscribeTickets.setVisibility(View.GONE);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
@@ -285,8 +287,12 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             GlobalUtils.showLog(TAG, "on resume fetch");
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
-            subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
-            setUpRecyclerView(subscribedTickets);
+            boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
+            if (ticketAssigned) {
+                subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
+                setUpRecyclerView(subscribedTickets);
+                Hawk.put(Constants.TICKET_ASSIGNED, false);
+            }
         }
     }
 

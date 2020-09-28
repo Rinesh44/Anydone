@@ -22,6 +22,7 @@ public class Tickets extends RealmObject {
     String ticketStatus;
     String createdByName;
     String createdByPic;
+    String createdById;
     Employee assignedEmployee;
     int priority;
 
@@ -174,5 +175,13 @@ public class Tickets extends RealmObject {
 
     public void setContributorList(RealmList<Employee> contributorList) {
         this.contributorList = contributorList;
+    }
+
+    public String getCreatedById() {
+        return createdById;
+    }
+
+    public void setCreatedById(String createdById) {
+        this.createdById = createdById;
     }
 }

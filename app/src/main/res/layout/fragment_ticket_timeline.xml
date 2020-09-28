@@ -457,8 +457,8 @@
                         <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:scrollbars="none"
-                            android:fillViewport="true">
+                            android:fillViewport="true"
+                            android:scrollbars="none">
 
                             <LinearLayout
                                 android:id="@+id/ll_tags"
@@ -664,8 +664,10 @@
                                 android:id="@+id/ll_contributor_list"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/dimen_10x2"
                                 android:layout_marginEnd="@dimen/dimen_10x1"
+                                android:gravity="center_vertical"
                                 android:orientation="vertical" />
 
                         </net.cachapa.expandablelayout.ExpandableLayout>
