@@ -33,10 +33,13 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
+
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.CLOSED_RESOLVED;
 
 public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView {
@@ -63,7 +66,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private RelativeLayout rlSms;
     private RelativeLayout rlEmail;
     private RelativeLayout rlOther;
-
+    private String ticketType;
 
     String shareLink = "";
     private long ticketId;
@@ -83,6 +86,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
+        ticketType = i.getStringExtra("selected_ticket_type");
         ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
         String serviceName = i.getStringExtra("selected_ticket_name");
@@ -181,6 +185,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ticket_details, menu);
+        if (ticketType.equals(CLOSED_RESOLVED)) {
+            MenuItem item = menu.findItem(R.id.action_video_call);
+            item.setVisible(false);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 

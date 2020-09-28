@@ -22,6 +22,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
@@ -111,10 +112,27 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
+
+                StringBuilder builder = new StringBuilder();
+                String assignedEmployeeName = ticket.getAssignedEmployee().getName();
+                if (assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
+                    builder.append(assignedEmployeeName);
+                    builder.append(", ");
+                }
+
+                for (Employee employee : ticket.getContributorList()) {
+                    builder.append(employee.getName());
+                    builder.append(", ");
+                }
+                String assignedEmployeeList = builder.toString().trim();
+                String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
+
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
                 i.putExtra("ticket_desc", ticket.getTitle());
                 i.putExtra("selected_ticket_type", Constants.SUBSCRIBED);
+                i.putExtra("selected_ticket_name", callees);
+                i.putExtra("selected_ticket_icon_uri", ticket.getServiceProvider().getProfilePic());
                 startActivity(i);
             });
 
