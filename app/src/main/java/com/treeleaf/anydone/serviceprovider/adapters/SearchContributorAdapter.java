@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
@@ -135,14 +136,17 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
 
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
+                    GlobalUtils.showLog(TAG, "click listened");
                     if (cbCheck.isChecked()) {
+                        GlobalUtils.showLog(TAG, "check listened");
                         listener.onItemAdd(contributorsFiltered.get(position).getEmployeeId());
                     } else {
+                        GlobalUtils.showLog(TAG, "uncheck listened");
                         listener.onItemRemove(contributorsFiltered.get(position).getEmployeeId());
                     }
                 }
-
             });
+
         }
     }
 

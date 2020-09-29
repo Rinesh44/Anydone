@@ -374,7 +374,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         btnCreateTicket.setOnClickListener(v -> {
             GlobalUtils.showLog(TAG, "emp id checK: " + selectedEmployeeId);
-            GlobalUtils.showLog(TAG, "customer id checK: " + selectedCustomer.getCustomerId());
+
             if (selectedCustomer != null) {
                 presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
                         selectedCustomer.getCustomerId(), UiUtils.getString(etEmail),

@@ -22,5 +22,8 @@
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
         android:layout_marginEnd="@dimen/dimen_10x1"
+        android:clickable="false"
+        android:descendantFocusability="afterDescendants"
+        android:focusable="false"
         android:gravity="center" />
 </RelativeLayout>

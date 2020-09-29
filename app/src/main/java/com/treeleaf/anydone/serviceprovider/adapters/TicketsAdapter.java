@@ -123,7 +123,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     @Override
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
-        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
         Tickets tickets = ticketsList.get(position);
         if (holder.swipeRevealLayout != null) {
             viewBinderHelper.bind(holder.swipeRevealLayout,
