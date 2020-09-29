@@ -40,6 +40,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnDrawListener;
 import com.google.android.gms.common.util.CollectionUtils;
@@ -60,6 +61,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketStatRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.CustomValueFormatter;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -417,9 +419,9 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         PieData pieData = new PieData(pieDataSet);
         pieChartByStatus.setData(pieData);
         pieChartByStatus.animateY(1000);
+        pieChartByStatus.setDrawEntryLabels(true);
         pieChartByStatus.getDescription().setEnabled(false);
         pieChartByStatus.setHoleRadius(74);
-        pieChartByStatus.setDrawEntryLabels(true);
         pieChartByStatus.setEntryLabelTextSize(9);
         pieChartByStatus.setEntryLabelColor(getResources().getColor(R.color.charcoal_text));
         pieChartByStatus.getLegend().setEnabled(false);
@@ -427,7 +429,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         pieChartByStatus.setExtraLeftOffset(7.5f);
         pieChartByStatus.setExtraRightOffset(7.5f);
         pieChartByStatus.setExtraTopOffset(7.5f);
-        pieChartByStatus.invalidate();
+//        pieChartByStatus.invalidate();
     }
 
     @SuppressLint("DefaultLocale")
@@ -891,7 +893,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
             case "WEEK":
                 lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_WEEK));
-                lineChart.getXAxis().setLabelCount(5);
+                lineChart.getXAxis().setLabelCount(2);
                 break;
 
             case "MONTH":
@@ -901,7 +903,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
             case "YEAR":
                 lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_YEAR));
-                lineChart.getXAxis().setLabelCount(40);
+                lineChart.getXAxis().setLabelCount(3);
                 break;
 
         }
@@ -930,8 +932,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         lineChart.getLegend().setEnabled(false);
         lineChart.getDescription().setEnabled(false);
         lineChart.getAxisRight().setEnabled(false);
-        lineChart.getXAxis().setTextSize(9);
-        lineChart.getAxis(YAxis.AxisDependency.LEFT).setTextSize(9);
+        lineChart.getXAxis().setTextSize(8);
+        lineChart.getAxis(YAxis.AxisDependency.LEFT).setTextSize(8);
         lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         lineChart.invalidate();
 

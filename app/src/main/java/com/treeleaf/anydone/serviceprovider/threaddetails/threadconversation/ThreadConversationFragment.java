@@ -290,6 +290,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         Intent i = new Intent(getActivity(), AddTicketActivity.class);
         i.putExtra("summary_text", longClickedMessage.getMessage());
         i.putExtra("customer_name", thread.getCustomerName());
+        i.putExtra("customer_pic", thread.getCustomerImageUrl());
         if (thread.getAssignedEmployee() != null)
             i.putExtra("employee_id", thread.getAssignedEmployee().getEmployeeId());
         i.putExtra("team", thread.getDefaultLabelId());

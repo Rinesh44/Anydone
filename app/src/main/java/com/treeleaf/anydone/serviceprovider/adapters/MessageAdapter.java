@@ -1128,7 +1128,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             textHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                if (listener != null && position != RecyclerView.NO_POSITION) {
+                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                        .getSenderId());
+                if (listener != null && position != RecyclerView.NO_POSITION
+                        && !conversationList.get(position).getSenderId().isEmpty()) {
                     listener.onItemLongClick(conversationList.get(position));
                 }
                 return true;

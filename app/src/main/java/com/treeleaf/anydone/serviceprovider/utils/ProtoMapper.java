@@ -287,8 +287,7 @@ public final class ProtoMapper {
         ticketStatByStatus.setNewTickets(ticketStatByStatusPb.getNewTickets());
         ticketStatByStatus.setTotalTickets(ticketStatByStatusPb.getTotalTickets());
         ticketStatByStatus.setReOpenedTickets(ticketStatByStatusPb.getReopenedTickets());
-        ticketStatByStatus.setTimestamp(DateUtils.getDateLocal
-                (ticketStatByStatusPb.getTimestamp()).getTime());
+        ticketStatByStatus.setTimestamp(ticketStatByStatusPb.getTimestamp());
         return ticketStatByStatus;
     }
 

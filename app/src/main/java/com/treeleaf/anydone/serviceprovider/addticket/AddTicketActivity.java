@@ -373,6 +373,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
 
         btnCreateTicket.setOnClickListener(v -> {
+            GlobalUtils.showLog(TAG, "emp id checK: " + selectedEmployeeId);
+            GlobalUtils.showLog(TAG, "customer id checK: " + selectedCustomer.getCustomerId());
             if (selectedCustomer != null) {
                 presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
                         selectedCustomer.getCustomerId(), UiUtils.getString(etEmail),
@@ -606,21 +608,42 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private void setDataFromThread(Intent i) {
         String summaryText = i.getStringExtra("summary_text");
         String customerName = i.getStringExtra("customer_name");
+        String customerPic = i.getStringExtra("customer_pic");
         String employeeId = i.getStringExtra("employee_id");
         String teamId = i.getStringExtra("team");
 
+        GlobalUtils.showLog(TAG, "customer Name:" + customerName);
+
         etSummary.setText(summaryText);
+//        selectedCustomer = CustomerRepo.getInstance().getCustomerById(customerId);
+//        etCustomerName.setText(selectedCustomer.getFullName());
+//        showCustomerWithImage();
+//        setEmailAndPhoneIfAvailable();
+
         etCustomerName.setText(customerName);
-        setEmailAndPhoneIfAvailable();
+
+        if (customerPic != null && !customerPic.isEmpty()) {
+            etCustomerName.setPadding(80, 0, 40, 0);
+            civCustomer.setVisibility(View.VISIBLE);
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+            Glide.with(this).load(customerPic).apply(options).into(civCustomer);
+        }
 
         if (employeeId != null) {
-            Employee employee = EmployeeRepo.getInstance().getEmployeeByAccountId(employeeId);
+            AssignEmployee employee = AssignEmployeeRepo.getInstance()
+                    .getAssignedEmployeeById(employeeId);
             selectedEmployeeId = employee.getEmployeeId();
             etAssignEmployee.setText(employee.getName());
+            showEmployeeWithImage(employee);
         }
 
         if (teamId != null) {
             selectedTag = TagRepo.getInstance().getTagById(teamId);
+            tags.add(selectedTag.getTagId());
+            addTeamsToLayout();
 //            addNewTagChip(tags);
         }
     }

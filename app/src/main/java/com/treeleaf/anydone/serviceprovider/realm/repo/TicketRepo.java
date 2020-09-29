@@ -317,7 +317,7 @@ public class TicketRepo extends Repo {
         tickets.setCustomerType(ticketPb.getCustomerType().name());
         tickets.setCreatedAt(ticketPb.getCreatedAt());
         tickets.setTicketType(type);
-        tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getAccountId());
+        tickets.setCreatedByName(account.getFullName());
         tickets.setCreatedById(ticketPb.getCreatedBy().getAccount().getAccountId());
         tickets.setCreatedByPic(account.getProfilePic());
         tickets.setTicketStatus(ticketPb.getTicketState().name());

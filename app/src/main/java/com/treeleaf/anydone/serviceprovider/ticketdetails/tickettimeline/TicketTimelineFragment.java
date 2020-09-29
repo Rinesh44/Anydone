@@ -52,7 +52,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceOrderEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
-import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
@@ -476,6 +475,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
             Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCreatedBy);
         }
+
+        getTicketTimelineSuccess(tickets.getAssignedEmployee());
 
         if (!CollectionUtils.isEmpty(tickets.getTagsRealmList())) {
             llTags.removeAllViews();
@@ -1067,7 +1068,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         } else {
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
             tvAssignedEmployee.setText(assignedEmployee.getName());
-
 
             String employeeImage = assignedEmployee.getEmployeeImageUrl();
             RequestOptions options = new RequestOptions()
