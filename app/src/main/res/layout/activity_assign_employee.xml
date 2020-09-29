@@ -63,7 +63,8 @@
                         android:layout_height="40dp"
                         android:layout_alignParentEnd="true"
                         android:layout_toStartOf="@+id/iv_filter"
-                        android:backgroundTint="@color/colorPrimary"
+                        android:backgroundTint="#C2C2C2"
+                        android:clickable="false"
                         android:text="@string/add"
                         android:textAllCaps="false"
                         android:textSize="10sp" />

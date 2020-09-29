@@ -109,9 +109,9 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
                 GlobalUtils.showLog(TAG, "item add listen");
                 employeeIds.add(employeeId);
                 GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-              /*  if (employeeIds.size() > 0) {
+                if (employeeIds.size() > 0) {
                     enableAddButton();
-                }*/
+                }
             }
 
             @Override
@@ -119,9 +119,9 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
                 GlobalUtils.showLog(TAG, "item remove listen");
                 employeeIds.remove(employeeId);
                 GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-          /*      if (employeeIds.size() == 0) {
+                if (employeeIds.size() == 0) {
                     disableAddButton();
-                }*/
+                }
             }
         });
     }

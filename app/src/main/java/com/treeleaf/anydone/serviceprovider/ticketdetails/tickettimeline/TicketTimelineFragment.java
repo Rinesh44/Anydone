@@ -226,7 +226,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
             presenter.getCustomerDetails(ticketId);
             presenter.getAssignedEmployees(ticketId);
-//            presenter.getTicketTimeline(ticketId);
+            presenter.getTicketTimeline(ticketId);
             presenter.getEmployees();
             setTicketDetails();
 
@@ -476,7 +476,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCreatedBy);
         }
 
-        getTicketTimelineSuccess(tickets.getAssignedEmployee());
+//        getTicketTimelineSuccess(tickets.getAssignedEmployee());
 
         if (!CollectionUtils.isEmpty(tickets.getTagsRealmList())) {
             llTags.removeAllViews();
