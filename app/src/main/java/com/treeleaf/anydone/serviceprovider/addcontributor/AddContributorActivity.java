@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -110,10 +109,9 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
                 GlobalUtils.showLog(TAG, "item add listen");
                 employeeIds.add(employeeId);
                 GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-                GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-                if (employeeIds.size() > 0) {
+              /*  if (employeeIds.size() > 0) {
                     enableAddButton();
-                }
+                }*/
             }
 
             @Override
@@ -121,9 +119,9 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
                 GlobalUtils.showLog(TAG, "item remove listen");
                 employeeIds.remove(employeeId);
                 GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-                if (employeeIds.size() == 0) {
+          /*      if (employeeIds.size() == 0) {
                     disableAddButton();
-                }
+                }*/
             }
         });
     }
