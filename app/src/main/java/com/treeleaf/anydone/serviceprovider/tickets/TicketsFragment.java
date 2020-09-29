@@ -665,7 +665,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         super.onResume();
         UiUtils.hideKeyboardForced(getContext());
 
-        boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_THREAD, false);
+//        boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_THREAD, false);
+        String ticketServiceId = Hawk.get(Constants.TICKET_SERVICE_ID, "");
+        String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+        boolean serviceChanged = !ticketServiceId.equalsIgnoreCase(selectedServiceId);
         GlobalUtils.showLog(TAG, "service changed Check: " + serviceChanged);
         if (serviceChanged) {
             if (assignedListListener != null) {
@@ -689,7 +692,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Hawk.put(Constants.FETCH_CLOSED_LIST, true);
             }
 
-            Hawk.put(Constants.SERVICE_CHANGED_THREAD, false);
+//            Hawk.put(Constants.SERVICE_CHANGED_THREAD, false);
+            Hawk.put(Constants.TICKET_SERVICE_ID, selectedServiceId);
         }
 
     }

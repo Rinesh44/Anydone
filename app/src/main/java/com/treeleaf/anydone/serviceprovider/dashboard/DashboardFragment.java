@@ -40,7 +40,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnDrawListener;
 import com.google.android.gms.common.util.CollectionUtils;
@@ -61,7 +60,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketStatRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.CustomValueFormatter;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -1270,16 +1268,21 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     public void onResume() {
         super.onResume();
 
-    /*    boolean reFetchData = Hawk.get(Constants.REFETCH_TICKET_STAT, false);
-        if (reFetchData) {
+        String dashboardServiceId = Hawk.get(Constants.DASHBOARD_SERVICE_ID, "");
+        String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+        boolean serviceChanged = !dashboardServiceId.equalsIgnoreCase(selectedServiceId);
+
+        if (serviceChanged) {
+            Hawk.put(Constants.DASHBOARD_SERVICE_ID, selectedServiceId);
+            pbLineChart.setVisibility(View.VISIBLE);
+            lineChart.setVisibility(View.GONE);
             presenter.getTicketByPriority();
             presenter.getTicketByResolveTime();
             presenter.getTicketBySource();
             presenter.getTicketByStatus();
             presenter.getTicketsByDate();
-        }
-        */
 
+        }
     }
 
 }
