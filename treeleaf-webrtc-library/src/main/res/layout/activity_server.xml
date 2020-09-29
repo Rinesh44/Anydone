@@ -166,4 +166,14 @@
         layout="@layout/video_call_accept"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/tv_reconnecting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Reconnecting..."
+        android:textColor="@color/color_white"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
 </RelativeLayout>

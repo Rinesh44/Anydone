@@ -90,6 +90,8 @@ import io.realm.RealmList;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDetailPresenterImpl>
         implements ServiceRequestDetailContract.ServiceRequestDetailView,
@@ -785,6 +787,12 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
+        ((ServiceRequestDetailActivity) getActivity())
+                .onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+    }
+
+    @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         ((ServiceRequestDetailActivity) getActivity())
@@ -805,11 +813,6 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     @Override
     public void onImageDrawDiscardRemote(String accountId) {
         ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote(accountId);
-    }
-
-    @Override
-    public void onImageCaptured() {
-        ((ServiceRequestDetailActivity) getActivity()).onImageCaptured();
     }
 
     @Override
@@ -864,9 +867,15 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
 
 
     @Override
-    public void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         ((ServiceRequestDetailActivity) Objects.requireNonNull(getActivity()))
-                .onVideoRoomJoinSuccess(videoCallJoinResponse);
+                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+        ((ServiceRequestDetailActivity) Objects.requireNonNull(getActivity()))
+                .onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
     }
 
     @Override
@@ -1332,6 +1341,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
 
     @Override
     public void mqttConnected() {
+        ((ServiceRequestDetailActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
         tvConnectionStatus.setText(R.string.connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
         tvConnectionStatus.setVisibility(View.VISIBLE);
@@ -1345,6 +1355,7 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
 
     @Override
     public void mqttNotConnected() {
+        ((ServiceRequestDetailActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
         GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
         tvConnectionStatus.setText(R.string.not_connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));

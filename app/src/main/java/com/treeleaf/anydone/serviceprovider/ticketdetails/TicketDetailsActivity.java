@@ -6,7 +6,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -27,28 +26,23 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shasin.notificationbanner.Banner;
-import com.treeleaf.anydone.entities.SignalingProto;
-import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
-import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
-import com.treeleaf.anydone.serviceprovider.realm.model.Account;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Callback;
-import com.treeleaf.januswebrtc.RestChannel;
-import com.treeleaf.januswebrtc.ServerActivity;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresenterImpl> implements
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.CLOSED_RESOLVED;
+
+public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView {
     private static final String TAG = "TicketDetailsActivity";
     private static final int NUM_PAGES = 2;
@@ -73,13 +67,8 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
     private RelativeLayout rlSms;
     private RelativeLayout rlEmail;
     private RelativeLayout rlOther;
+    private String ticketType;
 
-    Callback.HostActivityCallback hostActivityCallbackServer;
-
-    private Account userAccount;
-    private String accountId, accountName, accountPicture, rtcMessageId;
-    private ServerActivity.VideoCallListener videoCallListenerServer;
-    private ServerActivity.ServerDrawingPadEventListener serverDrawingPadEventListener;
     String shareLink = "";
     private long ticketId;
 
@@ -98,70 +87,22 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
+        ticketType = i.getStringExtra("selected_ticket_type");
         ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
+        String serviceName = i.getStringExtra("selected_ticket_name");
+        ArrayList<String> serviceProfileUri = i.getStringArrayListExtra("selected_ticket_icon_uri");
         setUpToolbar(ticketId, ticketTitle);
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
-        userAccount = AccountRepo.getInstance().getAccount();
-        accountId = userAccount.getAccountId();
-        accountName = userAccount.getFullName();
-        accountPicture = userAccount.getProfilePic();
 
         createLinkShareBottomSheet();
 
-        hostActivityCallbackServer = new Callback.HostActivityCallback() {
-
-            @Override
-            public void fetchJanusServerInfo() {
-
-            }
-
-            @Override
-            public void specifyRole(RestChannel.Role role) {
-            }
-
-            @Override
-            public void passJanusServerInfo(BigInteger sessionId,
-                                            BigInteger roomId, BigInteger participantId) {
-            }
-
-            @Override
-            public void onServiceProviderAudioPublished(BigInteger sessionId, BigInteger roomId, BigInteger participantId) {
-
-            }
-
-            @Override
-            public void passJoineeReceivedCallback(Callback.AudioVideoCallbackListener videoCallListener) {
-                videoCallListenerServer = (ServerActivity.VideoCallListener) videoCallListener;
-            }
-
-            @Override
-            public void passDrawPadEventListenerCallback(Callback.DrawPadEventListener drawPadEventListener) {
-                serverDrawingPadEventListener = (ServerActivity.ServerDrawingPadEventListener) drawPadEventListener;
-            }
-
-            @Override
-            public void notifyHostHangUp() {
-            }
-
-            @Override
-            public void notifySubscriberLeft() {
-                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, ticketId);
-            }
-
-            @Override
-            public void onPublisherVideoStarted() {
-                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, ticketId);
-            }
-
-            @Override
-            public String getLocalAccountId() {
-                return accountId;
-            }
-
-        };
+        super.setReferenceId(ticketId);
+        super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
+        super.setServiceName(serviceName);
+        super.setServiceProfileUri(serviceProfileUri);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -228,79 +169,15 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
         }
     }
 
-    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish) {
-        Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        rtcMessageId = broadcastVideoCall.getRtcMessageId();
-        String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-        String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-        String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
-        String roomNumber = broadcastVideoCall.getRoomId();
-        String participantId = broadcastVideoCall.getParticipantId();
-
-        String calleeName = broadcastVideoCall.getSenderAccount().getFullName();
-        String calleeProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
-
-        //TODO: copy here code from ServiceRequestDetailActivity
-//        ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-//                roomNumber, participantId, hostActivityCallbackServer, calleeName, calleeProfileUrl);
-
-    }
-
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (serverDrawingPadEventListener != null) {
-                    serverDrawingPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes, accountId);
-                }
-            }
-        });
-
-    }
-
-    public void onImageDrawDiscard() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(TAG, "onImageReceivedFromConsumer");
-                if (serverDrawingPadEventListener != null)
-                    serverDrawingPadEventListener.onDrawDiscard("accountId");//TODO: paste here from ServiceRequestDetailActivity
-            }
-        });
-    }
-
-    public void onVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
-        Log.d(MQTT, "onVideoRoomJoinSuccess");
-        if (videoCallListenerServer != null) {
-            UserProto.Account account = videoCallJoinResponse.getSenderAccount();
-            videoCallListenerServer.onJoineeReceived(account.getFullName(),
-                    account.getProfilePic(), account.getAccountId(), "accountId");//TODO: paste here from ServiceRequestDetailActivity
-        }
-    }
-
-    public void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft) {
-        Log.d(MQTT, "onParticipantLeft");
-        if (videoCallListenerServer != null) {
-            UserProto.Account account = participantLeft.getSenderAccount();
-            videoCallListenerServer.onJoineeRemoved(account.getAccountId());
-        }
-    }
-
-    public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
-        Log.d(MQTT, "onHostHangUp");
-        if (videoCallListenerServer != null)
-            videoCallListenerServer.onHostTerminateCall();
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-//            case R.id.action_video_call:
-//                return true;
+            case R.id.action_video_call:
+                checkConnection();
+                return true;
         }
         return false;
     }
@@ -308,7 +185,11 @@ public class TicketDetailsActivity extends MvpBaseActivity<TicketDetailsPresente
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_service_details, menu);
+        getMenuInflater().inflate(R.menu.menu_ticket_details, menu);
+        if (ticketType.equals(CLOSED_RESOLVED)) {
+            MenuItem item = menu.findItem(R.id.action_video_call);
+            item.setVisible(false);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 

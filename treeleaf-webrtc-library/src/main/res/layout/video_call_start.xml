@@ -5,24 +5,102 @@
     android:layout_height="match_parent"
     android:background="@color/colorGrey">
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:id="@+id/myCardView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="188dp"
-        android:layout_marginBottom="30dp"
-        app:cardCornerRadius="50dp">
+        android:layout_marginBottom="30dp">
 
-        <ImageView
-            android:id="@+id/iv_callee_profile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_empty_profile_holder_icon" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_single_callee_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            app:cardCornerRadius="50dp">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/iv_callee_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_empty_profile_holder_icon" />
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/rl_multiple_callee_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_callee_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_empty_profile_holder_icon" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="40dp"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_callee_second"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_empty_profile_holder_icon" />
+
+            </androidx.cardview.widget.CardView>
+
+            <FrameLayout
+                android:id="@+id/fl_extra_callee_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:translationZ="4dp"
+                android:visibility="visible">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_empty_profile_holder_icon" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tv_extra_callee_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_black"
+                    android:textSize="24sp"
+                    android:translationZ="2dp" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_is_calling"
@@ -37,12 +115,14 @@
 
     <TextView
         android:id="@+id/tv_callee_name"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_is_calling"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:ellipsize="end"
         android:gravity="center_horizontal"
+        android:maxLines="1"
         android:textColor="@color/color_white"
         android:textSize="24sp"
         android:textStyle="bold" />

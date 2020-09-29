@@ -22,7 +22,10 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
@@ -32,6 +35,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,6 +66,8 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
     private int unsubscribedTicketPos;
     private boolean fetchList = false;
     private List<Tickets> subscribedTickets;
+    private Account userAccount;
+    private String localAccountId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,8 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
         mFragment.setSubscribedListListener(this);
+        userAccount = AccountRepo.getInstance().getAccount();
+        localAccountId = userAccount.getAccountId();
     }
 
     @Override
@@ -112,10 +120,35 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
+
+                ArrayList<String> employeeProfileUris = new ArrayList<>();
+                StringBuilder builder = new StringBuilder();
+                Employee assignedEmployee = ticket.getAssignedEmployee();
+                String assignedEmployeeName = assignedEmployee.getName();
+
+                if (!localAccountId.equals(assignedEmployee.getAccountId()) &&
+                        assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
+                    builder.append(assignedEmployeeName);
+                    builder.append(", ");
+                    employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
+                }
+                for (Employee employee : ticket.getContributorList()) {
+                    if (!localAccountId.equals(employee.getAccountId())) {
+                        builder.append(employee.getName());
+                        builder.append(", ");
+                    }
+                    employeeProfileUris.add(employee.getEmployeeImageUrl());
+                }
+                String assignedEmployeeList = builder.toString().trim();
+                String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
+
+
                 Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
                 i.putExtra("ticket_desc", ticket.getTitle());
                 i.putExtra("selected_ticket_type", Constants.SUBSCRIBED);
+                i.putExtra("selected_ticket_name", callees);
+                i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                 startActivity(i);
             });
 

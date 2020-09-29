@@ -25,6 +25,7 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import dagger.Subcomponent;
 
@@ -32,6 +33,8 @@ import dagger.Subcomponent;
 @ScopeActivity
 public interface ActivityComponent {
     void inject(LoginActivity loginActivity);
+
+    void inject(VideoCallHandleActivity videoReceiveActivity);
 
     void inject(VerificationActivity verificationActivity);
 

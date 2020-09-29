@@ -20,6 +20,8 @@ public class Const {
 
     public static final String JOINEE_REMOTE = "joinee_remote";
     public static final String JOINEE_LOCAL = "joinee_local";
+    public static final String MQTT_CONNECTED = "MQTT_CONNECTED";
+    public static final String MQTT_DISCONNECTED = "MQTT_DISCONNECTED";
 
     public static void setRoomNumber(BigInteger roomNumber) {
         ROOM_NUMBER = roomNumber;

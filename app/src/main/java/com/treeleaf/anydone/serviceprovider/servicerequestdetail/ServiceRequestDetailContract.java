@@ -78,12 +78,16 @@ public class ServiceRequestDetailContract {
 
         void onSendDeliveredMsgFail(List<Conversation> conversationList);
 
-        void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
+        void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
+
+        void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
         void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
 
         void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                           boolean b);
+
+        void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall);
 
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
@@ -97,8 +101,6 @@ public class ServiceRequestDetailContract {
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
         void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
-
-        void onImageCaptured();
 
         void onImageAckSent(String accountId);
 

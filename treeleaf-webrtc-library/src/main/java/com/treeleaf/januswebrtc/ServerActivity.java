@@ -53,6 +53,7 @@ import org.webrtc.VideoRenderer;
 
 import java.math.BigInteger;
 
+import static android.view.View.VISIBLE;
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.TRUE;
 import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.SHOW_ALL;
@@ -67,6 +68,8 @@ import static com.treeleaf.januswebrtc.Const.JANUS_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.JANUS_ROOM_NUMBER;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 
 public class ServerActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback,
@@ -99,7 +102,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private RelativeLayout rlJoineeList, rlServerRoot;
     private View viewVideoCallStart;
     private ImageView ivCalleeProfile, ivTerminateCall;
-    private TextView tvCalleeName, tvConnecting, tvIsCalling;
+    private TextView tvCalleeName, tvConnecting, tvIsCalling, tvReconnecting;
     private EglRenderer.FrameListener frameListener;
 
     private Boolean audioOff = false;
@@ -116,7 +119,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private static Callback.HostActivityCallback mhostActivityCallback;
     private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
-    private ServerDrawingPadEventListener serverDrawingPadEventListener;
+    private Callback.DrawPadEventListener serverDrawingPadEventListener;
 
     private Handler handler;
     private Runnable runnable;
@@ -129,6 +132,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private int remoteDeviceHeight, remoteDeviceWidth;
     private String mLocalAccountId;
     private Mode mode = Mode.VIDEO_STREAM;
+    private boolean callAccepted = false;
 
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
@@ -190,6 +194,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         tvCalleeName = findViewById(R.id.tv_callee_name);
         tvConnecting = findViewById(R.id.tv_connecting);
         tvIsCalling = findViewById(R.id.tv_is_calling);
+        tvReconnecting = findViewById(R.id.tv_reconnecting);
         ivCalleeProfile = findViewById(R.id.iv_callee_profile);
         ivTerminateCall = findViewById(R.id.iv_terminate_call);
 
@@ -239,6 +244,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         };
 
         videoCallListener = new VideoCallListener() {
+
+            @Override
+            public void onMqttConnectionChanged(String status) {
+                tvReconnecting.setVisibility(status.equals(MQTT_DISCONNECTED) ? VISIBLE : View.GONE);
+            }
+
             @Override
             public void onJoineeReceived(String joineeName, String joineedProfileUrl, String accountId, String joineeType) {
                 //add new joinee information in view
@@ -279,7 +290,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         };
 
-        serverDrawingPadEventListener = new ServerDrawingPadEventListener() {
+        serverDrawingPadEventListener = new Callback.DrawPadEventListener() {
             @Override
             public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
                 Bitmap receivedBitmap = BitmapFactory.decodeByteArray(convertedBytes, 0, convertedBytes.length);
@@ -488,10 +499,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onStartDrawing(float x, float y) {
                 Log.d(TAG, "onStartDrawing: " + x + " " + y);
-                x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
-                y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                 drawMetadataLocal.setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
@@ -514,10 +521,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewDrawingPosition(float x, float y) {
                 Log.d(TAG, "onReceiveNewDrawingPosition: " + x + " " + y);
-                x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
-                y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                 drawMetadataLocal.setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
@@ -529,10 +532,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
-                    x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                            remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
-                    y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                            remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                     mDrawCallback.onReceiveNewTextField(x, y, editTextFieldId);
                 }
                 if (mLocalAccountId != null)
@@ -585,6 +584,19 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }
         showVideoCallStartView(true);
         loadCallNameAndProfileIcon(calleeName, calleeProfile);
+        checkIfCallIsTaken();
+    }
+
+    //if the call is not accepted within 40 seconds, terminate call
+    private void checkIfCallIsTaken() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!callAccepted) {
+                    terminateBroadCast();
+                }
+            }
+        }, 40000);
     }
 
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
@@ -650,6 +662,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     }
 
     private void acceptCall() {
+        callAccepted = true;
         mRestChannel.initConnection(SERVER);
         audioManager = AppRTCAudioManager.create(this);
         audioManager.start();
@@ -1322,11 +1335,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         void onVideoViewReady();
 
         void onHostTerminateCall();
-
-    }
-
-    public interface ServerDrawingPadEventListener extends Callback.DrawPadEventListener {
-
 
     }
 

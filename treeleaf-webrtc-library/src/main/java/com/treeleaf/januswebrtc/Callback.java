@@ -129,6 +129,8 @@ public class Callback {
 
         void onJoineeRemoved(String accountId);
 
+        void onMqttConnectionChanged(String status);
+
     }
 
     public interface DrawPadEventListener {

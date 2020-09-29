@@ -210,9 +210,11 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     public void highlightCurrentDrawer(String accountId, boolean isCurrentDrawing,
                                        Integer drawColor) {
         Joinee currentDrawer = mapTotalJoinees.get(accountId);
-        currentDrawer.setDrawing(isCurrentDrawing);
-        currentDrawer.setDrawColor(drawColor);
-        notifyDataSetChanged();
+        if (currentDrawer != null) {
+            currentDrawer.setDrawing(isCurrentDrawing);
+            currentDrawer.setDrawColor(drawColor);
+            notifyDataSetChanged();
+        }
     }
 
     @Override

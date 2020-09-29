@@ -72,6 +72,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -89,6 +90,8 @@ import io.realm.RealmList;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class TicketConversationFragment extends BaseFragment<TicketConversationPresenterImpl>
         implements TicketConversationContract.TicketConversationView,
@@ -775,6 +778,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
+        ((TicketDetailsActivity) getActivity())
+                .onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+    }
+
+    @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         ((TicketDetailsActivity) getActivity())
@@ -788,8 +797,23 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onImageDrawDiscard() {
-        ((TicketDetailsActivity) getActivity()).onImageDrawDiscard();
+    public void onImageDrawDiscardLocal() {
+        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardLocal();
+    }
+
+    @Override
+    public void onImageDrawDiscardRemote(String accountId) {
+        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardRemote(accountId);
+    }
+
+    @Override
+    public void onImageAckSent(String accountId) {
+        ((TicketDetailsActivity) getActivity()).onImageAckSent(accountId);
+    }
+
+    @Override
+    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
     }
 
     @Override
@@ -832,11 +856,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     }
 
+    @Override
+    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
+                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
 
     @Override
-    public void onVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
-                .onVideoRoomJoinSuccess(videoCallJoinResponse);
+                .onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
     }
 
     @Override
@@ -1296,6 +1325,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void mqttConnected() {
+        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
         tvConnectionStatus.setText(R.string.connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
         tvConnectionStatus.setVisibility(View.VISIBLE);
@@ -1309,6 +1339,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void mqttNotConnected() {
+        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
         GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
         tvConnectionStatus.setText(R.string.not_connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
@@ -1330,6 +1361,46 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         llBotReplying.setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
+    }
+
+    @Override
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId);
+    }
+
+    @Override
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId);
+    }
+
+    @Override
+    public void onDrawTouchUp(String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchUp(accountId);
+    }
+
+    @Override
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
+    }
+
+    @Override
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId);
+    }
+
+    @Override
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId);
+    }
+
+    @Override
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId);
+    }
+
+    @Override
+    public void onDrawCanvasCleared(String accountId) {
+        ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId);
     }
 
 }

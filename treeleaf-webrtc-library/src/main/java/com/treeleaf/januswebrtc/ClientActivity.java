@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +40,7 @@ import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.VideoCapturer;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -53,6 +56,8 @@ import com.treeleaf.januswebrtc.audio.AppRTCAudioManager;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 import com.treeleaf.januswebrtc.JoineeListAdapter.Mode;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.SHOW_ALL;
 import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.SHOW_ONE;
 import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.TYPE.LOCAL;
@@ -67,6 +72,7 @@ import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.TRUE;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
+import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 
 public class ClientActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface,
@@ -95,7 +101,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private RelativeLayout rlJoineeList, rlClientRoot;
     private View viewVideoCallStart;
     private ImageView ivCalleeProfile, ivTerminateCall;
-    private TextView tvCalleeName;
+    private TextView tvCalleeName, tvReconnecting;
     private EglRenderer.FrameListener frameListener;
 
     private Boolean videoOff = false;
@@ -108,7 +114,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private boolean remoteImage;
     private boolean isDrawMinized = false;
 
-    private String calleeName, calleeProfile;
+    private String calleeName;
+    private ArrayList<String> calleeProfile;
     private String mLocalAccountId;
 
     private RecyclerView rvJoinee;
@@ -116,7 +123,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private static Callback.HostActivityCallback mhostActivityCallback;
     private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
-    private ClientDrawingPadEventListener clientDrawingPadEventListener;
+    private Callback.DrawPadEventListener clientDrawingPadEventListener;
     private Handler handler;
     private Runnable runnable;
     private int timerDelay = 10000;
@@ -129,7 +136,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private int localDeviceHeight, localDeviceWidth;
     private int remoteDeviceHeight, remoteDeviceWidth;
     private Mode mode = Mode.VIDEO_STREAM;
-
+    private RelativeLayout rlMultipleCalleeView;
+    private ImageView ivCalleeFirst, ivCalleeSecond;
+    private FrameLayout flExtraCalleePic;
+    private TextView tvExtraCalleeNumber;
+    private CardView cvSingleCalleeView;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -144,7 +155,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     public static void launch(Context context, boolean credentialsAvailable, Callback.HostActivityCallback hostActivityCallBack,
-                              Callback.DrawCallBack drawCallBack, String calleeName, String callProfileUrl) {
+                              Callback.DrawCallBack drawCallBack, String calleeName, ArrayList<String> callProfileUrl) {
         mhostActivityCallback = hostActivityCallBack;
         mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ClientActivity.class);
@@ -183,8 +194,16 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         ibToggleJoineeList = findViewById(R.id.ib_toggle_joinee_list);
         viewVideoCallStart = findViewById(R.id.view_video_call_start);
         tvCalleeName = findViewById(R.id.tv_callee_name);
+        tvReconnecting = findViewById(R.id.tv_reconnecting);
         ivCalleeProfile = findViewById(R.id.iv_callee_profile);
         ivTerminateCall = findViewById(R.id.iv_terminate_call);
+
+        rlMultipleCalleeView = findViewById(R.id.rl_multiple_callee_view);
+        ivCalleeFirst = findViewById(R.id.iv_callee_first);
+        ivCalleeSecond = findViewById(R.id.iv_callee_second);
+        flExtraCalleePic = findViewById(R.id.fl_extra_callee_pic);
+        tvExtraCalleeNumber = findViewById(R.id.tv_extra_callee_number);
+        cvSingleCalleeView = findViewById(R.id.cv_single_callee_view);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -233,6 +252,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         };
 
         videoCallListener = new VideoCallListener() {
+
+            @Override
+            public void onMqttConnectionChanged(String status) {
+                tvReconnecting.setVisibility(status.equals(MQTT_DISCONNECTED) ? VISIBLE : GONE);
+            }
+
             @Override
             public void onJoineeReceived(String joineeName, String joineedProfileUrl, String accountId, String joineeType) {
                 //add new joinee information in view
@@ -263,7 +288,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onJanusCredentialsReceived(String baseUrl, String apiKey, String apiSecret,
-                                                   String serviceName, String serviceUri, String localAccountId) {
+                                                   String serviceName, ArrayList<String> serviceUri, String localAccountId) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -295,7 +320,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
         };
 
-        clientDrawingPadEventListener = new ClientDrawingPadEventListener() {
+        clientDrawingPadEventListener = new Callback.DrawPadEventListener() {
 
             @Override
             public void onDrawNewImageCaptured(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
@@ -463,7 +488,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         //if condition here
         credentialsReceived = getIntent().getBooleanExtra(JANUS_CREDENTIALS_SET, false);
         calleeName = getIntent().getStringExtra(CALLEE_NAME);
-        calleeProfile = getIntent().getStringExtra(CALLEE_PROFILE_URL);
+        calleeProfile = getIntent().getStringArrayListExtra(CALLEE_PROFILE_URL);
         if (credentialsReceived) {
             String baseUrl = getIntent().getStringExtra(JANUS_URL);
             String apiKey = getIntent().getStringExtra(JANUS_API_KEY);
@@ -549,10 +574,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onStartDrawing(float x, float y) {
                 Log.d(TAG, "onStartDrawing: " + x + " " + y);
-                x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
-                y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                 drawMetaDataLocal.setCurrentDrawPosition(new Position(x, y));
                 isJoineePresent = joineeListAdapter.isJoineePresent();
                 if (mDrawCallback != null && isJoineePresent) {
@@ -576,10 +597,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewDrawingPosition(float x, float y) {
                 Log.d(TAG, "onReceiveNewDrawingPosition: " + x + " " + y);
-                x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
-                y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                        remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                 drawMetaDataLocal.setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null && isJoineePresent) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetaDataLocal);
@@ -591,10 +608,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
-                    x = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                            remoteDeviceWidth, remoteDeviceHeight, x, y)[0];
-                    y = VideoCallUtil.adjustPixelResolution(localDeviceWidth, localDeviceHeight,
-                            remoteDeviceWidth, remoteDeviceHeight, x, y)[1];
                     mDrawCallback.onReceiveNewTextField(x, y, editTextFieldId);
                 }
                 if (mLocalAccountId != null)
@@ -654,20 +667,65 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         ivSignalStrength.setImageResource(R.drawable.ic_good_signal);
     }
 
-    private void loadCallNameAndProfileIcon(String calleeName, String calleeProfile) {
+    private void loadCallNameAndProfileIcon(String calleeName, ArrayList<String> calleeProfile) {
         tvCalleeName.setText((calleeName != null && !calleeName.isEmpty()) ? calleeName : "Unknown");
-        if (!calleeProfile.isEmpty()) {
-            String imgUri = calleeProfile;
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                    .error(R.drawable.ic_empty_profile_holder_icon);
+        if (calleeProfile != null && !calleeProfile.isEmpty()) {
+            if (calleeProfile.size() == 1) {
+                cvSingleCalleeView.setVisibility(VISIBLE);
+                rlMultipleCalleeView.setVisibility(GONE);
+                flExtraCalleePic.setVisibility(GONE);
+                String imgUri = calleeProfile.get(0);
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
-            Glide.with(this)
-                    .load(imgUri)
-                    .apply(options)
-                    .into(ivCalleeProfile);
+                Glide.with(this)
+                        .load(imgUri)
+                        .apply(options)
+                        .into(ivCalleeProfile);
+
+            } else if (calleeProfile.size() == 2) {
+                cvSingleCalleeView.setVisibility(GONE);
+                rlMultipleCalleeView.setVisibility(VISIBLE);
+                displayTwoProfileIcons(calleeProfile);
+                flExtraCalleePic.setVisibility(GONE);
+            } else if (calleeProfile.size() > 2) {
+                cvSingleCalleeView.setVisibility(GONE);
+                rlMultipleCalleeView.setVisibility(VISIBLE);
+                displayTwoProfileIcons(calleeProfile);
+                flExtraCalleePic.setVisibility(VISIBLE);
+                tvExtraCalleeNumber.setText("+" + (calleeProfile.size() - 2));
+            } else {
+                cvSingleCalleeView.setVisibility(VISIBLE);
+                rlMultipleCalleeView.setVisibility(GONE);
+                flExtraCalleePic.setVisibility(GONE);
+            }
         }
+    }
+
+    private void displayTwoProfileIcons(ArrayList<String> calleeProfile) {
+        String imgUri1 = calleeProfile.get(0);
+        RequestOptions options1 = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
+
+        Glide.with(this)
+                .load(imgUri1)
+                .apply(options1)
+                .into(ivCalleeFirst);
+
+        String imgUri2 = calleeProfile.get(1);
+        RequestOptions options2 = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
+
+        Glide.with(this)
+                .load(imgUri2)
+                .apply(options2)
+                .into(ivCalleeSecond);
     }
 
     @Override
@@ -675,7 +733,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                viewVideoCallStart.setVisibility(visible ? View.VISIBLE : View.GONE);
+                viewVideoCallStart.setVisibility(visible ? View.VISIBLE : GONE);
             }
         });
     }
@@ -704,7 +762,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ibToggleJoineeList.setVisibility(show ? View.VISIBLE : View.GONE);
+                        ibToggleJoineeList.setVisibility(show ? View.VISIBLE : GONE);
                     }
                 });
 
@@ -715,7 +773,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        rlJoineeList.setVisibility(show ? View.VISIBLE : View.GONE);
+                        rlJoineeList.setVisibility(show ? View.VISIBLE : GONE);
                     }
                 });
 
@@ -1135,8 +1193,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     private void switchDrawModeAndVideoMode(boolean drawMode) {
         showHideDiscardDrawButton();
-        clCallSettings.setVisibility(drawMode ? View.GONE : View.VISIBLE);
-        clCallOtions.setVisibility(drawMode ? View.GONE : View.VISIBLE);
+        clCallSettings.setVisibility(drawMode ? GONE : View.VISIBLE);
+        clCallOtions.setVisibility(drawMode ? GONE : View.VISIBLE);
         if (drawMode) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
             params.addRule(ALIGN_PARENT_LEFT, 0);
@@ -1182,14 +1240,14 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     private void showHideDrawView(Boolean showDrawView) {
-        layoutDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
-        fabDiscardDraw.setVisibility(showDrawView ? View.VISIBLE : View.GONE);
+        layoutDraw.setVisibility(showDrawView ? View.VISIBLE : GONE);
+        fabDiscardDraw.setVisibility(showDrawView ? View.VISIBLE : GONE);
 
-        clCallSettings.setVisibility(showDrawView ? View.GONE : View.VISIBLE);
-        clCallOtions.setVisibility(showDrawView ? View.GONE : View.VISIBLE);
+        clCallSettings.setVisibility(showDrawView ? GONE : View.VISIBLE);
+        clCallOtions.setVisibility(showDrawView ? GONE : View.VISIBLE);
 
         if (!showDrawView) {
-            imgMaximizeDraw.setVisibility(View.GONE);
+            imgMaximizeDraw.setVisibility(GONE);
             isDrawMinized = false;
         }
 
@@ -1208,7 +1266,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     private void showHideDiscardDrawButton() {
         //dont show discard button if image comes from remote
-        fabDiscardDraw.setVisibility(remoteImage ? View.GONE : View.VISIBLE);
+        fabDiscardDraw.setVisibility(remoteImage ? GONE : View.VISIBLE);
     }
 
     View.OnClickListener videoToggleClickListener = new View.OnClickListener() {
@@ -1372,17 +1430,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     public interface VideoCallListener extends Callback.AudioVideoCallbackListener {
 
         void onJanusCredentialsReceived(String baseUrl, String apiKey, String apiSecret,
-                                        String calleeName, String calleeProfile, String localAccountId);
+                                        String calleeName, ArrayList<String> calleeProfile, String localAccountId);
 
         void onJanusCredentialsFailure();
-
-    }
-
-    public interface ClientDrawingPadEventListener extends Callback.DrawPadEventListener {
-
-        /**
-         * later here will be callbacks specific to client's draw pad
-         */
 
     }
 
