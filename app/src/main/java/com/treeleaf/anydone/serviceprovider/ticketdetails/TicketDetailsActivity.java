@@ -59,6 +59,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     ProgressBar progress;
     @BindView(R.id.iv_share)
     ImageView ivShare;
+    @BindView(R.id.ic_video_call)
+    ImageView ivVideoCall;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -98,6 +100,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         viewPager.setAdapter(pagerAdapter);
 
         createLinkShareBottomSheet();
+
+        if (ticketType.equals(CLOSED_RESOLVED)) {
+            ivVideoCall.setVisibility(View.GONE);
+        }
 
         super.setReferenceId(ticketId);
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
@@ -169,14 +175,16 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         }
     }
 
+    @OnClick(R.id.ic_video_call)
+    public void startVideoCall() {
+        checkConnection();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                return true;
-            case R.id.action_video_call:
-                checkConnection();
                 return true;
         }
         return false;
@@ -186,10 +194,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ticket_details, menu);
-        if (ticketType.equals(CLOSED_RESOLVED)) {
-            MenuItem item = menu.findItem(R.id.action_video_call);
-            item.setVisible(false);
-        }
         return super.onCreateOptionsMenu(menu);
     }
 

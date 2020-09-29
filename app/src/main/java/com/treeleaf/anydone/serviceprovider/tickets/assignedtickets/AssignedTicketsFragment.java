@@ -130,8 +130,8 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
                     if (!localAccountId.equals(employee.getAccountId())) {
                         builder.append(employee.getName());
                         builder.append(", ");
+                        employeeProfileUris.add(employee.getEmployeeImageUrl());
                     }
-                    employeeProfileUris.add(employee.getEmployeeImageUrl());
                 }
                 String assignedEmployeeList = builder.toString().trim();
                 String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
