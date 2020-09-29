@@ -676,9 +676,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                         .parseFrom(message.getPayload());
 
-//                GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
+                GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
 
-                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+//                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+                if (true) {//TODO: fix this later
                     if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                             .getKGraphResultsList())) {
                         RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
