@@ -381,6 +381,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 0, 0, 0);
             updateFromDate();
         };
 
@@ -388,6 +389,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 23, 59, 59);
             updateToDate();
         };
 

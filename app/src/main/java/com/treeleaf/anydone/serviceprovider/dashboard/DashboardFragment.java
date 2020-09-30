@@ -30,6 +30,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.DataSet;
@@ -40,7 +41,9 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.github.mikephil.charting.listener.OnDrawListener;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -63,6 +66,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -151,6 +155,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     TextView tvManualValue;
     @BindView(R.id.tv_phone_call_value)
     TextView tvPhoneCallValue;
+    @BindView(R.id.tv_phone_call)
+    TextView tvPhoneCall;
     @BindView(R.id.tv_bot_value)
     TextView tvBotValue;
     @BindView(R.id.pie_chart_by_source)
@@ -213,6 +219,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         GlobalUtils.showLog(TAG, "check refetch: " + reFetchData);
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE, "");
         if (reFetchData && !selectedService.isEmpty()) {
+            pbLineChart.setVisibility(View.VISIBLE);
             presenter.getTicketByPriority();
             presenter.getTicketByResolveTime();
             presenter.getTicketBySource();
@@ -380,22 +387,31 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @SuppressLint("DefaultLocale")
     private void setUpPieChartByStatus(TicketStatByStatus ticketStatByStatus) {
         List<PieEntry> pieEntries = new ArrayList<>();
-
+        List<Integer> colors = new ArrayList<>();
         float closedTickets = (float) ticketStatByStatus.getClosedTickets();
         float newTickets = (float) ticketStatByStatus.getNewTickets();
         float reopenedTickets = (float) ticketStatByStatus.getReOpenedTickets();
         float resolvedTickets = (float) ticketStatByStatus.getResolvedTickets();
         float unResolvedTickets = (float) ticketStatByStatus.getUnResolvedTickets();
 
-        pieEntries.add(new PieEntry(closedTickets, String.format("%.0f", closedTickets)));
+        if (closedTickets > 0) {
+            pieEntries.add(new PieEntry(closedTickets, String.format("%.0f", closedTickets)));
+            colors.add(STATUS_COLORS[0]);
 
-        pieEntries.add(new PieEntry(newTickets, String.format("%.0f", newTickets)));
+        }
 
-        pieEntries.add(new PieEntry(reopenedTickets, String.format("%.0f", reopenedTickets)));
+        if (newTickets > 0) {
+            pieEntries.add(new PieEntry(newTickets, String.format("%.0f", newTickets)));
+        }
 
-        pieEntries.add(new PieEntry(resolvedTickets, String.format("%.0f", resolvedTickets)));
+        if (reopenedTickets > 0)
+            pieEntries.add(new PieEntry(reopenedTickets, String.format("%.0f", reopenedTickets)));
 
-        pieEntries.add(new PieEntry(unResolvedTickets, String.format("%.0f", unResolvedTickets)));
+        if (resolvedTickets > 0)
+            pieEntries.add(new PieEntry(resolvedTickets, String.format("%.0f", resolvedTickets)));
+
+        if (unResolvedTickets > 0)
+            pieEntries.add(new PieEntry(unResolvedTickets, String.format("%.0f", unResolvedTickets)));
 
         if ((closedTickets == 0) && (newTickets == 0) && (reopenedTickets == 0) &&
                 resolvedTickets == 0 && (unResolvedTickets == 0)) {
@@ -405,7 +421,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By status");
-        pieDataSet.setSliceSpace(1);
+
+        pieDataSet.setSliceSpace(1.2f);
         pieDataSet.setColors(STATUS_COLORS);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
@@ -440,15 +457,20 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         float low = (float) ticketStatByPriority.getLow();
         float lowest = (float) ticketStatByPriority.getLowest();
 
-        pieEntries.add(new PieEntry(highest, String.format("%.0f", highest)));
+        if (highest > 0)
+            pieEntries.add(new PieEntry(highest, String.format("%.0f", highest)));
 
-        pieEntries.add(new PieEntry(high, String.format("%.0f", high)));
+        if (high > 0)
+            pieEntries.add(new PieEntry(high, String.format("%.0f", high)));
 
-        pieEntries.add(new PieEntry(medium, String.format("%.0f", medium)));
+        if (medium > 0)
+            pieEntries.add(new PieEntry(medium, String.format("%.0f", medium)));
 
-        pieEntries.add(new PieEntry(low, String.format("%.0f", low)));
+        if (low > 0)
+            pieEntries.add(new PieEntry(low, String.format("%.0f", low)));
 
-        pieEntries.add(new PieEntry(lowest, String.format("%.0f", lowest)));
+        if (lowest > 0)
+            pieEntries.add(new PieEntry(lowest, String.format("%.0f", lowest)));
 
         if ((highest == 0) && (high == 0) && (medium == 0) &&
                 low == 0 && (lowest == 0)) {
@@ -458,7 +480,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By priority");
-        pieDataSet.setSliceSpace(1);
+        pieDataSet.setSliceSpace(1.2f);
         pieDataSet.setColors(PRIORITY_COLORS);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
@@ -466,8 +488,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         pieDataSet.setValueTextColor(getResources().getColor(R.color.black));
         pieDataSet.setDrawValues(false);
         pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+
         PieData pieData = new PieData(pieDataSet);
         pieChartByPriority.setData(pieData);
+//        pieData.setValueFormatter(new PieChartValueFormatter());
         pieChartByPriority.animateY(1000);
         pieChartByPriority.getDescription().setEnabled(false);
         pieChartByPriority.setHoleRadius(74);
@@ -487,19 +511,23 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                                        float phoneCallPercent, float botPercent) {
         List<PieEntry> pieEntries = new ArrayList<>();
 
-        pieEntries.add(new PieEntry(thirdPartyPercent, String.format("%.0f",
-                thirdPartyPercent) + "%"));
+        if (thirdPartyPercent > 0)
+            pieEntries.add(new PieEntry(thirdPartyPercent, String.format("%.0f",
+                    thirdPartyPercent) + "%"));
 
-        pieEntries.add(new PieEntry(manualPercent, String.format("%.0f",
-                manualPercent) + "%"));
+        if (manualPercent > 0)
+            pieEntries.add(new PieEntry(manualPercent, String.format("%.0f",
+                    manualPercent) + "%"));
 
-        pieEntries.add(new PieEntry(phoneCallPercent, String.format("%.0f",
-                phoneCallPercent) + "%"));
+        if (phoneCallPercent > 0)
+            pieEntries.add(new PieEntry(phoneCallPercent, String.format("%.0f",
+                    phoneCallPercent) + "%"));
 
-        pieEntries.add(new PieEntry(botPercent, String.format("%.0f", botPercent) + "%"));
+        if (botPercent > 0)
+            pieEntries.add(new PieEntry(botPercent, String.format("%.0f", botPercent) + "%"));
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By source");
-        pieDataSet.setSliceSpace(1);
+        pieDataSet.setSliceSpace(1.2f);
         pieDataSet.setColors(SOURCE_COLORS);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
@@ -551,6 +579,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 0, 0, 0);
             updateFromDate();
 
             Calendar calendarFromDate = Calendar.getInstance();
@@ -568,6 +597,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 23, 59, 59);
             updateToDate();
 
             Calendar calendarTillDate = Calendar.getInstance();
@@ -581,15 +611,25 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             GlobalUtils.showLog(TAG, "manual to: " + to);
         };
 
-        etFromDate.setOnClickListener(v -> new DatePickerDialog(Objects.requireNonNull(getActivity()),
-                fromDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+        etFromDate.setOnClickListener(v -> {
+            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                    fromDateListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            spTime.setSelection(8);
+            Hawk.put(Constants.XA_XIS_TYPE, "");
+            Hawk.put(Constants.MANUAL_DATE, true);
+        });
 
-        etTillDate.setOnClickListener(v -> new DatePickerDialog(Objects.requireNonNull(getActivity()),
-                tillDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+        etTillDate.setOnClickListener(v -> {
+            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                    tillDateListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            spTime.setSelection(8);
+            Hawk.put(Constants.XA_XIS_TYPE, "");
+            Hawk.put(Constants.MANUAL_DATE, true);
+        });
 
         tvReset.setOnClickListener(v -> {
             toggleBottomSheet();
@@ -653,6 +693,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         spTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Hawk.put(Constants.MANUAL_DATE, false);
                 String selectedItem = arraySpinner[position];
 
                 TextView textView = (TextView) spTime.getSelectedView();
@@ -801,13 +842,12 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     private void setUpLineChart(RealmList<TicketStatByStatus> ticketStatByStatusList,
                                 String xAXisType) {
-        lineChart.setTouchEnabled(true);
-        lineChart.setPinchZoom(true);
 
-        ArrayList<String> dayInMonth = new ArrayList<>();
         ArrayList<Entry> newTickets = new ArrayList<>();
         ArrayList<Entry> resolvedTickets = new ArrayList<>();
         ArrayList<Entry> closedTickets = new ArrayList<>();
+
+        ArrayList<String> dayInMonth = new ArrayList<>();
 
         for (int i = 0; i < ticketStatByStatusList.size(); i++) {
             //inflating data in y-axis
@@ -817,32 +857,26 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 int resolvedTicket = ticketStatByStatus.getResolvedTickets();
                 int newTicket = ticketStatByStatus.getNewTickets();
 
-                if (newTicket != 0)
+                boolean isManualDate = Hawk.get(Constants.MANUAL_DATE, false);
+                if (!isManualDate) {
+//                if (newTicket != 0)
                     newTickets.add(new Entry(i, newTicket));
 
-                if (resolvedTicket != 0)
+//                if (resolvedTicket != 0)
                     resolvedTickets.add(new Entry(i, resolvedTicket));
 
-                if (closedTicket != 0)
+//                if (closedTicket != 0)
                     closedTickets.add(new Entry(i, closedTicket));
 
-
-
-         /*   //inflate xAxis data
-            if (formatXAxis) {
-                long initialTimeStamp = ticketStatByStatusList.get(i).getTimestamp();
-                String initialDate = getDateFromTimeStamp(initialTimeStamp);
-                dayInMonth.add(initialDate);
-
-                // (step 3 in loop)
-                long timestamp = ticketStatByStatusList.get(i + 3).getTimestamp();
-                String date = getDateFromTimeStamp(timestamp);
-                dayInMonth.add(date);
-            }*/
-
-                long timeStamp = ticketStatByStatus.getTimestamp();
-                String date = getDateFromTimeStamp(timeStamp);
-                dayInMonth.add(date);
+                    long timeStamp = ticketStatByStatus.getTimestamp();
+                    String date = getDateFromTimeStamp(timeStamp);
+                    dayInMonth.add(date);
+                } else {
+                    // for manual selection implement different axis formatter, for this we'll have to assign timestamp to x
+                    newTickets.add(new Entry(ticketStatByStatus.getTimestamp(), newTicket));
+                    resolvedTickets.add(new Entry(ticketStatByStatus.getTimestamp(), resolvedTicket));
+                    closedTickets.add(new Entry(ticketStatByStatus.getTimestamp(), closedTicket));
+                }
 
             }
 
@@ -882,47 +916,40 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
 /*        lineChart.getAxisLeft().setAxisMinimum(0f);
         lineChart.getAxisRight().setAxisMinimum(0f);*/
-
+        boolean isManualSelection = Hawk.get(Constants.MANUAL_DATE, false);
         switch (xAXisType) {
             case "HOUR":
-                lineChart.getXAxis().setLabelCount(2);
+                lineChart.getXAxis().setLabelCount(12);
                 lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_HOURS));
                 break;
 
             case "WEEK":
                 lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_WEEK));
-                lineChart.getXAxis().setLabelCount(2);
+                lineChart.getXAxis().setLabelCount(6);
                 break;
 
             case "MONTH":
-                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(dayInMonth));
-                lineChart.getXAxis().setLabelCount(10);
+                if (isManualSelection) {
+                    lineChart.getXAxis().setValueFormatter(
+                            new ManualMonthFormatter(ticketStatByStatusList.size()));
+                    GlobalUtils.showLog(TAG, "list size check: " + ticketStatByStatusList.size());
+                } else {
+                    lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(dayInMonth));
+                    lineChart.getXAxis().setLabelCount(10);
+                }
                 break;
 
             case "YEAR":
-                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_YEAR));
-                lineChart.getXAxis().setLabelCount(3);
+                if (isManualSelection) {
+                    lineChart.getXAxis().setValueFormatter(
+                            new ManualYearFormatter(ticketStatByStatusList.size()));
+                } else {
+                    lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_YEAR));
+                    lineChart.getXAxis().setLabelCount(12);
+                }
                 break;
 
         }
-
-        lineChart.setOnDrawListener(new OnDrawListener() {
-            @Override
-            public void onEntryAdded(Entry entry) {
-
-            }
-
-            @Override
-            public void onEntryMoved(Entry entry) {
-
-            }
-
-            @Override
-            public void onDrawFinished(DataSet<?> dataSet) {
-                pbLineChart.setVisibility(View.GONE);
-                lineChart.setVisibility(View.VISIBLE);
-            }
-        });
 
         lineChart.setData(new LineData(lineDataSets));
 //        lineChart.setVisibleXRangeMaximum(65f);
@@ -952,6 +979,13 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         return "";
     }
 
+    private String getMonthNameFromTimeStamp(long initialTimeStamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(initialTimeStamp);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        return GlobalUtils.getMonth(month);
+    }
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_dashboard;
@@ -974,7 +1008,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void hideProgressBar() {
-        pbLineChart.setVisibility(View.GONE);
+//        pbLineChart.setVisibility(View.GONE);
     }
 
     @Override
@@ -1030,25 +1064,55 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void getTicketByDateSuccess() {
-        setTrendText();
+        boolean isManualSelection = Hawk.get(Constants.MANUAL_DATE, false);
+        if (isManualSelection) {
+            tvTrendSelection.setVisibility(View.GONE);
+        } else {
+            setTrendText();
+        }
         Hawk.put(Constants.REFETCH_TICKET_STAT, false);
         tvLineChartNotAvailable.setVisibility(View.GONE);
         TicketStatByDate ticketStatByDate = TicketStatRepo.getInstance().getTicketStatByDate();
         GlobalUtils.showLog(TAG, "list count: " + ticketStatByDate.getTicketStatByStatusRealmList().size());
-        String xAXisType = Hawk.get(Constants.XA_XIS_TYPE, "MONTH");
         if (!CollectionUtils.isEmpty(ticketStatByDate.getTicketStatByStatusRealmList())) {
-            lineChart.setVisibility(View.VISIBLE);
-            setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAXisType);
+            String xAXisType = Hawk.get(Constants.XA_XIS_TYPE, "MONTH");
+            if (xAXisType.equalsIgnoreCase("WEEK")) {
+                lineChart.setVisibility(View.VISIBLE);
+                setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAXisType);
+            } else {
+                String responseType = ticketStatByDate.getTicketStatByStatusRealmList().get(0).getStatType();
+                String xAxisType = getAxisType(responseType);
+                if (!xAxisType.isEmpty()) {
+                    lineChart.setVisibility(View.VISIBLE);
+                    setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAxisType);
+                }
+            }
         } else {
             tvLineChartNotAvailable.setVisibility(View.VISIBLE);
             lineChart.setVisibility(View.GONE);
         }
     }
 
+    private String getAxisType(String responseType) {
+        switch (responseType) {
+            case "1":
+                return "HOUR";
+
+            case "2":
+                return "MONTH";
+
+            case "3":
+                return "YEAR";
+        }
+
+        return "";
+    }
+
     private void setTrendText() {
         StringBuilder trendTextBuilder = new StringBuilder("of ");
         trendTextBuilder.append(trend.toLowerCase());
         tvTrendSelection.setText(trendTextBuilder);
+        tvTrendSelection.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -1059,9 +1123,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its date");
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1091,9 +1156,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its status");
+      /*  UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1116,9 +1182,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its priority");
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @SuppressLint("SetTextI18n")
@@ -1141,7 +1208,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         tvPhoneCallValue.setText(Math.round(phoneCallPercent) + "%");
         tvBotValue.setText(Math.round(botPercent) + "%");
 
-
         if ((thirdParty == 0) && (manual == 0) && (phoneCall == 0) &&
                 (bot == 0)) {
             tvPieChartSourceNotAvailable.setVisibility(View.VISIBLE);
@@ -1162,9 +1228,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its source");
+    /*    UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1194,9 +1261,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its resolved time");
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1207,6 +1275,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
+        GlobalUtils.showLog(TAG, "its date");
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
@@ -1220,6 +1289,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
+        GlobalUtils.showLog(TAG, "its status");
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
@@ -1233,6 +1303,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
+        GlobalUtils.showLog(TAG, "its priority");
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
@@ -1284,6 +1355,66 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         }
     }
+
+    private class ManualMonthFormatter extends ValueFormatter {
+        private int count;
+
+        public ManualMonthFormatter(int count) {
+            this.count = count;
+        }
+
+        @Override
+        public String getAxisLabel(float value, AxisBase axis) {
+            long timeStamp = (long) value;
+            String date = getDateFromTimeStamp(timeStamp);
+            axis.setLabelCount(Math.min(count, 10));
+            return date;
+        }
+    }
+
+    private class ManualYearFormatter extends ValueFormatter {
+        private int count;
+
+        public ManualYearFormatter(int count) {
+            this.count = count;
+        }
+
+        @Override
+        public String getAxisLabel(float value, AxisBase axis) {
+            long timeStamp = (long) value;
+            axis.setLabelCount(count);
+            return getMonthNameFromTimeStamp(timeStamp);
+        }
+    }
+
+    private static class PieChartValueFormatter extends ValueFormatter {
+        public PieChartValueFormatter() {
+        }
+
+        @SuppressLint("DefaultLocale")
+        @Override
+        public String getPieLabel(float value, PieEntry pieEntry) {
+            String formattedValue = String.format("%.0f", value);
+            GlobalUtils.showLog(TAG, "value check:" + formattedValue);
+            if (formattedValue.equalsIgnoreCase("0")) {
+                GlobalUtils.showLog(TAG, "true case");
+                return "";
+            }
+            return String.valueOf(value);
+        }
+
+        /*   @SuppressLint("DefaultLocale")
+        @Override
+        public String getFormattedValue(float value) {
+            String formattedValue = String.format("%.0f", value);
+            GlobalUtils.showLog(TAG, "value check:" + formattedValue);
+            if (formattedValue.equalsIgnoreCase("0")) {
+                return "";
+            }
+            return String.valueOf(value);
+        }*/
+    }
+
 
 }
 

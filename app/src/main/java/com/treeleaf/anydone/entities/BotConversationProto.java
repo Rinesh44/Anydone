@@ -1993,80 +1993,144 @@ public final class BotConversationProto {
     }
   }
 
-  public interface PromptValueHolderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.PromptValueHolder)
+  public interface BotConversationCacheOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.BotConversationCache)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional string refId = 1;</code>
+     */
+    String getRefId();
+    /**
+     * <code>optional string refId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     boolean hasIntent();
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     BotHousekeepingProto.BotIntent getIntent();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     boolean hasBotReply();
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     NLUProto.BotReply getBotReply();
 
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
-    int getPromptValueCount();
+    int getParamValueCount();
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
-    boolean containsPromptValue(
+    boolean containsParamValue(
             String key);
     /**
-     * Use {@link #getPromptValueMap()} instead.
+     * Use {@link #getParamValueMap()} instead.
      */
     @Deprecated
     java.util.Map<String, String>
-    getPromptValue();
+    getParamValue();
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
     java.util.Map<String, String>
-    getPromptValueMap();
+    getParamValueMap();
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
 
-    String getPromptValueOrDefault(
+    String getParamValueOrDefault(
             String key,
             String defaultValue);
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
 
-    String getPromptValueOrThrow(
+    String getParamValueOrThrow(
+            String key);
+
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+    int getIntentParamCount();
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+    boolean containsIntentParam(
+            String key);
+    /**
+     * Use {@link #getIntentParamMap()} instead.
+     */
+    @Deprecated
+    java.util.Map<String, BotHousekeepingProto.IntentParam>
+    getIntentParam();
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+    java.util.Map<String, BotHousekeepingProto.IntentParam>
+    getIntentParamMap();
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+
+    BotHousekeepingProto.IntentParam getIntentParamOrDefault(
+            String key,
+            BotHousekeepingProto.IntentParam defaultValue);
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+
+    BotHousekeepingProto.IntentParam getIntentParamOrThrow(
             String key);
 
     /**
@@ -2074,7 +2138,7 @@ public final class BotConversationProto {
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     boolean hasBotEntity();
     /**
@@ -2082,37 +2146,84 @@ public final class BotConversationProto {
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     BotHousekeepingProto.BotEntity getBotEntity();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.PromptValueHolder}
+   * Protobuf type {@code treeleaf.anydone.entities.BotConversationCache}
    */
-  public  static final class PromptValueHolder extends
+  public  static final class BotConversationCache extends
       com.google.protobuf.GeneratedMessageLite<
-          PromptValueHolder, PromptValueHolder.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.PromptValueHolder)
-      PromptValueHolderOrBuilder {
-    private PromptValueHolder() {
+          BotConversationCache, BotConversationCache.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.BotConversationCache)
+      BotConversationCacheOrBuilder {
+    private BotConversationCache() {
+      refId_ = "";
     }
     private int bitField0_;
-    public static final int INTENT_FIELD_NUMBER = 1;
+    public static final int REFID_FIELD_NUMBER = 1;
+    private String refId_;
+    /**
+     * <code>optional string refId = 1;</code>
+     */
+    public String getRefId() {
+      return refId_;
+    }
+    /**
+     * <code>optional string refId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+    }
+    /**
+     * <code>optional string refId = 1;</code>
+     */
+    private void setRefId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refId_ = value;
+    }
+    /**
+     * <code>optional string refId = 1;</code>
+     */
+    private void clearRefId() {
+      
+      refId_ = getDefaultInstance().getRefId();
+    }
+    /**
+     * <code>optional string refId = 1;</code>
+     */
+    private void setRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refId_ = value.toStringUtf8();
+    }
+
+    public static final int INTENT_FIELD_NUMBER = 2;
     private BotHousekeepingProto.BotIntent intent_;
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     public boolean hasIntent() {
       return intent_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     public BotHousekeepingProto.BotIntent getIntent() {
       return intent_ == null ? BotHousekeepingProto.BotIntent.getDefaultInstance() : intent_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     private void setIntent(BotHousekeepingProto.BotIntent value) {
       if (value == null) {
@@ -2122,7 +2233,7 @@ public final class BotConversationProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     private void setIntent(
         BotHousekeepingProto.BotIntent.Builder builderForValue) {
@@ -2130,7 +2241,7 @@ public final class BotConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     private void mergeIntent(BotHousekeepingProto.BotIntent value) {
       if (intent_ != null &&
@@ -2143,28 +2254,28 @@ public final class BotConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
      */
     private void clearIntent() {  intent_ = null;
       
     }
 
-    public static final int BOTREPLY_FIELD_NUMBER = 2;
+    public static final int BOTREPLY_FIELD_NUMBER = 3;
     private NLUProto.BotReply botReply_;
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     public boolean hasBotReply() {
       return botReply_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     public NLUProto.BotReply getBotReply() {
       return botReply_ == null ? NLUProto.BotReply.getDefaultInstance() : botReply_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     private void setBotReply(NLUProto.BotReply value) {
       if (value == null) {
@@ -2174,7 +2285,7 @@ public final class BotConversationProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     private void setBotReply(
         NLUProto.BotReply.Builder builderForValue) {
@@ -2182,7 +2293,7 @@ public final class BotConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     private void mergeBotReply(NLUProto.BotReply value) {
       if (botReply_ != null &&
@@ -2195,14 +2306,14 @@ public final class BotConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
      */
     private void clearBotReply() {  botReply_ = null;
       
     }
 
-    public static final int PROMPTVALUE_FIELD_NUMBER = 3;
-    private static final class PromptValueDefaultEntryHolder {
+    public static final int PARAMVALUE_FIELD_NUMBER = 4;
+    private static final class ParamValueDefaultEntryHolder {
       static final com.google.protobuf.MapEntryLite<
           String, String> defaultEntry =
               com.google.protobuf.MapEntryLite
@@ -2213,84 +2324,84 @@ public final class BotConversationProto {
                   "");
     }
     private com.google.protobuf.MapFieldLite<
-        String, String> promptValue_ =
+        String, String> paramValue_ =
             com.google.protobuf.MapFieldLite.emptyMapField();
     private com.google.protobuf.MapFieldLite<String, String>
-    internalGetPromptValue() {
-      return promptValue_;
+    internalGetParamValue() {
+      return paramValue_;
     }
     private com.google.protobuf.MapFieldLite<String, String>
-    internalGetMutablePromptValue() {
-      if (!promptValue_.isMutable()) {
-        promptValue_ = promptValue_.mutableCopy();
+    internalGetMutableParamValue() {
+      if (!paramValue_.isMutable()) {
+        paramValue_ = paramValue_.mutableCopy();
       }
-      return promptValue_;
+      return paramValue_;
     }
 
-    public int getPromptValueCount() {
-      return internalGetPromptValue().size();
+    public int getParamValueCount() {
+      return internalGetParamValue().size();
     }
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
 
-    public boolean containsPromptValue(
+    public boolean containsParamValue(
         String key) {
       if (key == null) { throw new NullPointerException(); }
-      return internalGetPromptValue().containsKey(key);
+      return internalGetParamValue().containsKey(key);
     }
     /**
-     * Use {@link #getPromptValueMap()} instead.
+     * Use {@link #getParamValueMap()} instead.
      */
     @Deprecated
-    public java.util.Map<String, String> getPromptValue() {
-      return getPromptValueMap();
+    public java.util.Map<String, String> getParamValue() {
+      return getParamValueMap();
     }
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
 
-    public java.util.Map<String, String> getPromptValueMap() {
+    public java.util.Map<String, String> getParamValueMap() {
       return java.util.Collections.unmodifiableMap(
-          internalGetPromptValue());
+          internalGetParamValue());
     }
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
 
-    public String getPromptValueOrDefault(
+    public String getParamValueOrDefault(
         String key,
         String defaultValue) {
       if (key == null) { throw new NullPointerException(); }
       java.util.Map<String, String> map =
-          internalGetPromptValue();
+          internalGetParamValue();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
 
-    public String getPromptValueOrThrow(
+    public String getParamValueOrThrow(
         String key) {
       if (key == null) { throw new NullPointerException(); }
       java.util.Map<String, String> map =
-          internalGetPromptValue();
+          internalGetParamValue();
       if (!map.containsKey(key)) {
         throw new IllegalArgumentException();
       }
@@ -2298,24 +2409,131 @@ public final class BotConversationProto {
     }
     /**
      * <pre>
-     *key: param_name, value: reply
+     *key: param_name, value: intent param's  value
      * </pre>
      *
-     * <code>map&lt;string, string&gt; promptValue = 3;</code>
+     * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
     private java.util.Map<String, String>
-    getMutablePromptValueMap() {
-      return internalGetMutablePromptValue();
+    getMutableParamValueMap() {
+      return internalGetMutableParamValue();
     }
 
-    public static final int BOTENTITY_FIELD_NUMBER = 4;
+    public static final int INTENTPARAM_FIELD_NUMBER = 5;
+    private static final class IntentParamDefaultEntryHolder {
+      static final com.google.protobuf.MapEntryLite<
+          String, BotHousekeepingProto.IntentParam> defaultEntry =
+              com.google.protobuf.MapEntryLite
+              .<String, BotHousekeepingProto.IntentParam>newDefaultInstance(
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  BotHousekeepingProto.IntentParam.getDefaultInstance());
+    }
+    private com.google.protobuf.MapFieldLite<
+        String, BotHousekeepingProto.IntentParam> intentParam_ =
+            com.google.protobuf.MapFieldLite.emptyMapField();
+    private com.google.protobuf.MapFieldLite<String, BotHousekeepingProto.IntentParam>
+    internalGetIntentParam() {
+      return intentParam_;
+    }
+    private com.google.protobuf.MapFieldLite<String, BotHousekeepingProto.IntentParam>
+    internalGetMutableIntentParam() {
+      if (!intentParam_.isMutable()) {
+        intentParam_ = intentParam_.mutableCopy();
+      }
+      return intentParam_;
+    }
+
+    public int getIntentParamCount() {
+      return internalGetIntentParam().size();
+    }
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+
+    public boolean containsIntentParam(
+        String key) {
+      if (key == null) { throw new NullPointerException(); }
+      return internalGetIntentParam().containsKey(key);
+    }
+    /**
+     * Use {@link #getIntentParamMap()} instead.
+     */
+    @Deprecated
+    public java.util.Map<String, BotHousekeepingProto.IntentParam> getIntentParam() {
+      return getIntentParamMap();
+    }
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+
+    public java.util.Map<String, BotHousekeepingProto.IntentParam> getIntentParamMap() {
+      return java.util.Collections.unmodifiableMap(
+          internalGetIntentParam());
+    }
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+
+    public BotHousekeepingProto.IntentParam getIntentParamOrDefault(
+        String key,
+        BotHousekeepingProto.IntentParam defaultValue) {
+      if (key == null) { throw new NullPointerException(); }
+      java.util.Map<String, BotHousekeepingProto.IntentParam> map =
+          internalGetIntentParam();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+
+    public BotHousekeepingProto.IntentParam getIntentParamOrThrow(
+        String key) {
+      if (key == null) { throw new NullPointerException(); }
+      java.util.Map<String, BotHousekeepingProto.IntentParam> map =
+          internalGetIntentParam();
+      if (!map.containsKey(key)) {
+        throw new IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    /**
+     * <pre>
+     *key: intent_id, value = intent_param
+     * </pre>
+     *
+     * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+     */
+    private java.util.Map<String, BotHousekeepingProto.IntentParam>
+    getMutableIntentParamMap() {
+      return internalGetMutableIntentParam();
+    }
+
+    public static final int BOTENTITY_FIELD_NUMBER = 6;
     private BotHousekeepingProto.BotEntity botEntity_;
     /**
      * <pre>
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     public boolean hasBotEntity() {
       return botEntity_ != null;
@@ -2325,7 +2543,7 @@ public final class BotConversationProto {
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     public BotHousekeepingProto.BotEntity getBotEntity() {
       return botEntity_ == null ? BotHousekeepingProto.BotEntity.getDefaultInstance() : botEntity_;
@@ -2335,7 +2553,7 @@ public final class BotConversationProto {
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     private void setBotEntity(BotHousekeepingProto.BotEntity value) {
       if (value == null) {
@@ -2349,7 +2567,7 @@ public final class BotConversationProto {
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     private void setBotEntity(
         BotHousekeepingProto.BotEntity.Builder builderForValue) {
@@ -2361,7 +2579,7 @@ public final class BotConversationProto {
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     private void mergeBotEntity(BotHousekeepingProto.BotEntity value) {
       if (botEntity_ != null &&
@@ -2378,7 +2596,7 @@ public final class BotConversationProto {
      *to check if response match entity regex
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
      */
     private void clearBotEntity() {  botEntity_ = null;
       
@@ -2386,19 +2604,27 @@ public final class BotConversationProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!refId_.isEmpty()) {
+        output.writeString(1, getRefId());
+      }
       if (intent_ != null) {
-        output.writeMessage(1, getIntent());
+        output.writeMessage(2, getIntent());
       }
       if (botReply_ != null) {
-        output.writeMessage(2, getBotReply());
+        output.writeMessage(3, getBotReply());
       }
       for (java.util.Map.Entry<String, String> entry
-           : internalGetPromptValue().entrySet()) {
-        PromptValueDefaultEntryHolder.defaultEntry.serializeTo(
-            output, 3, entry.getKey(), entry.getValue());
+           : internalGetParamValue().entrySet()) {
+        ParamValueDefaultEntryHolder.defaultEntry.serializeTo(
+            output, 4, entry.getKey(), entry.getValue());
+      }
+      for (java.util.Map.Entry<String, BotHousekeepingProto.IntentParam> entry
+           : internalGetIntentParam().entrySet()) {
+        IntentParamDefaultEntryHolder.defaultEntry.serializeTo(
+            output, 5, entry.getKey(), entry.getValue());
       }
       if (botEntity_ != null) {
-        output.writeMessage(4, getBotEntity());
+        output.writeMessage(6, getBotEntity());
       }
     }
 
@@ -2407,81 +2633,90 @@ public final class BotConversationProto {
       if (size != -1) return size;
 
       size = 0;
+      if (!refId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getRefId());
+      }
       if (intent_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getIntent());
+          .computeMessageSize(2, getIntent());
       }
       if (botReply_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getBotReply());
+          .computeMessageSize(3, getBotReply());
       }
       for (java.util.Map.Entry<String, String> entry
-           : internalGetPromptValue().entrySet()) {
-        size += PromptValueDefaultEntryHolder.defaultEntry.computeMessageSize(
-          3, entry.getKey(), entry.getValue());
+           : internalGetParamValue().entrySet()) {
+        size += ParamValueDefaultEntryHolder.defaultEntry.computeMessageSize(
+          4, entry.getKey(), entry.getValue());
+      }
+      for (java.util.Map.Entry<String, BotHousekeepingProto.IntentParam> entry
+           : internalGetIntentParam().entrySet()) {
+        size += IntentParamDefaultEntryHolder.defaultEntry.computeMessageSize(
+          5, entry.getKey(), entry.getValue());
       }
       if (botEntity_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getBotEntity());
+          .computeMessageSize(6, getBotEntity());
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static PromptValueHolder parseFrom(
+    public static BotConversationCache parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static PromptValueHolder parseFrom(
+    public static BotConversationCache parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static PromptValueHolder parseFrom(byte[] data)
+    public static BotConversationCache parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static PromptValueHolder parseFrom(
+    public static BotConversationCache parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static PromptValueHolder parseFrom(java.io.InputStream input)
+    public static BotConversationCache parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static PromptValueHolder parseFrom(
+    public static BotConversationCache parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static PromptValueHolder parseDelimitedFrom(java.io.InputStream input)
+    public static BotConversationCache parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static PromptValueHolder parseDelimitedFrom(
+    public static BotConversationCache parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static PromptValueHolder parseFrom(
+    public static BotConversationCache parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static PromptValueHolder parseFrom(
+    public static BotConversationCache parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2492,38 +2727,78 @@ public final class BotConversationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PromptValueHolder prototype) {
+    public static Builder newBuilder(BotConversationCache prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.PromptValueHolder}
+     * Protobuf type {@code treeleaf.anydone.entities.BotConversationCache}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          PromptValueHolder, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.PromptValueHolder)
-        PromptValueHolderOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.BotConversationProto.PromptValueHolder.newBuilder()
+          BotConversationCache, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotConversationCache)
+        BotConversationCacheOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.BotConversationProto.BotConversationCache.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+       * <code>optional string refId = 1;</code>
+       */
+      public String getRefId() {
+        return instance.getRefId();
+      }
+      /**
+       * <code>optional string refId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <code>optional string refId = 1;</code>
+       */
+      public Builder setRefId(
+          String value) {
+        copyOnWrite();
+        instance.setRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string refId = 1;</code>
+       */
+      public Builder clearRefId() {
+        copyOnWrite();
+        instance.clearRefId();
+        return this;
+      }
+      /**
+       * <code>optional string refId = 1;</code>
+       */
+      public Builder setRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
        */
       public boolean hasIntent() {
         return instance.hasIntent();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
        */
       public BotHousekeepingProto.BotIntent getIntent() {
         return instance.getIntent();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
        */
       public Builder setIntent(BotHousekeepingProto.BotIntent value) {
         copyOnWrite();
@@ -2531,7 +2806,7 @@ public final class BotConversationProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
        */
       public Builder setIntent(
           BotHousekeepingProto.BotIntent.Builder builderForValue) {
@@ -2540,7 +2815,7 @@ public final class BotConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
        */
       public Builder mergeIntent(BotHousekeepingProto.BotIntent value) {
         copyOnWrite();
@@ -2548,7 +2823,7 @@ public final class BotConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.BotIntent intent = 2;</code>
        */
       public Builder clearIntent() {  copyOnWrite();
         instance.clearIntent();
@@ -2556,19 +2831,19 @@ public final class BotConversationProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
        */
       public boolean hasBotReply() {
         return instance.hasBotReply();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
        */
       public NLUProto.BotReply getBotReply() {
         return instance.getBotReply();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
        */
       public Builder setBotReply(NLUProto.BotReply value) {
         copyOnWrite();
@@ -2576,7 +2851,7 @@ public final class BotConversationProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
        */
       public Builder setBotReply(
           NLUProto.BotReply.Builder builderForValue) {
@@ -2585,7 +2860,7 @@ public final class BotConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
        */
       public Builder mergeBotReply(NLUProto.BotReply value) {
         copyOnWrite();
@@ -2593,7 +2868,7 @@ public final class BotConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.BotReply botReply = 3;</code>
        */
       public Builder clearBotReply() {  copyOnWrite();
         instance.clearBotReply();
@@ -2601,90 +2876,90 @@ public final class BotConversationProto {
       }
 
 
-      public int getPromptValueCount() {
-        return instance.getPromptValueMap().size();
+      public int getParamValueCount() {
+        return instance.getParamValueMap().size();
       }
       /**
        * <pre>
-       *key: param_name, value: reply
+       *key: param_name, value: intent param's  value
        * </pre>
        *
-       * <code>map&lt;string, string&gt; promptValue = 3;</code>
+       * <code>map&lt;string, string&gt; paramValue = 4;</code>
        */
 
-      public boolean containsPromptValue(
+      public boolean containsParamValue(
           String key) {
         if (key == null) { throw new NullPointerException(); }
-        return instance.getPromptValueMap().containsKey(key);
+        return instance.getParamValueMap().containsKey(key);
       }
 
-      public Builder clearPromptValue() {
+      public Builder clearParamValue() {
         copyOnWrite();
-        instance.getMutablePromptValueMap().clear();
+        instance.getMutableParamValueMap().clear();
         return this;
       }
       /**
        * <pre>
-       *key: param_name, value: reply
+       *key: param_name, value: intent param's  value
        * </pre>
        *
-       * <code>map&lt;string, string&gt; promptValue = 3;</code>
+       * <code>map&lt;string, string&gt; paramValue = 4;</code>
        */
 
-      public Builder removePromptValue(
+      public Builder removeParamValue(
           String key) {
         if (key == null) { throw new NullPointerException(); }
         copyOnWrite();
-        instance.getMutablePromptValueMap().remove(key);
+        instance.getMutableParamValueMap().remove(key);
         return this;
       }
       /**
-       * Use {@link #getPromptValueMap()} instead.
+       * Use {@link #getParamValueMap()} instead.
        */
       @Deprecated
-      public java.util.Map<String, String> getPromptValue() {
-        return getPromptValueMap();
+      public java.util.Map<String, String> getParamValue() {
+        return getParamValueMap();
       }
       /**
        * <pre>
-       *key: param_name, value: reply
+       *key: param_name, value: intent param's  value
        * </pre>
        *
-       * <code>map&lt;string, string&gt; promptValue = 3;</code>
+       * <code>map&lt;string, string&gt; paramValue = 4;</code>
        */
-      public java.util.Map<String, String> getPromptValueMap() {
+      public java.util.Map<String, String> getParamValueMap() {
         return java.util.Collections.unmodifiableMap(
-            instance.getPromptValueMap());
+            instance.getParamValueMap());
       }
       /**
        * <pre>
-       *key: param_name, value: reply
+       *key: param_name, value: intent param's  value
        * </pre>
        *
-       * <code>map&lt;string, string&gt; promptValue = 3;</code>
+       * <code>map&lt;string, string&gt; paramValue = 4;</code>
        */
 
-      public String getPromptValueOrDefault(
+      public String getParamValueOrDefault(
           String key,
           String defaultValue) {
         if (key == null) { throw new NullPointerException(); }
         java.util.Map<String, String> map =
-            instance.getPromptValueMap();
+            instance.getParamValueMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <pre>
-       *key: param_name, value: reply
+       *key: param_name, value: intent param's  value
        * </pre>
        *
-       * <code>map&lt;string, string&gt; promptValue = 3;</code>
+       * <code>map&lt;string, string&gt; paramValue = 4;</code>
        */
 
-      public String getPromptValueOrThrow(
+      public String getParamValueOrThrow(
           String key) {
         if (key == null) { throw new NullPointerException(); }
         java.util.Map<String, String> map =
-            instance.getPromptValueMap();
+            instance.getParamValueMap();
         if (!map.containsKey(key)) {
           throw new IllegalArgumentException();
         }
@@ -2692,31 +2967,151 @@ public final class BotConversationProto {
       }
       /**
        * <pre>
-       *key: param_name, value: reply
+       *key: param_name, value: intent param's  value
        * </pre>
        *
-       * <code>map&lt;string, string&gt; promptValue = 3;</code>
+       * <code>map&lt;string, string&gt; paramValue = 4;</code>
        */
-      public Builder putPromptValue(
+      public Builder putParamValue(
           String key,
           String value) {
         if (key == null) { throw new NullPointerException(); }
         if (value == null) { throw new NullPointerException(); }
         copyOnWrite();
-        instance.getMutablePromptValueMap().put(key, value);
+        instance.getMutableParamValueMap().put(key, value);
         return this;
       }
       /**
        * <pre>
-       *key: param_name, value: reply
+       *key: param_name, value: intent param's  value
        * </pre>
        *
-       * <code>map&lt;string, string&gt; promptValue = 3;</code>
+       * <code>map&lt;string, string&gt; paramValue = 4;</code>
        */
-      public Builder putAllPromptValue(
+      public Builder putAllParamValue(
           java.util.Map<String, String> values) {
         copyOnWrite();
-        instance.getMutablePromptValueMap().putAll(values);
+        instance.getMutableParamValueMap().putAll(values);
+        return this;
+      }
+
+
+      public int getIntentParamCount() {
+        return instance.getIntentParamMap().size();
+      }
+      /**
+       * <pre>
+       *key: intent_id, value = intent_param
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+       */
+
+      public boolean containsIntentParam(
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
+        return instance.getIntentParamMap().containsKey(key);
+      }
+
+      public Builder clearIntentParam() {
+        copyOnWrite();
+        instance.getMutableIntentParamMap().clear();
+        return this;
+      }
+      /**
+       * <pre>
+       *key: intent_id, value = intent_param
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+       */
+
+      public Builder removeIntentParam(
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableIntentParamMap().remove(key);
+        return this;
+      }
+      /**
+       * Use {@link #getIntentParamMap()} instead.
+       */
+      @Deprecated
+      public java.util.Map<String, BotHousekeepingProto.IntentParam> getIntentParam() {
+        return getIntentParamMap();
+      }
+      /**
+       * <pre>
+       *key: intent_id, value = intent_param
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+       */
+      public java.util.Map<String, BotHousekeepingProto.IntentParam> getIntentParamMap() {
+        return java.util.Collections.unmodifiableMap(
+            instance.getIntentParamMap());
+      }
+      /**
+       * <pre>
+       *key: intent_id, value = intent_param
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+       */
+
+      public BotHousekeepingProto.IntentParam getIntentParamOrDefault(
+          String key,
+          BotHousekeepingProto.IntentParam defaultValue) {
+        if (key == null) { throw new NullPointerException(); }
+        java.util.Map<String, BotHousekeepingProto.IntentParam> map =
+            instance.getIntentParamMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <pre>
+       *key: intent_id, value = intent_param
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+       */
+
+      public BotHousekeepingProto.IntentParam getIntentParamOrThrow(
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
+        java.util.Map<String, BotHousekeepingProto.IntentParam> map =
+            instance.getIntentParamMap();
+        if (!map.containsKey(key)) {
+          throw new IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <pre>
+       *key: intent_id, value = intent_param
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+       */
+      public Builder putIntentParam(
+          String key,
+          BotHousekeepingProto.IntentParam value) {
+        if (key == null) { throw new NullPointerException(); }
+        if (value == null) { throw new NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableIntentParamMap().put(key, value);
+        return this;
+      }
+      /**
+       * <pre>
+       *key: intent_id, value = intent_param
+       * </pre>
+       *
+       * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
+       */
+      public Builder putAllIntentParam(
+          java.util.Map<String, BotHousekeepingProto.IntentParam> values) {
+        copyOnWrite();
+        instance.getMutableIntentParamMap().putAll(values);
         return this;
       }
 
@@ -2725,7 +3120,7 @@ public final class BotConversationProto {
        *to check if response match entity regex
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
        */
       public boolean hasBotEntity() {
         return instance.hasBotEntity();
@@ -2735,7 +3130,7 @@ public final class BotConversationProto {
        *to check if response match entity regex
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
        */
       public BotHousekeepingProto.BotEntity getBotEntity() {
         return instance.getBotEntity();
@@ -2745,7 +3140,7 @@ public final class BotConversationProto {
        *to check if response match entity regex
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
        */
       public Builder setBotEntity(BotHousekeepingProto.BotEntity value) {
         copyOnWrite();
@@ -2757,7 +3152,7 @@ public final class BotConversationProto {
        *to check if response match entity regex
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
        */
       public Builder setBotEntity(
           BotHousekeepingProto.BotEntity.Builder builderForValue) {
@@ -2770,7 +3165,7 @@ public final class BotConversationProto {
        *to check if response match entity regex
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
        */
       public Builder mergeBotEntity(BotHousekeepingProto.BotEntity value) {
         copyOnWrite();
@@ -2782,27 +3177,28 @@ public final class BotConversationProto {
        *to check if response match entity regex
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 6;</code>
        */
       public Builder clearBotEntity() {  copyOnWrite();
         instance.clearBotEntity();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PromptValueHolder)
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotConversationCache)
     }
     protected final Object dynamicMethod(
         MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new PromptValueHolder();
+          return new BotConversationCache();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
-          promptValue_.makeImmutable();
+          paramValue_.makeImmutable();
+          intentParam_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2810,11 +3206,15 @@ public final class BotConversationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          PromptValueHolder other = (PromptValueHolder) arg1;
+          BotConversationCache other = (BotConversationCache) arg1;
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
           intent_ = visitor.visitMessage(intent_, other.intent_);
           botReply_ = visitor.visitMessage(botReply_, other.botReply_);
-          promptValue_ = visitor.visitMap(
-              promptValue_, other.internalGetPromptValue());
+          paramValue_ = visitor.visitMap(
+              paramValue_, other.internalGetParamValue());
+          intentParam_ = visitor.visitMap(
+              intentParam_, other.internalGetIntentParam());
           botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
@@ -2842,6 +3242,12 @@ public final class BotConversationProto {
                   break;
                 }
                 case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 18: {
                   BotHousekeepingProto.BotIntent.Builder subBuilder = null;
                   if (intent_ != null) {
                     subBuilder = intent_.toBuilder();
@@ -2854,7 +3260,7 @@ public final class BotConversationProto {
 
                   break;
                 }
-                case 18: {
+                case 26: {
                   NLUProto.BotReply.Builder subBuilder = null;
                   if (botReply_ != null) {
                     subBuilder = botReply_.toBuilder();
@@ -2867,13 +3273,19 @@ public final class BotConversationProto {
 
                   break;
                 }
-                case 26: {
-                  if (!promptValue_.isMutable()) {
-                    promptValue_ = promptValue_.mutableCopy();
-                  }
-                  PromptValueDefaultEntryHolder.defaultEntry.parseInto(promptValue_, input, extensionRegistry);  break;
-                }
                 case 34: {
+                  if (!paramValue_.isMutable()) {
+                    paramValue_ = paramValue_.mutableCopy();
+                  }
+                  ParamValueDefaultEntryHolder.defaultEntry.parseInto(paramValue_, input, extensionRegistry);  break;
+                }
+                case 42: {
+                  if (!intentParam_.isMutable()) {
+                    intentParam_ = intentParam_.mutableCopy();
+                  }
+                  IntentParamDefaultEntryHolder.defaultEntry.parseInto(intentParam_, input, extensionRegistry);  break;
+                }
+                case 50: {
                   BotHousekeepingProto.BotEntity.Builder subBuilder = null;
                   if (botEntity_ != null) {
                     subBuilder = botEntity_.toBuilder();
@@ -2901,7 +3313,7 @@ public final class BotConversationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (PromptValueHolder.class) {
+          if (PARSER == null) {    synchronized (BotConversationCache.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2914,20 +3326,20 @@ public final class BotConversationProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.PromptValueHolder)
-    private static final PromptValueHolder DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotConversationCache)
+    private static final BotConversationCache DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new PromptValueHolder();
+      DEFAULT_INSTANCE = new BotConversationCache();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static PromptValueHolder getDefaultInstance() {
+    public static BotConversationCache getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<PromptValueHolder> PARSER;
+    private static volatile com.google.protobuf.Parser<BotConversationCache> PARSER;
 
-    public static com.google.protobuf.Parser<PromptValueHolder> parser() {
+    public static com.google.protobuf.Parser<BotConversationCache> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

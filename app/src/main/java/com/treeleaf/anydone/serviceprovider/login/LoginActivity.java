@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -21,11 +25,13 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
@@ -38,6 +44,8 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     public static final int GOOGLE_SIGN_IN = 111;
     public static final int PERMISSIONS_CODE = 999;
     private static final String TAG = "LoginActivity";
+    String[] branches = {"Dev", "Production"};
+
     /*   @BindView(R.id.btnLoginWithGoogle)
        MaterialButton btnGoogleSignIn;*/
     @BindView(R.id.tv_forgot_password)
@@ -50,6 +58,8 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     TextInputLayout ilEmailPhone;
     @BindView(R.id.il_password)
     TextInputLayout ilPassword;
+    @BindView(R.id.sp_branch)
+    AppCompatSpinner spBranch;
 
     private GoogleSignInClient mGoogleSignInClient;
     @BindView(R.id.pb_progress)
@@ -70,7 +80,34 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
         checkRequiredPermissions();
         configureGoogleSignIn();
         addTextInputListeners();
+
+        setupBranchSpinner();
     }
+
+    private void setupBranchSpinner() {
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, branches);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spBranch.setAdapter(aa);
+
+        spBranch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+                } else {
+                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+            }
+        });
+    }
+
 
     private void addTextInputListeners() {
         etEmail.addTextChangedListener(new TextWatcher() {

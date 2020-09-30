@@ -110,6 +110,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     CircleImageView civAssignEmployee;
     @BindView(R.id.fbl_label)
     FlexboxLayout fblLabel;
+    @BindView(R.id.scroll_view)
+    ScrollView scrollView;
 
     private List<AssignEmployee> employeeList;
     private List<Customer> customerList;
@@ -203,6 +205,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         etCustomerName.setOnItemClickListener((parent, view, position, id) -> {
             UiUtils.hideKeyboard(this);
+            etCustomerName.setError(null);
             rlCustomerSelfHolder.setVisibility(View.GONE);
             if (!CollectionUtils.isEmpty(customerList)) {
                 selectedCustomer = customerList.get(position);
@@ -214,6 +217,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
+                etCustomerName.setError(null);
                 StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
                 selfCustomerText.append(" (Me)");
                 tvCustomerSelf.setText(selfCustomerText);
@@ -249,12 +253,18 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 etEmail.setText(selectedCustomer.getEmail());
                 etEmail.setFocusable(false);
                 etEmail.setEnabled(false);
+
+                etPhone.setFocusable(false);
+                etPhone.setEnabled(false);
             }
 
             if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
                 etPhone.setText(selectedCustomer.getPhone());
                 etPhone.setFocusable(false);
                 etPhone.setEnabled(false);
+
+                etEmail.setFocusable(false);
+                etEmail.setEnabled(false);
             }
 
             etCustomerName.setSelection(etCustomerName.getText().length());
@@ -653,22 +663,28 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etEmail.setText(selectedCustomer.getEmail());
             etEmail.setFocusable(false);
             etEmail.setEnabled(false);
-        } else {
+
+            etPhone.setFocusable(false);
+            etPhone.setEnabled(false);
+        }/* else {
             etEmail.setText("");
             etEmail.setFocusable(true);
             etEmail.setEnabled(true);
             etEmail.setFocusableInTouchMode(true);
-        }
+        }*/
 
         if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
             etPhone.setText(selectedCustomer.getPhone());
             etPhone.setFocusable(false);
             etPhone.setEnabled(false);
-        } else {
+
+            etEmail.setFocusable(false);
+            etEmail.setEnabled(false);
+        } /*else {
             etPhone.setText("");
             etPhone.setFocusable(true);
             etPhone.setEnabled(true);
-        }
+        }*/
         etPhone.setFocusableInTouchMode(true);
 
         if (selectedCustomer.getPhone() == null && selectedCustomer.getEmail() == null) {
@@ -767,6 +783,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @Override
     public void onInvalidSummary() {
         etSummary.requestFocus();
+        etSummary.setError("This field is required");
+        scrollView.fullScroll(ScrollView.FOCUS_UP);
+
      /*   ilSummary.setErrorEnabled(true);
         ilSummary.setError("Invalid Summary");
 
@@ -791,7 +810,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
     @Override
     public void onInvalidCustomer() {
-        etCustomerName.requestFocus();
+        etCustomerName.setError("This field is required");
        /* ilCustomerName.setErrorEnabled(true);
         ilCustomerName.setError("Invalid Customer");
 

@@ -1223,6 +1223,30 @@ public final class PaymentProto {
      * <code>optional int64 updatedAt = 11;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional string cardType = 12;</code>
+     */
+    String getCardType();
+    /**
+     * <code>optional string cardType = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getCardTypeBytes();
+
+    /**
+     * <code>optional bool isDefault = 13;</code>
+     */
+    boolean getIsDefault();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    boolean hasBillingAddress();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    UserProto.Address getBillingAddress();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Card}
@@ -1240,6 +1264,7 @@ public final class PaymentProto {
       expiryMonth_ = "";
       expiryYear_ = "";
       cvc_ = "";
+      cardType_ = "";
     }
     public static final int CARDID_FIELD_NUMBER = 1;
     private String cardId_;
@@ -1687,6 +1712,127 @@ public final class PaymentProto {
       updatedAt_ = 0L;
     }
 
+    public static final int CARDTYPE_FIELD_NUMBER = 12;
+    private String cardType_;
+    /**
+     * <code>optional string cardType = 12;</code>
+     */
+    public String getCardType() {
+      return cardType_;
+    }
+    /**
+     * <code>optional string cardType = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCardTypeBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(cardType_);
+    }
+    /**
+     * <code>optional string cardType = 12;</code>
+     */
+    private void setCardType(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      cardType_ = value;
+    }
+    /**
+     * <code>optional string cardType = 12;</code>
+     */
+    private void clearCardType() {
+      
+      cardType_ = getDefaultInstance().getCardType();
+    }
+    /**
+     * <code>optional string cardType = 12;</code>
+     */
+    private void setCardTypeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      cardType_ = value.toStringUtf8();
+    }
+
+    public static final int ISDEFAULT_FIELD_NUMBER = 13;
+    private boolean isDefault_;
+    /**
+     * <code>optional bool isDefault = 13;</code>
+     */
+    public boolean getIsDefault() {
+      return isDefault_;
+    }
+    /**
+     * <code>optional bool isDefault = 13;</code>
+     */
+    private void setIsDefault(boolean value) {
+      
+      isDefault_ = value;
+    }
+    /**
+     * <code>optional bool isDefault = 13;</code>
+     */
+    private void clearIsDefault() {
+      
+      isDefault_ = false;
+    }
+
+    public static final int BILLINGADDRESS_FIELD_NUMBER = 14;
+    private UserProto.Address billingAddress_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    public boolean hasBillingAddress() {
+      return billingAddress_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    public UserProto.Address getBillingAddress() {
+      return billingAddress_ == null ? UserProto.Address.getDefaultInstance() : billingAddress_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    private void setBillingAddress(UserProto.Address value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      billingAddress_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    private void setBillingAddress(
+        UserProto.Address.Builder builderForValue) {
+      billingAddress_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    private void mergeBillingAddress(UserProto.Address value) {
+      if (billingAddress_ != null &&
+          billingAddress_ != UserProto.Address.getDefaultInstance()) {
+        billingAddress_ =
+          UserProto.Address.newBuilder(billingAddress_).mergeFrom(value).buildPartial();
+      } else {
+        billingAddress_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+     */
+    private void clearBillingAddress() {  billingAddress_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!cardId_.isEmpty()) {
@@ -1721,6 +1867,15 @@ public final class PaymentProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(11, updatedAt_);
+      }
+      if (!cardType_.isEmpty()) {
+        output.writeString(12, getCardType());
+      }
+      if (isDefault_ != false) {
+        output.writeBool(13, isDefault_);
+      }
+      if (billingAddress_ != null) {
+        output.writeMessage(14, getBillingAddress());
       }
     }
 
@@ -1772,6 +1927,18 @@ public final class PaymentProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(11, updatedAt_);
+      }
+      if (!cardType_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getCardType());
+      }
+      if (isDefault_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, isDefault_);
+      }
+      if (billingAddress_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getBillingAddress());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2259,6 +2426,114 @@ public final class PaymentProto {
         return this;
       }
 
+      /**
+       * <code>optional string cardType = 12;</code>
+       */
+      public String getCardType() {
+        return instance.getCardType();
+      }
+      /**
+       * <code>optional string cardType = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCardTypeBytes() {
+        return instance.getCardTypeBytes();
+      }
+      /**
+       * <code>optional string cardType = 12;</code>
+       */
+      public Builder setCardType(
+          String value) {
+        copyOnWrite();
+        instance.setCardType(value);
+        return this;
+      }
+      /**
+       * <code>optional string cardType = 12;</code>
+       */
+      public Builder clearCardType() {
+        copyOnWrite();
+        instance.clearCardType();
+        return this;
+      }
+      /**
+       * <code>optional string cardType = 12;</code>
+       */
+      public Builder setCardTypeBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCardTypeBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional bool isDefault = 13;</code>
+       */
+      public boolean getIsDefault() {
+        return instance.getIsDefault();
+      }
+      /**
+       * <code>optional bool isDefault = 13;</code>
+       */
+      public Builder setIsDefault(boolean value) {
+        copyOnWrite();
+        instance.setIsDefault(value);
+        return this;
+      }
+      /**
+       * <code>optional bool isDefault = 13;</code>
+       */
+      public Builder clearIsDefault() {
+        copyOnWrite();
+        instance.clearIsDefault();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+       */
+      public boolean hasBillingAddress() {
+        return instance.hasBillingAddress();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+       */
+      public UserProto.Address getBillingAddress() {
+        return instance.getBillingAddress();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+       */
+      public Builder setBillingAddress(UserProto.Address value) {
+        copyOnWrite();
+        instance.setBillingAddress(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+       */
+      public Builder setBillingAddress(
+          UserProto.Address.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBillingAddress(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+       */
+      public Builder mergeBillingAddress(UserProto.Address value) {
+        copyOnWrite();
+        instance.mergeBillingAddress(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
+       */
+      public Builder clearBillingAddress() {  copyOnWrite();
+        instance.clearBillingAddress();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Card)
     }
     protected final Object dynamicMethod(
@@ -2300,6 +2575,11 @@ public final class PaymentProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          cardType_ = visitor.visitString(!cardType_.isEmpty(), cardType_,
+              !other.cardType_.isEmpty(), other.cardType_);
+          isDefault_ = visitor.visitBoolean(isDefault_ != false, isDefault_,
+              other.isDefault_ != false, other.isDefault_);
+          billingAddress_ = visitor.visitMessage(billingAddress_, other.billingAddress_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -2386,6 +2666,30 @@ public final class PaymentProto {
                 case 88: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  cardType_ = s;
+                  break;
+                }
+                case 104: {
+
+                  isDefault_ = input.readBool();
+                  break;
+                }
+                case 114: {
+                  UserProto.Address.Builder subBuilder = null;
+                  if (billingAddress_ != null) {
+                    subBuilder = billingAddress_.toBuilder();
+                  }
+                  billingAddress_ = input.readMessage(UserProto.Address.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(billingAddress_);
+                    billingAddress_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

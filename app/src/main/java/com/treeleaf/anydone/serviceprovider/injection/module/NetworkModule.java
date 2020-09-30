@@ -1,7 +1,9 @@
 package com.treeleaf.anydone.serviceprovider.injection.module;
 
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.BuildConfig;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,7 +46,8 @@ public class NetworkModule {
     @Provides
     @Singleton
     Retrofit getRetrofit(OkHttpClient okHttpClient) {
-        return new Retrofit.Builder().baseUrl(AnyDoneService.API_BASE_URL)
+        String baseUrl = Hawk.get(Constants.BASE_URL, "https://api.anydone.net/");
+        return new Retrofit.Builder().baseUrl(baseUrl)
                 .client(okHttpClient)
                 .addConverterFactory(ProtoConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
