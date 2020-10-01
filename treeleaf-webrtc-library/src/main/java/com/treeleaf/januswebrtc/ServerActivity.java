@@ -1148,7 +1148,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         if (drawMode) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
             params.addRule(ALIGN_PARENT_LEFT, 0);
-            params.leftMargin = (int) DrawPadUtil.convertPixelsToDp(400f, this);
+            params.leftMargin = (int) DrawPadUtil.convertDpToPixel(50f, this);
             rlJoineeList.setLayoutParams(params);
         } else {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
@@ -1204,7 +1204,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         if (showDrawView) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();
             params.addRule(ALIGN_PARENT_LEFT, 0);
-            params.leftMargin = (int) DrawPadUtil.convertPixelsToDp(400f, this);
+            params.leftMargin = (int) DrawPadUtil.convertDpToPixel(50f, this);
             rlJoineeList.setLayoutParams(params);
         } else {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlJoineeList.getLayoutParams();

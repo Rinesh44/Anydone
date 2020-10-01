@@ -135,7 +135,7 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Joinee joinee = joinees.get(position);
-        if (joinee != null && !joinee.getProfileUrl().isEmpty()) {
+        if (joinee != null) {
             String imgUri = joinee.getProfileUrl();
             RequestOptions options = new RequestOptions()
                     .fitCenter()

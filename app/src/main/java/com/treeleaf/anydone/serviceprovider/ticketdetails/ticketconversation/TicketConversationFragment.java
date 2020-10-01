@@ -779,15 +779,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
-        ((TicketDetailsActivity) getActivity())
-                .onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+        ((TicketDetailsActivity) getActivity()).onVideoRoomInitiationSuccessClient(broadcastVideoCall);
     }
 
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
-        ((TicketDetailsActivity) getActivity())
-                .onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
+        ((TicketDetailsActivity) getActivity()).onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
     }
 
     @Override

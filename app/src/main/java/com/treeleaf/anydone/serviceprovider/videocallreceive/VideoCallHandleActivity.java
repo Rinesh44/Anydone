@@ -63,6 +63,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     int localDeviceWidth, localDeviceHeight;
     private Map<String, Integer[]> remoteDeviceResolutions = new HashMap<>();
     private boolean videoCallInitiated = false;
+    private boolean videoReceiveInitiated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,6 +286,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     protected void onResume() {
         super.onResume();
         videoCallInitiated = false;
+        videoReceiveInitiated = false;
         videoBroadCastPublish = false;//TODO: check if onresume gets called from child parent
     }
 
@@ -336,7 +338,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        if (!videoCallInitiated) {
+        if (!videoCallInitiated && !videoReceiveInitiated) {
             rtcMessageId = broadcastVideoCall.getRtcMessageId();
             String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
             String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
@@ -347,6 +349,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerName = broadcastVideoCall.getSenderAccount().getFullName();
             callerAccountId = broadcastVideoCall.getSenderAccountId();
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+            videoReceiveInitiated = true;
             ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
         }

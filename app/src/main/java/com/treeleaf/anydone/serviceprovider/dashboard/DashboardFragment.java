@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +69,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Const;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -151,12 +153,38 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     TextView tvLowestValue;
     @BindView(R.id.tv_third_party_value)
     TextView tvThirdPartyValue;
+    @BindView(R.id.tv_third_party)
+    TextView tvThirdParty;
+    @BindView(R.id.tv_manual)
+    TextView tvManual;
+    @BindView(R.id.tv_phone_call)
+    TextView tvPhoneCall;
+    @BindView(R.id.tv_highest)
+    TextView tvHighest;
+    @BindView(R.id.tv_high)
+    TextView tvHigh;
+    @BindView(R.id.tv_medium)
+    TextView tvMedium;
+    @BindView(R.id.tv_low)
+    TextView tvLow;
+    @BindView(R.id.tv_lowest)
+    TextView tvLowest;
+    @BindView(R.id.tv_bot)
+    TextView tvBot;
+    @BindView(R.id.tv_started)
+    TextView tvStarted;
+    @BindView(R.id.tv_todo)
+    TextView tvTodo;
+    @BindView(R.id.tv_resolved)
+    TextView tvResolved;
+    @BindView(R.id.tv_closed)
+    TextView tvClosed;
+    @BindView(R.id.tv_reopen)
+    TextView tvReopen;
     @BindView(R.id.tv_manual_value)
     TextView tvManualValue;
     @BindView(R.id.tv_phone_call_value)
     TextView tvPhoneCallValue;
-    @BindView(R.id.tv_phone_call)
-    TextView tvPhoneCall;
     @BindView(R.id.tv_bot_value)
     TextView tvBotValue;
     @BindView(R.id.pie_chart_by_source)
@@ -170,11 +198,11 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @BindView(R.id.tv_line_chart_not_available)
     TextView tvLineChartNotAvailable;
     @BindView(R.id.tv_pie_chart_priority_not_available)
-    TextView tvPieChartPriorityNotAvailable;
+    RelativeLayout tvPieChartPriorityNotAvailable;
     @BindView(R.id.tv_pie_chart_source_not_available)
-    TextView tvPieChartSourceNotAvailable;
+    RelativeLayout tvPieChartSourceNotAvailable;
     @BindView(R.id.tv_pie_chart_status_not_available)
-    TextView tvPieChartStatusNotAvailable;
+    RelativeLayout tvPieChartStatusNotAvailable;
     @BindView(R.id.tv_selection)
     TextView tvSelection;
     @BindView(R.id.tv_trends_selection)
@@ -397,21 +425,52 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         if (closedTickets > 0) {
             pieEntries.add(new PieEntry(closedTickets, String.format("%.0f", closedTickets)));
             colors.add(STATUS_COLORS[0]);
-
+            tvClosed.setVisibility(View.VISIBLE);
+            tvClosedValue.setVisibility(View.VISIBLE);
+        } else {
+            tvClosed.setVisibility(View.GONE);
+            tvClosedValue.setVisibility(View.GONE);
         }
 
         if (newTickets > 0) {
             pieEntries.add(new PieEntry(newTickets, String.format("%.0f", newTickets)));
+            colors.add(STATUS_COLORS[1]);
+            tvTodo.setVisibility(View.VISIBLE);
+            tvTodoValue.setVisibility(View.VISIBLE);
+        } else {
+            tvTodo.setVisibility(View.GONE);
+            tvTodoValue.setVisibility(View.GONE);
         }
 
-        if (reopenedTickets > 0)
+        if (reopenedTickets > 0) {
             pieEntries.add(new PieEntry(reopenedTickets, String.format("%.0f", reopenedTickets)));
+            colors.add(STATUS_COLORS[2]);
+            tvReopen.setVisibility(View.VISIBLE);
+            tvReopenValue.setVisibility(View.VISIBLE);
+        } else {
+            tvReopen.setVisibility(View.GONE);
+            tvReopenValue.setVisibility(View.GONE);
+        }
 
-        if (resolvedTickets > 0)
+        if (resolvedTickets > 0) {
             pieEntries.add(new PieEntry(resolvedTickets, String.format("%.0f", resolvedTickets)));
+            colors.add(STATUS_COLORS[3]);
+            tvResolved.setVisibility(View.VISIBLE);
+            tvResolvedValue.setVisibility(View.VISIBLE);
+        } else {
+            tvResolved.setVisibility(View.GONE);
+            tvResolvedValue.setVisibility(View.GONE);
+        }
 
-        if (unResolvedTickets > 0)
+        if (unResolvedTickets > 0) {
             pieEntries.add(new PieEntry(unResolvedTickets, String.format("%.0f", unResolvedTickets)));
+            colors.add(STATUS_COLORS[4]);
+            tvStartedValue.setVisibility(View.VISIBLE);
+            tvStarted.setVisibility(View.VISIBLE);
+        } else {
+            tvStartedValue.setVisibility(View.GONE);
+            tvStarted.setVisibility(View.GONE);
+        }
 
         if ((closedTickets == 0) && (newTickets == 0) && (reopenedTickets == 0) &&
                 resolvedTickets == 0 && (unResolvedTickets == 0)) {
@@ -423,7 +482,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By status");
 
         pieDataSet.setSliceSpace(1.2f);
-        pieDataSet.setColors(STATUS_COLORS);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
         pieDataSet.setValueLinePart2Length(0);
@@ -450,27 +509,62 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @SuppressLint("DefaultLocale")
     private void setUpPieChartByPriority(TicketStatByPriority ticketStatByPriority) {
         List<PieEntry> pieEntries = new ArrayList<>();
-
+        List<Integer> colors = new ArrayList<>();
         float highest = (float) ticketStatByPriority.getHighest();
         float high = (float) ticketStatByPriority.getHigh();
         float medium = (float) ticketStatByPriority.getMedium();
         float low = (float) ticketStatByPriority.getLow();
         float lowest = (float) ticketStatByPriority.getLowest();
 
-        if (highest > 0)
+        if (highest > 0) {
             pieEntries.add(new PieEntry(highest, String.format("%.0f", highest)));
+            colors.add(PRIORITY_COLORS[0]);
+            tvHighestValue.setVisibility(View.VISIBLE);
+            tvHighest.setVisibility(View.VISIBLE);
+        } else {
+            tvHighestValue.setVisibility(View.GONE);
+            tvHighest.setVisibility(View.GONE);
+        }
 
-        if (high > 0)
+        if (high > 0) {
             pieEntries.add(new PieEntry(high, String.format("%.0f", high)));
+            colors.add(PRIORITY_COLORS[1]);
+            tvHigh.setVisibility(View.VISIBLE);
+            tvHighValue.setVisibility(View.VISIBLE);
+        } else {
+            tvHigh.setVisibility(View.GONE);
+            tvHighValue.setVisibility(View.GONE);
+        }
 
-        if (medium > 0)
+        if (medium > 0) {
             pieEntries.add(new PieEntry(medium, String.format("%.0f", medium)));
+            colors.add(PRIORITY_COLORS[2]);
+            tvMedium.setVisibility(View.VISIBLE);
+            tvMediumValue.setVisibility(View.VISIBLE);
+        } else {
+            tvMedium.setVisibility(View.GONE);
+            tvMediumValue.setVisibility(View.GONE);
+        }
 
-        if (low > 0)
+        if (low > 0) {
             pieEntries.add(new PieEntry(low, String.format("%.0f", low)));
+            colors.add(PRIORITY_COLORS[3]);
+            tvLow.setVisibility(View.VISIBLE);
+            tvLowValue.setVisibility(View.VISIBLE);
+        } else {
+            tvLow.setVisibility(View.GONE);
+            tvLowValue.setVisibility(View.GONE);
+        }
 
-        if (lowest > 0)
+        if (lowest > 0) {
             pieEntries.add(new PieEntry(lowest, String.format("%.0f", lowest)));
+            colors.add(PRIORITY_COLORS[4]);
+            tvLowest.setVisibility(View.VISIBLE);
+            tvLowestValue.setVisibility(View.VISIBLE);
+        } else {
+            tvLowest.setVisibility(View.GONE);
+            tvLowestValue.setVisibility(View.GONE);
+        }
 
         if ((highest == 0) && (high == 0) && (medium == 0) &&
                 low == 0 && (lowest == 0)) {
@@ -481,7 +575,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By priority");
         pieDataSet.setSliceSpace(1.2f);
-        pieDataSet.setColors(PRIORITY_COLORS);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
         pieDataSet.setValueLinePart2Length(0);
@@ -510,25 +604,53 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     private void setUpPieChartBySource(float thirdPartyPercent, float manualPercent,
                                        float phoneCallPercent, float botPercent) {
         List<PieEntry> pieEntries = new ArrayList<>();
-
-        if (thirdPartyPercent > 0)
+        List<Integer> colors = new ArrayList<>();
+        if (thirdPartyPercent > 0) {
             pieEntries.add(new PieEntry(thirdPartyPercent, String.format("%.0f",
                     thirdPartyPercent) + "%"));
+            colors.add(SOURCE_COLORS[0]);
+            tvThirdParty.setVisibility(View.VISIBLE);
+            tvThirdPartyValue.setVisibility(View.VISIBLE);
+        } else {
+            tvThirdParty.setVisibility(View.GONE);
+            tvThirdPartyValue.setVisibility(View.GONE);
+        }
 
-        if (manualPercent > 0)
+        if (manualPercent > 0) {
             pieEntries.add(new PieEntry(manualPercent, String.format("%.0f",
                     manualPercent) + "%"));
+            colors.add(SOURCE_COLORS[1]);
+            tvManual.setVisibility(View.VISIBLE);
+            tvManualValue.setVisibility(View.VISIBLE);
+        } else {
+            tvManual.setVisibility(View.GONE);
+            tvManualValue.setVisibility(View.GONE);
+        }
 
-        if (phoneCallPercent > 0)
+        if (phoneCallPercent > 0) {
             pieEntries.add(new PieEntry(phoneCallPercent, String.format("%.0f",
                     phoneCallPercent) + "%"));
+            colors.add(SOURCE_COLORS[2]);
+            tvPhoneCall.setVisibility(View.VISIBLE);
+            tvPhoneCallValue.setVisibility(View.VISIBLE);
+        } else {
+            tvPhoneCallValue.setVisibility(View.GONE);
+            tvPhoneCall.setVisibility(View.GONE);
+        }
 
-        if (botPercent > 0)
+        if (botPercent > 0) {
             pieEntries.add(new PieEntry(botPercent, String.format("%.0f", botPercent) + "%"));
+            colors.add(SOURCE_COLORS[3]);
+            tvBot.setVisibility(View.VISIBLE);
+            tvBotValue.setVisibility(View.VISIBLE);
+        } else {
+            tvBot.setVisibility(View.GONE);
+            tvBotValue.setVisibility(View.GONE);
+        }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By source");
         pieDataSet.setSliceSpace(1.2f);
-        pieDataSet.setColors(SOURCE_COLORS);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
         pieDataSet.setValueLinePart2Length(0);
@@ -953,6 +1075,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         lineChart.setData(new LineData(lineDataSets));
 //        lineChart.setVisibleXRangeMaximum(65f);
+        lineChart.setPinchZoom(false);
+        lineChart.setScaleEnabled(false);
         lineChart.animateXY(500, 500);
         lineChart.getLegend().setEnabled(false);
         lineChart.getDescription().setEnabled(false);
@@ -1080,7 +1204,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 lineChart.setVisibility(View.VISIBLE);
                 setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAXisType);
             } else {
-                String responseType = ticketStatByDate.getTicketStatByStatusRealmList().get(0).getStatType();
+                String responseType = Objects.requireNonNull(
+                        ticketStatByDate.getTicketStatByStatusRealmList().get(0)).getStatType();
                 String xAxisType = getAxisType(responseType);
                 if (!xAxisType.isEmpty()) {
                     lineChart.setVisibility(View.VISIBLE);

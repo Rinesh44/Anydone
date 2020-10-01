@@ -8303,7 +8303,7 @@ public final class TicketProto {
    *
    * Protobuf type {@code treeleaf.anydone.entities.TicketStatByStatus}
    */
-  public  static final class TicketStatByStatus extends
+  public  static final class  TicketStatByStatus extends
       com.google.protobuf.GeneratedMessageLite<
           TicketStatByStatus, TicketStatByStatus.Builder> implements
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketStatByStatus)
