@@ -420,6 +420,19 @@ public interface AnyDoneService {
                                                                                 @Path(value = "refId")
                                                                                         String refId);
 
+    @PATCH("ticket/{refId}/enablebotreply")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableTicketBotReply(@Header(AUTHORIZATION)
+                                                                                       String token,
+                                                                               @Path(value = "refId")
+                                                                                       String refId);
+
+    @PATCH("ticket/{refId}/disablebotreply")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableTicketBotReply(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Path(value = "refId")
+                                                                                        String refId);
+
+
     @GET("rtc/messages/{refId}")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
     getThreadMessages(@Header(AUTHORIZATION) String token,
@@ -522,6 +535,7 @@ public interface AnyDoneService {
                                                                          String token,
                                                                  @Body TicketProto.GetSharableLinkRequest
                                                                          sharableLinkRequest);
+
 
 }
 

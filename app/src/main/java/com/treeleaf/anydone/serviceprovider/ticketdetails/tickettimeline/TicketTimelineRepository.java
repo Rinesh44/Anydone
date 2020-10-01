@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import com.treeleaf.anydone.entities.TicketProto;
+import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 
@@ -33,6 +34,10 @@ public interface TicketTimelineRepository {
     Observable<TicketServiceRpcProto.TicketBaseResponse> assignTicket(String token,
                                                                       long ticketId,
                                                                       TicketProto.Ticket assignedEmployee);
+
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableBot(String token, String ticketId);
+
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableBot(String token, String ticketId);
 
 
 }

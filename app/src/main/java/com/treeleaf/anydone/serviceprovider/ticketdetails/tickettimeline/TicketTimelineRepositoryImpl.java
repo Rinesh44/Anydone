@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import com.treeleaf.anydone.entities.TicketProto;
+import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
@@ -55,6 +56,16 @@ public class TicketTimelineRepositoryImpl implements TicketTimelineRepository {
                                                                              long ticketId,
                                                                              TicketProto.Ticket assignedEmployee) {
         return anyDoneService.assignEmployee(token, ticketId, assignedEmployee);
+    }
+
+    @Override
+    public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableBot(String token, String ticketId) {
+        return anyDoneService.enableTicketBotReply(token, ticketId);
+    }
+
+    @Override
+    public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableBot(String token, String ticketId) {
+        return anyDoneService.disableTicketBotReply(token, ticketId);
     }
 
 }
