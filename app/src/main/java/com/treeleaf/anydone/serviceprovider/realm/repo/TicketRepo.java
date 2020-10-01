@@ -288,6 +288,7 @@ public class TicketRepo extends Repo {
             tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
             tickets.setCreatedById(ticketPb.getCreatedBy().getAccount().getAccountId());
             tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
+            tickets.setBotEnabled(ticketPb.getIsBotEnabled());
             tickets.setContributorList(ProtoMapper.transformContributors
                     (ticketPb.getTicketContributorList()));
             ticketsList.add(tickets);
@@ -323,6 +324,7 @@ public class TicketRepo extends Repo {
         tickets.setCreatedByPic(account.getProfilePic());
         tickets.setTicketStatus(ticketPb.getTicketState().name());
         tickets.setPriority(ticketPb.getPriorityValue());
+        tickets.setBotEnabled(ticketPb.getIsBotEnabled());
         tickets.setContributorList(ProtoMapper.transformContributors(ticketPb.getTicketContributorList()));
         return tickets;
     }
@@ -527,7 +529,7 @@ public class TicketRepo extends Repo {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findAll();
+                    .equalTo("ticketId", Long.parseLong(ticketId)).findAll();
             result.setBoolean("botEnabled", true);
         });
     }
@@ -536,7 +538,7 @@ public class TicketRepo extends Repo {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findAll();
+                    .equalTo("ticketId", Long.parseLong(ticketId)).findAll();
             result.setBoolean("botEnabled", false);
         });
     }

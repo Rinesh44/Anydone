@@ -241,6 +241,50 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tv_assign_employee_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:text="Assigned Employee"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="@dimen/material_text_subhead"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_assign_employee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_2x1"
+                            android:visibility="gone">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/civ_assigned_employee"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_user_placeholder" />
+
+                            <TextView
+                                android:id="@+id/tv_assigned_employee"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/dimen_10x1"
+                                android:layout_toEndOf="@+id/civ_assigned_employee"
+                                android:text="Unassigned"
+                                android:textColor="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/iv_assign_employee"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_switch_employee" />
+
+                        </RelativeLayout>
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
@@ -428,7 +472,7 @@
                     android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/tv_assigned_employee"
+                        android:id="@+id/tv_add_employee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Assigned Employee"
@@ -472,10 +516,21 @@
                             android:visibility="gone" />
 
                     </RelativeLayout>
-
-
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/tv_assign_employee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x2"
+                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:layout_marginBottom="@dimen/dimen_10x1"
+                    android:drawableStart="@drawable/ic_add_contributor"
+                    android:drawablePadding="@dimen/dimen_10x1"
+                    android:gravity="center_vertical"
+                    android:text="Assign Employee"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>

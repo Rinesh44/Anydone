@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.rest.service;
 import com.mapbox.api.geocoding.v5.GeocodingCriteria;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
+import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
@@ -536,7 +537,11 @@ public interface AnyDoneService {
                                                                  @Body TicketProto.GetSharableLinkRequest
                                                                          sharableLinkRequest);
 
-
+    @POST("conversation/assigned/employees")
+    Observable<ConversationRpcProto.ConversationBaseResponse> assignEmployeeToThread(@Header(AUTHORIZATION)
+                                                                                             String token,
+                                                                                     @Body ConversationProto.ConversationThread
+                                                                                             conversationThread);
 }
 
 

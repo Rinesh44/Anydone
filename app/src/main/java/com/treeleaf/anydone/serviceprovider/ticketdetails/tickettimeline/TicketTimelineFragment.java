@@ -338,7 +338,13 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
 
         Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
-        contributorList.addAll(ticket.getContributorList());
+        for (Employee contributor : ticket.getContributorList()
+        ) {
+            if (!contributorList.contains(contributor)) {
+                contributorList.add(contributor);
+            }
+        }
+//        contributorList.addAll(ticket.getContributorList());
         TicketRepo.getInstance().setContributors(ticketId, contributorList, new Repo.Callback() {
             @Override
             public void success(Object o) {
@@ -1493,7 +1499,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     @Override
     public void disableBotSuccess() {
         botReply.setChecked(false);
-        ThreadRepo.getInstance().disableBotReply(String.valueOf(ticketId));
+        TicketRepo.getInstance().disableBotReply(String.valueOf(ticketId));
     }
 
 
