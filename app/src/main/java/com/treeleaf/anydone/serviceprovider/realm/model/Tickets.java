@@ -25,6 +25,7 @@ public class Tickets extends RealmObject {
     String createdById;
     Employee assignedEmployee;
     int priority;
+    boolean botEnabled;
 
     public Tickets() {
     }
@@ -183,5 +184,13 @@ public class Tickets extends RealmObject {
 
     public void setCreatedById(String createdById) {
         this.createdById = createdById;
+    }
+
+    public boolean isBotEnabled() {
+        return botEnabled;
+    }
+
+    public void setBotEnabled(boolean botEnabled) {
+        this.botEnabled = botEnabled;
     }
 }

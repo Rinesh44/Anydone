@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
@@ -93,6 +94,92 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             }
                         })
         );
+    }
+
+    @Override
+    public void enableBot(String ticketId) {
+        getView().showProgressBar("Enabling bot...");
+        Observable<RtcServiceRpcProto.RtcServiceBaseResponse> rtcBaseResponseObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        rtcBaseResponseObservable = ticketTimelineRepository.enableBot(token, ticketId);
+
+        addSubscription(rtcBaseResponseObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                    @Override
+                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
+                        GlobalUtils.showLog(TAG, "enable bot response:"
+                                + rtcResponse);
+
+                        getView().hideProgressBar();
+                        if (rtcResponse == null) {
+                            getView().enableBotFail("Failed to enable bot");
+                            return;
+                        }
+
+                        if (rtcResponse.getError()) {
+                            getView().enableBotFail(rtcResponse.getMsg());
+                            return;
+                        }
+
+                        getView().enableBotSuccess();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().enableBotFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void disableBot(String ticketId) {
+        getView().showProgressBar("Disabling bot...");
+        Observable<RtcServiceRpcProto.RtcServiceBaseResponse> rtcBaseResponseObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        rtcBaseResponseObservable = ticketTimelineRepository.disableBot(token, ticketId);
+
+        addSubscription(rtcBaseResponseObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                    @Override
+                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
+                        GlobalUtils.showLog(TAG, "disable bot response:"
+                                + rtcResponse);
+
+                        getView().hideProgressBar();
+                        if (rtcResponse == null) {
+                            getView().disableBotFail("Failed to disable bot");
+                            return;
+                        }
+
+                        if (rtcResponse.getError()) {
+                            getView().disableBotFail(rtcResponse.getMsg());
+                            return;
+                        }
+
+                        getView().disableBotSuccess();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().disableBotFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
     }
 
     @Override

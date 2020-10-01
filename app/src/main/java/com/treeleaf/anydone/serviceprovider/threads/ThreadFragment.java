@@ -141,7 +141,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
                         //Do something after 1 sec
-                        swipeRefreshLayout.setRefreshing(false);
+                        if (swipeRefreshLayout != null)
+                            swipeRefreshLayout.setRefreshing(false);
                     }, 1000);
                 }
         );

@@ -2,8 +2,6 @@ package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
-import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 
 public class ThreadTimelineContract {
 
@@ -21,6 +19,14 @@ public class ThreadTimelineContract {
 
         void disableBotSuccess();
 
+        void showProgressEmployee();
+
+        void hideProgressEmployee();
+
+        void assignSuccess();
+
+        void assignFail(String msg);
+
     }
 
     public interface ThreadTimelinePresenter extends Presenter<ThreadTimelineView> {
@@ -30,5 +36,7 @@ public class ThreadTimelineContract {
         void enableBot(String threadId);
 
         void disableBot(String threadId);
+
+        void assignEmployee(String threadId, String employeeId);
     }
 }

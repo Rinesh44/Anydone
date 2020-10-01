@@ -1,16 +1,22 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -29,6 +35,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
@@ -119,6 +126,18 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     TextView tvSource;
     @BindView(R.id.switch_bot_reply)
     Switch botReply;
+    @BindView(R.id.tv_assign_employee)
+    TextView tvAssignEmployee;
+    @BindView(R.id.tv_assigned_employee)
+    TextView tvAssignedEmployee;
+    @BindView(R.id.civ_assigned_employee)
+    CircleImageView civAssignedEmployee;
+    @BindView(R.id.iv_assign_employee)
+    ImageView ivAssignEmployee;
+    @BindView(R.id.tv_assign_employee_label)
+    TextView tvAssignEmpLabel;
+    @BindView(R.id.rl_assign_employee)
+    RelativeLayout rlAssignEmployee;
 
 
     private boolean expandCustomer = true;
@@ -133,7 +152,9 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private String selectedEmployeeId;
     private Employee selfEmployee;
     private Thread thread;
-
+    private BottomSheetDialog employeeSheet;
+    private ProgressBar pbEmployee;
+    private AssignEmployee selectedEmployee;
 
     public ThreadTimelineFragment() {
         // Required empty public constructor
@@ -145,6 +166,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         threadId = i.getStringExtra("thread_id");
+        createEmployeeSheet();
         if (threadId != null) {
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
             thread = ThreadRepo.getInstance().getThreadById(threadId);
@@ -235,11 +257,37 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         tvTag.setText(thread.getDefaultLabel());
         setSource(thread);
         setCustomerDetails(thread);
+        setAssignedEmployee(thread);
 
         if (thread.isBotEnabled()) {
             botReply.setChecked(true);
         } else {
             botReply.setChecked(false);
+        }
+    }
+
+    private void setAssignedEmployee(Thread thread) {
+        if (thread.getAssignedEmployee() == null) {
+            tvAssignEmployee.setVisibility(View.VISIBLE);
+            tvAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+        } else {
+            tvAssignEmployee.setVisibility(View.GONE);
+            rlAssignEmployee.setVisibility(View.VISIBLE);
+            tvAssignEmpLabel.setVisibility(View.VISIBLE);
+
+            tvAssignedEmployee.setText(thread.getAssignedEmployee().getName());
+            String employeeImage = thread.getAssignedEmployee().getEmployeeImageUrl();
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(Objects.requireNonNull(getActivity()))
+                    .load(employeeImage)
+                    .apply(options)
+                    .into(civAssignedEmployee);
+
+            ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
         }
     }
 
@@ -317,6 +365,99 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         layoutParams.setMargins(0, 0, 0, 170);
         scrollView.setLayoutParams(layoutParams);
+    }
+
+    private void createEmployeeSheet() {
+        employeeSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.layout_bottom_sheet_employee, null);
+
+        employeeSheet.setContentView(view);
+        EditText etSearchEmployee = view.findViewById(R.id.et_search_employee);
+        llSelf = view.findViewById(R.id.ll_self);
+        tvSelf = view.findViewById(R.id.tv_name_self);
+        civSelf = view.findViewById(R.id.civ_image_self);
+        tvAllUsers = view.findViewById(R.id.tv_all_users);
+        rvAllUsers = view.findViewById(R.id.rv_all_users);
+        pbEmployee = view.findViewById(R.id.pb_progress_employee);
+
+        setSelfDetails();
+        llSelf.setOnClickListener(v -> {
+            Employee self = EmployeeRepo.getInstance().getEmployee();
+            if (self != null) {
+                AssignEmployee selfEmployee = new AssignEmployee();
+                selfEmployee.setPhone(self.getPhone());
+                selfEmployee.setName(self.getName());
+                selfEmployee.setEmployeeImageUrl(self.getEmployeeImageUrl());
+                selfEmployee.setEmployeeId(self.getEmployeeId());
+                selfEmployee.setEmail(self.getEmail());
+                selfEmployee.setCreatedAt(self.getCreatedAt());
+                selfEmployee.setAccountId(self.getAccountId());
+
+                selectedEmployee = selfEmployee;
+                selectedEmployeeId = self.getEmployeeId();
+                showConfirmationDialog(selectedEmployeeId);
+            }
+        });
+
+        setUpEmployeeRecyclerView();
+
+        etSearchEmployee.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 1) {
+                    GlobalUtils.showLog(TAG, "text changed");
+                    employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
+                    if (CollectionUtils.isEmpty(employeeList)) {
+                        tvAllUsers.setVisibility(View.GONE);
+                    } else {
+                        tvAllUsers.setVisibility(View.VISIBLE);
+                    }
+                    GlobalUtils.showLog(TAG, "searched list size: " + employeeList.size());
+                    if (employeeSearchAdapter != null) {
+                        employeeSearchAdapter.setData(employeeList);
+                        employeeSearchAdapter.notifyDataSetChanged();
+                    }
+
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                    etSearchEmployee.requestFocus();
+                } else {
+                    employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
+                    employeeSearchAdapter.setData(employeeList);
+                    employeeSearchAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        employeeSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+            setupFullHeight(d);
+            etSearchEmployee.requestFocus();
+            UiUtils.showKeyboardForced(getActivity());
+
+        /*    llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
+                ViewGroup.LayoutParams params = rvTeams.getLayoutParams();
+                params.height = getWindowHeight() - heightDiff + 100;
+            });*/
+        });
+
+        employeeSheet.setOnDismissListener(dialog -> UiUtils.hideKeyboardForced(getContext()));
     }
 
 
@@ -495,6 +636,52 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         ThreadRepo.getInstance().disableBotReply(threadId);
     }
 
+    @Override
+    public void showProgressEmployee() {
+        pbEmployee.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressEmployee() {
+        pbEmployee.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void assignSuccess() {
+        setAssignedEmployeeDetails();
+
+        employeeSheet.dismiss();
+        UiUtils.hideKeyboardForced(getActivity());
+    }
+
+    private void setAssignedEmployeeDetails() {
+        tvAssignedEmployee.setText(selectedEmployee.getName());
+        String employeeImage = selectedEmployee.getEmployeeImageUrl();
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_profile_icon)
+                .error(R.drawable.ic_profile_icon);
+
+        Glide.with(Objects.requireNonNull(getActivity()))
+                .load(employeeImage)
+                .apply(options)
+                .into(civAssignedEmployee);
+
+        ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
+    }
+
+    @Override
+    public void assignFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
 
     private void setSelfDetails() {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
@@ -518,6 +705,63 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
         assert imm != null;
         imm.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+    }
+
+    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
+    private void showConfirmationDialog(String employeeId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Assign to employee?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                (dialog, id) -> {
+                    presenter.assignEmployee(threadId, employeeId);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
     }
 
 }
