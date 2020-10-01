@@ -107,19 +107,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimens_2x"
-                android:layout_marginTop="@dimen/dimen_10x5"
+                android:layout_marginTop="@dimen/dimen_10x9"
                 android:layout_marginEnd="@dimen/dimens_2x"
-                android:background="@drawable/pinentry_bg"
+                android:gravity="bottom"
                 android:paddingStart="@dimen/dimen_6x1"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp">
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/sp_branch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
             </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sp_branch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_10x1" />
             <!--   <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"

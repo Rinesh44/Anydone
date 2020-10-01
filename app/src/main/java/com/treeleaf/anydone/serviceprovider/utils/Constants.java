@@ -69,5 +69,6 @@ Constants {
     public static final String DASHBOARD_SERVICE_ID = "DASHBOARD_SERVICE_ID";
     public static final String CONVERSATION_SERVICE_ID = "CONVERSATION_SERVICE_ID";
     public static final String MANUAL_DATE = "MANUAL_DATE";
+    public static final String BASE_URL = "BASE_URL";
 
 }

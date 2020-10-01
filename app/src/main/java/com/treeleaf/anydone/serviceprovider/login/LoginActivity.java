@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -97,7 +96,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
                 if (position == 0) {
                     Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
                 } else {
-                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net.com/");
                 }
             }
 
