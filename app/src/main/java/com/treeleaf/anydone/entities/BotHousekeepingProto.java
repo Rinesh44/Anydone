@@ -8353,14 +8353,13 @@ public final class BotHousekeepingProto {
     Fulfillment getFulfillment();
 
     /**
-     * <code>optional string responseMapName = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
      */
-    String getResponseMapName();
+    boolean hasFulfillmentResponse();
     /**
-     * <code>optional string responseMapName = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
      */
-    com.google.protobuf.ByteString
-        getResponseMapNameBytes();
+    FulfillmentResponse getFulfillmentResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ResponseEntity}
@@ -8373,7 +8372,6 @@ public final class BotHousekeepingProto {
     private ResponseEntity() {
       responseEntityId_ = "";
       entityName_ = "";
-      responseMapName_ = "";
     }
     public static final int RESPONSEENTITYID_FIELD_NUMBER = 1;
     private String responseEntityId_;
@@ -8610,50 +8608,56 @@ public final class BotHousekeepingProto {
       
     }
 
-    public static final int RESPONSEMAPNAME_FIELD_NUMBER = 6;
-    private String responseMapName_;
+    public static final int FULFILLMENTRESPONSE_FIELD_NUMBER = 6;
+    private FulfillmentResponse fulfillmentResponse_;
     /**
-     * <code>optional string responseMapName = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
      */
-    public String getResponseMapName() {
-      return responseMapName_;
+    public boolean hasFulfillmentResponse() {
+      return fulfillmentResponse_ != null;
     }
     /**
-     * <code>optional string responseMapName = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
      */
-    public com.google.protobuf.ByteString
-        getResponseMapNameBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(responseMapName_);
+    public FulfillmentResponse getFulfillmentResponse() {
+      return fulfillmentResponse_ == null ? FulfillmentResponse.getDefaultInstance() : fulfillmentResponse_;
     }
     /**
-     * <code>optional string responseMapName = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
      */
-    private void setResponseMapName(
-        String value) {
+    private void setFulfillmentResponse(FulfillmentResponse value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      responseMapName_ = value;
+        throw new NullPointerException();
+      }
+      fulfillmentResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
+     */
+    private void setFulfillmentResponse(
+        FulfillmentResponse.Builder builderForValue) {
+      fulfillmentResponse_ = builderForValue.build();
+      
     }
     /**
-     * <code>optional string responseMapName = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
      */
-    private void clearResponseMapName() {
+    private void mergeFulfillmentResponse(FulfillmentResponse value) {
+      if (fulfillmentResponse_ != null &&
+          fulfillmentResponse_ != FulfillmentResponse.getDefaultInstance()) {
+        fulfillmentResponse_ =
+          FulfillmentResponse.newBuilder(fulfillmentResponse_).mergeFrom(value).buildPartial();
+      } else {
+        fulfillmentResponse_ = value;
+      }
       
-      responseMapName_ = getDefaultInstance().getResponseMapName();
     }
     /**
-     * <code>optional string responseMapName = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
      */
-    private void setResponseMapNameBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    private void clearFulfillmentResponse() {  fulfillmentResponse_ = null;
       
-      responseMapName_ = value.toStringUtf8();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -8673,8 +8677,8 @@ public final class BotHousekeepingProto {
       if (fulfillment_ != null) {
         output.writeMessage(5, getFulfillment());
       }
-      if (!responseMapName_.isEmpty()) {
-        output.writeString(6, getResponseMapName());
+      if (fulfillmentResponse_ != null) {
+        output.writeMessage(6, getFulfillmentResponse());
       }
     }
 
@@ -8703,9 +8707,9 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getFulfillment());
       }
-      if (!responseMapName_.isEmpty()) {
+      if (fulfillmentResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(6, getResponseMapName());
+          .computeMessageSize(6, getFulfillmentResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -9001,42 +9005,47 @@ public final class BotHousekeepingProto {
       }
 
       /**
-       * <code>optional string responseMapName = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
        */
-      public String getResponseMapName() {
-        return instance.getResponseMapName();
+      public boolean hasFulfillmentResponse() {
+        return instance.hasFulfillmentResponse();
       }
       /**
-       * <code>optional string responseMapName = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
        */
-      public com.google.protobuf.ByteString
-          getResponseMapNameBytes() {
-        return instance.getResponseMapNameBytes();
+      public FulfillmentResponse getFulfillmentResponse() {
+        return instance.getFulfillmentResponse();
       }
       /**
-       * <code>optional string responseMapName = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
        */
-      public Builder setResponseMapName(
-          String value) {
+      public Builder setFulfillmentResponse(FulfillmentResponse value) {
         copyOnWrite();
-        instance.setResponseMapName(value);
+        instance.setFulfillmentResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
+       */
+      public Builder setFulfillmentResponse(
+          FulfillmentResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setFulfillmentResponse(builderForValue);
         return this;
       }
       /**
-       * <code>optional string responseMapName = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
        */
-      public Builder clearResponseMapName() {
+      public Builder mergeFulfillmentResponse(FulfillmentResponse value) {
         copyOnWrite();
-        instance.clearResponseMapName();
+        instance.mergeFulfillmentResponse(value);
         return this;
       }
       /**
-       * <code>optional string responseMapName = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.FulfillmentResponse fulfillmentResponse = 6;</code>
        */
-      public Builder setResponseMapNameBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setResponseMapNameBytes(value);
+      public Builder clearFulfillmentResponse() {  copyOnWrite();
+        instance.clearFulfillmentResponse();
         return this;
       }
 
@@ -9068,8 +9077,7 @@ public final class BotHousekeepingProto {
           resolvePolicy_ = visitor.visitInt(resolvePolicy_ != 0, resolvePolicy_,    other.resolvePolicy_ != 0, other.resolvePolicy_);
           botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
           fulfillment_ = visitor.visitMessage(fulfillment_, other.fulfillment_);
-          responseMapName_ = visitor.visitString(!responseMapName_.isEmpty(), responseMapName_,
-              !other.responseMapName_.isEmpty(), other.responseMapName_);
+          fulfillmentResponse_ = visitor.visitMessage(fulfillmentResponse_, other.fulfillmentResponse_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -9139,9 +9147,16 @@ public final class BotHousekeepingProto {
                   break;
                 }
                 case 50: {
-                  String s = input.readStringRequireUtf8();
+                  FulfillmentResponse.Builder subBuilder = null;
+                  if (fulfillmentResponse_ != null) {
+                    subBuilder = fulfillmentResponse_.toBuilder();
+                  }
+                  fulfillmentResponse_ = input.readMessage(FulfillmentResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(fulfillmentResponse_);
+                    fulfillmentResponse_ = subBuilder.buildPartial();
+                  }
 
-                  responseMapName_ = s;
                   break;
                 }
               }

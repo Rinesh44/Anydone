@@ -12,6 +12,7 @@ public class TicketStatByStatus extends RealmObject {
     int newTickets;
     int totalTickets;
     int reOpenedTickets;
+    String statType;
     long timestamp;
 
     public TicketStatByStatus() {
@@ -79,5 +80,13 @@ public class TicketStatByStatus extends RealmObject {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getStatType() {
+        return statType;
+    }
+
+    public void setStatType(String statType) {
+        this.statType = statType;
     }
 }

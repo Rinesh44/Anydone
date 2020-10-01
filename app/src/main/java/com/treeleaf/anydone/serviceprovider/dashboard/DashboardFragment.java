@@ -30,6 +30,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.DataSet;
@@ -40,7 +41,9 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.github.mikephil.charting.listener.OnDrawListener;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -63,7 +66,9 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -147,6 +152,34 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     TextView tvLowestValue;
     @BindView(R.id.tv_third_party_value)
     TextView tvThirdPartyValue;
+    @BindView(R.id.tv_third_party)
+    TextView tvThirdParty;
+    @BindView(R.id.tv_manual)
+    TextView tvManual;
+    @BindView(R.id.tv_phone_call)
+    TextView tvPhoneCall;
+    @BindView(R.id.tv_highest)
+    TextView tvHighest;
+    @BindView(R.id.tv_high)
+    TextView tvHigh;
+    @BindView(R.id.tv_medium)
+    TextView tvMedium;
+    @BindView(R.id.tv_low)
+    TextView tvLow;
+    @BindView(R.id.tv_lowest)
+    TextView tvLowest;
+    @BindView(R.id.tv_bot)
+    TextView tvBot;
+    @BindView(R.id.tv_started)
+    TextView tvStarted;
+    @BindView(R.id.tv_todo)
+    TextView tvTodo;
+    @BindView(R.id.tv_resolved)
+    TextView tvResolved;
+    @BindView(R.id.tv_closed)
+    TextView tvClosed;
+    @BindView(R.id.tv_reopen)
+    TextView tvReopen;
     @BindView(R.id.tv_manual_value)
     TextView tvManualValue;
     @BindView(R.id.tv_phone_call_value)
@@ -213,6 +246,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         GlobalUtils.showLog(TAG, "check refetch: " + reFetchData);
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE, "");
         if (reFetchData && !selectedService.isEmpty()) {
+            pbLineChart.setVisibility(View.VISIBLE);
             presenter.getTicketByPriority();
             presenter.getTicketByResolveTime();
             presenter.getTicketBySource();
@@ -380,22 +414,62 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @SuppressLint("DefaultLocale")
     private void setUpPieChartByStatus(TicketStatByStatus ticketStatByStatus) {
         List<PieEntry> pieEntries = new ArrayList<>();
-
+        List<Integer> colors = new ArrayList<>();
         float closedTickets = (float) ticketStatByStatus.getClosedTickets();
         float newTickets = (float) ticketStatByStatus.getNewTickets();
         float reopenedTickets = (float) ticketStatByStatus.getReOpenedTickets();
         float resolvedTickets = (float) ticketStatByStatus.getResolvedTickets();
         float unResolvedTickets = (float) ticketStatByStatus.getUnResolvedTickets();
 
-        pieEntries.add(new PieEntry(closedTickets, String.format("%.0f", closedTickets)));
+        if (closedTickets > 0) {
+            pieEntries.add(new PieEntry(closedTickets, String.format("%.0f", closedTickets)));
+            colors.add(STATUS_COLORS[0]);
+            tvClosed.setVisibility(View.VISIBLE);
+            tvClosedValue.setVisibility(View.VISIBLE);
+        } else {
+            tvClosed.setVisibility(View.GONE);
+            tvClosedValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(newTickets, String.format("%.0f", newTickets)));
+        if (newTickets > 0) {
+            pieEntries.add(new PieEntry(newTickets, String.format("%.0f", newTickets)));
+            colors.add(STATUS_COLORS[1]);
+            tvTodo.setVisibility(View.VISIBLE);
+            tvTodoValue.setVisibility(View.VISIBLE);
+        } else {
+            tvTodo.setVisibility(View.GONE);
+            tvTodoValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(reopenedTickets, String.format("%.0f", reopenedTickets)));
+        if (reopenedTickets > 0) {
+            pieEntries.add(new PieEntry(reopenedTickets, String.format("%.0f", reopenedTickets)));
+            colors.add(STATUS_COLORS[2]);
+            tvReopen.setVisibility(View.VISIBLE);
+            tvReopenValue.setVisibility(View.VISIBLE);
+        } else {
+            tvReopen.setVisibility(View.GONE);
+            tvReopenValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(resolvedTickets, String.format("%.0f", resolvedTickets)));
+        if (resolvedTickets > 0) {
+            pieEntries.add(new PieEntry(resolvedTickets, String.format("%.0f", resolvedTickets)));
+            colors.add(STATUS_COLORS[3]);
+            tvResolved.setVisibility(View.VISIBLE);
+            tvResolvedValue.setVisibility(View.VISIBLE);
+        } else {
+            tvResolved.setVisibility(View.GONE);
+            tvResolvedValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(unResolvedTickets, String.format("%.0f", unResolvedTickets)));
+        if (unResolvedTickets > 0) {
+            pieEntries.add(new PieEntry(unResolvedTickets, String.format("%.0f", unResolvedTickets)));
+            colors.add(STATUS_COLORS[4]);
+            tvStartedValue.setVisibility(View.VISIBLE);
+            tvStarted.setVisibility(View.VISIBLE);
+        } else {
+            tvStartedValue.setVisibility(View.GONE);
+            tvStarted.setVisibility(View.GONE);
+        }
 
         if ((closedTickets == 0) && (newTickets == 0) && (reopenedTickets == 0) &&
                 resolvedTickets == 0 && (unResolvedTickets == 0)) {
@@ -405,8 +479,9 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By status");
-        pieDataSet.setSliceSpace(1);
-        pieDataSet.setColors(STATUS_COLORS);
+
+        pieDataSet.setSliceSpace(1.2f);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
         pieDataSet.setValueLinePart2Length(0);
@@ -433,22 +508,62 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @SuppressLint("DefaultLocale")
     private void setUpPieChartByPriority(TicketStatByPriority ticketStatByPriority) {
         List<PieEntry> pieEntries = new ArrayList<>();
-
+        List<Integer> colors = new ArrayList<>();
         float highest = (float) ticketStatByPriority.getHighest();
         float high = (float) ticketStatByPriority.getHigh();
         float medium = (float) ticketStatByPriority.getMedium();
         float low = (float) ticketStatByPriority.getLow();
         float lowest = (float) ticketStatByPriority.getLowest();
 
-        pieEntries.add(new PieEntry(highest, String.format("%.0f", highest)));
+        if (highest > 0) {
+            pieEntries.add(new PieEntry(highest, String.format("%.0f", highest)));
+            colors.add(PRIORITY_COLORS[0]);
+            tvHighestValue.setVisibility(View.VISIBLE);
+            tvHighest.setVisibility(View.VISIBLE);
+        } else {
+            tvHighestValue.setVisibility(View.GONE);
+            tvHighest.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(high, String.format("%.0f", high)));
+        if (high > 0) {
+            pieEntries.add(new PieEntry(high, String.format("%.0f", high)));
+            colors.add(PRIORITY_COLORS[1]);
+            tvHigh.setVisibility(View.VISIBLE);
+            tvHighValue.setVisibility(View.VISIBLE);
+        } else {
+            tvHigh.setVisibility(View.GONE);
+            tvHighValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(medium, String.format("%.0f", medium)));
+        if (medium > 0) {
+            pieEntries.add(new PieEntry(medium, String.format("%.0f", medium)));
+            colors.add(PRIORITY_COLORS[2]);
+            tvMedium.setVisibility(View.VISIBLE);
+            tvMediumValue.setVisibility(View.VISIBLE);
+        } else {
+            tvMedium.setVisibility(View.GONE);
+            tvMediumValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(low, String.format("%.0f", low)));
+        if (low > 0) {
+            pieEntries.add(new PieEntry(low, String.format("%.0f", low)));
+            colors.add(PRIORITY_COLORS[3]);
+            tvLow.setVisibility(View.VISIBLE);
+            tvLowValue.setVisibility(View.VISIBLE);
+        } else {
+            tvLow.setVisibility(View.GONE);
+            tvLowValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(lowest, String.format("%.0f", lowest)));
+        if (lowest > 0) {
+            pieEntries.add(new PieEntry(lowest, String.format("%.0f", lowest)));
+            colors.add(PRIORITY_COLORS[4]);
+            tvLowest.setVisibility(View.VISIBLE);
+            tvLowestValue.setVisibility(View.VISIBLE);
+        } else {
+            tvLowest.setVisibility(View.GONE);
+            tvLowestValue.setVisibility(View.GONE);
+        }
 
         if ((highest == 0) && (high == 0) && (medium == 0) &&
                 low == 0 && (lowest == 0)) {
@@ -458,16 +573,18 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By priority");
-        pieDataSet.setSliceSpace(1);
-        pieDataSet.setColors(PRIORITY_COLORS);
+        pieDataSet.setSliceSpace(1.2f);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
         pieDataSet.setValueLinePart2Length(0);
         pieDataSet.setValueTextColor(getResources().getColor(R.color.black));
         pieDataSet.setDrawValues(false);
         pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+
         PieData pieData = new PieData(pieDataSet);
         pieChartByPriority.setData(pieData);
+//        pieData.setValueFormatter(new PieChartValueFormatter());
         pieChartByPriority.animateY(1000);
         pieChartByPriority.getDescription().setEnabled(false);
         pieChartByPriority.setHoleRadius(74);
@@ -486,21 +603,53 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     private void setUpPieChartBySource(float thirdPartyPercent, float manualPercent,
                                        float phoneCallPercent, float botPercent) {
         List<PieEntry> pieEntries = new ArrayList<>();
+        List<Integer> colors = new ArrayList<>();
+        if (thirdPartyPercent > 0) {
+            pieEntries.add(new PieEntry(thirdPartyPercent, String.format("%.0f",
+                    thirdPartyPercent) + "%"));
+            colors.add(SOURCE_COLORS[0]);
+            tvThirdParty.setVisibility(View.VISIBLE);
+            tvThirdPartyValue.setVisibility(View.VISIBLE);
+        } else {
+            tvThirdParty.setVisibility(View.GONE);
+            tvThirdPartyValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(thirdPartyPercent, String.format("%.0f",
-                thirdPartyPercent) + "%"));
+        if (manualPercent > 0) {
+            pieEntries.add(new PieEntry(manualPercent, String.format("%.0f",
+                    manualPercent) + "%"));
+            colors.add(SOURCE_COLORS[1]);
+            tvManual.setVisibility(View.VISIBLE);
+            tvManualValue.setVisibility(View.VISIBLE);
+        } else {
+            tvManual.setVisibility(View.GONE);
+            tvManualValue.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(manualPercent, String.format("%.0f",
-                manualPercent) + "%"));
+        if (phoneCallPercent > 0) {
+            pieEntries.add(new PieEntry(phoneCallPercent, String.format("%.0f",
+                    phoneCallPercent) + "%"));
+            colors.add(SOURCE_COLORS[2]);
+            tvPhoneCall.setVisibility(View.VISIBLE);
+            tvPhoneCallValue.setVisibility(View.VISIBLE);
+        } else {
+            tvPhoneCallValue.setVisibility(View.GONE);
+            tvPhoneCall.setVisibility(View.GONE);
+        }
 
-        pieEntries.add(new PieEntry(phoneCallPercent, String.format("%.0f",
-                phoneCallPercent) + "%"));
-
-        pieEntries.add(new PieEntry(botPercent, String.format("%.0f", botPercent) + "%"));
+        if (botPercent > 0) {
+            pieEntries.add(new PieEntry(botPercent, String.format("%.0f", botPercent) + "%"));
+            colors.add(SOURCE_COLORS[3]);
+            tvBot.setVisibility(View.VISIBLE);
+            tvBotValue.setVisibility(View.VISIBLE);
+        } else {
+            tvBot.setVisibility(View.GONE);
+            tvBotValue.setVisibility(View.GONE);
+        }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "By source");
-        pieDataSet.setSliceSpace(1);
-        pieDataSet.setColors(SOURCE_COLORS);
+        pieDataSet.setSliceSpace(1.2f);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueLinePart1OffsetPercentage(100f);
         pieDataSet.setValueLinePart1Length(0.4f);
         pieDataSet.setValueLinePart2Length(0);
@@ -551,6 +700,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 0, 0, 0);
             updateFromDate();
 
             Calendar calendarFromDate = Calendar.getInstance();
@@ -568,6 +718,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 23, 59, 59);
             updateToDate();
 
             Calendar calendarTillDate = Calendar.getInstance();
@@ -581,15 +732,25 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             GlobalUtils.showLog(TAG, "manual to: " + to);
         };
 
-        etFromDate.setOnClickListener(v -> new DatePickerDialog(Objects.requireNonNull(getActivity()),
-                fromDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+        etFromDate.setOnClickListener(v -> {
+            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                    fromDateListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            spTime.setSelection(8);
+            Hawk.put(Constants.XA_XIS_TYPE, "");
+            Hawk.put(Constants.MANUAL_DATE, true);
+        });
 
-        etTillDate.setOnClickListener(v -> new DatePickerDialog(Objects.requireNonNull(getActivity()),
-                tillDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+        etTillDate.setOnClickListener(v -> {
+            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                    tillDateListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            spTime.setSelection(8);
+            Hawk.put(Constants.XA_XIS_TYPE, "");
+            Hawk.put(Constants.MANUAL_DATE, true);
+        });
 
         tvReset.setOnClickListener(v -> {
             toggleBottomSheet();
@@ -653,6 +814,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         spTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Hawk.put(Constants.MANUAL_DATE, false);
                 String selectedItem = arraySpinner[position];
 
                 TextView textView = (TextView) spTime.getSelectedView();
@@ -801,13 +963,12 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     private void setUpLineChart(RealmList<TicketStatByStatus> ticketStatByStatusList,
                                 String xAXisType) {
-        lineChart.setTouchEnabled(true);
-        lineChart.setPinchZoom(true);
 
-        ArrayList<String> dayInMonth = new ArrayList<>();
         ArrayList<Entry> newTickets = new ArrayList<>();
         ArrayList<Entry> resolvedTickets = new ArrayList<>();
         ArrayList<Entry> closedTickets = new ArrayList<>();
+
+        ArrayList<String> dayInMonth = new ArrayList<>();
 
         for (int i = 0; i < ticketStatByStatusList.size(); i++) {
             //inflating data in y-axis
@@ -817,32 +978,26 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 int resolvedTicket = ticketStatByStatus.getResolvedTickets();
                 int newTicket = ticketStatByStatus.getNewTickets();
 
-                if (newTicket != 0)
+                boolean isManualDate = Hawk.get(Constants.MANUAL_DATE, false);
+                if (!isManualDate) {
+//                if (newTicket != 0)
                     newTickets.add(new Entry(i, newTicket));
 
-                if (resolvedTicket != 0)
+//                if (resolvedTicket != 0)
                     resolvedTickets.add(new Entry(i, resolvedTicket));
 
-                if (closedTicket != 0)
+//                if (closedTicket != 0)
                     closedTickets.add(new Entry(i, closedTicket));
 
-
-
-         /*   //inflate xAxis data
-            if (formatXAxis) {
-                long initialTimeStamp = ticketStatByStatusList.get(i).getTimestamp();
-                String initialDate = getDateFromTimeStamp(initialTimeStamp);
-                dayInMonth.add(initialDate);
-
-                // (step 3 in loop)
-                long timestamp = ticketStatByStatusList.get(i + 3).getTimestamp();
-                String date = getDateFromTimeStamp(timestamp);
-                dayInMonth.add(date);
-            }*/
-
-                long timeStamp = ticketStatByStatus.getTimestamp();
-                String date = getDateFromTimeStamp(timeStamp);
-                dayInMonth.add(date);
+                    long timeStamp = ticketStatByStatus.getTimestamp();
+                    String date = getDateFromTimeStamp(timeStamp);
+                    dayInMonth.add(date);
+                } else {
+                    // for manual selection implement different axis formatter, for this we'll have to assign timestamp to x
+                    newTickets.add(new Entry(ticketStatByStatus.getTimestamp(), newTicket));
+                    resolvedTickets.add(new Entry(ticketStatByStatus.getTimestamp(), resolvedTicket));
+                    closedTickets.add(new Entry(ticketStatByStatus.getTimestamp(), closedTicket));
+                }
 
             }
 
@@ -882,47 +1037,40 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
 /*        lineChart.getAxisLeft().setAxisMinimum(0f);
         lineChart.getAxisRight().setAxisMinimum(0f);*/
-
+        boolean isManualSelection = Hawk.get(Constants.MANUAL_DATE, false);
         switch (xAXisType) {
             case "HOUR":
-                lineChart.getXAxis().setLabelCount(2);
+                lineChart.getXAxis().setLabelCount(12);
                 lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_HOURS));
                 break;
 
             case "WEEK":
                 lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_WEEK));
-                lineChart.getXAxis().setLabelCount(2);
+                lineChart.getXAxis().setLabelCount(6);
                 break;
 
             case "MONTH":
-                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(dayInMonth));
-                lineChart.getXAxis().setLabelCount(10);
+                if (isManualSelection) {
+                    lineChart.getXAxis().setValueFormatter(
+                            new ManualMonthFormatter(ticketStatByStatusList.size()));
+                    GlobalUtils.showLog(TAG, "list size check: " + ticketStatByStatusList.size());
+                } else {
+                    lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(dayInMonth));
+                    lineChart.getXAxis().setLabelCount(10);
+                }
                 break;
 
             case "YEAR":
-                lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_YEAR));
-                lineChart.getXAxis().setLabelCount(3);
+                if (isManualSelection) {
+                    lineChart.getXAxis().setValueFormatter(
+                            new ManualYearFormatter(ticketStatByStatusList.size()));
+                } else {
+                    lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(AXIS_YEAR));
+                    lineChart.getXAxis().setLabelCount(12);
+                }
                 break;
 
         }
-
-        lineChart.setOnDrawListener(new OnDrawListener() {
-            @Override
-            public void onEntryAdded(Entry entry) {
-
-            }
-
-            @Override
-            public void onEntryMoved(Entry entry) {
-
-            }
-
-            @Override
-            public void onDrawFinished(DataSet<?> dataSet) {
-                pbLineChart.setVisibility(View.GONE);
-                lineChart.setVisibility(View.VISIBLE);
-            }
-        });
 
         lineChart.setData(new LineData(lineDataSets));
 //        lineChart.setVisibleXRangeMaximum(65f);
@@ -952,6 +1100,13 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         return "";
     }
 
+    private String getMonthNameFromTimeStamp(long initialTimeStamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(initialTimeStamp);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        return GlobalUtils.getMonth(month);
+    }
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_dashboard;
@@ -974,7 +1129,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void hideProgressBar() {
-        pbLineChart.setVisibility(View.GONE);
+//        pbLineChart.setVisibility(View.GONE);
     }
 
     @Override
@@ -1030,25 +1185,56 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void getTicketByDateSuccess() {
-        setTrendText();
+        boolean isManualSelection = Hawk.get(Constants.MANUAL_DATE, false);
+        if (isManualSelection) {
+            tvTrendSelection.setVisibility(View.GONE);
+        } else {
+            setTrendText();
+        }
         Hawk.put(Constants.REFETCH_TICKET_STAT, false);
         tvLineChartNotAvailable.setVisibility(View.GONE);
         TicketStatByDate ticketStatByDate = TicketStatRepo.getInstance().getTicketStatByDate();
         GlobalUtils.showLog(TAG, "list count: " + ticketStatByDate.getTicketStatByStatusRealmList().size());
-        String xAXisType = Hawk.get(Constants.XA_XIS_TYPE, "MONTH");
         if (!CollectionUtils.isEmpty(ticketStatByDate.getTicketStatByStatusRealmList())) {
-            lineChart.setVisibility(View.VISIBLE);
-            setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAXisType);
+            String xAXisType = Hawk.get(Constants.XA_XIS_TYPE, "MONTH");
+            if (xAXisType.equalsIgnoreCase("WEEK")) {
+                lineChart.setVisibility(View.VISIBLE);
+                setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAXisType);
+            } else {
+                String responseType = Objects.requireNonNull(
+                        ticketStatByDate.getTicketStatByStatusRealmList().get(0)).getStatType();
+                String xAxisType = getAxisType(responseType);
+                if (!xAxisType.isEmpty()) {
+                    lineChart.setVisibility(View.VISIBLE);
+                    setUpLineChart(ticketStatByDate.getTicketStatByStatusRealmList(), xAxisType);
+                }
+            }
         } else {
             tvLineChartNotAvailable.setVisibility(View.VISIBLE);
             lineChart.setVisibility(View.GONE);
         }
     }
 
+    private String getAxisType(String responseType) {
+        switch (responseType) {
+            case "1":
+                return "HOUR";
+
+            case "2":
+                return "MONTH";
+
+            case "3":
+                return "YEAR";
+        }
+
+        return "";
+    }
+
     private void setTrendText() {
         StringBuilder trendTextBuilder = new StringBuilder("of ");
         trendTextBuilder.append(trend.toLowerCase());
         tvTrendSelection.setText(trendTextBuilder);
+        tvTrendSelection.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -1059,9 +1245,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its date");
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1091,9 +1278,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its status");
+      /*  UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1116,9 +1304,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its priority");
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @SuppressLint("SetTextI18n")
@@ -1141,7 +1330,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         tvPhoneCallValue.setText(Math.round(phoneCallPercent) + "%");
         tvBotValue.setText(Math.round(botPercent) + "%");
 
-
         if ((thirdParty == 0) && (manual == 0) && (phoneCall == 0) &&
                 (bot == 0)) {
             tvPieChartSourceNotAvailable.setVisibility(View.VISIBLE);
@@ -1162,9 +1350,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its source");
+    /*    UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1194,9 +1383,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+        GlobalUtils.showLog(TAG, "its resolved time");
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
     }
 
     @Override
@@ -1207,6 +1397,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
+        GlobalUtils.showLog(TAG, "its date");
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
@@ -1220,6 +1411,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
+        GlobalUtils.showLog(TAG, "its status");
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
@@ -1233,6 +1425,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
+        GlobalUtils.showLog(TAG, "its priority");
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
@@ -1284,6 +1477,66 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         }
     }
+
+    private class ManualMonthFormatter extends ValueFormatter {
+        private int count;
+
+        public ManualMonthFormatter(int count) {
+            this.count = count;
+        }
+
+        @Override
+        public String getAxisLabel(float value, AxisBase axis) {
+            long timeStamp = (long) value;
+            String date = getDateFromTimeStamp(timeStamp);
+            axis.setLabelCount(Math.min(count, 10));
+            return date;
+        }
+    }
+
+    private class ManualYearFormatter extends ValueFormatter {
+        private int count;
+
+        public ManualYearFormatter(int count) {
+            this.count = count;
+        }
+
+        @Override
+        public String getAxisLabel(float value, AxisBase axis) {
+            long timeStamp = (long) value;
+            axis.setLabelCount(count);
+            return getMonthNameFromTimeStamp(timeStamp);
+        }
+    }
+
+    private static class PieChartValueFormatter extends ValueFormatter {
+        public PieChartValueFormatter() {
+        }
+
+        @SuppressLint("DefaultLocale")
+        @Override
+        public String getPieLabel(float value, PieEntry pieEntry) {
+            String formattedValue = String.format("%.0f", value);
+            GlobalUtils.showLog(TAG, "value check:" + formattedValue);
+            if (formattedValue.equalsIgnoreCase("0")) {
+                GlobalUtils.showLog(TAG, "true case");
+                return "";
+            }
+            return String.valueOf(value);
+        }
+
+        /*   @SuppressLint("DefaultLocale")
+        @Override
+        public String getFormattedValue(float value) {
+            String formattedValue = String.format("%.0f", value);
+            GlobalUtils.showLog(TAG, "value check:" + formattedValue);
+            if (formattedValue.equalsIgnoreCase("0")) {
+                return "";
+            }
+            return String.valueOf(value);
+        }*/
+    }
+
 
 }
 

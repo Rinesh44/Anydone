@@ -222,8 +222,11 @@ Limit selectable Date range
                 return Environment.getExternalStorageDirectory() + "/" + split[1];
             } else if (isDownloadsDocument(uri)) {
                 final String id = DocumentsContract.getDocumentId(uri);
+                GlobalUtils.showLog(TAG, "id print: " + id);
                 if (id.startsWith("raw:")) {
                     return id.replaceFirst("raw:", "");
+                } else if (id.startsWith("msf:")) {
+                    return getPDFPath(context, uri);
                 }
                 uri = ContentUris.withAppendedId(
                         Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
@@ -252,7 +255,8 @@ Limit selectable Date range
             String[] projection = {
                     MediaStore.Images.Media.DATA
             };
-            try (Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null)) {
+            try (Cursor cursor = context.getContentResolver().query(uri, projection, selection,
+                    selectionArgs, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
                     int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                     return cursor.getString(columnIndex);
@@ -417,6 +421,48 @@ Limit selectable Date range
                 dp,
                 r.getDisplayMetrics()
         );
+    }
+
+    public static String getImagePathFromURI(Context context, Uri uri) {
+        Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
+        String path = null;
+        if (cursor != null) {
+            cursor.moveToFirst();
+            String document_id = cursor.getString(0);
+            document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+            cursor.close();
+
+            cursor = context.getContentResolver().query(
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    null, MediaStore.Images.Media._ID + " = ? ",
+                    new String[]{document_id}, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                cursor.close();
+            }
+        }
+        Log.d(TAG, "getImagePathFromURI " + path);
+        return path;
+    }
+
+    public static String getPDFPath(Context context, Uri uri) {
+
+        String id = DocumentsContract.getDocumentId(uri);
+        if (id.startsWith("msf:")) {
+            id = id.replaceFirst("msf:", "");
+        }
+
+        final Uri contentUri = ContentUris.withAppendedId(
+                Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
+
+        String[] projection = {MediaStore.Images.Media.DATA};
+        @SuppressLint("Recycle") Cursor cursor = context.getContentResolver().query(contentUri,
+                projection, null, null, null);
+        assert cursor != null;
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     public static int getPriorityNum(Priority selectedPriority) {
