@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -197,11 +198,11 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @BindView(R.id.tv_line_chart_not_available)
     TextView tvLineChartNotAvailable;
     @BindView(R.id.tv_pie_chart_priority_not_available)
-    TextView tvPieChartPriorityNotAvailable;
+    RelativeLayout tvPieChartPriorityNotAvailable;
     @BindView(R.id.tv_pie_chart_source_not_available)
-    TextView tvPieChartSourceNotAvailable;
+    RelativeLayout tvPieChartSourceNotAvailable;
     @BindView(R.id.tv_pie_chart_status_not_available)
-    TextView tvPieChartStatusNotAvailable;
+    RelativeLayout tvPieChartStatusNotAvailable;
     @BindView(R.id.tv_selection)
     TextView tvSelection;
     @BindView(R.id.tv_trends_selection)
@@ -1074,6 +1075,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         lineChart.setData(new LineData(lineDataSets));
 //        lineChart.setVisibleXRangeMaximum(65f);
+        lineChart.setPinchZoom(false);
+        lineChart.setScaleEnabled(false);
         lineChart.animateXY(500, 500);
         lineChart.getLegend().setEnabled(false);
         lineChart.getDescription().setEnabled(false);

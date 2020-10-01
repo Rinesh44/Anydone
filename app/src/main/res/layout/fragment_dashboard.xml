@@ -605,11 +605,12 @@
                                 android:weightSum="2">
 
                                 <RelativeLayout
+                                    android:id="@+id/tv_pie_chart_source_not_available"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone">
 
                                     <TextView
-                                        android:id="@+id/tv_pie_chart_source_not_available"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
@@ -618,7 +619,7 @@
                                         android:gravity="center_horizontal"
                                         android:paddingBottom="@dimen/dimen_10x1"
                                         android:text="Not available"
-                                        android:visibility="gone" />
+                                        android:visibility="visible" />
 
                                 </RelativeLayout>
 
@@ -786,11 +787,11 @@
                                 android:weightSum="2">
 
                                 <RelativeLayout
+                                    android:id="@+id/tv_pie_chart_priority_not_available"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:id="@+id/tv_pie_chart_priority_not_available"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
@@ -798,7 +799,7 @@
                                         android:elevation="4dp"
                                         android:paddingBottom="@dimen/dimen_10x1"
                                         android:text="Not available"
-                                        android:visibility="gone" />
+                                        android:visibility="visible" />
 
                                 </RelativeLayout>
 
@@ -988,11 +989,11 @@
                                 android:weightSum="2">
 
                                 <RelativeLayout
+                                    android:id="@+id/tv_pie_chart_status_not_available"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:id="@+id/tv_pie_chart_status_not_available"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
@@ -1000,7 +1001,7 @@
                                         android:elevation="4dp"
                                         android:paddingBottom="@dimen/dimen_10x1"
                                         android:text="Not available"
-                                        android:visibility="gone" />
+                                        android:visibility="visible" />
 
                                 </RelativeLayout>
 
