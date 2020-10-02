@@ -19,10 +19,14 @@ Constants {
     public static final String MAP_BOX_TOKEN = "sk.eyJ1IjoicmluZXNoNDQiLCJhIjoiY2s5OW5oZml0MDA0cjNmcGI5c2ZkZmR0MyJ9.UxQJINlJAffP5HFwhyKvVQ";
     public static final String AUTHORIZATION_FAILED = "authorization failed.";
     public static final String WILL_MESSAGE_TOPIC = "will_msg_topic";
-    public static final String MQTT_URI = "ssl://mqtt.anydone.net:8883";
+    //    public static final String MQTT_URI = "ssl://mqtt.anydone.net:8883";
+    public static final String MQTT_URI = "ssl://emqx.anydone.com:8883";
+    //    public static final String MQTT_SSL_KEY_PASSWORD = "mqtt.ssl.key.password";
     public static final String MQTT_SSL_KEY_PASSWORD = "mqtt.ssl.key.password";
-    public static final String MQTT_USER = "admin";
-    public static final String MQTT_PASSWORD = "aW123k@1234";
+    //    public static final String MQTT_USER = "admin";
+    public static final String MQTT_USER = "mqtt_android";
+    //    public static final String MQTT_PASSWORD = "aW123k@1234";
+    public static final String MQTT_PASSWORD = "mqtt_androidkopassword@321!@#";
     public static final int MAX_INFLIGHT = 1000;
     public static final String TLS_VERSION = "TLSv1.2";
     public static final String SERVICE_PROVIDER_NAME = "service_provider_name";

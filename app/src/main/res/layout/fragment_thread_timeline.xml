@@ -279,6 +279,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="@dimen/dimens_2x"
                                 android:layout_centerVertical="true"
                                 android:src="@drawable/ic_switch_employee" />
 

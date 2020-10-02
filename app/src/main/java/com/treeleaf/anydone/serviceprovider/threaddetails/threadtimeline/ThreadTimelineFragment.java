@@ -270,6 +270,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (thread.getAssignedEmployee() == null) {
             tvAssignEmployee.setVisibility(View.VISIBLE);
             tvAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+            GlobalUtils.showLog(TAG, "assigned emp null");
         } else {
             tvAssignEmployee.setVisibility(View.GONE);
             rlAssignEmployee.setVisibility(View.VISIBLE);
@@ -635,6 +636,11 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
     private void setAssignedEmployeeDetails() {
+        tvAssignedEmployee.setVisibility(View.VISIBLE);
+        rlAssignEmployee.setVisibility(View.VISIBLE);
+        tvAssignEmpLabel.setVisibility(View.VISIBLE);
+        tvAssignEmployee.setVisibility(View.GONE);
+
         tvAssignedEmployee.setText(selectedEmployee.getName());
         String employeeImage = selectedEmployee.getEmployeeImageUrl();
         RequestOptions options = new RequestOptions()

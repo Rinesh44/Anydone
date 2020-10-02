@@ -121,9 +121,9 @@ public class ThreadRepo extends Repo {
         for (ConversationProto.ConversationThread threadPb : threadListPb
         ) {
             Thread thread = new Thread();
-            if (!CollectionUtils.isEmpty(threadPb.getEmployeeProfileList())) {
-                thread.setAssignedEmployee(ProtoMapper.transformEmployee(
-                        threadPb.getEmployeeProfileList()).get(0));
+            if (!CollectionUtils.isEmpty(threadPb.getEmployeeAssignedList())) {
+                thread.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(
+                        threadPb.getEmployeeAssigned(0)));
             }
             thread.setBotEnabled(true);
             thread.setCreatedAt(threadPb.getCreatedAt());

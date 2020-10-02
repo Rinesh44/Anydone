@@ -2,19 +2,10 @@ package com.treeleaf.anydone.serviceprovider.mqtt;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.annotation.RequiresApi;
 
-import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
-import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -24,14 +15,11 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.io.InputStream;
 import java.util.UUID;
-
-import io.realm.RealmList;
 
 /**
  * Created by Dipak Malla
