@@ -134,9 +134,10 @@ public class ShowLocationPresenterImpl extends BasePresenter<ShowLocationContrac
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
                 .build();
 
+        String base_url = Hawk.get(Constants.BASE_URL);
         return new Retrofit.Builder()
                 .client(client)
-                .baseUrl("https://api.anydone.net/")
+                .baseUrl(base_url)
                 .addConverterFactory(ProtoConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

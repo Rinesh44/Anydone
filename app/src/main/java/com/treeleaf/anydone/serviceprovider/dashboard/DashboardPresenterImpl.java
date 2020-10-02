@@ -679,18 +679,4 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
                 });
     }
 
-    private Retrofit getRetrofitInstance() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
-                .build();
-
-        return new Retrofit.Builder()
-                .client(client)
-                .baseUrl("https://api.anydone.net/")
-                .addConverterFactory(ProtoConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-    }
 }

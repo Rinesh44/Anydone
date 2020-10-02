@@ -293,8 +293,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
                 .build();
 
+        String base_url = Hawk.get(Constants.BASE_URL);
         return new Retrofit.Builder()
-                .baseUrl(AnyDoneService.API_BASE_URL)
+                .baseUrl(base_url)
                 .client(client)
                 .addConverterFactory(ProtoConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

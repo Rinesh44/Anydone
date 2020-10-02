@@ -221,9 +221,10 @@ public class AddLocationPresenterImpl extends BasePresenter<AddLocationContract.
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
                 .build();
 
+        String base_url = Hawk.get(Constants.BASE_URL);
         return new Retrofit.Builder()
                 .client(client)
-                .baseUrl("https://api.mapbox.com/")
+                .baseUrl(base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
