@@ -430,7 +430,6 @@ public interface AnyDoneService {
                                                                                 @Path(value = "refId")
                                                                                         String refId);
 
-
     @GET("rtc/messages/{refId}")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
     getThreadMessages(@Header(AUTHORIZATION) String token,

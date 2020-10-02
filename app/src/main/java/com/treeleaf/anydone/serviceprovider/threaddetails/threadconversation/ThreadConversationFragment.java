@@ -61,6 +61,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
@@ -178,8 +179,13 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         assert activity != null;
         activity.setOutSideTouchListener(this);
 
-        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
-        userAccountId = userAccount.getAccountId();
+        Employee employeeAccount = EmployeeRepo.getInstance().getEmployee();
+        if (employeeAccount != null) {
+            userAccountId = employeeAccount.getAccountId();
+        } else {
+            ServiceProvider serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
+            userAccountId = serviceProvider.getAccountId();
+        }
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         threadId = i.getStringExtra("thread_id");
@@ -199,7 +205,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             }
 
             setUpConversationView();
-            presenter.subscribeSuccessMessage(threadId, userAccount.getAccountId());
+            presenter.subscribeSuccessMessage(threadId, userAccountId);
             presenter.subscribeFailMessage();
             presenter.getThread(String.valueOf(threadId));
         }

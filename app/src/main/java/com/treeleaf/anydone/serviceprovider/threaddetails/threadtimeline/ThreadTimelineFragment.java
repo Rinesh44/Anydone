@@ -170,10 +170,10 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (threadId != null) {
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
             thread = ThreadRepo.getInstance().getThreadById(threadId);
+            presenter.getEmployees();
             setThreadDetails();
         }
 
-        presenter.getEmployees();
 
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
         ThreadDetailActivity mActivity = (ThreadDetailActivity) getActivity();
@@ -270,6 +270,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (thread.getAssignedEmployee() == null) {
             tvAssignEmployee.setVisibility(View.VISIBLE);
             tvAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+            GlobalUtils.showLog(TAG, "assigned emp null");
         } else {
             tvAssignEmployee.setVisibility(View.GONE);
             rlAssignEmployee.setVisibility(View.VISIBLE);
@@ -549,34 +550,12 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
+                selectedEmployee = employee;
                 selectedEmployeeId = employee.getEmployeeId();
-                etSearchEmployee.setText(employee.getName());
-                etSearchEmployee.setSelection(employee.getName().length());
-                svSearchEmployee.setVisibility(View.GONE);
-                hideKeyBoard();
+
+                showConfirmationDialog(selectedEmployeeId);
             });
         }
-
-        setSelfDetails();
-        llSelf.setOnClickListener(v -> {
-            Employee self = EmployeeRepo.getInstance().getEmployee();
-            if (self != null) {
-                AssignEmployee selfEmployee = new AssignEmployee();
-                selfEmployee.setPhone(self.getPhone());
-                selfEmployee.setName(self.getName());
-                selfEmployee.setEmployeeImageUrl(self.getEmployeeImageUrl());
-                selfEmployee.setEmployeeId(self.getEmployeeId());
-                selfEmployee.setEmail(self.getEmail());
-                selfEmployee.setCreatedAt(self.getCreatedAt());
-                selfEmployee.setAccountId(self.getAccountId());
-
-                selectedEmployeeId = self.getEmployeeId();
-            }
-
-            etSearchEmployee.setText(selfEmployee.getName());
-            etSearchEmployee.setSelection(selfEmployee.getName().length());
-            svSearchEmployee.setVisibility(View.GONE);
-        });
     }
 
     @Override
@@ -592,6 +571,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             onAuthorizationFailed(getActivity());
             return;
         }
+
+        UiUtils.hideKeyboardForced(Objects.requireNonNull(getActivity()));
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
     }
@@ -655,6 +636,11 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
     private void setAssignedEmployeeDetails() {
+        tvAssignedEmployee.setVisibility(View.VISIBLE);
+        rlAssignEmployee.setVisibility(View.VISIBLE);
+        tvAssignEmpLabel.setVisibility(View.VISIBLE);
+        tvAssignEmployee.setVisibility(View.GONE);
+
         tvAssignedEmployee.setText(selectedEmployee.getName());
         String employeeImage = selectedEmployee.getEmployeeImageUrl();
         RequestOptions options = new RequestOptions()

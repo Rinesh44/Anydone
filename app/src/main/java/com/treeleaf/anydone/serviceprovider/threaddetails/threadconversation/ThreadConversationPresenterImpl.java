@@ -32,12 +32,15 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -80,12 +83,21 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     private static final String TAG = "TicketConversationPrese";
     public final String PUBLISH_TOPIC = "anydone/rtc/relay";
     private ThreadConversationRepository threadConversationRepository;
-    private Employee employee = EmployeeRepo.getInstance().getEmployee();
+    private Employee userAccount = EmployeeRepo.getInstance().getEmployee();
+    private String userAccountId;
 
     @Inject
     public ThreadConversationPresenterImpl(ThreadConversationRepository
                                                    threadConversationRepository) {
         this.threadConversationRepository = threadConversationRepository;
+
+        if (userAccount == null) {
+            ServiceProvider serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
+            userAccountId = serviceProvider.getAccountId();
+        } else {
+            userAccountId = userAccount.getAccountId();
+        }
+
     }
 
     @Override
@@ -551,7 +563,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
-                .setSenderAccountId(employee.getAccountId())
+                .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setImage(imageMessage)
                 .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
@@ -583,7 +595,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
-                .setSenderAccountId(employee.getAccountId())
+                .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setAttachment(attachmentMessage)
                 .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
@@ -934,7 +946,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     @Override
     public void subscribeFailMessage() {
         getView().hideProgressBar();
-        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + employee.getAccountId();
+        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + userAccountId;
 
         GlobalUtils.showLog(TAG, "error topic: " + ERROR_TOPIC);
 
@@ -1102,7 +1114,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         byte[] bitmapBytes = getBitmapBytesFromBitmap(bitmap);
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
-        conversation.setSenderId(employee.getAccountId());
+        conversation.setSenderId(userAccountId);
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setRefId(threadId);
@@ -1133,7 +1145,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         GlobalUtils.showLog(TAG, "pre conversation text id: " + clientId);
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
-        conversation.setSenderId(employee.getAccountId());
+        conversation.setSenderId(userAccountId);
         conversation.setMessage(message);
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
@@ -1167,7 +1179,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
-        conversation.setSenderId(employee.getAccountId());
+        conversation.setSenderId(userAccountId);
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setRefId(threadId);

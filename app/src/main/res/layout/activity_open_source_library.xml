@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimens_2x">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Country Code Picker"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/ccp_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Circular Image View"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/circular_imageview_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Notification Banner"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/notification_banner_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Swipe Reveal Layout"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/swipe_reveal_layout_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Pin Entry Edittext"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/pin_entry_edit_text_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Glide"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/glide_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="uCrop"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/ucrop_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Expandable Layout"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/expandable_layout_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="Rich Link Preview"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/link_preview_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:text="MP Android Chart"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/chip_bg"
+            android:padding="@dimen/dimen_10x1"
+            android:text="@string/mp_chart_desc"
+            android:textSize="@dimen/material_text_caption" />
+
+    </LinearLayout>
+</ScrollView>

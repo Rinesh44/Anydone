@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.treeleaf.anydone.serviceprovider.OpenSourceLibraryActivity;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.weblink.WebLinkActivity;
 
@@ -46,7 +47,7 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
         tvOpenSource.setOnClickListener(v -> {
-            Intent i = new Intent(AboutUsActivity.this, WebLinkActivity.class);
+            Intent i = new Intent(AboutUsActivity.this, OpenSourceLibraryActivity.class);
             startActivity(i);
         });
 
