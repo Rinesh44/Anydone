@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.rest.service;
 
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.ConversationProto;
@@ -15,6 +16,8 @@ import com.treeleaf.anydone.rpc.SearchServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -33,7 +36,8 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface AnyDoneService {
-    String API_BASE_URL = "https://api.anydone.net/";
+    //    String API_BASE_URL = "https://api.anydone.net/";
+    String API_BASE_URL = Hawk.get(Constants.BASE_URL, "https://api.anydone.net/");
     String AUTHORIZATION = "authorization";
 
     @POST("login")

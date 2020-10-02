@@ -34,9 +34,21 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
+import com.treeleaf.januswebrtc.Const;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implements
         LoginContract.LoginView, View.OnClickListener {
@@ -63,6 +75,8 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     private GoogleSignInClient mGoogleSignInClient;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
+    private static OkHttpClient okHttpClient;
+    private static Retrofit retrofit = null;
 
     @Override
     protected int getLayout() {
@@ -94,15 +108,18 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+                    GlobalUtils.showLog(TAG, "dev");
+                    Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
+
                 } else {
-                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net.com/");
+                    GlobalUtils.showLog(TAG, "prod");
+                    Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+//                Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
             }
         });
     }
@@ -319,5 +336,56 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                 Manifest.permission.RECORD_AUDIO}, PERMISSIONS_CODE);
+    }
+
+    public static Retrofit getClient(Context context) {
+
+        if (okHttpClient == null)
+            initOkHttp(context);
+
+        String baseUrl = Hawk.get(Constants.BASE_URL);
+        GlobalUtils.showLog(TAG, "base url: " + baseUrl);
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .client(okHttpClient)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
+
+    private static void initOkHttp(final Context context) {
+        OkHttpClient.Builder httpClient = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        httpClient.addInterceptor(interceptor);
+
+        httpClient.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Interceptor.Chain chain) throws IOException {
+                Request original = chain.request();
+                Request.Builder requestBuilder = original.newBuilder()
+                        .addHeader("Accept", "application/json")
+                        .addHeader("Content-Type", "application/json");
+
+                // Adding Authorization token (API Key)
+                // Requests will be denied without API key
+                /*if (!TextUtils.isEmpty(PrefUtils.getApiKey(context))) {
+                    requestBuilder.addHeader("Authorization", PrefUtils.getApiKey(context));
+                }*/
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            }
+        });
+
+        okHttpClient = httpClient.build();
     }
 }

@@ -19,6 +19,8 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 
 public final class ProtoMapper {
@@ -240,7 +243,40 @@ public final class ProtoMapper {
         return employee;
     }
 
-    public static List<Employee> transformEmployee(List<UserProto.EmployeeProfile> employeeList) {
+    public static void transformAssignedEmployeeAlt(
+            TicketProto.EmployeeAssigned employeeProfile, String threadId) {
+        Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                Employee employee = realm.createObject(Employee.class, employeeProfile.getAssignedTo().getEmployeeProfileId());
+                employee.setAccountId(employeeProfile.getAssignedTo().getAccount().getAccountId());
+                employee.setCreatedAt(employeeProfile.getAssignedAt());
+                employee.setEmployeeImageUrl(employeeProfile.getAssignedTo().getAccount().getProfilePic());
+                employee.setName(employeeProfile.getAssignedTo().getAccount().getFullName());
+                employee.setPhone(employeeProfile.getAssignedTo().getAccount().getPhone());
+                employee.setEmail(employeeProfile.getAssignedTo().getAccount().getEmail());
+
+                ThreadRepo.getInstance().setAssignedEmployee(threadId,
+                        employee, new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                GlobalUtils.showLog(TAG, "emp assigned");
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to assign emp");
+                            }
+                        });
+
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    public static List<Employee> transformEmployee
+            (List<UserProto.EmployeeProfile> employeeList) {
         List<Employee> assignEmployeeList = new ArrayList<>();
         for (UserProto.EmployeeProfile profile : employeeList
         ) {
@@ -257,7 +293,8 @@ public final class ProtoMapper {
         return assignEmployeeList;
     }
 
-    public static RealmList<Employee> transformContributors(List<TicketProto.TicketContributor> employeeList) {
+    public static RealmList<Employee> transformContributors
+            (List<TicketProto.TicketContributor> employeeList) {
         RealmList<Employee> assignEmployeeList = new RealmList<>();
         for (TicketProto.TicketContributor profile : employeeList
         ) {
@@ -306,8 +343,9 @@ public final class ProtoMapper {
         return ticketStatBySource;
     }
 
-    public static TicketStatByPriority transformTicketByPriority(TicketProto.TicketStatByPriority
-                                                                         ticketStatByPriorityPb) {
+    public static TicketStatByPriority transformTicketByPriority
+            (TicketProto.TicketStatByPriority
+                     ticketStatByPriorityPb) {
         TicketStatByPriority ticketStatByPriority = new TicketStatByPriority();
         ticketStatByPriority.setId(Constants.TICKET_STAT_PRIORITY);
         ticketStatByPriority.setLowest(ticketStatByPriorityPb.getLowestPriorityTickets());
@@ -318,8 +356,9 @@ public final class ProtoMapper {
         return ticketStatByPriority;
     }
 
-    public static TicketStatByResolvedTime transformTicketByResolvedTime(TicketProto.TicketStatResolveTime
-                                                                                 ticketStatResolveTimePb) {
+    public static TicketStatByResolvedTime transformTicketByResolvedTime
+            (TicketProto.TicketStatResolveTime
+                     ticketStatResolveTimePb) {
         TicketStatByResolvedTime ticketStatByResolvedTime = new TicketStatByResolvedTime();
         ticketStatByResolvedTime.setId(Constants.TICKET_STAT_RESOLVED_TIME);
         ticketStatByResolvedTime.setAvg(ticketStatResolveTimePb.getAverageResolveTime());
@@ -328,8 +367,9 @@ public final class ProtoMapper {
         return ticketStatByResolvedTime;
     }
 
-    public static TicketStatByDate transformTicketStatByDate(List<TicketProto.TicketStatByStatus>
-                                                                     ticketStatByStatusListPb) {
+    public static TicketStatByDate transformTicketStatByDate
+            (List<TicketProto.TicketStatByStatus>
+                     ticketStatByStatusListPb) {
         TicketStatByDate ticketStatByDate = new TicketStatByDate();
         RealmList<TicketStatByStatus> ticketStatByStatusList = new RealmList<>();
         for (TicketProto.TicketStatByStatus ticketStatByStatusPb : ticketStatByStatusListPb

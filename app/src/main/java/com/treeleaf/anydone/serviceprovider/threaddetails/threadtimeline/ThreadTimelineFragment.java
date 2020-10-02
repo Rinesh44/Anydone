@@ -37,6 +37,7 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
@@ -171,6 +172,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
             thread = ThreadRepo.getInstance().getThreadById(threadId);
             presenter.getEmployees();
+            presenter.getThreadById(threadId);
             setThreadDetails();
         }
 
@@ -257,7 +259,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         tvTag.setText(thread.getDefaultLabel());
         setSource(thread);
         setCustomerDetails(thread);
-        setAssignedEmployee(thread);
 
         if (thread.isBotEnabled()) {
             botReply.setChecked(true);
@@ -658,6 +659,41 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
     @Override
     public void assignFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void getThreadByIdSuccess(TicketProto.EmployeeAssigned employeeAssigned) {
+        tvAssignEmployee.setVisibility(View.GONE);
+        rlAssignEmployee.setVisibility(View.VISIBLE);
+        tvAssignEmpLabel.setVisibility(View.VISIBLE);
+
+        tvAssignedEmployee.setText(employeeAssigned.getAssignedTo().getAccount().getFullName());
+        String employeeImage = employeeAssigned.getAssignedTo().getAccount().getProfilePic();
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_profile_icon)
+                .error(R.drawable.ic_profile_icon);
+
+        Glide.with(Objects.requireNonNull(getActivity()))
+                .load(employeeImage)
+                .apply(options)
+                .into(civAssignedEmployee);
+
+        ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
+
+        ivAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+    }
+
+    @Override
+    public void getThreadByIdFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());

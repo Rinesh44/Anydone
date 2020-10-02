@@ -10,10 +10,13 @@ import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import java.util.List;
 
@@ -223,6 +226,56 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                             }
                         })
         );
+    }
+
+    @Override
+    public void getThreadById(String threadId) {
+        Observable<ConversationRpcProto.ConversationBaseResponse> threadObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        threadObservable = threadTimelineRepository.getThreadById(token, threadId);
+
+        addSubscription(threadObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                    @Override
+                    public void onNext(ConversationRpcProto.ConversationBaseResponse threadResponse) {
+                        GlobalUtils.showLog(TAG, "get thread response:"
+                                + threadResponse);
+
+                        if (threadResponse == null) {
+                            getView().getThreadByIdFail("Failed to thread");
+                            return;
+                        }
+
+                        if (threadResponse.getError()) {
+                            getView().getThreadByIdFail(threadResponse.getMsg());
+                            return;
+                        }
+
+                        if (!threadResponse.getConversation().getEmployeeAssignedList().isEmpty()) {
+                            TicketProto.EmployeeAssigned assignedEmpPb =
+                                    threadResponse.getConversation().getEmployeeAssigned(0);
+                            ProtoMapper.transformAssignedEmployeeAlt(assignedEmpPb,
+                                    threadId);
+
+                        }
+
+                        getView().getThreadByIdSuccess(threadResponse.getConversation().getEmployeeAssigned(
+                                threadResponse.getConversation().getEmployeeAssignedCount() - 1));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().disableBotFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
     }
 
 
