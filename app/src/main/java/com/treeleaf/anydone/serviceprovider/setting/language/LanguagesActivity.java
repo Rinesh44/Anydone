@@ -38,8 +38,8 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
     RadioButton rbEnglish;
     @BindView(R.id.rb_nepali)
     RadioButton rbNepali;
-    @BindView(R.id.rb_hebrew)
-    RadioButton rbHebrew;
+    /*   @BindView(R.id.rb_hebrew)
+       RadioButton rbHebrew;*/
     @BindView(R.id.pb_progress)
     ProgressBar progress;
 
@@ -66,7 +66,7 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
                 .equalsIgnoreCase("en")) {
             rbEnglish.setChecked(true);
         } else {
-            rbHebrew.setChecked(true);
+//            rbHebrew.setChecked(true);
         }
 
         if (selectedLanguage != null) {
@@ -77,7 +77,7 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
             languageChange = true;
             int englishLangId = rbEnglish.getId();
             int nepaliLangId = rbNepali.getId();
-            int hebrewLangId = rbHebrew.getId();
+//            int hebrewLangId = rbHebrew.getId();
 
             if (i == englishLangId) {
                 presenter.changeLanguage("en");

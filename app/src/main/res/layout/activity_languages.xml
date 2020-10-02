@@ -52,7 +52,7 @@
             android:layout_height="1dp"
             android:background="#E7E7E7" />
 
-        <RadioButton
+  <!--      <RadioButton
             android:id="@+id/rb_hebrew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E7E7E7" />
+            android:background="#E7E7E7" />-->
 
     </RadioGroup>
 </RelativeLayout>

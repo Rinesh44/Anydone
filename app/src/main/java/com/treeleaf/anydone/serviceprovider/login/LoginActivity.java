@@ -32,9 +32,9 @@ import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPa
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.HostSelectionInterceptor;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
-import com.treeleaf.januswebrtc.Const;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -111,9 +111,17 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
                     GlobalUtils.showLog(TAG, "dev");
                     Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
 
+                    String url = Hawk.get(Constants.BASE_URL);
+                    HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
+                    interceptor.setHost(url);
+
                 } else {
                     GlobalUtils.showLog(TAG, "prod");
                     Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
+
+                    String url = Hawk.get(Constants.BASE_URL);
+                    HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
+                    interceptor.setHost(url);
                 }
             }
 
