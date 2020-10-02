@@ -196,9 +196,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onHoldDraw() {
+            public void onHoldDraw(String message) {
                 if (drawPadEventListener != null)
-                    drawPadEventListener.onDrawShowProgress();//TODO: uncomment this later
+                    drawPadEventListener.onDrawShowProgress(message);//TODO: uncomment this later
             }
 
             @Override
