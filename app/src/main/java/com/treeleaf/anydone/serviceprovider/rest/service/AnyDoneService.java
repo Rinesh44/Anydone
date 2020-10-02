@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.rest.service;
 
-import com.mapbox.api.geocoding.v5.GeocodingCriteria;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.ConversationProto;
@@ -16,8 +15,6 @@ import com.treeleaf.anydone.rpc.SearchServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -432,7 +429,6 @@ public interface AnyDoneService {
                                                                                         String token,
                                                                                 @Path(value = "refId")
                                                                                         String refId);
-
 
     @GET("rtc/messages/{refId}")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse>

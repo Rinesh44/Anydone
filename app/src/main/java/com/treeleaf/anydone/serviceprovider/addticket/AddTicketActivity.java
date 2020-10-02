@@ -36,6 +36,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
@@ -130,6 +131,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private RecyclerView rvTeams;
     private int lastDescCursorPosition = 0;
     private String description = "";
+    private TicketProto.TicketSource ticketSource = TicketProto.TicketSource.MANUAL_TICKET_SOURCE;
 
     @Override
     protected int getLayout() {
@@ -162,6 +164,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         if (createTicketFromThread) {
             setDataFromThread(intent);
+            ticketSource = TicketProto.TicketSource.CONVERSATION_TICKET_SOURCE;
         }
 
         etDesc.setOnTouchListener((v, event) -> {
@@ -379,12 +382,12 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
                         selectedCustomer.getCustomerId(), UiUtils.getString(etEmail),
                         UiUtils.getString(etPhone), selectedCustomer.getFullName(), tags,
-                        selectedEmployeeId, priorityNum);
+                        selectedEmployeeId, priorityNum, ticketSource);
             } else {
                 presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
                         null, UiUtils.getString(etEmail),
                         UiUtils.getString(etPhone), UiUtils.getString(etCustomerName), tags,
-                        selectedEmployeeId, priorityNum);
+                        selectedEmployeeId, priorityNum, ticketSource);
             }
         });
     }

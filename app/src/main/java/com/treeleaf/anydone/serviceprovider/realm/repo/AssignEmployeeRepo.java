@@ -64,10 +64,15 @@ public class AssignEmployeeRepo extends Repo {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             Employee self = EmployeeRepo.getInstance().getEmployee();
-            GlobalUtils.showLog(TAG, "check self emp id: " + self.getEmployeeId());
-            return new ArrayList<>(realm.where(AssignEmployee.class)
-                    .notEqualTo("assignEmployeeId", self.getEmployeeId())
-                    .findAll());
+            if (self != null) {
+                GlobalUtils.showLog(TAG, "check self emp id: " + self.getEmployeeId());
+                return new ArrayList<>(realm.where(AssignEmployee.class)
+                        .notEqualTo("assignEmployeeId", self.getEmployeeId())
+                        .findAll());
+            } else {
+                return new ArrayList<>(realm.where(AssignEmployee.class)
+                        .findAll());
+            }
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;

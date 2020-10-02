@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dimen_10x1"
-            android:text="Open source library"
+            android:text="Open source libraries"
             android:textColor="#3A5090"
             android:textSize="@dimen/material_text_body2"
             android:textStyle="bold" />
@@ -114,26 +114,26 @@
                 android:layout_margin="@dimen/dimens_2x"
                 android:src="@drawable/ic_facebook" />
 
-           <!-- <ImageView
-                android:id="@+id/iv_twitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimens_2x"
-                android:src="@drawable/ic_twitter" />
+            <!-- <ImageView
+                 android:id="@+id/iv_twitter"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="@dimen/dimens_2x"
+                 android:src="@drawable/ic_twitter" />
 
-            <ImageView
-                android:id="@+id/iv_pininterest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimens_2x"
-                android:src="@drawable/ic_pininterest" />
+             <ImageView
+                 android:id="@+id/iv_pininterest"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="@dimen/dimens_2x"
+                 android:src="@drawable/ic_pininterest" />
 
-            <ImageView
-                android:id="@+id/iv_linkedin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimens_2x"
-                android:src="@drawable/ic_linked_in" />-->
+             <ImageView
+                 android:id="@+id/iv_linkedin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="@dimen/dimens_2x"
+                 android:src="@drawable/ic_linked_in" />-->
 
         </LinearLayout>
 
