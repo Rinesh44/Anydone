@@ -68,6 +68,7 @@ import static com.treeleaf.januswebrtc.Const.JANUS_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.JANUS_ROOM_NUMBER;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
+import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 
@@ -132,7 +133,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private String mLocalAccountId;
     private Mode mode = Mode.VIDEO_STREAM;
     private boolean callAccepted = false;
-    private TextView tvDrawCoorodinate;
 
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
@@ -192,7 +192,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         ibToggleJoineeList = findViewById(R.id.ib_toggle_joinee_list);
         viewVideoCallStart = findViewById(R.id.view_video_call_start);
         tvCalleeName = findViewById(R.id.tv_callee_name);
-        tvDrawCoorodinate = findViewById(R.id.tv_draw_coordinate);
         tvConnecting = findViewById(R.id.tv_connecting);
         tvIsCalling = findViewById(R.id.tv_is_calling);
         tvReconnecting = findViewById(R.id.tv_reconnecting);
@@ -229,7 +228,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         } else {
                             imageViewCaptureImage.setImageBitmap(bitmap);
                             if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
-                                mDrawCallback.onHoldDraw();
+                                mDrawCallback.onHoldDraw("Preparing draw...");
                                 mDrawCallback.onNewImageFrameCaptured(bitmap);
                             }
                         }
@@ -362,11 +361,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawShowProgress() {
+            public void onDrawShowProgress(String message) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        showProgressBar("Please Wait...");
+                        showProgressBar(message);
                     }
                 });
             }
@@ -451,13 +450,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
              */
             @Override
             public void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId) {
-                Log.d(TAG, "onStartDrawing remote final: " + x + " " + y);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvDrawCoorodinate.setText(x + ", " + y);
-                    }
-                });
                 treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata()
                         .setCurrentDrawPosition(new Position(x, y));
             }
@@ -559,7 +551,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewDrawingPosition(float x, float y) {
                 Log.d(TAG, "onReceiveNewDrawingPosition: " + x + " " + y);
-                tvDrawCoorodinate.setText(x + ", " + y);
                 drawMetadataLocal.setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal);
@@ -862,6 +853,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void showProgressBar(String message) {
+        progressDialog.setMessage(message);
         progressDialog.show();
     }
 
@@ -1143,9 +1135,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             DrawPadUtil.hideKeyboard(v.getRootView(), ServerActivity.this);
             showHideDrawView(false);
             joineeListAdapter.makeAllJoineesVisible();
-            if (mDrawCallback != null) {
+            if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                 mDrawCallback.onDiscardDraw();//TODO: uncomment this later
-                mDrawCallback.onHoldDraw();
+                mDrawCallback.onHoldDraw("Cancelling draw...");
             }
         }
     };

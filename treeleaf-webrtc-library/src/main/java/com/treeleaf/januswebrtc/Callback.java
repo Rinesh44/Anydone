@@ -102,7 +102,7 @@ public class Callback {
 
         void onNewImageAcknowledge(int width, int height, long timeStamp);
 
-        void onHoldDraw();
+        void onHoldDraw(String s);
 
         void onDiscardDraw();
 
@@ -146,7 +146,7 @@ public class Callback {
 
         void onDrawHideProgress();
 
-        void onDrawShowProgress();
+        void onDrawShowProgress(String message);
 
         void onDrawTouchDown(String accountId);
 
