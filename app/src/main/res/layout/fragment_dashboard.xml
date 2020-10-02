@@ -496,6 +496,7 @@
                                         android:id="@+id/tv_max"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:paddingEnd="@dimen/dimen_10x3"
                                         android:text="N/A"
                                         android:textColor="@color/charcoal_text"
                                         android:textSize="11sp"
@@ -522,6 +523,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
+                                        android:paddingEnd="@dimen/dimen_10x1"
                                         android:text="N/A"
                                         android:textColor="@color/charcoal_text"
                                         android:textSize="11sp"
@@ -603,21 +605,29 @@
                                 android:weightSum="2">
 
                                 <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/dimen_6x1"
-                                    android:layout_weight="1">
+                                    android:id="@+id/tv_pie_chart_source_not_available"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone">
 
                                     <TextView
-                                        android:id="@+id/tv_pie_chart_source_not_available"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
                                         android:layout_centerHorizontal="true"
                                         android:elevation="4dp"
+                                        android:gravity="center_horizontal"
                                         android:paddingBottom="@dimen/dimen_10x1"
                                         android:text="Not available"
-                                        android:visibility="gone" />
+                                        android:visibility="visible" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="@dimen/dimen_6x1"
+                                    android:layout_weight="1">
 
                                     <com.github.mikephil.charting.charts.PieChart
                                         android:id="@+id/pie_chart_by_source"
@@ -776,15 +786,12 @@
                                 android:orientation="horizontal"
                                 android:weightSum="2">
 
-
                                 <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/dimen_6x1"
-                                    android:layout_weight="1">
+                                    android:id="@+id/tv_pie_chart_priority_not_available"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:id="@+id/tv_pie_chart_priority_not_available"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
@@ -792,7 +799,16 @@
                                         android:elevation="4dp"
                                         android:paddingBottom="@dimen/dimen_10x1"
                                         android:text="Not available"
-                                        android:visibility="gone" />
+                                        android:visibility="visible" />
+
+                                </RelativeLayout>
+
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="@dimen/dimen_6x1"
+                                    android:layout_weight="1">
 
                                     <com.github.mikephil.charting.charts.PieChart
                                         android:id="@+id/pie_chart_by_priority"
@@ -973,13 +989,11 @@
                                 android:weightSum="2">
 
                                 <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/dimen_6x1"
-                                    android:layout_weight="1">
+                                    android:id="@+id/tv_pie_chart_status_not_available"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:id="@+id/tv_pie_chart_status_not_available"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
@@ -987,7 +1001,15 @@
                                         android:elevation="4dp"
                                         android:paddingBottom="@dimen/dimen_10x1"
                                         android:text="Not available"
-                                        android:visibility="gone" />
+                                        android:visibility="visible" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="@dimen/dimen_6x1"
+                                    android:layout_weight="1">
 
                                     <com.github.mikephil.charting.charts.PieChart
                                         android:id="@+id/pie_chart_by_status"

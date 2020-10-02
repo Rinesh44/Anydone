@@ -222,6 +222,10 @@ public final class ServiceProto {
      * <code>TEXT = 11;</code>
      */
     TEXT(11),
+    /**
+     * <code>NUMBER_ATTRIBUTE = 12;</code>
+     */
+    NUMBER_ATTRIBUTE(12),
     UNRECOGNIZED(-1),
     ;
 
@@ -273,6 +277,10 @@ public final class ServiceProto {
      * <code>TEXT = 11;</code>
      */
     public static final int TEXT_VALUE = 11;
+    /**
+     * <code>NUMBER_ATTRIBUTE = 12;</code>
+     */
+    public static final int NUMBER_ATTRIBUTE_VALUE = 12;
 
 
     public final int getNumber() {
@@ -301,6 +309,7 @@ public final class ServiceProto {
         case 9: return DATE_TIME_ATTRIBUTE;
         case 10: return ORGANIZATION_ATTRIBUTE;
         case 11: return TEXT;
+        case 12: return NUMBER_ATTRIBUTE;
         default: return null;
       }
     }
@@ -853,6 +862,11 @@ public final class ServiceProto {
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
      */
     ServiceCategory getCategory();
+
+    /**
+     * <code>optional int32 availability = 12;</code>
+     */
+    int getAvailability();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Service}
@@ -1402,6 +1416,29 @@ public final class ServiceProto {
       
     }
 
+    public static final int AVAILABILITY_FIELD_NUMBER = 12;
+    private int availability_;
+    /**
+     * <code>optional int32 availability = 12;</code>
+     */
+    public int getAvailability() {
+      return availability_;
+    }
+    /**
+     * <code>optional int32 availability = 12;</code>
+     */
+    private void setAvailability(int value) {
+      
+      availability_ = value;
+    }
+    /**
+     * <code>optional int32 availability = 12;</code>
+     */
+    private void clearAvailability() {
+      
+      availability_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -1436,6 +1473,9 @@ public final class ServiceProto {
       }
       if (category_ != null) {
         output.writeMessage(11, getCategory());
+      }
+      if (availability_ != 0) {
+        output.writeInt32(12, availability_);
       }
     }
 
@@ -1487,6 +1527,10 @@ public final class ServiceProto {
       if (category_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getCategory());
+      }
+      if (availability_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(12, availability_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2041,6 +2085,29 @@ public final class ServiceProto {
         return this;
       }
 
+      /**
+       * <code>optional int32 availability = 12;</code>
+       */
+      public int getAvailability() {
+        return instance.getAvailability();
+      }
+      /**
+       * <code>optional int32 availability = 12;</code>
+       */
+      public Builder setAvailability(int value) {
+        copyOnWrite();
+        instance.setAvailability(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 availability = 12;</code>
+       */
+      public Builder clearAvailability() {
+        copyOnWrite();
+        instance.clearAvailability();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Service)
     }
     protected final Object dynamicMethod(
@@ -2080,6 +2147,8 @@ public final class ServiceProto {
           state_ = visitor.visitInt(state_ != 0, state_,    other.state_ != 0, other.state_);
           createdBy_ = visitor.visitMessage(createdBy_, other.createdBy_);
           category_ = visitor.visitMessage(category_, other.category_);
+          availability_ = visitor.visitInt(availability_ != 0, availability_,
+              other.availability_ != 0, other.availability_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2184,6 +2253,11 @@ public final class ServiceProto {
                     category_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 96: {
+
+                  availability_ = input.readInt32();
                   break;
                 }
               }

@@ -95,25 +95,39 @@ public final class ConversationProto {
     int getEmployeeProfileCount();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    java.util.List<TicketProto.EmployeeAssigned>
+        getEmployeeAssignedList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    TicketProto.EmployeeAssigned getEmployeeAssigned(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    int getEmployeeAssignedCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     boolean hasMessage();
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     ThirdPartyProto.Messaging getMessage();
 
     /**
-     * <code>optional bool botEnabled = 11;</code>
+     * <code>optional bool botEnabled = 12;</code>
      */
     boolean getBotEnabled();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     boolean hasTag();
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     TicketProto.TicketTag getTag();
   }
@@ -131,6 +145,7 @@ public final class ConversationProto {
       serviceProviderId_ = "";
       defaultLabelId_ = "";
       employeeProfile_ = emptyProtobufList();
+      employeeAssigned_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int CONVERSATIONID_FIELD_NUMBER = 1;
@@ -574,22 +589,142 @@ public final class ConversationProto {
       employeeProfile_.remove(index);
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 10;
+    public static final int EMPLOYEEASSIGNED_FIELD_NUMBER = 10;
+    private com.google.protobuf.Internal.ProtobufList<TicketProto.EmployeeAssigned> employeeAssigned_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    public java.util.List<TicketProto.EmployeeAssigned> getEmployeeAssignedList() {
+      return employeeAssigned_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    public java.util.List<? extends TicketProto.EmployeeAssignedOrBuilder>
+        getEmployeeAssignedOrBuilderList() {
+      return employeeAssigned_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    public int getEmployeeAssignedCount() {
+      return employeeAssigned_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    public TicketProto.EmployeeAssigned getEmployeeAssigned(int index) {
+      return employeeAssigned_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    public TicketProto.EmployeeAssignedOrBuilder getEmployeeAssignedOrBuilder(
+        int index) {
+      return employeeAssigned_.get(index);
+    }
+    private void ensureEmployeeAssignedIsMutable() {
+      if (!employeeAssigned_.isModifiable()) {
+        employeeAssigned_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(employeeAssigned_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void setEmployeeAssigned(
+        int index, TicketProto.EmployeeAssigned value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEmployeeAssignedIsMutable();
+      employeeAssigned_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void setEmployeeAssigned(
+        int index, TicketProto.EmployeeAssigned.Builder builderForValue) {
+      ensureEmployeeAssignedIsMutable();
+      employeeAssigned_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void addEmployeeAssigned(TicketProto.EmployeeAssigned value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEmployeeAssignedIsMutable();
+      employeeAssigned_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void addEmployeeAssigned(
+        int index, TicketProto.EmployeeAssigned value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEmployeeAssignedIsMutable();
+      employeeAssigned_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void addEmployeeAssigned(
+        TicketProto.EmployeeAssigned.Builder builderForValue) {
+      ensureEmployeeAssignedIsMutable();
+      employeeAssigned_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void addEmployeeAssigned(
+        int index, TicketProto.EmployeeAssigned.Builder builderForValue) {
+      ensureEmployeeAssignedIsMutable();
+      employeeAssigned_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void addAllEmployeeAssigned(
+        Iterable<? extends TicketProto.EmployeeAssigned> values) {
+      ensureEmployeeAssignedIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, employeeAssigned_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void clearEmployeeAssigned() {
+      employeeAssigned_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+     */
+    private void removeEmployeeAssigned(int index) {
+      ensureEmployeeAssignedIsMutable();
+      employeeAssigned_.remove(index);
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 11;
     private ThirdPartyProto.Messaging message_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     public boolean hasMessage() {
       return message_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     public ThirdPartyProto.Messaging getMessage() {
       return message_ == null ? ThirdPartyProto.Messaging.getDefaultInstance() : message_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     private void setMessage(ThirdPartyProto.Messaging value) {
       if (value == null) {
@@ -599,7 +734,7 @@ public final class ConversationProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     private void setMessage(
         ThirdPartyProto.Messaging.Builder builderForValue) {
@@ -607,7 +742,7 @@ public final class ConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     private void mergeMessage(ThirdPartyProto.Messaging value) {
       if (message_ != null &&
@@ -620,51 +755,51 @@ public final class ConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
      */
     private void clearMessage() {  message_ = null;
       
     }
 
-    public static final int BOTENABLED_FIELD_NUMBER = 11;
+    public static final int BOTENABLED_FIELD_NUMBER = 12;
     private boolean botEnabled_;
     /**
-     * <code>optional bool botEnabled = 11;</code>
+     * <code>optional bool botEnabled = 12;</code>
      */
     public boolean getBotEnabled() {
       return botEnabled_;
     }
     /**
-     * <code>optional bool botEnabled = 11;</code>
+     * <code>optional bool botEnabled = 12;</code>
      */
     private void setBotEnabled(boolean value) {
       
       botEnabled_ = value;
     }
     /**
-     * <code>optional bool botEnabled = 11;</code>
+     * <code>optional bool botEnabled = 12;</code>
      */
     private void clearBotEnabled() {
       
       botEnabled_ = false;
     }
 
-    public static final int TAG_FIELD_NUMBER = 12;
+    public static final int TAG_FIELD_NUMBER = 13;
     private TicketProto.TicketTag tag_;
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     public boolean hasTag() {
       return tag_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     public TicketProto.TicketTag getTag() {
       return tag_ == null ? TicketProto.TicketTag.getDefaultInstance() : tag_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     private void setTag(TicketProto.TicketTag value) {
       if (value == null) {
@@ -674,7 +809,7 @@ public final class ConversationProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     private void setTag(
         TicketProto.TicketTag.Builder builderForValue) {
@@ -682,7 +817,7 @@ public final class ConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     private void mergeTag(TicketProto.TicketTag value) {
       if (tag_ != null &&
@@ -695,7 +830,7 @@ public final class ConversationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
      */
     private void clearTag() {  tag_ = null;
       
@@ -730,14 +865,17 @@ public final class ConversationProto {
       for (int i = 0; i < employeeProfile_.size(); i++) {
         output.writeMessage(9, employeeProfile_.get(i));
       }
+      for (int i = 0; i < employeeAssigned_.size(); i++) {
+        output.writeMessage(10, employeeAssigned_.get(i));
+      }
       if (message_ != null) {
-        output.writeMessage(10, getMessage());
+        output.writeMessage(11, getMessage());
       }
       if (botEnabled_ != false) {
-        output.writeBool(11, botEnabled_);
+        output.writeBool(12, botEnabled_);
       }
       if (tag_ != null) {
-        output.writeMessage(12, getTag());
+        output.writeMessage(13, getTag());
       }
     }
 
@@ -782,17 +920,21 @@ public final class ConversationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, employeeProfile_.get(i));
       }
+      for (int i = 0; i < employeeAssigned_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, employeeAssigned_.get(i));
+      }
       if (message_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getMessage());
+          .computeMessageSize(11, getMessage());
       }
       if (botEnabled_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(11, botEnabled_);
+          .computeBoolSize(12, botEnabled_);
       }
       if (tag_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, getTag());
+          .computeMessageSize(13, getTag());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1266,19 +1408,116 @@ public final class ConversationProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public java.util.List<TicketProto.EmployeeAssigned> getEmployeeAssignedList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getEmployeeAssignedList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public int getEmployeeAssignedCount() {
+        return instance.getEmployeeAssignedCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public TicketProto.EmployeeAssigned getEmployeeAssigned(int index) {
+        return instance.getEmployeeAssigned(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder setEmployeeAssigned(
+          int index, TicketProto.EmployeeAssigned value) {
+        copyOnWrite();
+        instance.setEmployeeAssigned(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder setEmployeeAssigned(
+          int index, TicketProto.EmployeeAssigned.Builder builderForValue) {
+        copyOnWrite();
+        instance.setEmployeeAssigned(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder addEmployeeAssigned(TicketProto.EmployeeAssigned value) {
+        copyOnWrite();
+        instance.addEmployeeAssigned(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder addEmployeeAssigned(
+          int index, TicketProto.EmployeeAssigned value) {
+        copyOnWrite();
+        instance.addEmployeeAssigned(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder addEmployeeAssigned(
+          TicketProto.EmployeeAssigned.Builder builderForValue) {
+        copyOnWrite();
+        instance.addEmployeeAssigned(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder addEmployeeAssigned(
+          int index, TicketProto.EmployeeAssigned.Builder builderForValue) {
+        copyOnWrite();
+        instance.addEmployeeAssigned(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder addAllEmployeeAssigned(
+          Iterable<? extends TicketProto.EmployeeAssigned> values) {
+        copyOnWrite();
+        instance.addAllEmployeeAssigned(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder clearEmployeeAssigned() {
+        copyOnWrite();
+        instance.clearEmployeeAssigned();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 10;</code>
+       */
+      public Builder removeEmployeeAssigned(int index) {
+        copyOnWrite();
+        instance.removeEmployeeAssigned(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
        */
       public boolean hasMessage() {
         return instance.hasMessage();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
        */
       public ThirdPartyProto.Messaging getMessage() {
         return instance.getMessage();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
        */
       public Builder setMessage(ThirdPartyProto.Messaging value) {
         copyOnWrite();
@@ -1286,7 +1525,7 @@ public final class ConversationProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
        */
       public Builder setMessage(
           ThirdPartyProto.Messaging.Builder builderForValue) {
@@ -1295,7 +1534,7 @@ public final class ConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
        */
       public Builder mergeMessage(ThirdPartyProto.Messaging value) {
         copyOnWrite();
@@ -1303,7 +1542,7 @@ public final class ConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Messaging message = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.Messaging message = 11;</code>
        */
       public Builder clearMessage() {  copyOnWrite();
         instance.clearMessage();
@@ -1311,13 +1550,13 @@ public final class ConversationProto {
       }
 
       /**
-       * <code>optional bool botEnabled = 11;</code>
+       * <code>optional bool botEnabled = 12;</code>
        */
       public boolean getBotEnabled() {
         return instance.getBotEnabled();
       }
       /**
-       * <code>optional bool botEnabled = 11;</code>
+       * <code>optional bool botEnabled = 12;</code>
        */
       public Builder setBotEnabled(boolean value) {
         copyOnWrite();
@@ -1325,7 +1564,7 @@ public final class ConversationProto {
         return this;
       }
       /**
-       * <code>optional bool botEnabled = 11;</code>
+       * <code>optional bool botEnabled = 12;</code>
        */
       public Builder clearBotEnabled() {
         copyOnWrite();
@@ -1334,19 +1573,19 @@ public final class ConversationProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
        */
       public boolean hasTag() {
         return instance.hasTag();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
        */
       public TicketProto.TicketTag getTag() {
         return instance.getTag();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
        */
       public Builder setTag(TicketProto.TicketTag value) {
         copyOnWrite();
@@ -1354,7 +1593,7 @@ public final class ConversationProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
        */
       public Builder setTag(
           TicketProto.TicketTag.Builder builderForValue) {
@@ -1363,7 +1602,7 @@ public final class ConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
        */
       public Builder mergeTag(TicketProto.TicketTag value) {
         copyOnWrite();
@@ -1371,7 +1610,7 @@ public final class ConversationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 13;</code>
        */
       public Builder clearTag() {  copyOnWrite();
         instance.clearTag();
@@ -1392,6 +1631,7 @@ public final class ConversationProto {
         }
         case MAKE_IMMUTABLE: {
           employeeProfile_.makeImmutable();
+          employeeAssigned_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -1415,6 +1655,7 @@ public final class ConversationProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           employeeProfile_= visitor.visitList(employeeProfile_, other.employeeProfile_);
+          employeeAssigned_= visitor.visitList(employeeAssigned_, other.employeeAssigned_);
           message_ = visitor.visitMessage(message_, other.message_);
           botEnabled_ = visitor.visitBoolean(botEnabled_ != false, botEnabled_,
               other.botEnabled_ != false, other.botEnabled_);
@@ -1507,6 +1748,15 @@ public final class ConversationProto {
                   break;
                 }
                 case 82: {
+                  if (!employeeAssigned_.isModifiable()) {
+                    employeeAssigned_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(employeeAssigned_);
+                  }
+                  employeeAssigned_.add(
+                      input.readMessage(TicketProto.EmployeeAssigned.parser(), extensionRegistry));
+                  break;
+                }
+                case 90: {
                   ThirdPartyProto.Messaging.Builder subBuilder = null;
                   if (message_ != null) {
                     subBuilder = message_.toBuilder();
@@ -1519,12 +1769,12 @@ public final class ConversationProto {
 
                   break;
                 }
-                case 88: {
+                case 96: {
 
                   botEnabled_ = input.readBool();
                   break;
                 }
-                case 98: {
+                case 106: {
                   TicketProto.TicketTag.Builder subBuilder = null;
                   if (tag_ != null) {
                     subBuilder = tag_.toBuilder();

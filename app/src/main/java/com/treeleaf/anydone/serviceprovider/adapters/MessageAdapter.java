@@ -7,13 +7,17 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Patterns;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -1628,6 +1632,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private class InitialTicketDetailHolder extends RecyclerView.ViewHolder {
         TextView ticketId, ticketTitle, ticketDesc;
         LinearLayout llLabels;
+        HorizontalScrollView hsvTags;
 
         InitialTicketDetailHolder(@NonNull View itemView) {
             super(itemView);
@@ -1636,10 +1641,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ticketTitle = itemView.findViewById(R.id.tv_ticket_title);
             ticketDesc = itemView.findViewById(R.id.tv_ticket_desc);
             llLabels = itemView.findViewById(R.id.ll_label_holder);
+            hsvTags = itemView.findViewById(R.id.scv_label);
         }
 
         void bind(final Conversation conversation) {
-            ticketId.setText("#" + String.valueOf(conversation.getRefId()));
+            ticketId.setText("#" + conversation.getRefId());
             ticketTitle.setText(conversation.getTicketTitle());
             if (conversation.getTicketDesc() != null && !conversation.getTicketDesc().isEmpty()) {
                 ticketDesc.setText(conversation.getTicketDesc());
@@ -1660,6 +1666,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     tvTag.setLayoutParams(params);
                     llLabels.addView(tvTag);
                 }
+/*
+                if (llLabels.getChildCount() >= 5) {
+                    hsvTags.setGravity(Gravity.START);
+                }*/
+
             }
 
         }

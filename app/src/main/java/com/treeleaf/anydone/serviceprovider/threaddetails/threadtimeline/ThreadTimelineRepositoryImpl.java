@@ -1,8 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
+import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
-import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
@@ -35,6 +35,12 @@ public class ThreadTimelineRepositoryImpl implements ThreadTimelineRepository {
     @Override
     public Observable<UserRpcProto.UserBaseResponse> findEmployees(String token) {
         return anyDoneService.findEmployees(token);
+    }
+
+    @Override
+    public Observable<ConversationRpcProto.ConversationBaseResponse> assignEmployeeToThread(String token,
+                                                                                            ConversationProto.ConversationThread conversationThread) {
+        return anyDoneService.assignEmployeeToThread(token, conversationThread);
     }
 
 }

@@ -39,7 +39,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
     @Override
     public void createTicket(String title, String description, String customerId, String customerEmail,
                              String customerPhone, String customerName, List<String> tags,
-                             String assignedEmployeeId, int priority) {
+                             String assignedEmployeeId, int priority, TicketProto.TicketSource ticketSource) {
 
         if (!validateCredentials(title, customerName)) {
             return;
@@ -102,6 +102,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setPriority(getTicketPriority(priority))
                     .setService(service)
                     .setEmployeeAssigned(employeeAssigned)
+                    .setTicketSource(ticketSource)
                     .addAllTags(tagList)
                     .build();
         } else {
@@ -112,6 +113,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setCustomerType(TicketProto.CustomerType.EXTERNAL_CUSTOMER)
                     .setPriority(getTicketPriority(priority))
                     .setService(service)
+                    .setTicketSource(ticketSource)
                     .addAllTags(tagList)
                     .build();
         }

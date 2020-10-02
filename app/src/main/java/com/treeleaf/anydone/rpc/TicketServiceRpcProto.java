@@ -2836,6 +2836,15 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.TicketStatBySource ticketsBySource = 17;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.TicketStatBySource getTicketsBySource();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+     */
+    int getTicketStatResponseTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType getTicketStatResponseType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -3927,6 +3936,45 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int TICKETSTATRESPONSETYPE_FIELD_NUMBER = 18;
+    private int ticketStatResponseType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+     */
+    public int getTicketStatResponseTypeValue() {
+      return ticketStatResponseType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType getTicketStatResponseType() {
+      com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType result = com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType.forNumber(ticketStatResponseType_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+     */
+    private void setTicketStatResponseTypeValue(int value) {
+        ticketStatResponseType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+     */
+    private void setTicketStatResponseType(com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      ticketStatResponseType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+     */
+    private void clearTicketStatResponseType() {
+      
+      ticketStatResponseType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3979,6 +4027,9 @@ public final class TicketServiceRpcProto {
       }
       if (ticketsBySource_ != null) {
         output.writeMessage(17, getTicketsBySource());
+      }
+      if (ticketStatResponseType_ != com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType.UNKNOWN_RESPONSE_TYPE.getNumber()) {
+        output.writeEnum(18, ticketStatResponseType_);
       }
     }
 
@@ -4054,6 +4105,10 @@ public final class TicketServiceRpcProto {
       if (ticketsBySource_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, getTicketsBySource());
+      }
+      if (ticketStatResponseType_ != com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType.UNKNOWN_RESPONSE_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(18, ticketStatResponseType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -5052,6 +5107,43 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+       */
+      public int getTicketStatResponseTypeValue() {
+        return instance.getTicketStatResponseTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+       */
+      public Builder setTicketStatResponseTypeValue(int value) {
+        copyOnWrite();
+        instance.setTicketStatResponseTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType getTicketStatResponseType() {
+        return instance.getTicketStatResponseType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+       */
+      public Builder setTicketStatResponseType(com.treeleaf.anydone.entities.TicketProto.TicketStatResponseType value) {
+        copyOnWrite();
+        instance.setTicketStatResponseType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketStatResponseType ticketStatResponseType = 18;</code>
+       */
+      public Builder clearTicketStatResponseType() {
+        copyOnWrite();
+        instance.clearTicketStatResponseType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -5098,6 +5190,7 @@ public final class TicketServiceRpcProto {
           ticketsResolveTime_ = visitor.visitMessage(ticketsResolveTime_, other.ticketsResolveTime_);
           ticketsByStatuses_= visitor.visitList(ticketsByStatuses_, other.ticketsByStatuses_);
           ticketsBySource_ = visitor.visitMessage(ticketsBySource_, other.ticketsBySource_);
+          ticketStatResponseType_ = visitor.visitInt(ticketStatResponseType_ != 0, ticketStatResponseType_,    other.ticketStatResponseType_ != 0, other.ticketStatResponseType_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5289,6 +5382,12 @@ public final class TicketServiceRpcProto {
                     ticketsBySource_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 144: {
+                  int rawValue = input.readEnum();
+
+                  ticketStatResponseType_ = rawValue;
                   break;
                 }
               }

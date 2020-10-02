@@ -41,6 +41,7 @@
         android:id="@+id/scv_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
         android:layout_marginTop="@dimen/dimen_10x1"
         android:scrollbars="none">
 

@@ -45,6 +45,14 @@ public class TicketTimelineContract {
 
         void hideProgressEmployee();
 
+        void enableBotSuccess();
+
+        void enableBotFail(String msg);
+
+        void disableBotFail(String msg);
+
+        void disableBotSuccess();
+
     }
 
     public interface TicketTimelinePresenter extends Presenter<TicketTimelineView> {
@@ -66,6 +74,10 @@ public class TicketTimelineContract {
         void getEmployees();
 
         void assignTicket(long ticketId, String employeeId);
+
+        void enableBot(String ticketId);
+
+        void disableBot(String ticketId);
 
     }
 }

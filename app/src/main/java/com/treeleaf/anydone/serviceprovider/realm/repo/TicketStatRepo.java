@@ -31,7 +31,7 @@ public class TicketStatRepo extends Repo {
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByDate ticketStatByDate = ProtoMapper
-                        .transfromTicketStatByDate(ticketStatByStatusListPb);
+                        .transformTicketStatByDate(ticketStatByStatusListPb);
                 realm1.copyToRealmOrUpdate(ticketStatByDate);
                 callback.success(null);
             });
@@ -63,7 +63,7 @@ public class TicketStatRepo extends Repo {
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByStatus ticketStatByStatus = ProtoMapper
-                        .transfromTicketByStatus(ticketStatByStatusPb, false);
+                        .transformTicketByStatus(ticketStatByStatusPb, false);
                 realm1.copyToRealmOrUpdate(ticketStatByStatus);
                 callback.success(null);
             });
@@ -93,7 +93,7 @@ public class TicketStatRepo extends Repo {
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByPriority ticketStatByPriority = ProtoMapper
-                        .transfromTicketByPriority(ticketStatByPriorityPb);
+                        .transformTicketByPriority(ticketStatByPriorityPb);
                 realm1.copyToRealmOrUpdate(ticketStatByPriority);
                 callback.success(null);
             });
@@ -124,7 +124,7 @@ public class TicketStatRepo extends Repo {
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatBySource ticketStatBySource = ProtoMapper
-                        .transfromTicketBySource(ticketStatBySourcePb);
+                        .transformTicketBySource(ticketStatBySourcePb);
                 realm1.copyToRealmOrUpdate(ticketStatBySource);
                 callback.success(null);
             });
@@ -155,7 +155,7 @@ public class TicketStatRepo extends Repo {
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByResolvedTime ticketStatByResolvedTime = ProtoMapper
-                        .transfromTicketByResolvedTime(ticketStatResolveTimePb);
+                        .transformTicketByResolvedTime(ticketStatResolveTimePb);
                 realm1.copyToRealmOrUpdate(ticketStatByResolvedTime);
                 callback.success(null);
             });

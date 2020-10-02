@@ -1,9 +1,13 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.ConversationProto;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
+import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
@@ -156,6 +160,67 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     public void onComplete() {
                     }
                 }));
+    }
+
+    @Override
+    public void assignEmployee(String threadId, String employeeId) {
+        getView().showProgressEmployee();
+        Observable<ConversationRpcProto.ConversationBaseResponse> getThreadObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
+                .setEmployeeProfileId(String.valueOf(employeeId))
+                .build();
+
+        TicketProto.EmployeeAssigned employeeAssigned = TicketProto.EmployeeAssigned.newBuilder()
+                .setAssignedTo(employeeProfile)
+                .setAssignedAt(System.currentTimeMillis())
+                .build();
+
+        ConversationProto.ConversationThread thread = ConversationProto.ConversationThread.newBuilder()
+                .addEmployeeAssigned(employeeAssigned)
+                .build();
+
+        GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
+
+        getThreadObservable = threadTimelineRepository.assignEmployeeToThread(token, thread);
+        addSubscription(getThreadObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                            @Override
+                            public void onNext(ConversationRpcProto.ConversationBaseResponse
+                                                       getThreadBaseResponse) {
+                                GlobalUtils.showLog(TAG, "assign emp response: "
+                                        + getThreadBaseResponse);
+
+                                getView().hideProgressEmployee();
+                                if (getThreadBaseResponse == null) {
+                                    getView().assignFail("assign emp failed");
+                                    return;
+                                }
+
+                                if (getThreadBaseResponse.getError()) {
+                                    getView().assignFail(getThreadBaseResponse.getMsg());
+                                    return;
+                                }
+
+                                getView().assignSuccess();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                getView().hideProgressBar();
+                                getView().assignFail(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
+        );
     }
 
 

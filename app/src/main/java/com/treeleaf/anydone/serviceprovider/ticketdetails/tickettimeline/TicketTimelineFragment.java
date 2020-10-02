@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -184,6 +186,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     LinearLayout llContributorList;
     @BindView(R.id.tv_contributor)
     TextView tvContributor;
+    @BindView(R.id.switch_bot_reply)
+    Switch botReply;
 
 
     private boolean expandActivity = true;
@@ -293,6 +297,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
        /* btnMarkComplete.setOnClickListener(v -> startActivity(new Intent(getActivity(),
                 PaymentSummary.class)));*/
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+
+        setBotReplyChangeListener();
     }
 
     private void setContributors() {
@@ -332,7 +338,13 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
 
         Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
-        contributorList.addAll(ticket.getContributorList());
+        for (Employee contributor : ticket.getContributorList()
+        ) {
+            if (!contributorList.contains(contributor)) {
+                contributorList.add(contributor);
+            }
+        }
+//        contributorList.addAll(ticket.getContributorList());
         TicketRepo.getInstance().setContributors(ticketId, contributorList, new Repo.Callback() {
             @Override
             public void success(Object o) {
@@ -357,6 +369,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (isTicketStarted) {
             onTicketStarted();
             Hawk.put(Constants.TICKET_STARTED, false);
+        }
+
+        Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
+        if (!ticket.isBotEnabled()) {
+            botReply.setChecked(false);
         }
     }
 
@@ -455,6 +472,9 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 break;
         }
 
+     /*   if (tickets.isBotEnabled()) {
+            botReply.setChecked(true);
+        }*/
         tvTicketId.setText(String.valueOf(tickets.getTicketId()));
         tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
         tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
@@ -507,6 +527,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         Account userAccount = AccountRepo.getInstance().getAccount();
         handleAssignedCase(tickets, userAccount);
         handleSubscriberCase(tickets, userAccount);
+
+        if (tickets.isBotEnabled()) {
+            botReply.setChecked(true);
+        } else {
+            botReply.setChecked(false);
+        }
     }
 
     private void handleSubscriberCase(Tickets tickets, Account userAccount) {
@@ -528,6 +554,16 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 addScrollviewMargin();
             }
         }
+    }
+
+    private void setBotReplyChangeListener() {
+        botReply.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                presenter.enableBot(String.valueOf(ticketId));
+            } else {
+                presenter.disableBot(String.valueOf(ticketId));
+            }
+        });
     }
 
     private void setService(String serviceId) {
@@ -1424,6 +1460,46 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (pbEmployee != null) {
             pbEmployee.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void enableBotSuccess() {
+        botReply.setChecked(true);
+        TicketRepo.getInstance().enableBotReply(String.valueOf(ticketId));
+    }
+
+    @Override
+    public void enableBotFail(String msg) {
+        botReply.setOnCheckedChangeListener(null);
+        botReply.setChecked(false);
+        setBotReplyChangeListener();
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void disableBotFail(String msg) {
+        botReply.setOnCheckedChangeListener(null);
+        botReply.setChecked(true);
+        setBotReplyChangeListener();
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void disableBotSuccess() {
+        botReply.setChecked(false);
+        TicketRepo.getInstance().disableBotReply(String.valueOf(ticketId));
     }
 
 

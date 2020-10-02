@@ -1,8 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.rest.service;
 
-import com.mapbox.api.geocoding.v5.GeocodingCriteria;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
+import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
@@ -15,8 +15,6 @@ import com.treeleaf.anydone.rpc.SearchServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -420,6 +418,18 @@ public interface AnyDoneService {
                                                                                 @Path(value = "refId")
                                                                                         String refId);
 
+    @PATCH("ticket/{refId}/enablebotreply")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableTicketBotReply(@Header(AUTHORIZATION)
+                                                                                       String token,
+                                                                               @Path(value = "refId")
+                                                                                       String refId);
+
+    @PATCH("ticket/{refId}/disablebotreply")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableTicketBotReply(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Path(value = "refId")
+                                                                                        String refId);
+
     @GET("rtc/messages/{refId}")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
     getThreadMessages(@Header(AUTHORIZATION) String token,
@@ -523,6 +533,11 @@ public interface AnyDoneService {
                                                                  @Body TicketProto.GetSharableLinkRequest
                                                                          sharableLinkRequest);
 
+    @POST("conversation/assigned/employees")
+    Observable<ConversationRpcProto.ConversationBaseResponse> assignEmployeeToThread(@Header(AUTHORIZATION)
+                                                                                             String token,
+                                                                                     @Body ConversationProto.ConversationThread
+                                                                                             conversationThread);
 }
 
 

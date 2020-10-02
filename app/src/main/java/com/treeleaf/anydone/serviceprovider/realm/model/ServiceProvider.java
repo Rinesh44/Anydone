@@ -1,8 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
-import androidx.room.PrimaryKey;
-
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class ServiceProvider extends RealmObject {
     public static final String SERVICE_PROVIDER_ID = "serviceProviderId";
@@ -17,6 +16,7 @@ public class ServiceProvider extends RealmObject {
     private String type;
     private int noOfRating;
     private float avgRating;
+    private long createdAt;
 
     public ServiceProvider() {
     }
@@ -99,5 +99,13 @@ public class ServiceProvider extends RealmObject {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 }

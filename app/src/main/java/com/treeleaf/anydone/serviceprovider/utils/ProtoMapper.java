@@ -19,6 +19,8 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -272,7 +274,7 @@ public final class ProtoMapper {
         return assignEmployeeList;
     }
 
-    public static TicketStatByStatus transfromTicketByStatus(TicketProto.TicketStatByStatus
+    public static TicketStatByStatus transformTicketByStatus(TicketProto.TicketStatByStatus
                                                                      ticketStatByStatusPb,
                                                              boolean multiple) {
         TicketStatByStatus ticketStatByStatus = new TicketStatByStatus();
@@ -288,10 +290,12 @@ public final class ProtoMapper {
         ticketStatByStatus.setTotalTickets(ticketStatByStatusPb.getTotalTickets());
         ticketStatByStatus.setReOpenedTickets(ticketStatByStatusPb.getReopenedTickets());
         ticketStatByStatus.setTimestamp(ticketStatByStatusPb.getTimestamp());
+        ticketStatByStatus.setStatType(String.valueOf(ticketStatByStatusPb.
+                getTicketStatResponseType().getNumber()));
         return ticketStatByStatus;
     }
 
-    public static TicketStatBySource transfromTicketBySource(TicketProto.TicketStatBySource
+    public static TicketStatBySource transformTicketBySource(TicketProto.TicketStatBySource
                                                                      ticketStatBySourcePb) {
         TicketStatBySource ticketStatBySource = new TicketStatBySource();
         ticketStatBySource.setId(Constants.TICKET_STAT_SOURCE);
@@ -302,7 +306,7 @@ public final class ProtoMapper {
         return ticketStatBySource;
     }
 
-    public static TicketStatByPriority transfromTicketByPriority(TicketProto.TicketStatByPriority
+    public static TicketStatByPriority transformTicketByPriority(TicketProto.TicketStatByPriority
                                                                          ticketStatByPriorityPb) {
         TicketStatByPriority ticketStatByPriority = new TicketStatByPriority();
         ticketStatByPriority.setId(Constants.TICKET_STAT_PRIORITY);
@@ -314,7 +318,7 @@ public final class ProtoMapper {
         return ticketStatByPriority;
     }
 
-    public static TicketStatByResolvedTime transfromTicketByResolvedTime(TicketProto.TicketStatResolveTime
+    public static TicketStatByResolvedTime transformTicketByResolvedTime(TicketProto.TicketStatResolveTime
                                                                                  ticketStatResolveTimePb) {
         TicketStatByResolvedTime ticketStatByResolvedTime = new TicketStatByResolvedTime();
         ticketStatByResolvedTime.setId(Constants.TICKET_STAT_RESOLVED_TIME);
@@ -324,13 +328,13 @@ public final class ProtoMapper {
         return ticketStatByResolvedTime;
     }
 
-    public static TicketStatByDate transfromTicketStatByDate(List<TicketProto.TicketStatByStatus>
+    public static TicketStatByDate transformTicketStatByDate(List<TicketProto.TicketStatByStatus>
                                                                      ticketStatByStatusListPb) {
         TicketStatByDate ticketStatByDate = new TicketStatByDate();
         RealmList<TicketStatByStatus> ticketStatByStatusList = new RealmList<>();
         for (TicketProto.TicketStatByStatus ticketStatByStatusPb : ticketStatByStatusListPb
         ) {
-            TicketStatByStatus ticketStatByStatus = transfromTicketByStatus(ticketStatByStatusPb,
+            TicketStatByStatus ticketStatByStatus = transformTicketByStatus(ticketStatByStatusPb,
                     true);
             ticketStatByStatusList.add(ticketStatByStatus);
         }
