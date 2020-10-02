@@ -179,9 +179,11 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
 
         ConversationProto.ConversationThread thread = ConversationProto.ConversationThread.newBuilder()
                 .addEmployeeAssigned(employeeAssigned)
+                .setConversationId(threadId)
                 .build();
 
         GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
+        GlobalUtils.showLog(TAG, "employee assinged whole:" + thread);
 
         getThreadObservable = threadTimelineRepository.assignEmployeeToThread(token, thread);
         addSubscription(getThreadObservable
