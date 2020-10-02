@@ -141,6 +141,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private FrameLayout flExtraCalleePic;
     private TextView tvExtraCalleeNumber;
     private CardView cvSingleCalleeView;
+    private TextView tvDrawCoordinate;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -182,6 +183,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         clCallSettings = findViewById(R.id.cl_call_setting);
         clCallOtions = findViewById(R.id.cl_call_options);
         imageVideoToggle = findViewById(R.id.image_video);
+        tvDrawCoordinate = findViewById(R.id.tv_draw_coordinate);
         imageAudioToggle = findViewById(R.id.image_mic);
         imageScreenShot = findViewById(R.id.image_screenshot);
         imageSwitchCamera = findViewById(R.id.image_switch_camera);
@@ -349,6 +351,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 remoteDeviceHeight = height;
                 localDeviceWidth = VideoCallUtil.getDeviceResolution(ClientActivity.this)[0];
                 localDeviceHeight = VideoCallUtil.getDeviceResolution(ClientActivity.this)[1];
+//                TextView tvRemoteConfig = findViewById(R.id.tv_remote_config);
+//                TextView tvLocalConfig = findViewById(R.id.tv_local_config);
+//                tvRemoteConfig.setText(remoteDeviceWidth + " X " + remoteDeviceHeight);
+//                tvLocalConfig.setText(localDeviceWidth + " X " + localDeviceHeight);
             }
 
             @Override
@@ -483,6 +489,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
              */
             @Override
             public void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvDrawCoordinate.setText(x + ", " + y);
+                    }
+                });
                 treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata()
                         .setCurrentDrawPosition(new Position(x, y));
             }
@@ -627,6 +639,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewDrawingPosition(float x, float y) {
                 Log.d(TAG, "onReceiveNewDrawingPosition: " + x + " " + y);
+                tvDrawCoordinate.setText(x + ", " + y);
                 drawMetaDataLocal.setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null && isJoineePresent) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetaDataLocal);

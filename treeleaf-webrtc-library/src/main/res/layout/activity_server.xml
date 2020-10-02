@@ -176,4 +176,25 @@
         android:textSize="20sp"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/tv_local_config"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_remote_config"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_remote_config"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_draw_coordinate"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_draw_coordinate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/color_white" />
+
 </RelativeLayout>

@@ -615,7 +615,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         }
         float adjustedWidth = VideoCallUtil.adjustXPixelResolutionInLocalDevice(localDeviceWidth,
                 remoteDeviceResolutions.get(accountId)[0],
-                remoteX) + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
+                remoteX) + VideoCallUtil.convertDpToPixel(0, VideoCallHandleActivity.this);
         return adjustedWidth;
     }
 
@@ -625,7 +625,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         }
         float adjustedHeight = VideoCallUtil.adjustYPixelResolutionInLocalDevice(localDeviceHeight,
                 remoteDeviceResolutions.get(accountId)[1],
-                remoteY) + VideoCallUtil.convertDpToPixel(20, VideoCallHandleActivity.this);
+                remoteY) + VideoCallUtil.convertDpToPixel(0, VideoCallHandleActivity.this);
         return adjustedHeight;
     }
 
