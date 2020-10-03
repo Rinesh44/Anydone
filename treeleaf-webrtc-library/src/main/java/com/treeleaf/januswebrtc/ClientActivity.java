@@ -699,7 +699,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     private void loadCallNameAndProfileIcon(String calleeName, ArrayList<String> calleeProfile) {
         tvCalleeName.setText((calleeName != null && !calleeName.isEmpty()) ? calleeName : "Unknown");
-        if (calleeProfile != null && !calleeProfile.isEmpty()) {
+        if (calleeProfile != null) {
             if (calleeProfile.size() == 1) {
                 cvSingleCalleeView.setVisibility(VISIBLE);
                 rlMultipleCalleeView.setVisibility(GONE);
