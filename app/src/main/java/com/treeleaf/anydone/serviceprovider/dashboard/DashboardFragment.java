@@ -34,7 +34,6 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -44,8 +43,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
-import com.github.mikephil.charting.listener.OnDrawListener;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -67,9 +64,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -337,15 +332,31 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             if (selectedServiceId == null) {
                 Service firstService = serviceList.get(0);
                 tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+
+             /*   RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_browse_service)
+                        .error(R.drawable.ic_browse_service);*/
+
                 Glide.with(Objects.requireNonNull(getContext()))
-                        .load(firstService.getServiceIconUrl()).into(ivService);
+                        .load(firstService.getServiceIconUrl())
+//                        .apply(options)
+                        .into(ivService);
                 Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
             } else {
                 Service selectedService = AvailableServicesRepo.getInstance()
                         .getAvailableServiceById(selectedServiceId);
                 tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+
+           /*     RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_browse_service)
+                        .error(R.drawable.ic_browse_service);*/
+
                 Glide.with(Objects.requireNonNull(getContext()))
-                        .load(selectedService.getServiceIconUrl()).into(ivService);
+                        .load(selectedService.getServiceIconUrl())
+//                        .apply(options)
+                        .into(ivService);
             }
             setUpRecyclerView(serviceList);
         }
@@ -381,9 +392,17 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
             Hawk.put(Constants.SERVICE_CHANGED_DASHBOARD, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
+
+       /*     RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_browse_service)
+                    .error(R.drawable.ic_browse_service);*/
+
             Glide.with(Objects.requireNonNull(getContext()))
                     .load(service.getServiceIconUrl())
+//                    .apply(options)
                     .into(ivService);
+
             serviceBottomSheet.dismiss();
 
             lineChart.setVisibility(View.GONE);
@@ -1140,6 +1159,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity()).getWindow()
                 .getDecorView().getRootView(), message);
+
+        pbLineChart.setVisibility(View.GONE);
     }
 
     @Override
@@ -1150,7 +1171,17 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         GlobalUtils.showLog(TAG, "first service id saved");
 
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+
+     /*   RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_browse_service)
+                .error(R.drawable.ic_browse_service);*/
+
+        Glide.with(Objects.requireNonNull(getContext()))
+                .load(firstService.getServiceIconUrl())
+//                .apply(options)
+                .into(ivService);
+
         setUpRecyclerView(serviceList);
 
         presenter.getTicketByPriority();
@@ -1182,6 +1213,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             return;
         }
 
+        pbLineChart.setVisibility(View.GONE);
+        tvLineChartNotAvailable.setVisibility(View.VISIBLE);
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
@@ -1250,6 +1283,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
 
         GlobalUtils.showLog(TAG, "its date");
+        pbLineChart.setVisibility(View.GONE);
+        tvLineChartNotAvailable.setVisibility(View.VISIBLE);
      /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);*/
@@ -1405,6 +1440,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
+
+        pbLineChart.setVisibility(View.GONE);
     }
 
     @Override

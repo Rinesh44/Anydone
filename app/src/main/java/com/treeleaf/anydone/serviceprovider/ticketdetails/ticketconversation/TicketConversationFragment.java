@@ -976,8 +976,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         File file = getImageFile(); // 1
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // 2
-            uri = FileProvider.getUriForFile(getActivity(),
-                    "com.treeleaf.anydone.provider", file);
+            uri = FileProvider.getUriForFile(Objects.requireNonNull(getActivity()),
+                    "com.treeleaf.anydone.serviceprovider.provider", file);
         } else {
             uri = Uri.fromFile(file); // 3
         }
@@ -1151,7 +1151,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     void openFiles() {
         llAttachOptions.setVisibility(View.GONE);
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
+        intent.setType("application/pdf");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
     }

@@ -79,6 +79,7 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
             tvUserEmailPhone.setText(emailPhone);
         }
 
+
         etPin.requestFocus();
 
         etPin.setOnPinEnteredListener(str -> {

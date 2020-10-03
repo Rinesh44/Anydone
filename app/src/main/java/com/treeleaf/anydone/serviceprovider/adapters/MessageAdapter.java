@@ -1654,6 +1654,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
 
             if (!CollectionUtils.isEmpty(conversation.getTagsList())) {
+                llLabels.removeAllViews();
                 for (Tags tag : conversation.getTagsList()
                 ) {
                     LayoutInflater inflater = LayoutInflater.from(mContext);

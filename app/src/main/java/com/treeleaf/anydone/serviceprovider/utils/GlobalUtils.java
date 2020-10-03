@@ -454,7 +454,7 @@ Limit selectable Date range
         }
 
         final Uri contentUri = ContentUris.withAppendedId(
-                Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
+                Uri.parse("content://downloads/all_downloads"), Long.parseLong(id));
 
         String[] projection = {MediaStore.Images.Media.DATA};
         @SuppressLint("Recycle") Cursor cursor = context.getContentResolver().query(contentUri,

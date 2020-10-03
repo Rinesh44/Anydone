@@ -221,7 +221,8 @@ public class AddLocationPresenterImpl extends BasePresenter<AddLocationContract.
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
                 .build();
 
-        String base_url = Hawk.get(Constants.BASE_URL);
+//        String base_url = Hawk.get(Constants.BASE_URL);
+        String base_url = "https://api.mapbox.com/";
         return new Retrofit.Builder()
                 .client(client)
                 .baseUrl(base_url)
@@ -232,6 +233,9 @@ public class AddLocationPresenterImpl extends BasePresenter<AddLocationContract.
 
     private String getAutocompleteUrl(String placeString) {
         String countryCode = Hawk.get(Constants.COUNTRY_CODE);
+        if (countryCode.isEmpty()) {
+            countryCode = "NP";
+        }
 
         return "geocoding/v5/mapbox.places/" + placeString +
                 ".json?" +

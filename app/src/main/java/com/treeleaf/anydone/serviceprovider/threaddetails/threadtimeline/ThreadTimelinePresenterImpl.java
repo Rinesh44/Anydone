@@ -261,9 +261,9 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                                     threadId);
 
                         }
-
+/*
                         getView().getThreadByIdSuccess(threadResponse.getConversation().getEmployeeAssigned(
-                                threadResponse.getConversation().getEmployeeAssignedCount() - 1));
+                                threadResponse.getConversation().getEmployeeAssignedCount() - 1));*/
                     }
 
                     @Override

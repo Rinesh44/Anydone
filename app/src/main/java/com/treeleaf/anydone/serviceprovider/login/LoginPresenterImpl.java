@@ -179,7 +179,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                 ServiceProviderRepo.getInstance().saveServiceProvider(loginResponse.getLoginResponse(),
                         new Repo.Callback() {
                             @Override
-                            public void success(Object o    ) {
+                            public void success(Object o) {
                                 GlobalUtils.showLog(TAG, "Service provider saved");
                             }
 

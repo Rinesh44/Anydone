@@ -39,8 +39,7 @@ public class ThreadRepo extends Repo {
             realm.executeTransaction(realm1 -> {
                 RealmList<Thread> threadList =
                         transformThread(threadListPb);
-
-                removeDeletedItems(threadList);
+//                removeDeletedItems(threadList);
                 if (!CollectionUtils.isEmpty(threadList))
                     realm1.copyToRealmOrUpdate(threadList);
                 callback.success(null);
