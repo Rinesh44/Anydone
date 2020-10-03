@@ -23,6 +23,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
@@ -125,6 +126,16 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
                 StringBuilder builder = new StringBuilder();
                 Employee assignedEmployee = ticket.getAssignedEmployee();
                 String assignedEmployeeName = assignedEmployee.getName();
+
+                Customer customer = ticket.getCustomer();
+                String customerName = customer.getFullName();
+
+                if (customer != null && !localAccountId.equals(customer.getCustomerId())
+                        && !customerName.isEmpty()) {
+                    builder.append(customerName);
+                    builder.append(", ");
+                    employeeProfileUris.add(customer.getProfilePic());
+                }
 
                 if (!localAccountId.equals(assignedEmployee.getAccountId()) &&
                         assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
