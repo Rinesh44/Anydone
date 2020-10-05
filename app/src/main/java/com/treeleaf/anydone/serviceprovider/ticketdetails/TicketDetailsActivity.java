@@ -73,6 +73,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     String shareLink = "";
     private long ticketId;
+    private String ticketStatus;
 
     @Override
     protected int getLayout() {
@@ -90,6 +91,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         Intent i = getIntent();
         ticketType = i.getStringExtra("selected_ticket_type");
+        ticketStatus = i.getStringExtra("selected_ticket_status");
         ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
         String serviceName = i.getStringExtra("selected_ticket_name");
@@ -101,7 +103,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         createLinkShareBottomSheet();
 
-        if (ticketType.equals(TICKET_STARTED)) {
+        if (ticketStatus != null && ticketStatus.equalsIgnoreCase(TICKET_STARTED)) {
             ivVideoCall.setVisibility(View.VISIBLE);
         }
 
