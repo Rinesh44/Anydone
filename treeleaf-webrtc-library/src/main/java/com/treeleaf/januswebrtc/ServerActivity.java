@@ -450,6 +450,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
              */
             @Override
             public void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId) {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.d("NewCoordinateRemote", x + ", " + y);
+//                    }
+//                });
                 treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId).getDrawMetadata()
                         .setCurrentDrawPosition(new Position(x, y));
             }
