@@ -159,6 +159,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
                 i.putExtra("ticket_desc", ticket.getTitle());
                 i.putExtra("selected_ticket_type", Constants.SUBSCRIBED);
                 i.putExtra("selected_ticket_name", callees);
+                i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                 i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                 startActivity(i);
             });

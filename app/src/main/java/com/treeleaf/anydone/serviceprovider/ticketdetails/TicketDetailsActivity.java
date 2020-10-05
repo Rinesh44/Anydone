@@ -27,10 +27,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
@@ -40,7 +40,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.treeleaf.anydone.serviceprovider.utils.Constants.CLOSED_RESOLVED;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.TICKET_STARTED;
 
 public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView {
@@ -73,6 +73,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     String shareLink = "";
     private long ticketId;
+    private String ticketStatus;
 
     @Override
     protected int getLayout() {
@@ -90,6 +91,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         Intent i = getIntent();
         ticketType = i.getStringExtra("selected_ticket_type");
+        ticketStatus = i.getStringExtra("selected_ticket_status");
         ticketId = i.getLongExtra("selected_ticket_id", 0);
         String ticketTitle = i.getStringExtra("ticket_desc");
         String serviceName = i.getStringExtra("selected_ticket_name");
@@ -101,8 +103,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         createLinkShareBottomSheet();
 
-        if (ticketType.equals(CLOSED_RESOLVED)) {
-            ivVideoCall.setVisibility(View.GONE);
+        if (ticketStatus != null && ticketStatus.equalsIgnoreCase(TICKET_STARTED)) {
+            ivVideoCall.setVisibility(View.VISIBLE);
         }
 
         super.setReferenceId(ticketId);
