@@ -205,12 +205,12 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         }
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-        List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
+    /*    List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         if (!CollectionUtils.isEmpty(threadList)) {
             setUpThreadRecyclerView(threadList);
         } else {
             presenter.getConversationThreads(true);
-        }
+        }*/
 
         searchService.addTextChangedListener(new TextWatcher() {
             @Override

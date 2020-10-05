@@ -115,9 +115,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
                     String url = Hawk.get(Constants.BASE_URL);
                     HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
                     interceptor.setHost(url);
-
 //                    ServiceGenerator.changeApiBaseUrl("https://api.anydone.com/");
-
 
                 } else {
                     GlobalUtils.showLog(TAG, "prod");
@@ -126,9 +124,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
                     String url = Hawk.get(Constants.BASE_URL);
                     HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
                     interceptor.setHost(url);
-
 //                    ServiceGenerator.changeApiBaseUrl("https://api.anydone.com/");
-
                 }
             }
 

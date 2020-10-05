@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -123,7 +124,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     @Override
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
-//        holder.setIsRecyclable(false);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) holder.setIsRecyclable(false);
         Tickets tickets = ticketsList.get(position);
         if (holder.swipeRevealLayout != null) {
             viewBinderHelper.bind(holder.swipeRevealLayout,
