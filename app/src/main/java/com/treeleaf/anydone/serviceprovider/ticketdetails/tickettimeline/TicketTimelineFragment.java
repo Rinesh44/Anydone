@@ -335,6 +335,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         for (String contributorId : contributorIds
         ) {
             Employee employee = EmployeeRepo.getInstance().getEmployeeById(contributorId);
+            if (employee != null) GlobalUtils.showLog(TAG, "Employee: " + employee.getEmployeeId());
             contributorList.add(employee);
         }
 
