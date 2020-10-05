@@ -98,6 +98,7 @@
             android:foreground="?selectableItemBackground"
             android:padding="6dp"
             android:src="@drawable/ic_draw"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/image_end_call"
             app:layout_constraintHorizontal_chainStyle="packed"
