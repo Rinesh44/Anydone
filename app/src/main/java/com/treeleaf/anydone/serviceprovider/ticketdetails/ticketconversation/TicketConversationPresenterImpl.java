@@ -1360,6 +1360,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     public void createPreConversationForText(String message, long orderId, boolean link) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
         GlobalUtils.showLog(TAG, "pre conversation text id: " + clientId);
+        GlobalUtils.showLog(TAG, "user account id: " + employee.getAccountId());
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
         conversation.setSenderId(employee.getAccountId());

@@ -1,7 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.addticket;
 
-import android.telecom.Call;
-
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;

@@ -6,6 +6,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
@@ -110,7 +111,7 @@ public class TicketRepo extends Repo {
         }
     }
 
-    public void setContributors(long ticketId, RealmList<Employee> contributors,
+    public void setContributors(long ticketId, RealmList<AssignEmployee> contributors,
                                 final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
@@ -186,8 +187,8 @@ public class TicketRepo extends Repo {
         realm.executeTransaction(realm1 -> {
             try {
                 Tickets tickets = getTicketById(ticketId);
-                Employee employeeToDel = null;
-                for (Employee employee : tickets.getContributorList()
+                AssignEmployee employeeToDel = null;
+                for (AssignEmployee employee : tickets.getContributorList()
                 ) {
                     if (employee.getEmployeeId().equalsIgnoreCase(empId)) {
                         employeeToDel = employee;
@@ -203,7 +204,7 @@ public class TicketRepo extends Repo {
     }
 
 
-    public void replaceAssignedEmployees(long ticketId, Employee employee, final Callback callback) {
+    public void replaceAssignedEmployees(long ticketId, AssignEmployee employee, final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             try {
@@ -223,10 +224,10 @@ public class TicketRepo extends Repo {
             try {
                 RealmResults<Tickets> result = realm1.where(Tickets.class)
                         .equalTo("ticketId", ticketId).findAll();
-                List<Employee> contributorsToRemove = new RealmList<>();
+                List<AssignEmployee> contributorsToRemove = new RealmList<>();
                 for (Tickets ticket : result
                 ) {
-                    for (Employee contributor : ticket.getContributorList()
+                    for (AssignEmployee contributor : ticket.getContributorList()
                     ) {
                         if (contributor.getEmployeeId().equalsIgnoreCase(contributorId)) {
                             contributorsToRemove.add(contributor);

@@ -21,6 +21,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchContributorAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -96,7 +97,7 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
 
     }
 
-    private void setUpRecyclerView(List<Employee> assignEmployeeList) {
+    private void setUpRecyclerView(List<AssignEmployee> assignEmployeeList) {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvEmployees.setLayoutManager(mLayoutManager);
 
@@ -159,13 +160,13 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
     }
 
     @Override
-    public void getContributorSuccess(List<Employee> contributorsList) {
+    public void getContributorSuccess(List<AssignEmployee> contributorsList) {
         Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
-        Employee assignedEmployee = tickets.getAssignedEmployee();
+        AssignEmployee assignedEmployee = tickets.getAssignedEmployee();
         GlobalUtils.showLog(TAG, "assigned employee: " + assignedEmployee);
-        Employee employeeToRemove = null;
+        AssignEmployee employeeToRemove = null;
         if (assignedEmployee != null) {
-            for (Employee employee : contributorsList
+            for (AssignEmployee employee : contributorsList
             ) {
                 if (employee.getEmployeeId().equalsIgnoreCase(assignedEmployee.getEmployeeId())) {
                     employeeToRemove = employee;

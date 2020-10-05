@@ -303,7 +303,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     private void setContributors() {
         Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
-        RealmList<Employee> contributorList = tickets.getContributorList();
+        RealmList<AssignEmployee> contributorList = tickets.getContributorList();
         if (!CollectionUtils.isEmpty(contributorList)) {
             GlobalUtils.showLog(TAG, "contributors list not empty");
             llContributors.setVisibility(View.VISIBLE);
@@ -331,16 +331,18 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     private void addContributorsLocally(List<String> contributorIds) {
         GlobalUtils.showLog(TAG, "add contributors locally");
-        RealmList<Employee> contributorList = new RealmList<>();
+        GlobalUtils.showLog(TAG, "contributor list size: " + contributorIds.size());
+        RealmList<AssignEmployee> contributorList = new RealmList<>();
         for (String contributorId : contributorIds
         ) {
-            Employee employee = EmployeeRepo.getInstance().getEmployeeById(contributorId);
-            if (employee != null) GlobalUtils.showLog(TAG, "Employee: " + employee.getEmployeeId());
+            AssignEmployee employee = AssignEmployeeRepo.getInstance().getAssignedEmployeeById(contributorId);
+            if (employee != null) GlobalUtils.showLog(TAG, "Employee: " +
+                    employee.getEmployeeId());
             contributorList.add(employee);
         }
 
         Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
-        for (Employee contributor : ticket.getContributorList()
+        for (AssignEmployee contributor : ticket.getContributorList()
         ) {
             if (!contributorList.contains(contributor)) {
                 contributorList.add(contributor);
@@ -918,11 +920,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
 
-    private void inflateContributorLayout(RealmList<Employee> contributors,
+    private void inflateContributorLayout(RealmList<AssignEmployee> contributors,
                                           LinearLayout parent) {
         parent.removeAllViews();
         GlobalUtils.showLog(TAG, "contributors size check: " + contributors.size());
-        for (Employee contributor : contributors
+        for (AssignEmployee contributor : contributors
         ) {
             @SuppressLint("InflateParams") View viewAssignedEmployee = getLayoutInflater()
                     .inflate(R.layout.layout_contributor_row, null, false);
@@ -1100,7 +1102,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }*/
 
     @Override
-    public void getTicketTimelineSuccess(Employee assignedEmployee) {
+    public void getTicketTimelineSuccess(AssignEmployee assignedEmployee) {
         if (assignedEmployee.getEmployeeId().isEmpty()) {
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_assign_employee));
         } else {
@@ -1252,7 +1254,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     @Override
-    public void setAssignedEmployee(Employee assignedEmployee) {
+    public void setAssignedEmployee(AssignEmployee assignedEmployee) {
         if (!assignedEmployee.getName().isEmpty()) {
             tvAssignedEmployee.setText(assignedEmployee.getName());
         } else {
