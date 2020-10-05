@@ -57,13 +57,11 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
@@ -188,7 +186,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         assert activity != null;
         activity.setOutSideTouchListener(this);
 
-        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
+//        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
+        Account userAccount = AccountRepo.getInstance().getAccount();
         userAccountId = userAccount.getAccountId();
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
