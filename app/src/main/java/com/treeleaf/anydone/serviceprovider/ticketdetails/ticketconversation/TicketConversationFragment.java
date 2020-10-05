@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -34,7 +35,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -1011,6 +1014,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     getActivity()).getSupportActionBar()).hide();
 
             uri = Uri.parse(currentPhotoPath);
+            GlobalUtils.showLog(TAG, "camera image uri: " + uri);
             setupSingleImageView(uri);
         }
 
@@ -1047,6 +1051,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         getActivity()).getSupportActionBar()).hide();
 
                 uri = data.getData();
+                GlobalUtils.showLog(TAG, "gallery image uri: " + uri);
                 setupSingleImageView(uri);
             }
         }
@@ -1149,9 +1154,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.tv_files)
     void openFiles() {
+        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS)));
+        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
         llAttachOptions.setVisibility(View.GONE);
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("application/pdf");
+        intent.setDataAndType(selectedUri, "application/pdf");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
     }
@@ -1173,7 +1181,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         pictureIntent.setType("image/*");  // 1
         pictureIntent.addCategory(Intent.CATEGORY_OPENABLE);  // 2
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            String[] mimeTypes = new String[]{"image/jpeg", "image/png"};  // 3
+            String[] mimeTypes = new String[]{"image/jpeg", "image/png", "image/webp"};  // 3
             pictureIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         }
         startActivityForResult(Intent.createChooser(pictureIntent,

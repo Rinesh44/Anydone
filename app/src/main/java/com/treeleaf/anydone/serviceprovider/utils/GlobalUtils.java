@@ -222,11 +222,8 @@ Limit selectable Date range
                 return Environment.getExternalStorageDirectory() + "/" + split[1];
             } else if (isDownloadsDocument(uri)) {
                 final String id = DocumentsContract.getDocumentId(uri);
-                GlobalUtils.showLog(TAG, "id print: " + id);
                 if (id.startsWith("raw:")) {
                     return id.replaceFirst("raw:", "");
-                } else if (id.startsWith("msf:")) {
-                    return getPDFPath(context, uri);
                 }
                 uri = ContentUris.withAppendedId(
                         Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
@@ -255,8 +252,7 @@ Limit selectable Date range
             String[] projection = {
                     MediaStore.Images.Media.DATA
             };
-            try (Cursor cursor = context.getContentResolver().query(uri, projection, selection,
-                    selectionArgs, null)) {
+            try (Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
                     int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                     return cursor.getString(columnIndex);

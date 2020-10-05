@@ -322,7 +322,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             if (data != null) {
                 boolean employeeAssigned = data.getBooleanExtra("contributor_added", false);
                 List<String> contributorIds = data.getStringArrayListExtra("contributors");
-                if (employeeAssigned) {
+                if (employeeAssigned && contributorIds != null) {
                     addContributorsLocally(contributorIds);
                 }
             }
@@ -330,6 +330,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     private void addContributorsLocally(List<String> contributorIds) {
+        GlobalUtils.showLog(TAG, "add contributors locally");
         RealmList<Employee> contributorList = new RealmList<>();
         for (String contributorId : contributorIds
         ) {

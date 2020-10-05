@@ -153,7 +153,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         pictureIntent.setType("image/*");  // 1
         pictureIntent.addCategory(Intent.CATEGORY_OPENABLE);  // 2
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            String[] mimeTypes = new String[]{"image/jpeg", "image/png"};  // 3
+            String[] mimeTypes = new String[]{"image/jpeg", "image/png", "image/webp"};  // 3
             pictureIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         }
         startActivityForResult(Intent.createChooser(pictureIntent,
