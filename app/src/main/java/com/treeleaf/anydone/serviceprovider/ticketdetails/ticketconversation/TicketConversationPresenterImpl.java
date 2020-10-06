@@ -31,11 +31,13 @@ import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -87,7 +89,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     private static final String TAG = "TicketConversationPrese";
     public final String PUBLISH_TOPIC = "anydone/rtc/relay";
     private TicketConversationRepository ticketConversationRepository;
-    private Employee employee = EmployeeRepo.getInstance().getEmployee();
+    private Account account = AccountRepo.getInstance().getAccount();
 
     @Inject
     public TicketConversationPresenterImpl(TicketConversationRepository
@@ -603,7 +605,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
-                .setSenderAccountId(employee.getAccountId())
+                .setSenderAccountId(account.getAccountId())
                 .setClientId(clientId)
                 .setImage(imageMessage)
                 .setRtcMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE)
@@ -634,7 +636,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
-                .setSenderAccountId(employee.getAccountId())
+                .setSenderAccountId(account.getAccountId())
                 .setClientId(clientId)
                 .setAttachment(attachmentMessage)
                 .setRtcMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE)
@@ -1164,7 +1166,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     @Override
     public void subscribeFailMessage() {
         getView().hideProgressBar();
-        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + employee.getAccountId();
+        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + account.getAccountId();
 
         GlobalUtils.showLog(TAG, "error topic: " + ERROR_TOPIC);
 
@@ -1332,7 +1334,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         byte[] bitmapBytes = getBitmapBytesFromBitmap(bitmap);
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
-        conversation.setSenderId(employee.getAccountId());
+        conversation.setSenderId(account.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setRefId(String.valueOf(orderId));
@@ -1361,10 +1363,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     public void createPreConversationForText(String message, long orderId, boolean link) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
         GlobalUtils.showLog(TAG, "pre conversation text id: " + clientId);
-        GlobalUtils.showLog(TAG, "user account id: " + employee.getAccountId());
+        GlobalUtils.showLog(TAG, "user account id: " + account.getAccountId());
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
-        conversation.setSenderId(employee.getAccountId());
+        conversation.setSenderId(account.getAccountId());
         conversation.setMessage(message);
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
@@ -1398,7 +1400,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
-        conversation.setSenderId(employee.getAccountId());
+        conversation.setSenderId(account.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setRefId(String.valueOf(orderId));
