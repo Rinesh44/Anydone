@@ -107,9 +107,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimen_10x1"
                 android:layout_marginEnd="@dimen/dimens_2x"
                 android:gravity="bottom"
-                android:layout_marginTop="@dimen/dimen_10x1"
                 android:paddingStart="@dimen/dimen_6x1"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
@@ -121,7 +121,7 @@
                 android:id="@+id/sp_branch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_gravity="center"
                 android:layout_marginStart="@dimen/dimen_10x1"
                 android:layout_marginEnd="@dimen/dimen_10x1" />
             <!--   <TextView

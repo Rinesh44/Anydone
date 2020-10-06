@@ -69,6 +69,7 @@ Constants {
     public static final String REFETCH_TICKET_STAT = "REFETCH_TICKET_STAT";
     public static final String XA_XIS_TYPE = "X_AXIS_TYPE";
     public static final String TICKET_ASSIGNED = "TICKET_ASSIGNED";
+    public static final String TICKET_SUBSCRIBED = "TICKET_SUBSCRIBED";
     public static final String TICKET_SERVICE_ID = "TICKET_SERVICE_ID";
     public static final String DASHBOARD_SERVICE_ID = "DASHBOARD_SERVICE_ID";
     public static final String CONVERSATION_SERVICE_ID = "CONVERSATION_SERVICE_ID";

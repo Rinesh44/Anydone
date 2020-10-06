@@ -20,7 +20,7 @@ public class Thread extends RealmObject {
     String source;
     String defaultLabelId;
     String defaultLabel;
-    Employee assignedEmployee;
+    AssignEmployee assignedEmployee;
     boolean botEnabled;
     boolean seen;
 
@@ -139,11 +139,11 @@ public class Thread extends RealmObject {
         this.defaultLabelId = defaultLabelId;
     }
 
-    public Employee getAssignedEmployee() {
+    public AssignEmployee getAssignedEmployee() {
         return assignedEmployee;
     }
 
-    public void setAssignedEmployee(Employee assignedEmployee) {
+    public void setAssignedEmployee(AssignEmployee assignedEmployee) {
         this.assignedEmployee = assignedEmployee;
     }
 

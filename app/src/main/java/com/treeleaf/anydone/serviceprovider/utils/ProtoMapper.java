@@ -5,6 +5,7 @@ import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -228,10 +229,10 @@ public final class ProtoMapper {
         return locationList;
     }
 
-    public static Employee transformAssignedEmployee(
+    public static AssignEmployee transformAssignedEmployee(
             TicketProto.EmployeeAssigned employeeProfile) {
 
-        Employee employee = new Employee();
+        AssignEmployee employee = new AssignEmployee();
         employee.setAccountId(employeeProfile.getAssignedTo().getAccount().getAccountId());
         employee.setCreatedAt(employeeProfile.getAssignedAt());
         employee.setEmployeeId(employeeProfile.getAssignedTo().getEmployeeProfileId());
@@ -275,12 +276,12 @@ public final class ProtoMapper {
         }
     }
 
-    public static List<Employee> transformEmployee
+    public static List<AssignEmployee> transformEmployee
             (List<UserProto.EmployeeProfile> employeeList) {
-        List<Employee> assignEmployeeList = new ArrayList<>();
+        List<AssignEmployee> assignEmployeeList = new ArrayList<>();
         for (UserProto.EmployeeProfile profile : employeeList
         ) {
-            Employee employee = new Employee();
+            AssignEmployee employee = new AssignEmployee();
             employee.setAccountId(profile.getAccount().getAccountId());
             employee.setCreatedAt(profile.getCreatedAt());
             employee.setEmail(profile.getAccount().getEmail());
@@ -293,12 +294,12 @@ public final class ProtoMapper {
         return assignEmployeeList;
     }
 
-    public static RealmList<Employee> transformContributors
+    public static RealmList<AssignEmployee> transformContributors
             (List<TicketProto.TicketContributor> employeeList) {
-        RealmList<Employee> assignEmployeeList = new RealmList<>();
+        RealmList<AssignEmployee> assignEmployeeList = new RealmList<>();
         for (TicketProto.TicketContributor profile : employeeList
         ) {
-            Employee employee = new Employee();
+            AssignEmployee employee = new AssignEmployee();
             employee.setAccountId(profile.getEmployee().getAccount().getAccountId());
             employee.setCreatedAt(profile.getEmployee().getCreatedAt());
             employee.setEmail(profile.getEmployee().getAccount().getEmail());

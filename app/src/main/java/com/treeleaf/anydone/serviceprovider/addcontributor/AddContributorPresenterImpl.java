@@ -7,6 +7,7 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -128,7 +129,7 @@ public class AddContributorPresenterImpl extends BasePresenter<AddContributorCon
                         }
 
                         GlobalUtils.showLog(TAG, "get al emp check: " + getEmployeeResponse.getEmployeesList().size());
-                        List<Employee> assignEmployeeList = ProtoMapper
+                        List<AssignEmployee> assignEmployeeList = ProtoMapper
                                 .transformEmployee(getEmployeeResponse.getEmployeesList());
                         getView().getContributorSuccess(assignEmployeeList);
                     }

@@ -23,6 +23,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -124,7 +125,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
 
                 ArrayList<String> employeeProfileUris = new ArrayList<>();
                 StringBuilder builder = new StringBuilder();
-                Employee assignedEmployee = ticket.getAssignedEmployee();
+                AssignEmployee assignedEmployee = ticket.getAssignedEmployee();
                 String assignedEmployeeName = assignedEmployee.getName();
 
                 Customer customer = ticket.getCustomer();
@@ -143,7 +144,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
                     builder.append(", ");
                     employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
                 }
-                for (Employee employee : ticket.getContributorList()) {
+                for (AssignEmployee employee : ticket.getContributorList()) {
                     if (!localAccountId.equals(employee.getAccountId())) {
                         builder.append(employee.getName());
                         builder.append(", ");
@@ -306,11 +307,11 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             GlobalUtils.showLog(TAG, "on resume fetch");
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
-            boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
-            if (ticketAssigned) {
+            boolean ticketSubscribed = Hawk.get(Constants.TICKET_SUBSCRIBED, false);
+            if (ticketSubscribed) {
                 subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
                 setUpRecyclerView(subscribedTickets);
-                Hawk.put(Constants.TICKET_ASSIGNED, false);
+                Hawk.put(Constants.TICKET_SUBSCRIBED, false);
             }
         }
     }

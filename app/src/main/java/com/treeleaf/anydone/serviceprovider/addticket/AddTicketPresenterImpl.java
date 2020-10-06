@@ -1,7 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.addticket;
 
-import android.telecom.Call;
-
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -184,6 +182,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "saved as subscribed ticket");
+                Hawk.put(Constants.TICKET_SUBSCRIBED, true);
             }
 
             @Override
@@ -221,6 +220,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "saved as assigned ticket");
+                Hawk.put(Constants.TICKET_ASSIGNED, true);
                 getView().onCreateTicketSuccess();
             }
 

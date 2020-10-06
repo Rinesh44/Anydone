@@ -541,6 +541,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             llSearchContainer.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.VISIBLE);
             tvClosed.setVisibility(View.GONE);
+
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                    rvConversation.getLayoutParams();
+            params.addRule(RelativeLayout.ABOVE, R.id.btn_start_task);
         }
 
         if (ticketType.equalsIgnoreCase(Constants.SUBSCRIBED)) {
@@ -933,7 +937,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             Conversation conversation = new Conversation();
             conversation.setSentAt(acceptedAt);
             conversation.setAcceptedBy(serviceProvider.getFullName());
-            conversation.setClientId(UUID.randomUUID().toString().replace("", ""));
+            conversation.setClientId(UUID.randomUUID().toString().replace("-", ""));
             conversation.setMessageType("MSG_ACCEPTED_TAG");
             conversation.setRefId(String.valueOf(ticketId));
             conversation.setSenderId(UUID.randomUUID().toString().replace("-", ""));
@@ -949,6 +953,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
       /*  if (onTicketStartListener != null)
             onTicketStartListener.onTicketStarted();*/
         Hawk.put(Constants.TICKET_STARTED, true);
+
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                rvConversation.getLayoutParams();
+        params.addRule(RelativeLayout.ABOVE, R.id.ll_search_container);
     }
 
     @Override

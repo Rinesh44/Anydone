@@ -381,7 +381,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            myCalendar.set(year, month, dayOfMonth, 0, 0, 0);
             updateFromDate();
         };
 
@@ -389,14 +388,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            myCalendar.set(year, month, dayOfMonth, 23, 59, 59);
             updateToDate();
         };
 
         etFromDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), fromDateListener, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show());
-
 
         etTillDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), tillDateListener, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
@@ -453,10 +450,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
                 calendarFromDate.set(Integer.parseInt(fromDateSeparated[0]),
                         Integer.parseInt(fromDateSeparated[1]) - 1,
-                        Integer.parseInt(fromDateSeparated[2]));
+                        Integer.parseInt(fromDateSeparated[2]), 0, 0, 0);
+
                 calendarTillDate.set(Integer.parseInt(tillDateSeparated[0]),
                         Integer.parseInt(tillDateSeparated[1]) - 1,
-                        Integer.parseInt(tillDateSeparated[2]));
+                        Integer.parseInt(tillDateSeparated[2]), 23, 59, 59);
+
                 from = calendarFromDate.getTime().getTime();
                 to = calendarTillDate.getTime().getTime();
             }

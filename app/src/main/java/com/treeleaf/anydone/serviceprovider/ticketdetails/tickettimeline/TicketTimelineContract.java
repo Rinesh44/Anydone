@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 
@@ -9,13 +10,13 @@ public class TicketTimelineContract {
 
     public interface TicketTimelineView extends BaseView {
 
-        void getTicketTimelineSuccess(Employee assignedEmployee);
+        void getTicketTimelineSuccess(AssignEmployee assignedEmployee);
 
         void geTicketTimelineFail(String msg);
 
         void setCustomerDetails(Customer customerDetails);
 
-        void setAssignedEmployee(Employee assignedEmployee);
+        void setAssignedEmployee(AssignEmployee assignedEmployee);
 
         void onContributorUnAssignSuccess(String empId);
 

@@ -6,20 +6,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
@@ -30,12 +27,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContributorAdapter.ContributorHolder>
         implements Filterable {
     private static final String TAG = "SearchContributorAdapte";
-    private List<Employee> contributorList;
+    private List<AssignEmployee> contributorList;
     private Context mContext;
     private OnItemClickListener listener;
-    private List<Employee> contributorsFiltered;
+    private List<AssignEmployee> contributorsFiltered;
 
-    public SearchContributorAdapter(List<Employee> contributorList, Context mContext) {
+    public SearchContributorAdapter(List<AssignEmployee> contributorList, Context mContext) {
         this.contributorList = contributorList;
         this.mContext = mContext;
         this.contributorsFiltered = contributorList;
@@ -51,7 +48,7 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
 
     @Override
     public void onBindViewHolder(@NonNull ContributorHolder holder, int position) {
-        Employee employee = contributorsFiltered.get(position);
+        AssignEmployee employee = contributorsFiltered.get(position);
 
         holder.tvEmployeeName.setText(employee.getName());
 
@@ -86,8 +83,8 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
                     if (charString.isEmpty()) {
                         contributorsFiltered = contributorList;
                     } else {
-                        List<Employee> filteredList = new ArrayList<>();
-                        for (Employee row : contributorList) {
+                        List<AssignEmployee> filteredList = new ArrayList<>();
+                        for (AssignEmployee row : contributorList) {
                             if (row.getName().toLowerCase()
                                     .contains(charString.toLowerCase())) {
                                 filteredList.add(row);
@@ -106,7 +103,7 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                contributorsFiltered = (List<Employee>) filterResults.values;
+                contributorsFiltered = (List<AssignEmployee>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

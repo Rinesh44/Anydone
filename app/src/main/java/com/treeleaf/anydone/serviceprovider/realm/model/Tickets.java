@@ -14,7 +14,7 @@ public class Tickets extends RealmObject {
     ServiceProvider serviceProvider;
     String ticketSource;
     RealmList<Tags> tagsRealmList;
-    RealmList<Employee> contributorList;
+    RealmList<AssignEmployee> contributorList;
     String serviceId;
     String customerType;
     String ticketType;
@@ -23,7 +23,7 @@ public class Tickets extends RealmObject {
     String createdByName;
     String createdByPic;
     String createdById;
-    Employee assignedEmployee;
+    AssignEmployee assignedEmployee;
     int priority;
     boolean botEnabled;
 
@@ -146,11 +146,11 @@ public class Tickets extends RealmObject {
         this.customerType = customerType;
     }
 
-    public Employee getAssignedEmployee() {
+    public AssignEmployee getAssignedEmployee() {
         return assignedEmployee;
     }
 
-    public void setAssignedEmployee(Employee assignedEmployee) {
+    public void setAssignedEmployee(AssignEmployee assignedEmployee) {
         this.assignedEmployee = assignedEmployee;
     }
 
@@ -170,11 +170,11 @@ public class Tickets extends RealmObject {
         this.ticketStatus = ticketStatus;
     }
 
-    public RealmList<Employee> getContributorList() {
+    public RealmList<AssignEmployee> getContributorList() {
         return contributorList;
     }
 
-    public void setContributorList(RealmList<Employee> contributorList) {
+    public void setContributorList(RealmList<AssignEmployee> contributorList) {
         this.contributorList = contributorList;
     }
 

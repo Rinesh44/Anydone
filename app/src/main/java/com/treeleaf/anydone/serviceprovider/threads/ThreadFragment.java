@@ -257,6 +257,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         if (userAccount != null) {
             String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
 
+            GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
             //listen for conversation thread messages
             TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
                 @Override
