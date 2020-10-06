@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_2x4"
+        android:orientation="vertical">
+
+        <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/srl_creditors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            app:dragEdge="right"
+            app:mode="normal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/ib_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dimen_10x1"
+                        android:layout_marginEnd="@dimen/dimen_10x2"
+                        android:background="@null"
+                        android:src="@drawable/ic_primary_rounded_icon" />
+
+                    <ImageButton
+                        android:id="@+id/ib_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/dimen_10x2"
+                        android:background="@null"
+                        android:src="@drawable/ic_delete_rounded_icon" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_10x6"
+                        android:layout_marginStart="@dimen/dimen_10x1"
+                        android:layout_marginEnd="@dimen/dimen_10x1">
+
+                        <ImageView
+                            android:id="@+id/iv_card_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_visacard_icon" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_text_holder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/dimen_10x2"
+                            android:layout_toEndOf="@+id/iv_card_type"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_card_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="**** **** **** 3125"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Expires 05/25" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
+        </com.chauthai.swipereveallayout.SwipeRevealLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_payment_methods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="2"
+            tools:listitem="@layout/payment_method_row" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:background="@color/grey_light" />
+
+
+        <TextView
+            android:id="@+id/tv_add_credit_debit_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:drawableStart="@drawable/ic_add_black"
+            android:drawablePadding="@dimen/dimen_10x1"
+            android:gravity="center_vertical"
+            android:text="@string/add_card"
+            android:textColor="@color/black"
+            android:textSize="@dimen/material_text_subhead"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</ScrollView>

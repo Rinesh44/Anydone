@@ -152,52 +152,52 @@
 
                     </RelativeLayout>
         -->
-                <!-- <RelativeLayout
-                     android:id="@+id/rl_billing"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:background="?android:attr/selectableItemBackground"
-                     android:clickable="true"
-                     android:focusable="true"
-                     android:weightSum="1">
+                <RelativeLayout
+                    android:id="@+id/rl_billing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:weightSum="1">
 
-                     <ImageView
-                         android:id="@+id/iv_billing"
-                         android:layout_width="@dimen/dimens_5x"
-                         android:layout_height="@dimen/dimens_5x"
-                         android:layout_centerVertical="true"
-                         android:layout_marginStart="@dimen/dimens_2x"
-                         android:layout_marginTop="@dimen/dimen_2x6"
-                         android:layout_marginEnd="@dimen/dimen_10x3"
-                         android:layout_marginBottom="@dimen/dimen_2x6"
-                         android:background="@drawable/circle_green"
-                         android:padding="@dimen/dimen_10x1"
-                         android:scaleType="fitCenter"
-                         android:src="@drawable/billing" />
+                    <ImageView
+                        android:id="@+id/iv_billing"
+                        android:layout_width="@dimen/dimens_5x"
+                        android:layout_height="@dimen/dimens_5x"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dimens_2x"
+                        android:layout_marginTop="@dimen/dimen_2x6"
+                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:layout_marginBottom="@dimen/dimen_2x6"
+                        android:background="@drawable/circle_green"
+                        android:padding="@dimen/dimen_10x1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/billing" />
 
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_centerVertical="true"
-                         android:layout_toEndOf="@+id/iv_billing"
-                         android:text="@string/billings"
-                         android:textColor="@color/black"
-                         android:textSize="@dimen/material_text_subhead"
-                         android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/iv_billing"
+                        android:text="@string/billings"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/material_text_subhead"
+                        android:textStyle="bold" />
 
-                     <ImageView
-                         android:id="@+id/iv_arrow3"
-                         android:layout_width="@dimen/dimen_10x2"
-                         android:layout_height="@dimen/dimen_10x2"
-                         android:layout_alignParentEnd="true"
-                         android:layout_centerVertical="true"
-                         android:layout_margin="@dimen/dimens_2x"
-                         android:scaleType="fitCenter"
-                         android:src="@drawable/arrow_right" />
+                    <ImageView
+                        android:id="@+id/iv_arrow3"
+                        android:layout_width="@dimen/dimen_10x2"
+                        android:layout_height="@dimen/dimen_10x2"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/dimens_2x"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/arrow_right" />
 
 
-                 </RelativeLayout>
-     -->
+                </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/rl_setting_acc"
                     android:layout_width="match_parent"

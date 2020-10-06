@@ -15,6 +15,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.aboutus.AboutUsActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
+import com.treeleaf.anydone.serviceprovider.billing.BillingActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
@@ -130,10 +131,10 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
         startActivity(new Intent(getActivity(), AboutUsActivity.class));
     }
 
-   /* @OnClick(R.id.rl_billing)
+    @OnClick(R.id.rl_billing)
     void onClickBilling() {
         startActivity(new Intent(getActivity(), BillingActivity.class));
-    }*/
+    }
 
     private void showLogoutDialog() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
