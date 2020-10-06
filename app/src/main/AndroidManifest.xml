@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
     <uses-permission android:name="android.permission.ACCESS_ALL_DOWNLOADS" />
 
-
     <application
         android:name=".AnyDoneServiceProviderApplication"
         android:allowBackup="false"
@@ -29,7 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".OpenSourceLibraryActivity"></activity>
+        <activity
+            android:name=".addpaymentcard.AddCardActivity"
+            android:theme="@style/FormTheme" />
+        <activity android:name=".paymentmethod.PaymentMethodActivity" />
+        <activity android:name=".billing.BillingActivity" />
+        <activity android:name=".OpenSourceLibraryActivity" />
         <activity
             android:name=".ticketdetails.TicketDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -136,7 +140,6 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-
         </provider>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
