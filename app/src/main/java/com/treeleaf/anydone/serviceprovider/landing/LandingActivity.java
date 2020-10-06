@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.landing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
@@ -17,6 +19,8 @@ import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
 import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -88,7 +92,14 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
                 return true;
 
             case R.id.navigation_threads:
-                openFragment(ThreadFragment.newInstance("", ""));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    openFragment(ThreadFragment.newInstance("", ""));
+                } else {
+                    Banner.make(getWindow().getDecorView().getRootView(),
+                            this, Banner.ERROR, "Some of our features are not" +
+                                    " supported in your device. Sorry for inconvenience",
+                            Banner.BOTTOM, 2000).show();
+                }
                 return true;
 
             case R.id.navigation_dashboard:

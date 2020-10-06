@@ -935,9 +935,12 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_files)
     void openFiles() {
+        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS)));
+        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
         llAttachOptions.setVisibility(View.GONE);
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
+        intent.setDataAndType(selectedUri, "application/pdf");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
     }

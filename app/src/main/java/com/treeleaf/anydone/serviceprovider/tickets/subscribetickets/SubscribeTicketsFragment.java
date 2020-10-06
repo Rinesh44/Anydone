@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
@@ -122,47 +124,54 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
-                ArrayList<String> employeeProfileUris = new ArrayList<>();
-                StringBuilder builder = new StringBuilder();
-                AssignEmployee assignedEmployee = ticket.getAssignedEmployee();
-                String assignedEmployeeName = assignedEmployee.getName();
+                    ArrayList<String> employeeProfileUris = new ArrayList<>();
+                    StringBuilder builder = new StringBuilder();
+                    AssignEmployee assignedEmployee = ticket.getAssignedEmployee();
+                    String assignedEmployeeName = assignedEmployee.getName();
 
-                Customer customer = ticket.getCustomer();
-                String customerName = customer.getFullName();
+                    Customer customer = ticket.getCustomer();
+                    String customerName = customer.getFullName();
 
-                if (customer != null && !localAccountId.equals(customer.getCustomerId())
-                        && !customerName.isEmpty()) {
-                    builder.append(customerName);
-                    builder.append(", ");
-                    employeeProfileUris.add(customer.getProfilePic());
-                }
-
-                if (!localAccountId.equals(assignedEmployee.getAccountId()) &&
-                        assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
-                    builder.append(assignedEmployeeName);
-                    builder.append(", ");
-                    employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
-                }
-                for (AssignEmployee employee : ticket.getContributorList()) {
-                    if (!localAccountId.equals(employee.getAccountId())) {
-                        builder.append(employee.getName());
+                    if (customer != null && !localAccountId.equals(customer.getCustomerId())
+                            && !customerName.isEmpty()) {
+                        builder.append(customerName);
                         builder.append(", ");
-                        employeeProfileUris.add(employee.getEmployeeImageUrl());
+                        employeeProfileUris.add(customer.getProfilePic());
                     }
+
+                    if (!localAccountId.equals(assignedEmployee.getAccountId()) &&
+                            assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
+                        builder.append(assignedEmployeeName);
+                        builder.append(", ");
+                        employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
+                    }
+                    for (AssignEmployee employee : ticket.getContributorList()) {
+                        if (!localAccountId.equals(employee.getAccountId())) {
+                            builder.append(employee.getName());
+                            builder.append(", ");
+                            employeeProfileUris.add(employee.getEmployeeImageUrl());
+                        }
+                    }
+                    String assignedEmployeeList = builder.toString().trim();
+                    String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
+
+
+                    Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
+                    i.putExtra("selected_ticket_id", ticket.getTicketId());
+                    i.putExtra("ticket_desc", ticket.getTitle());
+                    i.putExtra("selected_ticket_type", Constants.SUBSCRIBED);
+                    i.putExtra("selected_ticket_name", callees);
+                    i.putExtra("selected_ticket_status", ticket.getTicketStatus());
+                    i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
+                    startActivity(i);
+                } else {
+                    Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                            getActivity(), Banner.INFO, "Some of our features are not supported in your device. " +
+                                    "Sorry for inconvenience",
+                            Banner.TOP, 2000).show();
                 }
-                String assignedEmployeeList = builder.toString().trim();
-                String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
-
-
-                Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
-                i.putExtra("selected_ticket_id", ticket.getTicketId());
-                i.putExtra("ticket_desc", ticket.getTitle());
-                i.putExtra("selected_ticket_type", Constants.SUBSCRIBED);
-                i.putExtra("selected_ticket_name", callees);
-                i.putExtra("selected_ticket_status", ticket.getTicketStatus());
-                i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
-                startActivity(i);
             });
 
             adapter.setOnUnsubscribeListener((id, pos) -> {
@@ -289,7 +298,7 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             onAuthorizationFailed(getContext());
             return;
         }
-        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
+//        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
 
     }
 

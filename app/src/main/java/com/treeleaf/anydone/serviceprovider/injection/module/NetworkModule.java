@@ -46,7 +46,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     Retrofit getRetrofit(OkHttpClient okHttpClient) {
-        String baseUrl = Hawk.get(Constants.BASE_URL, "https://api.anydone.net/");
+        String baseUrl = Hawk.get(Constants.BASE_URL, "https://api.anydone.com/");
         return new Retrofit.Builder().baseUrl(baseUrl)
                 .client(okHttpClient)
                 .addConverterFactory(ProtoConverterFactory.create())
