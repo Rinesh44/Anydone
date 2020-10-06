@@ -679,296 +679,297 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
 
-//                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
-                if (true) {//TODO: fix this later
-                    if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
-                            .getKGraphResultsList())) {
-                        RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                                .getKGraphReply().getKGraphResultsList());
-                        Conversation conversation = new Conversation();
-                        String kgraphId = UUID.randomUUID().toString().replace("-",
-                                "");
-                        conversation.setClientId(kgraphId);
-                        conversation.setMessageType("MSG_BOT_SUGGESTIONS");
-                        conversation.setkGraphList(kGraphList);
-                        conversation.setSenderId("Anydone bot 101");
-                        conversation.setSentAt(System.currentTimeMillis());
-                        conversation.setkGraphBack(false);
-                        conversation.setkGraphTitle(relayResponse.getRtcMessage()
-                                .getText().getMessage());
-                        conversation.setRefId((relayResponse
-                                .getRtcMessage().getRefId()));
+                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+                    if (true) {//TODO: fix this later
+                        if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
+                                .getKGraphResultsList())) {
+                            RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
+                                    .getKGraphReply().getKGraphResultsList());
+                            Conversation conversation = new Conversation();
+                            String kgraphId = UUID.randomUUID().toString().replace("-",
+                                    "");
+                            conversation.setClientId(kgraphId);
+                            conversation.setMessageType("MSG_BOT_SUGGESTIONS");
+                            conversation.setkGraphList(kGraphList);
+                            conversation.setSenderId("Anydone bot 101");
+                            conversation.setSentAt(System.currentTimeMillis());
+                            conversation.setkGraphBack(false);
+                            conversation.setkGraphTitle(relayResponse.getRtcMessage()
+                                    .getText().getMessage());
+                            conversation.setRefId((relayResponse
+                                    .getRtcMessage().getRefId()));
 
-                        ConversationRepo.getInstance().saveConversation(conversation,
-                                new Repo.Callback() {
-                                    @Override
-                                    public void success(Object o) {
-                                        getView().onKgraphReply(conversation);
-                                    }
-
-                                    @Override
-                                    public void fail() {
-                                        GlobalUtils.showLog(TAG, "failed to save k-graph message");
-                                    }
-                                });
-
-                        return;
-                    }
-
-                    String clientId = relayResponse.getRtcMessage().getClientId();
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
-                            .RelayResponseType.RTC_MESSAGE_DELETE)) {
-                        getView().onDeleteMessageSuccess();
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .VIDEO_CALL_BROADCAST_RESPONSE)) {
-                        SignalingProto.BroadcastVideoCall broadcastVideoCall =
-                                relayResponse.getBroadcastVideoCall();
-                        if (broadcastVideoCall != null) {
-                            if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
-                                getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
-                            } else {
-                                getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
-                            }
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
-                        SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
-                        String accountId = startDraw.getSenderAccount().getAccountId();
-                        if (startDraw != null) {
-                            if (userAccountId.equals(accountId)) {
-                                //sent and received id is same
-//                            getView().onImageCaptured();
-                            } else {
-                                //sent and received id is different
-                                ByteString imageByteString = startDraw.getCapturedImage();
-                                int width = startDraw.getBitmapWidth();
-                                int height = startDraw.getBitmapHeight();
-                                long captureTime = startDraw.getCapturedTime();
-                                byte[] convertedBytes = imageByteString.toByteArray();
-                                getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
-                            }
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE)) {
-                        SignalingProto.StartDrawAcknowledgement startDrawAckResponse = relayResponse.getStartDrawAckResponse();
-                        String accountId = startDrawAckResponse.getSenderAccount().getAccountId();
-                        if (startDrawAckResponse != null) {
-                            if (userAccountId.equals(accountId)) {
-                                //sent and received id is same
-                                getView().onImageAckSent(accountId);
-                            } else {
-                                //sent and received id is different
-                                getView().onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
-                            }
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
-                        SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
-                        if (cancelDrawing != null) {
-                            if (cancelDrawing.getSenderAccount().getAccountId().
-                                    equals(userAccountId)) {
-                                getView().onImageDrawDiscardLocal();
-                            } else
-                                getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .PARTICIPANT_LEFT_RESPONSE)) {
-                        SignalingProto.ParticipantLeft participantLeft =
-                                relayResponse.getParticipantLeftResponse();
-                        if (participantLeft != null) {
-                            getView().onParticipantLeft(participantLeft);
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .VIDEO_CALL_JOIN_RESPONSE)) {
-                        SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
-                                relayResponse.getVideoCallJoinResponse();
-                        if (videoCallJoinResponse != null) {
-                            if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
-                                getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
-                            } else {
-                                getView().onLocalVideoRoomJoinedSuccess(videoCallJoinResponse);
-                            }
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
-                        SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
-                                .getVideoRoomHostLeftResponse();
-                        if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
-                            getView().onHostHangUp(videoRoomHostLeft);
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .DRAW_TOUCH_DOWN_RESPONSE)) {
-                        SignalingProto.DrawTouchDown drawTouchDown = relayResponse
-                                .getDrawTouchDownResponse();
-                        if (drawTouchDown != null &&
-                                !drawTouchDown.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                            captureDrawParam.setXCoordinate(drawTouchDown.getX());
-                            captureDrawParam.setYCoordinate(drawTouchDown.getY());
-                            getView().onDrawTouchDown(captureDrawParam, drawTouchDown.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .DRAW_TOUCH_MOVE_RESPONSE)) {
-                        SignalingProto.DrawTouchMove drawTouchMove = relayResponse
-                                .getDrawTouchMoveResponse();
-                        if (drawTouchMove != null &&
-                                !drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                            captureDrawParam.setXCoordinate(drawTouchMove.getX());
-                            captureDrawParam.setYCoordinate(drawTouchMove.getY());
-                            getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .DRAW_TOUCH_UP_RESPONSE)) {
-                        SignalingProto.DrawTouchUp drawTouchUp = relayResponse
-                                .getDrawTouchUpResponse();
-                        if (drawTouchUp != null &&
-                                !drawTouchUp.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            getView().onDrawTouchUp(drawTouchUp.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .RECEIVE_NEW_TEXT_FIELD_RESPONSE)) {
-                        SignalingProto.ReceiveNewTextField receiveNewTextField = relayResponse
-                                .getReceiveNewTextFieldResponse();
-                        if (receiveNewTextField != null &&
-                                !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
-                                    receiveNewTextField.getY(), receiveNewTextField.getTextId(),
-                                    receiveNewTextField.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .TEXT_FIELD_CHANGE_RESPONSE)) {
-                        SignalingProto.TextFieldChange textFieldChange = relayResponse
-                                .getTextFieldChangeResponse();
-                        if (textFieldChange != null &&
-                                !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
-                                    textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .TEXT_FIELD_REMOVE_RESPONSE)) {
-                        SignalingProto.TextFieldRemove textFieldRemove = relayResponse
-                                .getTextFieldRemoveResponse();
-                        if (textFieldRemove != null &&
-                                !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId(),
-                                    textFieldRemove.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .DRAW_META_DATA_CHANGE_RESPONSE)) {
-                        SignalingProto.DrawMetaDataChange drawMetaDataChange = relayResponse
-                                .getDrawMetaDataChangeResponse();
-                        if (drawMetaDataChange != null &&
-                                !drawMetaDataChange.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                            captureDrawParam.setXCoordinate(drawMetaDataChange.getX());
-                            captureDrawParam.setYCoordinate(drawMetaDataChange.getY());
-                            captureDrawParam.setBrushWidth(drawMetaDataChange.getBrushWidth());
-                            captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
-                            captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
-                            captureDrawParam.setTextColor(drawMetaDataChange.getTextColor());
-                            getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                            .DRAW_CANVAS_CLEAR_RESPONSE)) {
-                        SignalingProto.DrawCanvasClear drawCanvasClear = relayResponse
-                                .getDrawCanvasClearResponse();
-                        if (drawCanvasClear != null &&
-                                !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
-                            getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId());
-                        }
-                    }
-
-                    GlobalUtils.showLog(TAG, "deleted message response: " +
-                            relayResponse.getDeletedMsgResponse().getClientId());
-                    if (relayResponse.getResponseType().equals
-                            (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
-                        new Handler(Looper.getMainLooper()).post(() -> {
-                            String deliveryClientId = relayResponse
-                                    .getMessageDeliveredResponse().getClientId();
-                            Conversation conversation = ConversationRepo.getInstance()
-                                    .getConversationByClientId(deliveryClientId);
-                            ConversationRepo.getInstance().updateSeenStatus(conversation,
+                            ConversationRepo.getInstance().saveConversation(conversation,
                                     new Repo.Callback() {
                                         @Override
                                         public void success(Object o) {
-                                            GlobalUtils.showLog(TAG, "seen status updated");
-                                            getView().setSeenStatus(conversation);
+                                            getView().onKgraphReply(conversation);
                                         }
 
                                         @Override
                                         public void fail() {
-                                            GlobalUtils.showLog(TAG,
-                                                    "failed to update seen status");
+                                            GlobalUtils.showLog(TAG, "failed to save k-graph message");
                                         }
                                     });
-                        });
-                    }
 
-                    if (relayResponse.getResponseType().equals(RtcProto
-                            .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
-                        new Handler(Looper.getMainLooper()).post(() -> {
-                            Conversation conversation = ConversationRepo.getInstance()
-                                    .getConversationByClientId(clientId);
-                            if (conversation == null) {
-                                Conversation newConversation = createNewConversation(relayResponse);
-                                ConversationRepo.getInstance().saveConversation(newConversation,
+                            return;
+                        }
+
+                        String clientId = relayResponse.getRtcMessage().getClientId();
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
+                                .RelayResponseType.RTC_MESSAGE_DELETE)) {
+                            getView().onDeleteMessageSuccess();
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .VIDEO_CALL_BROADCAST_RESPONSE)) {
+                            SignalingProto.BroadcastVideoCall broadcastVideoCall =
+                                    relayResponse.getBroadcastVideoCall();
+                            if (broadcastVideoCall != null) {
+                                if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
+                                    getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+                                } else {
+                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
+                                }
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
+                            SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
+                            String accountId = startDraw.getSenderAccount().getAccountId();
+                            if (startDraw != null) {
+                                if (userAccountId.equals(accountId)) {
+                                    //sent and received id is same
+//                            getView().onImageCaptured();
+                                } else {
+                                    //sent and received id is different
+                                    ByteString imageByteString = startDraw.getCapturedImage();
+                                    int width = startDraw.getBitmapWidth();
+                                    int height = startDraw.getBitmapHeight();
+                                    long captureTime = startDraw.getCapturedTime();
+                                    byte[] convertedBytes = imageByteString.toByteArray();
+                                    getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
+                                }
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE)) {
+                            SignalingProto.StartDrawAcknowledgement startDrawAckResponse = relayResponse.getStartDrawAckResponse();
+                            String accountId = startDrawAckResponse.getSenderAccount().getAccountId();
+                            if (startDrawAckResponse != null) {
+                                if (userAccountId.equals(accountId)) {
+                                    //sent and received id is same
+                                    getView().onImageAckSent(accountId);
+                                } else {
+                                    //sent and received id is different
+                                    getView().onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
+                                }
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
+                            SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
+                            if (cancelDrawing != null) {
+                                if (cancelDrawing.getSenderAccount().getAccountId().
+                                        equals(userAccountId)) {
+                                    getView().onImageDrawDiscardLocal();
+                                } else
+                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .PARTICIPANT_LEFT_RESPONSE)) {
+                            SignalingProto.ParticipantLeft participantLeft =
+                                    relayResponse.getParticipantLeftResponse();
+                            if (participantLeft != null) {
+                                getView().onParticipantLeft(participantLeft);
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .VIDEO_CALL_JOIN_RESPONSE)) {
+                            SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
+                                    relayResponse.getVideoCallJoinResponse();
+                            if (videoCallJoinResponse != null) {
+                                if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
+                                    getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
+                                } else {
+                                    getView().onLocalVideoRoomJoinedSuccess(videoCallJoinResponse);
+                                }
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
+                            SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
+                                    .getVideoRoomHostLeftResponse();
+                            if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
+                                getView().onHostHangUp(videoRoomHostLeft);
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .DRAW_TOUCH_DOWN_RESPONSE)) {
+                            SignalingProto.DrawTouchDown drawTouchDown = relayResponse
+                                    .getDrawTouchDownResponse();
+                            if (drawTouchDown != null &&
+                                    !drawTouchDown.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
+                                captureDrawParam.setXCoordinate(drawTouchDown.getX());
+                                captureDrawParam.setYCoordinate(drawTouchDown.getY());
+                                getView().onDrawTouchDown(captureDrawParam, drawTouchDown.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .DRAW_TOUCH_MOVE_RESPONSE)) {
+                            SignalingProto.DrawTouchMove drawTouchMove = relayResponse
+                                    .getDrawTouchMoveResponse();
+                            if (drawTouchMove != null &&
+                                    !drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
+                                captureDrawParam.setXCoordinate(drawTouchMove.getX());
+                                captureDrawParam.setYCoordinate(drawTouchMove.getY());
+                                getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .DRAW_TOUCH_UP_RESPONSE)) {
+                            SignalingProto.DrawTouchUp drawTouchUp = relayResponse
+                                    .getDrawTouchUpResponse();
+                            if (drawTouchUp != null &&
+                                    !drawTouchUp.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawTouchUp(drawTouchUp.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .RECEIVE_NEW_TEXT_FIELD_RESPONSE)) {
+                            SignalingProto.ReceiveNewTextField receiveNewTextField = relayResponse
+                                    .getReceiveNewTextFieldResponse();
+                            if (receiveNewTextField != null &&
+                                    !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
+                                        receiveNewTextField.getY(), receiveNewTextField.getTextId(),
+                                        receiveNewTextField.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .TEXT_FIELD_CHANGE_RESPONSE)) {
+                            SignalingProto.TextFieldChange textFieldChange = relayResponse
+                                    .getTextFieldChangeResponse();
+                            if (textFieldChange != null &&
+                                    !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
+                                        textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .TEXT_FIELD_REMOVE_RESPONSE)) {
+                            SignalingProto.TextFieldRemove textFieldRemove = relayResponse
+                                    .getTextFieldRemoveResponse();
+                            if (textFieldRemove != null &&
+                                    !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId(),
+                                        textFieldRemove.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .DRAW_META_DATA_CHANGE_RESPONSE)) {
+                            SignalingProto.DrawMetaDataChange drawMetaDataChange = relayResponse
+                                    .getDrawMetaDataChangeResponse();
+                            if (drawMetaDataChange != null &&
+                                    !drawMetaDataChange.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
+                                captureDrawParam.setXCoordinate(drawMetaDataChange.getX());
+                                captureDrawParam.setYCoordinate(drawMetaDataChange.getY());
+                                captureDrawParam.setBrushWidth(drawMetaDataChange.getBrushWidth());
+                                captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
+                                captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
+                                captureDrawParam.setTextColor(drawMetaDataChange.getTextColor());
+                                getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .DRAW_CANVAS_CLEAR_RESPONSE)) {
+                            SignalingProto.DrawCanvasClear drawCanvasClear = relayResponse
+                                    .getDrawCanvasClearResponse();
+                            if (drawCanvasClear != null &&
+                                    !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId());
+                            }
+                        }
+
+                        GlobalUtils.showLog(TAG, "deleted message response: " +
+                                relayResponse.getDeletedMsgResponse().getClientId());
+                        if (relayResponse.getResponseType().equals
+                                (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
+                            new Handler(Looper.getMainLooper()).post(() -> {
+                                String deliveryClientId = relayResponse
+                                        .getMessageDeliveredResponse().getClientId();
+                                Conversation conversation = ConversationRepo.getInstance()
+                                        .getConversationByClientId(deliveryClientId);
+                                ConversationRepo.getInstance().updateSeenStatus(conversation,
                                         new Repo.Callback() {
                                             @Override
                                             public void success(Object o) {
-                                                GlobalUtils.showLog(TAG, "incoming message saved");
-                                                if (getView() != null)
-                                                    getView().onSubscribeSuccessMsg(newConversation,
-                                                            false);
+                                                GlobalUtils.showLog(TAG, "seen status updated");
+                                                getView().setSeenStatus(conversation);
                                             }
 
                                             @Override
                                             public void fail() {
                                                 GlobalUtils.showLog(TAG,
-                                                        "failed to save incoming message");
+                                                        "failed to update seen status");
                                             }
                                         });
-                            } else {
-                                updateConversation(conversation, relayResponse);
-                            }
-                        });
-
-                        GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
-                        if (!relayResponse.getRtcMessage().getSenderAccountId()
-                                .equalsIgnoreCase(userAccountId)) {
-                            sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
-                                    relayResponse.getRtcMessage().getSenderAccountId(),
-                                    relayResponse.getRtcMessage().getRtcMessageId());
+                            });
                         }
 
+                        if (relayResponse.getResponseType().equals(RtcProto
+                                .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
+                            new Handler(Looper.getMainLooper()).post(() -> {
+                                Conversation conversation = ConversationRepo.getInstance()
+                                        .getConversationByClientId(clientId);
+                                if (conversation == null) {
+                                    Conversation newConversation = createNewConversation(relayResponse);
+                                    ConversationRepo.getInstance().saveConversation(newConversation,
+                                            new Repo.Callback() {
+                                                @Override
+                                                public void success(Object o) {
+                                                    GlobalUtils.showLog(TAG, "incoming message saved");
+                                                    if (getView() != null)
+                                                        getView().onSubscribeSuccessMsg(newConversation,
+                                                                false);
+                                                }
+
+                                                @Override
+                                                public void fail() {
+                                                    GlobalUtils.showLog(TAG,
+                                                            "failed to save incoming message");
+                                                }
+                                            });
+                                } else {
+                                    updateConversation(conversation, relayResponse);
+                                }
+                            });
+
+                            GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
+                            if (!relayResponse.getRtcMessage().getSenderAccountId()
+                                    .equalsIgnoreCase(userAccountId)) {
+                                sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
+                                        relayResponse.getRtcMessage().getSenderAccountId(),
+                                        relayResponse.getRtcMessage().getRtcMessageId());
+                            }
+
+                        }
                     }
                 }
             }

@@ -307,11 +307,11 @@ public class SubscribeTicketsFragment extends BaseFragment<SubscribeTicketPresen
             GlobalUtils.showLog(TAG, "on resume fetch");
             presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
         } else {
-            boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
-            if (ticketAssigned) {
+            boolean ticketSubscribed = Hawk.get(Constants.TICKET_SUBSCRIBED, false);
+            if (ticketSubscribed) {
                 subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
                 setUpRecyclerView(subscribedTickets);
-                Hawk.put(Constants.TICKET_ASSIGNED, false);
+                Hawk.put(Constants.TICKET_SUBSCRIBED, false);
             }
         }
     }
