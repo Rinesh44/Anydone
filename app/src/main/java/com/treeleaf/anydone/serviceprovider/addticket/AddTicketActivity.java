@@ -46,10 +46,12 @@ import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -114,6 +116,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     FlexboxLayout fblLabel;
     @BindView(R.id.scroll_view)
     ScrollView scrollView;
+    @BindView(R.id.tv_suggestions)
+    TextView tvSuggestions;
 
     private List<AssignEmployee> employeeList;
     private List<Customer> customerList;
@@ -123,6 +127,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private Customer selectedCustomer;
     private Tags selectedTag;
     private Employee selfEmployee;
+    private ServiceProvider serviceProvider;
     private String selectedEmployeeId;
     private boolean createTicketFromThread;
     private BottomSheetDialog prioritySheet;
@@ -148,6 +153,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         setToolbar();
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
+        serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
         setUpRecyclerView();
 
@@ -220,19 +226,27 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
 
         etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
+            if (hasFocus && selfEmployee != null) {
                 etCustomerName.setError(null);
-                StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
-                selfCustomerText.append(" (Me)");
-                tvCustomerSelf.setText(selfCustomerText);
+                if (selfEmployee != null) {
+                    StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
+                    selfCustomerText.append(" (Me)");
+                    tvCustomerSelf.setText(selfCustomerText);
+                } else {
+                    tvCustomerSelf.setVisibility(View.GONE);
+                }
 
-                RequestOptions options = new RequestOptions()
-                        .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
+                if (selfEmployee != null) {
+                    RequestOptions options = new RequestOptions()
+                            .fitCenter()
+                            .placeholder(R.drawable.ic_profile_icon)
+                            .error(R.drawable.ic_profile_icon);
 
-                Glide.with(AddTicketActivity.this).load(selfEmployee.getEmployeeImageUrl())
-                        .apply(options).into(civSelf);
+                    Glide.with(AddTicketActivity.this).load(selfEmployee.getEmployeeImageUrl())
+                            .apply(options).into(civSelf);
+                } else {
+                    civSelf.setVisibility(View.GONE);
+                }
 
                 rlCustomerSelfHolder.setVisibility(View.VISIBLE);
             } else {
@@ -286,7 +300,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0) {
+                if (s.length() == 0 && selfEmployee != null) {
                     StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
                     selfCustomerText.append(" (Me)");
                     tvCustomerSelf.setText(selfCustomerText);
@@ -708,6 +722,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         Employee employee = EmployeeRepo.getInstance().getEmployee();
         GlobalUtils.showLog(TAG, "employee check: " + employee);
         if (employee != null) {
+            tvSuggestions.setVisibility(View.VISIBLE);
+            llEmployeeAsSelf.setVisibility(View.VISIBLE);
+
             StringBuilder selfEmployeeText = new StringBuilder(employee.getName());
             selfEmployeeText.append(" (Me)");
             tvEmployeeAsSelf.setText(selfEmployeeText);
@@ -721,6 +738,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
                 Glide.with(this).load(profilePicUrl).apply(options).into(civEmployeeAsSelf);
             }
+        } else {
+            tvSuggestions.setVisibility(View.GONE);
+            llEmployeeAsSelf.setVisibility(View.GONE);
         }
     }
 

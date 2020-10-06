@@ -4,6 +4,7 @@ package com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
@@ -126,11 +128,18 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
-                Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
-                i.putExtra("selected_ticket_id", ticket.getTicketId());
-                i.putExtra("selected_ticket_type", Constants.CLOSED_RESOLVED);
-                i.putExtra("ticket_desc", ticket.getTitle());
-                startActivity(i);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
+                    i.putExtra("selected_ticket_id", ticket.getTicketId());
+                    i.putExtra("selected_ticket_type", Constants.CLOSED_RESOLVED);
+                    i.putExtra("ticket_desc", ticket.getTitle());
+                    startActivity(i);
+                } else {
+                    Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                            getActivity(), Banner.INFO, "Some of our features are not supported in your device. " +
+                                    "Sorry for inconvenience",
+                            Banner.TOP, 2000).show();
+                }
             });
 
             adapter.setOnReopenListener((id, pos) -> {

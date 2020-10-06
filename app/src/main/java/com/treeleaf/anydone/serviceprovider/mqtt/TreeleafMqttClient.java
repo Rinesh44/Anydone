@@ -65,16 +65,12 @@ public class TreeleafMqttClient {
             connectOptions.setCleanSession(false);
             connectOptions.setAutomaticReconnect(true);
             connectOptions.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1_1);
-            if (MQTT_URI.contains("ssl://")) {
-                connectOptions.setSocketFactory(TreeleafSSL.getSocketFactory(MQTT_CA_CERT,
-                        MQTT_CLIENT_CERT, MQTT_SSL_KEY, MQTT_SSL_KEY_PASSWORD));
-            }
-            if (null != MQTT_USER && null != MQTT_PASSWORD) {
-                connectOptions.setUserName(MQTT_USER);
-                connectOptions.setPassword(MQTT_PASSWORD.toCharArray());
-                GlobalUtils.showLog(TAG,
-                        "Connecting mqtt with provided username and password");
-            }
+            connectOptions.setSocketFactory(TreeleafSSL.getSocketFactory(MQTT_CA_CERT,
+                    MQTT_CLIENT_CERT, MQTT_SSL_KEY, MQTT_SSL_KEY_PASSWORD));
+            connectOptions.setUserName(MQTT_USER);
+            connectOptions.setPassword(MQTT_PASSWORD.toCharArray());
+            GlobalUtils.showLog(TAG,
+                    "Connecting mqtt with provided username and password");
             mqttClientPersistence = new MemoryPersistence();
             mqttClient = new MqttAndroidClient(context, MQTT_URI,
                     UUID.randomUUID().toString().replace("-", ""),
