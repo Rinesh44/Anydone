@@ -55,7 +55,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     public static final int GOOGLE_SIGN_IN = 111;
     public static final int PERMISSIONS_CODE = 999;
     private static final String TAG = "LoginActivity";
-    String[] branches = {"Dev", "Production"};
+    String[] branches = {"Dev", "Prod"};
 
     /*   @BindView(R.id.btnLoginWithGoogle)
        MaterialButton btnGoogleSignIn;*/
