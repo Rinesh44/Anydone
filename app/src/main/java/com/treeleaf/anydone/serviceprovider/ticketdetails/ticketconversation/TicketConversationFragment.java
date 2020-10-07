@@ -757,6 +757,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                         (0), 100));
         etMessage.setText("");
+        GlobalUtils.showLog(TAG, "message type qwer: " + conversation.getMessageType());
         if (conversation.getMessageType()
                 .equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
             presenter.publishLinkMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),

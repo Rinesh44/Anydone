@@ -92,7 +92,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
     @Override
     public void showProgressBar(String message) {
-        progress.setVisibility(View.VISIBLE);
+
     }
 
     @Override

@@ -12,8 +12,10 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -61,6 +63,8 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
     TextInputEditText etLocation;
     @BindView(R.id.btn_add_location)
     MaterialButton btnAddLocation;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     private AutocompleteLocation selectedLocation;
 
@@ -127,9 +131,28 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
 
         btnAddLocation.setOnClickListener(v ->
         {
+
+            if (selectedLocation == null) {
+                Banner.make(getWindow().getDecorView().getRootView(),
+                        this, Banner.INFO, "Please enter location",
+                        Banner.TOP, 2000).show();
+
+                return;
+            }
+
+            String selectedLocationType = (String) spLocationType.getSelectedItem();
+            GlobalUtils.showLog(TAG, "selected locatin type: " + selectedLocationType);
+            if (selectedLocationType == null) {
+                Banner.make(getWindow().getDecorView().getRootView(),
+                        this, Banner.INFO, "Please select location type",
+                        Banner.TOP, 2000).show();
+                return;
+            }
+
             String token = Hawk.get(Constants.TOKEN);
             presenter.addLocation(token, selectedLocation.getSecondary(), selectedLocation.getLat(),
                     selectedLocation.getLng(), (String) spLocationType.getSelectedItem());
+
         });
     }
 
@@ -194,6 +217,7 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
         if (requestCode == PLACE_SELECTION_REQUEST_CODE && resultCode == RESULT_OK) {
             // Retrieve the information from the selected location's CarmenFeature
             CarmenFeature carmenFeature = PlacePicker.getPlace(data);
+            GlobalUtils.showLog(TAG, "carmen feature: " + carmenFeature);
             if (carmenFeature != null) {
                 String locationText = carmenFeature.text() +
                         ", " +
@@ -201,6 +225,11 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
                         ", " +
                         carmenFeature.context().get(1).text();
 
+                selectedLocation = new AutocompleteLocation();
+                selectedLocation.setPrimary(carmenFeature.context().get(0).text());
+                selectedLocation.setSecondary(carmenFeature.text());
+                selectedLocation.setLat(Objects.requireNonNull(carmenFeature.center()).latitude());
+                selectedLocation.setLng(carmenFeature.center().longitude());
                 etSearchLocation.setText(locationText);
             }
         }
@@ -264,7 +293,7 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
 
     @Override
     public void showProgressBar(String message) {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -274,7 +303,7 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

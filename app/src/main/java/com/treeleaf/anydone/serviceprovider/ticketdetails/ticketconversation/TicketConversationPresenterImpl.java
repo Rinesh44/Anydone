@@ -334,7 +334,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
                 .setUrl((links[0]))
-                .setTitle(message)
+                .setTitle("Link")
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
@@ -351,6 +351,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
+        GlobalUtils.showLog(TAG, "link msg payload: " + relayRequest);
+
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -365,6 +367,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                    long orderId,
                                    String userAccountId,
                                    String clientId) {
+        GlobalUtils.showLog(TAG, "publish text message");
         RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
                 .setMessage((message))
                 .build();
@@ -382,6 +385,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .setRtcMessage(rtcMessage)
                 .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
+
+//        GlobalUtils.showLog(TAG, "text msg payload: " + relayRequest);
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
@@ -1043,7 +1048,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
                 break;
             case "LINK_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getLink().getTitle());
+                conversation.setMessage(relayResponse.getRtcMessage().getLink().getUrl());
                 break;
 
             case "IMAGE_RTC_MESSAGE":
@@ -1136,7 +1141,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
             case "TEXT_RTC_MESSAGE":
                 return response.getRtcMessage().getText().getMessage();
             case "LINK_RTC_MESSAGE":
-                return response.getRtcMessage().getLink().getTitle();
+                return response.getRtcMessage().getLink().getUrl();
 
             case "IMAGE_RTC_MESSAGE":
                 return response.getRtcMessage().getImage().getImages(0).getUrl();

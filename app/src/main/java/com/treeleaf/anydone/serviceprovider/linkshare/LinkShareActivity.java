@@ -36,27 +36,39 @@ public class LinkShareActivity extends MvpBaseActivity<LinkSharePresenterImpl> i
     @BindView(R.id.btn_send)
     MaterialButton btnSend;
 
+    boolean isEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
         long ticketId = i.getLongExtra("ticket_id", -1);
-        boolean isEmail = i.getBooleanExtra("is_email", false);
+        isEmail = i.getBooleanExtra("is_email", false);
 
         setUpEmailPhone(isEmail);
         setCustomerData(ticketId, isEmail);
 
         btnSend.setOnClickListener(v -> {
-
-            if (ValidationUtils.isEmpty(etEmailPhone.getText().toString())) {
-                Toast.makeText(this, "Input field cannot be empty", Toast.LENGTH_SHORT)
-                        .show();
+            if (isEmail) {
+                if (ValidationUtils.isEmailValid(etEmailPhone.getText().toString().trim())) {
+                    presenter.getShareLink(String.valueOf(ticketId), etEmailPhone.getText()
+                            .toString().trim());
+                } else {
+                    Banner.make(getWindow().getDecorView().getRootView(),
+                            this, Banner.ERROR, "Invalid email",
+                            Banner.TOP, 2000).show();
+                }
             } else {
-                presenter.getShareLink(String.valueOf(ticketId), etEmailPhone.getText()
-                        .toString().trim());
+                if (ValidationUtils.isEmpty(etEmailPhone.getText().toString())) {
+                    Banner.make(getWindow().getDecorView().getRootView(),
+                            this, Banner.ERROR, "Input field cannot be empty",
+                            Banner.TOP, 2000).show();
+                } else {
+                    presenter.getShareLink(String.valueOf(ticketId), etEmailPhone.getText()
+                            .toString().trim());
+                }
             }
-
         });
     }
 
@@ -68,7 +80,7 @@ public class LinkShareActivity extends MvpBaseActivity<LinkSharePresenterImpl> i
         } else {
             setToolbar("SMS");
             etEmailPhone.setHint("Enter Number");
-            etEmailPhone.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED );
+            etEmailPhone.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
         }
     }
 

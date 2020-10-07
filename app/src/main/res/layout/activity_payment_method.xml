@@ -11,8 +11,7 @@
         android:layout_margin="@dimen/dimen_2x4"
         android:orientation="vertical">
 
-        <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/srl_creditors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +63,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dimen_10x6"
+                        android:layout_height="@dimen/dimen_10x7"
                         android:layout_marginStart="@dimen/dimen_10x1"
                         android:layout_marginEnd="@dimen/dimen_10x1">
 
