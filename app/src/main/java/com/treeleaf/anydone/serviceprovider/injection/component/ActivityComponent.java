@@ -12,6 +12,7 @@ import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.scope.ScopeActivity;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
+import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodActivity;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationActivity;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
@@ -82,4 +83,6 @@ public interface ActivityComponent {
     void inject(LinkShareActivity linkShareActivity);
 
     void inject(AddCardActivity addCardActivity);
+
+    void inject(PaymentMethodActivity paymentMethodActivity);
 }

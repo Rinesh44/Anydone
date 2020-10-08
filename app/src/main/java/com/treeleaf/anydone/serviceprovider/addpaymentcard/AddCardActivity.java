@@ -3,22 +3,27 @@ package com.treeleaf.anydone.serviceprovider.addpaymentcard;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.ArrayList;
@@ -32,10 +37,10 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     TextInputLayout ilCardNumber;
     @BindView(R.id.et_card_number)
     TextInputEditText etCardNumber;
-    @BindView(R.id.il_name)
-    TextInputLayout ilName;
-    @BindView(R.id.et_name)
-    TextInputEditText etName;
+    /*    @BindView(R.id.il_name)
+        TextInputLayout ilName;
+        @BindView(R.id.et_name)
+        TextInputEditText etName;*/
     @BindView(R.id.il_month)
     TextInputLayout ilMonth;
     @BindView(R.id.et_month)
@@ -66,6 +71,12 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     SwitchCompat swPrimaryCard;
     @BindView(R.id.ib_cvv_info)
     ImageButton ibCvvInfo;
+    @BindView(R.id.il_zip_code)
+    TextInputLayout ilZipCode;
+    @BindView(R.id.et_zip_code)
+    TextInputEditText etZipCode;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     private ArrayList<String> cardPatterns = new ArrayList<>();
 
@@ -102,7 +113,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
 
         btnSave.setOnClickListener(v -> {
             hideKeyBoard();
-            presenter.addCard(UiUtils.getString(etName),
+            presenter.addCard(
                     UiUtils.getString(etCardNumber),
                     UiUtils.getString(etMonth),
                     UiUtils.getString(etYear),
@@ -110,6 +121,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
                     UiUtils.getString(etStreetAddress),
                     UiUtils.getString(etCity),
                     UiUtils.getString(etState),
+                    UiUtils.getString(etZipCode),
                     swPrimaryCard.isChecked());
         });
 
@@ -205,14 +217,14 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         getActivityComponent().inject(this);
     }
 
-    @Override
+/*    @Override
     public void showInvalidCardHolderNameError() {
         etName.requestFocus();
         ilName.setErrorEnabled(true);
         ilName.setError("Invalid Card Holder Name");
 
         onInvalidCardHolderName();
-    }
+    }*/
 
     @Override
     public void showInvalidCardNumberError() {
@@ -250,35 +262,8 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         onInvalidCVV();
     }
 
-    @Override
-    public void showInvalidStreetAddressError() {
-        etStreetAddress.requestFocus();
-        ilStreetAddress.setErrorEnabled(true);
-        ilStreetAddress.setError("Invalid Street Address");
 
-        onInvalidStreetAddress();
-    }
-
-    @Override
-    public void showInvalidCityError() {
-        etCity.requestFocus();
-        ilCity.setErrorEnabled(true);
-        ilCity.setError("Invalid City");
-
-        onInvalidCity();
-    }
-
-    @Override
-    public void showInvalidStateError() {
-        etState.requestFocus();
-        ilState.setErrorEnabled(true);
-        ilState.setError("Invalid State");
-
-        onInvalidState();
-    }
-
-
-    @Override
+/*    @Override
     public void onInvalidCardHolderName() {
         ilCardNumber.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
@@ -287,11 +272,11 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         ilStreetAddress.setErrorEnabled(false);
         ilCity.setErrorEnabled(false);
         ilState.setErrorEnabled(false);
-    }
+    }*/
 
     @Override
     public void onInvalidCardNumber() {
-        ilName.setErrorEnabled(false);
+//        ilName.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
         ilYear.setErrorEnabled(false);
         ilCvv.setErrorEnabled(false);
@@ -303,7 +288,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     @Override
     public void onInvalidMonth() {
         ilCardNumber.setErrorEnabled(false);
-        ilName.setErrorEnabled(false);
+//        ilName.setErrorEnabled(false);
         ilYear.setErrorEnabled(false);
         ilCvv.setErrorEnabled(false);
         ilStreetAddress.setErrorEnabled(false);
@@ -315,7 +300,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     public void onInvalidYear() {
         ilCardNumber.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
-        ilName.setErrorEnabled(false);
+//        ilName.setErrorEnabled(false);
         ilCvv.setErrorEnabled(false);
         ilStreetAddress.setErrorEnabled(false);
         ilCity.setErrorEnabled(false);
@@ -327,54 +312,33 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         ilCardNumber.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
         ilYear.setErrorEnabled(false);
-        ilName.setErrorEnabled(false);
+//        ilName.setErrorEnabled(false);
         ilStreetAddress.setErrorEnabled(false);
         ilCity.setErrorEnabled(false);
         ilState.setErrorEnabled(false);
-    }
-
-
-    @Override
-    public void onInvalidStreetAddress() {
-        ilCardNumber.setErrorEnabled(false);
-        ilMonth.setErrorEnabled(false);
-        ilYear.setErrorEnabled(false);
-        ilCvv.setErrorEnabled(false);
-        ilName.setErrorEnabled(false);
-        ilCity.setErrorEnabled(false);
-        ilState.setErrorEnabled(false);
-    }
-
-    @Override
-    public void onInvalidCity() {
-        ilCardNumber.setErrorEnabled(false);
-        ilMonth.setErrorEnabled(false);
-        ilYear.setErrorEnabled(false);
-        ilCvv.setErrorEnabled(false);
-        ilName.setErrorEnabled(false);
-        ilStreetAddress.setErrorEnabled(false);
-        ilState.setErrorEnabled(false);
-    }
-
-    @Override
-    public void onInvalidState() {
-        ilCardNumber.setErrorEnabled(false);
-        ilMonth.setErrorEnabled(false);
-        ilYear.setErrorEnabled(false);
-        ilCvv.setErrorEnabled(false);
-        ilName.setErrorEnabled(false);
-        ilStreetAddress.setErrorEnabled(false);
-        ilCity.setErrorEnabled(false);
     }
 
     @Override
     public void onAddCardSuccess() {
+        Intent intent = new Intent();
+        intent.putExtra("card_added", true);
+        setResult(2, intent);
         finish();
     }
 
     @Override
-    public void showProgressBar(String message) {
+    public void onAddCardFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        UiUtils.showToast(this, msg);
+    }
 
+    @Override
+    public void showProgressBar(String message) {
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -384,7 +348,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

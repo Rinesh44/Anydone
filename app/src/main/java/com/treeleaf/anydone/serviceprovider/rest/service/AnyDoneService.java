@@ -4,6 +4,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.ConversationProto;
+import com.treeleaf.anydone.entities.PaymentProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
@@ -11,6 +12,7 @@ import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
+import com.treeleaf.anydone.rpc.PaymentRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.SearchServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
@@ -541,6 +543,26 @@ public interface AnyDoneService {
                                                                                              String token,
                                                                                      @Body ConversationProto.ConversationThread
                                                                                              conversationThread);
+
+    @GET("payment/card/all")
+    Observable<PaymentRpcProto.PaymentBaseResponse> getPaymentCards(@Header(AUTHORIZATION)
+                                                                            String token);
+
+    @POST("payment/card")
+    Observable<PaymentRpcProto.PaymentBaseResponse> addPaymentCard(@Header(AUTHORIZATION) String
+                                                                           token,
+                                                                   @Body PaymentProto.Card card);
+
+    @PATCH("payment/card/default")
+    Observable<PaymentRpcProto.PaymentBaseResponse> setPaymentCardAsPrimary(@Header(AUTHORIZATION)
+                                                                                    String token,
+                                                                            String cardId);
+
+    @DELETE("payment/card/{cardId}")
+    Observable<PaymentRpcProto.PaymentBaseResponse> deletePaymentCard(@Header(AUTHORIZATION) String
+                                                                              token,
+                                                                      @Path(value = "cardId")
+                                                                              String cardId);
 }
 
 

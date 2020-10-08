@@ -24,6 +24,8 @@ import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepository;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepository;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodRepository;
+import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationRepository;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileRepository;
@@ -278,6 +280,11 @@ public class PresenterModule {
     @Provides
     AddCardRepository getCardRepository(AnyDoneService anyDoneService) {
         return new AddCardRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    PaymentMethodRepository getPaymentRepository(AnyDoneService anyDoneService) {
+        return new PaymentMethodRepositoryImpl(anyDoneService);
     }
 }
 
