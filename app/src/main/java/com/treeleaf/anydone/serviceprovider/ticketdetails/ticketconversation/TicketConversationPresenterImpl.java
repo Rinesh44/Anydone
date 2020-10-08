@@ -1283,6 +1283,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void getMessages(long refId, long from, long to, int pageSize) {
+        getView().showProgressBar("Please wait");
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
         String token = Hawk.get(Constants.TOKEN);
 
@@ -1295,6 +1296,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     @Override
                     public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse
                                                rtcServiceBaseResponse) {
+                        getView().hideProgressBar();
                         GlobalUtils.showLog(TAG, "messages service response: " +
                                 rtcServiceBaseResponse);
 

@@ -99,23 +99,8 @@ public interface AnyDoneService {
     Observable<UserRpcProto.UserBaseResponse>
     uploadImage(@Header(AUTHORIZATION) String authorization, @Part MultipartBody.Part image);
 
-    @POST("service/parse/search")
-    Observable<SearchServiceRpcProto.SearchServiceBaseResponse>
-    searchService(@Header(AUTHORIZATION) String token,
-                  @Body SearchServiceProto.SearchServiceRequest searchServiceRequest);
-
-    @GET("service/available")
-    Observable<ServiceRpcProto.ServiceBaseResponse>
-    getAllServices(@Header(AUTHORIZATION) String token);
-
     @GET
     Observable<ResponseBody> getPlaceAutocomplete(@Url String url);
-
-
-    //    @GET("service/order/consumer?pageSize=20")
-    @GET("service/order/consumer")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
-    getOrderService(@Header(AUTHORIZATION) String token);
 
     @GET
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
@@ -159,12 +144,6 @@ public interface AnyDoneService {
                       @Query("to") long to,
                       @Query("pageSize") int pageSize,
                       @Query("context") int context);
-
-    @PATCH("service/order/close")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> closeOrder(@Header(AUTHORIZATION)
-                                                                                 String token,
-                                                                         @Query("orderId")
-                                                                                 long orderId);
 
     @PATCH("service/order/cancel")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse> cancelOrder(@Header(AUTHORIZATION)
@@ -213,10 +192,6 @@ public interface AnyDoneService {
     getTicketSuggestions(@Header(AUTHORIZATION) String token,
                          @Body BotConversationProto.ConversationRequest request);
 
-    @GET("ticket")
-    Observable<TicketServiceRpcProto.TicketBaseResponse>
-    getAllTickets(@Header(AUTHORIZATION) String token);
-
     @GET("service/orders")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getOpenServices(@Header(AUTHORIZATION)
                                                                                       String token);
@@ -225,102 +200,95 @@ public interface AnyDoneService {
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse> getAcceptedServices
             (@Header(AUTHORIZATION) String token);
 
-    //actions on orders
-    @PATCH("service/order/accept")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> acceptOrder(@Header(AUTHORIZATION)
-                                                                                  String token);
-
-    @PATCH("service/order/cancel")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> acceptOrder(@Header(AUTHORIZATION)
-                                                                                  String token,
-                                                                          @Query("orderId") String orderId);
-
-    @PATCH("service/assign")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> assignOrder(@Header(AUTHORIZATION)
-                                                                                  String token);
-
-    @PATCH("service/order/start")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> startOrder(@Header(AUTHORIZATION)
-                                                                                 String token,
-                                                                         @Query("orderId") String orderId);
-
-    @PATCH("service/order/complete")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> completeOrder(@Header(AUTHORIZATION)
-                                                                                    String token,
-                                                                            @Query("orderId") String orderId);
-
-    @PATCH("service/order/close")
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse> closeOrder(@Header(AUTHORIZATION)
-                                                                                 String token,
-                                                                         @Query("orderId") String orderId);
-
     //actions on tickets
     @PATCH("ticket/start/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> startTicket(@Header(AUTHORIZATION)
                                                                              String token,
-                                                                     @Path(value = "ticketId") String ticketId);
+                                                                     @Path(value = "ticketId")
+                                                                             String ticketId);
 
     @PATCH("ticket/complete/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> resolveTicket(@Header(AUTHORIZATION)
                                                                                String token,
-                                                                       @Path(value = "ticketId") long ticketId);
+                                                                       @Path(value = "ticketId")
+                                                                               long ticketId);
 
     @PATCH("ticket/close/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> closeTicket(@Header(AUTHORIZATION)
                                                                              String token,
-                                                                     @Path(value = "ticketId") long ticketId,
-                                                                     @Query("remark") String remark);
+                                                                     @Path(value = "ticketId")
+                                                                             long ticketId,
+                                                                     @Query("remark")
+                                                                             String remark);
 
     @PATCH("ticket/reopen/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> reopenTicket(@Header(AUTHORIZATION)
                                                                               String token,
-                                                                      @Path(value = "ticketId") long ticketId,
-                                                                      @Query("remark") String remark);
+                                                                      @Path(value = "ticketId")
+                                                                              long ticketId,
+                                                                      @Query("remark")
+                                                                              String remark);
 
     @GET("ticket/assigned/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(@Header(AUTHORIZATION)
-                                                                                    String token,
-                                                                            @Path(value = "serviceId")
-                                                                                    String serviceId,
-                                                                            @Query("from") long from,
-                                                                            @Query("to") long to,
-                                                                            @Query("page") int page);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getAssignedTickets(@Header(AUTHORIZATION)
+                               String token,
+                       @Path(value = "serviceId")
+                               String serviceId,
+                       @Query("from") long from,
+                       @Query("to") long to,
+                       @Query("page") int page);
+
+    @GET("ticket/contributed/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getContributedTickets(@Header(AUTHORIZATION)
+                                  String token,
+                          @Path(value = "serviceId")
+                                  String serviceId,
+                          @Query("from") long from,
+                          @Query("to") long to,
+                          @Query("page") int page);
+
 
     @GET("ticket/subscribed/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribedTickets(@Header(AUTHORIZATION)
-                                                                                      String token,
-                                                                              @Path(value = "serviceId")
-                                                                                      String serviceId,
-                                                                              @Query("from") long from,
-                                                                              @Query("to") long to,
-                                                                              @Query("page") int page);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getSubscribedTickets(@Header(AUTHORIZATION)
+                                 String token,
+                         @Path(value = "serviceId")
+                                 String serviceId,
+                         @Query("from") long from,
+                         @Query("to") long to,
+                         @Query("page") int page);
 
     @GET("ticket/inactive/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getClosedResolvedTickets(@Header(AUTHORIZATION)
-                                                                                          String token,
-                                                                                  @Path(value = "serviceId")
-                                                                                          String serviceId,
-                                                                                  @Query("from") long from,
-                                                                                  @Query("to") long to,
-                                                                                  @Query("page") int page);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getClosedResolvedTickets(@Header(AUTHORIZATION)
+                                     String token,
+                             @Path(value = "serviceId")
+                                     String serviceId,
+                             @Query("from") long from,
+                             @Query("to") long to,
+                             @Query("page") int page);
 
     @GET("ticket/assignable/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignableTickets(@Header(AUTHORIZATION)
-                                                                                      String token,
-                                                                              @Path(value = "serviceId")
-                                                                                      String serviceId,
-                                                                              @Query("from") long from,
-                                                                              @Query("to") long to,
-                                                                              @Query("page") int page);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getAssignableTickets(@Header(AUTHORIZATION)
+                                 String token,
+                         @Path(value = "serviceId")
+                                 String serviceId,
+                         @Query("from") long from,
+                         @Query("to") long to,
+                         @Query("page") int page);
 
     @GET("ticket/subscribable/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribeableTickets(@Header(AUTHORIZATION)
-                                                                                         String token,
-                                                                                 @Path(value = "serviceId")
-                                                                                         String serviceId,
-                                                                                 @Query("from") long from,
-                                                                                 @Query("to") long to,
-                                                                                 @Query("page") int page);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getSubscribeableTickets(@Header(AUTHORIZATION)
+                                    String token,
+                            @Path(value = "serviceId")
+                                    String serviceId,
+                            @Query("from") long from,
+                            @Query("to") long to,
+                            @Query("page") int page);
 
     @PATCH("ticket/unsubscribe/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> unsubscribe(@Header(AUTHORIZATION)
@@ -341,13 +309,15 @@ public interface AnyDoneService {
                                                                               long ticketId,
                                                                       @Path(value = "serviceId")
                                                                               String serviceId,
-                                                                      @Body TicketProto.Ticket employeeAssigned);
+                                                                      @Body TicketProto.Ticket
+                                                                              employeeAssigned);
 
 
     @POST("ticket")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> createTicket(@Header(AUTHORIZATION)
-                                                                              String token,
-                                                                      @Body TicketProto.Ticket ticket);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    createTicket(@Header(AUTHORIZATION)
+                         String token,
+                 @Body TicketProto.Ticket ticket);
 
     @GET("customers")
     Observable<TicketServiceRpcProto.TicketBaseResponse> findCustomers(@Header(AUTHORIZATION)
@@ -382,58 +352,66 @@ public interface AnyDoneService {
 
 
     @PATCH("ticket/assign/{ticketId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> assignEmployee(@Header(AUTHORIZATION)
-                                                                                String token,
-                                                                        @Path(value = "ticketId")
-                                                                                long ticketId,
-                                                                        @Body TicketProto.Ticket employeeAssigned);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    assignEmployee(@Header(AUTHORIZATION)
+                           String token,
+                   @Path(value = "ticketId")
+                           long ticketId,
+                   @Body TicketProto.Ticket employeeAssigned);
 
     @PATCH("ticket/unassign/{ticketId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> unAssignEmployee(@Header(AUTHORIZATION)
-                                                                                  String token,
-                                                                          @Path(value = "ticketId")
-                                                                                  long ticketId,
-                                                                          @Body TicketProto.Ticket employeeUnAssigned);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    unAssignEmployee(@Header(AUTHORIZATION)
+                             String token,
+                     @Path(value = "ticketId")
+                             long ticketId,
+                     @Body TicketProto.Ticket employeeUnAssigned);
 
     @GET("/service/enabled")
     Observable<ServiceRpcProto.ServiceBaseResponse> getServices(@Header(AUTHORIZATION) String token);
 
 
     @GET("conversation/service/{serviceId}")
-    Observable<ConversationRpcProto.ConversationBaseResponse> getConversationThreads(@Header(AUTHORIZATION)
-                                                                                             String token,
-                                                                                     @Path(value = "serviceId")
-                                                                                             String serviceId);
+    Observable<ConversationRpcProto.ConversationBaseResponse>
+    getConversationThreads(@Header(AUTHORIZATION)
+                                   String token,
+                           @Path(value = "serviceId")
+                                   String serviceId);
 
     @GET("conversation/{threadId}")
-    Observable<ConversationRpcProto.ConversationBaseResponse> getConversationThreadById(@Header(AUTHORIZATION)
-                                                                                                String token,
-                                                                                        @Path(value = "threadId")
-                                                                                                String threadId);
+    Observable<ConversationRpcProto.ConversationBaseResponse>
+    getConversationThreadById(@Header(AUTHORIZATION)
+                                      String token,
+                              @Path(value = "threadId")
+                                      String threadId);
 
     @PATCH("conversation/{refId}/enablebotreply")
-    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableThreadBotReply(@Header(AUTHORIZATION)
-                                                                                       String token,
-                                                                               @Path(value = "refId")
-                                                                                       String refId);
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
+    enableThreadBotReply(@Header(AUTHORIZATION)
+                                 String token,
+                         @Path(value = "refId")
+                                 String refId);
 
     @PATCH("conversation/{refId}/disablebotreply")
-    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableThreadBotReply(@Header(AUTHORIZATION)
-                                                                                        String token,
-                                                                                @Path(value = "refId")
-                                                                                        String refId);
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
+    disableThreadBotReply(@Header(AUTHORIZATION)
+                                  String token,
+                          @Path(value = "refId")
+                                  String refId);
 
     @PATCH("ticket/{refId}/enablebotreply")
-    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableTicketBotReply(@Header(AUTHORIZATION)
-                                                                                       String token,
-                                                                               @Path(value = "refId")
-                                                                                       String refId);
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
+    enableTicketBotReply(@Header(AUTHORIZATION)
+                                 String token,
+                         @Path(value = "refId")
+                                 String refId);
 
     @PATCH("ticket/{refId}/disablebotreply")
-    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableTicketBotReply(@Header(AUTHORIZATION)
-                                                                                        String token,
-                                                                                @Path(value = "refId")
-                                                                                        String refId);
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
+    disableTicketBotReply(@Header(AUTHORIZATION)
+                                  String token,
+                          @Path(value = "refId")
+                                  String refId);
 
     @GET("rtc/messages/{refId}")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
@@ -463,12 +441,13 @@ public interface AnyDoneService {
                               ticketContributor);
 
     @GET("tickets/date/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByDate(@Header(AUTHORIZATION)
-                                                                                    String token,
-                                                                            @Path(value = "serviceId")
-                                                                                    String serviceId,
-                                                                            @Query("from") long from,
-                                                                            @Query("to") long to);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    filterTicketByDate(@Header(AUTHORIZATION)
+                               String token,
+                       @Path(value = "serviceId")
+                               String serviceId,
+                       @Query("from") long from,
+                       @Query("to") long to);
 
     @GET("tickets/date/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByDate(@Header(AUTHORIZATION)
@@ -477,72 +456,82 @@ public interface AnyDoneService {
                                                                                  String serviceId);
 
     @GET("tickets/status/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByStatus(@Header(AUTHORIZATION)
-                                                                                   String token,
-                                                                           @Path(value = "serviceId")
-                                                                                   String serviceId);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getTicketByStatus(@Header(AUTHORIZATION)
+                              String token,
+                      @Path(value = "serviceId")
+                              String serviceId);
 
     @GET("tickets/status/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByStatus(@Header(AUTHORIZATION)
-                                                                                      String token,
-                                                                              @Path(value = "serviceId")
-                                                                                      String serviceId,
-                                                                              @Query("from") long from,
-                                                                              @Query("to") long to);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    filterTicketByStatus(@Header(AUTHORIZATION)
+                                 String token,
+                         @Path(value = "serviceId")
+                                 String serviceId,
+                         @Query("from") long from,
+                         @Query("to") long to);
 
     @GET("tickets/source/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketBySource(@Header(AUTHORIZATION)
-                                                                                   String token,
-                                                                           @Path(value = "serviceId")
-                                                                                   String serviceId);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getTicketBySource(@Header(AUTHORIZATION)
+                              String token,
+                      @Path(value = "serviceId")
+                              String serviceId);
 
     @GET("tickets/source/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketBySource(@Header(AUTHORIZATION)
-                                                                                      String token,
-                                                                              @Path(value = "serviceId")
-                                                                                      String serviceId,
-                                                                              @Query("from") long from,
-                                                                              @Query("to") long to);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    filterTicketBySource(@Header(AUTHORIZATION)
+                                 String token,
+                         @Path(value = "serviceId")
+                                 String serviceId,
+                         @Query("from") long from,
+                         @Query("to") long to);
 
     @GET("tickets/priority/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByPriority(@Header(AUTHORIZATION)
-                                                                                     String token,
-                                                                             @Path(value = "serviceId")
-                                                                                     String serviceId);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getTicketByPriority(@Header(AUTHORIZATION)
+                                String token,
+                        @Path(value = "serviceId")
+                                String serviceId);
 
     @GET("tickets/priority/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByPriority(@Header(AUTHORIZATION)
-                                                                                        String token,
-                                                                                @Path(value = "serviceId")
-                                                                                        String serviceId,
-                                                                                @Query("from") long from,
-                                                                                @Query("to") long to);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    filterTicketByPriority(@Header(AUTHORIZATION)
+                                   String token,
+                           @Path(value = "serviceId")
+                                   String serviceId,
+                           @Query("from") long from,
+                           @Query("to") long to);
 
     @GET("tickets/resolve/time/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketByResolvedTime(@Header(AUTHORIZATION)
-                                                                                         String token,
-                                                                                 @Path(value = "serviceId")
-                                                                                         String serviceId);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getTicketByResolvedTime(@Header(AUTHORIZATION)
+                                    String token,
+                            @Path(value = "serviceId")
+                                    String serviceId);
 
     @GET("tickets/resolve/time/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> filterTicketByResolvedTime(@Header(AUTHORIZATION)
-                                                                                            String token,
-                                                                                    @Path(value = "serviceId")
-                                                                                            String serviceId,
-                                                                                    @Query("from") long from,
-                                                                                    @Query("to") long to);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    filterTicketByResolvedTime(@Header(AUTHORIZATION)
+                                       String token,
+                               @Path(value = "serviceId")
+                                       String serviceId,
+                               @Query("from") long from,
+                               @Query("to") long to);
 
     @POST("ticket/link/generate")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> getLink(@Header(AUTHORIZATION)
-                                                                         String token,
-                                                                 @Body TicketProto.GetSharableLinkRequest
-                                                                         sharableLinkRequest);
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getLink(@Header(AUTHORIZATION)
+                    String token,
+            @Body TicketProto.GetSharableLinkRequest
+                    sharableLinkRequest);
 
     @POST("conversation/assigned/employees")
-    Observable<ConversationRpcProto.ConversationBaseResponse> assignEmployeeToThread(@Header(AUTHORIZATION)
-                                                                                             String token,
-                                                                                     @Body ConversationProto.ConversationThread
-                                                                                             conversationThread);
+    Observable<ConversationRpcProto.ConversationBaseResponse>
+    assignEmployeeToThread(@Header(AUTHORIZATION)
+                                   String token,
+                           @Body ConversationProto.ConversationThread
+                                   conversationThread);
 
     @GET("payment/card/all")
     Observable<PaymentRpcProto.PaymentBaseResponse> getPaymentCards(@Header(AUTHORIZATION)

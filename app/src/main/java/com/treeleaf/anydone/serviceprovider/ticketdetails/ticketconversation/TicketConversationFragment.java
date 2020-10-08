@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -35,9 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
-import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -444,6 +441,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void showProgressBar(String message) {
+        progress.bringToFront();
         progress.setVisibility(View.VISIBLE);
     }
 

@@ -71,6 +71,8 @@ import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTick
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepository;
@@ -285,6 +287,11 @@ public class PresenterModule {
     @Provides
     PaymentMethodRepository getPaymentRepository(AnyDoneService anyDoneService) {
         return new PaymentMethodRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ContributedTicketRepository getContributedTicketRepository(AnyDoneService anyDoneService) {
+        return new ContributedTicketRepositoryImpl(anyDoneService);
     }
 }
 

@@ -109,7 +109,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     GlobalUtils.showLog(TAG, "dev");
-                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+                    Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
 
                     String url = Hawk.get(Constants.BASE_URL);
                     HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
@@ -118,7 +118,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
                 } else {
                     GlobalUtils.showLog(TAG, "prod");
-                    Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
+                    Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
 
                     String url = Hawk.get(Constants.BASE_URL);
                     HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
@@ -129,7 +129,6 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-//                Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
             }
         });
     }

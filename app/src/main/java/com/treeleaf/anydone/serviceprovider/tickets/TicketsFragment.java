@@ -62,6 +62,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.OnTicketReopenListener;
+import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -116,6 +117,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private TextView tvReset;
     final Calendar myCalendar = Calendar.getInstance();
     private AssignedListListener assignedListListener;
+    private ContributedListListener contributedListListener;
     private SubscribedListListener subscribedListListener;
     private ClosedListListener closedListListener;
     //    private BottomSheetBehavior sheetBehavior;
@@ -778,9 +780,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPagerAdapter.addFragment(new AssignedTicketsFragment(), "Assigned");
+        viewPagerAdapter.addFragment(new ContributedTicketFragment(), "Contributed");
         viewPagerAdapter.addFragment(new SubscribeTicketsFragment(), "Subscribed");
-        viewPagerAdapter.addFragment(new ClosedTicketsFragment(), "Closed/Resolved");
-        viewPager.setOffscreenPageLimit(2);
+        viewPagerAdapter.addFragment(new ClosedTicketsFragment(), "Resolved");
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -981,8 +984,20 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         void fetchList();
     }
 
+    public interface ContributedListListener {
+        void updateContributedList(List<Tickets> ticketsList);
+
+        void updateContributedList();
+
+        void fetchList();
+    }
+
     public void setAssignedListListener(AssignedListListener listener) {
         assignedListListener = listener;
+    }
+
+    public void setContributedListListener(ContributedListListener listener) {
+        contributedListListener = listener;
     }
 
     public interface SubscribedListListener {

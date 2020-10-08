@@ -18,6 +18,7 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketT
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 
 import javax.inject.Singleton;
@@ -62,5 +63,7 @@ public interface ApplicationComponent {
     void inject(ThreadTimelineFragment threadTimelineFragment);
 
     void inject(DashboardFragment dashboardFragment);
+
+    void inject(ContributedTicketFragment contributedTicketFragment);
 
 }
