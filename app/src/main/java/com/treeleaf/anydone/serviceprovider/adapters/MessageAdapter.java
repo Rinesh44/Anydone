@@ -668,9 +668,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
             if (!conversation.getMessage().isEmpty()) {
                 String[] extractedLink = extractLinks(conversation.getMessage());
-                GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
+//                GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
 
-                if (!extractedLink[0].contains("https://")) {
+                if (extractedLink.length != 0 && !extractedLink[0].contains("https://")) {
                     String linkWithHttps = "https://" + extractedLink[0];
                     richPreview.getPreview(linkWithHttps);
                 } else {

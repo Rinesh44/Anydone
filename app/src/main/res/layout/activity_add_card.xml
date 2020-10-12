@@ -4,226 +4,260 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_2x4"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/il_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:layout_marginRight="@dimen/dimens_2x"
-            android:hint="@string/cardholder_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLength="30"
-                android:singleLine="true"
-                android:textSize="@dimen/material_text_subhead" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/il_card_number"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:layout_marginRight="@dimen/dimens_2x"
-            android:hint="@string/card_number">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_card_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:maxLength="19"
-                android:singleLine="true"
-                android:textSize="@dimen/material_text_subhead" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_centerInParent="true"
+            android:elevation="4dp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:orientation="horizontal"
-            android:weightSum="14">
+            android:orientation="vertical">
+
+            <!--        <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/il_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimens_2x"
+                        android:layout_marginTop="@dimen/dimens_2x"
+                        android:layout_marginRight="@dimen/dimens_2x"
+                        android:hint="@string/cardholder_name">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:maxLength="30"
+                            android:singleLine="true"
+                            android:textSize="@dimen/material_text_subhead" />
+
+                    </com.google.android.material.textfield.TextInputLayout>-->
+
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_month"
+                android:id="@+id/il_card_number"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
-                android:layout_weight="4"
-                android:hint="@string/month">
+                android:hint="@string/card_number">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_month"
+                    android:id="@+id/et_card_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:maxLength="2"
+                    android:inputType="phone"
+                    android:maxLength="19"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_year"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:hint="@string/year">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_year"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:maxLength="4"
-                    android:singleLine="true"
-                    android:textSize="@dimen/material_text_subhead" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimens_2x"
-                android:layout_marginRight="@dimen/dimens_2x"
-                android:layout_weight="6">
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:orientation="horizontal"
+                android:weightSum="14">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/il_cvv"
+                    android:id="@+id/il_month"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/cvv">
+                    android:layout_marginLeft="@dimen/dimens_2x"
+                    android:layout_marginRight="@dimen/dimens_2x"
+                    android:layout_weight="4"
+                    android:hint="@string/month">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_cvv"
+                        android:id="@+id/et_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:maxLength="3"
+                        android:maxLength="2"
                         android:singleLine="true"
                         android:textSize="@dimen/material_text_subhead" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageButton
-                    android:id="@+id/ib_cvv_info"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/il_year"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:background="@null"
-                    android:paddingStart="@dimen/dimen_10x1"
-                    android:paddingTop="@dimen/dimen_6x1"
-                    android:paddingEnd="@dimen/dimen_10x1"
-                    android:src="@drawable/ic_info_local" />
-            </RelativeLayout>
+                    android:layout_weight="4"
+                    android:hint="@string/year">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:singleLine="true"
+                        android:textSize="@dimen/material_text_subhead" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimens_2x"
+                    android:layout_marginRight="@dimen/dimens_2x"
+                    android:layout_weight="6">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/il_cvv"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/cvv">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_cvv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:singleLine="true"
+                            android:textSize="@dimen/material_text_subhead" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/ib_cvv_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:paddingStart="@dimen/dimen_10x1"
+                        android:paddingTop="@dimen/dimen_6x1"
+                        android:paddingEnd="@dimen/dimen_10x1"
+                        android:src="@drawable/ic_info_local" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_street_address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:layout_marginRight="@dimen/dimens_2x"
+                android:hint="@string/street_address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_street_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textVisiblePassword"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_subhead" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_city"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:layout_marginRight="@dimen/dimens_2x"
+                android:hint="@string/city">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textVisiblePassword"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_subhead" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_state"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:layout_marginRight="@dimen/dimens_2x"
+                android:hint="@string/state">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textVisiblePassword"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_subhead" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_zip_code"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:layout_marginRight="@dimen/dimens_2x"
+                android:hint="@string/zip_code">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_zip_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_subhead" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/sw_make_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimens_2x"
+                android:text="@string/save_card_as_primary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_10x6"
+                android:layout_marginStart="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:layout_marginEnd="@dimen/dimens_2x"
+                android:layout_marginBottom="@dimen/dimen_10x2"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/il_street_address"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:layout_marginRight="@dimen/dimens_2x"
-            android:hint="@string/street_address">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_street_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLength="30"
-                android:singleLine="true"
-                android:textSize="@dimen/material_text_subhead" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/il_city"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:layout_marginRight="@dimen/dimens_2x"
-            android:hint="@string/city">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLength="30"
-                android:singleLine="true"
-                android:textSize="@dimen/material_text_subhead" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/il_state"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:layout_marginRight="@dimen/dimens_2x"
-            android:hint="@string/state">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_state"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLength="30"
-                android:singleLine="true"
-                android:textSize="@dimen/material_text_subhead" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/sw_make_primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimen_10x1"
-            android:layout_marginEnd="@dimen/dimens_2x"
-            android:text="@string/save_card_as_primary" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_save"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_10x6"
-            android:layout_marginStart="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimen_10x1"
-            android:layout_marginEnd="@dimen/dimens_2x"
-            android:layout_marginBottom="@dimen/dimen_10x2"
-            android:text="@string/save"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

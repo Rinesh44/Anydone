@@ -48,6 +48,7 @@ import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.ByteArrayOutputStream;
@@ -334,7 +335,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
                 .setUrl((links[0]))
-                .setTitle(message)
+                .setTitle("Link")
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
@@ -351,6 +352,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
+        GlobalUtils.showLog(TAG, "link msg payload: " + relayRequest);
+
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -365,6 +368,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                    long orderId,
                                    String userAccountId,
                                    String clientId) {
+        GlobalUtils.showLog(TAG, "publish text message");
         RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
                 .setMessage((message))
                 .build();
@@ -382,6 +386,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .setRtcMessage(rtcMessage)
                 .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
+
+//        GlobalUtils.showLog(TAG, "text msg payload: " + relayRequest);
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
@@ -418,11 +424,14 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         String token = Hawk.get(Constants.TOKEN);
         Observable<BotConversationRpcProto.BotConversationBaseResponse> getBotConversationObservable;
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         BotConversationProto.ConversationRequest conversationRequest = BotConversationProto
                 .ConversationRequest.newBuilder()
                 .setMessageId(nextMessageId)
                 .build();
-        getBotConversationObservable = ticketConversationRepository
+        getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
 
         addSubscription(getBotConversationObservable
@@ -531,10 +540,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     public void startTask(long ticketId) {
         getView().showProgressBar("Please wait...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         String token = Hawk.get(Constants.TOKEN);
 
-        ticketObservable = ticketConversationRepository.startTask(token,
-                ticketId);
+        ticketObservable = service.startTicket(token,
+                String.valueOf(ticketId));
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -666,7 +678,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     @Override
-    public void subscribeSuccessMessage(long ticketId, String userAccountId) {
+    public void subscribeSuccessMessage(long ticketId, String userAccountId) throws MqttException {
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
@@ -1043,7 +1055,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
                 break;
             case "LINK_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getLink().getTitle());
+                conversation.setMessage(relayResponse.getRtcMessage().getLink().getUrl());
                 break;
 
             case "IMAGE_RTC_MESSAGE":
@@ -1136,7 +1148,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
             case "TEXT_RTC_MESSAGE":
                 return response.getRtcMessage().getText().getMessage();
             case "LINK_RTC_MESSAGE":
-                return response.getRtcMessage().getLink().getTitle();
+                return response.getRtcMessage().getLink().getUrl();
 
             case "IMAGE_RTC_MESSAGE":
                 return response.getRtcMessage().getImage().getImages(0).getUrl();
@@ -1162,7 +1174,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
 
     @Override
-    public void subscribeFailMessage() {
+    public void subscribeFailMessage() throws MqttException {
         getView().hideProgressBar();
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + account.getAccountId();
 
@@ -1278,11 +1290,14 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void getMessages(long refId, long from, long to, int pageSize) {
+        getView().showProgressBar("Please wait");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        getMessagesObservable = ticketConversationRepository.getMessages(token,
-                refId, from, to, pageSize);
+        getMessagesObservable = service.getTicketMessages(token,
+                refId, from, to, pageSize, AnydoneProto.ServiceContext.TICKET_CONTEXT_VALUE);
         addSubscription(getMessagesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1290,6 +1305,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     @Override
                     public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse
                                                rtcServiceBaseResponse) {
+                        getView().hideProgressBar();
                         GlobalUtils.showLog(TAG, "messages service response: " +
                                 rtcServiceBaseResponse);
 

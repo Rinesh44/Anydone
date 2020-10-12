@@ -19,14 +19,13 @@ Constants {
     public static final String MAP_BOX_TOKEN = "sk.eyJ1IjoicmluZXNoNDQiLCJhIjoiY2s5OW5oZml0MDA0cjNmcGI5c2ZkZmR0MyJ9.UxQJINlJAffP5HFwhyKvVQ";
     public static final String AUTHORIZATION_FAILED = "authorization failed.";
     public static final String WILL_MESSAGE_TOPIC = "will_msg_topic";
-    //    public static final String MQTT_URI = "ssl://mqtt.anydone.net:8883";
-    public static final String MQTT_URI = "ssl://emqx.anydone.com:8883";
-    //    public static final String MQTT_SSL_KEY_PASSWORD = "mqtt.ssl.key.password";
+    public static final String MQTT_URI = "ssl://mqtt.anydone.net:8883";
+    public static final String MQTT_URI_PROD = "ssl://emqx.anydone.com:8883";
     public static final String MQTT_SSL_KEY_PASSWORD = "mqtt.ssl.key.password";
-    //    public static final String MQTT_USER = "admin";
-    public static final String MQTT_USER = "mqtt_android";
-    //    public static final String MQTT_PASSWORD = "aW123k@1234";
-    public static final String MQTT_PASSWORD = "mqtt_androidkopassword@321!@#";
+    public static final String MQTT_USER = "admin";
+    public static final String MQTT_USER_PROD = "mqtt_android";
+    public static final String MQTT_PASSWORD = "aW123k@1234";
+    public static final String MQTT_PASSWORD_PROD = "mqtt_androidkopassword@321!@#";
     public static final int MAX_INFLIGHT = 1000;
     public static final String TLS_VERSION = "TLSv1.2";
     public static final String SERVICE_PROVIDER_NAME = "service_provider_name";
@@ -46,6 +45,7 @@ Constants {
     public static final String FETCH_SUBSCRIBEABLE_LIST = "fetch_subscribeable_list";
     public static final String FETCH_SUBSCRIBED_LIST = "fetch_subscribed_list";
     public static final String FETCH__ASSIGNED_LIST = "fetch_assigned_list";
+    public static final String FETCH_CONTRIBUTED_LIST = "fetch_contributed_list";
     public static final String FETCH_CLOSED_LIST = "fetch_closed_list";
     public static final String TICKET_STARTED = "ticket_started";
     public static final String REFETCH_TICKET = "refetch_ticket";
@@ -56,6 +56,7 @@ Constants {
     public static final String ASSIGNED = "ASSIGNED";
     public static final String SUBSCRIBED = "SUBSCRIBED";
     public static final String CLOSED_RESOLVED = "CLOSED_RESOLVED";
+    public static final String CONTRIBUTED = "CONTRIBUTED";
     public static final String ASSIGNABLE = "ASSIGNABLE";
     public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
     public static final String BOT_REPLY = "BOT_REPLY";
@@ -69,11 +70,15 @@ Constants {
     public static final String REFETCH_TICKET_STAT = "REFETCH_TICKET_STAT";
     public static final String XA_XIS_TYPE = "X_AXIS_TYPE";
     public static final String TICKET_ASSIGNED = "TICKET_ASSIGNED";
+    public static final String TICKET_CONTRIBUTED = "TICKET_CONTRIBUTED";
     public static final String TICKET_SUBSCRIBED = "TICKET_SUBSCRIBED";
     public static final String TICKET_SERVICE_ID = "TICKET_SERVICE_ID";
     public static final String DASHBOARD_SERVICE_ID = "DASHBOARD_SERVICE_ID";
     public static final String CONVERSATION_SERVICE_ID = "CONVERSATION_SERVICE_ID";
     public static final String MANUAL_DATE = "MANUAL_DATE";
     public static final String BASE_URL = "BASE_URL";
+    public static final String PROD_BASE_URL = "https://api.anydone.com/";
+    public static final String DEV_BASE_URL = "https://api.anydone.net/";
+    public static final String MQTT_CONNECTED = "MQTT_CONNECTED";
 
 }

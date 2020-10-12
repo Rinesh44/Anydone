@@ -1,7 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.addpaymentcard;
 
-import androidx.annotation.NonNull;
-
+import com.treeleaf.anydone.entities.PaymentProto;
+import com.treeleaf.anydone.rpc.PaymentRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
 import io.reactivex.Observable;
@@ -14,13 +14,8 @@ public class AddCardRepositoryImpl implements AddCardRepository {
     }
 
     @Override
-    public Observable<Boolean> addCard(@NonNull String cardHolderName, @NonNull String cardNumber,
-                                       @NonNull String month, @NonNull String year,
-                                       @NonNull String cvv, @NonNull String streetAddress,
-                                       @NonNull String city, @NonNull String state,
-                                       boolean primaryCard) {
-        //        TODO: replace it with retrofit method later
-
-        return Observable.just(true);
+    public Observable<PaymentRpcProto.PaymentBaseResponse> addCard(String token,
+                                                                   PaymentProto.Card card) {
+        return anyDoneService.addPaymentCard(token, card);
     }
 }

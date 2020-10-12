@@ -17,6 +17,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.File;
 import java.util.HashMap;
@@ -144,9 +145,9 @@ public class ServiceRequestDetailContract {
 
         void publishDoc(String docUrl, File file, long orderId, String clientId);
 
-        void subscribeSuccessMessage(long orderId, String userAccountId);
+        void subscribeSuccessMessage(long orderId, String userAccountId) throws MqttException;
 
-        void subscribeFailMessage();
+        void subscribeFailMessage() throws MqttException;
 
         void resendMessage(Conversation conversation);
 

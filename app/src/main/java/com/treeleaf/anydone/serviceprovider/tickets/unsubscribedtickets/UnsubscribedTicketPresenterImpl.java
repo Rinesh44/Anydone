@@ -47,10 +47,12 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
         }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = unsubscribedTicketRepository.getSubscribeableTickets(token, serviceId, from, to, pageSize);
+        getTicketsObservable = service.getSubscribeableTickets(token, serviceId, from, to, pageSize);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -96,9 +98,11 @@ public class UnsubscribedTicketPresenterImpl extends BasePresenter<UnsubscribedT
 
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
 
-        getTicketsObservable = unsubscribedTicketRepository.subscribe(token, ticketId);
+        getTicketsObservable = service.subscribe(token, ticketId);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

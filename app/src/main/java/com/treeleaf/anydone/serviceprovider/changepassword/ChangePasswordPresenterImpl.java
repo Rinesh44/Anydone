@@ -3,8 +3,10 @@ package com.treeleaf.anydone.serviceprovider.changepassword;
 import androidx.annotation.NonNull;
 
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
@@ -16,6 +18,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class ChangePasswordPresenterImpl extends
         BasePresenter<ChangePasswordContract.ChangePasswordView>
@@ -41,14 +44,22 @@ public class ChangePasswordPresenterImpl extends
         }
 
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> changePasswordObservable;
         String token = Hawk.get(Constants.TOKEN);
         if (token == null) {
             getView().onChangePasswordFail("Authorization failed");
             return;
         }
-        changePasswordObservable = changePasswordRepository.changePassword(token,
-                oldPassword, confirmPassword);
+
+        UserProto.PasswordChangeRequest passwordChangeRequest =
+                UserProto.PasswordChangeRequest.newBuilder()
+                        .setOldPassword(oldPassword)
+                        .setNewPassword(newPassword)
+                        .build();
+
+        changePasswordObservable = service.changePassword(token, passwordChangeRequest);
 
         addSubscription(changePasswordObservable
                 .subscribeOn(Schedulers.io())

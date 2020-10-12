@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,11 +31,15 @@ import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.HostSelectionInterceptor;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
+import com.treeleaf.januswebrtc.Const;
+
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -107,29 +112,19 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
         spBranch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 if (position == 0) {
                     GlobalUtils.showLog(TAG, "dev");
-                    Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
-
-                    String url = Hawk.get(Constants.BASE_URL);
-                    HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
-                    interceptor.setHost(url);
-//                    ServiceGenerator.changeApiBaseUrl("https://api.anydone.com/");
+                    Hawk.put(Constants.BASE_URL, Constants.DEV_BASE_URL);
 
                 } else {
                     GlobalUtils.showLog(TAG, "prod");
-                    Hawk.put(Constants.BASE_URL, "https://api.anydone.com/");
-
-                    String url = Hawk.get(Constants.BASE_URL);
-                    HostSelectionInterceptor interceptor = new HostSelectionInterceptor();
-                    interceptor.setHost(url);
-//                    ServiceGenerator.changeApiBaseUrl("https://api.anydone.com/");
+                    Hawk.put(Constants.BASE_URL, Constants.PROD_BASE_URL);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-//                Hawk.put(Constants.BASE_URL, "https://api.anydone.net/");
             }
         });
     }
@@ -284,8 +279,25 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     public void onLoginSuccess() {
         //go to next activity
         GlobalUtils.showLog(TAG, "login Success");
+        setUpMQTT();
+        Hawk.put(Constants.MQTT_CONNECTED, true);
         startActivity(new Intent(LoginActivity.this, LandingActivity.class));
         finish();
+    }
+
+    private void setUpMQTT() {
+        String env = Hawk.get(Constants.BASE_URL);
+        boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+        GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            TreeleafMqttClient.start(getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) {
+                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                }
+            });
+        }
     }
 
     @Override
@@ -370,6 +382,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     private static void initOkHttp(final Context context) {
         OkHttpClient.Builder httpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(30, TimeUnit.SECONDS)
+                .cache(null)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS);
 

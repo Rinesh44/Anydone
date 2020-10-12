@@ -115,6 +115,9 @@ public class AddLocationPresenterImpl extends BasePresenter<AddLocationContract.
 
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> locationObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
 
         Account userAccount = AccountRepo.getInstance().getAccount();
 
@@ -134,7 +137,7 @@ public class AddLocationPresenterImpl extends BasePresenter<AddLocationContract.
 
         GlobalUtils.showLog(TAG, "location proto: " + location);
 
-        locationObservable = addLocationRepository.addLocation(token, location);
+        locationObservable = service.addLocation(token, location);
 
         addSubscription(locationObservable
                 .subscribeOn(Schedulers.io())

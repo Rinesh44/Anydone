@@ -16,6 +16,7 @@ import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -122,8 +123,10 @@ public class ProfilePresenterImpl extends BasePresenter<ProfileContract.ProfileV
     public void resendCode(String emailPhone) {
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> resendCodeObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        resendCodeObservable = profileRepository.resendCode(emailPhone);
+        resendCodeObservable = service.resendCode(emailPhone);
 
         addSubscription(resendCodeObservable
                 .subscribeOn(Schedulers.io())
@@ -171,10 +174,12 @@ public class ProfilePresenterImpl extends BasePresenter<ProfileContract.ProfileV
             return;
         }
         getView().showProgressBar("Please wait...");
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> addPhoneObservable = null;
         try {
-            addPhoneObservable = profileRepository.addPhone(URLEncoder.encode(phone, "UTF-8"));
+            String token = Hawk.get(Constants.TOKEN, "");
+            addPhoneObservable = service.addPhone(token, URLEncoder.encode(phone, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -232,6 +237,8 @@ public class ProfilePresenterImpl extends BasePresenter<ProfileContract.ProfileV
     @Override
     public void addEmail(String email) {
         Preconditions.checkNotNull(email, "Email cannot be null");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         if (!validateEmail(email)) {
             return;
@@ -240,7 +247,8 @@ public class ProfilePresenterImpl extends BasePresenter<ProfileContract.ProfileV
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> addEmailObservable = null;
         try {
-            addEmailObservable = profileRepository.addEmail(URLEncoder.encode(email, "UTF-8"));
+            String token = Hawk.get(Constants.TOKEN, "");
+            addEmailObservable = service.addEmail(token, URLEncoder.encode(email, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

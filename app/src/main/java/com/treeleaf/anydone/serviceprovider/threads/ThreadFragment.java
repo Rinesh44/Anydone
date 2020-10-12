@@ -52,6 +52,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.List;
@@ -147,7 +148,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 }
         );
 
-        listenConversationMessages();
+        try {
+            listenConversationMessages();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createServiceBottomSheet() {
@@ -251,7 +256,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         }
     }
 
-    private void listenConversationMessages() {
+    private void listenConversationMessages() throws MqttException {
         GlobalUtils.showLog(TAG, "listen convo");
         Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         if (userAccount != null) {
@@ -412,7 +417,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             Hawk.put(Constants.SERVICE_CHANGED_TICKET, false);
         }
 */
-        listenConversationMessages();
+        try {
+            listenConversationMessages();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
         presenter.getConversationThreads(false);
     }
 

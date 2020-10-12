@@ -10,6 +10,7 @@ import com.treeleaf.anydone.serviceprovider.injection.component.DaggerApplicatio
 import com.treeleaf.anydone.serviceprovider.injection.module.ApplicationModule;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.LocaleHelper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
@@ -61,17 +62,10 @@ public class AnyDoneServiceProviderApplication extends Application {
                     .build());
         }*/
 
+        boolean isMqttConnected = Hawk.get(Constants.MQTT_CONNECTED, false);
+        if (isMqttConnected) setUpMQTT();
         initializeRealm();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            TreeleafMqttClient.start(this, new TreeleafMqttCallback() {
-                @Override
-                public void messageArrived(String topic, MqttMessage message) {
-                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
-                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
-                }
-            });
-        }
     }
 
     public Application getApplicationObject() {
@@ -90,6 +84,21 @@ public class AnyDoneServiceProviderApplication extends Application {
     // Needed to replace the component with a test specific one
     public void setComponent(ApplicationComponent applicationComponent) {
         this.applicationComponent = applicationComponent;
+    }
+
+    private void setUpMQTT() {
+        String env = Hawk.get(Constants.BASE_URL);
+        boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+        GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            TreeleafMqttClient.start(getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) {
+                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                }
+            });
+        }
     }
 
 

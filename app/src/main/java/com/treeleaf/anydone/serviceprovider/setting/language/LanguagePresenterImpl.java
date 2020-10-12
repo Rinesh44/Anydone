@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.setting.language;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -13,6 +14,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class LanguagePresenterImpl extends BasePresenter<LanguageContract.LanguageView> implements
         LanguageContract.LanguagePresenter {
@@ -31,8 +33,12 @@ public class LanguagePresenterImpl extends BasePresenter<LanguageContract.Langua
 
         getView().showProgressBar("Please wait...");
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         Observable<UserRpcProto.UserBaseResponse> languageObservable =
-                languageRepository.changeLanguage(token, language);
+                service.changeLanguage(token, language);
+
 
         addSubscription(languageObservable
                 .subscribeOn(Schedulers.io())

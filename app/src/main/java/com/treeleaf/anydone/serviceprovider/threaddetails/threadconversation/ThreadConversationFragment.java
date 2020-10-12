@@ -70,6 +70,8 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -205,8 +207,13 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             }
 
             setUpConversationView();
-            presenter.subscribeSuccessMessage(threadId, userAccountId);
-            presenter.subscribeFailMessage();
+            try {
+                presenter.subscribeSuccessMessage(threadId, userAccountId);
+                presenter.subscribeFailMessage();
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+
             presenter.getThread(String.valueOf(threadId));
         }
 

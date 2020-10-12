@@ -18,6 +18,7 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.billing.BillingActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
@@ -179,6 +180,9 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
     @Override
     public void onLogoutSuccess() {
+        //disconnect mqtt
+//        TreeleafMqttClient.disconnect();
+
         //clear all databases
         Hawk.deleteAll();
         final Realm realm = RealmUtils.getInstance().getRealm();

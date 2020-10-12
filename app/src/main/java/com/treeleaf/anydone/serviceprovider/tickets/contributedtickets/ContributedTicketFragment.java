@@ -1,4 +1,5 @@
-package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
+package com.treeleaf.anydone.serviceprovider.tickets.contributedtickets;
+
 
 import android.content.Intent;
 import android.os.Build;
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -30,7 +30,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -40,28 +39,21 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
-public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresenterImpl>
-        implements AssignedTicketContract.AssignedTicketView,
-        TicketsFragment.AssignedListListener {
-    private static final String TAG = "OpenTicketsFragment";
-    @BindView(R.id.rv_open_tickets)
-    RecyclerView rvOpenTickets;
-    @BindView(R.id.swipe_refresh_open_tickets)
+public class ContributedTicketFragment extends BaseFragment<ContributedTicketPresenterImpl>
+        implements ContributedTicketContract.ContributedTicketView,
+        TicketsFragment.ContributedListListener {
+    private static final String TAG = "ContributedTicketFragme";
+    @BindView(R.id.rv_contributed_tickets)
+    RecyclerView rvContributedTickets;
+    @BindView(R.id.swipe_refresh_contributed_tickets)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_assign)
-    FloatingActionButton fabAssign;
-    @BindView(R.id.pb_search)
-    ProgressBar progressBar;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
-    private Unbinder unbinder;
     private TicketsAdapter adapter;
-    private List<Tickets> assignedTickets;
+    private List<Tickets> contributedTickets;
     private boolean fetchList = false;
     private Account userAccount;
     private String localAccountId;
@@ -72,7 +64,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setAssignedListListener(this);
+        mFragment.setContributedListListener(this);
         userAccount = AccountRepo.getInstance().getAccount();
         localAccountId = userAccount.getAccountId();
     }
@@ -81,23 +73,21 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        if (fetchList) {
-        assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+        contributedTickets = TicketRepo.getInstance().getContributedTickets();
 
-        if (CollectionUtils.isEmpty(assignedTickets)) {
+        if (CollectionUtils.isEmpty(contributedTickets)) {
             ivDataNotFound.setVisibility(View.GONE);
-            rvOpenTickets.setVisibility(View.VISIBLE);
-            presenter.getAssignedTickets(true, 0,
+            rvContributedTickets.setVisibility(View.VISIBLE);
+            presenter.getContributedTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else {
-            setUpRecyclerView(assignedTickets);
+            setUpRecyclerView(contributedTickets);
         }
-//        }
     }
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_open_tickets;
+        return R.layout.fragment_contributed_tickets;
     }
 
     @Override
@@ -111,9 +101,9 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     }
 
     private void setUpRecyclerView(List<Tickets> ticketsList) {
-        rvOpenTickets.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvContributedTickets.setLayoutManager(new LinearLayoutManager(getContext()));
         if (!CollectionUtils.isEmpty(ticketsList)) {
-            rvOpenTickets.setVisibility(View.VISIBLE);
+            rvContributedTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
@@ -127,8 +117,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
                     Customer customer = ticket.getCustomer();
                     String customerName = customer.getFullName();
 
-                    if (customer != null && !localAccountId.equals(customer.getCustomerId())
-                            && !customerName.isEmpty()) {
+                    if (!localAccountId.equals(customer.getCustomerId()) && !customerName.isEmpty()) {
                         builder.append(customerName);
                         builder.append(", ");
                         employeeProfileUris.add(customer.getProfilePic());
@@ -152,23 +141,25 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
                     Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                     i.putExtra("selected_ticket_id", ticket.getTicketId());
-                    i.putExtra("selected_ticket_type", Constants.ASSIGNED);
+                    i.putExtra("selected_ticket_type", Constants.CONTRIBUTED);
                     i.putExtra("ticket_desc", ticket.getTitle());
                     i.putExtra("selected_ticket_name", callees);
                     i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                     i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                     startActivity(i);
                 } else {
-                    Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                            getActivity(), Banner.INFO, "Some of our features are not supported in your device. " +
+                    Banner.make(Objects.requireNonNull(getActivity()).getWindow()
+                                    .getDecorView().getRootView(),
+                            getActivity(), Banner.INFO,
+                            "Some of our features are not supported in your device. " +
                                     "Sorry for inconvenience",
                             Banner.TOP, 2000).show();
                 }
             });
-            rvOpenTickets.setAdapter(adapter);
+            rvContributedTickets.setAdapter(adapter);
         } else {
-            rvOpenTickets.setVisibility(View.GONE);
-            final Handler handler = new Handler();
+            rvContributedTickets.setVisibility(View.GONE);
+//            final Handler handler = new Handler();
 
       /*      handler.postDelayed(() -> {
                 if (rvOpenTickets != null) {
@@ -179,38 +170,22 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
             }, 50);*/
 
         }
-
-        rvOpenTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0 || dy < 0 && fabAssign.isShown())
-                    fabAssign.hide();
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE)
-                    fabAssign.show();
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        boolean fetchChanges = Hawk.get(Constants.FETCH__ASSIGNED_LIST, false);
+        boolean fetchChanges = Hawk.get(Constants.FETCH_CONTRIBUTED_LIST, false);
         if (fetchChanges) {
-            presenter.getAssignedTickets(true, 0,
+            presenter.getContributedTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else {
-            boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
-            if (ticketAssigned) {
-                assignedTickets = TicketRepo.getInstance().getAssignedTickets();
-                setUpRecyclerView(assignedTickets);
-                Hawk.put(Constants.TICKET_ASSIGNED, false);
+            boolean ticketContributed = Hawk.get(Constants.TICKET_CONTRIBUTED, false);
+            if (ticketContributed) {
+                contributedTickets = TicketRepo.getInstance().getContributedTickets();
+                setUpRecyclerView(contributedTickets);
+                Hawk.put(Constants.TICKET_CONTRIBUTED, false);
             }
         }
     }
@@ -225,9 +200,9 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
          */
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
-                    GlobalUtils.showLog(TAG, "swipe refresh assigned called");
+                    GlobalUtils.showLog(TAG, "swipe refresh contributed called");
 
-                    presenter.getAssignedTickets(false, 0,
+                    presenter.getContributedTickets(false, 0,
                             System.currentTimeMillis(), 100);
 
                     final Handler handler = new Handler();
@@ -242,18 +217,18 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
 
 
     @Override
-    public void getAssignedTicketSuccess() {
-        List<Tickets> assignedTickets = TicketRepo.getInstance().getAssignedTickets();
-        setUpRecyclerView(assignedTickets);
-        Hawk.put(Constants.FETCH__ASSIGNED_LIST, false);
+    public void getContributedTicketSuccess() {
+        List<Tickets> contributedTickets = TicketRepo.getInstance().getContributedTickets();
+        setUpRecyclerView(contributedTickets);
+        Hawk.put(Constants.FETCH_CONTRIBUTED_LIST, false);
         fetchList = true;
     }
 
     @Override
-    public void getAssignedTicketFail(String msg) {
-        GlobalUtils.showLog(TAG, "failed to get assigned tickets");
+    public void getContributedTicketFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to get contributed tickets");
         ivDataNotFound.setVisibility(View.VISIBLE);
-        rvOpenTickets.setVisibility(View.GONE);
+        rvContributedTickets.setVisibility(View.GONE);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
@@ -267,7 +242,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
-        rvOpenTickets.setVisibility(View.GONE);
+        rvContributedTickets.setVisibility(View.GONE);
     }
 
     @Override
@@ -279,7 +254,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void hideProgressBar() {
         if (progress != null) {
             progress.setVisibility(View.GONE);
-            rvOpenTickets.setVisibility(View.VISIBLE);
+            rvContributedTickets.setVisibility(View.VISIBLE);
         }
     }
 
@@ -290,30 +265,23 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
                 message);
     }
 
-    @OnClick(R.id.fab_assign)
-    void gotoAssignableTicketList() {
-        Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
-        startActivity(i);
-    }
-
     @Override
-    public void updateAssignedList(List<Tickets> ticketsList) {
+    public void updateContributedList(List<Tickets> ticketsList) {
         GlobalUtils.showLog(TAG, "interface implemented");
         setUpRecyclerView(ticketsList);
     }
 
     @Override
-    public void updateAssignedList() {
-        presenter.getAssignedTickets(true, 0,
+    public void updateContributedList() {
+        presenter.getContributedTickets(true, 0,
                 System.currentTimeMillis(), 100);
     }
 
     @Override
     public void fetchList() {
         GlobalUtils.showLog(TAG, "fetch list called");
-        presenter.getAssignedTickets(true, 0,
+        presenter.getContributedTickets(true, 0,
                 System.currentTimeMillis(), 100);
     }
 }
-
 

@@ -18,18 +18,24 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketT
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import retrofit2.Retrofit;
 
 /**
  * Initialize modules{@link NetworkModule}
  */
 @Singleton
-@Component(modules = {ApplicationModule.class, NetworkModule.class, PresenterModule.class})
+@Component(modules = {ApplicationModule.class, NetworkModule.class,  PresenterModule.class})
 public interface ApplicationComponent {
+
+/*    Retrofit getRetrofit();
+
+    HostSelectionInterceptor getHostSelectionInterceptor();*/
 
     ActivityComponent plus(ActivityModule activityModule);
 
@@ -62,5 +68,8 @@ public interface ApplicationComponent {
     void inject(ThreadTimelineFragment threadTimelineFragment);
 
     void inject(DashboardFragment dashboardFragment);
+
+    void inject(ContributedTicketFragment contributedTicketFragment);
+
 
 }

@@ -4,6 +4,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -13,6 +14,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class LinkSharePresenterImpl extends BasePresenter<LinkShareContract.LinkShareView>
         implements LinkShareContract.LinkSharePresenter {
@@ -28,6 +30,9 @@ public class LinkSharePresenterImpl extends BasePresenter<LinkShareContract.Link
     @Override
     public void getShareLink(String ticketId, String emailPhone) {
         getView().showProgressBar("please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -38,7 +43,7 @@ public class LinkSharePresenterImpl extends BasePresenter<LinkShareContract.Link
                         .setEmailOrPhone(emailPhone)
                         .build();
 
-        ticketBaseResponseObservable = linkShareRepository.getShareLink(token,
+        ticketBaseResponseObservable = service.getLink(token,
                 getSharableLinkRequest);
         addSubscription(ticketBaseResponseObservable
                 .subscribeOn(Schedulers.io())

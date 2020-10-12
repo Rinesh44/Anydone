@@ -15,6 +15,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.File;
 import java.util.List;
@@ -87,9 +88,9 @@ public class ThreadConversationContract {
 
         void publishDoc(String docUrl, File file, String threadId, String clientId);
 
-        void subscribeSuccessMessage(String threadId, String userAccountId);
+        void subscribeSuccessMessage(String threadId, String userAccountId) throws MqttException;
 
-        void subscribeFailMessage();
+        void subscribeFailMessage() throws MqttException;
 
         void resendMessage(Conversation conversation);
 

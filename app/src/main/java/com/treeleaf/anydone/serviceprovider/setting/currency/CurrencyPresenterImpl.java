@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.setting.currency;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -14,6 +15,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class CurrencyPresenterImpl extends BasePresenter<CurrencyContract.CurrencyView> implements
         CurrencyContract.CurrencyPresenter {
@@ -32,8 +34,10 @@ public class CurrencyPresenterImpl extends BasePresenter<CurrencyContract.Curren
 
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> currencyObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        currencyObservable = currencyRepository.addCurrency(token,
+        currencyObservable = service.addCurrency(token,
                 URLEncoder.encode(currency, "UTF-8"));
 
         addSubscription(currencyObservable

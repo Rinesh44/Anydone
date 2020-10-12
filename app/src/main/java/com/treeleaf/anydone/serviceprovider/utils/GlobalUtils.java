@@ -25,7 +25,9 @@ import android.view.Display;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.google.android.material.datepicker.CalendarConstraints;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.serviceprovider.BuildConfig;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
 
@@ -40,6 +42,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.protobuf.ProtoConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class GlobalUtils {
 
@@ -558,6 +569,40 @@ Limit selectable Date range
             str = str.substring(0, str.length() - 1);
         }
         return str;
+    }
+
+    public static Retrofit getRetrofitInstance() {
+
+        OkHttpClient client = getOkHttp();
+
+        String base_url = Hawk.get(Constants.BASE_URL);
+        return new Retrofit.Builder()
+                .client(client)
+                .baseUrl(base_url)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(ProtoConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    public static OkHttpClient getOkHttp() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(BuildConfig.DEBUG ?
+                HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(3, TimeUnit.MINUTES)
+                .readTimeout(3, TimeUnit.MINUTES)
+                .addNetworkInterceptor(chain -> {
+                    Request.Builder requestBuilder = chain.request().newBuilder();
+                    requestBuilder.header("Content-Type", "application/protobuf");
+                    requestBuilder.header("Accept", "application/protobuf");
+                    return chain.proceed(requestBuilder.build());
+                })
+                .writeTimeout(3, TimeUnit.MINUTES);
+
+        okHttpClient.addInterceptor(logging);
+        return okHttpClient.build();
     }
 
 }

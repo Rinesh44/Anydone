@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -35,9 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
-import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,6 +71,8 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
+
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -213,8 +212,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             }
 
             setUpConversationView();
-            presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
-            presenter.subscribeFailMessage();
+            try {
+                presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
+                presenter.subscribeFailMessage();
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+
             presenter.getTicket(ticketId);
         }
 
@@ -444,6 +448,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void showProgressBar(String message) {
+        progress.bringToFront();
         progress.setVisibility(View.VISIBLE);
     }
 
@@ -715,7 +720,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
         adapter.setData(conversationList);
         if (rvConversation != null)
-            rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 100);
+            rvConversation.postDelayed(() -> {
+                if (rvConversation != null) rvConversation.scrollToPosition(0);
+            }, 100);
         if (fetchRemainingMessages) {
             presenter.sendDeliveredStatusForMessages(conversationList);
         }
@@ -757,6 +764,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                         (0), 100));
         etMessage.setText("");
+        GlobalUtils.showLog(TAG, "message type qwer: " + conversation.getMessageType());
         if (conversation.getMessageType()
                 .equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
             presenter.publishLinkMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
@@ -1338,25 +1346,30 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void mqttConnected() {
-        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
-        tvConnectionStatus.setText(R.string.connected);
-        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        if (getActivity() != null) {
+            ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
+            tvConnectionStatus.setText(R.string.connected);
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
+            tvConnectionStatus.setVisibility(View.VISIBLE);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            //Do something after 2 secs
-            tvConnectionStatus.setVisibility(View.GONE);
-        }, 2000);
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                //Do something after 2 secs
+                tvConnectionStatus.setVisibility(View.GONE);
+            }, 2000);
+
+        }
     }
 
     @Override
     public void mqttNotConnected() {
-        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
-        GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
-        tvConnectionStatus.setText(R.string.not_connected);
-        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        if (getActivity() != null) {
+            ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
+            GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
+            tvConnectionStatus.setText(R.string.not_connected);
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
+            tvConnectionStatus.setVisibility(View.VISIBLE);
+        }
     }
 
     /**

@@ -48,6 +48,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.ByteArrayOutputStream;
@@ -425,11 +426,14 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         String token = Hawk.get(Constants.TOKEN);
         Observable<BotConversationRpcProto.BotConversationBaseResponse> getBotConversationObservable;
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         BotConversationProto.ConversationRequest conversationRequest = BotConversationProto
                 .ConversationRequest.newBuilder()
                 .setMessageId(nextMessageId)
                 .build();
-        getBotConversationObservable = threadConversationRepository
+        getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
 
         addSubscription(getBotConversationObservable
@@ -628,7 +632,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void subscribeSuccessMessage(String threadId, String userAccountId) {
+    public void subscribeSuccessMessage(String threadId, String userAccountId) throws MqttException {
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
@@ -944,7 +948,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
 
     @Override
-    public void subscribeFailMessage() {
+    public void subscribeFailMessage() throws MqttException {
         getView().hideProgressBar();
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + userAccountId;
 
@@ -1062,9 +1066,11 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     public void getMessages(String refId, long from, long to, int pageSize) {
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        getMessagesObservable = threadConversationRepository.getMessages(token,
-                refId, from, to, pageSize);
+        getMessagesObservable = service.getThreadMessages(token,
+                refId, from, to, pageSize, AnydoneProto.ServiceContext.CONVERSATION_CONTEXT_VALUE);
         addSubscription(getMessagesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

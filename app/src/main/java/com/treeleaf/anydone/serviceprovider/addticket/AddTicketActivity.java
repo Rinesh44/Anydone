@@ -301,6 +301,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0 && selfEmployee != null) {
+
                     StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
                     selfCustomerText.append(" (Me)");
                     tvCustomerSelf.setText(selfCustomerText);
@@ -316,6 +317,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     rlCustomerSelfHolder.setVisibility(View.VISIBLE);
                     civCustomer.setVisibility(View.GONE);
                     etCustomerName.setPadding(15, 0, 40, 0);
+
+                    selectedCustomer = null;
                 } else {
                     rlCustomerSelfHolder.setVisibility(View.GONE);
                     etEmail.setEnabled(true);

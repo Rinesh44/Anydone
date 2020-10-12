@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
 
@@ -17,6 +18,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class ForgotPasswordPresenterImpl extends BasePresenter<ForgotPasswordContract.ForgotPasswordView>
         implements ForgotPasswordContract.ForgotPasswordPresenter {
@@ -39,9 +41,11 @@ public class ForgotPasswordPresenterImpl extends BasePresenter<ForgotPasswordCon
             return;
         }
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> forgotPasswordObservable;
         try {
-            forgotPasswordObservable = forgotPasswordRepository.forgotPassword(URLEncoder.encode(emailPhone, "UTF-8"));
+            forgotPasswordObservable = service.forgotPassword(URLEncoder.encode(emailPhone, "UTF-8"));
 
             addSubscription(forgotPasswordObservable
                     .subscribeOn(Schedulers.io())

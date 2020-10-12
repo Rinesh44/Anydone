@@ -9,9 +9,11 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import javax.inject.Inject;
 
@@ -20,6 +22,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.EditProfileView>
         implements EditProfileContract.EditProfilePresenter {
@@ -50,12 +53,16 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
 
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> editProfileObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         GlobalUtils.showLog(TAG, "gender: " + gender);
         AnydoneProto.Gender selectedGender = GlobalUtils.getGender(gender);
 
         UserProto.EmployeeProfile employeeProfile = setEmployeeDataToEntity(employeeProfileId, accountId,
                 fullName, selectedGender);
-        editProfileObservable = editProfileRepository.editEmployeeProfile(employeeProfile);
+        String token = Hawk.get(Constants.TOKEN, "");
+        editProfileObservable = service.editEmployeeProfile(token, employeeProfile);
 
         addSubscription(editProfileObservable
                 .subscribeOn(Schedulers.io())
@@ -124,6 +131,9 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
         }
 
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         Observable<UserRpcProto.UserBaseResponse> editProfileObservable;
         GlobalUtils.showLog(TAG, "gender: " + gender);
         AnydoneProto.Gender selectedGender = GlobalUtils.getGender(gender);
@@ -131,7 +141,8 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
         UserProto.ServiceProviderProfile serviceProviderProfile =
                 setServiceProviderDataToEntity(serviceProviderProfileId, accountId,
                         fullName, selectedGender);
-        editProfileObservable = editProfileRepository.editServiceProviderProfile(serviceProviderProfile);
+        String token = Hawk.get(Constants.TOKEN, "");
+        editProfileObservable = service.editServiceProviderProfile(token, serviceProviderProfile);
 
         addSubscription(editProfileObservable
                 .subscribeOn(Schedulers.io())

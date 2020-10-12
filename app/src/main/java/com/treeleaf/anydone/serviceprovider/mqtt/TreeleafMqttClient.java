@@ -2,12 +2,16 @@ package com.treeleaf.anydone.serviceprovider.mqtt;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 
 import androidx.annotation.RequiresApi;
 
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -21,6 +25,8 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import java.io.InputStream;
 import java.util.UUID;
 
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_URI;
+
 /**
  * Created by Dipak Malla
  * Email dpakmalla@gmail.com
@@ -28,24 +34,7 @@ import java.util.UUID;
  */
 public class TreeleafMqttClient {
     private static final String TAG = "TreeleafMqttClient";
-    private static final String MQTT_URI = Constants.MQTT_URI;
-
-    private static final InputStream MQTT_CA_CERT = AnyDoneServiceProviderApplication.getContext()
-            .getResources().openRawResource(AnyDoneServiceProviderApplication.getContext().getResources().
-                    getIdentifier("cacert", "raw",
-                            AnyDoneServiceProviderApplication.getContext().getPackageName()));
-    private static final InputStream MQTT_CLIENT_CERT = AnyDoneServiceProviderApplication.getContext().
-            getResources().openRawResource(AnyDoneServiceProviderApplication.getContext().getResources().
-            getIdentifier("client_cert", "raw",
-                    AnyDoneServiceProviderApplication.getContext().getPackageName()));
-    public static final InputStream MQTT_SSL_KEY = AnyDoneServiceProviderApplication.getContext().
-            getResources().openRawResource(AnyDoneServiceProviderApplication.getContext().getResources().
-            getIdentifier("client_key", "raw",
-                    AnyDoneServiceProviderApplication.getContext().getPackageName()));
-
     private static final String MQTT_SSL_KEY_PASSWORD = Constants.MQTT_SSL_KEY_PASSWORD;
-    private static final String MQTT_USER = Constants.MQTT_USER;
-    private static final String MQTT_PASSWORD = Constants.MQTT_PASSWORD;
     private static final int MAX_INFLIGHT = Constants.MAX_INFLIGHT;
     public static MqttClientPersistence mqttClientPersistence;
     public static MqttAndroidClient mqttClient;
@@ -58,7 +47,33 @@ public class TreeleafMqttClient {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean start(final Context context, TreeleafMqttCallback callback) {
+    public static boolean start(final Context context, boolean prodEnv,
+                                TreeleafMqttCallback callback) {
+        final InputStream MQTT_CA_CERT = AnyDoneServiceProviderApplication.getContext()
+                .getResources().openRawResource(AnyDoneServiceProviderApplication.getContext()
+                        .getResources().getIdentifier("cacert", "raw",
+                                AnyDoneServiceProviderApplication.getContext().getPackageName()));
+        final InputStream MQTT_CLIENT_CERT = AnyDoneServiceProviderApplication.getContext()
+                .getResources().openRawResource(AnyDoneServiceProviderApplication.getContext()
+                        .getResources().getIdentifier("client_cert", "raw",
+                                AnyDoneServiceProviderApplication.getContext().getPackageName()));
+        final InputStream MQTT_SSL_KEY = AnyDoneServiceProviderApplication.getContext()
+                .getResources().openRawResource(AnyDoneServiceProviderApplication.getContext()
+                        .getResources().getIdentifier("client_key", "raw",
+                                AnyDoneServiceProviderApplication.getContext().getPackageName()));
+        final String MQTT_URI;
+        final String MQTT_USER;
+        final String MQTT_PASSWORD;
+        if (prodEnv) {
+            MQTT_URI = Constants.MQTT_URI_PROD;
+            MQTT_USER = Constants.MQTT_USER_PROD;
+            MQTT_PASSWORD = Constants.MQTT_PASSWORD_PROD;
+        } else {
+            MQTT_URI = Constants.MQTT_URI;
+            MQTT_USER = Constants.MQTT_USER;
+            MQTT_PASSWORD = Constants.MQTT_PASSWORD;
+        }
+
         try {
             GlobalUtils.showLog(TAG, "Connecting to mqtt with URI : {}" + MQTT_URI);
             MqttConnectOptions connectOptions = new MqttConnectOptions();
@@ -87,7 +102,6 @@ public class TreeleafMqttClient {
                     GlobalUtils.showLog(TAG, "MQTT connected");
                     if (mqttListener != null)
                         mqttListener.mqttConnected();
-
                 }
 
                 @Override
@@ -110,7 +124,7 @@ public class TreeleafMqttClient {
         return mqttClient;
     }
 
-    public void stop() throws MqttException {
+    public static void stop() throws MqttException {
         if (null != mqttClient) {
             try {
                 mqttClient.disconnect();
@@ -163,13 +177,13 @@ public class TreeleafMqttClient {
         }
     }
 
-    public static void subscribe(String topic, TreeleafMqttCallback callback) {
+    public static void subscribe(String topic, TreeleafMqttCallback callback) throws MqttException {
         try {
             if (mqttClient != null) {
                 mqttClient.subscribe(topic, DEFAULT_QOS, callback::messageArrived);
                 mqttClient.setCallback(callback);
             }
-        } catch (MqttException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -197,7 +211,7 @@ public class TreeleafMqttClient {
         return false;
     }
 
-    private void disconnect() {
+    public static void disconnect() {
         try {
             if (mqttClient.isConnected()) {
                 mqttClient.disconnect();
@@ -206,12 +220,12 @@ public class TreeleafMqttClient {
             disToken.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    GlobalUtils.showLog(TAG, "Disconnected gracefully from : " + MQTT_URI);
+                    GlobalUtils.showLog(TAG, "Disconnected gracefully from MQTT: ");
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    GlobalUtils.showLog(TAG, "Failed to disconnect from : " + MQTT_URI);
+                    GlobalUtils.showLog(TAG, "Failed to disconnect from MQTT: ");
                     GlobalUtils.showLog(TAG, exception.toString());
                 }
             });

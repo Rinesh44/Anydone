@@ -10,6 +10,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -23,6 +24,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class AddContributorPresenterImpl extends BasePresenter<AddContributorContract.AddContributorView>
         implements AddContributorContract.AddContributorPresenter {
@@ -38,6 +40,8 @@ public class AddContributorPresenterImpl extends BasePresenter<AddContributorCon
     @Override
     public void addContributor(long ticketId, List<String> employeeIds) {
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<TicketServiceRpcProto.TicketBaseResponse> contributorObservable;
         String token = Hawk.get(Constants.TOKEN);
 
@@ -62,7 +66,7 @@ public class AddContributorPresenterImpl extends BasePresenter<AddContributorCon
 
         GlobalUtils.showLog(TAG, "ticket check: " + ticket);
 
-        contributorObservable = addContributorRepository.addContributor(token, ticketId, ticket);
+        contributorObservable = service.addContributors(token, String.valueOf(ticketId), ticket);
 
         addSubscription(contributorObservable
                 .subscribeOn(Schedulers.io())
@@ -105,8 +109,10 @@ public class AddContributorPresenterImpl extends BasePresenter<AddContributorCon
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> employeeObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        employeeObservable = addContributorRepository.findContributors(token);
+        employeeObservable = service.findEmployees(token);
 
         addSubscription(employeeObservable
                 .subscribeOn(Schedulers.io())

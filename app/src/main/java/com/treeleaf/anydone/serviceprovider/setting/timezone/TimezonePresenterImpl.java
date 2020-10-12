@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.setting.timezone;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -13,6 +14,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class TimezonePresenterImpl extends BasePresenter<TimezoneContract.TimezoneView> implements
         TimezoneContract.TimezonePresenter {
@@ -31,7 +33,9 @@ public class TimezonePresenterImpl extends BasePresenter<TimezoneContract.Timezo
 
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> timezoneObservable;
-        timezoneObservable = timezoneRepository.addTimezone(token, URLEncoder.encode(timezone,
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        timezoneObservable = service.addTimezone(token, URLEncoder.encode(timezone,
                 "UTF-8"));
 
         addSubscription(timezoneObservable

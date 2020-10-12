@@ -53,7 +53,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     public void findCustomers() {
         Observable<UserRpcProto.UserBaseResponse> customersObservable;
         String token = Hawk.get(Constants.TOKEN);
-        customersObservable = ticketsRepository.findConsumers(token);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        customersObservable = service.findConsumers(token);
 
         addSubscription(customersObservable
                 .subscribeOn(Schedulers.io())
@@ -109,7 +112,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         Observable<TicketServiceRpcProto.TicketBaseResponse> tagObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        tagObservable = ticketsRepository.findTags(token);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        tagObservable = service.findTag(token);
 
         addSubscription(tagObservable
                 .subscribeOn(Schedulers.io())
@@ -165,8 +171,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     public void findEmployees() {
         Observable<UserRpcProto.UserBaseResponse> employeeObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        employeeObservable = ticketsRepository.findEmployees(token);
+        employeeObservable = service.findEmployees(token);
 
         addSubscription(employeeObservable
                 .subscribeOn(Schedulers.io())
@@ -413,8 +421,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         Observable<ServiceRpcProto.ServiceBaseResponse> servicesObservable;
 
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        servicesObservable = ticketsRepository.getServices(token);
+        servicesObservable = service.getServices(token);
         addSubscription(servicesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

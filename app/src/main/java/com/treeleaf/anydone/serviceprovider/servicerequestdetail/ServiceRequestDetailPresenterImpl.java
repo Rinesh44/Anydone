@@ -48,6 +48,7 @@ import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.ByteArrayOutputStream;
@@ -698,7 +699,7 @@ public class ServiceRequestDetailPresenterImpl extends
     }
 
     @Override
-    public void subscribeSuccessMessage(long orderId, String userAccountId) {
+    public void subscribeSuccessMessage(long orderId, String userAccountId) throws MqttException {
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
@@ -1196,7 +1197,7 @@ public class ServiceRequestDetailPresenterImpl extends
 
 
     @Override
-    public void subscribeFailMessage() {
+    public void subscribeFailMessage() throws MqttException {
         getView().hideProgressBar();
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + userAccount.getAccountId();
 

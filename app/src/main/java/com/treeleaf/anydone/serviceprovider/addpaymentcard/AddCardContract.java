@@ -8,7 +8,7 @@ import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
 public class AddCardContract {
     public interface AddCardView extends BaseView {
-        void showInvalidCardHolderNameError();
+//        void showInvalidCardHolderNameError();
 
         void showInvalidCardNumberError();
 
@@ -18,13 +18,7 @@ public class AddCardContract {
 
         void showInvalidCVVError();
 
-        void showInvalidStreetAddressError();
-
-        void showInvalidCityError();
-
-        void showInvalidStateError();
-
-        void onInvalidCardHolderName();
+//        void onInvalidCardHolderName();
 
         void onInvalidCardNumber();
 
@@ -34,24 +28,20 @@ public class AddCardContract {
 
         void onInvalidCVV();
 
-        void onInvalidStreetAddress();
-
-        void onInvalidCity();
-
-        void onInvalidState();
-
         void onAddCardSuccess();
+
+        void onAddCardFail(String msg);
     }
 
     public interface AddCardPresenter extends Presenter<AddCardView> {
-        void addCard(@NonNull String cardHolderName,
-                     @NonNull String cardNumber,
+        void addCard(@NonNull String cardNumber,
                      @NonNull String month,
                      @NonNull String year,
                      @NonNull String CVV,
                      @NonNull String streetAddress,
                      @NonNull String city,
                      @NonNull String state,
-                     boolean primaryCard);
+                     @NonNull String zipCode,
+                     boolean isDefault);
     }
 }

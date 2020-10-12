@@ -89,6 +89,7 @@ dependencies {
     implementation projectDependencies.linkPreview
     implementation projectDependencies.flexBox
     implementation projectDependencies.mpChart
+    implementation projectDependencies.scalarConverter
 
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: 1.61
     implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: 1.61
