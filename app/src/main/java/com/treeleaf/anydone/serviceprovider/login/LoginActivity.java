@@ -280,6 +280,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
         //go to next activity
         GlobalUtils.showLog(TAG, "login Success");
         setUpMQTT();
+        Hawk.put(Constants.MQTT_CONNECTED, true);
         startActivity(new Intent(LoginActivity.this, LandingActivity.class));
         finish();
     }

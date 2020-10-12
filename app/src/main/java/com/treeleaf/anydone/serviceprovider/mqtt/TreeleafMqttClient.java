@@ -7,9 +7,11 @@ import android.os.Looper;
 
 import androidx.annotation.RequiresApi;
 
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -100,7 +102,6 @@ public class TreeleafMqttClient {
                     GlobalUtils.showLog(TAG, "MQTT connected");
                     if (mqttListener != null)
                         mqttListener.mqttConnected();
-
                 }
 
                 @Override

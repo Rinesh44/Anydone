@@ -238,7 +238,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         createServiceBottomSheet();
         createFilterBottomSheet();
 

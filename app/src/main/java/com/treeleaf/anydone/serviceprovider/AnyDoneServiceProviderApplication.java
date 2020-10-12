@@ -61,7 +61,9 @@ public class AnyDoneServiceProviderApplication extends Application {
                     .enableWebKitInspector(realmInspectorModulesProvider)
                     .build());
         }*/
-        setUpMQTT();
+
+        boolean isMqttConnected = Hawk.get(Constants.MQTT_CONNECTED, false);
+        if (isMqttConnected) setUpMQTT();
         initializeRealm();
 
     }
