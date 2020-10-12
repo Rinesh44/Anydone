@@ -540,7 +540,7 @@ public interface AnyDoneService {
     @PATCH("payment/card/default")
     Observable<PaymentRpcProto.PaymentBaseResponse> setPaymentCardAsPrimary(@Header(AUTHORIZATION)
                                                                                     String token,
-                                                                            String cardId);
+                                                                            @Body String cardId);
 
     @DELETE("payment/card/{cardId}")
     Observable<PaymentRpcProto.PaymentBaseResponse> deletePaymentCard(@Header(AUTHORIZATION) String

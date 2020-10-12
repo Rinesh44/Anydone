@@ -11,6 +11,9 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -84,15 +87,18 @@ public class PaymentMethodPresenterImpl extends BasePresenter<PaymentMethodContr
     }
 
     @Override
-    public void makeCardPrimary(String refId) {
+    public void makeCardPrimary(String refId) throws JSONException {
         getView().showProgressBar("Please wait...");
 
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
+
+        JSONObject idObj = new JSONObject();
+        idObj.put("refId", refId);
         Observable<PaymentRpcProto.PaymentBaseResponse> makeLocationDefaultObservable =
-                service.setPaymentCardAsPrimary(token, refId);
+                service.setPaymentCardAsPrimary(token, idObj.toString());
 
         addSubscription(makeLocationDefaultObservable
                 .subscribeOn(Schedulers.io())

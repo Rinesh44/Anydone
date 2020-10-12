@@ -72,6 +72,8 @@ import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -210,8 +212,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             }
 
             setUpConversationView();
-            presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
-            presenter.subscribeFailMessage();
+            try {
+                presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
+                presenter.subscribeFailMessage();
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+
             presenter.getTicket(ticketId);
         }
 

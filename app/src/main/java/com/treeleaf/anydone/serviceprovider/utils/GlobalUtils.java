@@ -50,6 +50,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class GlobalUtils {
 
@@ -578,6 +579,7 @@ Limit selectable Date range
         return new Retrofit.Builder()
                 .client(client)
                 .baseUrl(base_url)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(ProtoConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

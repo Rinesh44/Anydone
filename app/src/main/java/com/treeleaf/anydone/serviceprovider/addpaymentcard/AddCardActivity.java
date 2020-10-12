@@ -19,11 +19,9 @@ import androidx.appcompat.widget.SwitchCompat;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.ArrayList;

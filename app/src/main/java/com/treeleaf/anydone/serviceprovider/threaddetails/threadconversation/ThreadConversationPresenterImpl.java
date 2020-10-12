@@ -48,6 +48,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.ByteArrayOutputStream;
@@ -631,7 +632,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void subscribeSuccessMessage(String threadId, String userAccountId) {
+    public void subscribeSuccessMessage(String threadId, String userAccountId) throws MqttException {
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
@@ -947,7 +948,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
 
     @Override
-    public void subscribeFailMessage() {
+    public void subscribeFailMessage() throws MqttException {
         getView().hideProgressBar();
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + userAccountId;
 

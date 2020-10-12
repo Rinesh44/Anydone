@@ -3,6 +3,8 @@ package com.treeleaf.anydone.serviceprovider.paymentmethod;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
+import org.json.JSONException;
+
 public class PaymentMethodContract {
     public interface PaymentMethodView extends BaseView {
 
@@ -23,7 +25,7 @@ public class PaymentMethodContract {
     public interface PaymentMethodPresenter extends Presenter<PaymentMethodView> {
         void getPaymentCards();
 
-        void makeCardPrimary(String refId);
+        void makeCardPrimary(String refId) throws JSONException;
 
         void deleteCard(String refId, int pos);
     }

@@ -28,6 +28,8 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.CardRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import org.json.JSONException;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -84,7 +86,13 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
         }
 
         if (adapter != null) {
-            adapter.setOnPrimaryListener((id, pos) -> presenter.makeCardPrimary(id));
+            adapter.setOnPrimaryListener((id, pos) -> {
+                try {
+                    presenter.makeCardPrimary(id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            });
             adapter.setOnDeleteListener(this::showDeleteDialog);
         }
     }

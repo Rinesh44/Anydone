@@ -41,6 +41,7 @@ ext {
     currencyPickerVersion = '1.2.1'
     flexBoxVersion = '2.0.1'
     chartVersion = '3.1.0'
+    scalarConverterVersion = '2.9.0'
 
     projectDependencies = [appcompat                : "androidx.appcompat:appcompat:$appCompatVersion",
                            googleMaterial           : "com.google.android.material:material:$googleMaterialVersion",
@@ -87,5 +88,6 @@ ext {
                            mqttService              : "org.eclipse.paho:org.eclipse.paho.android.service:$mqttServiceVersion",
                            currencyPicker           : "com.github.midorikocak:currency-picker-android:$currencyPickerVersion",
                            flexBox                  : "com.google.android:flexbox:$flexBoxVersion",
-                           mpChart                  : "com.github.PhilJay:MPAndroidChart:$chartVersion"]
+                           mpChart                  : "com.github.PhilJay:MPAndroidChart:$chartVersion",
+                           scalarConverter          : "com.squareup.retrofit2:converter-scalars:$scalarConverterVersion"]
 }

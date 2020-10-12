@@ -2,6 +2,8 @@ package com.treeleaf.anydone.serviceprovider.mqtt;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 
 import androidx.annotation.RequiresApi;
 
@@ -174,13 +176,13 @@ public class TreeleafMqttClient {
         }
     }
 
-    public static void subscribe(String topic, TreeleafMqttCallback callback) {
+    public static void subscribe(String topic, TreeleafMqttCallback callback) throws MqttException {
         try {
             if (mqttClient != null) {
                 mqttClient.subscribe(topic, DEFAULT_QOS, callback::messageArrived);
                 mqttClient.setCallback(callback);
             }
-        } catch (MqttException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
