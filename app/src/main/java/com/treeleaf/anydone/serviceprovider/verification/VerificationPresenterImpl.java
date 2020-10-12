@@ -3,13 +3,15 @@ package com.treeleaf.anydone.serviceprovider.verification;
 import androidx.annotation.NonNull;
 
 import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.entities.AuthProto;
+import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
@@ -24,6 +26,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class VerificationPresenterImpl extends BasePresenter<VerificationContract.VerificationView>
         implements VerificationContract.VerificationPresenter {
@@ -42,10 +45,12 @@ public class VerificationPresenterImpl extends BasePresenter<VerificationContrac
         getView().startTimerCountDown();
 
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> resendCodeObservable;
 
         try {
-            resendCodeObservable = verificationRepository
+            resendCodeObservable = service
                     .resendCode(URLEncoder.encode(Hawk.get(Constants.EMAIL_PHONE), "UTF-8"));
 
             addSubscription(resendCodeObservable
@@ -99,14 +104,20 @@ public class VerificationPresenterImpl extends BasePresenter<VerificationContrac
         }
 
         getView().showProgressBar("Verifying user...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> verifyObservable;
         String emailPhone = Hawk.get(Constants.EMAIL_PHONE);
-        if (ValidationUtils.isNumeric(emailPhone.replace("+", ""))) {
-            verifyObservable = verificationRepository.verifyDigitsWithPhone(digits);
-        } else {
-            verifyObservable = verificationRepository.verifyDigitsWithEmail(digits);
-        }
 
+        UserProto.UserVerification userVerification = UserProto.UserVerification.newBuilder()
+                .setEmailPhone(Hawk.get(Constants.EMAIL_PHONE, ""))
+                .setCode(Integer.parseInt(digits))
+                .build();
+        if (ValidationUtils.isNumeric(emailPhone.replace("+", ""))) {
+            verifyObservable = service.verifyCodeWithPhone(userVerification);
+        } else {
+            verifyObservable = service.verifyCodeWithEmail(userVerification);
+        }
 
         addSubscription(verifyObservable
                 .subscribeOn(Schedulers.io())
@@ -150,7 +161,15 @@ public class VerificationPresenterImpl extends BasePresenter<VerificationContrac
         getView().hideProgressBar();
         getView().showProgressBar("Logging in...");
         Observable<AuthRpcProto.AuthBaseResponse> loginObservable;
-        loginObservable = verificationRepository.login(emailPhone, password);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        AuthProto.LoginRequest loginRequest = AuthProto.LoginRequest.newBuilder()
+                .setEmailPhone(emailPhone)
+                .setPassword(password)
+                .build();
+
+        loginObservable = service.login(loginRequest);
 
         addSubscription(loginObservable
                 .subscribeOn(Schedulers.io())

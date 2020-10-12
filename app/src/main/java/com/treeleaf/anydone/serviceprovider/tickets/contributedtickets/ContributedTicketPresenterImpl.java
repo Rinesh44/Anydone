@@ -8,6 +8,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -19,6 +20,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class ContributedTicketPresenterImpl extends BasePresenter<ContributedTicketContract.ContributedTicketView>
         implements ContributedTicketContract.ContributedTicketPresenter {
@@ -70,11 +72,13 @@ public class ContributedTicketPresenterImpl extends BasePresenter<ContributedTic
             getView().showProgressBar("Please wait...");
         }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = contributedTicketRepository.getContributedTickets(token,
+        getTicketsObservable = service.getContributedTickets(token,
                 serviceId, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())

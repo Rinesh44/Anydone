@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class VerifyCodePresenterImpl extends BasePresenter<VerifyCodeContract.VerifyCodeView>
         implements VerifyCodeContract.VerifyCodePresenter {
@@ -30,9 +32,11 @@ public class VerifyCodePresenterImpl extends BasePresenter<VerifyCodeContract.Ve
         getView().startTimerCountDown();
 
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> resendCodeObservable;
 
-        resendCodeObservable = verifyCodeRepository.resendCode(emailPhone);
+        resendCodeObservable = service.resendCode(emailPhone);
 
         addSubscription(resendCodeObservable
                 .subscribeOn(Schedulers.io())

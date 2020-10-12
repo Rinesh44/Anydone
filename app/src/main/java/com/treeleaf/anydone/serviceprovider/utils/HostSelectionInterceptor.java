@@ -1,5 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.utils;
 
+import com.orhanobut.hawk.Hawk;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -11,13 +13,13 @@ public class HostSelectionInterceptor implements Interceptor {
     private volatile String host;
 
     public void setHost(String host) {
+        host = Hawk.get(Constants.BASE_URL);
         this.host = Objects.requireNonNull(HttpUrl.parse(host)).host();
     }
 
     @Override
     public okhttp3.Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        String reqUrl = request.url().host();
 
         String host = this.host;
         if (host != null) {

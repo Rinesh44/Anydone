@@ -713,7 +713,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
         adapter.setData(conversationList);
         if (rvConversation != null)
-            rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 100);
+            rvConversation.postDelayed(() -> {
+                if (rvConversation != null) rvConversation.scrollToPosition(0);
+            }, 100);
         if (fetchRemainingMessages) {
             presenter.sendDeliveredStatusForMessages(conversationList);
         }
@@ -1337,25 +1339,30 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void mqttConnected() {
-        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
-        tvConnectionStatus.setText(R.string.connected);
-        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        if (getActivity() != null) {
+            ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
+            tvConnectionStatus.setText(R.string.connected);
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
+            tvConnectionStatus.setVisibility(View.VISIBLE);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            //Do something after 2 secs
-            tvConnectionStatus.setVisibility(View.GONE);
-        }, 2000);
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                //Do something after 2 secs
+                tvConnectionStatus.setVisibility(View.GONE);
+            }, 2000);
+
+        }
     }
 
     @Override
     public void mqttNotConnected() {
-        ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
-        GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
-        tvConnectionStatus.setText(R.string.not_connected);
-        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        if (getActivity() != null) {
+            ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
+            GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
+            tvConnectionStatus.setText(R.string.not_connected);
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
+            tvConnectionStatus.setVisibility(View.VISIBLE);
+        }
     }
 
     /**

@@ -13,6 +13,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -25,6 +26,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineContract.TicketTimelineView>
         implements TicketTimelineContract.TicketTimelinePresenter {
@@ -291,6 +293,8 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         getView().showProgressBar("Please wait");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
                 .setEmployeeProfileId(contributorId)
@@ -302,7 +306,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
 
         GlobalUtils.showLog(TAG, "delete contributor: " + ticketContributor);
 
-        ticketObservable = ticketTimelineRepository.unAssignContributor(token,
+        ticketObservable = service.deleteContributor(token,
                 String.valueOf(ticketId), ticketContributor);
 
         addSubscription(ticketObservable
@@ -358,7 +362,10 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         getView().showProgressBar("Please wait...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         String token = Hawk.get(Constants.TOKEN);
-        ticketObservable = ticketTimelineRepository.closeTicket(token,
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.closeTicket(token,
                 ticketId, "close ticket");
 
         addSubscription(ticketObservable
@@ -403,7 +410,10 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         getView().showProgressBar("Please wait...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         String token = Hawk.get(Constants.TOKEN);
-        ticketObservable = ticketTimelineRepository.reopenTicket(token,
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.reopenTicket(token,
                 ticketId, "reopen ticket");
 
         addSubscription(ticketObservable
@@ -449,7 +459,10 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         getView().showProgressBar("Please wait...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         String token = Hawk.get(Constants.TOKEN);
-        ticketObservable = ticketTimelineRepository.resolveTicket(token,
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.resolveTicket(token,
                 ticketId);
 
         addSubscription(ticketObservable

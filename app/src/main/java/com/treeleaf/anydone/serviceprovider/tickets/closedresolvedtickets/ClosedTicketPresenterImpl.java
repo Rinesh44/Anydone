@@ -8,6 +8,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -19,6 +20,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContract.ClosedTicketView>
         implements ClosedTicketContract.ClosedTicketPresenter {
@@ -38,10 +40,13 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
         }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = closedTicketRepository.getClosedResolvedTickets(token, serviceId, from, to, page);
+        getTicketsObservable = service.getClosedResolvedTickets(token, serviceId, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -92,8 +97,10 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
 
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        getTicketsObservable = closedTicketRepository.reopenTicket(token, ticketId);
+        getTicketsObservable = service.reopenTicket(token, ticketId, "reopen ticket");
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

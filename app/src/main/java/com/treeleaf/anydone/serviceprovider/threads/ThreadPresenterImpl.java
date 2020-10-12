@@ -10,6 +10,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -21,6 +22,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView> implements
         ThreadContract.ThreadPresenter {
@@ -38,10 +40,12 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
             getView().showProgressBar("Please wait");
         Observable<ConversationRpcProto.ConversationBaseResponse> threadBaseResponseObservable;
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService anyDoneService = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String service = Hawk.get(Constants.SELECTED_SERVICE);
 
-        threadBaseResponseObservable = threadRepository.getConversationThreads(token, service);
+        threadBaseResponseObservable = anyDoneService.getConversationThreads(token, service);
         addSubscription(threadBaseResponseObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -110,10 +114,11 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
     @Override
     public void getServices() {
         Observable<ServiceRpcProto.ServiceBaseResponse> servicesObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
 
-        servicesObservable = threadRepository.getServices(token);
+        servicesObservable = service.getServices(token);
         addSubscription(servicesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

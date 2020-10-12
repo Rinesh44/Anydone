@@ -49,11 +49,13 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
             getView().showProgressBar("Please wait...");
         }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = unassignedTicketRepository.getAssignableTickets(token, serviceId, from, to, pageSize);
+        getTicketsObservable = service.getAssignableTickets(token, serviceId, from, to, pageSize);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -97,8 +99,10 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
     public void getEmployees() {
         Observable<UserRpcProto.UserBaseResponse> employeeObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        employeeObservable = unassignedTicketRepository.findEmployees(token);
+        employeeObservable = service.findEmployees(token);
 
         addSubscription(employeeObservable
                 .subscribeOn(Schedulers.io())
@@ -141,6 +145,8 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
 
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
                 .setEmployeeProfileId(employeeId)
@@ -157,7 +163,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
 
         GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
 
-        getTicketsObservable = unassignedTicketRepository.assignTicket(token, ticketId, ticket);
+        getTicketsObservable = service.assignEmployee(token, ticketId, ticket);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

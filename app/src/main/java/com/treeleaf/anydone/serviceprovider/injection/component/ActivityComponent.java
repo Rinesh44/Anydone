@@ -30,6 +30,7 @@ import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import dagger.Subcomponent;
+import retrofit2.Retrofit;
 
 @Subcomponent(modules = {ActivityModule.class})
 @ScopeActivity

@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class AccountPresenterImpl extends BasePresenter<AccountContract.AccountView>
         implements AccountContract.AccountPresenter {
@@ -32,7 +34,10 @@ public class AccountPresenterImpl extends BasePresenter<AccountContract.AccountV
 
         getView().showProgressBar("Logging out...");
         Observable<AuthRpcProto.AuthBaseResponse> logoutObservable;
-        logoutObservable = accountRepository.logout(token);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        logoutObservable = service.logout(token);
 
         addSubscription(logoutObservable
                 .subscribeOn(Schedulers.io())

@@ -14,6 +14,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -26,6 +27,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineContract.ThreadTimelineView>
         implements ThreadTimelineContract.ThreadTimelinePresenter {
@@ -41,8 +43,10 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
     public void getEmployees() {
         Observable<UserRpcProto.UserBaseResponse> employeeObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        employeeObservable = threadTimelineRepository.findEmployees(token);
+        employeeObservable = service.findEmployees(token);
 
         addSubscription(employeeObservable
                 .subscribeOn(Schedulers.io())
@@ -85,7 +89,10 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> rtcBaseResponseObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        rtcBaseResponseObservable = threadTimelineRepository.enableBot(token, threadId);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        rtcBaseResponseObservable = service.enableThreadBotReply(token, threadId);
 
         addSubscription(rtcBaseResponseObservable
                 .subscribeOn(Schedulers.io())
@@ -127,8 +134,10 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
         getView().showProgressBar("Disabling bot...");
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> rtcBaseResponseObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        rtcBaseResponseObservable = threadTimelineRepository.disableBot(token, threadId);
+        rtcBaseResponseObservable = service.disableThreadBotReply(token, threadId);
 
         addSubscription(rtcBaseResponseObservable
                 .subscribeOn(Schedulers.io())
@@ -171,6 +180,9 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
         Observable<ConversationRpcProto.ConversationBaseResponse> getThreadObservable;
         String token = Hawk.get(Constants.TOKEN);
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
                 .setEmployeeProfileId(String.valueOf(employeeId))
                 .build();
@@ -188,7 +200,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
         GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
         GlobalUtils.showLog(TAG, "employee assinged whole:" + thread);
 
-        getThreadObservable = threadTimelineRepository.assignEmployeeToThread(token, thread);
+        getThreadObservable = service.assignEmployeeToThread(token, thread);
         addSubscription(getThreadObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -232,8 +244,10 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
     public void getThreadById(String threadId) {
         Observable<ConversationRpcProto.ConversationBaseResponse> threadObservable;
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        threadObservable = threadTimelineRepository.getThreadById(token, threadId);
+        threadObservable = service.getConversationThreadById(token, threadId);
 
         addSubscription(threadObservable
                 .subscribeOn(Schedulers.io())

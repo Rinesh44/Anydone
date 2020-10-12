@@ -10,6 +10,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketStatRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -41,10 +42,11 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     @Override
     public void getServices() {
         Observable<ServiceRpcProto.ServiceBaseResponse> servicesObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
 
-        servicesObservable = dashboardRepository.getServices(token);
+        servicesObservable = service.getServices(token);
         addSubscription(servicesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -91,11 +93,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     @Override
     public void getTicketsByDate() {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketObservable = dashboardRepository.getTicketByDate(token, serviceId);
+        ticketObservable = service.getTicketByDate(token, serviceId);
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -152,11 +155,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     @Override
     public void getTicketByStatus() {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketObservable = dashboardRepository.getTicketByStatus(token, serviceId);
+        ticketObservable = service.getTicketByStatus(token, serviceId);
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -214,11 +218,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     @Override
     public void getTicketByPriority() {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketObservable = dashboardRepository.getTicketByPriority(token, serviceId);
+        ticketObservable = service.getTicketByPriority(token, serviceId);
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -275,11 +280,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     @Override
     public void getTicketBySource() {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketObservable = dashboardRepository.getTicketBySource(token, serviceId);
+        ticketObservable = service.getTicketBySource(token, serviceId);
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -336,11 +342,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     @Override
     public void getTicketByResolveTime() {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketObservable = dashboardRepository.getTicketByResolvedTime(token, serviceId);
+        ticketObservable = service.getTicketByResolvedTime(token, serviceId);
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -385,11 +392,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     public void filterByDate(long from, long to) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketBaseResponseObservable = dashboardRepository.filterTicketByDate(token, serviceId,
+        ticketBaseResponseObservable = service.filterTicketByDate(token, serviceId,
                 from, to);
         addSubscription(ticketBaseResponseObservable
                 .subscribeOn(Schedulers.io())
@@ -435,11 +443,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     public void filterBySource(long from, long to) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketBaseResponseObservable = dashboardRepository.filterTicketBySource(token, serviceId,
+        ticketBaseResponseObservable = service.filterTicketBySource(token, serviceId,
                 from, to);
         addSubscription(ticketBaseResponseObservable
                 .subscribeOn(Schedulers.io())
@@ -485,11 +494,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     public void filterByPriority(long from, long to) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketBaseResponseObservable = dashboardRepository.filterTicketByPriority(token, serviceId,
+        ticketBaseResponseObservable = service.filterTicketByPriority(token, serviceId,
                 from, to);
         addSubscription(ticketBaseResponseObservable
                 .subscribeOn(Schedulers.io())
@@ -535,11 +545,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     public void filterByStatus(long from, long to) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketBaseResponseObservable = dashboardRepository.filterTicketByStatus(token, serviceId,
+        ticketBaseResponseObservable = service.filterTicketByStatus(token, serviceId,
                 from, to);
         addSubscription(ticketBaseResponseObservable
                 .subscribeOn(Schedulers.io())
@@ -585,11 +596,12 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
     public void filterByResolvedTime(long from, long to) {
         getView().showProgressBar("Filtering...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        ticketBaseResponseObservable = dashboardRepository.filterTicketByResolvedTime(token, serviceId,
+        ticketBaseResponseObservable = service.filterTicketByResolvedTime(token, serviceId,
                 from, to);
         addSubscription(ticketBaseResponseObservable
                 .subscribeOn(Schedulers.io())

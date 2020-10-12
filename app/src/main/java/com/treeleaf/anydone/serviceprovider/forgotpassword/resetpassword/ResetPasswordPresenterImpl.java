@@ -3,8 +3,10 @@ package com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword;
 import androidx.annotation.NonNull;
 
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
@@ -19,6 +21,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class ResetPasswordPresenterImpl extends
         BasePresenter<ResetPasswordContract.ResetPasswordView>
@@ -49,9 +52,20 @@ public class ResetPasswordPresenterImpl extends
         }
 
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> resetPasswordObservable;
-        resetPasswordObservable = resetPasswordRepository.resetPassword(emailPhone,
-                newPassword, confirmPassword, accountId, code);
+
+        UserProto.PasswordReset passwordReset = UserProto.PasswordReset.newBuilder()
+                .setAccountId(accountId)
+                .setCode(Integer.parseInt(code))
+                .setEmailPhone(emailPhone)
+                .setNewPassword(confirmPassword)
+                .build();
+
+        GlobalUtils.showLog(TAG, "Reset password check: " + passwordReset);
+
+        resetPasswordObservable = service.resetPassword(passwordReset);
 
         addSubscription(resetPasswordObservable
                 .subscribeOn(Schedulers.io())
@@ -98,10 +112,12 @@ public class ResetPasswordPresenterImpl extends
         getView().startTimerCountDown();
 
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> resendCodeObservable;
 
         try {
-            resendCodeObservable = resetPasswordRepository
+            resendCodeObservable = service
                     .resendCode(URLEncoder.encode(emailPhone, "UTF-8"));
 
             addSubscription(resendCodeObservable
@@ -193,14 +209,22 @@ public class ResetPasswordPresenterImpl extends
         }
 
         getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<UserRpcProto.UserBaseResponse> changePasswordObservable;
         String token = Hawk.get(Constants.TOKEN);
         if (token == null) {
             getView().onChangePasswordFail("Authorization failed");
             return;
         }
-        changePasswordObservable = resetPasswordRepository.changePassword(token,
-                oldPassword, confirmPassword);
+
+        UserProto.PasswordChangeRequest passwordChangeRequest =
+                UserProto.PasswordChangeRequest.newBuilder()
+                        .setOldPassword(oldPassword)
+                        .setNewPassword(newPassword)
+                        .build();
+
+        changePasswordObservable = service.changePassword(token, passwordChangeRequest);
 
         addSubscription(changePasswordObservable
                 .subscribeOn(Schedulers.io())

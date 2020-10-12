@@ -2,19 +2,13 @@ package com.treeleaf.anydone.serviceprovider;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
 
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.injection.component.DaggerApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.injection.module.ApplicationModule;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
-import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.LocaleHelper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
-
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class AnyDoneServiceProviderApplication extends Application {
     private static final String TAG = "AnyDoneConsumerApplicat";
@@ -62,16 +56,6 @@ public class AnyDoneServiceProviderApplication extends Application {
         }*/
 
         initializeRealm();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            TreeleafMqttClient.start(this, new TreeleafMqttCallback() {
-                @Override
-                public void messageArrived(String topic, MqttMessage message) {
-                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
-                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
-                }
-            });
-        }
     }
 
     public Application getApplicationObject() {

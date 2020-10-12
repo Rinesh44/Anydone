@@ -37,10 +37,12 @@ public class PaymentMethodPresenterImpl extends BasePresenter<PaymentMethodContr
     public void getPaymentCards() {
         getView().showProgressBar("Please wait");
         Observable<PaymentRpcProto.PaymentBaseResponse> paymentObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         String token = Hawk.get(Constants.TOKEN);
 
-        paymentObservable = paymentMethodRepository.getPaymentCards(token);
+        paymentObservable = service.getPaymentCards(token);
         addSubscription(paymentObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -86,8 +88,11 @@ public class PaymentMethodPresenterImpl extends BasePresenter<PaymentMethodContr
         getView().showProgressBar("Please wait...");
 
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         Observable<PaymentRpcProto.PaymentBaseResponse> makeLocationDefaultObservable =
-                paymentMethodRepository.setPrimaryCard(token, refId);
+                service.setPaymentCardAsPrimary(token, refId);
 
         addSubscription(makeLocationDefaultObservable
                 .subscribeOn(Schedulers.io())
@@ -131,8 +136,10 @@ public class PaymentMethodPresenterImpl extends BasePresenter<PaymentMethodContr
         getView().showProgressBar("Please wait...");
 
         String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<PaymentRpcProto.PaymentBaseResponse> paymentObservable =
-                paymentMethodRepository.deleteCard(token, refId);
+                service.deletePaymentCard(token, refId);
 
         addSubscription(paymentObservable
                 .subscribeOn(Schedulers.io())

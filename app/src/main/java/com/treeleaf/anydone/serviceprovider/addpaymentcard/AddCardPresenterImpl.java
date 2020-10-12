@@ -10,6 +10,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.CardRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
@@ -21,6 +22,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardView> implements
         AddCardContract.AddCardPresenter {
@@ -52,7 +54,8 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
             return;
         }
 
-
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<PaymentRpcProto.PaymentBaseResponse> addCardObservable;
 
         String userAccountId = AccountRepo.getInstance().getAccount().getAccountId();
@@ -76,7 +79,7 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
 
         String token = Hawk.get(Constants.TOKEN);
         GlobalUtils.showLog(TAG, "card det: " + card);
-        addCardObservable = addCardRepository.addCard(token, card);
+        addCardObservable = service.addPaymentCard(token, card);
 
         addSubscription(addCardObservable
                 .subscribeOn(Schedulers.io())

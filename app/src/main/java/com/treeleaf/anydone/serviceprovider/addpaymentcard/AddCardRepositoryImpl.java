@@ -14,7 +14,8 @@ public class AddCardRepositoryImpl implements AddCardRepository {
     }
 
     @Override
-    public Observable<PaymentRpcProto.PaymentBaseResponse> addCard(String token, PaymentProto.Card card) {
+    public Observable<PaymentRpcProto.PaymentBaseResponse> addCard(String token,
+                                                                   PaymentProto.Card card) {
         return anyDoneService.addPaymentCard(token, card);
     }
 }

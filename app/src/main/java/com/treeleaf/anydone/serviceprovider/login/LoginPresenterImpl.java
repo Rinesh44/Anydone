@@ -3,12 +3,14 @@ package com.treeleaf.anydone.serviceprovider.login;
 import androidx.annotation.NonNull;
 
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
@@ -20,6 +22,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> implements
         LoginContract.LoginPresenter {
@@ -40,12 +43,17 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
             return;
         }
         getView().showProgressBar("Logging in...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         Observable<AuthRpcProto.AuthBaseResponse> loginObservable;
-        if (ValidationUtils.isNumeric(emailPhone)) {
-            loginObservable = loginRepository.loginWithPhone(emailPhone, password);
-        } else {
-            loginObservable = loginRepository.loginWithEmail(emailPhone, password);
-        }
+
+        AuthProto.LoginRequest loginRequest = AuthProto.LoginRequest.newBuilder()
+                .setEmailPhone(emailPhone)
+                .setPassword(password)
+                .build();
+
+        loginObservable = service.login(loginRequest);
 
         addSubscription(loginObservable
                 .subscribeOn(Schedulers.io())

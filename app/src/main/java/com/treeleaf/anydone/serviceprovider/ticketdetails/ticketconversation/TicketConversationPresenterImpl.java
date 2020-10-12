@@ -423,11 +423,14 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         String token = Hawk.get(Constants.TOKEN);
         Observable<BotConversationRpcProto.BotConversationBaseResponse> getBotConversationObservable;
 
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         BotConversationProto.ConversationRequest conversationRequest = BotConversationProto
                 .ConversationRequest.newBuilder()
                 .setMessageId(nextMessageId)
                 .build();
-        getBotConversationObservable = ticketConversationRepository
+        getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
 
         addSubscription(getBotConversationObservable
@@ -536,10 +539,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     public void startTask(long ticketId) {
         getView().showProgressBar("Please wait...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
         String token = Hawk.get(Constants.TOKEN);
 
-        ticketObservable = ticketConversationRepository.startTask(token,
-                ticketId);
+        ticketObservable = service.startTicket(token,
+                String.valueOf(ticketId));
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1284,11 +1290,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     @Override
     public void getMessages(long refId, long from, long to, int pageSize) {
         getView().showProgressBar("Please wait");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        getMessagesObservable = ticketConversationRepository.getMessages(token,
-                refId, from, to, pageSize);
+        getMessagesObservable = service.getTicketMessages(token,
+                refId, from, to, pageSize, AnydoneProto.ServiceContext.TICKET_CONTEXT_VALUE);
         addSubscription(getMessagesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
