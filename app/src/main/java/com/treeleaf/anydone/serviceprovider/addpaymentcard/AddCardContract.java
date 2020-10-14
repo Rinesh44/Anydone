@@ -42,6 +42,7 @@ public class AddCardContract {
                      @NonNull String city,
                      @NonNull String state,
                      @NonNull String zipCode,
+                     @NonNull String cardType,
                      boolean isDefault);
     }
 }

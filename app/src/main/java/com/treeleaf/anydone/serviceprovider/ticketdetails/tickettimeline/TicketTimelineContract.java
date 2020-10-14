@@ -4,7 +4,9 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
+
+import java.util.List;
 
 public class TicketTimelineContract {
 
@@ -54,6 +56,22 @@ public class TicketTimelineContract {
 
         void disableBotSuccess();
 
+        void onPriorityEditSuccess(int priority);
+
+        void onPriorityEditFail(String msg);
+
+        void onEditTeamSuccess();
+
+        void onEditTeamFail(String msg);
+
+        void onEditLabelSuccess();
+
+        void onEditLabelFail(String msg);
+
+        void onTicketTypeEditSuccess();
+
+        void onTicketTypeEditFail(String msg);
+
     }
 
     public interface TicketTimelinePresenter extends Presenter<TicketTimelineView> {
@@ -79,6 +97,14 @@ public class TicketTimelineContract {
         void enableBot(String ticketId);
 
         void disableBot(String ticketId);
+
+        void editTicketPriority(String ticketId, int priority);
+
+        void editTeam(String ticketId, List<String> tags);
+
+        void editLabel(String ticketId, List<Label> labels);
+
+        void editTicketType(String ticketId, String ticketTypeId, String ticketType);
 
     }
 }

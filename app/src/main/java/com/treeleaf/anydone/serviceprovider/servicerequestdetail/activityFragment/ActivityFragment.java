@@ -34,6 +34,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.ServiceOrderEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -187,7 +188,7 @@ public class ActivityFragment extends BaseFragment<ActivityPresenterImpl> implem
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity())
-                        .getWindow().getDecorView().getRootView(), message);
+                        .getWindow().getDecorView().getRootView(), Constants.SERVER_ERROR);
     }
 
     @Override

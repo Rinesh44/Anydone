@@ -22,7 +22,7 @@ public class CustomerRepo extends Repo {
         return CUSTOMER_REPO;
     }
 
-    public void saveCustomerList(final List<UserProto.ConsumerProfile> customerList, final Callback callback) {
+    public void saveCustomerList(final List<UserProto.Customer> customerList, final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             realm.executeTransaction(realm1 -> {
@@ -38,16 +38,16 @@ public class CustomerRepo extends Repo {
         }
     }
 
-    private List<Customer> transformCustomers(List<UserProto.ConsumerProfile> customerList) {
+    private List<Customer> transformCustomers(List<UserProto.Customer> customerList) {
         List<Customer> customersList = new ArrayList<>();
-        for (UserProto.ConsumerProfile profile : customerList
+        for (UserProto.Customer profile : customerList
         ) {
             Customer customer = new Customer();
-            customer.setProfilePic(profile.getAccount().getProfilePic());
-            customer.setFullName(profile.getAccount().getFullName());
-            customer.setCustomerId(profile.getConsumerProfileId());
-            customer.setEmail(profile.getAccount().getEmail());
-            customer.setPhone(profile.getAccount().getPhone());
+            customer.setProfilePic(profile.getProfilePic());
+            customer.setFullName(profile.getFullName());
+            customer.setCustomerId(profile.getCustomerId());
+            customer.setEmail(profile.getEmail());
+            customer.setPhone(profile.getPhone());
             customersList.add(customer);
         }
         return customersList;

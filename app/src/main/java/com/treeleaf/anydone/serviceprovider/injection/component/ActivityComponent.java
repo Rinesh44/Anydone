@@ -5,6 +5,7 @@ import com.treeleaf.anydone.serviceprovider.addpaymentcard.AddCardActivity;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
+import com.treeleaf.anydone.serviceprovider.editticket.EditTicketActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeActivity;
@@ -86,4 +87,6 @@ public interface ActivityComponent {
     void inject(AddCardActivity addCardActivity);
 
     void inject(PaymentMethodActivity paymentMethodActivity);
+
+    void inject(EditTicketActivity editTicketActivity);
 }

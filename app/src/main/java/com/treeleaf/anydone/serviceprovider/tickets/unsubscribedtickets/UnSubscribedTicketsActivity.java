@@ -522,7 +522,8 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
 
     @Override
     public void onFailure(String message) {
-        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), message);
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
+                Constants.SERVER_ERROR);
     }
 
     @Override

@@ -8,8 +8,9 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
-import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -17,6 +18,7 @@ import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -128,6 +130,89 @@ public class TicketRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
+
+    public void editTicketPriority(long ticketId, int priority) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setInt("priority", priority);
+        });
+    }
+
+    public void deleteLabels(long ticketId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            RealmList<Label> emptyList = new RealmList<>();
+            result.setList("labelRealmList", emptyList);
+        });
+    }
+
+    public void editLabels(long ticketId, List<TicketProto.Label> labelList, final Callback
+            callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
+                RealmList<Label> labelRealmList = ProtoMapper.transformLabels(labelList);
+                tickets.setLabelRealmList(labelRealmList);
+                realm.copyToRealmOrUpdate(tickets);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void editTeams(long ticketId, RealmList<Tags> teamRealmList) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setList("tagsRealmList", teamRealmList);
+        });
+    }
+
+    public void editTicketType(long ticketId, String ticketType) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("ticketCategory", ticketType);
+        });
+    }
+
+    public void editTicketTitle(long ticketId, String editedText) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("title", editedText);
+        });
+    }
+
+    public void editTicketDescription(long ticketId, String editedText) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("description", editedText);
+        });
+    }
+
+    public void editTicketEstimatedTime(long ticketId, String editedText) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("estimatedTime", editedText);
+        });
     }
 
     public void changeTicketStatusToStart(long ticketId) {
@@ -272,16 +357,21 @@ public class TicketRepo extends Repo {
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
             tickets.setTitle(ticketPb.getTitle());
+            tickets.setTicketCategory(ticketPb.getType().getName());
+            tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
             tickets.setDescription(ticketPb.getDescription());
+            tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
             tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
             tickets.setServiceProvider(ProtoMapper.transformServiceProvider
                     (ticketPb.getServiceProvider()));
             tickets.setTicketSource(ticketPb.getTicketSource().name());
-            tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
+            tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTeamsList()));
             tickets.setServiceId(ticketPb.getService().getServiceId());
             tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee
                     (ticketPb.getEmployeeAssigned()));
+            tickets.setLabelRealmList(ProtoMapper.transformLabels(ticketPb.getLabelList()));
             tickets.setCustomerType(ticketPb.getCustomerType().name());
+            tickets.setEstimatedTimeStamp(ticketPb.getEstimatedTime());
             tickets.setCreatedAt(ticketPb.getCreatedAt());
             tickets.setTicketType(type);
             tickets.setPriority(ticketPb.getPriorityValue());
@@ -294,9 +384,8 @@ public class TicketRepo extends Repo {
                     (ticketPb.getTicketContributorList()));
             ticketsList.add(tickets);
 
-
-            if (ticketPb.getTicketId() == 92) {
-                GlobalUtils.showLog(TAG, "contributor list 92:" + ticketPb.getTicketContributorList());
+            if (ticketPb.getTicketId() == 246) {
+                GlobalUtils.showLog(TAG, "ticket 246 check: " + ticketPb);
             }
         }
 
@@ -310,13 +399,20 @@ public class TicketRepo extends Repo {
         tickets.setId(UUID.randomUUID().toString().replace("-", ""));
         tickets.setTicketId(ticketPb.getTicketId());
         tickets.setTitle(ticketPb.getTitle());
+        tickets.setTicketCategory(ticketPb.getType().getName());
+        tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
         tickets.setDescription(ticketPb.getDescription());
+        tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
         tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
-        tickets.setServiceProvider(ProtoMapper.transformServiceProvider(ticketPb.getServiceProvider()));
+        tickets.setServiceProvider(ProtoMapper.transformServiceProvider
+                (ticketPb.getServiceProvider()));
         tickets.setTicketSource(ticketPb.getTicketSource().name());
-        tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTagsList()));
+        tickets.setEstimatedTimeStamp(ticketPb.getEstimatedTime());
+        tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTeamsList()));
+        tickets.setLabelRealmList(ProtoMapper.transformLabels(ticketPb.getLabelList()));
         tickets.setServiceId(ticketPb.getService().getServiceId());
-        tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee(ticketPb.getEmployeeAssigned()));
+        tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee
+                (ticketPb.getEmployeeAssigned()));
         tickets.setCustomerType(ticketPb.getCustomerType().name());
         tickets.setCreatedAt(ticketPb.getCreatedAt());
         tickets.setTicketType(type);
@@ -326,7 +422,8 @@ public class TicketRepo extends Repo {
         tickets.setTicketStatus(ticketPb.getTicketState().name());
         tickets.setPriority(ticketPb.getPriorityValue());
         tickets.setBotEnabled(ticketPb.getIsBotEnabled());
-        tickets.setContributorList(ProtoMapper.transformContributors(ticketPb.getTicketContributorList()));
+        tickets.setContributorList(ProtoMapper.transformContributors
+                (ticketPb.getTicketContributorList()));
         return tickets;
     }
 

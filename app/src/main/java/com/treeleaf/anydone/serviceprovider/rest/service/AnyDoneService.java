@@ -5,6 +5,7 @@ import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.PaymentProto;
 import com.treeleaf.anydone.entities.TicketProto;
+import com.treeleaf.anydone.entities.TreeleafProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
@@ -24,6 +25,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -316,11 +318,7 @@ public interface AnyDoneService {
 
     @GET("customers")
     Observable<TicketServiceRpcProto.TicketBaseResponse> findCustomers(@Header(AUTHORIZATION)
-                                                                               String token,
-                                                                       @Query("query") String query,
-                                                                       @Query("from") long from,
-                                                                       @Query("to") long to,
-                                                                       @Query("page") int page);
+                                                                               String token);
 
     @GET("employees")
     Observable<UserRpcProto.UserBaseResponse> findEmployees(@Header(AUTHORIZATION)
@@ -363,7 +361,8 @@ public interface AnyDoneService {
                      @Body TicketProto.Ticket employeeUnAssigned);
 
     @GET("/service/created")
-    Observable<ServiceRpcProto.ServiceBaseResponse> getServices(@Header(AUTHORIZATION) String token);
+    Observable<ServiceRpcProto.ServiceBaseResponse> getServices(@Header(AUTHORIZATION)
+                                                                        String token);
 
 
     @GET("conversation/service/{serviceId}")
@@ -547,6 +546,43 @@ public interface AnyDoneService {
                                                                               token,
                                                                       @Path(value = "cardId")
                                                                               String cardId);
+
+    @GET("ticket/type/service/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTypes(@Header(AUTHORIZATION)
+                                                                                String token,
+                                                                        @Path(value = "serviceId")
+                                                                                String serviceId);
+
+    @GET("ticket/label/service/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketLabels(@Header(AUTHORIZATION)
+                                                                                 String token,
+                                                                         @Path(value = "serviceId")
+                                                                                 String serviceId);
+
+    @PATCH("ticket/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    editTicket(@Header(AUTHORIZATION)
+                       String token,
+               @Path(value = "ticketId")
+                       String ticketId,
+               @Body TicketProto.Ticket ticket);
+
+    @PATCH("ticket/{ticketId}/team")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    editTeam(@Header(AUTHORIZATION)
+                     String token,
+             @Path(value = "ticketId")
+                     String ticketId,
+             @Body TicketProto.Ticket ticket);
+
+    @PATCH("ticket/{ticketId}/label")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    editLabel(@Header(AUTHORIZATION)
+                      String token,
+              @Path(value = "ticketId")
+                      String ticketId,
+              @Body TicketProto.Ticket ticket);
+
 }
 
 

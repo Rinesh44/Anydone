@@ -33,10 +33,6 @@ import retrofit2.Retrofit;
 @Component(modules = {ApplicationModule.class, NetworkModule.class,  PresenterModule.class})
 public interface ApplicationComponent {
 
-/*    Retrofit getRetrofit();
-
-    HostSelectionInterceptor getHostSelectionInterceptor();*/
-
     ActivityComponent plus(ActivityModule activityModule);
 
     void inject(AccountFragment accountFragment);

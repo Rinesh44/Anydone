@@ -126,6 +126,15 @@ public final class ConversationRpcProto {
      * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 13;</code>
      */
     com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    boolean hasEmployeeAssigned();
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned getEmployeeAssigned();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ConversationBaseRequest}
@@ -698,6 +707,58 @@ public final class ConversationRpcProto {
       source_ = 0;
     }
 
+    public static final int EMPLOYEEASSIGNED_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned employeeAssigned_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    public boolean hasEmployeeAssigned() {
+      return employeeAssigned_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned getEmployeeAssigned() {
+      return employeeAssigned_ == null ? com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned.getDefaultInstance() : employeeAssigned_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    private void setEmployeeAssigned(com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      employeeAssigned_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    private void setEmployeeAssigned(
+        com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned.Builder builderForValue) {
+      employeeAssigned_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    private void mergeEmployeeAssigned(com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned value) {
+      if (employeeAssigned_ != null &&
+          employeeAssigned_ != com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned.getDefaultInstance()) {
+        employeeAssigned_ =
+          com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned.newBuilder(employeeAssigned_).mergeFrom(value).buildPartial();
+      } else {
+        employeeAssigned_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+     */
+    private void clearEmployeeAssigned() {  employeeAssigned_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -738,6 +799,9 @@ public final class ConversationRpcProto {
       }
       if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         output.writeEnum(13, source_);
+      }
+      if (employeeAssigned_ != null) {
+        output.writeMessage(14, getEmployeeAssigned());
       }
     }
 
@@ -802,6 +866,10 @@ public final class ConversationRpcProto {
       if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(13, source_);
+      }
+      if (employeeAssigned_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getEmployeeAssigned());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1385,6 +1453,51 @@ public final class ConversationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+       */
+      public boolean hasEmployeeAssigned() {
+        return instance.hasEmployeeAssigned();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned getEmployeeAssigned() {
+        return instance.getEmployeeAssigned();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+       */
+      public Builder setEmployeeAssigned(com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned value) {
+        copyOnWrite();
+        instance.setEmployeeAssigned(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+       */
+      public Builder setEmployeeAssigned(
+          com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned.Builder builderForValue) {
+        copyOnWrite();
+        instance.setEmployeeAssigned(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+       */
+      public Builder mergeEmployeeAssigned(com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned value) {
+        copyOnWrite();
+        instance.mergeEmployeeAssigned(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
+       */
+      public Builder clearEmployeeAssigned() {  copyOnWrite();
+        instance.clearEmployeeAssigned();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ConversationBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1428,6 +1541,7 @@ public final class ConversationRpcProto {
           customerId_ = visitor.visitString(!customerId_.isEmpty(), customerId_,
               !other.customerId_.isEmpty(), other.customerId_);
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
+          employeeAssigned_ = visitor.visitMessage(employeeAssigned_, other.employeeAssigned_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1549,6 +1663,19 @@ public final class ConversationRpcProto {
                   int rawValue = input.readEnum();
 
                   source_ = rawValue;
+                  break;
+                }
+                case 114: {
+                  com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned.Builder subBuilder = null;
+                  if (employeeAssigned_ != null) {
+                    subBuilder = employeeAssigned_.toBuilder();
+                  }
+                  employeeAssigned_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(employeeAssigned_);
+                    employeeAssigned_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

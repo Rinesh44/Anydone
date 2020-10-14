@@ -1311,6 +1311,16 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.Fulfillment fulfillments = 12;</code>
      */
     int getFulfillmentsCount();
+
+    /**
+     * <code>optional int64 createdAt = 13;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 14;</code>
+     */
+    long getUpdatedAt();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotIntent}
@@ -2290,6 +2300,52 @@ public final class BotHousekeepingProto {
       fulfillments_.remove(index);
     }
 
+    public static final int CREATEDAT_FIELD_NUMBER = 13;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 13;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 13;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 13;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 14;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 14;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 14;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 14;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!intentId_.isEmpty()) {
@@ -2324,6 +2380,12 @@ public final class BotHousekeepingProto {
       }
       for (int i = 0; i < fulfillments_.size(); i++) {
         output.writeMessage(12, fulfillments_.get(i));
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(13, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(14, updatedAt_);
       }
     }
 
@@ -2375,6 +2437,14 @@ public final class BotHousekeepingProto {
       for (int i = 0; i < fulfillments_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, fulfillments_.get(i));
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(13, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(14, updatedAt_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3263,6 +3333,52 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 createdAt = 13;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 13;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 13;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 14;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 14;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 14;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotIntent)
     }
     protected final Object dynamicMethod(
@@ -3305,6 +3421,10 @@ public final class BotHousekeepingProto {
           intentParam_= visitor.visitList(intentParam_, other.intentParam_);
           responseEntity_= visitor.visitList(responseEntity_, other.responseEntity_);
           fulfillments_= visitor.visitList(fulfillments_, other.fulfillments_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3408,6 +3528,16 @@ public final class BotHousekeepingProto {
                   }
                   fulfillments_.add(
                       input.readMessage(Fulfillment.parser(), extensionRegistry));
+                  break;
+                }
+                case 104: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 112: {
+
+                  updatedAt_ = input.readInt64();
                   break;
                 }
               }
@@ -11652,6 +11782,16 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.EntityRefValue entityRefValue = 5;</code>
      */
     int getEntityRefValueCount();
+
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotEntity}
@@ -11665,6 +11805,7 @@ public final class BotHousekeepingProto {
       entityId_ = "";
       entityName_ = "";
       entityRefValue_ = emptyProtobufList();
+      serviceId_ = "";
     }
     private int bitField0_;
     public static final int ENTITYID_FIELD_NUMBER = 1;
@@ -12013,6 +12154,52 @@ public final class BotHousekeepingProto {
       entityRefValue_.remove(index);
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 6;
+    private String serviceId_;
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void setServiceId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!entityId_.isEmpty()) {
@@ -12029,6 +12216,9 @@ public final class BotHousekeepingProto {
       }
       for (int i = 0; i < entityRefValue_.size(); i++) {
         output.writeMessage(5, entityRefValue_.get(i));
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(6, getServiceId());
       }
     }
 
@@ -12056,6 +12246,10 @@ public final class BotHousekeepingProto {
       for (int i = 0; i < entityRefValue_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, entityRefValue_.get(i));
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getServiceId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -12442,6 +12636,46 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotEntity)
     }
     protected final Object dynamicMethod(
@@ -12471,6 +12705,8 @@ public final class BotHousekeepingProto {
           entityDataType_ = visitor.visitInt(entityDataType_ != 0, entityDataType_,    other.entityDataType_ != 0, other.entityDataType_);
           synonymValueType_ = visitor.visitInt(synonymValueType_ != 0, synonymValueType_,    other.synonymValueType_ != 0, other.synonymValueType_);
           entityRefValue_= visitor.visitList(entityRefValue_, other.entityRefValue_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -12527,6 +12763,12 @@ public final class BotHousekeepingProto {
                   }
                   entityRefValue_.add(
                       input.readMessage(EntityRefValue.parser(), extensionRegistry));
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
                   break;
                 }
               }
@@ -15227,6 +15469,11 @@ public final class BotHousekeepingProto {
      * <code>optional int64 updatedAt = 8;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional float threshold = 9;</code>
+     */
+    float getThreshold();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotSettings}
@@ -15566,6 +15813,29 @@ public final class BotHousekeepingProto {
       updatedAt_ = 0L;
     }
 
+    public static final int THRESHOLD_FIELD_NUMBER = 9;
+    private float threshold_;
+    /**
+     * <code>optional float threshold = 9;</code>
+     */
+    public float getThreshold() {
+      return threshold_;
+    }
+    /**
+     * <code>optional float threshold = 9;</code>
+     */
+    private void setThreshold(float value) {
+      
+      threshold_ = value;
+    }
+    /**
+     * <code>optional float threshold = 9;</code>
+     */
+    private void clearThreshold() {
+      
+      threshold_ = 0F;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -15591,6 +15861,9 @@ public final class BotHousekeepingProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(8, updatedAt_);
+      }
+      if (threshold_ != 0F) {
+        output.writeFloat(9, threshold_);
       }
     }
 
@@ -15630,6 +15903,10 @@ public final class BotHousekeepingProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(8, updatedAt_);
+      }
+      if (threshold_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(9, threshold_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -16003,6 +16280,29 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional float threshold = 9;</code>
+       */
+      public float getThreshold() {
+        return instance.getThreshold();
+      }
+      /**
+       * <code>optional float threshold = 9;</code>
+       */
+      public Builder setThreshold(float value) {
+        copyOnWrite();
+        instance.setThreshold(value);
+        return this;
+      }
+      /**
+       * <code>optional float threshold = 9;</code>
+       */
+      public Builder clearThreshold() {
+        copyOnWrite();
+        instance.clearThreshold();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotSettings)
     }
     protected final Object dynamicMethod(
@@ -16040,6 +16340,8 @@ public final class BotHousekeepingProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          threshold_ = visitor.visitFloat(threshold_ != 0F, threshold_,
+              other.threshold_ != 0F, other.threshold_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -16108,6 +16410,11 @@ public final class BotHousekeepingProto {
                 case 64: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 77: {
+
+                  threshold_ = input.readFloat();
                   break;
                 }
               }

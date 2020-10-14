@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -223,7 +224,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onFailure(String message) {
-        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), message);
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
+                Constants.SERVER_ERROR);
     }
 
     @Override
@@ -300,4 +302,5 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             return NUM_PAGES;
         }
     }
+
 }

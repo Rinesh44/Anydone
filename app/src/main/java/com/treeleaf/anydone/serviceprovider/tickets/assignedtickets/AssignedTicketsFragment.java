@@ -287,7 +287,7 @@ public class AssignedTicketsFragment extends BaseFragment<AssignedTicketPresente
     public void onFailure(String message) {
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                message);
+                Constants.SERVER_ERROR);
     }
 
     @OnClick(R.id.fab_assign)

@@ -12,7 +12,6 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -35,24 +34,29 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.SearchLabelAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchTeamAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.LabelRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -112,16 +116,33 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     CircleImageView civCustomer;
     @BindView(R.id.civ_assign_employee)
     CircleImageView civAssignEmployee;
+    @BindView(R.id.fbl_team)
+    FlexboxLayout fblTeam;
     @BindView(R.id.fbl_label)
     FlexboxLayout fblLabel;
     @BindView(R.id.scroll_view)
     ScrollView scrollView;
     @BindView(R.id.tv_suggestions)
     TextView tvSuggestions;
+    @BindView(R.id.et_ticket_type)
+    AutoCompleteTextView etTicketType;
+    @BindView(R.id.estimated_time_suggestions)
+    ScrollView svEstimatedTimeSuggestions;
+    @BindView(R.id.et_estimated_time)
+    AppCompatEditText etEstimatedTime;
+    @BindView(R.id.tv_1_hr)
+    TextView tv1hr;
+    @BindView(R.id.tv_4_hour)
+    TextView tv4Hour;
+    @BindView(R.id.tv_1_day)
+    TextView tv1Day;
+    @BindView(R.id.tv_1_week)
+    TextView tv1Week;
 
     private List<AssignEmployee> employeeList;
     private List<Customer> customerList;
     private List<Tags> tagsList;
+    private List<Label> labelList;
 
     private EmployeeSearchAdapter employeeSearchAdapter;
     private Customer selectedCustomer;
@@ -132,14 +153,22 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private boolean createTicketFromThread;
     private BottomSheetDialog prioritySheet;
     private BottomSheetDialog teamSheet;
+    private BottomSheetDialog labelSheet;
     private int priorityNum = 3;
     private EditText etSearchTeam;
+    private EditText etSearchLabel;
+    private SearchLabelAdapter labelAdapter;
     private SearchTeamAdapter teamAdapter;
     List<String> tags = new ArrayList<>();
+    List<Label> labels = new ArrayList<>();
     private RecyclerView rvTeams;
+    private RecyclerView rvLabels;
     private int lastDescCursorPosition = 0;
     private String description = "";
+    private List<TicketCategory> ticketTypeList;
+    private String ticketCategoryId;
     private TicketProto.TicketSource ticketSource = TicketProto.TicketSource.MANUAL_TICKET_SOURCE;
+    private boolean customerAsSelf;
 
     @Override
     protected int getLayout() {
@@ -158,12 +187,23 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         setUpRecyclerView();
 
         customerList = CustomerRepo.getInstance().getAllCustomers();
-        CustomerSearchAdapter customerSearchAdapter = new CustomerSearchAdapter(this, customerList);
+        CustomerSearchAdapter customerSearchAdapter = new CustomerSearchAdapter
+                (this, customerList);
         etCustomerName.setAdapter(customerSearchAdapter);
 
         tagsList = TagRepo.getInstance().getAllTags();
+        labelList = LabelRepo.getInstance().getAllLabels();
         createPriorityBottomSheet();
         createTeamBottomSheet();
+        createLabelBottomSheet();
+
+        setUpEstimatedTimeSuggestions();
+
+        ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
+        TicketCategorySearchAdapter ticketCategorySearchAdapter = new TicketCategorySearchAdapter
+                (this, ticketTypeList);
+        etTicketType.setAdapter(ticketCategorySearchAdapter);
+
 //        setUpTeamRecyclerView();
 
         setSelfDetails();
@@ -211,7 +251,22 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
 
-        fblLabel.setOnClickListener(v -> teamSheet.show());
+        fblTeam.setOnClickListener(v -> teamSheet.show());
+        fblLabel.setOnClickListener(v -> labelSheet.show());
+
+        etTicketType.setOnItemClickListener((parent, view, position, id) -> {
+            UiUtils.hideKeyboard(this);
+            etTicketType.setError(null);
+            ticketCategoryId = ticketTypeList.get(position).getCategoryId();
+        });
+
+        etTicketType.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etTicketType.showDropDown();
+            } else {
+                etTicketType.dismissDropDown();
+            }
+        });
 
         etCustomerName.setOnItemClickListener((parent, view, position, id) -> {
             UiUtils.hideKeyboard(this);
@@ -221,6 +276,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 selectedCustomer = customerList.get(position);
                 setEmailAndPhoneIfAvailable();
                 showCustomerWithImage();
+                customerAsSelf = false;
             }
         });
 
@@ -288,6 +344,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etCustomerName.setSelection(etCustomerName.getText().length());
             rlCustomerSelfHolder.setVisibility(View.GONE);
             hideKeyBoard();
+            customerAsSelf = true;
         });
 
         etPriority.setOnClickListener(v -> prioritySheet.show());
@@ -407,17 +464,205 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             GlobalUtils.showLog(TAG, "emp id checK: " + selectedEmployeeId);
 
             if (selectedCustomer != null) {
-                presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
-                        selectedCustomer.getCustomerId(), UiUtils.getString(etEmail),
-                        UiUtils.getString(etPhone), selectedCustomer.getFullName(), tags,
-                        selectedEmployeeId, priorityNum, ticketSource);
+                presenter.createTicket(ticketCategoryId, UiUtils.getString(etSummary),
+                        UiUtils.getString(etDesc), selectedCustomer.getCustomerId(),
+                        UiUtils.getString(etEmail), UiUtils.getString(etPhone),
+                        selectedCustomer.getFullName(), tags,
+                        labels, UiUtils.getString(etEstimatedTime),
+                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf);
             } else {
-                presenter.createTicket(UiUtils.getString(etSummary), UiUtils.getString(etDesc),
-                        null, UiUtils.getString(etEmail),
+                presenter.createTicket(ticketCategoryId, UiUtils.getString(etSummary),
+                        UiUtils.getString(etDesc), null, UiUtils.getString(etEmail),
                         UiUtils.getString(etPhone), UiUtils.getString(etCustomerName), tags,
-                        selectedEmployeeId, priorityNum, ticketSource);
+                        labels, UiUtils.getString(etEstimatedTime),
+                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf);
             }
         });
+    }
+
+    private void setUpEstimatedTimeSuggestions() {
+        etEstimatedTime.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                svEstimatedTimeSuggestions.setVisibility(View.VISIBLE);
+
+                tv1hr.setOnClickListener(v1 -> {
+                    etEstimatedTime.setText(tv1hr.getText().toString().trim());
+                    etEstimatedTime.setSelection(etEstimatedTime.length());
+                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
+                });
+
+                tv4Hour.setOnClickListener(v1 -> {
+                    etEstimatedTime.setText(tv4Hour.getText().toString().trim());
+                    etEstimatedTime.setSelection(etEstimatedTime.length());
+                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
+                });
+
+                tv1Day.setOnClickListener(v1 -> {
+                    etEstimatedTime.setText(tv1Day.getText().toString().trim());
+                    etEstimatedTime.setSelection(etEstimatedTime.length());
+                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
+                });
+
+                tv1Week.setOnClickListener(v1 -> {
+                    etEstimatedTime.setText(tv1Week.getText().toString().trim());
+                    etEstimatedTime.setSelection(etEstimatedTime.length());
+                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
+                });
+
+            } else {
+                svEstimatedTimeSuggestions.setVisibility(View.GONE);
+            }
+        });
+
+        etEstimatedTime.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
+                } else {
+                    svEstimatedTimeSuggestions.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void createLabelBottomSheet() {
+        labelSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.layout_bottom_sheet_label, null);
+
+        labelSheet.setContentView(view);
+        TextView tvLabelDone = view.findViewById(R.id.tv_done);
+        etSearchLabel = view.findViewById(R.id.et_search_label);
+        rvLabels = view.findViewById(R.id.rv_labels);
+        ImageView ivBack = view.findViewById(R.id.iv_back);
+        RelativeLayout rlNewLabel = view.findViewById(R.id.rl_new_label);
+        TextView tvNewLabel = view.findViewById(R.id.tv_new_label);
+
+        ivBack.setOnClickListener(v -> labelSheet.dismiss());
+        setUpLabelRecyclerView(labelList, rvLabels, rlNewLabel, tvNewLabel);
+
+
+        labelSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById
+                    (com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+            setupFullHeight(d);
+            etSearchLabel.requestFocus();
+            UiUtils.showKeyboardForced(this);
+
+            //check mark selected teams
+            labelAdapter.setData(labels);
+
+            llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
+                ViewGroup.LayoutParams params = rvLabels.getLayoutParams();
+                params.height = getWindowHeight() - heightDiff + 100;
+            });
+        });
+
+
+        etSearchLabel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                runOnUiThread(() -> labelAdapter.getFilter().filter(s));
+                if (s.length() == 0) {
+                    rlNewLabel.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        tvLabelDone.setOnClickListener(v -> labelSheet.dismiss());
+
+        labelSheet.setOnDismissListener(dialog -> {
+            GlobalUtils.showLog(TAG, "label dismissed");
+            //clear first then add
+            fblLabel.removeAllViews();
+
+            if (!CollectionUtils.isEmpty(labels)) {
+                wrapLabelFlexBoxContent();
+            } else {
+                addStaticHeightToLabelFlexBox();
+            }
+
+            addLabelsToLayout();
+
+            etSearchLabel.setText("");
+            UiUtils.hideKeyboardForced(this);
+        });
+    }
+
+    private void setUpLabelRecyclerView(List<Label> labelList, RecyclerView rvLabels,
+                                        RelativeLayout rlNewLabel, TextView tvNewLabel) {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvLabels.setLayoutManager(mLayoutManager);
+
+        labelAdapter = new SearchLabelAdapter(labelList, this);
+        rvLabels.setAdapter(labelAdapter);
+
+        labelAdapter.setOnFilterListEmptyListener(() -> {
+            tvNewLabel.setText(etSearchLabel.getText().toString().trim());
+            rlNewLabel.setVisibility(View.VISIBLE);
+
+            rlNewLabel.setOnClickListener(v -> {
+                addNewLabel(labelList,
+                        tvNewLabel.getText().toString().trim());
+                rlNewLabel.setVisibility(View.GONE);
+                etSearchLabel.setText("");
+            });
+        });
+
+        labelAdapter.setOnItemClickListener(new SearchLabelAdapter.OnItemClickListener() {
+            @Override
+            public void onItemAdd(Label label) {
+                GlobalUtils.showLog(TAG, "item add");
+                if (!labels.contains(label)) {
+                    labels.add(label);
+                }
+                GlobalUtils.showLog(TAG, " added labels: " + label);
+            }
+
+            @Override
+            public void onItemRemove(Label label) {
+                GlobalUtils.showLog(TAG, "item remove");
+                labels.remove(label);
+                GlobalUtils.showLog(TAG, "removed labels: " + label);
+            }
+        });
+    }
+
+    private void addNewLabel(List<Label> labelList, String labelName) {
+        Label newLabel = new Label();
+        newLabel.setName(labelName);
+        newLabel.setLabelId("");
+
+        labelList.add(newLabel);
+        labelAdapter.setNewData(labelList);
+        labels.add(newLabel);
     }
 
     private void showCustomerWithImage() {
@@ -442,6 +687,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         TextView tvTeamDone = view.findViewById(R.id.tv_done);
         etSearchTeam = view.findViewById(R.id.et_search_employee);
         rvTeams = view.findViewById(R.id.rv_teams);
+        ImageView ivBack = view.findViewById(R.id.iv_back);
+
+        ivBack.setOnClickListener(v -> teamSheet.dismiss());
 
         setUpTeamRecyclerView(tagsList, rvTeams);
 
@@ -488,7 +736,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         teamSheet.setOnDismissListener(dialog -> {
             GlobalUtils.showLog(TAG, "team dismissed");
             //clear first then add
-            fblLabel.removeAllViews();
+            fblTeam.removeAllViews();
 
             if (!CollectionUtils.isEmpty(tags)) {
                 wrapFlexBoxContent();
@@ -521,17 +769,46 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             );
             params.setMargins(15, 8, 0, 0);
             view1.setLayoutParams(params);
+            fblTeam.addView(view1);
+        }
+    }
+
+    private void addLabelsToLayout() {
+        //add selected teams
+        for (Label ticketLabel : labels
+        ) {
+            @SuppressLint("InflateParams") View view1 = getLayoutInflater()
+                    .inflate(R.layout.layout_tag, null);
+
+            TextView tvLabel = view1.findViewById(R.id.tv_tag);
+            tvLabel.setText(ticketLabel.getName());
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(15, 8, 0, 0);
+            view1.setLayoutParams(params);
             fblLabel.addView(view1);
         }
     }
 
 
     private void addStaticHeightToFlexBox() {
+        ViewGroup.LayoutParams params = fblTeam.getLayoutParams();
+        params.height = 60;
+    }
+
+    private void addStaticHeightToLabelFlexBox() {
         ViewGroup.LayoutParams params = fblLabel.getLayoutParams();
         params.height = 60;
     }
 
     private void wrapFlexBoxContent() {
+        ViewGroup.LayoutParams params = fblTeam.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    }
+
+    private void wrapLabelFlexBoxContent() {
         ViewGroup.LayoutParams params = fblLabel.getLayoutParams();
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
     }
@@ -804,48 +1081,36 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             return;
         }
         Banner.make(getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.BOTTOM, 2000).show();
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
 
     }
 
     @Override
     public void onInvalidSummary() {
         etSummary.requestFocus();
-        etSummary.setError("This field is required");
-        scrollView.fullScroll(ScrollView.FOCUS_UP);
-
-     /*   ilSummary.setErrorEnabled(true);
-        ilSummary.setError("Invalid Summary");
-
-        ilDesc.setErrorEnabled(false);
-        ilCustomerName.setErrorEnabled(false);*/
-       /* ilPhone.setErrorEnabled(false);
-        ilEmail.setErrorEnabled(false);*/
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.INFO,
+                "Summary is required",
+                Banner.TOP,
+                2000).show();
 
     }
 
     @Override
     public void onInvalidDesc() {
         etDesc.requestFocus();
-  /*      ilDesc.setErrorEnabled(true);
-        ilDesc.setError("Invalid Description");
-
-        ilSummary.setErrorEnabled(false);
-        ilCustomerName.setErrorEnabled(false);*/
-   /*     ilPhone.setErrorEnabled(false);
-        ilEmail.setErrorEnabled(false);*/
     }
 
     @Override
     public void onInvalidCustomer() {
-        etCustomerName.setError("This field is required");
-       /* ilCustomerName.setErrorEnabled(true);
-        ilCustomerName.setError("Invalid Customer");
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.INFO, "Customer is required", Banner.TOP, 2000).show();
+    }
 
-        ilDesc.setErrorEnabled(false);
-        ilSummary.setErrorEnabled(false);*/
-/*        ilPhone.setErrorEnabled(false);
-        ilEmail.setErrorEnabled(false);*/
+    @Override
+    public void onInvalidTicketType() {
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.INFO, "Ticket Type is required", Banner.TOP, 2000).show();
     }
 
     @Override
@@ -892,7 +1157,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
     @Override
     public void onFailure(String message) {
-        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), message);
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
+                Constants.SERVER_ERROR);
     }
 
     @Override

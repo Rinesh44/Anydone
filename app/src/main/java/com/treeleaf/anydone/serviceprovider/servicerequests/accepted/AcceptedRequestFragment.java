@@ -223,7 +223,7 @@ public class AcceptedRequestFragment extends BaseFragment<AcceptedPresenterImpl>
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                message);
+                Constants.SERVER_ERROR);
     }
 
 }

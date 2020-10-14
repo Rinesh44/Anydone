@@ -3,11 +3,17 @@ package com.treeleaf.anydone.serviceprovider.account;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -48,6 +54,8 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     TextView tvProfile;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
+    @BindView(R.id.rl_billing)
+    RelativeLayout rlBilling;
 
 
     public static AccountFragment newInstance(String param1, String param2) {
@@ -59,6 +67,17 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
         return fragment;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Account account = AccountRepo.getInstance().getAccount();
+        if (account.getAccountType().equalsIgnoreCase("SERVICE_PROVIDER")) {
+            rlBilling.setVisibility(View.VISIBLE);
+        } else {
+            rlBilling.setVisibility(View.GONE);
+        }
+    }
 
     @Override
     public void onResume() {
@@ -109,7 +128,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     @Override
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity()).getWindow()
-                .getDecorView().getRootView(), message);
+                .getDecorView().getRootView(), Constants.SERVER_ERROR);
     }
 
     @OnClick(R.id.rl_profile_acc)

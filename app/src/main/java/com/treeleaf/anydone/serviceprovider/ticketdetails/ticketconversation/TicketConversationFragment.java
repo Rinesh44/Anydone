@@ -491,11 +491,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onFailure(String message) {
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), message);
+            UiUtils.showToast(getActivity(), Constants.SERVER_ERROR);
             onAuthorizationFailed(getActivity());
             return;
         }
-        UiUtils.showToast(getActivity(), message);
+        UiUtils.showToast(getActivity(), Constants.SERVER_ERROR);
     }
 
 
@@ -578,7 +578,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setMessageType("INITIAL_TICKET_DETAIL");
         adapter.setInitialData(conversation);
     }
-
 
     private RealmList<Conversation> getGroupedConversations(List<ServiceDoer> serviceDoerList) {
         RealmList<Conversation> conversationList = new RealmList<>();

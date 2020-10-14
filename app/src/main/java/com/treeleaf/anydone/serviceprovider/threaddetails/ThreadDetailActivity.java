@@ -29,6 +29,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationFragment;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineFragment;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -136,7 +137,8 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
 
     @Override
     public void onFailure(String message) {
-        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), message);
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
+                Constants.SERVER_ERROR);
     }
 
     @Override

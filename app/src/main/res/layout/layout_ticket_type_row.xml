@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_ticket_type_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/dimens_2x"
+    android:paddingTop="@dimen/dimens_2x"
+    android:paddingEnd="@dimen/dimens_2x"
+    android:paddingBottom="@dimen/dimens_2x">
+
+    <TextView
+        android:id="@+id/tv_ticket_type"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/dimen_10x1"
+        android:text="Vianet"
+        android:textColor="@color/black" />
+</LinearLayout>

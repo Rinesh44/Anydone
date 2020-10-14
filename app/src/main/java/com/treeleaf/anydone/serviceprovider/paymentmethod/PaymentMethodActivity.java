@@ -244,7 +244,7 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
     @Override
     public void onFailure(String message) {
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(this, message);
+            UiUtils.showToast(this, Constants.SERVER_ERROR);
             onAuthorizationFailed(this);
             return;
         }

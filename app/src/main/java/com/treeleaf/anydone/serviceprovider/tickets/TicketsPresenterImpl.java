@@ -12,12 +12,15 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.LabelRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -51,20 +54,20 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
     @Override
     public void findCustomers() {
-        Observable<UserRpcProto.UserBaseResponse> customersObservable;
+        Observable<TicketServiceRpcProto.TicketBaseResponse> customersObservable;
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        customersObservable = service.findConsumers(token);
+        customersObservable = service.findCustomers(token);
 
         addSubscription(customersObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(UserRpcProto.UserBaseResponse consumerResponse) {
-                        GlobalUtils.showLog(TAG, "get consumer response:"
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse consumerResponse) {
+                        GlobalUtils.showLog(TAG, "get customer response:"
                                 + consumerResponse);
 
                         if (consumerResponse == null) {
@@ -77,7 +80,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                             return;
                         }
 
-                        saveCustomers(consumerResponse.getConsumersList());
+                        saveCustomers(consumerResponse.getCustomersList());
                     }
 
                     @Override
@@ -92,7 +95,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                 }));
     }
 
-    private void saveCustomers(List<UserProto.ConsumerProfile> consumersList) {
+    private void saveCustomers(List<UserProto.Customer> consumersList) {
         CustomerRepo.getInstance().saveCustomerList(consumersList, new Repo.Callback() {
             @Override
             public void success(Object o) {
@@ -136,7 +139,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                             return;
                         }
 
-                        saveTags(tagResponse.getTagsList());
+                        saveTags(tagResponse.getTeamsList());
                     }
 
                     @Override
@@ -152,7 +155,131 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                 }));
     }
 
-    private void saveTags(List<TicketProto.TicketTag> tagsList) {
+    @Override
+    public void getLabels() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getTicketLabels(token, serviceId);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "get labels response:"
+                                + response);
+
+                        if (response == null) {
+                            getView().getLabelFail("Failed to get labels");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().getLabelFail(response.getMsg());
+                            return;
+                        }
+
+                        saveLabels(response.getLabelsList());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+
+    }
+
+    @Override
+    public void getTicketTypes() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getTicketTypes(token, serviceId);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "get ticket types response:"
+                                + response);
+
+                        if (response == null) {
+                            getView().getTypeFail("Failed to get ticket types");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().getTypeFail(response.getMsg());
+                            return;
+                        }
+
+                        saveTicketTypes(response.getTicketTypesList());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+
+    }
+
+    private void saveTicketTypes(List<TicketProto.TicketType> ticketTypeList) {
+        TicketCategoryRepo.getInstance().saveTicketTypeList(ticketTypeList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved ticket types");
+                getView().getTypeSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save ticket types");
+            }
+        });
+    }
+
+    private void saveLabels(List<TicketProto.Label> labels) {
+        LabelRepo.getInstance().saveLabelList(labels, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved labels");
+                getView().getLabelSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save labels");
+            }
+        });
+    }
+
+    private void saveTags(List<TicketProto.Team> tagsList) {
         TagRepo.getInstance().saveTags(tagsList, new Repo.Callback() {
             @Override
             public void success(Object o) {
@@ -224,6 +351,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             }
         });
     }
+
 
     @Override
     public void filterAssignedTickets(String searchQuery, long from, long to, int ticketState, Priority priority) {

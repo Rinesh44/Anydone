@@ -37,6 +37,14 @@ public class TicketsContract {
         void findTagsSuccess();
 
         void findTagsFail(String msg);
+
+        void getLabelSuccess();
+
+        void getLabelFail(String msg);
+
+        void getTypeSuccess();
+
+        void getTypeFail(String msg);
     }
 
     public interface TicketsPresenter extends Presenter<TicketsView> {
@@ -53,5 +61,9 @@ public class TicketsContract {
         void findCustomers();
 
         void findTags();
+
+        void getLabels();
+
+        void getTicketTypes();
     }
 }

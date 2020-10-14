@@ -149,8 +149,8 @@ public class ThreadRepo extends Repo {
             thread.setCustomerImageUrl(threadPb.getCustomer().getProfilePic());
             thread.setCustomerName(threadPb.getCustomer().getFullName());
             thread.setCustomerPhone(threadPb.getCustomer().getPhone());
-            thread.setDefaultLabelId(threadPb.getTag().getTagId());
-            thread.setDefaultLabel(threadPb.getTag().getLabel());
+            thread.setDefaultLabelId(threadPb.getTeam().getTeamId());
+            thread.setDefaultLabel(threadPb.getTeam().getLabel());
             thread.setFinalMessage(threadPb.getMessage().getMessage().getText());
             thread.setLastMessageDate(threadPb.getMessage().getTimestamp());
             thread.setServiceId(threadPb.getServiceId());
@@ -194,8 +194,8 @@ public class ThreadRepo extends Repo {
         newThread.setCustomerImageUrl(threadPb.getCustomer().getProfilePic());
         newThread.setCustomerName(threadPb.getCustomer().getFullName());
         newThread.setCustomerPhone(threadPb.getCustomer().getPhone());
-        newThread.setDefaultLabelId(threadPb.getTag().getTagId());
-        newThread.setDefaultLabel(threadPb.getTag().getLabel());
+        newThread.setDefaultLabelId(threadPb.getTeam().getTeamId());
+        newThread.setDefaultLabel(threadPb.getTeam().getLabel());
         newThread.setFinalMessage(threadPb.getMessage().getMessage().getText());
         newThread.setLastMessageDate(threadPb.getMessage().getTimestamp());
         newThread.setServiceId(threadPb.getServiceId());

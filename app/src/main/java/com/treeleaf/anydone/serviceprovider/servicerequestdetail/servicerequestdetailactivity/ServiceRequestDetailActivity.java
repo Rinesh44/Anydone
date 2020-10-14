@@ -172,7 +172,7 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
 
     @Override
     public void onFailure(String message) {
-        showToastMessage(message);
+        showToastMessage(Constants.SERVER_ERROR);
     }
 
     @Override

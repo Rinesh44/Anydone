@@ -513,7 +513,7 @@ public class ServiceRequestFragment extends BaseFragment<ServiceRequestPresenter
     public void onFailure(String message) {
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                message);
+                Constants.SERVER_ERROR);
     }
 
 

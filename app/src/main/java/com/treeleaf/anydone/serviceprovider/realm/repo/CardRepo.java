@@ -14,6 +14,7 @@ import io.realm.Sort;
 
 public class CardRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
+    private static final String TAG = "CardRepo";
     private static final CardRepo cardRepo;
 
     static {
@@ -115,7 +116,6 @@ public class CardRepo extends Repo {
         card.setPrimary(cardPb.getIsDefault());
         return card;
     }
-
 
     public List<Card> getAllCards() {
         final Realm realm = RealmUtils.getInstance().getRealm();

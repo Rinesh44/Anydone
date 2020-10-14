@@ -62,10 +62,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
 
         GlobalUtils.showLog(TAG, "card number check: " + card.getCardNumber());
 
-        StringBuilder cardNo = new StringBuilder();
-        cardNo.append("**** **** **** ");
-        cardNo.append(card.getCardNumber());
-        holder.tvCardNumber.setText(cardNo);
+        if (card.getCardNumber().length() > 4) {
+            String[] splitCardNo = card.getCardNumber().split("\\s+");
+            StringBuilder cardNo = new StringBuilder();
+            cardNo.append("**** **** **** ");
+            cardNo.append(splitCardNo[3]);
+            holder.tvCardNumber.setText(cardNo);
+        } else {
+            StringBuilder cardNo = new StringBuilder();
+            cardNo.append("**** **** **** ");
+            cardNo.append(card.getCardNumber());
+            holder.tvCardNumber.setText(cardNo);
+        }
 
         StringBuilder expiryDate = new StringBuilder("Expires on ");
         expiryDate.append(card.getMonth());
@@ -91,13 +99,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     }
 
     private void setCardType(Card card, ImageView cardImage) {
+        GlobalUtils.showLog(TAG, "getcardType: " + card.getCardType());
         switch (card.getCardType().toUpperCase()) {
             case "VISA":
-                cardImage.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_visacard_icon));
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_visacard_icon));
                 break;
 
             case "MASTERCARD":
-                cardImage.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_mastercard_icon));
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_mastercard_icon));
                 break;
         }
     }
@@ -187,7 +198,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
                 addCardDrawable(p, cardImage);
                 break;
             } else {
-                cardImage.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_visacard_icon));
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_visacard_icon));
             }
         }
     }
@@ -195,11 +207,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     private void addCardDrawable(String p, ImageView cardImage) {
         switch (p) {
             case Constants.VISA:
-                cardImage.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_visacard_icon));
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_visacard_icon));
                 break;
 
             case Constants.MASTERCARD:
-                cardImage.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_mastercard_icon));
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_mastercard_icon));
                 break;
 
             default:

@@ -29,6 +29,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".editticket.EditTicketActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".addpaymentcard.AddCardActivity"
             android:theme="@style/FormTheme" />
         <activity android:name=".paymentmethod.PaymentMethodActivity" />

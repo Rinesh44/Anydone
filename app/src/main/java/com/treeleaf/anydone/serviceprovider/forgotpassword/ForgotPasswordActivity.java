@@ -104,7 +104,7 @@ public class ForgotPasswordActivity extends MvpBaseActivity<ForgotPasswordPresen
 
     @Override
     public void onFailure(String message) {
-        showToastMessage(message);
+        showToastMessage(Constants.SERVER_ERROR);
     }
 
     @Override

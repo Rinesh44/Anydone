@@ -494,11 +494,11 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     @Override
     public void onFailure(String message) {
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), message);
+            UiUtils.showToast(getActivity(), Constants.SERVER_ERROR);
             onAuthorizationFailed(getActivity());
             return;
         }
-        UiUtils.showToast(getActivity(), message);
+        UiUtils.showToast(getActivity(), Constants.SERVER_ERROR);
     }
 
 
