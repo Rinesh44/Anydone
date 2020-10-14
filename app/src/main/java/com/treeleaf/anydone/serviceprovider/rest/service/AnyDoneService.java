@@ -362,7 +362,7 @@ public interface AnyDoneService {
                              long ticketId,
                      @Body TicketProto.Ticket employeeUnAssigned);
 
-    @GET("/service/enabled")
+    @GET("/service/created")
     Observable<ServiceRpcProto.ServiceBaseResponse> getServices(@Header(AUTHORIZATION) String token);
 
 
