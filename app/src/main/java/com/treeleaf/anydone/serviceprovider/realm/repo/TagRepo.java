@@ -26,7 +26,7 @@ public class TagRepo extends Repo {
         return tagRepo;
     }
 
-    public void saveTags(final List<TicketProto.TicketTag> tagListPb,
+    public void saveTags(final List<TicketProto.Team> tagListPb,
                          final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
@@ -59,16 +59,16 @@ public class TagRepo extends Repo {
     }
 
     public List<Tags> transformTicketTagProto
-            (List<TicketProto.TicketTag> tagListPb) {
+            (List<TicketProto.Team> tagListPb) {
         if (CollectionUtils.isEmpty(tagListPb)) {
             throw new IllegalArgumentException(EXCEPTION_NULL_VALUE);
         }
 
         List<Tags> tagList = new ArrayList<>();
-        for (TicketProto.TicketTag tagPb : tagListPb
+        for (TicketProto.Team tagPb : tagListPb
         ) {
             Tags tag = new Tags();
-            tag.setTagId(tagPb.getTagId());
+            tag.setTagId(tagPb.getTeamId());
             tag.setLabel(tagPb.getLabel());
             tag.setDescription(tagPb.getDescription());
             tag.setCreatedBy(tagPb.getCreatedBy().getAccount().getAccountId());

@@ -487,19 +487,19 @@ public final class TicketProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.TicketStatResponseType)
   }
 
-  public interface TicketTagOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TicketTag)
+  public interface TeamOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Team)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string tagId = 1;</code>
+     * <code>optional string teamId = 1;</code>
      */
-    String getTagId();
+    String getTeamId();
     /**
-     * <code>optional string tagId = 1;</code>
+     * <code>optional string teamId = 1;</code>
      */
     com.google.protobuf.ByteString
-        getTagIdBytes();
+        getTeamIdBytes();
 
     /**
      * <code>optional string label = 2;</code>
@@ -563,69 +563,80 @@ public final class TicketProto {
     int getAssignedToCount();
 
     /**
-     * <code>optional int32 assignedToLength = 8;</code>
+     * <code>optional string serviceId = 8;</code>
+     */
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional int32 assignedToLength = 9;</code>
      */
     int getAssignedToLength();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.TicketTag}
+   * Protobuf type {@code treeleaf.anydone.entities.Team}
    */
-  public  static final class TicketTag extends
+  public  static final class Team extends
       com.google.protobuf.GeneratedMessageLite<
-          TicketTag, TicketTag.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketTag)
-      TicketTagOrBuilder {
-    private TicketTag() {
-      tagId_ = "";
+          Team, Team.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Team)
+      TeamOrBuilder {
+    private Team() {
+      teamId_ = "";
       label_ = "";
       description_ = "";
       assignedTo_ = emptyProtobufList();
+      serviceId_ = "";
     }
     private int bitField0_;
-    public static final int TAGID_FIELD_NUMBER = 1;
-    private String tagId_;
+    public static final int TEAMID_FIELD_NUMBER = 1;
+    private String teamId_;
     /**
-     * <code>optional string tagId = 1;</code>
+     * <code>optional string teamId = 1;</code>
      */
-    public String getTagId() {
-      return tagId_;
+    public String getTeamId() {
+      return teamId_;
     }
     /**
-     * <code>optional string tagId = 1;</code>
+     * <code>optional string teamId = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getTagIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(tagId_);
+        getTeamIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(teamId_);
     }
     /**
-     * <code>optional string tagId = 1;</code>
+     * <code>optional string teamId = 1;</code>
      */
-    private void setTagId(
+    private void setTeamId(
         String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      tagId_ = value;
+      teamId_ = value;
     }
     /**
-     * <code>optional string tagId = 1;</code>
+     * <code>optional string teamId = 1;</code>
      */
-    private void clearTagId() {
+    private void clearTeamId() {
       
-      tagId_ = getDefaultInstance().getTagId();
+      teamId_ = getDefaultInstance().getTeamId();
     }
     /**
-     * <code>optional string tagId = 1;</code>
+     * <code>optional string teamId = 1;</code>
      */
-    private void setTagIdBytes(
+    private void setTeamIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      tagId_ = value.toStringUtf8();
+      teamId_ = value.toStringUtf8();
     }
 
     public static final int LABEL_FIELD_NUMBER = 2;
@@ -962,23 +973,69 @@ public final class TicketProto {
       assignedTo_.remove(index);
     }
 
-    public static final int ASSIGNEDTOLENGTH_FIELD_NUMBER = 8;
+    public static final int SERVICEID_FIELD_NUMBER = 8;
+    private String serviceId_;
+    /**
+     * <code>optional string serviceId = 8;</code>
+     */
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 8;</code>
+     */
+    private void setServiceId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 8;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 8;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int ASSIGNEDTOLENGTH_FIELD_NUMBER = 9;
     private int assignedToLength_;
     /**
-     * <code>optional int32 assignedToLength = 8;</code>
+     * <code>optional int32 assignedToLength = 9;</code>
      */
     public int getAssignedToLength() {
       return assignedToLength_;
     }
     /**
-     * <code>optional int32 assignedToLength = 8;</code>
+     * <code>optional int32 assignedToLength = 9;</code>
      */
     private void setAssignedToLength(int value) {
       
       assignedToLength_ = value;
     }
     /**
-     * <code>optional int32 assignedToLength = 8;</code>
+     * <code>optional int32 assignedToLength = 9;</code>
      */
     private void clearAssignedToLength() {
       
@@ -987,8 +1044,8 @@ public final class TicketProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!tagId_.isEmpty()) {
-        output.writeString(1, getTagId());
+      if (!teamId_.isEmpty()) {
+        output.writeString(1, getTeamId());
       }
       if (!label_.isEmpty()) {
         output.writeString(2, getLabel());
@@ -1008,8 +1065,11 @@ public final class TicketProto {
       for (int i = 0; i < assignedTo_.size(); i++) {
         output.writeMessage(7, assignedTo_.get(i));
       }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(8, getServiceId());
+      }
       if (assignedToLength_ != 0) {
-        output.writeInt32(8, assignedToLength_);
+        output.writeInt32(9, assignedToLength_);
       }
     }
 
@@ -1018,9 +1078,9 @@ public final class TicketProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!tagId_.isEmpty()) {
+      if (!teamId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getTagId());
+          .computeStringSize(1, getTeamId());
       }
       if (!label_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -1046,68 +1106,72 @@ public final class TicketProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, assignedTo_.get(i));
       }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getServiceId());
+      }
       if (assignedToLength_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, assignedToLength_);
+          .computeInt32Size(9, assignedToLength_);
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static TicketTag parseFrom(
+    public static Team parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketTag parseFrom(
+    public static Team parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketTag parseFrom(byte[] data)
+    public static Team parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketTag parseFrom(
+    public static Team parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketTag parseFrom(java.io.InputStream input)
+    public static Team parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketTag parseFrom(
+    public static Team parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketTag parseDelimitedFrom(java.io.InputStream input)
+    public static Team parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TicketTag parseDelimitedFrom(
+    public static Team parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketTag parseFrom(
+    public static Team parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketTag parseFrom(
+    public static Team parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1118,61 +1182,61 @@ public final class TicketProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TicketTag prototype) {
+    public static Builder newBuilder(Team prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.TicketTag}
+     * Protobuf type {@code treeleaf.anydone.entities.Team}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TicketTag, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketTag)
-        TicketTagOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.TicketProto.TicketTag.newBuilder()
+          Team, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Team)
+        TeamOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.Team.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional string tagId = 1;</code>
+       * <code>optional string teamId = 1;</code>
        */
-      public String getTagId() {
-        return instance.getTagId();
+      public String getTeamId() {
+        return instance.getTeamId();
       }
       /**
-       * <code>optional string tagId = 1;</code>
+       * <code>optional string teamId = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getTagIdBytes() {
-        return instance.getTagIdBytes();
+          getTeamIdBytes() {
+        return instance.getTeamIdBytes();
       }
       /**
-       * <code>optional string tagId = 1;</code>
+       * <code>optional string teamId = 1;</code>
        */
-      public Builder setTagId(
+      public Builder setTeamId(
           String value) {
         copyOnWrite();
-        instance.setTagId(value);
+        instance.setTeamId(value);
         return this;
       }
       /**
-       * <code>optional string tagId = 1;</code>
+       * <code>optional string teamId = 1;</code>
        */
-      public Builder clearTagId() {
+      public Builder clearTeamId() {
         copyOnWrite();
-        instance.clearTagId();
+        instance.clearTeamId();
         return this;
       }
       /**
-       * <code>optional string tagId = 1;</code>
+       * <code>optional string teamId = 1;</code>
        */
-      public Builder setTagIdBytes(
+      public Builder setTeamIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setTagIdBytes(value);
+        instance.setTeamIdBytes(value);
         return this;
       }
 
@@ -1469,13 +1533,53 @@ public final class TicketProto {
       }
 
       /**
-       * <code>optional int32 assignedToLength = 8;</code>
+       * <code>optional string serviceId = 8;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 8;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 8;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 8;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int32 assignedToLength = 9;</code>
        */
       public int getAssignedToLength() {
         return instance.getAssignedToLength();
       }
       /**
-       * <code>optional int32 assignedToLength = 8;</code>
+       * <code>optional int32 assignedToLength = 9;</code>
        */
       public Builder setAssignedToLength(int value) {
         copyOnWrite();
@@ -1483,7 +1587,7 @@ public final class TicketProto {
         return this;
       }
       /**
-       * <code>optional int32 assignedToLength = 8;</code>
+       * <code>optional int32 assignedToLength = 9;</code>
        */
       public Builder clearAssignedToLength() {
         copyOnWrite();
@@ -1491,14 +1595,14 @@ public final class TicketProto {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketTag)
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Team)
     }
     protected final Object dynamicMethod(
         MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TicketTag();
+          return new Team();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1512,9 +1616,9 @@ public final class TicketProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TicketTag other = (TicketTag) arg1;
-          tagId_ = visitor.visitString(!tagId_.isEmpty(), tagId_,
-              !other.tagId_.isEmpty(), other.tagId_);
+          Team other = (Team) arg1;
+          teamId_ = visitor.visitString(!teamId_.isEmpty(), teamId_,
+              !other.teamId_.isEmpty(), other.teamId_);
           label_ = visitor.visitString(!label_.isEmpty(), label_,
               !other.label_.isEmpty(), other.label_);
           description_ = visitor.visitString(!description_.isEmpty(), description_,
@@ -1525,6 +1629,8 @@ public final class TicketProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           assignedTo_= visitor.visitList(assignedTo_, other.assignedTo_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
           assignedToLength_ = visitor.visitInt(assignedToLength_ != 0, assignedToLength_,
               other.assignedToLength_ != 0, other.assignedToLength_);
           if (visitor == MergeFromVisitor
@@ -1555,7 +1661,7 @@ public final class TicketProto {
                 case 10: {
                   String s = input.readStringRequireUtf8();
 
-                  tagId_ = s;
+                  teamId_ = s;
                   break;
                 }
                 case 18: {
@@ -1602,7 +1708,13 @@ public final class TicketProto {
                       input.readMessage(UserProto.EmployeeProfile.parser(), extensionRegistry));
                   break;
                 }
-                case 64: {
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 72: {
 
                   assignedToLength_ = input.readInt32();
                   break;
@@ -1622,7 +1734,7 @@ public final class TicketProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TicketTag.class) {
+          if (PARSER == null) {    synchronized (Team.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1635,37 +1747,1601 @@ public final class TicketProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketTag)
-    private static final TicketTag DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Team)
+    private static final Team DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new TicketTag();
+      DEFAULT_INSTANCE = new Team();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TicketTag getDefaultInstance() {
+    public static Team getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TicketTag> PARSER;
+    private static volatile com.google.protobuf.Parser<Team> PARSER;
 
-    public static com.google.protobuf.Parser<TicketTag> parser() {
+    public static com.google.protobuf.Parser<Team> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
 
-  public interface EmployeeTagOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.EmployeeTag)
+  public interface TicketTypeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TicketType)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string employeeTagId = 1;</code>
+     * <code>optional string ticketTypeId = 1;</code>
      */
-    String getEmployeeTagId();
+    String getTicketTypeId();
     /**
-     * <code>optional string employeeTagId = 1;</code>
+     * <code>optional string ticketTypeId = 1;</code>
      */
     com.google.protobuf.ByteString
-        getEmployeeTagIdBytes();
+        getTicketTypeIdBytes();
+
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    String getName();
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    String getSpAccountId();
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getSpAccountIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.TicketType}
+   */
+  public  static final class TicketType extends
+      com.google.protobuf.GeneratedMessageLite<
+          TicketType, TicketType.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketType)
+      TicketTypeOrBuilder {
+    private TicketType() {
+      ticketTypeId_ = "";
+      name_ = "";
+      serviceId_ = "";
+      spAccountId_ = "";
+    }
+    public static final int TICKETTYPEID_FIELD_NUMBER = 1;
+    private String ticketTypeId_;
+    /**
+     * <code>optional string ticketTypeId = 1;</code>
+     */
+    public String getTicketTypeId() {
+      return ticketTypeId_;
+    }
+    /**
+     * <code>optional string ticketTypeId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTicketTypeIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(ticketTypeId_);
+    }
+    /**
+     * <code>optional string ticketTypeId = 1;</code>
+     */
+    private void setTicketTypeId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      ticketTypeId_ = value;
+    }
+    /**
+     * <code>optional string ticketTypeId = 1;</code>
+     */
+    private void clearTicketTypeId() {
+      
+      ticketTypeId_ = getDefaultInstance().getTicketTypeId();
+    }
+    /**
+     * <code>optional string ticketTypeId = 1;</code>
+     */
+    private void setTicketTypeIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      ticketTypeId_ = value.toStringUtf8();
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private String name_;
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int SPACCOUNTID_FIELD_NUMBER = 4;
+    private String spAccountId_;
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    public String getSpAccountId() {
+      return spAccountId_;
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    private void setSpAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      spAccountId_ = value;
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    private void clearSpAccountId() {
+      
+      spAccountId_ = getDefaultInstance().getSpAccountId();
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    private void setSpAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      spAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 5;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 6;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!ticketTypeId_.isEmpty()) {
+        output.writeString(1, getTicketTypeId());
+      }
+      if (!name_.isEmpty()) {
+        output.writeString(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(4, getSpAccountId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(5, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(6, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!ticketTypeId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getTicketTypeId());
+      }
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (!spAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getSpAccountId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static TicketType parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static TicketType parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static TicketType parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static TicketType parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static TicketType parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static TicketType parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static TicketType parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static TicketType parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static TicketType parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static TicketType parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(TicketType prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.TicketType}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          TicketType, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketType)
+        TicketTypeOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.TicketType.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string ticketTypeId = 1;</code>
+       */
+      public String getTicketTypeId() {
+        return instance.getTicketTypeId();
+      }
+      /**
+       * <code>optional string ticketTypeId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTicketTypeIdBytes() {
+        return instance.getTicketTypeIdBytes();
+      }
+      /**
+       * <code>optional string ticketTypeId = 1;</code>
+       */
+      public Builder setTicketTypeId(
+          String value) {
+        copyOnWrite();
+        instance.setTicketTypeId(value);
+        return this;
+      }
+      /**
+       * <code>optional string ticketTypeId = 1;</code>
+       */
+      public Builder clearTicketTypeId() {
+        copyOnWrite();
+        instance.clearTicketTypeId();
+        return this;
+      }
+      /**
+       * <code>optional string ticketTypeId = 1;</code>
+       */
+      public Builder setTicketTypeIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTicketTypeIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setName(
+          String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public String getSpAccountId() {
+        return instance.getSpAccountId();
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public Builder setSpAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setSpAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public Builder clearSpAccountId() {
+        copyOnWrite();
+        instance.clearSpAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public Builder setSpAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSpAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 5;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 5;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 5;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 6;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 6;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 6;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketType)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new TicketType();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          TicketType other = (TicketType) arg1;
+          ticketTypeId_ = visitor.visitString(!ticketTypeId_.isEmpty(), ticketTypeId_,
+              !other.ticketTypeId_.isEmpty(), other.ticketTypeId_);
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  ticketTypeId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  spAccountId_ = s;
+                  break;
+                }
+                case 40: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 48: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (TicketType.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketType)
+    private static final TicketType DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TicketType();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static TicketType getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<TicketType> PARSER;
+
+    public static com.google.protobuf.Parser<TicketType> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface LabelOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Label)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string labelId = 1;</code>
+     */
+    String getLabelId();
+    /**
+     * <code>optional string labelId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getLabelIdBytes();
+
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    String getName();
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    String getSpAccountId();
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getSpAccountIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * <pre>
+   *label
+   * </pre>
+   *
+   * Protobuf type {@code treeleaf.anydone.entities.Label}
+   */
+  public  static final class Label extends
+      com.google.protobuf.GeneratedMessageLite<
+          Label, Label.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Label)
+      LabelOrBuilder {
+    private Label() {
+      labelId_ = "";
+      name_ = "";
+      serviceId_ = "";
+      spAccountId_ = "";
+    }
+    public static final int LABELID_FIELD_NUMBER = 1;
+    private String labelId_;
+    /**
+     * <code>optional string labelId = 1;</code>
+     */
+    public String getLabelId() {
+      return labelId_;
+    }
+    /**
+     * <code>optional string labelId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLabelIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(labelId_);
+    }
+    /**
+     * <code>optional string labelId = 1;</code>
+     */
+    private void setLabelId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      labelId_ = value;
+    }
+    /**
+     * <code>optional string labelId = 1;</code>
+     */
+    private void clearLabelId() {
+      
+      labelId_ = getDefaultInstance().getLabelId();
+    }
+    /**
+     * <code>optional string labelId = 1;</code>
+     */
+    private void setLabelIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      labelId_ = value.toStringUtf8();
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private String name_;
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int SPACCOUNTID_FIELD_NUMBER = 4;
+    private String spAccountId_;
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    public String getSpAccountId() {
+      return spAccountId_;
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    private void setSpAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      spAccountId_ = value;
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    private void clearSpAccountId() {
+      
+      spAccountId_ = getDefaultInstance().getSpAccountId();
+    }
+    /**
+     * <code>optional string spAccountId = 4;</code>
+     */
+    private void setSpAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      spAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 5;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 5;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 6;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 6;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!labelId_.isEmpty()) {
+        output.writeString(1, getLabelId());
+      }
+      if (!name_.isEmpty()) {
+        output.writeString(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(4, getSpAccountId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(5, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(6, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!labelId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getLabelId());
+      }
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (!spAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getSpAccountId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static Label parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Label parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Label parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Label parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Label parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Label parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Label parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static Label parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Label parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Label parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(Label prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     *label
+     * </pre>
+     *
+     * Protobuf type {@code treeleaf.anydone.entities.Label}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          Label, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Label)
+        LabelOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.Label.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string labelId = 1;</code>
+       */
+      public String getLabelId() {
+        return instance.getLabelId();
+      }
+      /**
+       * <code>optional string labelId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLabelIdBytes() {
+        return instance.getLabelIdBytes();
+      }
+      /**
+       * <code>optional string labelId = 1;</code>
+       */
+      public Builder setLabelId(
+          String value) {
+        copyOnWrite();
+        instance.setLabelId(value);
+        return this;
+      }
+      /**
+       * <code>optional string labelId = 1;</code>
+       */
+      public Builder clearLabelId() {
+        copyOnWrite();
+        instance.clearLabelId();
+        return this;
+      }
+      /**
+       * <code>optional string labelId = 1;</code>
+       */
+      public Builder setLabelIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLabelIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setName(
+          String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public String getSpAccountId() {
+        return instance.getSpAccountId();
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public Builder setSpAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setSpAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public Builder clearSpAccountId() {
+        copyOnWrite();
+        instance.clearSpAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 4;</code>
+       */
+      public Builder setSpAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSpAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 5;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 5;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 5;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 6;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 6;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 6;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Label)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new Label();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          Label other = (Label) arg1;
+          labelId_ = visitor.visitString(!labelId_.isEmpty(), labelId_,
+              !other.labelId_.isEmpty(), other.labelId_);
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  labelId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  spAccountId_ = s;
+                  break;
+                }
+                case 40: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 48: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (Label.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Label)
+    private static final Label DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Label();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static Label getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Label> PARSER;
+
+    public static com.google.protobuf.Parser<Label> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface EmployeeTeamAssignOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.EmployeeTeamAssign)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string employeeteamId = 1;</code>
+     */
+    String getEmployeeteamId();
+    /**
+     * <code>optional string employeeteamId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getEmployeeteamIdBytes();
 
     /**
      * <code>optional .treeleaf.anydone.entities.EmployeeProfile employee = 2;</code>
@@ -1677,69 +3353,69 @@ public final class TicketProto {
     UserProto.EmployeeProfile getEmployee();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    boolean hasTag();
+    boolean hasTeam();
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    TicketTag getTag();
+    Team getTeam();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.EmployeeTag}
+   * Protobuf type {@code treeleaf.anydone.entities.EmployeeTeamAssign}
    */
-  public  static final class EmployeeTag extends
+  public  static final class EmployeeTeamAssign extends
       com.google.protobuf.GeneratedMessageLite<
-          EmployeeTag, EmployeeTag.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.EmployeeTag)
-      EmployeeTagOrBuilder {
-    private EmployeeTag() {
-      employeeTagId_ = "";
+          EmployeeTeamAssign, EmployeeTeamAssign.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.EmployeeTeamAssign)
+      EmployeeTeamAssignOrBuilder {
+    private EmployeeTeamAssign() {
+      employeeteamId_ = "";
     }
-    public static final int EMPLOYEETAGID_FIELD_NUMBER = 1;
-    private String employeeTagId_;
+    public static final int EMPLOYEETEAMID_FIELD_NUMBER = 1;
+    private String employeeteamId_;
     /**
-     * <code>optional string employeeTagId = 1;</code>
+     * <code>optional string employeeteamId = 1;</code>
      */
-    public String getEmployeeTagId() {
-      return employeeTagId_;
+    public String getEmployeeteamId() {
+      return employeeteamId_;
     }
     /**
-     * <code>optional string employeeTagId = 1;</code>
+     * <code>optional string employeeteamId = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getEmployeeTagIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(employeeTagId_);
+        getEmployeeteamIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(employeeteamId_);
     }
     /**
-     * <code>optional string employeeTagId = 1;</code>
+     * <code>optional string employeeteamId = 1;</code>
      */
-    private void setEmployeeTagId(
+    private void setEmployeeteamId(
         String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      employeeTagId_ = value;
+      employeeteamId_ = value;
     }
     /**
-     * <code>optional string employeeTagId = 1;</code>
+     * <code>optional string employeeteamId = 1;</code>
      */
-    private void clearEmployeeTagId() {
+    private void clearEmployeeteamId() {
       
-      employeeTagId_ = getDefaultInstance().getEmployeeTagId();
+      employeeteamId_ = getDefaultInstance().getEmployeeteamId();
     }
     /**
-     * <code>optional string employeeTagId = 1;</code>
+     * <code>optional string employeeteamId = 1;</code>
      */
-    private void setEmployeeTagIdBytes(
+    private void setEmployeeteamIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      employeeTagId_ = value.toStringUtf8();
+      employeeteamId_ = value.toStringUtf8();
     }
 
     public static final int EMPLOYEE_FIELD_NUMBER = 2;
@@ -1794,68 +3470,68 @@ public final class TicketProto {
       
     }
 
-    public static final int TAG_FIELD_NUMBER = 3;
-    private TicketTag tag_;
+    public static final int TEAM_FIELD_NUMBER = 3;
+    private Team team_;
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    public boolean hasTag() {
-      return tag_ != null;
+    public boolean hasTeam() {
+      return team_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    public TicketTag getTag() {
-      return tag_ == null ? TicketTag.getDefaultInstance() : tag_;
+    public Team getTeam() {
+      return team_ == null ? Team.getDefaultInstance() : team_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    private void setTag(TicketTag value) {
+    private void setTeam(Team value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      tag_ = value;
+      team_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    private void setTag(
-        TicketTag.Builder builderForValue) {
-      tag_ = builderForValue.build();
+    private void setTeam(
+        Team.Builder builderForValue) {
+      team_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    private void mergeTag(TicketTag value) {
-      if (tag_ != null &&
-          tag_ != TicketTag.getDefaultInstance()) {
-        tag_ =
-          TicketTag.newBuilder(tag_).mergeFrom(value).buildPartial();
+    private void mergeTeam(Team value) {
+      if (team_ != null &&
+          team_ != Team.getDefaultInstance()) {
+        team_ =
+          Team.newBuilder(team_).mergeFrom(value).buildPartial();
       } else {
-        tag_ = value;
+        team_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
      */
-    private void clearTag() {  tag_ = null;
+    private void clearTeam() {  team_ = null;
       
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!employeeTagId_.isEmpty()) {
-        output.writeString(1, getEmployeeTagId());
+      if (!employeeteamId_.isEmpty()) {
+        output.writeString(1, getEmployeeteamId());
       }
       if (employee_ != null) {
         output.writeMessage(2, getEmployee());
       }
-      if (tag_ != null) {
-        output.writeMessage(3, getTag());
+      if (team_ != null) {
+        output.writeMessage(3, getTeam());
       }
     }
 
@@ -1864,76 +3540,76 @@ public final class TicketProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!employeeTagId_.isEmpty()) {
+      if (!employeeteamId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getEmployeeTagId());
+          .computeStringSize(1, getEmployeeteamId());
       }
       if (employee_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getEmployee());
       }
-      if (tag_ != null) {
+      if (team_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getTag());
+          .computeMessageSize(3, getTeam());
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static EmployeeTag parseFrom(
+    public static EmployeeTeamAssign parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static EmployeeTag parseFrom(
+    public static EmployeeTeamAssign parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static EmployeeTag parseFrom(byte[] data)
+    public static EmployeeTeamAssign parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static EmployeeTag parseFrom(
+    public static EmployeeTeamAssign parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static EmployeeTag parseFrom(java.io.InputStream input)
+    public static EmployeeTeamAssign parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static EmployeeTag parseFrom(
+    public static EmployeeTeamAssign parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static EmployeeTag parseDelimitedFrom(java.io.InputStream input)
+    public static EmployeeTeamAssign parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static EmployeeTag parseDelimitedFrom(
+    public static EmployeeTeamAssign parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static EmployeeTag parseFrom(
+    public static EmployeeTeamAssign parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static EmployeeTag parseFrom(
+    public static EmployeeTeamAssign parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1944,61 +3620,61 @@ public final class TicketProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(EmployeeTag prototype) {
+    public static Builder newBuilder(EmployeeTeamAssign prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.EmployeeTag}
+     * Protobuf type {@code treeleaf.anydone.entities.EmployeeTeamAssign}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          EmployeeTag, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.EmployeeTag)
-        EmployeeTagOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.TicketProto.EmployeeTag.newBuilder()
+          EmployeeTeamAssign, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.EmployeeTeamAssign)
+        EmployeeTeamAssignOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.EmployeeTeamAssign.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional string employeeTagId = 1;</code>
+       * <code>optional string employeeteamId = 1;</code>
        */
-      public String getEmployeeTagId() {
-        return instance.getEmployeeTagId();
+      public String getEmployeeteamId() {
+        return instance.getEmployeeteamId();
       }
       /**
-       * <code>optional string employeeTagId = 1;</code>
+       * <code>optional string employeeteamId = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getEmployeeTagIdBytes() {
-        return instance.getEmployeeTagIdBytes();
+          getEmployeeteamIdBytes() {
+        return instance.getEmployeeteamIdBytes();
       }
       /**
-       * <code>optional string employeeTagId = 1;</code>
+       * <code>optional string employeeteamId = 1;</code>
        */
-      public Builder setEmployeeTagId(
+      public Builder setEmployeeteamId(
           String value) {
         copyOnWrite();
-        instance.setEmployeeTagId(value);
+        instance.setEmployeeteamId(value);
         return this;
       }
       /**
-       * <code>optional string employeeTagId = 1;</code>
+       * <code>optional string employeeteamId = 1;</code>
        */
-      public Builder clearEmployeeTagId() {
+      public Builder clearEmployeeteamId() {
         copyOnWrite();
-        instance.clearEmployeeTagId();
+        instance.clearEmployeeteamId();
         return this;
       }
       /**
-       * <code>optional string employeeTagId = 1;</code>
+       * <code>optional string employeeteamId = 1;</code>
        */
-      public Builder setEmployeeTagIdBytes(
+      public Builder setEmployeeteamIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setEmployeeTagIdBytes(value);
+        instance.setEmployeeteamIdBytes(value);
         return this;
       }
 
@@ -2048,58 +3724,58 @@ public final class TicketProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
        */
-      public boolean hasTag() {
-        return instance.hasTag();
+      public boolean hasTeam() {
+        return instance.hasTeam();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
        */
-      public TicketTag getTag() {
-        return instance.getTag();
+      public Team getTeam() {
+        return instance.getTeam();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
        */
-      public Builder setTag(TicketTag value) {
+      public Builder setTeam(Team value) {
         copyOnWrite();
-        instance.setTag(value);
+        instance.setTeam(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
        */
-      public Builder setTag(
-          TicketTag.Builder builderForValue) {
+      public Builder setTeam(
+          Team.Builder builderForValue) {
         copyOnWrite();
-        instance.setTag(builderForValue);
+        instance.setTeam(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
        */
-      public Builder mergeTag(TicketTag value) {
+      public Builder mergeTeam(Team value) {
         copyOnWrite();
-        instance.mergeTag(value);
+        instance.mergeTeam(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.TicketTag tag = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Team team = 3;</code>
        */
-      public Builder clearTag() {  copyOnWrite();
-        instance.clearTag();
+      public Builder clearTeam() {  copyOnWrite();
+        instance.clearTeam();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EmployeeTag)
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EmployeeTeamAssign)
     }
     protected final Object dynamicMethod(
         MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new EmployeeTag();
+          return new EmployeeTeamAssign();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2112,11 +3788,11 @@ public final class TicketProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          EmployeeTag other = (EmployeeTag) arg1;
-          employeeTagId_ = visitor.visitString(!employeeTagId_.isEmpty(), employeeTagId_,
-              !other.employeeTagId_.isEmpty(), other.employeeTagId_);
+          EmployeeTeamAssign other = (EmployeeTeamAssign) arg1;
+          employeeteamId_ = visitor.visitString(!employeeteamId_.isEmpty(), employeeteamId_,
+              !other.employeeteamId_.isEmpty(), other.employeeteamId_);
           employee_ = visitor.visitMessage(employee_, other.employee_);
-          tag_ = visitor.visitMessage(tag_, other.tag_);
+          team_ = visitor.visitMessage(team_, other.team_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -2144,7 +3820,7 @@ public final class TicketProto {
                 case 10: {
                   String s = input.readStringRequireUtf8();
 
-                  employeeTagId_ = s;
+                  employeeteamId_ = s;
                   break;
                 }
                 case 18: {
@@ -2161,14 +3837,14 @@ public final class TicketProto {
                   break;
                 }
                 case 26: {
-                  TicketTag.Builder subBuilder = null;
-                  if (tag_ != null) {
-                    subBuilder = tag_.toBuilder();
+                  Team.Builder subBuilder = null;
+                  if (team_ != null) {
+                    subBuilder = team_.toBuilder();
                   }
-                  tag_ = input.readMessage(TicketTag.parser(), extensionRegistry);
+                  team_ = input.readMessage(Team.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(tag_);
-                    tag_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(team_);
+                    team_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -2188,7 +3864,7 @@ public final class TicketProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (EmployeeTag.class) {
+          if (PARSER == null) {    synchronized (EmployeeTeamAssign.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2201,20 +3877,20 @@ public final class TicketProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.EmployeeTag)
-    private static final EmployeeTag DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.EmployeeTeamAssign)
+    private static final EmployeeTeamAssign DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new EmployeeTag();
+      DEFAULT_INSTANCE = new EmployeeTeamAssign();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static EmployeeTag getDefaultInstance() {
+    public static EmployeeTeamAssign getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<EmployeeTag> PARSER;
+    private static volatile com.google.protobuf.Parser<EmployeeTeamAssign> PARSER;
 
-    public static com.google.protobuf.Parser<EmployeeTag> parser() {
+    public static com.google.protobuf.Parser<EmployeeTeamAssign> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -4234,29 +5910,29 @@ public final class TicketProto {
 
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    java.util.List<TicketTag>
-        getTagsList();
+    java.util.List<Team>
+        getTeamsList();
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    TicketTag getTags(int index);
+    Team getTeams(int index);
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    int getTagsCount();
+    int getTeamsCount();
 
     /**
      * <code>optional int64 createdAt = 9;</code>
@@ -4469,6 +6145,52 @@ public final class TicketProto {
      */
     com.google.protobuf.ByteString
         getRefIdBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    java.util.List<Label>
+        getLabelList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    Label getLabel(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    int getLabelCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    boolean hasType();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    TicketType getType();
+
+    /**
+     * <code>optional int64 estimatedTime = 33;</code>
+     */
+    long getEstimatedTime();
+
+    /**
+     * <pre>
+     *example 1 hour, 1 week
+     * </pre>
+     *
+     * <code>optional string estimatedTimeDesc = 34;</code>
+     */
+    String getEstimatedTimeDesc();
+    /**
+     * <pre>
+     *example 1 hour, 1 week
+     * </pre>
+     *
+     * <code>optional string estimatedTimeDesc = 34;</code>
+     */
+    com.google.protobuf.ByteString
+        getEstimatedTimeDescBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Ticket}
@@ -4481,13 +6203,15 @@ public final class TicketProto {
     private Ticket() {
       title_ = "";
       description_ = "";
-      tags_ = emptyProtobufList();
+      teams_ = emptyProtobufList();
       closedRemark_ = "";
       reopenedRemark_ = "";
       subscribers_ = emptyProtobufList();
       ticketStateHistory_ = emptyProtobufList();
       ticketContributor_ = emptyProtobufList();
       refId_ = "";
+      label_ = emptyProtobufList();
+      estimatedTimeDesc_ = "";
     }
     private int bitField0_;
     public static final int TICKETID_FIELD_NUMBER = 1;
@@ -4800,180 +6524,180 @@ public final class TicketProto {
       ticketSource_ = 0;
     }
 
-    public static final int TAGS_FIELD_NUMBER = 8;
-    private com.google.protobuf.Internal.ProtobufList<TicketTag> tags_;
+    public static final int TEAMS_FIELD_NUMBER = 8;
+    private com.google.protobuf.Internal.ProtobufList<Team> teams_;
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    public java.util.List<TicketTag> getTagsList() {
-      return tags_;
+    public java.util.List<Team> getTeamsList() {
+      return teams_;
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    public java.util.List<? extends TicketTagOrBuilder>
-        getTagsOrBuilderList() {
-      return tags_;
+    public java.util.List<? extends TeamOrBuilder>
+        getTeamsOrBuilderList() {
+      return teams_;
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    public int getTagsCount() {
-      return tags_.size();
+    public int getTeamsCount() {
+      return teams_.size();
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    public TicketTag getTags(int index) {
-      return tags_.get(index);
+    public Team getTeams(int index) {
+      return teams_.get(index);
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    public TicketTagOrBuilder getTagsOrBuilder(
+    public TeamOrBuilder getTeamsOrBuilder(
         int index) {
-      return tags_.get(index);
+      return teams_.get(index);
     }
-    private void ensureTagsIsMutable() {
-      if (!tags_.isModifiable()) {
-        tags_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(tags_);
+    private void ensureTeamsIsMutable() {
+      if (!teams_.isModifiable()) {
+        teams_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(teams_);
        }
     }
 
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void setTags(
-        int index, TicketTag value) {
+    private void setTeams(
+        int index, Team value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureTagsIsMutable();
-      tags_.set(index, value);
+      ensureTeamsIsMutable();
+      teams_.set(index, value);
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void setTags(
-        int index, TicketTag.Builder builderForValue) {
-      ensureTagsIsMutable();
-      tags_.set(index, builderForValue.build());
+    private void setTeams(
+        int index, Team.Builder builderForValue) {
+      ensureTeamsIsMutable();
+      teams_.set(index, builderForValue.build());
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void addTags(TicketTag value) {
+    private void addTeams(Team value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureTagsIsMutable();
-      tags_.add(value);
+      ensureTeamsIsMutable();
+      teams_.add(value);
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void addTags(
-        int index, TicketTag value) {
+    private void addTeams(
+        int index, Team value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureTagsIsMutable();
-      tags_.add(index, value);
+      ensureTeamsIsMutable();
+      teams_.add(index, value);
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void addTags(
-        TicketTag.Builder builderForValue) {
-      ensureTagsIsMutable();
-      tags_.add(builderForValue.build());
+    private void addTeams(
+        Team.Builder builderForValue) {
+      ensureTeamsIsMutable();
+      teams_.add(builderForValue.build());
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void addTags(
-        int index, TicketTag.Builder builderForValue) {
-      ensureTagsIsMutable();
-      tags_.add(index, builderForValue.build());
+    private void addTeams(
+        int index, Team.Builder builderForValue) {
+      ensureTeamsIsMutable();
+      teams_.add(index, builderForValue.build());
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void addAllTags(
-        Iterable<? extends TicketTag> values) {
-      ensureTagsIsMutable();
+    private void addAllTeams(
+        Iterable<? extends Team> values) {
+      ensureTeamsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
-          values, tags_);
+          values, teams_);
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void clearTags() {
-      tags_ = emptyProtobufList();
+    private void clearTeams() {
+      teams_ = emptyProtobufList();
     }
     /**
      * <pre>
-     *ticket label / department
+     *ticket team/department
      * </pre>
      *
-     * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+     * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
      */
-    private void removeTags(int index) {
-      ensureTagsIsMutable();
-      tags_.remove(index);
+    private void removeTeams(int index) {
+      ensureTeamsIsMutable();
+      teams_.remove(index);
     }
 
     public static final int CREATEDAT_FIELD_NUMBER = 9;
@@ -6124,6 +7848,267 @@ public final class TicketProto {
       refId_ = value.toStringUtf8();
     }
 
+    public static final int LABEL_FIELD_NUMBER = 31;
+    private com.google.protobuf.Internal.ProtobufList<Label> label_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    public java.util.List<Label> getLabelList() {
+      return label_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    public java.util.List<? extends LabelOrBuilder>
+        getLabelOrBuilderList() {
+      return label_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    public int getLabelCount() {
+      return label_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    public Label getLabel(int index) {
+      return label_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    public LabelOrBuilder getLabelOrBuilder(
+        int index) {
+      return label_.get(index);
+    }
+    private void ensureLabelIsMutable() {
+      if (!label_.isModifiable()) {
+        label_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(label_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void setLabel(
+        int index, Label value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelIsMutable();
+      label_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void setLabel(
+        int index, Label.Builder builderForValue) {
+      ensureLabelIsMutable();
+      label_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void addLabel(Label value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelIsMutable();
+      label_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void addLabel(
+        int index, Label value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelIsMutable();
+      label_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void addLabel(
+        Label.Builder builderForValue) {
+      ensureLabelIsMutable();
+      label_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void addLabel(
+        int index, Label.Builder builderForValue) {
+      ensureLabelIsMutable();
+      label_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void addAllLabel(
+        Iterable<? extends Label> values) {
+      ensureLabelIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, label_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void clearLabel() {
+      label_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+     */
+    private void removeLabel(int index) {
+      ensureLabelIsMutable();
+      label_.remove(index);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 32;
+    private TicketType type_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    public boolean hasType() {
+      return type_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    public TicketType getType() {
+      return type_ == null ? TicketType.getDefaultInstance() : type_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    private void setType(TicketType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      type_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    private void setType(
+        TicketType.Builder builderForValue) {
+      type_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    private void mergeType(TicketType value) {
+      if (type_ != null &&
+          type_ != TicketType.getDefaultInstance()) {
+        type_ =
+          TicketType.newBuilder(type_).mergeFrom(value).buildPartial();
+      } else {
+        type_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+     */
+    private void clearType() {  type_ = null;
+      
+    }
+
+    public static final int ESTIMATEDTIME_FIELD_NUMBER = 33;
+    private long estimatedTime_;
+    /**
+     * <code>optional int64 estimatedTime = 33;</code>
+     */
+    public long getEstimatedTime() {
+      return estimatedTime_;
+    }
+    /**
+     * <code>optional int64 estimatedTime = 33;</code>
+     */
+    private void setEstimatedTime(long value) {
+      
+      estimatedTime_ = value;
+    }
+    /**
+     * <code>optional int64 estimatedTime = 33;</code>
+     */
+    private void clearEstimatedTime() {
+      
+      estimatedTime_ = 0L;
+    }
+
+    public static final int ESTIMATEDTIMEDESC_FIELD_NUMBER = 34;
+    private String estimatedTimeDesc_;
+    /**
+     * <pre>
+     *example 1 hour, 1 week
+     * </pre>
+     *
+     * <code>optional string estimatedTimeDesc = 34;</code>
+     */
+    public String getEstimatedTimeDesc() {
+      return estimatedTimeDesc_;
+    }
+    /**
+     * <pre>
+     *example 1 hour, 1 week
+     * </pre>
+     *
+     * <code>optional string estimatedTimeDesc = 34;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEstimatedTimeDescBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(estimatedTimeDesc_);
+    }
+    /**
+     * <pre>
+     *example 1 hour, 1 week
+     * </pre>
+     *
+     * <code>optional string estimatedTimeDesc = 34;</code>
+     */
+    private void setEstimatedTimeDesc(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      estimatedTimeDesc_ = value;
+    }
+    /**
+     * <pre>
+     *example 1 hour, 1 week
+     * </pre>
+     *
+     * <code>optional string estimatedTimeDesc = 34;</code>
+     */
+    private void clearEstimatedTimeDesc() {
+      
+      estimatedTimeDesc_ = getDefaultInstance().getEstimatedTimeDesc();
+    }
+    /**
+     * <pre>
+     *example 1 hour, 1 week
+     * </pre>
+     *
+     * <code>optional string estimatedTimeDesc = 34;</code>
+     */
+    private void setEstimatedTimeDescBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      estimatedTimeDesc_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ticketId_ != 0L) {
@@ -6147,8 +8132,8 @@ public final class TicketProto {
       if (ticketSource_ != TicketSource.UNKNOWN_TICKET_SOURCE.getNumber()) {
         output.writeEnum(7, ticketSource_);
       }
-      for (int i = 0; i < tags_.size(); i++) {
-        output.writeMessage(8, tags_.get(i));
+      for (int i = 0; i < teams_.size(); i++) {
+        output.writeMessage(8, teams_.get(i));
       }
       if (createdAt_ != 0L) {
         output.writeInt64(9, createdAt_);
@@ -6216,6 +8201,18 @@ public final class TicketProto {
       if (!refId_.isEmpty()) {
         output.writeString(30, getRefId());
       }
+      for (int i = 0; i < label_.size(); i++) {
+        output.writeMessage(31, label_.get(i));
+      }
+      if (type_ != null) {
+        output.writeMessage(32, getType());
+      }
+      if (estimatedTime_ != 0L) {
+        output.writeInt64(33, estimatedTime_);
+      }
+      if (!estimatedTimeDesc_.isEmpty()) {
+        output.writeString(34, getEstimatedTimeDesc());
+      }
     }
 
     public int getSerializedSize() {
@@ -6251,9 +8248,9 @@ public final class TicketProto {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, ticketSource_);
       }
-      for (int i = 0; i < tags_.size(); i++) {
+      for (int i = 0; i < teams_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, tags_.get(i));
+          .computeMessageSize(8, teams_.get(i));
       }
       if (createdAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -6342,6 +8339,22 @@ public final class TicketProto {
       if (!refId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(30, getRefId());
+      }
+      for (int i = 0; i < label_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(31, label_.get(i));
+      }
+      if (type_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(32, getType());
+      }
+      if (estimatedTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(33, estimatedTime_);
+      }
+      if (!estimatedTimeDesc_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(34, getEstimatedTimeDesc());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6706,146 +8719,146 @@ public final class TicketProto {
 
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public java.util.List<TicketTag> getTagsList() {
+      public java.util.List<Team> getTeamsList() {
         return java.util.Collections.unmodifiableList(
-            instance.getTagsList());
+            instance.getTeamsList());
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public int getTagsCount() {
-        return instance.getTagsCount();
+      public int getTeamsCount() {
+        return instance.getTeamsCount();
       }/**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public TicketTag getTags(int index) {
-        return instance.getTags(index);
+      public Team getTeams(int index) {
+        return instance.getTeams(index);
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder setTags(
-          int index, TicketTag value) {
+      public Builder setTeams(
+          int index, Team value) {
         copyOnWrite();
-        instance.setTags(index, value);
+        instance.setTeams(index, value);
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder setTags(
-          int index, TicketTag.Builder builderForValue) {
+      public Builder setTeams(
+          int index, Team.Builder builderForValue) {
         copyOnWrite();
-        instance.setTags(index, builderForValue);
+        instance.setTeams(index, builderForValue);
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder addTags(TicketTag value) {
+      public Builder addTeams(Team value) {
         copyOnWrite();
-        instance.addTags(value);
+        instance.addTeams(value);
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder addTags(
-          int index, TicketTag value) {
+      public Builder addTeams(
+          int index, Team value) {
         copyOnWrite();
-        instance.addTags(index, value);
+        instance.addTeams(index, value);
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder addTags(
-          TicketTag.Builder builderForValue) {
+      public Builder addTeams(
+          Team.Builder builderForValue) {
         copyOnWrite();
-        instance.addTags(builderForValue);
+        instance.addTeams(builderForValue);
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder addTags(
-          int index, TicketTag.Builder builderForValue) {
+      public Builder addTeams(
+          int index, Team.Builder builderForValue) {
         copyOnWrite();
-        instance.addTags(index, builderForValue);
+        instance.addTeams(index, builderForValue);
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder addAllTags(
-          Iterable<? extends TicketTag> values) {
+      public Builder addAllTeams(
+          Iterable<? extends Team> values) {
         copyOnWrite();
-        instance.addAllTags(values);
+        instance.addAllTeams(values);
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder clearTags() {
+      public Builder clearTeams() {
         copyOnWrite();
-        instance.clearTags();
+        instance.clearTeams();
         return this;
       }
       /**
        * <pre>
-       *ticket label / department
+       *ticket team/department
        * </pre>
        *
-       * <code>repeated .treeleaf.anydone.entities.TicketTag tags = 8;</code>
+       * <code>repeated .treeleaf.anydone.entities.Team teams = 8;</code>
        */
-      public Builder removeTags(int index) {
+      public Builder removeTeams(int index) {
         copyOnWrite();
-        instance.removeTags(index);
+        instance.removeTeams(index);
         return this;
       }
 
@@ -7862,6 +9875,231 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public java.util.List<Label> getLabelList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getLabelList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public int getLabelCount() {
+        return instance.getLabelCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Label getLabel(int index) {
+        return instance.getLabel(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder setLabel(
+          int index, Label value) {
+        copyOnWrite();
+        instance.setLabel(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder setLabel(
+          int index, Label.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLabel(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder addLabel(Label value) {
+        copyOnWrite();
+        instance.addLabel(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder addLabel(
+          int index, Label value) {
+        copyOnWrite();
+        instance.addLabel(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder addLabel(
+          Label.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLabel(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder addLabel(
+          int index, Label.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLabel(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder addAllLabel(
+          Iterable<? extends Label> values) {
+        copyOnWrite();
+        instance.addAllLabel(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder clearLabel() {
+        copyOnWrite();
+        instance.clearLabel();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Label label = 31;</code>
+       */
+      public Builder removeLabel(int index) {
+        copyOnWrite();
+        instance.removeLabel(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+       */
+      public boolean hasType() {
+        return instance.hasType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+       */
+      public TicketType getType() {
+        return instance.getType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+       */
+      public Builder setType(TicketType value) {
+        copyOnWrite();
+        instance.setType(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+       */
+      public Builder setType(
+          TicketType.Builder builderForValue) {
+        copyOnWrite();
+        instance.setType(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+       */
+      public Builder mergeType(TicketType value) {
+        copyOnWrite();
+        instance.mergeType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketType type = 32;</code>
+       */
+      public Builder clearType() {  copyOnWrite();
+        instance.clearType();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 estimatedTime = 33;</code>
+       */
+      public long getEstimatedTime() {
+        return instance.getEstimatedTime();
+      }
+      /**
+       * <code>optional int64 estimatedTime = 33;</code>
+       */
+      public Builder setEstimatedTime(long value) {
+        copyOnWrite();
+        instance.setEstimatedTime(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 estimatedTime = 33;</code>
+       */
+      public Builder clearEstimatedTime() {
+        copyOnWrite();
+        instance.clearEstimatedTime();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *example 1 hour, 1 week
+       * </pre>
+       *
+       * <code>optional string estimatedTimeDesc = 34;</code>
+       */
+      public String getEstimatedTimeDesc() {
+        return instance.getEstimatedTimeDesc();
+      }
+      /**
+       * <pre>
+       *example 1 hour, 1 week
+       * </pre>
+       *
+       * <code>optional string estimatedTimeDesc = 34;</code>
+       */
+      public com.google.protobuf.ByteString
+          getEstimatedTimeDescBytes() {
+        return instance.getEstimatedTimeDescBytes();
+      }
+      /**
+       * <pre>
+       *example 1 hour, 1 week
+       * </pre>
+       *
+       * <code>optional string estimatedTimeDesc = 34;</code>
+       */
+      public Builder setEstimatedTimeDesc(
+          String value) {
+        copyOnWrite();
+        instance.setEstimatedTimeDesc(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *example 1 hour, 1 week
+       * </pre>
+       *
+       * <code>optional string estimatedTimeDesc = 34;</code>
+       */
+      public Builder clearEstimatedTimeDesc() {
+        copyOnWrite();
+        instance.clearEstimatedTimeDesc();
+        return this;
+      }
+      /**
+       * <pre>
+       *example 1 hour, 1 week
+       * </pre>
+       *
+       * <code>optional string estimatedTimeDesc = 34;</code>
+       */
+      public Builder setEstimatedTimeDescBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setEstimatedTimeDescBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Ticket)
     }
     protected final Object dynamicMethod(
@@ -7875,10 +10113,11 @@ public final class TicketProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
-          tags_.makeImmutable();
+          teams_.makeImmutable();
           subscribers_.makeImmutable();
           ticketStateHistory_.makeImmutable();
           ticketContributor_.makeImmutable();
+          label_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -7897,7 +10136,7 @@ public final class TicketProto {
           customer_ = visitor.visitMessage(customer_, other.customer_);
           serviceProvider_ = visitor.visitMessage(serviceProvider_, other.serviceProvider_);
           ticketSource_ = visitor.visitInt(ticketSource_ != 0, ticketSource_,    other.ticketSource_ != 0, other.ticketSource_);
-          tags_= visitor.visitList(tags_, other.tags_);
+          teams_= visitor.visitList(teams_, other.teams_);
           createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
@@ -7930,6 +10169,12 @@ public final class TicketProto {
           ticketContributor_= visitor.visitList(ticketContributor_, other.ticketContributor_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
+          label_= visitor.visitList(label_, other.label_);
+          type_ = visitor.visitMessage(type_, other.type_);
+          estimatedTime_ = visitor.visitLong(estimatedTime_ != 0L, estimatedTime_,
+              other.estimatedTime_ != 0L, other.estimatedTime_);
+          estimatedTimeDesc_ = visitor.visitString(!estimatedTimeDesc_.isEmpty(), estimatedTimeDesc_,
+              !other.estimatedTimeDesc_.isEmpty(), other.estimatedTimeDesc_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8018,12 +10263,12 @@ public final class TicketProto {
                   break;
                 }
                 case 66: {
-                  if (!tags_.isModifiable()) {
-                    tags_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(tags_);
+                  if (!teams_.isModifiable()) {
+                    teams_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(teams_);
                   }
-                  tags_.add(
-                      input.readMessage(TicketTag.parser(), extensionRegistry));
+                  teams_.add(
+                      input.readMessage(Team.parser(), extensionRegistry));
                   break;
                 }
                 case 72: {
@@ -8202,6 +10447,39 @@ public final class TicketProto {
                   refId_ = s;
                   break;
                 }
+                case 250: {
+                  if (!label_.isModifiable()) {
+                    label_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(label_);
+                  }
+                  label_.add(
+                      input.readMessage(Label.parser(), extensionRegistry));
+                  break;
+                }
+                case 258: {
+                  TicketType.Builder subBuilder = null;
+                  if (type_ != null) {
+                    subBuilder = type_.toBuilder();
+                  }
+                  type_ = input.readMessage(TicketType.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(type_);
+                    type_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 264: {
+
+                  estimatedTime_ = input.readInt64();
+                  break;
+                }
+                case 274: {
+                  String s = input.readStringRequireUtf8();
+
+                  estimatedTimeDesc_ = s;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -8303,7 +10581,7 @@ public final class TicketProto {
    *
    * Protobuf type {@code treeleaf.anydone.entities.TicketStatByStatus}
    */
-  public  static final class  TicketStatByStatus extends
+  public  static final class TicketStatByStatus extends
       com.google.protobuf.GeneratedMessageLite<
           TicketStatByStatus, TicketStatByStatus.Builder> implements
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketStatByStatus)

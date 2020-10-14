@@ -171,7 +171,7 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
     @Override
     public void onFailure(String message) {
         etPin.setText("");
-        showToastMessage(message);
+        showToastMessage(Constants.SERVER_ERROR);
     }
 
     @Override

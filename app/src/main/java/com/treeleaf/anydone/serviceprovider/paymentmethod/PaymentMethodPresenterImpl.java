@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.paymentmethod;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.PaymentProto;
 import com.treeleaf.anydone.rpc.PaymentRpcProto;
-import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.CardRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -91,12 +90,13 @@ public class PaymentMethodPresenterImpl extends BasePresenter<PaymentMethodContr
         getView().showProgressBar("Please wait...");
 
         String token = Hawk.get(Constants.TOKEN);
-        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        Retrofit retrofit = GlobalUtils.getRetrofitInstanceJSON();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
-
 
         JSONObject idObj = new JSONObject();
         idObj.put("refId", refId);
+
+        GlobalUtils.showLog(TAG, "payload check: " + idObj.toString());
         Observable<PaymentRpcProto.PaymentBaseResponse> makeLocationDefaultObservable =
                 service.setPaymentCardAsPrimary(token, idObj.toString());
 

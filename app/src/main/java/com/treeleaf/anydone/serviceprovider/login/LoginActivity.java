@@ -332,7 +332,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
     @Override
     public void onFailure(String message) {
-        showToastMessage(message);
+        showToastMessage(Constants.SERVER_ERROR);
     }
 
     @Override

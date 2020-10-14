@@ -37,6 +37,10 @@ public final class NotificationProto {
      * <code>PHONE_VERIFICATION = 5;</code>
      */
     PHONE_VERIFICATION(5),
+    /**
+     * <code>SHARE_LINK = 6;</code>
+     */
+    SHARE_LINK(6),
     UNRECOGNIZED(-1),
     ;
 
@@ -64,6 +68,10 @@ public final class NotificationProto {
      * <code>PHONE_VERIFICATION = 5;</code>
      */
     public static final int PHONE_VERIFICATION_VALUE = 5;
+    /**
+     * <code>SHARE_LINK = 6;</code>
+     */
+    public static final int SHARE_LINK_VALUE = 6;
 
 
     public final int getNumber() {
@@ -86,6 +94,7 @@ public final class NotificationProto {
         case 3: return WELCOME_EMAIL;
         case 4: return RESET_PASSWORD_CONFIRMATION;
         case 5: return PHONE_VERIFICATION;
+        case 6: return SHARE_LINK;
         default: return null;
       }
     }

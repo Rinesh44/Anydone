@@ -21,6 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.realm.repo.CardRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -77,6 +78,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     ProgressBar progressBar;
 
     private ArrayList<String> cardPatterns = new ArrayList<>();
+    private String cardType;
 
     @Override
     protected int getLayout() {
@@ -120,6 +122,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
                     UiUtils.getString(etCity),
                     UiUtils.getString(etState),
                     UiUtils.getString(etZipCode),
+                    cardType,
                     swPrimaryCard.isChecked());
         });
 
@@ -163,11 +166,13 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     private void addCardDrawable(String p) {
         switch (p) {
             case Constants.VISA:
+                cardType = "VISA";
                 etCardNumber.setCompoundDrawablesWithIntrinsicBounds(
                         0, 0, R.drawable.ic_visacard_icon, 0);
                 break;
 
             case Constants.MASTERCARD:
+                cardType = "MASTERCARD";
                 etCardNumber.setCompoundDrawablesWithIntrinsicBounds(
                         0, 0, R.drawable.ic_mastercard_icon, 0);
                 break;
@@ -351,7 +356,8 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
 
     @Override
     public void onFailure(String message) {
-        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), message);
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
+                Constants.SERVER_ERROR);
     }
 
     @Override

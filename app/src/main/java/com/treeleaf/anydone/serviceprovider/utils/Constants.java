@@ -80,5 +80,6 @@ Constants {
     public static final String PROD_BASE_URL = "https://api.anydone.com/";
     public static final String DEV_BASE_URL = "https://api.anydone.net/";
     public static final String MQTT_CONNECTED = "MQTT_CONNECTED";
+    public static final String SERVER_ERROR = "Error connecting to server";
 
 }

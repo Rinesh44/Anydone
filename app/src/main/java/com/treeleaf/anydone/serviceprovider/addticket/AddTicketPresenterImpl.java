@@ -7,6 +7,7 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -37,11 +38,14 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
     }
 
     @Override
-    public void createTicket(String title, String description, String customerId, String customerEmail,
-                             String customerPhone, String customerName, List<String> tags,
-                             String assignedEmployeeId, int priority, TicketProto.TicketSource ticketSource) {
+    public void createTicket(String ticketType, String title, String description, String customerId,
+                             String customerEmail, String customerPhone, String customerName,
+                             List<String> tags, List<Label> ticketLabels, String estimatedTime,
+                             String assignedEmployeeId, int priority,
+                             TicketProto.TicketSource ticketSource, boolean customerAsSelf) {
 
-        if (!validateCredentials(title, customerName)) {
+        TicketProto.CustomerType customerType = TicketProto.CustomerType.EXTERNAL_CUSTOMER;
+        if (!validateCredentials(title, customerName, ticketType)) {
             return;
         }
 
@@ -59,6 +63,8 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setPhone(customerPhone)
                     .setFullName(customerName)
                     .build();
+
+            customerType = TicketProto.CustomerType.ANYDONE_CONSUMER;
         } else {
             customer = UserProto.Customer.newBuilder()
                     .setEmail(customerEmail)
@@ -67,16 +73,41 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .build();
         }
 
-        List<TicketProto.TicketTag> tagList = new ArrayList<>();
+        if (customerAsSelf) {
+            String accountType = AccountRepo.getInstance().getAccount().getAccountType();
+            if (accountType.equalsIgnoreCase("EMPLOYEE")) {
+                customerType = TicketProto.CustomerType.ANYDONE_EMPLOYEE;
+            } else if (accountType.equalsIgnoreCase("SERVICE_PROVIDER")) {
+                customerType = TicketProto.CustomerType.ANYDONE_SERVICE_PROVIDER;
+            }
+        }
+
+        GlobalUtils.showLog(TAG, "customer id check: " + customerId);
+
+        List<TicketProto.Team> tagList = new ArrayList<>();
         for (String tagId : tags
         ) {
-            TicketProto.TicketTag tag = TicketProto.TicketTag.newBuilder()
-                    .setTagId(tagId)
+            TicketProto.Team tag = TicketProto.Team.newBuilder()
+                    .setTeamId(tagId)
                     .build();
 
             tagList.add(tag);
         }
 
+        List<TicketProto.Label> labelList = new ArrayList<>();
+        for (Label label : ticketLabels
+        ) {
+            TicketProto.Label label1 = TicketProto.Label.newBuilder()
+                    .setLabelId(label.getLabelId())
+                    .setName(label.getName())
+                    .build();
+
+            labelList.add(label1);
+        }
+
+        TicketProto.TicketType type = TicketProto.TicketType.newBuilder()
+                .setTicketTypeId(ticketType)
+                .build();
 
         ServiceProto.Service service = ServiceProto.Service.newBuilder()
                 .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
@@ -96,27 +127,35 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setAssignedAt(System.currentTimeMillis())
                     .setAssignedTo(employeeProfile)
                     .build();
+
             ticket = TicketProto.Ticket.newBuilder()
                     .setTitle(title)
                     .setDescription(description)
+                    .setType(type)
                     .setCustomer(customer)
-                    .setCustomerType(TicketProto.CustomerType.EXTERNAL_CUSTOMER)
+                    .setCustomerType(customerType)
                     .setPriority(getTicketPriority(priority))
                     .setService(service)
                     .setEmployeeAssigned(employeeAssigned)
                     .setTicketSource(ticketSource)
-                    .addAllTags(tagList)
+                    .addAllTeams(tagList)
+                    .addAllLabel(labelList)
+                    .setEstimatedTimeDesc(estimatedTime)
                     .build();
         } else {
+
             ticket = TicketProto.Ticket.newBuilder()
                     .setTitle(title)
                     .setDescription(description)
                     .setCustomer(customer)
-                    .setCustomerType(TicketProto.CustomerType.EXTERNAL_CUSTOMER)
+                    .setType(type)
+                    .setCustomerType(customerType)
                     .setPriority(getTicketPriority(priority))
                     .setService(service)
                     .setTicketSource(ticketSource)
-                    .addAllTags(tagList)
+                    .addAllTeams(tagList)
+                    .addAllLabel(labelList)
+                    .setEstimatedTimeDesc(estimatedTime)
                     .build();
         }
 
@@ -235,7 +274,12 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         });
     }
 
-    private boolean validateCredentials(String summary, String customerName) {
+    private boolean validateCredentials(String summary, String customerName, String ticketType) {
+
+        if (ticketType == null || ValidationUtils.isEmpty(ticketType)) {
+            getView().onInvalidTicketType();
+            return false;
+        }
 
         if (ValidationUtils.isEmpty(summary)) {
             getView().onInvalidSummary();
@@ -246,6 +290,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
             getView().onInvalidCustomer();
             return false;
         }
+
         return true;
     }
 }

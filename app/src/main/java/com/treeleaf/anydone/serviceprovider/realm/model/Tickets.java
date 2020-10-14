@@ -10,12 +10,17 @@ public class Tickets extends RealmObject {
     long ticketId;
     String title;
     String description;
+    String ticketCategory;
+    String ticketCategoryId;
     Customer customer;
     ServiceProvider serviceProvider;
     String ticketSource;
     RealmList<Tags> tagsRealmList;
+    RealmList<Label> labelRealmList;
     RealmList<AssignEmployee> contributorList;
     String serviceId;
+    String estimatedTime;
+    long estimatedTimeStamp;
     String customerType;
     String ticketType;
     long createdAt;
@@ -192,5 +197,45 @@ public class Tickets extends RealmObject {
 
     public void setBotEnabled(boolean botEnabled) {
         this.botEnabled = botEnabled;
+    }
+
+    public String getTicketCategory() {
+        return ticketCategory;
+    }
+
+    public void setTicketCategory(String ticketCategory) {
+        this.ticketCategory = ticketCategory;
+    }
+
+    public RealmList<Label> getLabelRealmList() {
+        return labelRealmList;
+    }
+
+    public void setLabelRealmList(RealmList<Label> labelRealmList) {
+        this.labelRealmList = labelRealmList;
+    }
+
+    public String getEstimatedTime() {
+        return estimatedTime;
+    }
+
+    public void setEstimatedTime(String estimatedTime) {
+        this.estimatedTime = estimatedTime;
+    }
+
+    public long getEstimatedTimeStamp() {
+        return estimatedTimeStamp;
+    }
+
+    public void setEstimatedTimeStamp(long estimatedTimeStamp) {
+        this.estimatedTimeStamp = estimatedTimeStamp;
+    }
+
+    public String getTicketCategoryId() {
+        return ticketCategoryId;
+    }
+
+    public void setTicketCategoryId(String ticketCategoryId) {
+        this.ticketCategoryId = ticketCategoryId;
     }
 }

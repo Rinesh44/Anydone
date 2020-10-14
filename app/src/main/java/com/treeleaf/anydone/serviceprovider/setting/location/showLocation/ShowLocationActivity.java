@@ -22,6 +22,7 @@ import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.realm.repo.LocationRepo;
 import com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.List;
@@ -201,7 +202,7 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
     @Override
     public void onFailure(String message) {
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
-                message);
+                Constants.SERVER_ERROR);
     }
 
     @Override

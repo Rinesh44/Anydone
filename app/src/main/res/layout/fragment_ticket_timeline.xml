@@ -145,6 +145,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -249,6 +250,24 @@
                         </RelativeLayout>
 
                         <TextView
+                            android:id="@+id/tv_ticket_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:text="Ticket Type"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="@dimen/material_text_subhead"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_ticket_type_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_ticket_id_title"
+                            android:text="Software"
+                            android:textColor="@color/black" />
+
+                        <TextView
                             android:id="@+id/tv_ticket_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -263,7 +282,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_2x2"
-                            android:text="kjasdf alksdjf lajsdfl alskdjf lasdflkj asdflkj alsdflkjas dfljalskdjf "
+                            android:text="kjasdf alksdjf lajsdfl alskdjf lasdflkj asdflkj alsdflkj "
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_estimated_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:text="Estimated Time"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="@dimen/material_text_subhead"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_estimated_time_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_ticket_id_title"
+                            android:text="1 day 7 hours"
                             android:textColor="@color/black" />
 
                         <TextView
@@ -467,6 +504,37 @@
                                 android:layout_marginTop="@dimen/dimen_2x1"
                                 android:orientation="horizontal" />
                         </HorizontalScrollView>
+
+                        <LinearLayout
+                            android:id="@+id/ll_label_holder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dimen_10x2"
+                                android:text="Label"
+                                android:textColor="@color/charcoal_text"
+                                android:textSize="@dimen/material_text_subhead"
+                                android:textStyle="bold" />
+
+                            <HorizontalScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fillViewport="true"
+                                android:scrollbars="none">
+
+                                <LinearLayout
+                                    android:id="@+id/ll_labels"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dimen_2x1"
+                                    android:orientation="horizontal" />
+                            </HorizontalScrollView>
+                        </LinearLayout>
 
                     </LinearLayout>
 

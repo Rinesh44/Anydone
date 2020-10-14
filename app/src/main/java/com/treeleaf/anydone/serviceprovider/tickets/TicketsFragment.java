@@ -150,7 +150,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         presenter.findCustomers();
         presenter.findEmployees();
-        presenter.findTags();
+        presenter.getTicketTypes();
+        presenter.getLabels();
 
 /*        sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
 
@@ -773,7 +774,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     public void onFailure(String message) {
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                message);
+                Constants.SERVER_ERROR);
     }
 
 
@@ -925,6 +926,38 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @Override
     public void findTagsFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
+    }
+
+    @Override
+    public void getLabelSuccess() {
+
+    }
+
+    @Override
+    public void getLabelFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
+    }
+
+    @Override
+    public void getTypeSuccess() {
+
+    }
+
+    @Override
+    public void getTypeFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());

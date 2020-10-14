@@ -139,6 +139,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         });
     }
 
+
     public void setData(List<Conversation> newConversationList) {
         if (!CollectionUtils.isEmpty(newConversationList)) {
             GlobalUtils.showLog(TAG, "conversation list checkout: " +

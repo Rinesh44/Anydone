@@ -1164,7 +1164,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @Override
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity()).getWindow()
-                .getDecorView().getRootView(), message);
+                .getDecorView().getRootView(), Constants.SERVER_ERROR);
 
         pbLineChart.setVisibility(View.GONE);
     }

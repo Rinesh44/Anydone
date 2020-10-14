@@ -16,6 +16,7 @@ import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
 
@@ -176,7 +177,7 @@ public class VerifyCodeActivity extends MvpBaseActivity<VerifyCodePresenterImpl>
 
     @Override
     public void onFailure(String message) {
-        showToastMessage(message);
+        showToastMessage(Constants.SERVER_ERROR);
     }
 
     @Override

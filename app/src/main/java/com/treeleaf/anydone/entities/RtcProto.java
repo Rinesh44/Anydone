@@ -5903,6 +5903,16 @@ public final class RtcProto {
      */
     com.google.protobuf.ByteString
         getDefaultLabelIdBytes();
+
+    /**
+     * <code>optional string language = 25;</code>
+     */
+    String getLanguage();
+    /**
+     * <code>optional string language = 25;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RtcMessage}
@@ -5923,6 +5933,7 @@ public final class RtcProto {
       serviceId_ = "";
       serviceProviderAccountId_ = "";
       defaultLabelId_ = "";
+      language_ = "";
     }
     private int bitField0_;
     public static final int RTCMESSAGEID_FIELD_NUMBER = 1;
@@ -7254,6 +7265,52 @@ public final class RtcProto {
       defaultLabelId_ = value.toStringUtf8();
     }
 
+    public static final int LANGUAGE_FIELD_NUMBER = 25;
+    private String language_;
+    /**
+     * <code>optional string language = 25;</code>
+     */
+    public String getLanguage() {
+      return language_;
+    }
+    /**
+     * <code>optional string language = 25;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(language_);
+    }
+    /**
+     * <code>optional string language = 25;</code>
+     */
+    private void setLanguage(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      language_ = value;
+    }
+    /**
+     * <code>optional string language = 25;</code>
+     */
+    private void clearLanguage() {
+      
+      language_ = getDefaultInstance().getLanguage();
+    }
+    /**
+     * <code>optional string language = 25;</code>
+     */
+    private void setLanguageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      language_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!rtcMessageId_.isEmpty()) {
@@ -7327,6 +7384,9 @@ public final class RtcProto {
       }
       if (!defaultLabelId_.isEmpty()) {
         output.writeString(24, getDefaultLabelId());
+      }
+      if (!language_.isEmpty()) {
+        output.writeString(25, getLanguage());
       }
     }
 
@@ -7430,6 +7490,10 @@ public final class RtcProto {
       if (!defaultLabelId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(24, getDefaultLabelId());
+      }
+      if (!language_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(25, getLanguage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -8700,6 +8764,46 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional string language = 25;</code>
+       */
+      public String getLanguage() {
+        return instance.getLanguage();
+      }
+      /**
+       * <code>optional string language = 25;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        return instance.getLanguageBytes();
+      }
+      /**
+       * <code>optional string language = 25;</code>
+       */
+      public Builder setLanguage(
+          String value) {
+        copyOnWrite();
+        instance.setLanguage(value);
+        return this;
+      }
+      /**
+       * <code>optional string language = 25;</code>
+       */
+      public Builder clearLanguage() {
+        copyOnWrite();
+        instance.clearLanguage();
+        return this;
+      }
+      /**
+       * <code>optional string language = 25;</code>
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLanguageBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcMessage)
     }
     protected final Object dynamicMethod(
@@ -8757,6 +8861,8 @@ public final class RtcProto {
               !other.serviceProviderAccountId_.isEmpty(), other.serviceProviderAccountId_);
           defaultLabelId_ = visitor.visitString(!defaultLabelId_.isEmpty(), defaultLabelId_,
               !other.defaultLabelId_.isEmpty(), other.defaultLabelId_);
+          language_ = visitor.visitString(!language_.isEmpty(), language_,
+              !other.language_.isEmpty(), other.language_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8988,6 +9094,12 @@ public final class RtcProto {
                   String s = input.readStringRequireUtf8();
 
                   defaultLabelId_ = s;
+                  break;
+                }
+                case 202: {
+                  String s = input.readStringRequireUtf8();
+
+                  language_ = s;
                   break;
                 }
               }

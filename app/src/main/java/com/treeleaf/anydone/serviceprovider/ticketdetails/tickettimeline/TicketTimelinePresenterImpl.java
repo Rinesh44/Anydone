@@ -9,6 +9,8 @@ import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -18,6 +20,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,6 +29,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.realm.RealmList;
 import retrofit2.Retrofit;
 
 public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineContract.TicketTimelineView>
@@ -185,6 +189,273 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                     public void onError(Throwable e) {
                         getView().hideProgressBar();
                         getView().disableBotFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void editTicketPriority(String ticketId, int priority) {
+        getView().showProgressBar("Please wait");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));
+        TicketProto.TicketType ticketType = TicketProto.TicketType.newBuilder()
+                .setTicketTypeId(tickets.getTicketCategoryId())
+                .build();
+
+        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
+                .setTitle(tickets.getTitle())
+                .setPriority(getTicketPriority(priority))
+                .setDescription(tickets.getDescription())
+                .setType(ticketType)
+                .build();
+
+        ticketObservable = service.editTicket(token, ticketId, ticket);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "edit priority response:"
+                                + response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().onPriorityEditFail("Failed to edit priority");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().onPriorityEditFail(response.getMsg());
+                            return;
+                        }
+
+                        TicketRepo.getInstance().editTicketPriority(Long.parseLong(ticketId),
+                                priority);
+                        getView().onPriorityEditSuccess(priority);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onPriorityEditFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void editTeam(String ticketId, List<String> tags) {
+        getView().showProgressBar("Please wait");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        List<TicketProto.Team> teamList = setTeams(tags);
+
+        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
+                .addAllTeams(teamList)
+                .build();
+
+        ticketObservable = service.editTeam(token, ticketId, ticket);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "edit team response:"
+                                + response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().onEditTeamFail("Failed to edit team");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().onEditTeamFail(response.getMsg());
+                            return;
+                        }
+
+                        RealmList<Tags> teamRealmList = ProtoMapper
+                                .transformTags(response.getTeamsList());
+                        TicketRepo.getInstance().editTeams(Long.parseLong(ticketId), teamRealmList);
+                        getView().onEditTeamSuccess();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onEditTeamFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    private List<TicketProto.Team> setTeams(List<String> tags) {
+        List<TicketProto.Team> teamList = new ArrayList<>();
+        for (String teamId : tags
+        ) {
+            TicketProto.Team team = TicketProto.Team.newBuilder()
+                    .setTeamId(teamId)
+                    .build();
+
+            teamList.add(team);
+        }
+        return teamList;
+    }
+
+    @Override
+    public void editLabel(String ticketId, List<Label> labels) {
+        getView().showProgressBar("Please wait");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        List<TicketProto.Label> labelList = setLabels(labels);
+
+        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
+                .addAllLabel(labelList)
+                .build();
+
+        ticketObservable = service.editLabel(token, ticketId, ticket);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "edit label response:"
+                                + response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().onEditLabelFail("Failed to edit label");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().onEditLabelFail(response.getMsg());
+                            return;
+                        }
+
+                        TicketRepo.getInstance().editLabels(Long.parseLong(ticketId),
+                                response.getLabelsList(), new Repo.Callback() {
+                                    @Override
+                                    public void success(Object o) {
+                                        GlobalUtils.showLog(TAG, "label edit success");
+                                        getView().onEditLabelSuccess();
+                                    }
+
+                                    @Override
+                                    public void fail() {
+                                        GlobalUtils.showLog(TAG, "failed to edit labels");
+                                    }
+                                });
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onEditLabelFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    private List<TicketProto.Label> setLabels(List<Label> labels) {
+        List<TicketProto.Label> labelList = new ArrayList<>();
+        for (Label label : labels
+        ) {
+            TicketProto.Label labelPb = TicketProto.Label.newBuilder()
+                    .setLabelId(label.getLabelId())
+                    .setName(label.getName())
+                    .build();
+
+            labelList.add(labelPb);
+        }
+
+        return labelList;
+    }
+
+    @Override
+    public void editTicketType(String ticketId, String ticketTypeId, String ticketType) {
+        getView().showProgressBar("Please wait");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        TicketProto.TicketType ticketTypePb = TicketProto.TicketType.newBuilder()
+                .setTicketTypeId(ticketTypeId)
+                .build();
+
+        Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));
+        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
+                .setTitle(tickets.getTitle())
+                .setPriority(getTicketPriority(tickets.getPriority()))
+                .setDescription(tickets.getDescription())
+                .setType(ticketTypePb)
+                .build();
+
+        ticketObservable = service.editTicket(token, ticketId, ticket);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "edit title response:"
+                                + response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().onTicketTypeEditFail("Failed to edit ticket type");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().onTicketTypeEditFail(response.getMsg());
+                            return;
+                        }
+
+                        TicketRepo.getInstance().editTicketType(Long.parseLong(ticketId), ticketType);
+                        getView().onTicketTypeEditSuccess();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onTicketTypeEditFail(e.getLocalizedMessage());
                     }
 
                     @Override
@@ -529,6 +800,26 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                 GlobalUtils.showLog(TAG, "failed to save assign employees");
             }
         });
+    }
+
+    private TicketProto.TicketPriority getTicketPriority(int priority) {
+        switch (priority) {
+            case 1:
+                return TicketProto.TicketPriority.LOWEST_TICKET_PRIORITY;
+
+            case 2:
+                return TicketProto.TicketPriority.LOW_TICKET_PRIORITY;
+
+            case 3:
+                return TicketProto.TicketPriority.MEDIUM_TICKET_PRIORITY;
+
+            case 4:
+                return TicketProto.TicketPriority.HIGH_TICKET_PRIORITY;
+
+            case 5:
+                return TicketProto.TicketPriority.HIGHEST_TICKET_PRIORITY;
+        }
+        return TicketProto.TicketPriority.UNKNOWN_TICKET_PRIORITY;
     }
 
 }

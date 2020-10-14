@@ -9,6 +9,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
@@ -119,18 +120,52 @@ public final class ProtoMapper {
         return serviceProvider;
     }
 
-    public static RealmList<Tags> transformTags(List<TicketProto.TicketTag> tagListPb) {
+    public static RealmList<Tags> transformTags(List<TicketProto.Team> tagListPb) {
         RealmList<Tags> tagsRealmList = new RealmList<>();
-        for (TicketProto.TicketTag ticketTagPb : tagListPb
+        for (TicketProto.Team ticketTagPb : tagListPb
         ) {
             Tags tags = new Tags();
-            tags.setTagId(ticketTagPb.getTagId());
+            tags.setTagId(ticketTagPb.getTeamId());
             tags.setCreatedBy(ticketTagPb.getCreatedBy().getAccount().getAccountId());
             tags.setDescription(ticketTagPb.getDescription());
             tags.setLabel(ticketTagPb.getLabel());
             tagsRealmList.add(tags);
         }
         return tagsRealmList;
+    }
+
+    public static RealmList<Label> transformLabels(List<TicketProto.Label> labelListPb) {
+        GlobalUtils.showLog(TAG, "label list count: " + labelListPb.size());
+        RealmList<Label> labelRealmList = new RealmList<>();
+        for (TicketProto.Label ticketLabelPb : labelListPb
+        ) {
+            Label label = new Label();
+            label.setLabelId(ticketLabelPb.getLabelId());
+            label.setName(ticketLabelPb.getName());
+            label.setSpAccountId(ticketLabelPb.getSpAccountId());
+            label.setServiceId(ticketLabelPb.getServiceId());
+            label.setCreatedAt(ticketLabelPb.getCreatedAt());
+            label.setUpdatedAt(ticketLabelPb.getUpdatedAt());
+            labelRealmList.add(label);
+        }
+        return labelRealmList;
+    }
+
+    public static RealmList<Label> transformLabelsManaged(List<TicketProto.Label> labelListPb) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        GlobalUtils.showLog(TAG, "label list count: " + labelListPb.size());
+        RealmList<Label> labelRealmList = new RealmList<>();
+        for (TicketProto.Label ticketLabelPb : labelListPb
+        ) {
+            Label label = realm.createObject(Label.class, ticketLabelPb.getLabelId());
+            label.setName(ticketLabelPb.getName());
+            label.setSpAccountId(ticketLabelPb.getSpAccountId());
+            label.setServiceId(ticketLabelPb.getServiceId());
+            label.setCreatedAt(ticketLabelPb.getCreatedAt());
+            label.setUpdatedAt(ticketLabelPb.getUpdatedAt());
+            labelRealmList.add(label);
+        }
+        return labelRealmList;
     }
 
     public static RealmList<Conversation> transformConversation

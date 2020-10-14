@@ -17,6 +17,7 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_10x6"
         android:orientation="vertical">
 
         <ScrollView
@@ -35,6 +36,38 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_ticket_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_5x1"
+                        android:text="Ticket Type"
+                        android:textSize="@dimen/material_text_body2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/required"
+                        android:textColor="@color/red" />
+                </LinearLayout>
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_ticket_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:drawableEnd="@drawable/ic_dropdown"
+                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:maxLength="45"
+                    android:paddingEnd="@dimen/dimens_2x"
+                    android:textSize="@dimen/material_text_body1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10x2"
                     android:orientation="horizontal">
 
                     <TextView
@@ -60,6 +93,7 @@
                     android:inputType="textVisiblePassword|textNoSuggestions"
                     android:maxLength="45"
                     android:textSize="@dimen/material_text_body1" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -252,39 +286,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!--   <LinearLayout
-                           android:id="@+id/ll_team_holder"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_marginEnd="@dimen/dimen_10x3"
-                           android:orientation="horizontal" />-->
-
                     <com.google.android.flexbox.FlexboxLayout
-                        android:id="@+id/fbl_label"
+                        android:id="@+id/fbl_team"
                         android:layout_width="match_parent"
                         android:layout_height="22dp"
                         app:alignContent="center"
                         app:flexWrap="wrap"
                         app:showDivider="none">
-
-
-                        <!--     <androidx.appcompat.widget.AppCompatEditText
-                                 android:id="@+id/et_team"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="@dimen/dimen_10x3"
-                                 android:backgroundTint="@color/edit_text_color"
-                                 android:clickable="false"
-                                 android:cursorVisible="false"
-                                 android:drawableEnd="@drawable/ic_dropdown"
-                                 android:focusable="false"
-                                 android:imeOptions="actionDone"
-                                 android:inputType="textVisiblePassword"
-                                 android:maxLength="45"
-                                 android:paddingEnd="@dimen/dimens_2x"
-                                 android:textColorHint="@color/grey_dark"
-                                 android:textSize="@dimen/material_text_body1"
-                                 app:layout_flexGrow="1"
-                                 tools:ignore="RtlSymmetry" />-->
 
                     </com.google.android.flexbox.FlexboxLayout>
 
@@ -296,6 +304,38 @@
                         android:layout_marginEnd="@dimen/dimen_5x1"
                         android:background="@color/grey_shade" />
 
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="@string/label"
+                    android:textSize="@dimen/material_text_body2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/fbl_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="22dp"
+                        app:alignContent="center"
+                        app:flexWrap="wrap"
+                        app:showDivider="none">
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.5dp"
+                        android:layout_marginStart="@dimen/dimen_5x1"
+                        android:layout_marginTop="@dimen/dimen_6x1"
+                        android:layout_marginEnd="@dimen/dimen_5x1"
+                        android:background="@color/grey_shade" />
 
                 </LinearLayout>
 
@@ -309,7 +349,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_10x2">
 
                     <ImageView
                         android:id="@+id/iv_priority"
@@ -337,20 +378,48 @@
 
                 </RelativeLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_create_ticket"
+                <include
+                    layout="@layout/layout_estimated_time_suggestions"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="@string/estimated_time"
+                    android:textSize="@dimen/material_text_body2" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_estimated_time"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_10x6"
-                    android:layout_marginTop="@dimen/dimens_2x"
-                    android:text="@string/create_ticket"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/colorPrimary" />
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:drawableEnd="@drawable/ic_dropdown"
+                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:maxLength="45"
+                    android:paddingEnd="@dimen/dimens_2x"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_body1" />
+
 
             </LinearLayout>
 
         </ScrollView>
 
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_create_ticket"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10x6"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/dimens_2x"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:layout_marginEnd="@dimen/dimens_2x"
+        android:layout_marginBottom="@dimen/dimen_10x1"
+        android:text="@string/create_ticket"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/colorPrimary" />
 </RelativeLayout>

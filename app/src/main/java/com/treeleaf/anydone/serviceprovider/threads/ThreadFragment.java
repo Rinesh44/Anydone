@@ -436,7 +436,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     public void onFailure(String message) {
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                message);
+                Constants.SERVER_ERROR);
 
         ivThreadNotFound.setVisibility(View.VISIBLE);
     }

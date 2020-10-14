@@ -12,7 +12,7 @@ public final class AnydoneProto {
    * Protobuf enum {@code treeleaf.anydone.entities.AccountType}
    */
   public enum AccountType
-      implements com.google.protobuf.Internal.EnumLite {
+          implements com.google.protobuf.Internal.EnumLite {
     /**
      * <code>UNKNOWN_USER_TYPE = 0;</code>
      */

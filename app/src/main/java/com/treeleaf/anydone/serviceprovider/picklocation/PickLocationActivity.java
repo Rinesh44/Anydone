@@ -223,7 +223,7 @@ public class PickLocationActivity extends MvpBaseActivity<PickLocationPresenterI
 
     @Override
     public void onFailure(String message) {
-        GlobalUtils.showLog(TAG, "error: " + message);
+        GlobalUtils.showLog(TAG, "error: " + Constants.SERVER_ERROR);
     }
 
     @Override

@@ -35,6 +35,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     public static final int CLOSED_RESOLVED = 2;
     public static final int ASSIGNABLE = 3;
     public static final int SUBSCRIBEABLE = 4;
+    public static final int CONTRIBUTED = 5;
     private List<Tickets> ticketsList;
     private Context mContext;
     private OnItemClickListener listener;
@@ -117,6 +118,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
             case "SUBSCRIBEABLE":
                 return SUBSCRIBEABLE;
+
+            case "CONTRIBUTED":
+                return CONTRIBUTED;
         }
 
         return -1;

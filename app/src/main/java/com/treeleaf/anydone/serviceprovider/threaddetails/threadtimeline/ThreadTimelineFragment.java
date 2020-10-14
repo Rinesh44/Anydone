@@ -515,7 +515,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity())
-                        .getWindow().getDecorView().getRootView(), message);
+                        .getWindow().getDecorView().getRootView(), Constants.SERVER_ERROR);
     }
 
     /**

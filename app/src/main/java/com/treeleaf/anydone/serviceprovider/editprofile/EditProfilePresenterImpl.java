@@ -191,7 +191,6 @@ public class EditProfilePresenterImpl extends BasePresenter<EditProfileContract.
                         getView().hideProgressBar();
                     }
                 }));
-
     }
 
     private boolean validateCredentials(String fullName, String gender) {

@@ -585,6 +585,20 @@ Limit selectable Date range
                 .build();
     }
 
+    public static Retrofit getRetrofitInstanceJSON() {
+
+        OkHttpClient client = getOkHttpJSON();
+
+        String base_url = Hawk.get(Constants.BASE_URL);
+        return new Retrofit.Builder()
+                .client(client)
+                .baseUrl(base_url)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
     public static OkHttpClient getOkHttp() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(BuildConfig.DEBUG ?
@@ -597,6 +611,26 @@ Limit selectable Date range
                     Request.Builder requestBuilder = chain.request().newBuilder();
                     requestBuilder.header("Content-Type", "application/protobuf");
                     requestBuilder.header("Accept", "application/protobuf");
+                    return chain.proceed(requestBuilder.build());
+                })
+                .writeTimeout(3, TimeUnit.MINUTES);
+
+        okHttpClient.addInterceptor(logging);
+        return okHttpClient.build();
+    }
+
+    public static OkHttpClient getOkHttpJSON() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(BuildConfig.DEBUG ?
+                HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(3, TimeUnit.MINUTES)
+                .readTimeout(3, TimeUnit.MINUTES)
+                .addNetworkInterceptor(chain -> {
+                    Request.Builder requestBuilder = chain.request().newBuilder();
+                    requestBuilder.header("Content-Type", "application/json");
+                    requestBuilder.header("Accept", "application/json");
                     return chain.proceed(requestBuilder.build());
                 })
                 .writeTimeout(3, TimeUnit.MINUTES);

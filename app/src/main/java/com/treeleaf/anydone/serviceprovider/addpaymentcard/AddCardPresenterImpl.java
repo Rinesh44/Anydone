@@ -41,6 +41,7 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
                         @NonNull String month, @NonNull String year, @NonNull String CVV,
                         @NonNull String streetAddress,
                         @NonNull String city, @NonNull String state, @NonNull String zipCode,
+                        @NonNull String cardType,
                         boolean isDefault) {
         Preconditions.checkNotNull(getView(), "View is not attached");
 //        Preconditions.checkNotNull(cardHolderName, "CardHolderName cannot be null");
@@ -48,12 +49,12 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
         Preconditions.checkNotNull(month, "Month cannot be null");
         Preconditions.checkNotNull(year, "Year cannot be null");
 
-        getView().showProgressBar(null);
 
         if (!validateCredentials(cardNumber, month, year, CVV)) {
             return;
         }
 
+        getView().showProgressBar(null);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<PaymentRpcProto.PaymentBaseResponse> addCardObservable;
@@ -73,6 +74,7 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
                 .setExpiryYear(year)
                 .setExpiryMonth(month)
                 .setCvc(CVV)
+                .setCardType(cardType)
                 .setBillingAddress(billingAddress)
                 .setIsDefault(isDefault)
                 .build();
@@ -119,6 +121,9 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
     }
 
     private void saveCard(PaymentProto.Card card) {
+        if (card.getIsDefault()) {
+            CardRepo.getInstance().removeCardAsPrimary();
+        }
         CardRepo.getInstance().saveCard(card, new Repo.Callback() {
             @Override
             public void success(Object o) {
