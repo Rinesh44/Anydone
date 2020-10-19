@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
+import android.util.TimeUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -193,7 +195,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     TextView tvEstimatedTime;
     @BindView(R.id.rl_root)
     RelativeLayout rlRoot;
-
+    @BindView(R.id.tv_description)
+    TextView tvDescTitle;
 
     private boolean expandEmployee = true;
     private boolean expandCustomer = true;
@@ -349,6 +352,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
                     case "estimated_time":
                         tvEstimatedTimeValue.setText(tickets.getEstimatedTime());
+                        setRemainingTime();
                         break;
                 }
             }
@@ -534,16 +538,28 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         tvTicketType.setText(tickets.getTicketCategory());
         tvTicketTitle.setText(tickets.getTitle());
 
+
+        GlobalUtils.showLog(TAG, "est time check: " + tickets.getEstimatedTime());
+        GlobalUtils.showLog(TAG, "est time stamp check: " + tickets.getEstimatedTimeStamp());
         if (tickets.getEstimatedTime().isEmpty()) {
             tvEstimatedTimeValue.setVisibility(View.GONE);
             tvEstimatedTime.setVisibility(View.GONE);
         } else {
-            tvEstimatedTimeValue.setText(tickets.getEstimatedTime());
+            tvEstimatedTimeValue.setVisibility(View.VISIBLE);
+            tvEstimatedTime.setVisibility(View.VISIBLE);
+
+            if (tickets.getEstimatedTimeStamp() != 0) {
+                setRemainingTime();
+            } else {
+                tvEstimatedTimeValue.setText(tickets.getEstimatedTime());
+            }
         }
 
         if (tickets.getDescription() == null || tickets.getDescription().isEmpty()) {
+            tvDescTitle.setVisibility(View.GONE);
             tvTicketDesc.setVisibility(View.GONE);
         } else {
+            tvDescTitle.setVisibility(View.VISIBLE);
             tvTicketDesc.setText(tickets.getDescription());
         }
         tvTicketCreatedBy.setText(tickets.getCreatedByName());
@@ -578,6 +594,30 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         } else {
             botReply.setChecked(false);
         }
+    }
+
+    private void setRemainingTime() {
+        StringBuilder estTime = new StringBuilder(tickets.getEstimatedTime());
+        GlobalUtils.showLog(TAG, "est time st: " + tickets.getEstimatedTimeStamp());
+        GlobalUtils.showLog(TAG, "currnet time st: " + System.currentTimeMillis());
+        if (tickets.getEstimatedTimeStamp() > System.currentTimeMillis()) {
+            String remainingTime = DateUtils.getRelativeTimeSpanString
+                    (tickets.getEstimatedTimeStamp()).toString();
+
+            estTime.append(" (");
+            estTime.append(remainingTime.substring(2));
+            estTime.append(" remaining ");
+            estTime.append(")");
+        } else if (tickets.getEstimatedTimeStamp() == 0) {
+
+        } else {
+            estTime.append(" ( ");
+            estTime.append("time exceeded ");
+            estTime.append(")");
+        }
+
+
+        tvEstimatedTimeValue.setText(estTime);
     }
 
 
@@ -986,6 +1026,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         tvResolve.setVisibility(View.VISIBLE);
         vSeparator.setVisibility(View.VISIBLE);
+
+        setRemainingTime();
 
         addScrollviewMargin();
     }
@@ -1808,7 +1850,33 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onEditTeamSuccess() {
-        addTeamsToLayout();
+        addTeamsLocally();
+    }
+
+    private void addTeamsLocally() {
+        RealmList<Tags> teamList = new RealmList<>();
+        for (String teamId : tags
+        ) {
+            Tags tags = TagRepo.getInstance()
+                    .getTagById(teamId);
+            if (tags != null) GlobalUtils.showLog(TAG, "Tag: " +
+                    tags.getLabel());
+            teamList.add(tags);
+        }
+
+        TicketRepo.getInstance().editTeams(ticketId, teamList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "teams added");
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> addTeamsToLayout());
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "error while adding teams");
+            }
+        });
+
     }
 
     @Override
@@ -1825,7 +1893,25 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onEditLabelSuccess() {
-        setLabels();
+        addLabelsLocally(labels);
+    }
+
+    private void addLabelsLocally(List<Label> labels) {
+        RealmList<Label> labelRealmList = new RealmList<>();
+        labelRealmList.addAll(labels);
+
+        TicketRepo.getInstance().editLabels(ticketId, labelRealmList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "labels added");
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> setLabels());
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "error while adding contributors");
+            }
+        });
     }
 
     @Override

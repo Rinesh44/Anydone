@@ -105,6 +105,10 @@ public final class UserProto {
      * <code>SERVICE_PROVIDER_SOURCE = 3;</code>
      */
     SERVICE_PROVIDER_SOURCE(3),
+    /**
+     * <code>SLACK_THIRD_PARTY_SOURCE = 4;</code>
+     */
+    SLACK_THIRD_PARTY_SOURCE(4),
     UNRECOGNIZED(-1),
     ;
 
@@ -124,6 +128,10 @@ public final class UserProto {
      * <code>SERVICE_PROVIDER_SOURCE = 3;</code>
      */
     public static final int SERVICE_PROVIDER_SOURCE_VALUE = 3;
+    /**
+     * <code>SLACK_THIRD_PARTY_SOURCE = 4;</code>
+     */
+    public static final int SLACK_THIRD_PARTY_SOURCE_VALUE = 4;
 
 
     public final int getNumber() {
@@ -144,6 +152,7 @@ public final class UserProto {
         case 1: return FACEBOOK_THIRD_PARTY_SOURCE;
         case 2: return VIBER_THIRD_PARTY_SOURCE;
         case 3: return SERVICE_PROVIDER_SOURCE;
+        case 4: return SLACK_THIRD_PARTY_SOURCE;
         default: return null;
       }
     }

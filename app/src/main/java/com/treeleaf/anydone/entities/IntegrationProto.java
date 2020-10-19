@@ -366,6 +366,15 @@ public final class IntegrationProto {
      * <code>optional int64 updatedAt = 10;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    boolean hasIntegrationSlack();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    IntegrationSlack getIntegrationSlack();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Integration}
@@ -777,6 +786,58 @@ public final class IntegrationProto {
       updatedAt_ = 0L;
     }
 
+    public static final int INTEGRATIONSLACK_FIELD_NUMBER = 11;
+    private IntegrationSlack integrationSlack_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    public boolean hasIntegrationSlack() {
+      return integrationSlack_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    public IntegrationSlack getIntegrationSlack() {
+      return integrationSlack_ == null ? IntegrationSlack.getDefaultInstance() : integrationSlack_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    private void setIntegrationSlack(IntegrationSlack value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      integrationSlack_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    private void setIntegrationSlack(
+        IntegrationSlack.Builder builderForValue) {
+      integrationSlack_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    private void mergeIntegrationSlack(IntegrationSlack value) {
+      if (integrationSlack_ != null &&
+          integrationSlack_ != IntegrationSlack.getDefaultInstance()) {
+        integrationSlack_ =
+          IntegrationSlack.newBuilder(integrationSlack_).mergeFrom(value).buildPartial();
+      } else {
+        integrationSlack_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+     */
+    private void clearIntegrationSlack() {  integrationSlack_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!integrationId_.isEmpty()) {
@@ -808,6 +869,9 @@ public final class IntegrationProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(10, updatedAt_);
+      }
+      if (integrationSlack_ != null) {
+        output.writeMessage(11, getIntegrationSlack());
       }
     }
 
@@ -855,6 +919,10 @@ public final class IntegrationProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(10, updatedAt_);
+      }
+      if (integrationSlack_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getIntegrationSlack());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1298,6 +1366,51 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+       */
+      public boolean hasIntegrationSlack() {
+        return instance.hasIntegrationSlack();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+       */
+      public IntegrationSlack getIntegrationSlack() {
+        return instance.getIntegrationSlack();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+       */
+      public Builder setIntegrationSlack(IntegrationSlack value) {
+        copyOnWrite();
+        instance.setIntegrationSlack(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+       */
+      public Builder setIntegrationSlack(
+          IntegrationSlack.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIntegrationSlack(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+       */
+      public Builder mergeIntegrationSlack(IntegrationSlack value) {
+        copyOnWrite();
+        instance.mergeIntegrationSlack(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
+       */
+      public Builder clearIntegrationSlack() {  copyOnWrite();
+        instance.clearIntegrationSlack();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Integration)
     }
     protected final Object dynamicMethod(
@@ -1336,6 +1449,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          integrationSlack_ = visitor.visitMessage(integrationSlack_, other.integrationSlack_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -1429,6 +1543,19 @@ public final class IntegrationProto {
                 case 80: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 90: {
+                  IntegrationSlack.Builder subBuilder = null;
+                  if (integrationSlack_ != null) {
+                    subBuilder = integrationSlack_.toBuilder();
+                  }
+                  integrationSlack_ = input.readMessage(IntegrationSlack.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(integrationSlack_);
+                    integrationSlack_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -5902,6 +6029,896 @@ public final class IntegrationProto {
     private static volatile com.google.protobuf.Parser<IntegrationViber> PARSER;
 
     public static com.google.protobuf.Parser<IntegrationViber> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface IntegrationSlackOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.IntegrationSlack)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string integrationSlackId = 1;</code>
+     */
+    String getIntegrationSlackId();
+    /**
+     * <code>optional string integrationSlackId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntegrationSlackIdBytes();
+
+    /**
+     * <code>optional string signingSecret = 2;</code>
+     */
+    String getSigningSecret();
+    /**
+     * <code>optional string signingSecret = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSigningSecretBytes();
+
+    /**
+     * <code>optional string oAuthToken = 3;</code>
+     */
+    String getOAuthToken();
+    /**
+     * <code>optional string oAuthToken = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getOAuthTokenBytes();
+
+    /**
+     * <code>optional string incomingWebhookUrl = 4;</code>
+     */
+    String getIncomingWebhookUrl();
+    /**
+     * <code>optional string incomingWebhookUrl = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getIncomingWebhookUrlBytes();
+
+    /**
+     * <code>optional string integrationId = 5;</code>
+     */
+    String getIntegrationId();
+    /**
+     * <code>optional string integrationId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntegrationIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.IntegrationSlack}
+   */
+  public  static final class IntegrationSlack extends
+      com.google.protobuf.GeneratedMessageLite<
+          IntegrationSlack, IntegrationSlack.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.IntegrationSlack)
+      IntegrationSlackOrBuilder {
+    private IntegrationSlack() {
+      integrationSlackId_ = "";
+      signingSecret_ = "";
+      oAuthToken_ = "";
+      incomingWebhookUrl_ = "";
+      integrationId_ = "";
+    }
+    public static final int INTEGRATIONSLACKID_FIELD_NUMBER = 1;
+    private String integrationSlackId_;
+    /**
+     * <code>optional string integrationSlackId = 1;</code>
+     */
+    public String getIntegrationSlackId() {
+      return integrationSlackId_;
+    }
+    /**
+     * <code>optional string integrationSlackId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntegrationSlackIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(integrationSlackId_);
+    }
+    /**
+     * <code>optional string integrationSlackId = 1;</code>
+     */
+    private void setIntegrationSlackId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      integrationSlackId_ = value;
+    }
+    /**
+     * <code>optional string integrationSlackId = 1;</code>
+     */
+    private void clearIntegrationSlackId() {
+      
+      integrationSlackId_ = getDefaultInstance().getIntegrationSlackId();
+    }
+    /**
+     * <code>optional string integrationSlackId = 1;</code>
+     */
+    private void setIntegrationSlackIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      integrationSlackId_ = value.toStringUtf8();
+    }
+
+    public static final int SIGNINGSECRET_FIELD_NUMBER = 2;
+    private String signingSecret_;
+    /**
+     * <code>optional string signingSecret = 2;</code>
+     */
+    public String getSigningSecret() {
+      return signingSecret_;
+    }
+    /**
+     * <code>optional string signingSecret = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSigningSecretBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(signingSecret_);
+    }
+    /**
+     * <code>optional string signingSecret = 2;</code>
+     */
+    private void setSigningSecret(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      signingSecret_ = value;
+    }
+    /**
+     * <code>optional string signingSecret = 2;</code>
+     */
+    private void clearSigningSecret() {
+      
+      signingSecret_ = getDefaultInstance().getSigningSecret();
+    }
+    /**
+     * <code>optional string signingSecret = 2;</code>
+     */
+    private void setSigningSecretBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      signingSecret_ = value.toStringUtf8();
+    }
+
+    public static final int OAUTHTOKEN_FIELD_NUMBER = 3;
+    private String oAuthToken_;
+    /**
+     * <code>optional string oAuthToken = 3;</code>
+     */
+    public String getOAuthToken() {
+      return oAuthToken_;
+    }
+    /**
+     * <code>optional string oAuthToken = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOAuthTokenBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(oAuthToken_);
+    }
+    /**
+     * <code>optional string oAuthToken = 3;</code>
+     */
+    private void setOAuthToken(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      oAuthToken_ = value;
+    }
+    /**
+     * <code>optional string oAuthToken = 3;</code>
+     */
+    private void clearOAuthToken() {
+      
+      oAuthToken_ = getDefaultInstance().getOAuthToken();
+    }
+    /**
+     * <code>optional string oAuthToken = 3;</code>
+     */
+    private void setOAuthTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      oAuthToken_ = value.toStringUtf8();
+    }
+
+    public static final int INCOMINGWEBHOOKURL_FIELD_NUMBER = 4;
+    private String incomingWebhookUrl_;
+    /**
+     * <code>optional string incomingWebhookUrl = 4;</code>
+     */
+    public String getIncomingWebhookUrl() {
+      return incomingWebhookUrl_;
+    }
+    /**
+     * <code>optional string incomingWebhookUrl = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIncomingWebhookUrlBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(incomingWebhookUrl_);
+    }
+    /**
+     * <code>optional string incomingWebhookUrl = 4;</code>
+     */
+    private void setIncomingWebhookUrl(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      incomingWebhookUrl_ = value;
+    }
+    /**
+     * <code>optional string incomingWebhookUrl = 4;</code>
+     */
+    private void clearIncomingWebhookUrl() {
+      
+      incomingWebhookUrl_ = getDefaultInstance().getIncomingWebhookUrl();
+    }
+    /**
+     * <code>optional string incomingWebhookUrl = 4;</code>
+     */
+    private void setIncomingWebhookUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      incomingWebhookUrl_ = value.toStringUtf8();
+    }
+
+    public static final int INTEGRATIONID_FIELD_NUMBER = 5;
+    private String integrationId_;
+    /**
+     * <code>optional string integrationId = 5;</code>
+     */
+    public String getIntegrationId() {
+      return integrationId_;
+    }
+    /**
+     * <code>optional string integrationId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntegrationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(integrationId_);
+    }
+    /**
+     * <code>optional string integrationId = 5;</code>
+     */
+    private void setIntegrationId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      integrationId_ = value;
+    }
+    /**
+     * <code>optional string integrationId = 5;</code>
+     */
+    private void clearIntegrationId() {
+      
+      integrationId_ = getDefaultInstance().getIntegrationId();
+    }
+    /**
+     * <code>optional string integrationId = 5;</code>
+     */
+    private void setIntegrationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      integrationId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 6;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 7;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!integrationSlackId_.isEmpty()) {
+        output.writeString(1, getIntegrationSlackId());
+      }
+      if (!signingSecret_.isEmpty()) {
+        output.writeString(2, getSigningSecret());
+      }
+      if (!oAuthToken_.isEmpty()) {
+        output.writeString(3, getOAuthToken());
+      }
+      if (!incomingWebhookUrl_.isEmpty()) {
+        output.writeString(4, getIncomingWebhookUrl());
+      }
+      if (!integrationId_.isEmpty()) {
+        output.writeString(5, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(6, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(7, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!integrationSlackId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getIntegrationSlackId());
+      }
+      if (!signingSecret_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getSigningSecret());
+      }
+      if (!oAuthToken_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getOAuthToken());
+      }
+      if (!incomingWebhookUrl_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getIncomingWebhookUrl());
+      }
+      if (!integrationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static IntegrationSlack parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static IntegrationSlack parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static IntegrationSlack parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static IntegrationSlack parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static IntegrationSlack parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static IntegrationSlack parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static IntegrationSlack parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static IntegrationSlack parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static IntegrationSlack parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static IntegrationSlack parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(IntegrationSlack prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.IntegrationSlack}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          IntegrationSlack, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntegrationSlack)
+        IntegrationSlackOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.IntegrationProto.IntegrationSlack.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string integrationSlackId = 1;</code>
+       */
+      public String getIntegrationSlackId() {
+        return instance.getIntegrationSlackId();
+      }
+      /**
+       * <code>optional string integrationSlackId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntegrationSlackIdBytes() {
+        return instance.getIntegrationSlackIdBytes();
+      }
+      /**
+       * <code>optional string integrationSlackId = 1;</code>
+       */
+      public Builder setIntegrationSlackId(
+          String value) {
+        copyOnWrite();
+        instance.setIntegrationSlackId(value);
+        return this;
+      }
+      /**
+       * <code>optional string integrationSlackId = 1;</code>
+       */
+      public Builder clearIntegrationSlackId() {
+        copyOnWrite();
+        instance.clearIntegrationSlackId();
+        return this;
+      }
+      /**
+       * <code>optional string integrationSlackId = 1;</code>
+       */
+      public Builder setIntegrationSlackIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIntegrationSlackIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string signingSecret = 2;</code>
+       */
+      public String getSigningSecret() {
+        return instance.getSigningSecret();
+      }
+      /**
+       * <code>optional string signingSecret = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSigningSecretBytes() {
+        return instance.getSigningSecretBytes();
+      }
+      /**
+       * <code>optional string signingSecret = 2;</code>
+       */
+      public Builder setSigningSecret(
+          String value) {
+        copyOnWrite();
+        instance.setSigningSecret(value);
+        return this;
+      }
+      /**
+       * <code>optional string signingSecret = 2;</code>
+       */
+      public Builder clearSigningSecret() {
+        copyOnWrite();
+        instance.clearSigningSecret();
+        return this;
+      }
+      /**
+       * <code>optional string signingSecret = 2;</code>
+       */
+      public Builder setSigningSecretBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSigningSecretBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string oAuthToken = 3;</code>
+       */
+      public String getOAuthToken() {
+        return instance.getOAuthToken();
+      }
+      /**
+       * <code>optional string oAuthToken = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOAuthTokenBytes() {
+        return instance.getOAuthTokenBytes();
+      }
+      /**
+       * <code>optional string oAuthToken = 3;</code>
+       */
+      public Builder setOAuthToken(
+          String value) {
+        copyOnWrite();
+        instance.setOAuthToken(value);
+        return this;
+      }
+      /**
+       * <code>optional string oAuthToken = 3;</code>
+       */
+      public Builder clearOAuthToken() {
+        copyOnWrite();
+        instance.clearOAuthToken();
+        return this;
+      }
+      /**
+       * <code>optional string oAuthToken = 3;</code>
+       */
+      public Builder setOAuthTokenBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setOAuthTokenBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string incomingWebhookUrl = 4;</code>
+       */
+      public String getIncomingWebhookUrl() {
+        return instance.getIncomingWebhookUrl();
+      }
+      /**
+       * <code>optional string incomingWebhookUrl = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIncomingWebhookUrlBytes() {
+        return instance.getIncomingWebhookUrlBytes();
+      }
+      /**
+       * <code>optional string incomingWebhookUrl = 4;</code>
+       */
+      public Builder setIncomingWebhookUrl(
+          String value) {
+        copyOnWrite();
+        instance.setIncomingWebhookUrl(value);
+        return this;
+      }
+      /**
+       * <code>optional string incomingWebhookUrl = 4;</code>
+       */
+      public Builder clearIncomingWebhookUrl() {
+        copyOnWrite();
+        instance.clearIncomingWebhookUrl();
+        return this;
+      }
+      /**
+       * <code>optional string incomingWebhookUrl = 4;</code>
+       */
+      public Builder setIncomingWebhookUrlBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIncomingWebhookUrlBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string integrationId = 5;</code>
+       */
+      public String getIntegrationId() {
+        return instance.getIntegrationId();
+      }
+      /**
+       * <code>optional string integrationId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntegrationIdBytes() {
+        return instance.getIntegrationIdBytes();
+      }
+      /**
+       * <code>optional string integrationId = 5;</code>
+       */
+      public Builder setIntegrationId(
+          String value) {
+        copyOnWrite();
+        instance.setIntegrationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 5;</code>
+       */
+      public Builder clearIntegrationId() {
+        copyOnWrite();
+        instance.clearIntegrationId();
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 5;</code>
+       */
+      public Builder setIntegrationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIntegrationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 6;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 6;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 6;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 7;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 7;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 7;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntegrationSlack)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new IntegrationSlack();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          IntegrationSlack other = (IntegrationSlack) arg1;
+          integrationSlackId_ = visitor.visitString(!integrationSlackId_.isEmpty(), integrationSlackId_,
+              !other.integrationSlackId_.isEmpty(), other.integrationSlackId_);
+          signingSecret_ = visitor.visitString(!signingSecret_.isEmpty(), signingSecret_,
+              !other.signingSecret_.isEmpty(), other.signingSecret_);
+          oAuthToken_ = visitor.visitString(!oAuthToken_.isEmpty(), oAuthToken_,
+              !other.oAuthToken_.isEmpty(), other.oAuthToken_);
+          incomingWebhookUrl_ = visitor.visitString(!incomingWebhookUrl_.isEmpty(), incomingWebhookUrl_,
+              !other.incomingWebhookUrl_.isEmpty(), other.incomingWebhookUrl_);
+          integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
+              !other.integrationId_.isEmpty(), other.integrationId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  integrationSlackId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  signingSecret_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  oAuthToken_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  incomingWebhookUrl_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  integrationId_ = s;
+                  break;
+                }
+                case 48: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 56: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (IntegrationSlack.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntegrationSlack)
+    private static final IntegrationSlack DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new IntegrationSlack();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static IntegrationSlack getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<IntegrationSlack> PARSER;
+
+    public static com.google.protobuf.Parser<IntegrationSlack> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

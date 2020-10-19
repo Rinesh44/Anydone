@@ -568,7 +568,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             return;
                         }
 
-                        getView().onTaskStartSuccess();
+                        getView().onTaskStartSuccess(startTicketResponse.getEstimatedTime());
                     }
 
                     @Override

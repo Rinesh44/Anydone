@@ -51,6 +51,7 @@ import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -131,6 +132,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             }
         });*/
 
+        presenter.getConversationThreads(false);
         createServiceBottomSheet();
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
 
@@ -422,7 +424,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         } catch (MqttException e) {
             e.printStackTrace();
         }
-        presenter.getConversationThreads(false);
+//        presenter.getConversationThreads(false);
     }
 
     @Override
@@ -491,11 +493,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                Constants.SERVER_ERROR);
     }
 
     private void showCustomSnackBar(String msg) {
-        Snackbar snack = Snackbar.make(root, msg, Snackbar.LENGTH_LONG);
+        Snackbar snack = Snackbar.make(root, Constants.SERVER_ERROR, Snackbar.LENGTH_LONG);
         snack.show();
     }
 }

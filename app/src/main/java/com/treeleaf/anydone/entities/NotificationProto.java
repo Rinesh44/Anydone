@@ -1052,7 +1052,7 @@ public final class NotificationProto {
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
     boolean containsTemplateData(
-            String key);
+        String key);
     /**
      * Use {@link #getTemplateDataMap()} instead.
      */
@@ -1069,14 +1069,14 @@ public final class NotificationProto {
      */
 
     String getTemplateDataOrDefault(
-            String key,
-            String defaultValue);
+        String key,
+        String defaultValue);
     /**
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
 
     String getTemplateDataOrThrow(
-            String key);
+        String key);
 
     /**
      * <code>repeated string replyToAddresses = 9;</code>

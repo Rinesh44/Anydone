@@ -209,7 +209,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         setSelfDetails();
 
         Intent intent = getIntent();
-        createTicketFromThread = intent.getBooleanExtra("create_ticket_from_thread", false);
+        createTicketFromThread = intent.getBooleanExtra("create_ticket_from_thread",
+                false);
 
         if (createTicketFromThread) {
             setDataFromThread(intent);
@@ -674,7 +675,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 .placeholder(R.drawable.ic_profile_icon)
                 .error(R.drawable.ic_profile_icon);
 
-        Glide.with(this).load(selectedCustomer.getProfilePic()).apply(options).into(civCustomer);
+        Glide.with(this)
+                .load(selectedCustomer.getProfilePic())
+                .apply(options)
+                .into(civCustomer);
     }
 
     private void createTeamBottomSheet() {
@@ -950,8 +954,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         if (teamId != null) {
             selectedTag = TagRepo.getInstance().getTagById(teamId);
-            tags.add(selectedTag.getTagId());
-            addTeamsToLayout();
+            if (selectedTag != null) {
+                tags.add(selectedTag.getTagId());
+                addTeamsToLayout();
+            }
 //            addNewTagChip(tags);
         }
     }

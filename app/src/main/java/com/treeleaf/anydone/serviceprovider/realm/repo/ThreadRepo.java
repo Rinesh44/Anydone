@@ -3,8 +3,10 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -52,10 +54,12 @@ public class ThreadRepo extends Repo {
         }
     }
 
-    public void setAssignedEmployee(String threadId, Employee employee, final Callback callback) {
+    public void setAssignedEmployee(String threadId, String employeeId, final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             realm.executeTransaction(realm1 -> {
+                AssignEmployee employee = AssignEmployeeRepo.getInstance().getAssignedEmployeeById(employeeId);
+                GlobalUtils.showLog(TAG, "get assigned emp det: " + employee);
                 RealmResults<Thread> result = realm1.where(Thread.class)
                         .equalTo("threadId", threadId).findAll();
                 result.setObject("assignedEmployee", employee);
@@ -176,6 +180,23 @@ public class ThreadRepo extends Repo {
         } catch (Throwable throwable) {
             GlobalUtils.showLog(TAG, "error thread update: " + throwable.getLocalizedMessage());
             throwable.printStackTrace();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void setAssignedEmployee(String threadId, AssignEmployee employee, final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Thread> result = realm1.where(Thread.class)
+                        .equalTo("threadId", threadId).findAll();
+                result.setObject("assignedEmployee", employee);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
         } finally {
             close(realm);
         }

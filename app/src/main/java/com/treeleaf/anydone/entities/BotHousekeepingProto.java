@@ -6455,7 +6455,7 @@ public final class BotHousekeepingProto {
      * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 3;</code>
      */
     boolean containsIntentParam(
-            String key);
+        String key);
     /**
      * Use {@link #getIntentParamMap()} instead.
      */
@@ -6480,8 +6480,8 @@ public final class BotHousekeepingProto {
      */
 
     IntentParam getIntentParamOrDefault(
-            String key,
-            IntentParam defaultValue);
+        String key,
+        IntentParam defaultValue);
     /**
      * <pre>
      * key = paramName , value = IntentParam
@@ -6491,7 +6491,7 @@ public final class BotHousekeepingProto {
      */
 
     IntentParam getIntentParamOrThrow(
-            String key);
+        String key);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TrainingPhrase}
@@ -7745,7 +7745,7 @@ public final class BotHousekeepingProto {
      * <code>map&lt;string, .treeleaf.anydone.entities.ResponseEntity&gt; responseEntity = 3;</code>
      */
     boolean containsResponseEntity(
-            String key);
+        String key);
     /**
      * Use {@link #getResponseEntityMap()} instead.
      */
@@ -7770,8 +7770,8 @@ public final class BotHousekeepingProto {
      */
 
     ResponseEntity getResponseEntityOrDefault(
-            String key,
-            ResponseEntity defaultValue);
+        String key,
+        ResponseEntity defaultValue);
     /**
      * <pre>
      * key = paramName , value = Response Entity
@@ -7781,7 +7781,7 @@ public final class BotHousekeepingProto {
      */
 
     ResponseEntity getResponseEntityOrThrow(
-            String key);
+        String key);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.IntentResponse}
@@ -9384,7 +9384,7 @@ public final class BotHousekeepingProto {
      * <code>map&lt;string, string&gt; paramMapping = 4;</code>
      */
     boolean containsParamMapping(
-            String key);
+        String key);
     /**
      * Use {@link #getParamMappingMap()} instead.
      */
@@ -9409,8 +9409,8 @@ public final class BotHousekeepingProto {
      */
 
     String getParamMappingOrDefault(
-            String key,
-            String defaultValue);
+        String key,
+        String defaultValue);
     /**
      * <pre>
      *key: param_name value: intent_param_id
@@ -9420,7 +9420,7 @@ public final class BotHousekeepingProto {
      */
 
     String getParamMappingOrThrow(
-            String key);
+        String key);
 
     /**
      * <pre>
@@ -13986,7 +13986,7 @@ public final class BotHousekeepingProto {
      * <code>map&lt;string, string&gt; resolvedValue = 11;</code>
      */
     boolean containsResolvedValue(
-            String key);
+        String key);
     /**
      * Use {@link #getResolvedValueMap()} instead.
      */
@@ -14011,8 +14011,8 @@ public final class BotHousekeepingProto {
      */
 
     String getResolvedValueOrDefault(
-            String key,
-            String defaultValue);
+        String key,
+        String defaultValue);
     /**
      * <pre>
      *resolved value id, resolved value
@@ -14022,7 +14022,7 @@ public final class BotHousekeepingProto {
      */
 
     String getResolvedValueOrThrow(
-            String key);
+        String key);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.IntentParam}

@@ -5,12 +5,12 @@ import io.realm.annotations.PrimaryKey;
 
 public class Label extends RealmObject {
     @PrimaryKey
-    String labelId;
-    long createdAt;
-    String name;
-    String serviceId;
-    String spAccountId;
-    long updatedAt;
+    private String labelId;
+    private long createdAt;
+    private String name;
+    private String serviceId;
+    private String spAccountId;
+    private long updatedAt;
 
     public Label() {
     }

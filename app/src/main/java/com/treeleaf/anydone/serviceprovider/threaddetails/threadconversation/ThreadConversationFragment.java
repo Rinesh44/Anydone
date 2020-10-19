@@ -1119,15 +1119,17 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @Override
     public void mqttConnected() {
-        tvConnectionStatus.setText(R.string.connected);
-        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        if (tvConnectionStatus != null) {
+            tvConnectionStatus.setText(R.string.connected);
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
+            tvConnectionStatus.setVisibility(View.VISIBLE);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            //Do something after 2 secs
-            tvConnectionStatus.setVisibility(View.GONE);
-        }, 2000);
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                //Do something after 2 secs
+                tvConnectionStatus.setVisibility(View.GONE);
+            }, 2000);
+        }
     }
 
     @Override

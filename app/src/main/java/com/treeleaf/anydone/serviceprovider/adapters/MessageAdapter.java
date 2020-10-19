@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Patterns;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,8 +33,8 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -76,7 +73,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int MSG_SERVICE_DOERS_TAG = 9;
     public static final int MSG_BOT_SUGGESTIONS = 10;
     public static final int INITIAL_SERVICE_DETAIL = 11;
-    public static final int MSG_CALLS = 12;
+    public static final int MSG_CALL_OUTGOING = 12;
     public static final int INITIAL_TICKET_DETAIL = 13;
 
     private List<Conversation> conversationList;
@@ -229,7 +226,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .inflate(R.layout.layout_initial_ticket_detail, parent, false);
                 return new InitialTicketDetailHolder(ticketDetailView);
 
-            case MSG_CALLS:
+            case MSG_CALL_OUTGOING:
                 View callView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_calls, parent, false);
                 return new CallViewHolder(callView);
@@ -337,7 +334,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((InitialTicketDetailHolder) holder).bind(conversation);
                 break;
 
-            case MSG_CALLS:
+            case MSG_CALL_OUTGOING:
                 ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
         }
     }
@@ -415,7 +412,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 return MSG_SERVICE_DOERS_TAG;
 
             case "VIDEO_CALL_RTC_MESSAGE":
-                return MSG_CALLS;
+                return MSG_CALL_OUTGOING;
         }
 
         return -1;
@@ -1656,12 +1653,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             if (!CollectionUtils.isEmpty(conversation.getTagsList())) {
                 llLabels.removeAllViews();
-                for (Tags tag : conversation.getTagsList()
+                for (Label tag : conversation.getTagsList()
                 ) {
                     LayoutInflater inflater = LayoutInflater.from(mContext);
                     @SuppressLint("InflateParams") TextView tvTag = (TextView) inflater
                             .inflate(R.layout.layout_tag, null);
-                    tvTag.setText(tag.getLabel());
+                    tvTag.setText(tag.getName());
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     params.setMarginEnd(20);

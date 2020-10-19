@@ -151,18 +151,19 @@ public final class ProtoMapper {
         return labelRealmList;
     }
 
-    public static RealmList<Label> transformLabelsManaged(List<TicketProto.Label> labelListPb) {
+    public static List<Label> transformLabelsManaged(List<TicketProto.Label> labelListPb) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         GlobalUtils.showLog(TAG, "label list count: " + labelListPb.size());
-        RealmList<Label> labelRealmList = new RealmList<>();
+        List<Label> labelRealmList = new ArrayList<>();
         for (TicketProto.Label ticketLabelPb : labelListPb
         ) {
-            Label label = realm.createObject(Label.class, ticketLabelPb.getLabelId());
+            Label label = new Label();
             label.setName(ticketLabelPb.getName());
             label.setSpAccountId(ticketLabelPb.getSpAccountId());
             label.setServiceId(ticketLabelPb.getServiceId());
             label.setCreatedAt(ticketLabelPb.getCreatedAt());
             label.setUpdatedAt(ticketLabelPb.getUpdatedAt());
+            label = realm.copyToRealm(label);
             labelRealmList.add(label);
         }
         return labelRealmList;
@@ -292,7 +293,7 @@ public final class ProtoMapper {
                 employee.setPhone(employeeProfile.getAssignedTo().getAccount().getPhone());
                 employee.setEmail(employeeProfile.getAssignedTo().getAccount().getEmail());
 
-                ThreadRepo.getInstance().setAssignedEmployee(threadId,
+             /*   ThreadRepo.getInstance().setAssignedEmployee(threadId,
                         employee, new Repo.Callback() {
                             @Override
                             public void success(Object o) {
@@ -303,7 +304,7 @@ public final class ProtoMapper {
                             public void fail() {
                                 GlobalUtils.showLog(TAG, "failed to assign emp");
                             }
-                        });
+                        });*/
 
             });
         } catch (Throwable throwable) {

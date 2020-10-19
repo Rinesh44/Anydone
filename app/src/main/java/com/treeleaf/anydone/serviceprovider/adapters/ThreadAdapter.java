@@ -94,10 +94,13 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
     }
 
     private void setSourceImg(ImageView ivSource, Thread thread) {
-        if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.FACEBOOK_THIRD_PARTY_SOURCE.name())) {
+        if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource
+                .FACEBOOK_THIRD_PARTY_SOURCE.name())) {
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_messenger));
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.VIBER_THIRD_PARTY_SOURCE.name())) {
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_viber));
+        } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.SLACK_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_slack));
         }
     }
 

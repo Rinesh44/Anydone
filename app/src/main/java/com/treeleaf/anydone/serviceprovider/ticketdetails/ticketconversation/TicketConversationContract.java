@@ -113,7 +113,7 @@ public class TicketConversationContract {
 
         void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId);
 
-        void onTaskStartSuccess();
+        void onTaskStartSuccess(long estTime);
 
         void onTaskStartFail(String msg);
 

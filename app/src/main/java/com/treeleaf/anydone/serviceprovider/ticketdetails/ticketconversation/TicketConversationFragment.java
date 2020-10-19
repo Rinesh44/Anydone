@@ -574,7 +574,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setRefId(String.valueOf(tickets.getTicketId()));
         conversation.setTicketTitle(tickets.getTitle());
         conversation.setTicketDesc(tickets.getDescription());
-        conversation.setTagsList(tickets.getTagsRealmList());
+        conversation.setTagsList(tickets.getLabelRealmList());
         conversation.setMessageType("INITIAL_TICKET_DETAIL");
         adapter.setInitialData(conversation);
     }
@@ -841,7 +841,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setMessageType(RtcProto.RtcMessageType.VIDEO_CALL_RTC_MESSAGE.name());
         conversation.setCallDuration(duration);
         conversation.setCallInitiateTime(time);
-        conversation.setSenderId(videoRoomHostLeft.getSenderAccountId());
+        conversation.setSenderId(videoRoomHostLeft.getSenderAccount().getAccountId());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setSentAt(videoRoomHostLeft.getStartedAt());
         conversation.setRefId((videoRoomHostLeft.getRefId()));
@@ -953,7 +953,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onTaskStartSuccess() {
+    public void onTaskStartSuccess(long estTime) {
         btnStartTask.setVisibility(View.GONE);
         llSearchContainer.setVisibility(View.VISIBLE);
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
@@ -964,6 +964,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                 rvConversation.getLayoutParams();
         params.addRule(RelativeLayout.ABOVE, R.id.ll_search_container);
+
+        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
     }
 
     @Override

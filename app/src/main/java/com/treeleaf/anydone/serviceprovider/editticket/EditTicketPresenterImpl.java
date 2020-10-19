@@ -192,7 +192,7 @@ public class EditTicketPresenterImpl extends BasePresenter<EditTicketContract.Ed
                         }
 
                         TicketRepo.getInstance().editTicketEstimatedTime(Long.parseLong(ticketId),
-                                estimatedTime);
+                                estimatedTime, response.getEstimatedTime());
                         getView().onEstimatedTimeEditSuccess();
                     }
 

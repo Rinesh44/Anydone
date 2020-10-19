@@ -42,7 +42,7 @@ public class Conversation extends RealmObject {
     private RealmList<ServiceDoer> serviceDoerList;
     private RealmList<KGraph> kGraphList;
     private RealmList<Receiver> receiverList;
-    private RealmList<Tags> tagsList;
+    private RealmList<Label> tagsList;
 
 
     public Conversation() {
@@ -64,11 +64,11 @@ public class Conversation extends RealmObject {
         this.ticketDesc = ticketDesc;
     }
 
-    public RealmList<Tags> getTagsList() {
+    public RealmList<Label> getTagsList() {
         return tagsList;
     }
 
-    public void setTagsList(RealmList<Tags> tagsList) {
+    public void setTagsList(RealmList<Label> tagsList) {
         this.tagsList = tagsList;
     }
 

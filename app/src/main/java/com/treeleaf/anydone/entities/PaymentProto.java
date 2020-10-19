@@ -3047,13 +3047,18 @@ public final class PaymentProto {
     long getUpdatedAt();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    boolean hasPaymentPlan();
+    java.util.List<PaymentPlan>
+        getPaymentPlanList();
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    PaymentPlan getPaymentPlan();
+    PaymentPlan getPaymentPlan(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    int getPaymentPlanCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Product}
@@ -3067,7 +3072,9 @@ public final class PaymentProto {
       productId_ = "";
       productName_ = "";
       refId_ = "";
+      paymentPlan_ = emptyProtobufList();
     }
+    private int bitField0_;
     public static final int PRODUCTID_FIELD_NUMBER = 1;
     private String productId_;
     /**
@@ -3253,55 +3260,123 @@ public final class PaymentProto {
     }
 
     public static final int PAYMENTPLAN_FIELD_NUMBER = 6;
-    private PaymentPlan paymentPlan_;
+    private com.google.protobuf.Internal.ProtobufList<PaymentPlan> paymentPlan_;
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    public boolean hasPaymentPlan() {
-      return paymentPlan_ != null;
+    public java.util.List<PaymentPlan> getPaymentPlanList() {
+      return paymentPlan_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    public PaymentPlan getPaymentPlan() {
-      return paymentPlan_ == null ? PaymentPlan.getDefaultInstance() : paymentPlan_;
+    public java.util.List<? extends PaymentPlanOrBuilder>
+        getPaymentPlanOrBuilderList() {
+      return paymentPlan_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    private void setPaymentPlan(PaymentPlan value) {
+    public int getPaymentPlanCount() {
+      return paymentPlan_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    public PaymentPlan getPaymentPlan(int index) {
+      return paymentPlan_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    public PaymentPlanOrBuilder getPaymentPlanOrBuilder(
+        int index) {
+      return paymentPlan_.get(index);
+    }
+    private void ensurePaymentPlanIsMutable() {
+      if (!paymentPlan_.isModifiable()) {
+        paymentPlan_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(paymentPlan_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    private void setPaymentPlan(
+        int index, PaymentPlan value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      paymentPlan_ = value;
-      
-      }
+      ensurePaymentPlanIsMutable();
+      paymentPlan_.set(index, value);
+    }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
     private void setPaymentPlan(
-        PaymentPlan.Builder builderForValue) {
-      paymentPlan_ = builderForValue.build();
-      
+        int index, PaymentPlan.Builder builderForValue) {
+      ensurePaymentPlanIsMutable();
+      paymentPlan_.set(index, builderForValue.build());
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    private void mergePaymentPlan(PaymentPlan value) {
-      if (paymentPlan_ != null &&
-          paymentPlan_ != PaymentPlan.getDefaultInstance()) {
-        paymentPlan_ =
-          PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
-      } else {
-        paymentPlan_ = value;
+    private void addPaymentPlan(PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
       }
-      
+      ensurePaymentPlanIsMutable();
+      paymentPlan_.add(value);
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    private void clearPaymentPlan() {  paymentPlan_ = null;
-      
+    private void addPaymentPlan(
+        int index, PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePaymentPlanIsMutable();
+      paymentPlan_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    private void addPaymentPlan(
+        PaymentPlan.Builder builderForValue) {
+      ensurePaymentPlanIsMutable();
+      paymentPlan_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    private void addPaymentPlan(
+        int index, PaymentPlan.Builder builderForValue) {
+      ensurePaymentPlanIsMutable();
+      paymentPlan_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    private void addAllPaymentPlan(
+        Iterable<? extends PaymentPlan> values) {
+      ensurePaymentPlanIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, paymentPlan_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    private void clearPaymentPlan() {
+      paymentPlan_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+     */
+    private void removePaymentPlan(int index) {
+      ensurePaymentPlanIsMutable();
+      paymentPlan_.remove(index);
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -3321,8 +3396,8 @@ public final class PaymentProto {
       if (updatedAt_ != 0L) {
         output.writeInt64(5, updatedAt_);
       }
-      if (paymentPlan_ != null) {
-        output.writeMessage(6, getPaymentPlan());
+      for (int i = 0; i < paymentPlan_.size(); i++) {
+        output.writeMessage(6, paymentPlan_.get(i));
       }
     }
 
@@ -3351,9 +3426,9 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, updatedAt_);
       }
-      if (paymentPlan_ != null) {
+      for (int i = 0; i < paymentPlan_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getPaymentPlan());
+          .computeMessageSize(6, paymentPlan_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -3608,47 +3683,99 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
-      public boolean hasPaymentPlan() {
-        return instance.hasPaymentPlan();
+      public java.util.List<PaymentPlan> getPaymentPlanList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getPaymentPlanList());
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
-      public PaymentPlan getPaymentPlan() {
-        return instance.getPaymentPlan();
+      public int getPaymentPlanCount() {
+        return instance.getPaymentPlanCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       */
+      public PaymentPlan getPaymentPlan(int index) {
+        return instance.getPaymentPlan(index);
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
-       */
-      public Builder setPaymentPlan(PaymentPlan value) {
-        copyOnWrite();
-        instance.setPaymentPlan(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
       public Builder setPaymentPlan(
+          int index, PaymentPlan value) {
+        copyOnWrite();
+        instance.setPaymentPlan(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       */
+      public Builder setPaymentPlan(
+          int index, PaymentPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPaymentPlan(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       */
+      public Builder addPaymentPlan(PaymentPlan value) {
+        copyOnWrite();
+        instance.addPaymentPlan(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       */
+      public Builder addPaymentPlan(
+          int index, PaymentPlan value) {
+        copyOnWrite();
+        instance.addPaymentPlan(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       */
+      public Builder addPaymentPlan(
           PaymentPlan.Builder builderForValue) {
         copyOnWrite();
-        instance.setPaymentPlan(builderForValue);
+        instance.addPaymentPlan(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
-      public Builder mergePaymentPlan(PaymentPlan value) {
+      public Builder addPaymentPlan(
+          int index, PaymentPlan.Builder builderForValue) {
         copyOnWrite();
-        instance.mergePaymentPlan(value);
+        instance.addPaymentPlan(index, builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
-      public Builder clearPaymentPlan() {  copyOnWrite();
+      public Builder addAllPaymentPlan(
+          Iterable<? extends PaymentPlan> values) {
+        copyOnWrite();
+        instance.addAllPaymentPlan(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       */
+      public Builder clearPaymentPlan() {
+        copyOnWrite();
         instance.clearPaymentPlan();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
+       */
+      public Builder removePaymentPlan(int index) {
+        copyOnWrite();
+        instance.removePaymentPlan(index);
         return this;
       }
 
@@ -3665,6 +3792,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          paymentPlan_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3683,9 +3811,10 @@ public final class PaymentProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
+          paymentPlan_= visitor.visitList(paymentPlan_, other.paymentPlan_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -3737,16 +3866,12 @@ public final class PaymentProto {
                   break;
                 }
                 case 50: {
-                  PaymentPlan.Builder subBuilder = null;
-                  if (paymentPlan_ != null) {
-                    subBuilder = paymentPlan_.toBuilder();
+                  if (!paymentPlan_.isModifiable()) {
+                    paymentPlan_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(paymentPlan_);
                   }
-                  paymentPlan_ = input.readMessage(PaymentPlan.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(paymentPlan_);
-                    paymentPlan_ = subBuilder.buildPartial();
-                  }
-
+                  paymentPlan_.add(
+                      input.readMessage(PaymentPlan.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -3820,24 +3945,19 @@ public final class PaymentProto {
         getProductIdBytes();
 
     /**
-     * <code>optional string planeName = 3;</code>
+     * <code>optional string planName = 3;</code>
      */
-    String getPlaneName();
+    String getPlanName();
     /**
-     * <code>optional string planeName = 3;</code>
+     * <code>optional string planName = 3;</code>
      */
     com.google.protobuf.ByteString
-        getPlaneNameBytes();
+        getPlanNameBytes();
 
     /**
-     * <code>optional string amount = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
-    String getAmount();
-    /**
-     * <code>optional string amount = 4;</code>
-     */
-    com.google.protobuf.ByteString
-        getAmountBytes();
+    long getAmount();
 
     /**
      * <code>optional string currencyCode = 5;</code>
@@ -3870,8 +3990,7 @@ public final class PaymentProto {
     private PaymentPlan() {
       planId_ = "";
       productId_ = "";
-      planeName_ = "";
-      amount_ = "";
+      planName_ = "";
       currencyCode_ = "";
     }
     public static final int PLANID_FIELD_NUMBER = 1;
@@ -3966,96 +4085,73 @@ public final class PaymentProto {
       productId_ = value.toStringUtf8();
     }
 
-    public static final int PLANENAME_FIELD_NUMBER = 3;
-    private String planeName_;
+    public static final int PLANNAME_FIELD_NUMBER = 3;
+    private String planName_;
     /**
-     * <code>optional string planeName = 3;</code>
+     * <code>optional string planName = 3;</code>
      */
-    public String getPlaneName() {
-      return planeName_;
+    public String getPlanName() {
+      return planName_;
     }
     /**
-     * <code>optional string planeName = 3;</code>
+     * <code>optional string planName = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getPlaneNameBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(planeName_);
+        getPlanNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(planName_);
     }
     /**
-     * <code>optional string planeName = 3;</code>
+     * <code>optional string planName = 3;</code>
      */
-    private void setPlaneName(
+    private void setPlanName(
         String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      planeName_ = value;
+      planName_ = value;
     }
     /**
-     * <code>optional string planeName = 3;</code>
+     * <code>optional string planName = 3;</code>
      */
-    private void clearPlaneName() {
+    private void clearPlanName() {
       
-      planeName_ = getDefaultInstance().getPlaneName();
+      planName_ = getDefaultInstance().getPlanName();
     }
     /**
-     * <code>optional string planeName = 3;</code>
+     * <code>optional string planName = 3;</code>
      */
-    private void setPlaneNameBytes(
+    private void setPlanNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      planeName_ = value.toStringUtf8();
+      planName_ = value.toStringUtf8();
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 4;
-    private String amount_;
+    private long amount_;
     /**
-     * <code>optional string amount = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
-    public String getAmount() {
+    public long getAmount() {
       return amount_;
     }
     /**
-     * <code>optional string amount = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
-    public com.google.protobuf.ByteString
-        getAmountBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(amount_);
-    }
-    /**
-     * <code>optional string amount = 4;</code>
-     */
-    private void setAmount(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    private void setAmount(long value) {
+      
       amount_ = value;
     }
     /**
-     * <code>optional string amount = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
     private void clearAmount() {
       
-      amount_ = getDefaultInstance().getAmount();
-    }
-    /**
-     * <code>optional string amount = 4;</code>
-     */
-    private void setAmountBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      amount_ = value.toStringUtf8();
+      amount_ = 0L;
     }
 
     public static final int CURRENCYCODE_FIELD_NUMBER = 5;
@@ -4158,11 +4254,11 @@ public final class PaymentProto {
       if (!productId_.isEmpty()) {
         output.writeString(2, getProductId());
       }
-      if (!planeName_.isEmpty()) {
-        output.writeString(3, getPlaneName());
+      if (!planName_.isEmpty()) {
+        output.writeString(3, getPlanName());
       }
-      if (!amount_.isEmpty()) {
-        output.writeString(4, getAmount());
+      if (amount_ != 0L) {
+        output.writeInt64(4, amount_);
       }
       if (!currencyCode_.isEmpty()) {
         output.writeString(5, getCurrencyCode());
@@ -4188,13 +4284,13 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getProductId());
       }
-      if (!planeName_.isEmpty()) {
+      if (!planName_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getPlaneName());
+          .computeStringSize(3, getPlanName());
       }
-      if (!amount_.isEmpty()) {
+      if (amount_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(4, getAmount());
+          .computeInt64Size(4, amount_);
       }
       if (!currencyCode_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -4375,82 +4471,65 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional string planeName = 3;</code>
+       * <code>optional string planName = 3;</code>
        */
-      public String getPlaneName() {
-        return instance.getPlaneName();
+      public String getPlanName() {
+        return instance.getPlanName();
       }
       /**
-       * <code>optional string planeName = 3;</code>
+       * <code>optional string planName = 3;</code>
        */
       public com.google.protobuf.ByteString
-          getPlaneNameBytes() {
-        return instance.getPlaneNameBytes();
+          getPlanNameBytes() {
+        return instance.getPlanNameBytes();
       }
       /**
-       * <code>optional string planeName = 3;</code>
+       * <code>optional string planName = 3;</code>
        */
-      public Builder setPlaneName(
+      public Builder setPlanName(
           String value) {
         copyOnWrite();
-        instance.setPlaneName(value);
+        instance.setPlanName(value);
         return this;
       }
       /**
-       * <code>optional string planeName = 3;</code>
+       * <code>optional string planName = 3;</code>
        */
-      public Builder clearPlaneName() {
+      public Builder clearPlanName() {
         copyOnWrite();
-        instance.clearPlaneName();
+        instance.clearPlanName();
         return this;
       }
       /**
-       * <code>optional string planeName = 3;</code>
+       * <code>optional string planName = 3;</code>
        */
-      public Builder setPlaneNameBytes(
+      public Builder setPlanNameBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setPlaneNameBytes(value);
+        instance.setPlanNameBytes(value);
         return this;
       }
 
       /**
-       * <code>optional string amount = 4;</code>
+       * <code>optional int64 amount = 4;</code>
        */
-      public String getAmount() {
+      public long getAmount() {
         return instance.getAmount();
       }
       /**
-       * <code>optional string amount = 4;</code>
+       * <code>optional int64 amount = 4;</code>
        */
-      public com.google.protobuf.ByteString
-          getAmountBytes() {
-        return instance.getAmountBytes();
-      }
-      /**
-       * <code>optional string amount = 4;</code>
-       */
-      public Builder setAmount(
-          String value) {
+      public Builder setAmount(long value) {
         copyOnWrite();
         instance.setAmount(value);
         return this;
       }
       /**
-       * <code>optional string amount = 4;</code>
+       * <code>optional int64 amount = 4;</code>
        */
       public Builder clearAmount() {
         copyOnWrite();
         instance.clearAmount();
-        return this;
-      }
-      /**
-       * <code>optional string amount = 4;</code>
-       */
-      public Builder setAmountBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setAmountBytes(value);
         return this;
       }
 
@@ -4565,10 +4644,10 @@ public final class PaymentProto {
               !other.planId_.isEmpty(), other.planId_);
           productId_ = visitor.visitString(!productId_.isEmpty(), productId_,
               !other.productId_.isEmpty(), other.productId_);
-          planeName_ = visitor.visitString(!planeName_.isEmpty(), planeName_,
-              !other.planeName_.isEmpty(), other.planeName_);
-          amount_ = visitor.visitString(!amount_.isEmpty(), amount_,
-              !other.amount_.isEmpty(), other.amount_);
+          planName_ = visitor.visitString(!planName_.isEmpty(), planName_,
+              !other.planName_.isEmpty(), other.planName_);
+          amount_ = visitor.visitLong(amount_ != 0L, amount_,
+              other.amount_ != 0L, other.amount_);
           currencyCode_ = visitor.visitString(!currencyCode_.isEmpty(), currencyCode_,
               !other.currencyCode_.isEmpty(), other.currencyCode_);
           createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
@@ -4614,13 +4693,12 @@ public final class PaymentProto {
                 case 26: {
                   String s = input.readStringRequireUtf8();
 
-                  planeName_ = s;
+                  planName_ = s;
                   break;
                 }
-                case 34: {
-                  String s = input.readStringRequireUtf8();
+                case 32: {
 
-                  amount_ = s;
+                  amount_ = input.readInt64();
                   break;
                 }
                 case 42: {
