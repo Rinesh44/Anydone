@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -237,11 +238,11 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         }
 
         holder.tags.removeAllViews();
-        for (Tags tag : tickets.getTagsRealmList()
+        for (Label tag : tickets.getLabelRealmList()
         ) {
             TextView tagView = (TextView) LayoutInflater.from(mContext)
                     .inflate(R.layout.layout_tag, null);
-            tagView.setText(tag.getLabel());
+            tagView.setText(tag.getName());
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

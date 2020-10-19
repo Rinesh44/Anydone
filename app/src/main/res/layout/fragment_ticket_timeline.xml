@@ -267,12 +267,31 @@
                             android:text="Software"
                             android:textColor="@color/black" />
 
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:text="Summary"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="@dimen/material_text_subhead"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/tv_ticket_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimens_2x"
                             android:text="Broken tv fallen from stand"
+                            android:textColor="@color/charcoal_text" />
+
+
+                        <TextView
+                            android:id="@+id/tv_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:text="Description"
                             android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
@@ -281,7 +300,6 @@
                             android:id="@+id/tv_ticket_desc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_2x2"
                             android:text="kjasdf alksdjf lajsdfl alskdjf lasdflkj asdflkj alsdflkj "
                             android:textColor="@color/black" />
 

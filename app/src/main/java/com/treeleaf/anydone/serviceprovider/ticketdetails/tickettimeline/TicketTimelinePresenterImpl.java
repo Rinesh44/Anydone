@@ -294,9 +294,6 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             return;
                         }
 
-                        RealmList<Tags> teamRealmList = ProtoMapper
-                                .transformTags(response.getTeamsList());
-                        TicketRepo.getInstance().editTeams(Long.parseLong(ticketId), teamRealmList);
                         getView().onEditTeamSuccess();
                     }
 
@@ -336,9 +333,12 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
 
         List<TicketProto.Label> labelList = setLabels(labels);
 
+
         TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
                 .addAllLabel(labelList)
                 .build();
+
+        GlobalUtils.showLog(TAG, "edited labels: " + ticket);
 
         ticketObservable = service.editLabel(token, ticketId, ticket);
 
@@ -362,19 +362,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                             return;
                         }
 
-                        TicketRepo.getInstance().editLabels(Long.parseLong(ticketId),
-                                response.getLabelsList(), new Repo.Callback() {
-                                    @Override
-                                    public void success(Object o) {
-                                        GlobalUtils.showLog(TAG, "label edit success");
-                                        getView().onEditLabelSuccess();
-                                    }
-
-                                    @Override
-                                    public void fail() {
-                                        GlobalUtils.showLog(TAG, "failed to edit labels");
-                                    }
-                                });
+                        getView().onEditLabelSuccess();
 
                     }
 

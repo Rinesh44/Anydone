@@ -107,6 +107,15 @@ public final class ThirdPartyRpcProto {
      */
     com.google.protobuf.ByteString
         getServiceIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    boolean hasSlackWebhook();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook getSlackWebhook();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ThirdPartyBaseRequest}
@@ -595,6 +604,58 @@ public final class ThirdPartyRpcProto {
       serviceId_ = value.toStringUtf8();
     }
 
+    public static final int SLACKWEBHOOK_FIELD_NUMBER = 10;
+    private com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook slackWebhook_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    public boolean hasSlackWebhook() {
+      return slackWebhook_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    public com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook getSlackWebhook() {
+      return slackWebhook_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook.getDefaultInstance() : slackWebhook_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    private void setSlackWebhook(com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      slackWebhook_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    private void setSlackWebhook(
+        com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook.Builder builderForValue) {
+      slackWebhook_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    private void mergeSlackWebhook(com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook value) {
+      if (slackWebhook_ != null &&
+          slackWebhook_ != com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook.getDefaultInstance()) {
+        slackWebhook_ =
+          com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook.newBuilder(slackWebhook_).mergeFrom(value).buildPartial();
+      } else {
+        slackWebhook_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+     */
+    private void clearSlackWebhook() {  slackWebhook_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -623,6 +684,9 @@ public final class ThirdPartyRpcProto {
       }
       if (!serviceId_.isEmpty()) {
         output.writeString(9, getServiceId());
+      }
+      if (slackWebhook_ != null) {
+        output.writeMessage(10, getSlackWebhook());
       }
     }
 
@@ -671,6 +735,10 @@ public final class ThirdPartyRpcProto {
       if (!serviceId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(9, getServiceId());
+      }
+      if (slackWebhook_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, getSlackWebhook());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1165,6 +1233,51 @@ public final class ThirdPartyRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+       */
+      public boolean hasSlackWebhook() {
+        return instance.hasSlackWebhook();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+       */
+      public com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook getSlackWebhook() {
+        return instance.getSlackWebhook();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+       */
+      public Builder setSlackWebhook(com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook value) {
+        copyOnWrite();
+        instance.setSlackWebhook(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+       */
+      public Builder setSlackWebhook(
+          com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSlackWebhook(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+       */
+      public Builder mergeSlackWebhook(com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook value) {
+        copyOnWrite();
+        instance.mergeSlackWebhook(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
+       */
+      public Builder clearSlackWebhook() {  copyOnWrite();
+        instance.clearSlackWebhook();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ThirdPartyBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1201,6 +1314,7 @@ public final class ThirdPartyRpcProto {
               !other.serviceProviderId_.isEmpty(), other.serviceProviderId_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
+          slackWebhook_ = visitor.visitMessage(slackWebhook_, other.slackWebhook_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1302,6 +1416,19 @@ public final class ThirdPartyRpcProto {
                   String s = input.readStringRequireUtf8();
 
                   serviceId_ = s;
+                  break;
+                }
+                case 82: {
+                  com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook.Builder subBuilder = null;
+                  if (slackWebhook_ != null) {
+                    subBuilder = slackWebhook_.toBuilder();
+                  }
+                  slackWebhook_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(slackWebhook_);
+                    slackWebhook_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -1434,6 +1561,15 @@ public final class ThirdPartyRpcProto {
      * <code>optional .treeleaf.anydone.entities.IncomingViberMessage incomingViberMessage = 10;</code>
      */
     com.treeleaf.anydone.entities.ThirdPartyProto.IncomingViberMessage getIncomingViberMessage();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    boolean hasIncomingSlackMessage();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage getIncomingSlackMessage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ThirdPartyBaseResponse}
@@ -1850,6 +1986,58 @@ public final class ThirdPartyRpcProto {
       
     }
 
+    public static final int INCOMINGSLACKMESSAGE_FIELD_NUMBER = 11;
+    private com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage incomingSlackMessage_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    public boolean hasIncomingSlackMessage() {
+      return incomingSlackMessage_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage getIncomingSlackMessage() {
+      return incomingSlackMessage_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage.getDefaultInstance() : incomingSlackMessage_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    private void setIncomingSlackMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      incomingSlackMessage_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    private void setIncomingSlackMessage(
+        com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage.Builder builderForValue) {
+      incomingSlackMessage_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    private void mergeIncomingSlackMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage value) {
+      if (incomingSlackMessage_ != null &&
+          incomingSlackMessage_ != com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage.getDefaultInstance()) {
+        incomingSlackMessage_ =
+          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage.newBuilder(incomingSlackMessage_).mergeFrom(value).buildPartial();
+      } else {
+        incomingSlackMessage_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+     */
+    private void clearIncomingSlackMessage() {  incomingSlackMessage_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -1881,6 +2069,9 @@ public final class ThirdPartyRpcProto {
       }
       if (incomingViberMessage_ != null) {
         output.writeMessage(10, getIncomingViberMessage());
+      }
+      if (incomingSlackMessage_ != null) {
+        output.writeMessage(11, getIncomingSlackMessage());
       }
     }
 
@@ -1928,6 +2119,10 @@ public final class ThirdPartyRpcProto {
       if (incomingViberMessage_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getIncomingViberMessage());
+      }
+      if (incomingSlackMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getIncomingSlackMessage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2376,6 +2571,51 @@ public final class ThirdPartyRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+       */
+      public boolean hasIncomingSlackMessage() {
+        return instance.hasIncomingSlackMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+       */
+      public com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage getIncomingSlackMessage() {
+        return instance.getIncomingSlackMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+       */
+      public Builder setIncomingSlackMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage value) {
+        copyOnWrite();
+        instance.setIncomingSlackMessage(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+       */
+      public Builder setIncomingSlackMessage(
+          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIncomingSlackMessage(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+       */
+      public Builder mergeIncomingSlackMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage value) {
+        copyOnWrite();
+        instance.mergeIncomingSlackMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingSlackMessage incomingSlackMessage = 11;</code>
+       */
+      public Builder clearIncomingSlackMessage() {  copyOnWrite();
+        instance.clearIncomingSlackMessage();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ThirdPartyBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2413,6 +2653,7 @@ public final class ThirdPartyRpcProto {
               !other.stringValue_.isEmpty(), other.stringValue_);
           incomingMessengerMessage_ = visitor.visitMessage(incomingMessengerMessage_, other.incomingMessengerMessage_);
           incomingViberMessage_ = visitor.visitMessage(incomingViberMessage_, other.incomingViberMessage_);
+          incomingSlackMessage_ = visitor.visitMessage(incomingSlackMessage_, other.incomingSlackMessage_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -2511,6 +2752,19 @@ public final class ThirdPartyRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(incomingViberMessage_);
                     incomingViberMessage_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 90: {
+                  com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage.Builder subBuilder = null;
+                  if (incomingSlackMessage_ != null) {
+                    subBuilder = incomingSlackMessage_.toBuilder();
+                  }
+                  incomingSlackMessage_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingSlackMessage.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(incomingSlackMessage_);
+                    incomingSlackMessage_ = subBuilder.buildPartial();
                   }
 
                   break;

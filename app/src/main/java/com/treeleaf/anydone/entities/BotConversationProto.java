@@ -2041,7 +2041,7 @@ public final class BotConversationProto {
      * <code>map&lt;string, string&gt; paramValue = 4;</code>
      */
     boolean containsParamValue(
-            String key);
+        String key);
     /**
      * Use {@link #getParamValueMap()} instead.
      */
@@ -2066,8 +2066,8 @@ public final class BotConversationProto {
      */
 
     String getParamValueOrDefault(
-            String key,
-            String defaultValue);
+        String key,
+        String defaultValue);
     /**
      * <pre>
      *key: param_name, value: intent param's  value
@@ -2077,7 +2077,7 @@ public final class BotConversationProto {
      */
 
     String getParamValueOrThrow(
-            String key);
+        String key);
 
     /**
      * <pre>
@@ -2095,7 +2095,7 @@ public final class BotConversationProto {
      * <code>map&lt;string, .treeleaf.anydone.entities.IntentParam&gt; intentParam = 5;</code>
      */
     boolean containsIntentParam(
-            String key);
+        String key);
     /**
      * Use {@link #getIntentParamMap()} instead.
      */
@@ -2120,8 +2120,8 @@ public final class BotConversationProto {
      */
 
     BotHousekeepingProto.IntentParam getIntentParamOrDefault(
-            String key,
-            BotHousekeepingProto.IntentParam defaultValue);
+        String key,
+        BotHousekeepingProto.IntentParam defaultValue);
     /**
      * <pre>
      *key: intent_id, value = intent_param
@@ -2131,7 +2131,7 @@ public final class BotConversationProto {
      */
 
     BotHousekeepingProto.IntentParam getIntentParamOrThrow(
-            String key);
+        String key);
 
     /**
      * <pre>

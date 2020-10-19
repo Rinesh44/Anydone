@@ -114,11 +114,12 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     public void findTags() {
         Observable<TicketServiceRpcProto.TicketBaseResponse> tagObservable;
         String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        tagObservable = service.findTag(token);
+        tagObservable = service.getTicketTeams(token, serviceId);
 
         addSubscription(tagObservable
                 .subscribeOn(Schedulers.io())

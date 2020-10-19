@@ -172,7 +172,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
             thread = ThreadRepo.getInstance().getThreadById(threadId);
             presenter.getEmployees();
-            presenter.getThreadById(threadId);
+//            presenter.getThreadById(threadId);
             setThreadDetails();
         }
 
@@ -259,12 +259,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         tvTag.setText(thread.getDefaultLabel());
         setSource(thread);
         setCustomerDetails(thread);
-
-        if (thread.isBotEnabled()) {
-            botReply.setChecked(true);
-        } else {
-            botReply.setChecked(false);
-        }
+        setAssignedEmployee(thread);
+        botReply.setChecked(thread.isBotEnabled());
     }
 
     private void setAssignedEmployee(Thread thread) {
@@ -290,6 +286,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                     .into(civAssignedEmployee);
 
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
+            ivAssignEmployee.setOnClickListener(v -> employeeSheet.show());
         }
     }
 
@@ -655,6 +652,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 .into(civAssignedEmployee);
 
         ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
+        ivAssignEmployee.setOnClickListener(v -> employeeSheet.show());
     }
 
     @Override

@@ -223,7 +223,20 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                                     return;
                                 }
 
-                                getView().assignSuccess();
+                                ThreadRepo.getInstance().setAssignedEmployee(threadId, employeeId,
+                                        new Repo.Callback() {
+                                            @Override
+                                            public void success(Object o) {
+                                                GlobalUtils.showLog(TAG, "assigned employee on thread");
+                                                getView().assignSuccess();
+                                            }
+
+                                            @Override
+                                            public void fail() {
+                                                GlobalUtils.showLog(TAG, "Failed to save assigned employee on thread");
+                                            }
+                                        });
+
                             }
 
                             @Override
@@ -273,7 +286,6 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                                     threadResponse.getConversation().getEmployeeAssigned(0);
                             ProtoMapper.transformAssignedEmployeeAlt(assignedEmpPb,
                                     threadId);
-
                         }
 /*
                         getView().getThreadByIdSuccess(threadResponse.getConversation().getEmployeeAssigned(

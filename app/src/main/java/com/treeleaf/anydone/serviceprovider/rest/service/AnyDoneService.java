@@ -324,7 +324,7 @@ public interface AnyDoneService {
     Observable<UserRpcProto.UserBaseResponse> findEmployees(@Header(AUTHORIZATION)
                                                                     String token);
 
-    @GET("tag")
+    @GET("team")
     Observable<TicketServiceRpcProto.TicketBaseResponse> findTag(@Header(AUTHORIZATION)
                                                                          String token);
 
@@ -558,6 +558,13 @@ public interface AnyDoneService {
                                                                                  String token,
                                                                          @Path(value = "serviceId")
                                                                                  String serviceId);
+
+
+    @GET("team/service/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTeams(@Header(AUTHORIZATION)
+                                                                                String token,
+                                                                        @Path(value = "serviceId")
+                                                                                String serviceId);
 
     @PATCH("ticket/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>

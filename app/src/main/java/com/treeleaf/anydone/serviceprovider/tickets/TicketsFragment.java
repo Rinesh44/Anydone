@@ -152,6 +152,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         presenter.findEmployees();
         presenter.getTicketTypes();
         presenter.getLabels();
+        presenter.findTags();
 
 /*        sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
 

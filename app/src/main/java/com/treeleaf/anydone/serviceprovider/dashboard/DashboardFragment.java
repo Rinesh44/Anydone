@@ -413,6 +413,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
             lineChart.setVisibility(View.GONE);
             pbLineChart.setVisibility(View.VISIBLE);
+            tvLineChartNotAvailable.setVisibility(View.GONE);
             presenter.getTicketByPriority();
             presenter.getTicketByResolveTime();
             presenter.getTicketBySource();
@@ -1405,19 +1406,21 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     public void getTicketByResolvedTimeSuccess() {
         TicketStatByResolvedTime ticketStatResolveTime = TicketStatRepo.getInstance()
                 .getTicketStatByResolvedTime();
-        if (ticketStatResolveTime.getMax() != 0)
-            tvMax.setText(DateUtils.getElapsedTime(ticketStatResolveTime.getMax()));
-        else
-            tvMax.setText("N/A");
-        if (ticketStatResolveTime.getAvg() != 0)
-            tvAverage.setText(DateUtils.getElapsedTime(ticketStatResolveTime.getAvg()));
-        else
-            tvAverage.setText("N/A");
-        if (ticketStatResolveTime.getMin() != 0)
-            tvMin.setText(DateUtils.getElapsedTime
-                    (ticketStatResolveTime.getMin()));
-        else
-            tvMin.setText("N/A");
+        if (ticketStatResolveTime != null) {
+            if (ticketStatResolveTime.getMax() != 0)
+                tvMax.setText(DateUtils.getElapsedTime(ticketStatResolveTime.getMax()));
+            else
+                tvMax.setText("N/A");
+            if (ticketStatResolveTime.getAvg() != 0)
+                tvAverage.setText(DateUtils.getElapsedTime(ticketStatResolveTime.getAvg()));
+            else
+                tvAverage.setText("N/A");
+            if (ticketStatResolveTime.getMin() != 0)
+                tvMin.setText(DateUtils.getElapsedTime
+                        (ticketStatResolveTime.getMin()));
+            else
+                tvMin.setText("N/A");
+        }
     }
 
     @Override

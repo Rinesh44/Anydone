@@ -42,7 +42,7 @@ public class LabelRepo extends Repo {
     }
 
     private List<Label> transformLabelList(List<TicketProto.Label> labelListPb) {
-        RealmList<Label> labelList = new RealmList<>();
+        List<Label> labelList = new ArrayList<>();
         for (TicketProto.Label labelPb : labelListPb
         ) {
             Label label = transformLabel(labelPb);

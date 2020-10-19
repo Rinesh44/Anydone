@@ -3645,6 +3645,11 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Label labels = 24;</code>
      */
     int getLabelsCount();
+
+    /**
+     * <code>optional int64 estimatedTime = 25;</code>
+     */
+    long getEstimatedTime();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -5121,6 +5126,29 @@ public final class TicketServiceRpcProto {
       labels_.remove(index);
     }
 
+    public static final int ESTIMATEDTIME_FIELD_NUMBER = 25;
+    private long estimatedTime_;
+    /**
+     * <code>optional int64 estimatedTime = 25;</code>
+     */
+    public long getEstimatedTime() {
+      return estimatedTime_;
+    }
+    /**
+     * <code>optional int64 estimatedTime = 25;</code>
+     */
+    private void setEstimatedTime(long value) {
+      
+      estimatedTime_ = value;
+    }
+    /**
+     * <code>optional int64 estimatedTime = 25;</code>
+     */
+    private void clearEstimatedTime() {
+      
+      estimatedTime_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -5188,6 +5216,9 @@ public final class TicketServiceRpcProto {
       }
       for (int i = 0; i < labels_.size(); i++) {
         output.writeMessage(24, labels_.get(i));
+      }
+      if (estimatedTime_ != 0L) {
+        output.writeInt64(25, estimatedTime_);
       }
     }
 
@@ -5283,6 +5314,10 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < labels_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(24, labels_.get(i));
+      }
+      if (estimatedTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(25, estimatedTime_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -6602,6 +6637,29 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 estimatedTime = 25;</code>
+       */
+      public long getEstimatedTime() {
+        return instance.getEstimatedTime();
+      }
+      /**
+       * <code>optional int64 estimatedTime = 25;</code>
+       */
+      public Builder setEstimatedTime(long value) {
+        copyOnWrite();
+        instance.setEstimatedTime(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 estimatedTime = 25;</code>
+       */
+      public Builder clearEstimatedTime() {
+        copyOnWrite();
+        instance.clearEstimatedTime();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -6655,6 +6713,8 @@ public final class TicketServiceRpcProto {
           ticketTypes_= visitor.visitList(ticketTypes_, other.ticketTypes_);
           label_ = visitor.visitMessage(label_, other.label_);
           labels_= visitor.visitList(labels_, other.labels_);
+          estimatedTime_ = visitor.visitLong(estimatedTime_ != 0L, estimatedTime_,
+              other.estimatedTime_ != 0L, other.estimatedTime_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -6896,6 +6956,11 @@ public final class TicketServiceRpcProto {
                   }
                   labels_.add(
                       input.readMessage(com.treeleaf.anydone.entities.TicketProto.Label.parser(), extensionRegistry));
+                  break;
+                }
+                case 200: {
+
+                  estimatedTime_ = input.readInt64();
                   break;
                 }
               }

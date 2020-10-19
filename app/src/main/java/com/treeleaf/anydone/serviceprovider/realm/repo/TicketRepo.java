@@ -132,12 +132,57 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public void editTeams(long ticketId, RealmList<Tags> teamRealmList, final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> result = realm1.where(Tickets.class)
+                        .equalTo("ticketId", ticketId).findAll();
+                result.setList("tagsRealmList", teamRealmList);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void editLabels(long ticketId, RealmList<Label> labelList, final Callback
+            callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> result = realm1.where(Tickets.class)
+                        .equalTo("ticketId", ticketId).findAll();
+                result.setList("labelRealmList", labelList);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void editTicketPriority(long ticketId, int priority) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
             result.setInt("priority", priority);
+        });
+    }
+
+    public void setTicketEstTime(long ticketId, long estTime) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setLong("estimatedTimeStamp", estTime);
         });
     }
 
@@ -151,33 +196,6 @@ public class TicketRepo extends Repo {
         });
     }
 
-    public void editLabels(long ticketId, List<TicketProto.Label> labelList, final Callback
-            callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
-        try {
-            realm.executeTransaction(realm1 -> {
-                Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
-                RealmList<Label> labelRealmList = ProtoMapper.transformLabels(labelList);
-                tickets.setLabelRealmList(labelRealmList);
-                realm.copyToRealmOrUpdate(tickets);
-                callback.success(null);
-            });
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            callback.fail();
-        } finally {
-            close(realm);
-        }
-    }
-
-    public void editTeams(long ticketId, RealmList<Tags> teamRealmList) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
-        realm.executeTransaction(realm1 -> {
-            RealmResults<Tickets> result = realm1.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findAll();
-            result.setList("tagsRealmList", teamRealmList);
-        });
-    }
 
     public void editTicketType(long ticketId, String ticketType) {
         final Realm realm = RealmUtils.getInstance().getRealm();
@@ -206,12 +224,13 @@ public class TicketRepo extends Repo {
         });
     }
 
-    public void editTicketEstimatedTime(long ticketId, String editedText) {
+    public void editTicketEstimatedTime(long ticketId, String editedText, long estTime) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
             result.setString("estimatedTime", editedText);
+            result.setLong("estimatedTimeStamp", estTime);
         });
     }
 
@@ -358,6 +377,7 @@ public class TicketRepo extends Repo {
             tickets.setTicketId(ticketPb.getTicketId());
             tickets.setTitle(ticketPb.getTitle());
             tickets.setTicketCategory(ticketPb.getType().getName());
+            GlobalUtils.showLog(TAG, "est time back end: " + ticketPb.getEstimatedTimeDesc());
             tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
             tickets.setDescription(ticketPb.getDescription());
             tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
