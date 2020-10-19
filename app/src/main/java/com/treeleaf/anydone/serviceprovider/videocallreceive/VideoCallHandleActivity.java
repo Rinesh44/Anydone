@@ -440,9 +440,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         Log.d(MQTT, "onParticipantLeft");
         if (videoCallListenerServer != null) {
             videoCallListenerServer.onJoineeRemoved(participantLeft.getSenderAccountId());
+            videoCallListenerServer.onParticipantLeft();
         }
         if (videoCallListenerClient != null) {
             videoCallListenerClient.onJoineeRemoved(participantLeft.getSenderAccountId());
+            videoCallListenerClient.onParticipantLeft();
         }
     }
 
