@@ -16,15 +16,14 @@ import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
-import retrofit2.Retrofit;
 
 /**
  * Initialize modules{@link NetworkModule}
@@ -47,9 +46,9 @@ public interface ApplicationComponent {
 
     void inject(ServiceRequestFragment serviceRequestFragment);
 
-    void inject(AssignedTicketsFragment assignedTicketsFragment);
+    void inject(PendingTicketsFragment pendingTicketsFragment);
 
-    void inject(SubscribeTicketsFragment subscribeTicketsFragment);
+    void inject(InProgressTicketsFragment inProgressTicketsFragment);
 
     void inject(ClosedTicketsFragment closedTicketsFragment);
 

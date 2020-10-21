@@ -10,8 +10,8 @@
         android:id="@+id/pb_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
         android:layout_centerInParent="true"
+        android:elevation="4dp"
         android:visibility="gone" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -36,14 +36,34 @@
         android:layout_margin="@dimen/dimen_10x1"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/iv_data_not_found"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_centerInParent="true"
-        android:paddingBottom="@dimen/dimen_10x6"
-        android:src="@drawable/ic_no_ticket_found"
-        android:visibility="gone" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/iv_data_not_found"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_no_ticket_found"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_data_not_found"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Reload"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_assign"

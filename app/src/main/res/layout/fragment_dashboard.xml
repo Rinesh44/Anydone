@@ -38,7 +38,7 @@
                         android:layout_height="22dp"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:src="@drawable/ic_user_placeholder" />
+                        android:src="@drawable/ic_service_ph" />
 
                     <TextView
                         android:id="@+id/toolbar_title"

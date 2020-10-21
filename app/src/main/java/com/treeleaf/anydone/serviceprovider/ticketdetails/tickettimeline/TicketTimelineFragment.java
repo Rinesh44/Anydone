@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
-import android.util.TimeUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -185,6 +184,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     Switch botReply;
     @BindView(R.id.tv_ticket_type_value)
     TextView tvTicketType;
+    @BindView(R.id.tv_ticket_type)
+    TextView tvTicketTypeTitle;
     @BindView(R.id.ll_label_holder)
     LinearLayout llLabelHolder;
     @BindView(R.id.ll_labels)
@@ -197,6 +198,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     RelativeLayout rlRoot;
     @BindView(R.id.tv_description)
     TextView tvDescTitle;
+    @BindView(R.id.tv_add_label)
+    TextView tvAddLabel;
+    @BindView(R.id.tv_add_team)
+    TextView tvAddTeam;
+    @BindView(R.id.tv_add_desc)
+    TextView tvAddDesc;
+    @BindView(R.id.tv_add_est_time)
+    TextView tvAddEstTime;
 
     private boolean expandEmployee = true;
     private boolean expandCustomer = true;
@@ -347,10 +356,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                         break;
 
                     case "desc":
+                        tvAddDesc.setVisibility(View.GONE);
+                        tvTicketDesc.setVisibility(View.VISIBLE);
                         tvTicketDesc.setText(tickets.getDescription());
                         break;
 
                     case "estimated_time":
+                        tvAddEstTime.setVisibility(View.GONE);
+                        tvEstimatedTimeValue.setVisibility(View.VISIBLE);
                         tvEstimatedTimeValue.setText(tickets.getEstimatedTime());
                         setRemainingTime();
                         break;
@@ -535,15 +548,28 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         tvTicketId.setText(String.valueOf(tickets.getTicketId()));
         tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
         tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
-        tvTicketType.setText(tickets.getTicketCategory());
         tvTicketTitle.setText(tickets.getTitle());
 
+        if (!tickets.getTicketCategory().isEmpty())
+            tvTicketType.setText(tickets.getTicketCategory());
+        else {
+            tvTicketType.setVisibility(View.GONE);
+            tvTicketTypeTitle.setVisibility(View.GONE);
+        }
 
         GlobalUtils.showLog(TAG, "est time check: " + tickets.getEstimatedTime());
         GlobalUtils.showLog(TAG, "est time stamp check: " + tickets.getEstimatedTimeStamp());
         if (tickets.getEstimatedTime().isEmpty()) {
+            tvAddEstTime.setVisibility(View.VISIBLE);
             tvEstimatedTimeValue.setVisibility(View.GONE);
-            tvEstimatedTime.setVisibility(View.GONE);
+
+            tvAddEstTime.setOnClickListener(v -> {
+                Intent i = new Intent(getActivity(), EditTicketActivity.class);
+                i.putExtra("type", "estimated_time");
+                i.putExtra("text", tvEstimatedTimeValue.getText().toString().trim());
+                i.putExtra("ticket_id", String.valueOf(ticketId));
+                startActivityForResult(i, EDIT_RESULT);
+            });
         } else {
             tvEstimatedTimeValue.setVisibility(View.VISIBLE);
             tvEstimatedTime.setVisibility(View.VISIBLE);
@@ -556,10 +582,19 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
 
         if (tickets.getDescription() == null || tickets.getDescription().isEmpty()) {
-            tvDescTitle.setVisibility(View.GONE);
+            tvAddDesc.setVisibility(View.VISIBLE);
             tvTicketDesc.setVisibility(View.GONE);
+            tvAddDesc.setOnClickListener(v -> {
+                Intent i = new Intent(getActivity(), EditTicketActivity.class);
+                i.putExtra("type", "desc");
+                i.putExtra("text", tvTicketDesc.getText().toString().trim());
+                i.putExtra("ticket_id", String.valueOf(ticketId));
+                startActivityForResult(i, EDIT_RESULT);
+            });
+
         } else {
             tvDescTitle.setVisibility(View.VISIBLE);
+            tvTicketDesc.setVisibility(View.VISIBLE);
             tvTicketDesc.setText(tickets.getDescription());
         }
         tvTicketCreatedBy.setText(tickets.getCreatedByName());
@@ -735,7 +770,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 llLabels.addView(tvLabel);
             }
         } else {
-            llLabelHolder.setVisibility(View.GONE);
+            tvAddLabel.setVisibility(View.VISIBLE);
+            tvAddLabel.setOnClickListener(v -> labelSheet.show());
         }
     }
 
@@ -973,8 +1009,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         RequestOptions options = new RequestOptions()
                 .fitCenter()
-                .placeholder(R.drawable.ic_browse_service)
-                .error(R.drawable.ic_browse_service);
+                .placeholder(R.drawable.ic_service_ph)
+                .error(R.drawable.ic_service_ph);
 
         Glide.with(this)
                 .load(service.getServiceIconUrl())
@@ -1280,10 +1316,13 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 tvTag.setLayoutParams(params);
                 tvTag.setTextSize(14);
                 llTags.addView(tvTag);
+                llTags.setVisibility(View.VISIBLE);
             }
         } else {
-            tvTeam.setVisibility(View.GONE);
             llTags.setVisibility(View.GONE);
+
+            tvAddTeam.setVisibility(View.VISIBLE);
+            tvAddTeam.setOnClickListener(v -> teamSheet.show());
         }
     }
 
@@ -1617,6 +1656,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         TicketRepo.getInstance().changeTicketStatusToClosed(ticketId);
         setTicketDetails();
         Hawk.put(Constants.REFETCH_TICKET, true);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
+        Hawk.put(Constants.TICKET_IN_PROGRESS, true);
     }
 
     @Override
@@ -1637,6 +1678,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         TicketRepo.getInstance().changeTicketStatusToReopened(ticketId);
         setTicketDetails();
         Hawk.put(Constants.REFETCH_TICKET, true);
+        Hawk.put(Constants.TICKET_PENDING, true);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
     }
 
     @Override
@@ -1657,6 +1700,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         TicketRepo.getInstance().changeTicketStatusToResolved(ticketId);
         setTicketDetails();
         Hawk.put(Constants.REFETCH_TICKET, true);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
+        Hawk.put(Constants.TICKET_IN_PROGRESS, true);
     }
 
     private void setUpEmployeeRecyclerView() {
@@ -1736,8 +1781,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void assignSuccess() {
-        Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
-        Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
+        Hawk.put(Constants.FETCH_PENDING_LIST, true);
+        Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, true);
         tvAssignedEmployee.setText(selectedEmployee.getName());
         String employeeImage = selectedEmployee.getEmployeeImageUrl();
         RequestOptions options = new RequestOptions()
@@ -1850,6 +1895,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onEditTeamSuccess() {
+        tvAddTeam.setVisibility(View.GONE);
         addTeamsLocally();
     }
 
@@ -1893,6 +1939,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onEditLabelSuccess() {
+        tvAddLabel.setVisibility(View.GONE);
         addLabelsLocally(labels);
     }
 

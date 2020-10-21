@@ -1,14 +1,14 @@
-package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
+package com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets;
 
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
 import io.reactivex.Observable;
 
-public class SubscribeTicketRepositoryImpl implements SubscribeTicketRepository {
+public class InProgressTicketRepositoryImpl implements InProgressTicketRepository {
     private AnyDoneService anyDoneService;
 
-    public SubscribeTicketRepositoryImpl(AnyDoneService anyDoneService) {
+    public InProgressTicketRepositoryImpl(AnyDoneService anyDoneService) {
         this.anyDoneService = anyDoneService;
     }
 

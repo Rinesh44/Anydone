@@ -14,6 +14,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -302,6 +303,87 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     public void onComplete() {
                     }
                 }));
+    }
+
+    @Override
+    public void getLinkedTickets(String threadId) {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getLinkedTickets(token, threadId);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse ticketResponse) {
+                        GlobalUtils.showLog(TAG, "get linked ticket response:"
+                                + ticketResponse);
+
+                        if (ticketResponse == null) {
+                            getView().getLinkedTicketFail("Failed to get linked tickets");
+                            return;
+                        }
+
+                        if (ticketResponse.getError()) {
+                            getView().getLinkedTicketFail(ticketResponse.getMsg());
+                            return;
+                        }
+
+
+                        if (!ticketResponse.getTicketsList().isEmpty()) {
+                            saveLinkedTickets(ticketResponse, threadId);
+                        } else{
+                            getView().getLinkedTicketSuccess();
+                        }
+/*
+                        getView().getThreadByIdSuccess(threadResponse.getConversation().getEmployeeAssigned(
+                                threadResponse.getConversation().getEmployeeAssignedCount() - 1));*/
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().getLinkedTicketFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    private void saveLinkedTickets(TicketServiceRpcProto.TicketBaseResponse ticketResponse, String
+            threadId) {
+        TicketRepo.getInstance().deleteLinkedTickets(new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "cleared linked tickets");
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to remove linked tickets");
+            }
+        });
+
+        TicketRepo.getInstance().saveLinkedTicketList(ticketResponse.getTicketsList(),
+                Constants.LINKED, threadId, new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        GlobalUtils.showLog(TAG, "saved linked tickets");
+                        getView().getLinkedTicketSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG, "failed to save linked tickets");
+                        getView().getLinkedTicketFail("Failed to save linked list");
+                    }
+                });
     }
 
 

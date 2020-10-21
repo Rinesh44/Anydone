@@ -20,7 +20,6 @@ import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -31,12 +30,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHolder> {
     private static final String TAG = "TicketsAdapter";
-    public static final int ASSIGNED = 0;
-    public static final int SUBSCRIBED = 1;
-    public static final int CLOSED_RESOLVED = 2;
-    public static final int ASSIGNABLE = 3;
-    public static final int SUBSCRIBEABLE = 4;
-    public static final int CONTRIBUTED = 5;
+    public static final int PENDING = 0;
+    public static final int IN_PROGRESS = 1;
+    public static final int SUBSCRIBED = 2;
+    public static final int CLOSED_RESOLVED = 3;
+    public static final int ASSIGNABLE = 4;
+    public static final int SUBSCRIBEABLE = 5;
+    public static final int CONTRIBUTED = 6;
     private List<Tickets> ticketsList;
     private Context mContext;
     private OnItemClickListener listener;
@@ -67,11 +67,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     @Override
     public TicketHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
-            case ASSIGNED:
-                View itemViewAssigned = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.layout_ticket_row_assigned, parent, false);
-                return new TicketHolder(itemViewAssigned);
-
             case SUBSCRIBED:
                 View itemViewSubscribed = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_ticket_row_subscribed, parent, false);
@@ -106,7 +101,10 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
         switch (tickets.getTicketType()) {
             case "ASSIGNED":
-                return ASSIGNED;
+                return PENDING;
+
+            case "IN_PROGRESS":
+                return IN_PROGRESS;
 
             case "SUBSCRIBED":
                 return SUBSCRIBED;
@@ -135,6 +133,13 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             viewBinderHelper.bind(holder.swipeRevealLayout,
                     String.valueOf(tickets.getTicketId()));
         }
+/*
+        ViewGroup.LayoutParams ticketViewLp = holder.llTicketView.getLayoutParams();
+        ticketViewLp.height = GlobalUtils.convertDpToPixel(mContext, 90);
+
+        ViewGroup.LayoutParams ticketDetailLp = holder.llDetailsHolder.getLayoutParams();
+        ticketDetailLp.height = GlobalUtils.convertDpToPixel(mContext, 90);*/
+
 
         //change layout design if no assigned employee found
         if ((tickets.getAssignedEmployee().getEmployeeId().isEmpty())) {
@@ -164,39 +169,53 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_created_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.created_bg));
+                holder.ticketStatus.setTextColor
+                        (mContext.getResources().getColor(R.color.ticket_created_text));
+                holder.ticketStatus.setBackground
+                        (mContext.getResources().getDrawable(R.drawable.created_bg));
                 holder.ticketStatus.setText("TODO");
                 break;
 
             case "TICKET_STARTED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_started_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.started_bg));
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_started_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.started_bg));
                 holder.ticketStatus.setText("STARTED");
                 break;
 
             case "TICKET_RESOLVED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_resolved_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.resolved_bg));
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_resolved_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.resolved_bg));
                 holder.ticketStatus.setText("RESOLVED");
                 break;
 
             case "TICKET_CLOSED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_closed_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.closed_bg));
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_closed_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.closed_bg));
                 holder.ticketStatus.setText("CLOSED");
                 break;
 
             case "TICKET_REOPENED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor(R.color.ticket_reopened_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable(R.drawable.reopened_bg));
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_reopened_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.reopened_bg));
                 holder.ticketStatus.setText("REOPENED");
                 break;
         }
 
         switch (tickets.getTicketType()) {
             //set click listener on swipe action
-            case "ASSIGNED":
+            case "PENDING":
+
+                break;
+
+            case "IN_PROGRESS":
 
                 break;
 
@@ -258,27 +277,32 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         switch (priority) {
             case 1:
                 holder.ticketPriority.setText("Lowest");
-                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lowest_small, 0, 0, 0);
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds
+                        (R.drawable.ic_lowest_small, 0, 0, 0);
                 break;
 
             case 2:
                 holder.ticketPriority.setText("Low");
-                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_low_small, 0, 0, 0);
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds
+                        (R.drawable.ic_low_small, 0, 0, 0);
                 break;
 
             case 4:
                 holder.ticketPriority.setText("High");
-                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_high_small, 0, 0, 0);
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds
+                        (R.drawable.ic_high_small, 0, 0, 0);
                 break;
 
             case 5:
                 holder.ticketPriority.setText("Highest");
-                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_highest_small, 0, 0, 0);
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds
+                        (R.drawable.ic_highest_small, 0, 0, 0);
                 break;
 
             default:
                 holder.ticketPriority.setText("Medium");
-                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medium_small, 0, 0, 0);
+                holder.ticketPriority.setCompoundDrawablesWithIntrinsicBounds
+                        (R.drawable.ic_medium_small, 0, 0, 0);
                 break;
         }
     }
@@ -315,6 +339,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         private View dots;
         private LinearLayout llTicketView;
         private TextView ticketPriority;
+        private LinearLayout llDetailsHolder;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
@@ -335,6 +360,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             dots = itemView.findViewById(R.id.v_dots);
             llTicketView = itemView.findViewById(R.id.ll_ticket_view);
             ticketPriority = itemView.findViewById(R.id.tv_priority);
+            llDetailsHolder = itemView.findViewById(R.id.ll_details_holder);
             rlAssignedEmployeeHolder = itemView.findViewById(R.id.rl_assigned_employee_holder);
 
             if (rlTicketHolder != null) {

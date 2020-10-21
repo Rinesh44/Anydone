@@ -1,10 +1,10 @@
-package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
+package com.treeleaf.anydone.serviceprovider.tickets.pendingtickets;
 
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 
 import io.reactivex.Observable;
 
-public interface AssignedTicketRepository {
+public interface PendingTicketRepository {
     Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(String token,
                                                                             String serviceId,
                                                                             long from,

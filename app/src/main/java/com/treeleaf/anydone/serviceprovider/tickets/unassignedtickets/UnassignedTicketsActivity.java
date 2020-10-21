@@ -671,7 +671,8 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     public void assignSuccess() {
 
         presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 100);
-        Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
+        Hawk.put(Constants.FETCH_PENDING_LIST, true);
+        Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, true);
     }
 
     @Override

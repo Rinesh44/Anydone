@@ -960,6 +960,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
       /*  if (onTicketStartListener != null)
             onTicketStartListener.onTicketStarted();*/
         Hawk.put(Constants.TICKET_STARTED, true);
+        Hawk.put(Constants.TICKET_PENDING, true);
+        Hawk.put(Constants.TICKET_IN_PROGRESS, true);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                 rvConversation.getLayoutParams();

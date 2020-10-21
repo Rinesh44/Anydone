@@ -1,4 +1,4 @@
-package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
+package com.treeleaf.anydone.serviceprovider.subscribed;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
@@ -9,6 +9,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
+import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketRepository;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -22,16 +23,16 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class SubscribeTicketPresenterImpl extends BasePresenter<SubscribeTicketContract.SubscribeTicketsView>
-        implements SubscribeTicketContract.SubscribeTicketsPresenter {
+public class SubscribedTicketPresenterImpl  extends BasePresenter<SubscribedTicketContract.SubscribeTicketsView>
+        implements SubscribedTicketContract.SubscribeTicketsPresenter {
 
     private static final String TAG = "SubscribeTicketPresente";
-    private SubscribeTicketRepository subscribeTicketRepository;
+    private InProgressTicketRepository inProgressTicketRepository;
 
 
     @Inject
-    public SubscribeTicketPresenterImpl(SubscribeTicketRepository subscribeTicketRepository) {
-        this.subscribeTicketRepository = subscribeTicketRepository;
+    public SubscribedTicketPresenterImpl(InProgressTicketRepository inProgressTicketRepository) {
+        this.inProgressTicketRepository = inProgressTicketRepository;
     }
 
     @Override

@@ -8,6 +8,7 @@ public class Tickets extends RealmObject {
     @PrimaryKey
     String id;
     long ticketId;
+    String threadId;
     String title;
     String description;
     String ticketCategory;
@@ -237,5 +238,13 @@ public class Tickets extends RealmObject {
 
     public void setTicketCategoryId(String ticketCategoryId) {
         this.ticketCategoryId = ticketCategoryId;
+    }
+
+    public String getThreadId() {
+        return threadId;
+    }
+
+    public void setThreadId(String threadId) {
+        this.threadId = threadId;
     }
 }

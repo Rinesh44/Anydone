@@ -33,6 +33,7 @@ public class AddTicketContract {
                           String customerEmail, String customerPhone, String customerName,
                           List<String> tags, List<Label> ticketLabels, String estimatedTime,
                           String assignedEmployeeId, int priority,
-                          TicketProto.TicketSource ticketSource, boolean customerAsSelf);
+                          TicketProto.TicketSource ticketSource, boolean customerAsSelf,
+                          String refId);
     }
 }

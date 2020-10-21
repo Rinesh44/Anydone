@@ -300,8 +300,19 @@
                             android:id="@+id/tv_ticket_desc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="kjasdf alksdjf lajsdfl alskdjf lasdflkj asdflkj alsdflkj "
-                            android:textColor="@color/black" />
+                            android:layout_below="@+id/tv_description"
+                            android:textColor="@color/black"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/tv_add_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_description"
+                            android:text="Add Description"
+                            android:textColor="@color/colorPrimary"
+                            android:visibility="gone" />
+
 
                         <TextView
                             android:id="@+id/tv_estimated_time"
@@ -317,11 +328,21 @@
                             android:id="@+id/tv_estimated_time_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_ticket_id_title"
-                            android:text="1 day 7 hours"
+                            android:layout_below="@+id/tv_estimated_time"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/tv_add_est_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_estimated_time"
+                            android:text="Add Estimated Time"
+                            android:textColor="@color/colorPrimary"
+                            android:visibility="gone" />
+
+
+                        <TextView
+                            android:id="@+id/tv_priority_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
@@ -333,6 +354,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_priority_title"
                             android:layout_marginTop="@dimen/dimen_2x1"
                             android:orientation="horizontal">
 
@@ -355,6 +377,7 @@
 
                         </LinearLayout>
 
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -373,7 +396,7 @@
                                 android:id="@+id/iv_service"
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
-                                android:src="@drawable/ic_browse_service" />
+                                android:src="@drawable/ic_service_ph" />
 
                             <TextView
                                 android:id="@+id/tv_service"
@@ -509,6 +532,15 @@
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
+                        <TextView
+                            android:id="@+id/tv_add_team"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_description"
+                            android:text="Add Team"
+                            android:textColor="@color/colorPrimary"
+                            android:visibility="gone" />
+
                         <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -538,6 +570,15 @@
                                 android:textColor="@color/charcoal_text"
                                 android:textSize="@dimen/material_text_subhead"
                                 android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_add_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_description"
+                                android:text="Add Label"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
 
                             <HorizontalScrollView
                                 android:layout_width="match_parent"

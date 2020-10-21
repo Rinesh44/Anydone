@@ -41,8 +41,7 @@ import java.util.Objects;
 import butterknife.BindView;
 
 public class ContributedTicketFragment extends BaseFragment<ContributedTicketPresenterImpl>
-        implements ContributedTicketContract.ContributedTicketView,
-        TicketsFragment.ContributedListListener {
+        implements ContributedTicketContract.ContributedTicketView{
     private static final String TAG = "ContributedTicketFragme";
     @BindView(R.id.rv_contributed_tickets)
     RecyclerView rvContributedTickets;
@@ -64,7 +63,6 @@ public class ContributedTicketFragment extends BaseFragment<ContributedTicketPre
 
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
-        mFragment.setContributedListListener(this);
         userAccount = AccountRepo.getInstance().getAccount();
         localAccountId = userAccount.getAccountId();
     }
@@ -265,23 +263,5 @@ public class ContributedTicketFragment extends BaseFragment<ContributedTicketPre
                 Constants.SERVER_ERROR);
     }
 
-    @Override
-    public void updateContributedList(List<Tickets> ticketsList) {
-        GlobalUtils.showLog(TAG, "interface implemented");
-        setUpRecyclerView(ticketsList);
-    }
-
-    @Override
-    public void updateContributedList() {
-        presenter.getContributedTickets(true, 0,
-                System.currentTimeMillis(), 100);
-    }
-
-    @Override
-    public void fetchList() {
-        GlobalUtils.showLog(TAG, "fetch list called");
-        presenter.getContributedTickets(true, 0,
-                System.currentTimeMillis(), 100);
-    }
 }
 

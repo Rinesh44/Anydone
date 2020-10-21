@@ -28,6 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".linkedticketdetail.LinkedTicketDetailActivity"></activity>
+        <activity android:name=".subscribed.SubscribedTicketsActivity" />
+        <activity
+            android:name=".contributed.ContributedTicketsActivity"
+            android:theme="@style/FormTheme" />
         <activity
             android:name=".editticket.EditTicketActivity"
             android:theme="@style/AppTheme.NoActionBar" />

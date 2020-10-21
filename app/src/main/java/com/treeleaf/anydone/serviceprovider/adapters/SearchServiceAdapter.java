@@ -54,8 +54,8 @@ public class SearchServiceAdapter extends RecyclerView.Adapter<SearchServiceAdap
         if (service.getServiceIconUrl() != null) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph);
 
             Glide.with(mContext).load(service.getServiceIconUrl())
                     .apply(options).into(holder.ivService);

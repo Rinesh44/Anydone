@@ -1,4 +1,4 @@
-package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
+package com.treeleaf.anydone.serviceprovider.tickets.pendingtickets;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
@@ -22,19 +22,19 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketContract.AssignedTicketView>
-        implements AssignedTicketContract.AssignedTicketPresenter {
+public class PendingTicketPresenterImpl extends BasePresenter<PendingTicketContract.PendingTicketView>
+        implements PendingTicketContract.PendingTicketPresenter {
 
-    private static final String TAG = "AssignedTicketPresenter";
-    private AssignedTicketRepository assignedTicketRepository;
+    private static final String TAG = "PendingTicketPresenterI";
+    private PendingTicketRepository pendingTicketRepository;
 
     @Inject
-    public AssignedTicketPresenterImpl(AssignedTicketRepository assignedTicketRepository) {
-        this.assignedTicketRepository = assignedTicketRepository;
+    public PendingTicketPresenterImpl(PendingTicketRepository pendingTicketRepository) {
+        this.pendingTicketRepository = pendingTicketRepository;
     }
 
     @Override
-    public void getAssignedTickets(boolean showProgress, long from, long to, int page) {
+    public void getPendingTickets(boolean showProgress, long from, long to, int page) {
         if (showProgress) {
             getView().showProgressBar("Please wait...");
         }
@@ -47,7 +47,7 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         getTicketsObservable = service
-                .getAssignedTickets(token, serviceId, from, to, page);
+                .getPendingTickets(token, serviceId, from, to, page);
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -61,25 +61,29 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
 
                                 getView().hideProgressBar();
                                 if (getTicketsBaseResponse == null) {
-                                    getView().getAssignedTicketFail("Get tickets failed");
+                                    getView().getPendingTicketFail("Get tickets failed");
                                     return;
                                 }
 
                                 if (getTicketsBaseResponse.getError()) {
-                                    getView().getAssignedTicketFail(getTicketsBaseResponse.getMsg());
+                                    getView().getPendingTicketFail(getTicketsBaseResponse.getMsg());
                                     return;
                                 }
 
                                 GlobalUtils.showLog(TAG, "service id check: " + serviceId);
-                                GlobalUtils.showLog(TAG, "assigned ticket count: " +
+                                GlobalUtils.showLog(TAG, "pending ticket count: " +
                                         getTicketsBaseResponse.getTicketsList().size());
-                                saveAssignedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
+                                if (CollectionUtils.isEmpty(getTicketsBaseResponse.getTicketsList())) {
+                                    getView().showEmptyView();
+                                } else
+                                    savePendingTicketsToRealm(getTicketsBaseResponse.getTicketsList());
+
                             }
 
                             @Override
                             public void onError(Throwable e) {
                                 getView().hideProgressBar();
-                                getView().getAssignedTicketFail(e.getLocalizedMessage());
+                                getView().getPendingTicketFail(e.getLocalizedMessage());
                             }
 
                             @Override
@@ -91,20 +95,20 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
     }
 
 
-    private void saveAssignedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
-        List<Tickets> assignedTickets = TicketRepo.getInstance().getAssignedTickets();
-        if (CollectionUtils.isEmpty(assignedTickets)) {
+    private void savePendingTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
+        List<Tickets> pendingTickets = TicketRepo.getInstance().getPendingTickets();
+        if (CollectionUtils.isEmpty(pendingTickets)) {
             saveTickets(ticketsList);
         } else {
-            TicketRepo.getInstance().deleteAssignedTickets(new Repo.Callback() {
+            TicketRepo.getInstance().deletePendingTickets(new Repo.Callback() {
                 @Override
                 public void success(Object o) {
-                    GlobalUtils.showLog(TAG, "deleted all assigned tickets");
+                    GlobalUtils.showLog(TAG, "deleted all pending tickets");
                 }
 
                 @Override
                 public void fail() {
-                    GlobalUtils.showLog(TAG, "failed to delete assigned tickets");
+                    GlobalUtils.showLog(TAG, "failed to delete pending tickets");
                 }
             });
 
@@ -113,17 +117,17 @@ public class AssignedTicketPresenterImpl extends BasePresenter<AssignedTicketCon
     }
 
     private void saveTickets(List<TicketProto.Ticket> ticketsList) {
-        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.ASSIGNED,
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.PENDING,
                 new Repo.Callback() {
                     @Override
                     public void success(Object o) {
-                        getView().getAssignedTicketSuccess();
+                        getView().getPendingTicketSuccess();
                     }
 
                     @Override
                     public void fail() {
-                        GlobalUtils.showLog(TAG, "failed to save assigned tickets");
-                        getView().getAssignedTicketSuccess();
+                        GlobalUtils.showLog(TAG, "failed to save pending tickets");
+                        getView().getPendingTicketSuccess();
                     }
                 });
     }

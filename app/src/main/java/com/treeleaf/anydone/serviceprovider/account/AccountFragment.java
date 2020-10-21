@@ -3,9 +3,7 @@ package com.treeleaf.anydone.serviceprovider.account;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -22,13 +20,14 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.aboutus.AboutUsActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.billing.BillingActivity;
+import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.setting.SettingsActivity;
+import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -56,6 +55,10 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     ProgressBar progress;
     @BindView(R.id.rl_billing)
     RelativeLayout rlBilling;
+    @BindView(R.id.rl_contributed)
+    RelativeLayout rl_contributed;
+    @BindView(R.id.rl_subscribed)
+    RelativeLayout rl_subscribed;
 
 
     public static AccountFragment newInstance(String param1, String param2) {
@@ -154,6 +157,16 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     @OnClick(R.id.rl_billing)
     void onClickBilling() {
         startActivity(new Intent(getActivity(), BillingActivity.class));
+    }
+
+    @OnClick(R.id.rl_contributed)
+    void onClickContributed() {
+        startActivity(new Intent(getActivity(), ContributedTicketsActivity.class));
+    }
+
+    @OnClick(R.id.rl_subscribed)
+    void onClickSubscribed() {
+        startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class));
     }
 
     private void showLogoutDialog() {

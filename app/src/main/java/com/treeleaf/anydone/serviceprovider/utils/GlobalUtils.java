@@ -424,8 +424,7 @@ Limit selectable Date range
     public static int convertDpToPixel(Context context, float dp) {
         Resources r = context.getResources();
         return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
+                TypedValue.COMPLEX_UNIT_DIP, dp,
                 r.getDisplayMetrics()
         );
     }

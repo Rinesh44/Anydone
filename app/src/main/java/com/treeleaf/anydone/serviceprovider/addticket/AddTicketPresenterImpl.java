@@ -42,7 +42,8 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                              String customerEmail, String customerPhone, String customerName,
                              List<String> tags, List<Label> ticketLabels, String estimatedTime,
                              String assignedEmployeeId, int priority,
-                             TicketProto.TicketSource ticketSource, boolean customerAsSelf) {
+                             TicketProto.TicketSource ticketSource, boolean customerAsSelf,
+                             String refId) {
 
         TicketProto.CustomerType customerType = TicketProto.CustomerType.EXTERNAL_CUSTOMER;
         if (!validateCredentials(title, customerName, ticketType)) {
@@ -140,6 +141,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setTicketSource(ticketSource)
                     .addAllTeams(tagList)
                     .addAllLabel(labelList)
+                    .setRefId(refId)
                     .setEstimatedTimeDesc(estimatedTime)
                     .build();
         } else {
@@ -155,6 +157,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setTicketSource(ticketSource)
                     .addAllTeams(tagList)
                     .addAllLabel(labelList)
+                    .setRefId(refId)
                     .setEstimatedTimeDesc(estimatedTime)
                     .build();
         }
@@ -237,7 +240,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         Account userAccount = AccountRepo.getInstance().getAccount();
         if (ticketPb.getEmployeeAssigned().getAssignedTo()
                 .getAccount().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
-            saveAssignedTicket(ticketPb);
+            savePendingTicket(ticketPb);
         } else {
             saveAssignableTicket(ticketPb);
         }
@@ -258,18 +261,18 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         });
     }
 
-    private void saveAssignedTicket(TicketProto.Ticket ticketPb) {
-        TicketRepo.getInstance().saveTicket(ticketPb, Constants.ASSIGNED, new Repo.Callback() {
+    private void savePendingTicket(TicketProto.Ticket ticketPb) {
+        TicketRepo.getInstance().saveTicket(ticketPb, Constants.PENDING, new Repo.Callback() {
             @Override
             public void success(Object o) {
-                GlobalUtils.showLog(TAG, "saved as assigned ticket");
+                GlobalUtils.showLog(TAG, "saved as pending ticket");
                 Hawk.put(Constants.TICKET_ASSIGNED, true);
                 getView().onCreateTicketSuccess();
             }
 
             @Override
             public void fail() {
-                GlobalUtils.showLog(TAG, "failed to save assigned ticket");
+                GlobalUtils.showLog(TAG, "failed to save pending ticket");
             }
         });
     }

@@ -1,10 +1,10 @@
-package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
+package com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets;
 
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 
 import io.reactivex.Observable;
 
-public interface SubscribeTicketRepository {
+public interface InProgressTicketRepository {
     Observable<TicketServiceRpcProto.TicketBaseResponse> getSubscribedTickets(String token,
                                                                               String serviceId,
                                                                               long from,

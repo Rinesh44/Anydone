@@ -12,7 +12,6 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
-import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
@@ -26,7 +25,6 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -355,7 +353,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
 
     @Override
-    public void filterAssignedTickets(String searchQuery, long from, long to, int ticketState, Priority priority) {
+    public void filterPendingTickets(String searchQuery, long from, long to,
+                                     int ticketState, Priority priority) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -363,7 +362,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         int priorityNum = GlobalUtils.getPriorityNum(priority);
-        String filterUrl = getAssignedFilterUrl(searchQuery, from, to, ticketState, priorityNum);
+        String filterUrl = getPendingFilterUrl(searchQuery, from, to, ticketState, priorityNum);
 
         if (!filterUrl.isEmpty()) {
             getView().showProgressBar("Filtering...");
@@ -376,35 +375,36 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                 @Override
                                 public void onNext(TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
-                                    GlobalUtils.showLog(TAG, "filter assigned ticket response: "
+                                    GlobalUtils.showLog(TAG, "filter pending ticket response: "
                                             + filterTicketBaseResponse);
 
                                     getView().hideProgressBar();
                                     if (filterTicketBaseResponse == null) {
-                                        getView().filterAssignedTicketsFailed("Filter assigned ticket failed");
+                                        getView().filterPendingTicketsFailed("Filter pending ticket failed");
                                         return;
                                     }
 
                                     if (filterTicketBaseResponse.getError()) {
-                                        getView().filterAssignedTicketsFailed(filterTicketBaseResponse.getMsg());
+                                        getView().filterPendingTicketsFailed(filterTicketBaseResponse.getMsg());
                                         return;
                                     }
 
                                     if (!CollectionUtils.isEmpty(
                                             filterTicketBaseResponse.getTicketsList())) {
-                                        List<Tickets> filteredAssignedTickets = TicketRepo.
-                                                getInstance().transformTicketProto(filterTicketBaseResponse.getTicketsList(), Constants.ASSIGNED);
+                                        List<Tickets> filteredPendingTickets = TicketRepo.
+                                                getInstance().transformTicketProto
+                                                (filterTicketBaseResponse.getTicketsList(), Constants.PENDING);
 
-                                        getView().updateAssignedTicketList(filteredAssignedTickets);
+                                        getView().updatePendingTicketList(filteredPendingTickets);
                                     } else {
-                                        getView().filterAssignedTicketsFailed("Not found");
+                                        getView().filterPendingTicketsFailed("Not found");
                                     }
                                 }
 
                                 @Override
                                 public void onError(Throwable e) {
                                     getView().hideProgressBar();
-                                    getView().filterAssignedTicketsFailed(e.getLocalizedMessage());
+                                    getView().filterPendingTicketsFailed(e.getLocalizedMessage());
                                 }
 
                                 @Override
@@ -417,7 +417,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
     @Override
-    public void filterSubscribedTickets(String searchQuery, long from, long to, int ticketState,
+    public void filterInProgressTickets(String searchQuery, long from, long to, int ticketState,
                                         Priority priority) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
@@ -426,7 +426,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         int priorityNum = GlobalUtils.getPriorityNum(priority);
-        String filterUrl = getSubscribedFilterUrl(searchQuery, from, to, ticketState, priorityNum);
+        String filterUrl = getInProgressFilterUrl(searchQuery, from, to, ticketState, priorityNum);
 
         if (!filterUrl.isEmpty()) {
             getView().showProgressBar("Filtering...");
@@ -444,12 +444,12 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
                                     getView().hideProgressBar();
                                     if (filterTicketBaseResponse == null) {
-                                        getView().filterSubscribedTicketFailed("Filter subscribed ticket failed");
+                                        getView().filterInProgressTicketFailed("Filter subscribed ticket failed");
                                         return;
                                     }
 
                                     if (filterTicketBaseResponse.getError()) {
-                                        getView().filterSubscribedTicketFailed(filterTicketBaseResponse.getMsg());
+                                        getView().filterInProgressTicketFailed(filterTicketBaseResponse.getMsg());
                                         return;
                                     }
 
@@ -460,16 +460,16 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                                         getTicketsList(),
                                                 Constants.SUBSCRIBED);
 
-                                        getView().updateSubscribedTicketList(filteredTickets);
+                                        getView().updateInProgressTicketList(filteredTickets);
                                     } else {
-                                        getView().filterSubscribedTicketFailed("Not found");
+                                        getView().filterInProgressTicketFailed("Not found");
                                     }
                                 }
 
                                 @Override
                                 public void onError(Throwable e) {
                                     getView().hideProgressBar();
-                                    getView().filterSubscribedTicketFailed(e.getLocalizedMessage());
+                                    getView().filterInProgressTicketFailed(e.getLocalizedMessage());
                                 }
 
                                 @Override
@@ -614,10 +614,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     }
 
 
-    private String getAssignedFilterUrl(String query, long from, long to, int status,
-                                        int priority) {
+    private String getPendingFilterUrl(String query, long from, long to, int status,
+                                       int priority) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/assigned/" + serviceId + "?");
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/pending/" + serviceId + "?");
 
         if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1) {
             Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();
@@ -648,10 +648,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         return filterUrlBuilder.toString();
     }
 
-    private String getSubscribedFilterUrl(String query, long from, long to, int status,
+    private String getInProgressFilterUrl(String query, long from, long to, int status,
                                           int priority) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/subscribed/" + serviceId + "?");
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/inprogress/" + serviceId + "?");
 
         if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1) {
             Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();

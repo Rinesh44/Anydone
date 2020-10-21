@@ -1,10 +1,9 @@
-package com.treeleaf.anydone.serviceprovider.tickets.subscribetickets;
+package com.treeleaf.anydone.serviceprovider.subscribed;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
-public class SubscribeTicketContract {
-
+public class SubscribedTicketContract {
     public interface SubscribeTicketsView extends BaseView {
         void getSubscribedTicketsSuccess();
 

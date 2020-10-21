@@ -61,6 +61,29 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public void saveLinkedTicketList(final List<TicketProto.Ticket> ticketListPb,
+                                     String type,
+                                     String threadId,
+                                     final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+
+        try {
+            realm.executeTransaction(realm1 -> {
+                List<Tickets> ticketsList =
+                        transformLinkedTicketProto(ticketListPb, type, threadId);
+                realm1.copyToRealmOrUpdate(ticketsList);
+                callback.success(null);
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+
     public void saveTicket(final TicketProto.Ticket ticketPb,
                            String type,
                            final Callback callback) {
@@ -88,6 +111,19 @@ public class TicketRepo extends Repo {
         try {
             return realm.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Tickets> getTicketByThreadId(String threadId) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            return realm.where(Tickets.class)
+                    .equalTo("threadId", threadId).findAll();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
@@ -241,7 +277,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_STARTED.name();
             result.setString("ticketStatus", status);
-            result.setString("ticketType", Constants.ASSIGNED);
+            result.setString("ticketType", Constants.IN_PROGRESS);
         });
     }
 
@@ -267,7 +303,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_REOPENED.name();
             result.setString("ticketStatus", status);
-            result.setString("ticketType", Constants.ASSIGNED);
+            result.setString("ticketType", Constants.PENDING);
 
         });
     }
@@ -403,10 +439,52 @@ public class TicketRepo extends Repo {
             tickets.setContributorList(ProtoMapper.transformContributors
                     (ticketPb.getTicketContributorList()));
             ticketsList.add(tickets);
+        }
 
-            if (ticketPb.getTicketId() == 246) {
-                GlobalUtils.showLog(TAG, "ticket 246 check: " + ticketPb);
-            }
+        return ticketsList;
+    }
+
+    public List<Tickets> transformLinkedTicketProto
+            (List<TicketProto.Ticket> ticketListPb, String type, String threadId) {
+        if (CollectionUtils.isEmpty(ticketListPb)) {
+            throw new IllegalArgumentException(EXCEPTION_NULL_VALUE);
+        }
+
+        List<Tickets> ticketsList = new ArrayList<>();
+        for (TicketProto.Ticket ticketPb : ticketListPb
+        ) {
+            Tickets tickets = new Tickets();
+            tickets.setId(UUID.randomUUID().toString().replace("-", ""));
+            tickets.setTicketId(ticketPb.getTicketId());
+            tickets.setThreadId(threadId);
+            tickets.setTitle(ticketPb.getTitle());
+            tickets.setTicketCategory(ticketPb.getType().getName());
+            GlobalUtils.showLog(TAG, "est time back end: " + ticketPb.getEstimatedTimeDesc());
+            tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
+            tickets.setDescription(ticketPb.getDescription());
+            tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
+            tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
+            tickets.setServiceProvider(ProtoMapper.transformServiceProvider
+                    (ticketPb.getServiceProvider()));
+            tickets.setTicketSource(ticketPb.getTicketSource().name());
+            tickets.setTagsRealmList(ProtoMapper.transformTags(ticketPb.getTeamsList()));
+            tickets.setServiceId(ticketPb.getService().getServiceId());
+            tickets.setAssignedEmployee(ProtoMapper.transformAssignedEmployee
+                    (ticketPb.getEmployeeAssigned()));
+            tickets.setLabelRealmList(ProtoMapper.transformLabels(ticketPb.getLabelList()));
+            tickets.setCustomerType(ticketPb.getCustomerType().name());
+            tickets.setEstimatedTimeStamp(ticketPb.getEstimatedTime());
+            tickets.setCreatedAt(ticketPb.getCreatedAt());
+            tickets.setTicketType(type);
+            tickets.setPriority(ticketPb.getPriorityValue());
+            tickets.setTicketStatus(ticketPb.getTicketState().name());
+            tickets.setCreatedByName(ticketPb.getCreatedBy().getAccount().getFullName());
+            tickets.setCreatedById(ticketPb.getCreatedBy().getAccount().getAccountId());
+            tickets.setCreatedByPic(ticketPb.getCreatedBy().getAccount().getProfilePic());
+            tickets.setBotEnabled(ticketPb.getIsBotEnabled());
+            tickets.setContributorList(ProtoMapper.transformContributors
+                    (ticketPb.getTicketContributorList()));
+            ticketsList.add(tickets);
         }
 
         return ticketsList;
@@ -460,12 +538,29 @@ public class TicketRepo extends Repo {
         }
     }
 
-    public List<Tickets> getAssignedTickets() {
+    public List<Tickets> getPendingTickets() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
-                    .equalTo("ticketType", Constants.ASSIGNED)
+                    .equalTo("ticketType", Constants.PENDING)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Tickets> getInProgressTickets() {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.IN_PROGRESS)
                     .equalTo("serviceId", serviceId)
                     .sort("createdAt", Sort.DESCENDING)
                     .findAll());
@@ -572,12 +667,48 @@ public class TicketRepo extends Repo {
         });
     }
 
-    public void deleteAssignedTickets(final Callback callback) {
+    public void deletePendingTickets(final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
-                        .equalTo("ticketType", Constants.ASSIGNED)
+                        .equalTo("ticketType", Constants.PENDING)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "assigned ticket throwable: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteLinkedTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.LINKED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "assigned ticket throwable: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteInProgressTickets(final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.IN_PROGRESS)
                         .findAll();
                 results.deleteAllFromRealm();
             });

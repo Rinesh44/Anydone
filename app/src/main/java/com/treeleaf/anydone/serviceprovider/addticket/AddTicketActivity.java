@@ -169,6 +169,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private String ticketCategoryId;
     private TicketProto.TicketSource ticketSource = TicketProto.TicketSource.MANUAL_TICKET_SOURCE;
     private boolean customerAsSelf;
+    private String threadId = "";
 
     @Override
     protected int getLayout() {
@@ -463,20 +464,20 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         btnCreateTicket.setOnClickListener(v -> {
             GlobalUtils.showLog(TAG, "emp id checK: " + selectedEmployeeId);
-
             if (selectedCustomer != null) {
                 presenter.createTicket(ticketCategoryId, UiUtils.getString(etSummary),
                         UiUtils.getString(etDesc), selectedCustomer.getCustomerId(),
                         UiUtils.getString(etEmail), UiUtils.getString(etPhone),
                         selectedCustomer.getFullName(), tags,
                         labels, UiUtils.getString(etEstimatedTime),
-                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf);
+                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf,
+                        threadId);
             } else {
                 presenter.createTicket(ticketCategoryId, UiUtils.getString(etSummary),
                         UiUtils.getString(etDesc), null, UiUtils.getString(etEmail),
                         UiUtils.getString(etPhone), UiUtils.getString(etCustomerName), tags,
                         labels, UiUtils.getString(etEstimatedTime),
-                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf);
+                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf, threadId);
             }
         });
     }
@@ -920,11 +921,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private void setDataFromThread(Intent i) {
         String summaryText = i.getStringExtra("summary_text");
         String customerName = i.getStringExtra("customer_name");
+        threadId = i.getStringExtra("thread_id");
         String customerPic = i.getStringExtra("customer_pic");
         String employeeId = i.getStringExtra("employee_id");
         String teamId = i.getStringExtra("team");
 
         GlobalUtils.showLog(TAG, "customer Name:" + customerName);
+        GlobalUtils.showLog(TAG, "Team id: " + teamId);
 
         etSummary.setText(summaryText);
 //        selectedCustomer = CustomerRepo.getInstance().getCustomerById(customerId);
@@ -960,6 +963,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
 //            addNewTagChip(tags);
         }
+
+        GlobalUtils.showLog(TAG, "tag obj: " + tags);
     }
 
     private void setEmailAndPhoneIfAvailable() {

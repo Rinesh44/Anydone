@@ -279,8 +279,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:layout_marginEnd="@dimen/dimens_2x"
                                 android:layout_centerVertical="true"
+                                android:layout_marginEnd="@dimen/dimens_2x"
                                 android:src="@drawable/ic_switch_employee" />
 
                         </RelativeLayout>
@@ -308,6 +308,18 @@
                             android:text="Billing"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_assign_employee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:drawableStart="@drawable/ic_add_contributor"
+                            android:drawablePadding="@dimen/dimen_10x1"
+                            android:gravity="center_vertical"
+                            android:text="Assign Employee"
+                            android:textColor="@color/colorPrimary"
+                            android:visibility="gone" />
 
 
                     </LinearLayout>
@@ -463,76 +475,64 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_assigned_employee"
+                    android:id="@+id/ll_linked_tickets"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_10x2"
-                    android:layout_marginTop="@dimen/dimen_10x1"
-                    android:layout_marginBottom="@dimen/dimen_10x2"
                     android:orientation="vertical"
                     android:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/tv_add_employee"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Assigned Employee"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/material_text_subhead"
-                        android:textStyle="bold" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/il_select_employee"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_10x1"
-                        android:hint="@string/select_employee"
-                        android:paddingEnd="@dimen/dimens_2x">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/et_search_employee"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@null"
-                            android:drawableEnd="@drawable/ic_dropdown"
-                            android:inputType="textVisiblePassword"
-                            android:maxLength="45"
-                            android:paddingStart="12dp"
-                            android:paddingTop="@dimen/dimens_2x"
-                            android:paddingEnd="18dp"
-                            android:paddingBottom="@dimen/dimens_2x"
-                            android:singleLine="true"
-                            android:textSize="@dimen/material_text_subhead" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/dimens_2x">
+                        android:layout_marginStart="@dimen/dimen_10x2"
+                        android:layout_marginTop="@dimen/dimen_10x1"
+                        android:layout_marginEnd="@dimen/dimen_10x1">
 
-                        <include
-                            layout="@layout/layout_assign_employee_result"
-                            android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/tv_linked_ticket_dropdown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Linked Tickets"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="@dimen/material_text_subhead"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_dropdown_linked_tickets"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="@dimen/dimen_10x1"
+                            android:src="@drawable/ic_dropup" />
 
                     </RelativeLayout>
+
+                    <net.cachapa.expandablelayout.ExpandableLayout
+                        android:id="@+id/expandable_layout_linked_tickets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:el_duration="500"
+                        app:el_expanded="true"
+                        app:el_parallax="0.5">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_linked_tickets"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_10x1"
+                            android:layout_marginTop="@dimen/dimen_5x1"
+                            android:layout_marginEnd="@dimen/dimen_10x2" />
+
+                    </net.cachapa.expandablelayout.ExpandableLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/dimen_10x1"
+                        android:background="#F0EDF1" />
+
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_assign_employee"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_10x2"
-                    android:layout_marginTop="@dimen/dimen_10x1"
-                    android:layout_marginBottom="@dimen/dimen_10x1"
-                    android:drawableStart="@drawable/ic_add_contributor"
-                    android:drawablePadding="@dimen/dimen_10x1"
-                    android:gravity="center_vertical"
-                    android:text="Assign Employee"
-                    android:textColor="@color/colorPrimary"
-                    android:visibility="gone" />
-
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

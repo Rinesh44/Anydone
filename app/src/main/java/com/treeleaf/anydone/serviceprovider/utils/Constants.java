@@ -44,7 +44,8 @@ Constants {
     public static final String SELECTED_TICKET_FILTER_STATUS = "selected_ticket_filter_status";
     public static final String FETCH_SUBSCRIBEABLE_LIST = "fetch_subscribeable_list";
     public static final String FETCH_SUBSCRIBED_LIST = "fetch_subscribed_list";
-    public static final String FETCH__ASSIGNED_LIST = "fetch_assigned_list";
+    public static final String FETCH_PENDING_LIST = "fetch_pending_list";
+    public static final String FETCH_IN_PROGRESS_LIST = "fetch_in_progress_list";
     public static final String FETCH_CONTRIBUTED_LIST = "fetch_contributed_list";
     public static final String FETCH_CLOSED_LIST = "fetch_closed_list";
     public static final String TICKET_STARTED = "ticket_started";
@@ -53,12 +54,14 @@ Constants {
     public static final String SERVICE_CHANGED_THREAD = "service_changed_thread";
     public static final String SERVICE_CHANGED_TICKET = "service_changed_tickets";
     public static final String SERVICE_CHANGED_DASHBOARD = "service_changed_dashboard";
-    public static final String ASSIGNED = "ASSIGNED";
+    public static final String PENDING = "PENDING";
+    public static final String IN_PROGRESS = "IN_PROGRESS";
     public static final String SUBSCRIBED = "SUBSCRIBED";
     public static final String CLOSED_RESOLVED = "CLOSED_RESOLVED";
     public static final String CONTRIBUTED = "CONTRIBUTED";
     public static final String ASSIGNABLE = "ASSIGNABLE";
     public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
+    public static final String LINKED = "LINKED";
     public static final String BOT_REPLY = "BOT_REPLY";
     public static final String RTC_CONTEXT_SERVICE_REQUEST = "RTC_CONTEXT_SERVICE_REQUEST";
     public static final String RTC_CONTEXT_TICKET = "RTC_CONTEXT_TICKET";
@@ -73,6 +76,9 @@ Constants {
     public static final String TICKET_CONTRIBUTED = "TICKET_CONTRIBUTED";
     public static final String TICKET_SUBSCRIBED = "TICKET_SUBSCRIBED";
     public static final String TICKET_SERVICE_ID = "TICKET_SERVICE_ID";
+    public static final String TICKET_PENDING = "TICKET_PENDING";
+    public static final String TICKET_IN_PROGRESS = "TICKET_IN_PROGRESS";
+    public static final String TICKET_RESOLVED = "TICKET_RESOLVED";
     public static final String DASHBOARD_SERVICE_ID = "DASHBOARD_SERVICE_ID";
     public static final String CONVERSATION_SERVICE_ID = "CONVERSATION_SERVICE_ID";
     public static final String MANUAL_DATE = "MANUAL_DATE";

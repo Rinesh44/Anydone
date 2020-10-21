@@ -133,6 +133,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         });*/
 
         presenter.getConversationThreads(false);
+
         createServiceBottomSheet();
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
 
@@ -199,14 +200,20 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 Service firstService = serviceList.get(0);
                 tvToolbarTitle.setText(firstService.getName().replace("_", " "));
                 Glide.with(Objects.requireNonNull(getContext()))
-                        .load(firstService.getServiceIconUrl()).into(ivService);
+                        .load(firstService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
+                        .into(ivService);
                 Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
             } else {
                 Service selectedService = AvailableServicesRepo.getInstance()
                         .getAvailableServiceById(selectedServiceId);
                 tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
                 Glide.with(Objects.requireNonNull(getContext()))
-                        .load(selectedService.getServiceIconUrl()).into(ivService);
+                        .load(selectedService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
+                        .into(ivService);
             }
             setUpServiceRecyclerView(serviceList);
         }
@@ -336,7 +343,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
             Hawk.put(Constants.SERVICE_CHANGED_THREAD, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
-            Glide.with(getContext()).load(service.getServiceIconUrl()).into(ivService);
+            Glide.with(getContext()).load(service.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
           /*  sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             bottomSheetShadow.setVisibility(View.GONE);*/
             serviceSheet.dismiss();
@@ -465,7 +475,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
      /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);*/
-        showCustomSnackBar(msg);
+//        showCustomSnackBar(msg);
         rvThreads.setVisibility(View.GONE);
         ivThreadNotFound.setVisibility(View.VISIBLE);
 
@@ -479,7 +489,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         GlobalUtils.showLog(TAG, "first thread service id saved");
 
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl())
+                .placeholder(R.drawable.ic_service_ph)
+                .error(R.drawable.ic_service_ph)
+                .into(ivService);
         setUpServiceRecyclerView(serviceList);
     }
 

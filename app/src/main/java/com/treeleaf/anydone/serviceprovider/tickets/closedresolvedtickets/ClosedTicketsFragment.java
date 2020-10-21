@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -37,6 +38,7 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.realm.RealmList;
 
@@ -56,6 +58,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     ProgressBar progress;
     @BindView(R.id.rl_root)
     RelativeLayout rlRoot;
+    @BindView(R.id.btn_reload)
+    MaterialButton btnReload;
 
     private Unbinder unbinder;
     private TicketsAdapter adapter;
@@ -71,6 +75,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void updateClosedList() {
+        btnReload.setVisibility(View.GONE);
         presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
     }
 
@@ -80,29 +85,22 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         TicketsFragment mFragment = (TicketsFragment) getParentFragment();
         assert mFragment != null;
         mFragment.setClosedListListener(this);
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-//        if (fetchList) {
         closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
 
+        GlobalUtils.showLog(TAG, "closed ticket sieze: " + closedTickets.size());
         if (CollectionUtils.isEmpty(closedTickets)) {
-            ivDataNotFound.setVisibility(View.GONE);
-            rvClosedTickets.setVisibility(View.VISIBLE);
-            presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getClosedResolvedTickets(true, 0,
+                    System.currentTimeMillis(), 100);
         } else {
             setUpRecyclerView(closedTickets);
         }
-//        }
     }
 
 
@@ -194,7 +192,6 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         /*
          * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
          * performs a swipe-to-refresh gesture.
@@ -219,14 +216,15 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void onResume() {
         super.onResume();
-
         boolean fetchChanges = Hawk.get(Constants.FETCH_CLOSED_LIST, false);
+        boolean ticketResolved = Hawk.get(Constants.TICKET_RESOLVED, false);
         if (fetchChanges) {
             presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
-        }/* else {
+        } else if (ticketResolved) {
             closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
             setUpRecyclerView(closedTickets);
-        }*/
+            Hawk.put(Constants.TICKET_RESOLVED, false);
+        }
     }
 
     @Override
@@ -258,13 +256,15 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void getClosedTicketFail(String msg) {
-        ivDataNotFound.setVisibility(View.VISIBLE);
-        rvClosedTickets.setVisibility(View.GONE);
 
+        GlobalUtils.showLog(TAG, "failed on closed tickets");
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
         }
+
+        ivDataNotFound.setVisibility(View.VISIBLE);
+        rvClosedTickets.setVisibility(View.GONE);
 //        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
     }
 
@@ -273,7 +273,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         adapter.deleteItem(reopenTicketPos, ticketId);
       /*  if (listener != null)
             listener.ticketReopened();*/
-        Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
+        Hawk.put(Constants.FETCH_PENDING_LIST, true);
     }
 
     @Override
@@ -284,6 +284,23 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             return;
         }
         UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void showEmptyView() {
+        ivDataNotFound.setVisibility(View.VISIBLE);
+        rvClosedTickets.setVisibility(View.GONE);
+
+        btnReload.setVisibility(View.VISIBLE);
+
+    }
+
+    @OnClick(R.id.btn_reload)
+    void reload() {
+        btnReload.setVisibility(View.GONE);
+        ivDataNotFound.setVisibility(View.GONE);
+        presenter.getClosedResolvedTickets(true, 0,
+                System.currentTimeMillis(), 100);
     }
 
     @Override
@@ -302,8 +319,6 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void hideProgressBar() {
         if (progress != null) {
             progress.setVisibility(View.GONE);
-            rvClosedTickets.setVisibility(View.VISIBLE);
-            ivDataNotFound.setVisibility(View.GONE);
         }
     }
 

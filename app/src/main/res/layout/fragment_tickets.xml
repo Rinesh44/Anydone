@@ -42,7 +42,7 @@
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/dimen_10x1"
-                            android:src="@drawable/ic_assigned_emp_placeholder" />
+                            android:src="@drawable/ic_service_ph" />
 
                         <TextView
                             android:id="@+id/toolbar_title"
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabGravity="fill"
-                app:tabMode="scrollable"
+                app:tabMode="fixed"
                 app:tabRippleColor="#e0e0e0"
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
 
@@ -117,13 +117,13 @@
         android:elevation="4dp"
         android:visibility="gone" />
 
-<!--    <View
-        android:id="@+id/shadow"
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:background="@drawable/bottomsheet_shadow"
-        android:visibility="gone"
-        app:layout_anchor="@id/bottom_sheet" />-->
+    <!--    <View
+            android:id="@+id/shadow"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:background="@drawable/bottomsheet_shadow"
+            android:visibility="gone"
+            app:layout_anchor="@id/bottom_sheet" />-->
 
-<!--    <include layout="@layout/bottomsheet_select_service" />-->
+    <!--    <include layout="@layout/bottomsheet_select_service" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

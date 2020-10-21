@@ -4,6 +4,7 @@ import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorActivit
 import com.treeleaf.anydone.serviceprovider.addpaymentcard.AddCardActivity;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
+import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
 import com.treeleaf.anydone.serviceprovider.editticket.EditTicketActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
@@ -23,6 +24,7 @@ import com.treeleaf.anydone.serviceprovider.setting.language.LanguagesActivity;
 import com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.SelectTimezoneActivity;
+import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
@@ -89,4 +91,7 @@ public interface ActivityComponent {
     void inject(PaymentMethodActivity paymentMethodActivity);
 
     void inject(EditTicketActivity editTicketActivity);
+
+    void inject(ContributedTicketsActivity contributedTicketsActivity);
+    void inject(SubscribedTicketsActivity subscribedTicketsActivity);
 }

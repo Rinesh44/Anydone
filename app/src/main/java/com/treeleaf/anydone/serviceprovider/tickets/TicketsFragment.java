@@ -59,11 +59,10 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.OnTicketReopenListener;
-import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -98,11 +97,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     ImageView ivService;
     @BindView(R.id.toolbar_title)
     TextView tvToolbarTitle;
+
  /*   @BindView(R.id.shadow)
     View bottomSheetShadow;*/
 
-    private List<Tickets> assignedTicketList;
-    private List<Tickets> subscribedTicketList;
+    private List<Tickets> pendingTicketList;
+    private List<Tickets> inProgressTicketList;
     private List<Tickets> closedTicketList;
     String statusValue = null;
     private RadioGroup rgStatus;
@@ -116,9 +116,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private AutoCompleteTextView etSearchText;
     private TextView tvReset;
     final Calendar myCalendar = Calendar.getInstance();
-    private AssignedListListener assignedListListener;
-    private ContributedListListener contributedListListener;
-    private SubscribedListListener subscribedListListener;
+    private PendingListListener pendingListListener;
+    private InProgressListListener inProgressListListener;
     private ClosedListListener closedListListener;
     //    private BottomSheetBehavior sheetBehavior;
     private SearchServiceAdapter adapter;
@@ -127,6 +126,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private TextView tvPriorityHint;
     private RelativeLayout rlPriorityHolder;
     private String selectedServiceId;
+    TextView tvStatus;
 
     @Override
     protected int getLayout() {
@@ -154,25 +154,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         presenter.getLabels();
         presenter.findTags();
 
-/*        sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
-
-        sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-                    bottomSheetShadow.setVisibility(View.GONE);
-                    hideKeyBoard();
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });*/
-
-        assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
-        subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
+        pendingTicketList = TicketRepo.getInstance().getPendingTickets();
+        inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
         closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
         createServiceBottomSheet();
         createFilterBottomSheet();
@@ -220,22 +203,31 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             if (selectedServiceId == null) {
                 Service firstService = serviceList.get(0);
                 tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-                Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+                Glide.with(Objects.requireNonNull(getContext())).load
+                        (firstService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
+                        .into(ivService);
                 Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
             } else {
-                Service selectedService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedServiceId);
+                Service selectedService = AvailableServicesRepo.getInstance()
+                        .getAvailableServiceById(selectedServiceId);
                 tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
-                Glide.with(Objects.requireNonNull(getContext())).load(selectedService.getServiceIconUrl()).into(ivService);
+                Glide.with(Objects.requireNonNull(getContext()))
+                        .load(selectedService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
+                        .into(ivService);
             }
             setUpRecyclerView(serviceList);
 
 
-            if (assignedListListener != null) {
-                assignedListListener.fetchList();
+            if (pendingListListener != null) {
+                pendingListListener.fetchList();
             }
 
-            if (subscribedListListener != null) {
-                subscribedListListener.fetchList();
+            if (inProgressListListener != null) {
+                inProgressListListener.fetchList();
             }
 
             if (closedListListener != null) {
@@ -296,19 +288,22 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
             Hawk.put(Constants.SERVICE_CHANGED_TICKET, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
-            Glide.with(getContext()).load(service.getServiceIconUrl()).into(ivService);
+            Glide.with(getContext()).load(service.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
 //            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 //            bottomSheetShadow.setVisibility(View.GONE);
             serviceBottomSheet.dismiss();
 
-            if (assignedListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for assigned");
-                assignedListListener.updateAssignedList();
+            if (pendingListListener != null) {
+                GlobalUtils.showLog(TAG, "interface applied for pending");
+                pendingListListener.updatePendingList();
             }
 
-            if (subscribedListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for subscribed");
-                subscribedListListener.updateSubscribedList();
+            if (inProgressListListener != null) {
+                GlobalUtils.showLog(TAG, "interface applied for in progress");
+                inProgressListListener.updateInProgressList();
             }
 
             if (closedListListener != null) {
@@ -318,8 +313,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Hawk.put(Constants.FETCH_CLOSED_LIST, true);
             }
 
-            assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
-            subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
+            pendingTicketList = TicketRepo.getInstance().getPendingTickets();
+            inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
             closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
 
 //            Hawk.put(Constants.FETCH_CLOSED_LIST, true);
@@ -340,6 +335,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         etTillDate = view.findViewById(R.id.et_till_date);
         spPriority = view.findViewById(R.id.sp_priority);
         tvReset = view.findViewById(R.id.tv_reset);
+        tvStatus = view.findViewById(R.id.tv_status);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
 
@@ -395,12 +391,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             updateToDate();
         };
 
-        etFromDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), fromDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+        etFromDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), fromDateListener,
+                myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
-        etTillDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), tillDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+        etTillDate.setOnClickListener(v -> new DatePickerDialog(getActivity(), tillDateListener,
+                myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
         tvReset.setOnClickListener(v -> {
@@ -414,12 +410,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
 
             if (mViewpager.getCurrentItem() == 0) {
-                if (assignedListListener != null) {
-                    assignedListListener.updateAssignedList(assignedTicketList);
+                if (pendingListListener != null) {
+                    pendingListListener.updatePendingList(pendingTicketList);
                 }
             } else if (mViewpager.getCurrentItem() == 1) {
-                if (subscribedListListener != null) {
-                    subscribedListListener.updateSubscribedList(subscribedTicketList);
+                if (inProgressListListener != null) {
+                    inProgressListListener.updateInProgressList(inProgressTicketList);
                 }
             } else {
                 if (closedListListener != null) {
@@ -466,10 +462,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
             if (mViewpager.getCurrentItem() == 0) {
-                presenter.filterAssignedTickets(etSearchText.getText().toString(), from, to,
+                presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority);
             } else if (mViewpager.getCurrentItem() == 1) {
-                presenter.filterSubscribedTickets(etSearchText.getText().toString(), from, to,
+                presenter.filterInProgressTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority);
             } else {
                 GlobalUtils.showLog(TAG, "get ticket status check: " + getTicketState(statusValue));
@@ -509,7 +505,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private int getWindowHeight() {
         // Calculate window height for fullscreen use
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay()
+                .getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
     }
 
@@ -538,97 +535,65 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         statusValue = null;
         int fragmentIndex = mViewpager.getCurrentItem();
         if (fragmentIndex == 0) {
-            assignedTicketList = TicketRepo.getInstance().getAssignedTickets();
-            if (!CollectionUtils.isEmpty(assignedTicketList)) {
-                GlobalUtils.showLog(TAG, "assigned list check: " + assignedTicketList);
-                @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                        .inflate(R.layout.layout_status_buttons_assigned, null);
-                rgStatus = statusView.findViewById(R.id.rg_status);
+            pendingTicketList = TicketRepo.getInstance().getPendingTickets();
+            GlobalUtils.showLog(TAG, "pending list check: " + pendingTicketList);
+            @SuppressLint("InflateParams") View statusView = getLayoutInflater()
+                    .inflate(R.layout.layout_status_buttons_assigned, null);
+            rgStatus = statusView.findViewById(R.id.rg_status);
 
-                rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
-                    RadioButton selectedRadioButton = group.findViewById(checkedId);
-                    //highlight selected button and disable unselected
-                    int count = group.getChildCount();
-                    for (int i = 0; i < count; i++) {
-                        RadioButton rb = (RadioButton) group.getChildAt(i);
-                        rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
-                        rb.setTextColor(getResources().getColor(R.color.grey));
-                    }
+            rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
+                RadioButton selectedRadioButton = group.findViewById(checkedId);
+                //highlight selected button and disable unselected
+                int count = group.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    RadioButton rb = (RadioButton) group.getChildAt(i);
+                    rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+                    rb.setTextColor(getResources().getColor(R.color.grey));
+                }
 
-                    selectedRadioButton.setBackground(getResources()
-                            .getDrawable(R.drawable.round_line_active));
-                    selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
-                });
+                selectedRadioButton.setBackground(getResources()
+                        .getDrawable(R.drawable.round_line_active));
+                selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+                statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
+            });
 
-                hsvStatusContainer.removeAllViews();
-                hsvStatusContainer.addView(rgStatus);
-                toggleBottomSheet();
-            } else {
-                Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
-            }
+            hsvStatusContainer.removeAllViews();
+            hsvStatusContainer.addView(rgStatus);
+            hsvStatusContainer.setVisibility(View.VISIBLE);
+            toggleBottomSheet();
         } else if (fragmentIndex == 1) {
-            subscribedTicketList = TicketRepo.getInstance().getSubscribedTickets();
-            if (!CollectionUtils.isEmpty(subscribedTicketList)) {
-                GlobalUtils.showLog(TAG, "subscribed list check: " + subscribedTicketList);
-                @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                        .inflate(R.layout.layout_status_buttons_alternate, null);
-                rgStatus = statusView.findViewById(R.id.rg_status);
-
-                rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
-                    RadioButton selectedRadioButton = group.findViewById(checkedId);
-
-                    //highlight selected button and disable unselected
-                    int count = group.getChildCount();
-                    for (int i = 0; i < count; i++) {
-                        RadioButton rb = (RadioButton) group.getChildAt(i);
-                        rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
-                        rb.setTextColor(getResources().getColor(R.color.grey));
-                    }
-
-                    selectedRadioButton.setBackground(getResources()
-                            .getDrawable(R.drawable.round_line_active));
-                    selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
-                });
-
-                hsvStatusContainer.removeAllViews();
-                hsvStatusContainer.addView(rgStatus);
-                toggleBottomSheet();
-            } else {
-                Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
-            }
+            hsvStatusContainer.removeAllViews();
+            hsvStatusContainer.setVisibility(View.GONE);
+            tvStatus.setVisibility(View.GONE);
+            toggleBottomSheet();
         } else {
             closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
-            if (!CollectionUtils.isEmpty(closedTicketList)) {
-                GlobalUtils.showLog(TAG, "closed list check: " + closedTicketList);
-                @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                        .inflate(R.layout.layout_status_buttons_closed, null);
-                rgStatus = statusView.findViewById(R.id.rg_status);
+            GlobalUtils.showLog(TAG, "closed list check: " + closedTicketList);
+            @SuppressLint("InflateParams") View statusView = getLayoutInflater()
+                    .inflate(R.layout.layout_status_buttons_closed, null);
+            rgStatus = statusView.findViewById(R.id.rg_status);
 
-                rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
-                    RadioButton selectedRadioButton = group.findViewById(checkedId);
+            rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
+                RadioButton selectedRadioButton = group.findViewById(checkedId);
 
-                    //highlight selected button and disable unselected
-                    int count = group.getChildCount();
-                    for (int i = 0; i < count; i++) {
-                        RadioButton rb = (RadioButton) group.getChildAt(i);
-                        rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
-                        rb.setTextColor(getResources().getColor(R.color.grey));
-                    }
+                //highlight selected button and disable unselected
+                int count = group.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    RadioButton rb = (RadioButton) group.getChildAt(i);
+                    rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+                    rb.setTextColor(getResources().getColor(R.color.grey));
+                }
 
-                    selectedRadioButton.setBackground(getResources()
-                            .getDrawable(R.drawable.round_line_active));
-                    selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
-                });
+                selectedRadioButton.setBackground(getResources()
+                        .getDrawable(R.drawable.round_line_active));
+                selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+                statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
+            });
 
-                hsvStatusContainer.removeAllViews();
-                hsvStatusContainer.addView(rgStatus);
-                toggleBottomSheet();
-            } else {
-                Toast.makeText(getActivity(), "No list found to filter", Toast.LENGTH_SHORT).show();
-            }
+            hsvStatusContainer.removeAllViews();
+            hsvStatusContainer.addView(rgStatus);
+            hsvStatusContainer.setVisibility(View.VISIBLE);
+            toggleBottomSheet();
         }
         GlobalUtils.showLog(TAG, "fragment index: " + fragmentIndex);
     }
@@ -676,18 +641,18 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         boolean serviceChanged = !ticketServiceId.equalsIgnoreCase(selectedServiceId);
         GlobalUtils.showLog(TAG, "service changed Check: " + serviceChanged);
         if (serviceChanged) {
-            if (assignedListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for assigned");
-                assignedListListener.updateAssignedList();
+            if (pendingListListener != null) {
+                GlobalUtils.showLog(TAG, "interface applied for pending");
+                pendingListListener.updatePendingList();
             } else {
-                Hawk.put(Constants.FETCH__ASSIGNED_LIST, true);
+                Hawk.put(Constants.FETCH_PENDING_LIST, true);
             }
 
-            if (subscribedListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for subscribed");
-                subscribedListListener.updateSubscribedList();
+            if (inProgressListListener != null) {
+                GlobalUtils.showLog(TAG, "interface applied for in progress");
+                inProgressListListener.updateInProgressList();
             } else {
-                Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
+                Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, true);
             }
 
             if (closedListListener != null) {
@@ -700,7 +665,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 //            Hawk.put(Constants.SERVICE_CHANGED_THREAD, false);
             Hawk.put(Constants.TICKET_SERVICE_ID, selectedServiceId);
         }
-
     }
 
     @Override
@@ -720,7 +684,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();
         else {
             int selectedRadioBtn = Hawk.get(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
-            if (selectedRadioBtn != -1) {
+            if (selectedRadioBtn != -1 && rgStatus != null) {
                 int rgCount = rgStatus.getChildCount();
                 for (int i = 0; i < rgCount; i++) {
                     RadioButton button = (RadioButton) rgStatus.getChildAt(i);
@@ -781,25 +745,25 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        viewPagerAdapter.addFragment(new AssignedTicketsFragment(), "Assigned");
-        viewPagerAdapter.addFragment(new ContributedTicketFragment(), "Contributed");
-        viewPagerAdapter.addFragment(new SubscribeTicketsFragment(), "Subscribed");
+        viewPagerAdapter.addFragment(new PendingTicketsFragment(), "Pending");
+//        viewPagerAdapter.addFragment(new ContributedTicketFragment(), "Contributed");
+        viewPagerAdapter.addFragment(new InProgressTicketsFragment(), "In Progress");
         viewPagerAdapter.addFragment(new ClosedTicketsFragment(), "Resolved");
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
     @Override
-    public void updateAssignedTicketList(List<Tickets> ticketsList) {
-        if (assignedListListener != null) {
-            assignedListListener.updateAssignedList(ticketsList);
+    public void updatePendingTicketList(List<Tickets> ticketsList) {
+        if (pendingListListener != null) {
+            pendingListListener.updatePendingList(ticketsList);
         } else {
-            GlobalUtils.showLog(TAG, "assigned list listener null");
+            GlobalUtils.showLog(TAG, "pending list listener null");
         }
     }
 
     @Override
-    public void filterAssignedTicketsFailed(String msg) {
+    public void filterPendingTicketsFailed(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
@@ -810,20 +774,20 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
         List<Tickets> emptyList = new ArrayList<>();
-        assignedListListener.updateAssignedList(emptyList);
+        pendingListListener.updatePendingList(emptyList);
     }
 
     @Override
-    public void updateSubscribedTicketList(List<Tickets> ticketsList) {
-        if (subscribedListListener != null) {
-            subscribedListListener.updateSubscribedList(ticketsList);
+    public void updateInProgressTicketList(List<Tickets> ticketsList) {
+        if (inProgressListListener != null) {
+            inProgressListListener.updateInProgressList(ticketsList);
         } else {
-            GlobalUtils.showLog(TAG, "subscribed list listener null");
+            GlobalUtils.showLog(TAG, "in progress list listener null");
         }
     }
 
     @Override
-    public void filterSubscribedTicketFailed(String msg) {
+    public void filterInProgressTicketFailed(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
@@ -834,7 +798,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
         List<Tickets> emptyList = new ArrayList<>();
-        subscribedListListener.updateSubscribedList(emptyList);
+        inProgressListListener.updateInProgressList(emptyList);
     }
 
     @Override
@@ -870,7 +834,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
 
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl()).into(ivService);
+        Glide.with(Objects.requireNonNull(getContext()))
+                .load(firstService.getServiceIconUrl())
+                .placeholder(R.drawable.ic_service_ph)
+                .error(R.drawable.ic_service_ph)
+                .into(ivService);
         setUpRecyclerView(serviceList);
     }
 
@@ -971,8 +939,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @Override
     public void ticketReopened() {
         GlobalUtils.showLog(TAG, "on ticket reopened interface implemented");
-        if (assignedListListener != null) {
-            assignedListListener.updateAssignedList(assignedTicketList);
+        if (pendingListListener != null) {
+            pendingListListener.updatePendingList(pendingTicketList);
         } else {
             GlobalUtils.showLog(TAG, "assinged list listnner is null");
         }
@@ -1010,40 +978,28 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         }
     }
 
-    public interface AssignedListListener {
-        void updateAssignedList(List<Tickets> ticketsList);
+    public interface PendingListListener {
+        void updatePendingList(List<Tickets> ticketsList);
 
-        void updateAssignedList();
-
-        void fetchList();
-    }
-
-    public interface ContributedListListener {
-        void updateContributedList(List<Tickets> ticketsList);
-
-        void updateContributedList();
+        void updatePendingList();
 
         void fetchList();
     }
 
-    public void setAssignedListListener(AssignedListListener listener) {
-        assignedListListener = listener;
+    public void setPendingListListener(PendingListListener listener) {
+        pendingListListener = listener;
     }
 
-    public void setContributedListListener(ContributedListListener listener) {
-        contributedListListener = listener;
-    }
+    public interface InProgressListListener {
+        void updateInProgressList(List<Tickets> ticketsList);
 
-    public interface SubscribedListListener {
-        void updateSubscribedList(List<Tickets> ticketsList);
-
-        void updateSubscribedList();
+        void updateInProgressList();
 
         void fetchList();
     }
 
-    public void setSubscribedListListener(SubscribedListListener listener) {
-        subscribedListListener = listener;
+    public void setInProgressListListener(InProgressListListener listener) {
+        inProgressListListener = listener;
     }
 
     public interface ClosedListListener {

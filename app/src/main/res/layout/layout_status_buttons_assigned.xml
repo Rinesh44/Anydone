@@ -20,20 +20,6 @@
         android:textStyle="bold" />
 
     <RadioButton
-        android:id="@+id/btn_started"
-        android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dimen_10x1"
-        android:background="@drawable/round_line_inactive"
-        android:button="@null"
-        android:text="STARTED"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/grey"
-        android:textSize="10sp"
-        android:textStyle="bold" />
-
-    <RadioButton
         android:id="@+id/btn_reopened"
         android:layout_width="@dimen/dimens_10x"
         android:layout_height="wrap_content"

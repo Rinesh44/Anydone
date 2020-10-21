@@ -32,6 +32,10 @@ public class ThreadTimelineContract {
 
         void getThreadByIdFail(String msg);
 
+        void getLinkedTicketSuccess();
+
+        void getLinkedTicketFail(String msg);
+
     }
 
     public interface ThreadTimelinePresenter extends Presenter<ThreadTimelineView> {
@@ -45,5 +49,7 @@ public class ThreadTimelineContract {
         void assignEmployee(String threadId, String employeeId);
 
         void getThreadById(String threadId);
+
+        void getLinkedTickets(String threadId);
     }
 }

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -36,18 +35,21 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.textfield.TextInputLayout;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.LinkedTicketAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.linkedticketdetail.LinkedTicketDetailActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -69,8 +71,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     public static final int ASSIGN_EMPLOYEE_REQUEST = 8789;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
-    @BindView(R.id.ll_assigned_employee)
-    LinearLayout llAssignedEmployee;
     /*   @BindView(R.id.bottom_sheet_profile)
        LinearLayout mBottomSheet;*/
     @BindView(R.id.tv_customer_dropdown)
@@ -105,22 +105,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     RelativeLayout rlBotReplyHolder;
     @BindView(R.id.scroll_view)
     ScrollView scrollView;
-    @BindView(R.id.il_select_employee)
-    TextInputLayout ilSelectEmployee;
-    @BindView(R.id.et_search_employee)
-    AutoCompleteTextView etSearchEmployee;
-    @BindView(R.id.ll_self)
-    LinearLayout llSelf;
-    @BindView(R.id.civ_image_self)
-    CircleImageView civSelf;
-    @BindView(R.id.tv_name_self)
-    TextView tvSelf;
-    @BindView(R.id.tv_all_users)
-    TextView tvAllUsers;
-    @BindView(R.id.rv_all_users)
-    RecyclerView rvAllUsers;
-    @BindView(R.id.search_employee)
-    ScrollView svSearchEmployee;
     @BindView(R.id.iv_source)
     ImageView ivSource;
     @BindView(R.id.tv_source)
@@ -139,10 +123,20 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     TextView tvAssignEmpLabel;
     @BindView(R.id.rl_assign_employee)
     RelativeLayout rlAssignEmployee;
+    @BindView(R.id.ll_linked_tickets)
+    LinearLayout llLinkedTickets;
+    @BindView(R.id.tv_linked_ticket_dropdown)
+    TextView tvLinkedTicketDropdown;
+    @BindView(R.id.iv_dropdown_linked_tickets)
+    ImageView ivLinkedTicketDropdown;
+    @BindView(R.id.expandable_layout_linked_tickets)
+    ExpandableLayout elLinkedTickets;
+    @BindView(R.id.rv_linked_tickets)
+    RecyclerView rvLinkedTickets;
 
 
     private boolean expandCustomer = true;
-    private boolean expandTicketDetails = true;
+    private boolean expandLinkedTickets = true;
     private int viewHeight = 0;
     private String threadId;
     private BottomSheetBehavior sheetBehavior;
@@ -156,6 +150,12 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private BottomSheetDialog employeeSheet;
     private ProgressBar pbEmployee;
     private AssignEmployee selectedEmployee;
+    private LinkedTicketAdapter adapter;
+    private CircleImageView civSelf;
+    private TextView tvSelf;
+    private TextView tvAllUsers;
+    private RecyclerView rvAllUsers;
+
 
     public ThreadTimelineFragment() {
         // Required empty public constructor
@@ -172,6 +172,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
             thread = ThreadRepo.getInstance().getThreadById(threadId);
             presenter.getEmployees();
+            presenter.getLinkedTickets(threadId);
 //            presenter.getThreadById(threadId);
             setThreadDetails();
         }
@@ -197,47 +198,23 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             elCustomer.toggle();
         });
 
+        tvLinkedTicketDropdown.setOnClickListener(v -> {
+            expandLinkedTickets = !expandLinkedTickets;
+            ivLinkedTicketDropdown.startAnimation(rotation);
+            if (expandLinkedTickets) {
+                ivLinkedTicketDropdown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropup));
+            } else {
+                ivLinkedTicketDropdown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropdown_toggle));
+            }
+            elLinkedTickets.toggle();
+        });
+
 
        /* btnMarkComplete.setOnClickListener(v -> startActivity(new Intent(getActivity(),
                 PaymentSummary.class)));*/
 //        sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
-
-        etSearchEmployee.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 1) {
-                    GlobalUtils.showLog(TAG, "text changed");
-                    employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
-                    if (CollectionUtils.isEmpty(employeeList)) {
-                        tvAllUsers.setVisibility(View.GONE);
-                    } else {
-                        tvAllUsers.setVisibility(View.VISIBLE);
-                    }
-                    GlobalUtils.showLog(TAG, "searched list size: " + employeeList.size());
-                    if (svSearchEmployee.getVisibility() == View.GONE)
-                        svSearchEmployee.setVisibility(View.VISIBLE);
-                    if (employeeSearchAdapter != null) {
-                        employeeSearchAdapter.setData(employeeList);
-                        employeeSearchAdapter.notifyDataSetChanged();
-                    }
-
-                    scrollView.fullScroll(View.FOCUS_DOWN);
-                    etSearchEmployee.requestFocus();
-                } else {
-                    svSearchEmployee.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         setBotReplyChangeListener();
 
@@ -374,7 +351,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         employeeSheet.setContentView(view);
         EditText etSearchEmployee = view.findViewById(R.id.et_search_employee);
-        llSelf = view.findViewById(R.id.ll_self);
+        LinearLayout llSelf = view.findViewById(R.id.ll_self);
         tvSelf = view.findViewById(R.id.tv_name_self);
         civSelf = view.findViewById(R.id.civ_image_self);
         tvAllUsers = view.findViewById(R.id.tv_all_users);
@@ -447,7 +424,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
             setupFullHeight(d);
             etSearchEmployee.requestFocus();
-            UiUtils.showKeyboardForced(getActivity());
+            UiUtils.showKeyboardForced(Objects.requireNonNull(getActivity()));
 
         /*    llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
                 int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
@@ -702,6 +679,27 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 .getWindow().getDecorView().getRootView(), msg);
     }
 
+    @Override
+    public void getLinkedTicketSuccess() {
+        List<Tickets> linkedTicketList = TicketRepo.getInstance().getTicketByThreadId(threadId);
+        if (!linkedTicketList.isEmpty()) {
+            setUpRecyclerView(linkedTicketList);
+            llLinkedTickets.setVisibility(View.VISIBLE);
+        } else llLinkedTickets.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void getLinkedTicketFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+/*        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);*/
+    }
+
 
     private void setSelfDetails() {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
@@ -782,6 +780,22 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         });
         alert11.show();
+    }
+
+    private void setUpRecyclerView(List<Tickets> ticketsList) {
+        rvLinkedTickets.setLayoutManager(new LinearLayoutManager(getContext()));
+        if (!CollectionUtils.isEmpty(ticketsList)) {
+            rvLinkedTickets.setVisibility(View.VISIBLE);
+            adapter = new LinkedTicketAdapter(ticketsList, getContext());
+            adapter.setOnItemClickListener(ticket -> {
+                Intent i = new Intent(getActivity(), LinkedTicketDetailActivity.class);
+                i.putExtra("selected_ticket_id", ticket.getTicketId());
+                startActivity(i);
+            });
+            rvLinkedTickets.setAdapter(adapter);
+        } else {
+            rvLinkedTickets.setVisibility(View.GONE);
+        }
     }
 
 }

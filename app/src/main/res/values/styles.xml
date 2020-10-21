@@ -72,4 +72,9 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#3A5090</item>
+        <item name="boxStrokeWidth">1dp</item>
+    </style>
+
 </resources>

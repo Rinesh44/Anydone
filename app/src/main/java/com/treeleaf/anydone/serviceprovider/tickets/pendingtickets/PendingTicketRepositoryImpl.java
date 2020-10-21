@@ -1,14 +1,14 @@
-package com.treeleaf.anydone.serviceprovider.tickets.assignedtickets;
+package com.treeleaf.anydone.serviceprovider.tickets.pendingtickets;
 
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 
 import io.reactivex.Observable;
 
-public class AssignedTicketRepositoryImpl implements AssignedTicketRepository {
+public class PendingTicketRepositoryImpl implements PendingTicketRepository {
     private AnyDoneService anyDoneService;
 
-    public AssignedTicketRepositoryImpl(AnyDoneService anyDoneService) {
+    public PendingTicketRepositoryImpl(AnyDoneService anyDoneService) {
         this.anyDoneService = anyDoneService;
     }
 

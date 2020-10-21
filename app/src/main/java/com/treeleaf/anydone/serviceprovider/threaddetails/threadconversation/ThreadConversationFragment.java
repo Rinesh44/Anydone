@@ -302,6 +302,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
         Intent i = new Intent(getActivity(), AddTicketActivity.class);
         i.putExtra("summary_text", longClickedMessage.getMessage());
+        i.putExtra("thread_id", threadId);
         i.putExtra("customer_name", thread.getCustomerName());
         i.putExtra("customer_pic", thread.getCustomerImageUrl());
         if (thread.getAssignedEmployee() != null)

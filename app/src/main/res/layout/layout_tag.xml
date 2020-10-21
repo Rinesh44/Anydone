@@ -4,10 +4,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/tag_bg"
-    android:paddingStart="@dimen/dimen_6x1"
+    android:paddingStart="@dimen/dimen_2x2"
     android:paddingTop="@dimen/dimen_2x1"
-    android:paddingEnd="@dimen/dimen_6x1"
+    android:paddingEnd="@dimen/dimen_2x2"
     android:paddingBottom="@dimen/dimen_2x1"
     android:text="Billing"
     android:textColor="#333333"
-    android:textSize="12sp" />
+    android:textSize="10sp" />

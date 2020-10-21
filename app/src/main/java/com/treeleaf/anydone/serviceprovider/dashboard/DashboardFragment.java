@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.dashboard;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -49,13 +48,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByDate;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
@@ -68,8 +64,6 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -254,8 +248,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             presenter.getTicketByStatus();
             presenter.getTicketsByDate();
         } else {
-            if (!reFetchData)
+            if (!reFetchData) {
                 loadDataFromDb();
+                pbLineChart.setVisibility(View.GONE);
+            }
         }
 
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
@@ -346,6 +342,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
                 Glide.with(Objects.requireNonNull(getContext()))
                         .load(firstService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
 //                        .apply(options)
                         .into(ivService);
                 Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
@@ -361,6 +359,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
                 Glide.with(Objects.requireNonNull(getContext()))
                         .load(selectedService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
 //                        .apply(options)
                         .into(ivService);
             }
@@ -406,6 +406,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
             Glide.with(Objects.requireNonNull(getContext()))
                     .load(service.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
 //                    .apply(options)
                     .into(ivService);
 
@@ -1186,6 +1188,8 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         Glide.with(Objects.requireNonNull(getContext()))
                 .load(firstService.getServiceIconUrl())
+                .placeholder(R.drawable.ic_service_ph)
+                .error(R.drawable.ic_service_ph)
 //                .apply(options)
                 .into(ivService);
 
@@ -1254,6 +1258,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 }
             }
         } else {
+            pbLineChart.setVisibility(View.GONE);
             tvLineChartNotAvailable.setVisibility(View.VISIBLE);
             lineChart.setVisibility(View.GONE);
         }

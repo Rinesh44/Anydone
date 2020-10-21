@@ -71,8 +71,13 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
 
 
                                 GlobalUtils.showLog(TAG, "serivce id: " + serviceId);
-                                GlobalUtils.showLog(TAG, "closed tickets Count: " + getTicketsBaseResponse.getTicketsList().size());
-                                saveClosedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
+                                GlobalUtils.showLog(TAG, "closed tickets Count: " +
+                                        getTicketsBaseResponse.getTicketsList().size());
+                                if (!CollectionUtils.isEmpty(getTicketsBaseResponse.getTicketsList())) {
+                                    saveClosedTicketsToRealm(getTicketsBaseResponse.getTicketsList());
+                                } else {
+                                    getView().showEmptyView();
+                                }
                             }
 
                             @Override
@@ -143,10 +148,13 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
 
     private void saveClosedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
         List<Tickets> closedResolvedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
-        if (!CollectionUtils.isEmpty(closedResolvedTickets)) {
+        if (CollectionUtils.isEmpty(closedResolvedTickets)) {
+            saveTickets(ticketsList);
+        } else {
             TicketRepo.getInstance().deleteClosedResolvedTickets(new Repo.Callback() {
                 @Override
                 public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "deleted all resolved tickets");
                 }
 
                 @Override
@@ -154,8 +162,9 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
                     GlobalUtils.showLog(TAG, "failed to delete closed resolved tickets");
                 }
             });
+
+            saveTickets(ticketsList);
         }
-        saveTickets(ticketsList);
     }
 
     private void saveTickets(List<TicketProto.Ticket> ticketsList) {

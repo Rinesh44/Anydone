@@ -69,14 +69,14 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketT
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketRepository;
-import com.treeleaf.anydone.serviceprovider.tickets.assignedtickets.AssignedTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepository;
-import com.treeleaf.anydone.serviceprovider.tickets.subscribetickets.SubscribeTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnsubscribedTicketRepository;
@@ -200,13 +200,13 @@ public class PresenterModule {
     }
 
     @Provides
-    AssignedTicketRepository getAssignedTicketRepository(AnyDoneService anyDoneService) {
-        return new AssignedTicketRepositoryImpl(anyDoneService);
+    PendingTicketRepository getAssignedTicketRepository(AnyDoneService anyDoneService) {
+        return new PendingTicketRepositoryImpl(anyDoneService);
     }
 
     @Provides
-    SubscribeTicketRepository getSubscribedTicketRepository(AnyDoneService anyDoneService) {
-        return new SubscribeTicketRepositoryImpl(anyDoneService);
+    InProgressTicketRepository getSubscribedTicketRepository(AnyDoneService anyDoneService) {
+        return new InProgressTicketRepositoryImpl(anyDoneService);
     }
 
     @Provides

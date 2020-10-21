@@ -10,13 +10,13 @@ import java.util.List;
 public class TicketsContract {
 
     public interface TicketsView extends BaseView {
-        void updateAssignedTicketList(List<Tickets> ticketsList);
+        void updatePendingTicketList(List<Tickets> ticketsList);
 
-        void filterAssignedTicketsFailed(String msg);
+        void filterPendingTicketsFailed(String msg);
 
-        void updateSubscribedTicketList(List<Tickets> ticketsList);
+        void updateInProgressTicketList(List<Tickets> ticketsList);
 
-        void filterSubscribedTicketFailed(String msg);
+        void filterInProgressTicketFailed(String msg);
 
         void updateClosedTicketList(List<Tickets> ticketsList);
 
@@ -48,9 +48,9 @@ public class TicketsContract {
     }
 
     public interface TicketsPresenter extends Presenter<TicketsView> {
-        void filterAssignedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
+        void filterPendingTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 
-        void filterSubscribedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
+        void filterInProgressTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 
         void filterClosedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 

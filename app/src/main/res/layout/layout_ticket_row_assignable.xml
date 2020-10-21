@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/ll_swipe_assign"
         android:layout_width="70dp"
-        android:layout_height="142dp"
+        android:layout_height="121dp"
         android:background="#3A5090"
         android:gravity="center"
         android:orientation="vertical">
@@ -33,17 +33,17 @@
 
         <LinearLayout
             android:id="@+id/ll_ticket_view"
-            android:layout_width="65dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimens_2x"
+            android:layout_width="58dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginTop="@dimen/dimen_10x1"
             android:background="@drawable/blue_round_bg"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/dimen_6x1">
+            android:paddingBottom="@dimen/dimen_2x2">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="48dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -56,15 +56,15 @@
                     android:layout_marginEnd="@dimen/dimen_6x1"
                     android:text="14"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/date2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/dimen_6x1"
-                    android:layout_marginEnd="@dimen/dimen_6x1"
+                    android:layout_marginStart="@dimen/dimen_2x1"
+                    android:layout_marginEnd="@dimen/dimen_2x1"
                     android:text="Nov, 2020"
                     android:textColor="@color/white"
                     android:textSize="10dp" />
@@ -74,32 +74,32 @@
             <View
                 android:id="@+id/v_dots"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_6x1"
+                android:layout_height="@dimen/dimen_2x2"
                 android:background="@drawable/dotted_line" />
 
             <RelativeLayout
                 android:id="@+id/rl_assigned_employee_holder"
                 android:layout_width="match_parent"
-                android:layout_height="51dp">
+                android:layout_height="46dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/assigned_employee"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/circle_user"
                     app:civ_border_color="@color/white"
                     app:civ_border_width="1dp" />
 
             </RelativeLayout>
-
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_details_holder"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="100dp"
             android:layout_marginStart="@dimen/dimen_10x1"
-            android:layout_marginTop="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_10x1"
             android:layout_toEndOf="@+id/ll_ticket_view"
             android:gravity="center"
             android:orientation="vertical">
@@ -116,7 +116,7 @@
                     android:gravity="bottom"
                     android:text="#124568"
                     android:textColor="@color/charcoal_text"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -129,7 +129,7 @@
                     android:drawablePadding="@dimen/dimen_2x2"
                     android:gravity="bottom"
                     android:text="Highest"
-                    android:textColor="@color/charcoal_text"
+                    android:textColor="@color/black"
                     android:textSize="11sp" />
 
 
@@ -139,13 +139,13 @@
                 android:id="@+id/tv_summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_6x1"
+                android:layout_marginTop="@dimen/dimen_2x2"
                 android:ellipsize="end"
-                android:paddingEnd="@dimen/dimen_10x2"
+                android:paddingEnd="@dimen/dimen_10x1"
                 android:singleLine="true"
                 android:text="Broken tv, fallen from tv stand"
                 android:textColor="@color/charcoal_text"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -153,10 +153,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="@dimen/dimen_6x1"
+                android:layout_marginTop="@dimen/dimen_2x2"
                 android:text="Ram prasad yadav"
                 android:textColor="@color/charcoal_text"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <HorizontalScrollView
@@ -169,7 +169,7 @@
                     android:id="@+id/ll_tags"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_6x1"
+                    android:layout_marginTop="@dimen/dimen_5x1"
                     android:orientation="horizontal">
 
                 </LinearLayout>
@@ -182,23 +182,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/dimens_2x"
-            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
             android:background="@drawable/resolved_bg"
-            android:paddingStart="@dimen/dimen_10x1"
+            android:paddingStart="@dimen/dimen_2x4"
             android:paddingTop="@dimen/dimen_2x2"
-            android:paddingEnd="@dimen/dimen_10x1"
+            android:paddingEnd="@dimen/dimen_2x4"
             android:paddingBottom="@dimen/dimen_2x2"
             android:text="Started"
             android:textAllCaps="true"
             android:textColor="#239F15"
-            android:textSize="10sp" />
+            android:textSize="9sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/ll_ticket_view"
-            android:layout_marginTop="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_10x1"
             android:background="#e7e7e7"
             android:paddingTop="@dimen/dimen_10x1" />
     </RelativeLayout>

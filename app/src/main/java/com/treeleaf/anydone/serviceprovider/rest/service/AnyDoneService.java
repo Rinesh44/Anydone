@@ -5,7 +5,6 @@ import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.PaymentProto;
 import com.treeleaf.anydone.entities.TicketProto;
-import com.treeleaf.anydone.entities.TreeleafProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
@@ -25,7 +24,6 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -236,6 +234,27 @@ public interface AnyDoneService {
                        @Query("to") long to,
                        @Query("page") int page);
 
+    @GET("ticket/pending/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getPendingTickets(@Header(AUTHORIZATION)
+                              String token,
+                      @Path(value = "serviceId")
+                              String serviceId,
+                      @Query("from") long from,
+                      @Query("to") long to,
+                      @Query("page") int page);
+
+    @GET("ticket/inprogress/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getInProgressTickets(@Header(AUTHORIZATION)
+                                 String token,
+                         @Path(value = "serviceId")
+                                 String serviceId,
+                         @Query("from") long from,
+                         @Query("to") long to,
+                         @Query("page") int page);
+
+
     @GET("ticket/contributed/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     getContributedTickets(@Header(AUTHORIZATION)
@@ -371,6 +390,13 @@ public interface AnyDoneService {
                                    String token,
                            @Path(value = "serviceId")
                                    String serviceId);
+
+    @GET("conversation/ticket/{threadId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    getLinkedTickets(@Header(AUTHORIZATION)
+                             String token,
+                     @Path(value = "threadId")
+                             String threadId);
 
     @GET("conversation/{threadId}")
     Observable<ConversationRpcProto.ConversationBaseResponse>
@@ -589,6 +615,7 @@ public interface AnyDoneService {
               @Path(value = "ticketId")
                       String ticketId,
               @Body TicketProto.Ticket ticket);
+
 
 }
 

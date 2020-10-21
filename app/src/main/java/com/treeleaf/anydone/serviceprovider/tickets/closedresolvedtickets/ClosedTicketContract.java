@@ -13,6 +13,8 @@ public class ClosedTicketContract {
         void onReopenSuccess(long ticketId);
 
         void onReopenFail(String msg);
+
+        void showEmptyView();
     }
 
     public interface ClosedTicketPresenter extends Presenter<ClosedTicketView> {
