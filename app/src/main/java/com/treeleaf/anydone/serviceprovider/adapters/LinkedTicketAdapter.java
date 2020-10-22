@@ -48,8 +48,54 @@ public class LinkedTicketAdapter extends RecyclerView.Adapter<LinkedTicketAdapte
         holder.ticketId.setText("#" + tickets.getTicketId());
         holder.summary.setText(tickets.getTitle());
 
+        setStatus(tickets, holder);
+
         GlobalUtils.showLog(TAG, "ticket priority check: " + tickets.getPriority());
 
+    }
+
+    private void setStatus(Tickets tickets, TicketHolder holder) {
+        switch (tickets.getTicketStatus()) {
+            case "TICKET_CREATED":
+                holder.ticketStatus.setTextColor
+                        (mContext.getResources().getColor(R.color.ticket_created_text));
+                holder.ticketStatus.setBackground
+                        (mContext.getResources().getDrawable(R.drawable.created_bg));
+                holder.ticketStatus.setText("TODO");
+                break;
+
+            case "TICKET_STARTED":
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_started_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.started_bg));
+                holder.ticketStatus.setText("STARTED");
+                break;
+
+            case "TICKET_RESOLVED":
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_resolved_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.resolved_bg));
+                holder.ticketStatus.setText("RESOLVED");
+                break;
+
+            case "TICKET_CLOSED":
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_closed_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.closed_bg));
+                holder.ticketStatus.setText("CLOSED");
+                break;
+
+            case "TICKET_REOPENED":
+                holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                        (R.color.ticket_reopened_text));
+                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                        (R.drawable.reopened_bg));
+                holder.ticketStatus.setText("REOPENED");
+                break;
+        }
     }
 
 
@@ -66,6 +112,7 @@ public class LinkedTicketAdapter extends RecyclerView.Adapter<LinkedTicketAdapte
         private RelativeLayout rlTicketHolder;
         private TextView ticketId;
         private TextView summary;
+        private TextView ticketStatus;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +121,7 @@ public class LinkedTicketAdapter extends RecyclerView.Adapter<LinkedTicketAdapte
             tvDate2 = itemView.findViewById(R.id.date2);
             ticketId = itemView.findViewById(R.id.tv_ticket_id_value);
             summary = itemView.findViewById(R.id.tv_summary);
+            ticketStatus = itemView.findViewById(R.id.tv_ticket_status);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {

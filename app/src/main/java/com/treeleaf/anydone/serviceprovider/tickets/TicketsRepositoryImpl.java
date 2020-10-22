@@ -1,10 +1,12 @@
 package com.treeleaf.anydone.serviceprovider.tickets;
 
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 
 import io.reactivex.Observable;
 
@@ -38,7 +40,8 @@ public class TicketsRepositoryImpl implements TicketsRepository {
 
     @Override
     public Observable<UserRpcProto.UserBaseResponse> findConsumers(String token) {
-        return service.findConsumers(token);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        return service.findConsumers(token, serviceId);
     }
 
     @Override
@@ -48,6 +51,7 @@ public class TicketsRepositoryImpl implements TicketsRepository {
 
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse> findTags(String token) {
-        return service.findTag(token);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        return service.getTicketTeams(token, serviceId);
     }
 }

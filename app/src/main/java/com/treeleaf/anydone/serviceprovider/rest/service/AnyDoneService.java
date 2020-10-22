@@ -335,22 +335,21 @@ public interface AnyDoneService {
                          String token,
                  @Body TicketProto.Ticket ticket);
 
-    @GET("customers")
+    @GET("customers/service/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> findCustomers(@Header(AUTHORIZATION)
-                                                                               String token);
+                                                                               String token,
+                                                                       @Path(value = "serviceId")
+                                                                               String serviceId);
 
     @GET("employees")
     Observable<UserRpcProto.UserBaseResponse> findEmployees(@Header(AUTHORIZATION)
                                                                     String token);
 
-    @GET("team")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> findTag(@Header(AUTHORIZATION)
-                                                                         String token);
-
-    @GET("consumers")
+    @GET("consumers/service/{serviceId}")
     Observable<UserRpcProto.UserBaseResponse> findConsumers(@Header(AUTHORIZATION)
-                                                                    String token);
-
+                                                                    String token,
+                                                            @Path(value = "serviceId")
+                                                                    String serviceId);
 
     @GET("ticket/{ticketId}/timeline")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(@Header(AUTHORIZATION)

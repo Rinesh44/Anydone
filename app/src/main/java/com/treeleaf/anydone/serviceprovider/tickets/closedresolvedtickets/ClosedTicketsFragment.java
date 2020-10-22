@@ -81,6 +81,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void fetchList() {
+        btnReload.setVisibility(View.GONE);
         presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
     }
 
@@ -124,6 +125,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvClosedTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -148,6 +150,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         } else {
             rvClosedTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
+            btnReload.setVisibility(View.VISIBLE);
         }
 
     }
@@ -219,6 +222,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         boolean fetchChanges = Hawk.get(Constants.FETCH_CLOSED_LIST, false);
         boolean ticketResolved = Hawk.get(Constants.TICKET_RESOLVED, false);
         if (fetchChanges) {
+            btnReload.setVisibility(View.GONE);
             presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
         } else if (ticketResolved) {
             closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
@@ -244,6 +248,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             Hawk.put(Constants.FETCH_CLOSED_LIST, false);
             fetchList = true;
             ivDataNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
         } else {
         /*    adapter = new TicketsAdapter(closedTickets, getContext());
             adapter.setData(closedTickets);
@@ -251,6 +256,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
             rvClosedTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
+            btnReload.setVisibility(View.VISIBLE);
         }
     }
 
@@ -264,6 +270,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         }
 
         ivDataNotFound.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.VISIBLE);
         rvClosedTickets.setVisibility(View.GONE);
 //        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
     }
@@ -291,7 +298,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         ivDataNotFound.setVisibility(View.VISIBLE);
         rvClosedTickets.setVisibility(View.GONE);
 
-        btnReload.setVisibility(View.VISIBLE);
+        if (ivDataNotFound.getVisibility() == View.VISIBLE)
+            btnReload.setVisibility(View.VISIBLE);
 
     }
 
@@ -307,6 +315,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
+        btnReload.setVisibility(View.GONE);
         rvClosedTickets.setVisibility(View.GONE);
     }
 

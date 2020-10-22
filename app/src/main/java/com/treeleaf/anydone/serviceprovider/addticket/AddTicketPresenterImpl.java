@@ -83,6 +83,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
             }
         }
 
+        GlobalUtils.showLog(TAG, "teams check" + tags);
         GlobalUtils.showLog(TAG, "customer id check: " + customerId);
 
         List<TicketProto.Team> tagList = new ArrayList<>();

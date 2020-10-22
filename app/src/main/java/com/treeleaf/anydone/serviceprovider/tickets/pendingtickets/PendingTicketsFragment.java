@@ -118,6 +118,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvOpenTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
 
@@ -171,8 +172,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
             rvOpenTickets.setAdapter(adapter);
         } else {
             rvOpenTickets.setVisibility(View.GONE);
-            final Handler handler = new Handler();
-
+            ivDataNotFound.setVisibility(View.VISIBLE);
+            btnReload.setVisibility(View.VISIBLE);
       /*      handler.postDelayed(() -> {
                 if (rvOpenTickets != null) {
                     if (rvOpenTickets.getVisibility() != View.VISIBLE)
@@ -208,6 +209,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
         boolean ticketPending = Hawk.get(Constants.TICKET_PENDING, false);
         if (fetchChanges) {
+            btnReload.setVisibility(View.GONE);
             presenter.getPendingTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else if (ticketAssigned) {
@@ -260,6 +262,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         GlobalUtils.showLog(TAG, "failed to get assigned tickets");
         ivDataNotFound.setVisibility(View.VISIBLE);
         rvOpenTickets.setVisibility(View.GONE);
+        btnReload.setVisibility(View.VISIBLE);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
@@ -275,7 +278,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         rvOpenTickets.setVisibility(View.GONE);
         ivDataNotFound.setVisibility(View.VISIBLE);
 
-        btnReload.setVisibility(View.VISIBLE);
+        if (ivDataNotFound.getVisibility() == View.VISIBLE)
+            btnReload.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -283,6 +287,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
         rvOpenTickets.setVisibility(View.GONE);
+        btnReload.setVisibility(View.GONE);
     }
 
     @Override
@@ -333,6 +338,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 
     @Override
     public void fetchList() {
+        btnReload.setVisibility(View.GONE);
         GlobalUtils.showLog(TAG, "fetch list called");
         presenter.getPendingTickets(true, 0,
                 System.currentTimeMillis(), 100);

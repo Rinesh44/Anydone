@@ -568,7 +568,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             UiUtils.showKeyboardForced(this);
 
             //check mark selected teams
-            labelAdapter.setData(labels);
+            if (!labels.isEmpty())
+                labelAdapter.setData(labels);
 
             llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
                 int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
@@ -597,6 +598,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             }
         });
+
 
         tvLabelDone.setOnClickListener(v -> labelSheet.dismiss());
 
@@ -628,7 +630,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         labelAdapter.setOnFilterListEmptyListener(() -> {
             tvNewLabel.setText(etSearchLabel.getText().toString().trim());
-            rlNewLabel.setVisibility(View.VISIBLE);
+            if (etSearchLabel.getText().toString().length() > 0)
+                rlNewLabel.setVisibility(View.VISIBLE);
 
             rlNewLabel.setOnClickListener(v -> {
                 addNewLabel(labelList,
@@ -955,14 +958,14 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             showEmployeeWithImage(employee);
         }
 
-        if (teamId != null) {
+  /*      if (teamId != null) {
             selectedTag = TagRepo.getInstance().getTagById(teamId);
             if (selectedTag != null) {
                 tags.add(selectedTag.getTagId());
                 addTeamsToLayout();
             }
 //            addNewTagChip(tags);
-        }
+        }*/
 
         GlobalUtils.showLog(TAG, "tag obj: " + tags);
     }

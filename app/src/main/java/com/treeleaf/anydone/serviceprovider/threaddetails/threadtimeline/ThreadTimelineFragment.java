@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +37,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
@@ -43,10 +46,15 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.linkedticketdetail.LinkedTicketDetailActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -62,6 +70,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.RealmList;
 
 public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenterImpl> implements
         ThreadTimelineContract.ThreadTimelineView,
@@ -156,6 +165,37 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private TextView tvAllUsers;
     private RecyclerView rvAllUsers;
 
+    private BottomSheetDialog ticketBottomSheet;
+    private View llBottomSheet;
+    private TextView tvTicketStatus;
+    private TextView tvTicketId;
+    private TextView tvTicketCreatedDate;
+    private TextView tvTicketCreatedTime;
+    private TextView tvTicketType;
+    private TextView tvTicketTitle;
+    private TextView tvEstimatedTimeValue;
+    private TextView tvEstimatedTime;
+    private TextView tvTicketDesc;
+    private TextView tvTicketCreatedBy;
+    private CircleImageView civTicketCreatedBy;
+    private LinearLayout llTags;
+    private LinearLayout llLabelHolder;
+    private TextView tvPriority;
+    private ImageView ivPriority;
+    private TextView tvService;
+    private ImageView ivService;
+    private TextView tvTicketAssignedEmployee;
+    private CircleImageView civTicketAssignedEmployee;
+    private TextView tvTicketCustomerName;
+    private LinearLayout llTicketCustomerPhone;
+    private LinearLayout llTicketCustomerEmail;
+    private CircleImageView civTicketCustomer;
+    private LinearLayout llContributorList;
+    private LinearLayout llLabels;
+    private TextView tvTicketCustomerPhone;
+    private TextView tvTicketCustomerEmail;
+    private NestedScrollView nestedScrollView;
+
 
     public ThreadTimelineFragment() {
         // Required empty public constructor
@@ -175,6 +215,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             presenter.getLinkedTickets(threadId);
 //            presenter.getThreadById(threadId);
             setThreadDetails();
+            createLinkedTicketBottomSheet();
         }
 
 
@@ -303,6 +344,12 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 tvSource.setText(R.string.viber);
                 ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_viber));
                 break;
+
+            case "SLACK_THIRD_PARTY_SOURCE":
+                tvSource.setText("Slack");
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_slack));
+                break;
+
         }
     }
 
@@ -318,6 +365,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (!thread.isBotEnabled()) {
             botReply.setChecked(false);
         }
+
+        presenter.getLinkedTickets(threadId);
 
       /*  if (!botEnabled) {
             botReply.setChecked(false);
@@ -787,15 +836,379 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvLinkedTickets.setVisibility(View.VISIBLE);
             adapter = new LinkedTicketAdapter(ticketsList, getContext());
-            adapter.setOnItemClickListener(ticket -> {
-                Intent i = new Intent(getActivity(), LinkedTicketDetailActivity.class);
-                i.putExtra("selected_ticket_id", ticket.getTicketId());
-                startActivity(i);
-            });
+            adapter.setOnItemClickListener(ticket -> setTicketDetails(ticket.getTicketId()));
             rvLinkedTickets.setAdapter(adapter);
         } else {
             rvLinkedTickets.setVisibility(View.GONE);
         }
     }
 
+    public void setTicketDetails(long ticketId) {
+        Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
+
+        switch (tickets.getTicketStatus()) {
+            case "TICKET_CREATED":
+                tvTicketStatus.setTextColor(Objects.requireNonNull(
+                        getResources().getColor(R.color.ticket_created_text)));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.created_bg));
+                tvTicketStatus.setText("TODO");
+                break;
+
+            case "TICKET_STARTED":
+                tvTicketStatus.setTextColor(Objects.requireNonNull(
+                        getResources().getColor(R.color.ticket_started_text)));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.started_bg));
+                tvTicketStatus.setText("STARTED");
+                break;
+
+            case "TICKET_RESOLVED":
+                tvTicketStatus.setTextColor(Objects.requireNonNull
+                        (getResources().getColor(R.color.ticket_resolved_text)));
+                tvTicketStatus.setBackground(getResources().getDrawable(R.drawable.resolved_bg));
+                tvTicketStatus.setText("RESOLVED");
+                break;
+
+            case "TICKET_CLOSED":
+                tvTicketStatus.setTextColor(Objects.requireNonNull(
+                        getResources().getColor(R.color.ticket_closed_text)));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.closed_bg));
+                tvTicketStatus.setText("CLOSED");
+
+                break;
+
+            case "TICKET_REOPENED":
+                tvTicketStatus.setTextColor(Objects.requireNonNull(
+                        getResources().getColor(R.color.ticket_reopened_text)));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.reopened_bg));
+                tvTicketStatus.setText("REOPENED");
+                break;
+        }
+
+        tvTicketId.setText(String.valueOf(tickets.getTicketId()));
+        tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
+        tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
+        tvTicketType.setText(tickets.getTicketCategory());
+        tvTicketTitle.setText(tickets.getTitle());
+
+        if (tickets.getEstimatedTime().isEmpty()) {
+            tvEstimatedTimeValue.setVisibility(View.GONE);
+            tvEstimatedTime.setVisibility(View.GONE);
+        } else {
+            tvEstimatedTimeValue.setVisibility(View.VISIBLE);
+            tvEstimatedTime.setVisibility(View.VISIBLE);
+
+            if (tickets.getEstimatedTimeStamp() != 0) {
+                setRemainingTime(tickets);
+            } else {
+                tvEstimatedTimeValue.setText(tickets.getEstimatedTime());
+            }
+        }
+
+        if (tickets.getDescription() == null || tickets.getDescription().isEmpty()) {
+            tvTicketDesc.setText("No description");
+        } else {
+            tvTicketDesc.setText(tickets.getDescription());
+        }
+
+        tvTicketCreatedBy.setText(tickets.getCreatedByName());
+
+        String profilePicUrl = tickets.getCreatedByPic();
+        if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCreatedBy);
+        }
+
+        addTeamsToLayout(tickets);
+        setLabels(tickets);
+        setPriority(tickets.getPriority());
+        setService(tickets.getServiceId());
+
+        setAssignedEmployee(tickets.getAssignedEmployee());
+        setLinkedTicketCustomerDetails(tickets.getCustomer());
+        setContributors(tickets);
+        ticketBottomSheet.show();
+
+    }
+
+    private void createLinkedTicketBottomSheet() {
+        ticketBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_linked_tickets, null);
+
+        ticketBottomSheet.setContentView(llBottomSheet);
+
+        ticketBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+
+        tvTicketStatus = llBottomSheet.findViewById(R.id.tv_ticket_status);
+        tvTicketId = llBottomSheet.findViewById(R.id.tv_ticket_id);
+        tvTicketCreatedDate = llBottomSheet.findViewById(R.id.tv_ticket_created_date);
+        tvTicketType = llBottomSheet.findViewById(R.id.tv_ticket_type_value);
+        tvTicketCreatedTime = llBottomSheet.findViewById(R.id.tv_ticket_created_time);
+        tvTicketTitle = llBottomSheet.findViewById(R.id.tv_ticket_title);
+        tvEstimatedTimeValue = llBottomSheet.findViewById(R.id.tv_estimated_time_value);
+        tvEstimatedTime = llBottomSheet.findViewById(R.id.tv_estimated_time);
+        tvTicketDesc = llBottomSheet.findViewById(R.id.tv_ticket_desc);
+        tvTicketCreatedBy = llBottomSheet.findViewById(R.id.tv_ticket_created_by);
+        civTicketCreatedBy = llBottomSheet.findViewById(R.id.civ_ticket_created_by);
+        llTags = llBottomSheet.findViewById(R.id.ll_tags);
+        llLabelHolder = llBottomSheet.findViewById(R.id.ll_label_holder);
+        tvPriority = llBottomSheet.findViewById(R.id.tv_priority);
+        ivPriority = llBottomSheet.findViewById(R.id.iv_priority);
+        tvService = llBottomSheet.findViewById(R.id.tv_service);
+        ivService = llBottomSheet.findViewById(R.id.iv_service);
+        tvTicketAssignedEmployee = llBottomSheet.findViewById(R.id.tv_assigned_employee);
+        civTicketAssignedEmployee = llBottomSheet.findViewById(R.id.civ_assigned_employee);
+        tvTicketCustomerName = llBottomSheet.findViewById(R.id.tv_customer_name);
+        llTicketCustomerPhone = llBottomSheet.findViewById(R.id.ll_customer_phone);
+        llTicketCustomerEmail = llBottomSheet.findViewById(R.id.ll_customer_email);
+        civTicketCustomer = llBottomSheet.findViewById(R.id.civ_customer);
+        llContributorList = llBottomSheet.findViewById(R.id.ll_contributor_list);
+        llLabels = llBottomSheet.findViewById(R.id.ll_labels);
+        tvTicketCustomerPhone = llBottomSheet.findViewById(R.id.tv_customer_phone);
+        tvTicketCustomerEmail = llBottomSheet.findViewById(R.id.tv_customer_email);
+        nestedScrollView = llBottomSheet.findViewById(R.id.scroll_view);
+
+        ticketBottomSheet.setOnDismissListener(dialog -> nestedScrollView.fullScroll(ScrollView.FOCUS_UP));
+    }
+
+
+    private void setContributors(Tickets tickets) {
+        RealmList<AssignEmployee> contributorList = tickets.getContributorList();
+        if (!CollectionUtils.isEmpty(contributorList)) {
+            inflateContributorLayout(contributorList, llContributorList);
+        } else {
+            llContributorList.removeAllViews();
+            TextView textView = new TextView(getContext());
+            textView.setText("Not Available");
+            textView.setTextColor(getResources().getColor(R.color.black));
+            llContributorList.addView(textView);
+        }
+    }
+
+
+    private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(state);
+        } else {
+            Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void inflateContributorLayout(RealmList<AssignEmployee> contributors,
+                                          LinearLayout parent) {
+        parent.removeAllViews();
+        for (AssignEmployee contributor : contributors
+        ) {
+            @SuppressLint("InflateParams") View viewAssignedEmployee = getLayoutInflater()
+                    .inflate(R.layout.layout_contributor_row, null, false);
+            TextView employeeName = viewAssignedEmployee.findViewById(R.id.tv_field);
+            CircleImageView employeePic = viewAssignedEmployee.findViewById(R.id.civ_field);
+            ImageView deleteEmployee = viewAssignedEmployee.findViewById(R.id.iv_delete);
+
+            deleteEmployee.setVisibility(View.GONE);
+
+            employeeName.setText(contributor.getName());
+            if (contributor.getEmployeeImageUrl() != null &&
+                    !contributor.getEmployeeImageUrl().isEmpty()) {
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_profile_icon)
+                        .error(R.drawable.ic_profile_icon);
+
+                Glide.with(this).load(contributor.getEmployeeImageUrl())
+                        .apply(options).into(employeePic);
+            }
+
+            parent.addView(viewAssignedEmployee);
+        }
+    }
+
+    private void setLabels(Tickets tickets) {
+        if (!CollectionUtils.isEmpty(tickets.getLabelRealmList())) {
+            llLabels.removeAllViews();
+            for (Label label : tickets.getLabelRealmList()
+            ) {
+                @SuppressLint("InflateParams") TextView tvLabel = (TextView) getLayoutInflater()
+                        .inflate(R.layout.layout_tag, null);
+                tvLabel.setText(label.getName());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMarginEnd(20);
+                tvLabel.setLayoutParams(params);
+                tvLabel.setTextSize(14);
+                llLabels.addView(tvLabel);
+            }
+        } else {
+            llLabels.removeAllViews();
+            TextView textView = new TextView(getContext());
+            textView.setText("Not Available");
+            textView.setTextColor(getResources().getColor(R.color.black));
+            llLabels.addView(textView);
+        }
+    }
+
+    private void setRemainingTime(Tickets tickets) {
+        StringBuilder estTime = new StringBuilder(tickets.getEstimatedTime());
+        if (tickets.getEstimatedTimeStamp() > System.currentTimeMillis()) {
+            String remainingTime = DateUtils.getRelativeTimeSpanString
+                    (tickets.getEstimatedTimeStamp()).toString();
+
+            estTime.append(" (");
+            estTime.append(remainingTime.substring(2));
+            estTime.append(" remaining ");
+            estTime.append(")");
+        } else if (tickets.getEstimatedTimeStamp() == 0) {
+
+        } else {
+            estTime.append(" ( ");
+            estTime.append("time exceeded ");
+            estTime.append(")");
+        }
+
+
+        tvEstimatedTimeValue.setText(estTime);
+    }
+
+    private void setPriority(int priority) {
+        switch (priority) {
+            case 1:
+                tvPriority.setText("Lowest");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_lowest));
+                break;
+
+            case 2:
+                tvPriority.setText("Low");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_low));
+                break;
+
+            case 4:
+                tvPriority.setText("High");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_high));
+                break;
+
+            case 5:
+                tvPriority.setText("Highest");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_highest));
+                break;
+
+            default:
+                tvPriority.setText("Medium");
+                ivPriority.setImageDrawable(getResources().getDrawable(R.drawable.ic_medium));
+                break;
+        }
+    }
+
+    private void addTeamsToLayout(Tickets tickets) {
+        //add selected teams
+        if (tickets.getTagsRealmList() != null &&
+                !CollectionUtils.isEmpty(tickets.getTagsRealmList())) {
+            llTags.removeAllViews();
+            for (Tags tag : tickets.getTagsRealmList()
+            ) {
+                @SuppressLint("InflateParams") TextView tvTag = (TextView) getLayoutInflater()
+                        .inflate(R.layout.layout_tag, null);
+                tvTag.setText(tag.getLabel());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMarginEnd(20);
+                tvTag.setLayoutParams(params);
+                tvTag.setTextSize(14);
+                llTags.addView(tvTag);
+            }
+        } else {
+            llTags.removeAllViews();
+            TextView textView = new TextView(getContext());
+            textView.setText("Not Available");
+            textView.setTextColor(getResources().getColor(R.color.black));
+            llTags.addView(textView);
+        }
+    }
+
+    public void setLinkedTicketCustomerDetails(Customer customerDetails) {
+        tvTicketCustomerName.setText(customerDetails.getFullName());
+        if (customerDetails.getPhone() == null || customerDetails.getPhone().isEmpty()) {
+            llTicketCustomerPhone.setVisibility(View.GONE);
+        } else {
+            tvTicketCustomerPhone.setText(customerDetails.getPhone());
+        }
+
+        if (customerDetails.getEmail() == null || customerDetails.getEmail().isEmpty()) {
+            llTicketCustomerEmail.setVisibility(View.GONE);
+        } else {
+            tvTicketCustomerEmail.setText(customerDetails.getEmail());
+        }
+
+        String profilePicUrl = customerDetails.getProfilePic();
+        if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCustomer);
+        }
+    }
+
+    private void setService(String serviceId) {
+        Service service = AvailableServicesRepo.getInstance().getAvailableServiceById(serviceId);
+        tvService.setText(service.getName());
+
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_service_ph)
+                .error(R.drawable.ic_service_ph);
+
+        Glide.with(this)
+                .load(service.getServiceIconUrl())
+                .apply(options)
+                .into(ivService);
+    }
+
+    public void setAssignedEmployee(AssignEmployee assignedEmployee) {
+        if (!assignedEmployee.getName().isEmpty()) {
+            tvAssignedEmployee.setText(assignedEmployee.getName());
+        } else {
+            tvAssignedEmployee.setText(R.string.unassigned);
+        }
+
+        String employeeImage = assignedEmployee.getEmployeeImageUrl();
+        if (employeeImage != null && !employeeImage.isEmpty()) {
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(this)
+                    .load(employeeImage)
+                    .apply(options)
+                    .into(civAssignedEmployee);
+        }
+    }
 }

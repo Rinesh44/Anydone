@@ -123,6 +123,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvInProgressTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
             adapter = new TicketsAdapter(ticketsList, getContext());
             adapter.setOnItemClickListener(ticket -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -181,6 +182,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             GlobalUtils.showLog(TAG, "data not found");
             rvInProgressTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
+            btnReload.setVisibility(View.VISIBLE);
         }
 
         rvInProgressTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -259,6 +261,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         }
 
         ivDataNotFound.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.VISIBLE);
         rvInProgressTickets.setVisibility(View.GONE);
 //        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView().getRootView(), msg);
 
@@ -269,7 +272,8 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         ivDataNotFound.setVisibility(View.VISIBLE);
         rvInProgressTickets.setVisibility(View.GONE);
 
-        btnReload.setVisibility(View.VISIBLE);
+        if (ivDataNotFound.getVisibility() == View.VISIBLE)
+            btnReload.setVisibility(View.VISIBLE);
 
     }
 
@@ -290,6 +294,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         boolean ticketInProgress = Hawk.get(Constants.TICKET_IN_PROGRESS, false);
         if (fetchChanges) {
             GlobalUtils.showLog(TAG, "on resume fetch");
+            btnReload.setVisibility(View.GONE);
             presenter.getInProgressTickets(true, 0, System.currentTimeMillis(),
                     100);
         } else if (ticketAssigned) {
@@ -308,6 +313,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
         rvInProgressTickets.setVisibility(View.GONE);
+        btnReload.setVisibility(View.GONE);
     }
 
     @Override
@@ -345,6 +351,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 
     @Override
     public void fetchList() {
+        btnReload.setVisibility(View.GONE);
         presenter.getInProgressTickets(true, 0,
                 System.currentTimeMillis(), 100);
     }

@@ -40,9 +40,11 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -267,7 +269,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     private void listenConversationMessages() throws MqttException {
         GlobalUtils.showLog(TAG, "listen convo");
-        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
+        Account userAccount = AccountRepo.getInstance().getAccount();
+//        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         if (userAccount != null) {
             String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
 

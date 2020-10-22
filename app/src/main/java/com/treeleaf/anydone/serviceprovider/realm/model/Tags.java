@@ -6,6 +6,7 @@ import io.realm.annotations.PrimaryKey;
 public class Tags extends RealmObject {
     @PrimaryKey
     String tagId;
+    String serviceId;
     String label;
     String description;
     String createdBy;
@@ -43,5 +44,13 @@ public class Tags extends RealmObject {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
     }
 }

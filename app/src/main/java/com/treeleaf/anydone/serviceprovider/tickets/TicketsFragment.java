@@ -148,12 +148,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        presenter.findCustomers();
-        presenter.findEmployees();
-        presenter.getTicketTypes();
-        presenter.getLabels();
-        presenter.findTags();
-
         pendingTicketList = TicketRepo.getInstance().getPendingTickets();
         inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
         closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
@@ -164,6 +158,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         mTabs.setupWithViewPager(mViewpager);
 
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+
+        presenter.findEmployees();
+        presenter.getTicketTypes();
+        presenter.getLabels();
+        presenter.findTags();
     }
 
     private void createServiceBottomSheet() {
@@ -316,6 +315,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             pendingTicketList = TicketRepo.getInstance().getPendingTickets();
             inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
             closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
+
+//            presenter.findCustomers();
+            presenter.findEmployees();
+            presenter.getTicketTypes();
+            presenter.getLabels();
+            presenter.findTags();
 
 //            Hawk.put(Constants.FETCH_CLOSED_LIST, true);
         });

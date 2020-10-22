@@ -56,8 +56,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        customersObservable = service.findCustomers(token);
+        customersObservable = service.findCustomers(token, serviceId);
 
         addSubscription(customersObservable
                 .subscribeOn(Schedulers.io())

@@ -1,9 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
@@ -65,7 +67,9 @@ public class LabelRepo extends Repo {
     public List<Label> getAllLabels() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Label.class)
+                    .equalTo("serviceId", serviceId)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

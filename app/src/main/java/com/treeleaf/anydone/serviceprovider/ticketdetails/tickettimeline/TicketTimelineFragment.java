@@ -1319,8 +1319,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 llTags.setVisibility(View.VISIBLE);
             }
         } else {
+            llTags.removeAllViews();
             llTags.setVisibility(View.GONE);
-
             tvAddTeam.setVisibility(View.VISIBLE);
             tvAddTeam.setOnClickListener(v -> teamSheet.show());
         }

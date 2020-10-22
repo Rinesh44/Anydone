@@ -1,9 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 import com.google.android.gms.common.util.CollectionUtils;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
@@ -70,6 +72,7 @@ public class TagRepo extends Repo {
             Tags tag = new Tags();
             tag.setTagId(tagPb.getTeamId());
             tag.setLabel(tagPb.getLabel());
+            tag.setServiceId(tagPb.getServiceId());
             tag.setDescription(tagPb.getDescription());
             tag.setCreatedBy(tagPb.getCreatedBy().getAccount().getAccountId());
             tagList.add(tag);
@@ -81,7 +84,10 @@ public class TagRepo extends Repo {
     public List<Tags> getAllTags() {
         final Realm realm = RealmUtils.getInstance().getRealm();
         try {
-            return new ArrayList<>(realm.where(Tags.class).findAll());
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tags.class)
+                    .equalTo("serviceId", serviceId)
+                    .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
