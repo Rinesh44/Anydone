@@ -77,4 +77,8 @@
         <item name="boxStrokeWidth">1dp</item>
     </style>
 
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="mhs_maxHeight" format="dimension" />
+    </declare-styleable>
+
 </resources>

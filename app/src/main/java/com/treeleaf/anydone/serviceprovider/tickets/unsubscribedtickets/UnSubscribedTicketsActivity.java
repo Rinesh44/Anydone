@@ -106,6 +106,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
 
         createFilterBottomSheet();
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     presenter.getSubscribeableTickets(false, 0, System.currentTimeMillis(), 100);

@@ -234,8 +234,8 @@ public class AccountRepo extends Repo {
         account.setTimezone(accountPb.getAccount().getTimezone());
         account.setAddress(accountPb.getAccount().getAddress());
         account.setCurrencyCode(accountPb.getAccount().getCurrencyCode());
-        account.setLocationRealmList(getLocations(realm,
-                accountPb.getAccount().getLocationsList()));
+   /*     account.setLocationRealmList(getLocations(realm,
+                accountPb.getAccount().getLocationsList()));*/
         return account;
     }
 
@@ -266,7 +266,7 @@ public class AccountRepo extends Repo {
         RealmList<Location> locationRealmList = new RealmList<>();
         for (UserProto.Location locationPb : locationsList
         ) {
-            Location location = realm.createObject(Location.class, locationPb.getLocationId());
+            Location location = new Location();
             location.setLat(locationPb.getLatitude());
             location.setLng(locationPb.getLongitude());
             location.setLocationType(locationPb.getLocationType().name());

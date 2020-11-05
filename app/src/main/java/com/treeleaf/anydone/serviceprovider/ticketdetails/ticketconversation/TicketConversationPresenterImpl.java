@@ -13,7 +13,6 @@ import android.webkit.MimeTypeMap;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.util.CollectionUtils;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
@@ -70,6 +69,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.RealmList;
+import jp.wasabeef.richeditor.RichEditor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -510,7 +510,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @SuppressLint("CheckResult")
     @Override
-    public void enterMessage(RecyclerView conversation, TextInputEditText etMessage) {
+    public void enterMessage(RecyclerView conversation, RichEditor etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
             conversation.smoothScrollToPosition(0);

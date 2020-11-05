@@ -142,6 +142,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         handleEmployeeBottomSheet();
         presenter.getEmployees();
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh assignable called");

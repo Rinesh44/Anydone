@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -72,6 +71,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private RelativeLayout rlOther;
     private String ticketType;
 
+
     String shareLink = "";
     private long ticketId;
     private String ticketStatus;
@@ -112,6 +112,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
+
     }
 
     @SuppressLint("ClickableViewAccessibility")

@@ -89,6 +89,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
             setUpRecyclerView(subscribedTickets);
         }
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh subscribe called");

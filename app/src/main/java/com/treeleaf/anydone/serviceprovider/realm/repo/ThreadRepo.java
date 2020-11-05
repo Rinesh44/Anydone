@@ -33,6 +33,25 @@ public class ThreadRepo extends Repo {
         return threadRepo;
     }
 
+    public void saveThread(final ConversationProto.ConversationThread threadPb,
+                           final Callback callback) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            realm.executeTransaction(realm1 -> {
+                Thread thread =
+                        createNewThread(threadPb);
+                realm1.copyToRealmOrUpdate(thread);
+                callback.success(null);
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void saveThreads(final List<ConversationProto.ConversationThread> threadListPb,
                             final Callback callback) {
         final Realm realm = RealmUtils.getInstance().getRealm();

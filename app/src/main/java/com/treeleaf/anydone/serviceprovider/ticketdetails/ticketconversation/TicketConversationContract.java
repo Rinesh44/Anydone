@@ -6,7 +6,6 @@ import android.net.Uri;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -20,6 +19,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.File;
 import java.util.List;
+
+import jp.wasabeef.richeditor.RichEditor;
 
 public class TicketConversationContract {
 
@@ -166,7 +167,7 @@ public class TicketConversationContract {
 
         void getServiceProviderInfo(Tickets tickets);
 
-        void enterMessage(RecyclerView conversation, TextInputEditText etMessage);
+        void enterMessage(RecyclerView conversation, RichEditor etMessage);
 
         void startTask(long ticketId);
 

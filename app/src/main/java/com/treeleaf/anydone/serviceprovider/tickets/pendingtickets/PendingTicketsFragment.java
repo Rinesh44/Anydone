@@ -88,6 +88,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 //        if (fetchList) {
         assignedTickets = TicketRepo.getInstance().getPendingTickets();
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         if (CollectionUtils.isEmpty(assignedTickets)) {
             presenter.getPendingTickets(true, 0,
                     System.currentTimeMillis(), 100);

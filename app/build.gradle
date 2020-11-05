@@ -90,6 +90,8 @@ dependencies {
     implementation projectDependencies.flexBox
     implementation projectDependencies.mpChart
     implementation projectDependencies.scalarConverter
+    implementation projectDependencies.textFormatter
+    implementation projectDependencies.keyboardObserver
 
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: 1.61
     implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: 1.61

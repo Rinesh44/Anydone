@@ -9,14 +9,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.Html;
+import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,14 +45,13 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.adapters.MessageAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.CommentAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
@@ -68,6 +68,7 @@ import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScree
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.MaxHeightScrollView;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -79,14 +80,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
 import io.realm.RealmList;
+import jp.wasabeef.richeditor.RichEditor;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -106,8 +111,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     LinearLayout llSearchContainer;
     @BindView(R.id.iv_send)
     ImageView ivSend;
-    @BindView(R.id.et_message)
-    TextInputEditText etMessage;
+    @BindView(R.id.rich_editor)
+    RichEditor etMessage;
     @BindView(R.id.iv_clear)
     ImageView ivClear;
     @BindView(R.id.rv_conversations)
@@ -152,7 +157,24 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     LinearLayout llBotReplying;
     @BindView(R.id.btn_start_task)
     MaterialButton btnStartTask;
-
+    @BindView(R.id.iv_bold)
+    ImageView ivBold;
+    @BindView(R.id.iv_italic)
+    ImageView ivItalic;
+    @BindView(R.id.iv_points)
+    ImageView ivPoints;
+    @BindView(R.id.iv_numbering)
+    ImageView ivNumbering;
+    @BindView(R.id.iv_underline)
+    ImageView ivUnderline;
+    @BindView(R.id.iv_strikethrough)
+    ImageView ivStrikeThrough;
+    @BindView(R.id.ll_text_modifier)
+    LinearLayout llTextModifier;
+    @BindView(R.id.tv_add_comment_hint)
+    TextView tvAddCommentHint;
+    @BindView(R.id.editor_scrollview)
+    MaxHeightScrollView editorScrollview;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -161,7 +183,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private BottomSheetBehavior messageSheetBehavior;
     private BottomSheetBehavior profileSheetBehavior;
     private Conversation longClickedMessage;
-    private MessageAdapter adapter;
+    private CommentAdapter adapter;
     private List<Conversation> conversationList = new ArrayList<>();
     private boolean attachmentToggle = false;
     private Bitmap capturedBitmap;
@@ -177,9 +199,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private int currentItems, scrollOutItems, totalItems;
     private OnTicketStartListener onTicketStartListener;
     private String ticketType;
+    private boolean contributed, subscribed;
+    private boolean boldFlag = false, italicFlag = false, underlineFlag, strikeThroughFlag = false,
+            bulletsFlag = false, numberFlag = false;
+    private boolean keyboardShown = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -191,10 +217,55 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         Account userAccount = AccountRepo.getInstance().getAccount();
         userAccountId = userAccount.getAccountId();
-        etMessage.requestFocus();
+
+        UiUtils.hideKeyboardForced(getActivity());
+
+     /*   etMessage.setContentTypeface(getContentFace());
+        etMessage.setHeadingTypeface(getContentFace());*/
+//        etMessage.render();
+
+        etMessage.setEditorFontSize(15);
+
+        etMessage.setOnTextChangeListener(text -> {
+            if (!text.isEmpty()) {
+                editorScrollview.post(() -> editorScrollview.fullScroll(View.FOCUS_DOWN));
+            } else {
+                editorScrollview.post(() -> editorScrollview.fullScroll(View.FOCUS_UP));
+            }
+            if (text.length() > 0) {
+                tvAddCommentHint.setVisibility(View.GONE);
+            } else {
+                tvAddCommentHint.setVisibility(View.VISIBLE);
+            }
+        });
+
+        new TedRxKeyboardObserver(getActivity())
+                .listen()
+                .subscribe(isShow -> {
+                    keyboardShown = !keyboardShown;
+                    if (keyboardShown) {
+                        llTextModifier.setVisibility(View.VISIBLE);
+                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    } else {
+                        llTextModifier.setVisibility(View.GONE);
+                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    }
+                }, Throwable::printStackTrace);
+
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         ticketId = i.getLongExtra("selected_ticket_id", -1);
         ticketType = i.getStringExtra("selected_ticket_type");
+        contributed = i.getBooleanExtra("contributed", false);
+        subscribed = i.getBooleanExtra("subscribed", false);
+
+        if (subscribed) {
+            llSearchContainer.setVisibility(View.GONE);
+        } else {
+            llSearchContainer.setVisibility(View.VISIBLE);
+        }
+
         if (ticketId != -1) {
             Hawk.put(Constants.CURRENT_SERVICE_ORDER_ID, ticketId);
             conversationList = ConversationRepo.getInstance()
@@ -231,30 +302,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
-        etMessage.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    ivClear.setVisibility(View.VISIBLE);
-                } else {
-                    Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                            ivClear.setVisibility(View.GONE));
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
     }
+
 
     private List<String> getImageList() {
         GlobalUtils.showLog(TAG, "conversation list size: " + conversationList.size());
@@ -269,9 +318,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.iv_send)
     void sendMessageClick() {
-        if (!UiUtils.getString(etMessage).isEmpty()) {
+        if (!etMessage.getHtml().isEmpty()) {
             Hawk.put(Constants.KGRAPH_TITLE,
-                    UiUtils.getString(etMessage));
+                    etMessage.getHtml());
             presenter.checkConnection(TreeleafMqttClient.mqttClient);
         }
     }
@@ -281,6 +330,89 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         GlobalUtils.showLog(TAG, "start task ticket id: " + ticketId);
         presenter.startTask(ticketId);
     }
+
+    public Map<Integer, String> getContentFace() {
+        Map<Integer, String> typefaceMap = new HashMap<>();
+        typefaceMap.put(Typeface.NORMAL, "fonts/poppins.otf");
+        typefaceMap.put(Typeface.BOLD, "fonts/bold.ttf");
+        typefaceMap.put(Typeface.ITALIC, "fonts/italic.ttf");
+        typefaceMap.put(Typeface.BOLD_ITALIC, "fonts/bold_italic.ttf");
+        return typefaceMap;
+    }
+
+
+    @OnClick(R.id.iv_bold)
+    void setBoldText() {
+        boldFlag = !boldFlag;
+        if (boldFlag) {
+            ivBold.setBackgroundColor(getResources().getColor(R.color.translucent));
+        } else {
+            ivBold.setBackgroundColor(0x00000000);
+        }
+        etMessage.setBold();
+        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
+    }
+
+    @OnClick(R.id.iv_italic)
+    void setItalicText() {
+        italicFlag = !italicFlag;
+        if (italicFlag) {
+            ivItalic.setBackgroundColor(getResources().getColor(R.color.translucent));
+        } else {
+            ivItalic.setBackgroundColor(0x00000000);
+        }
+        etMessage.setItalic();
+        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
+    }
+
+    @OnClick(R.id.iv_points)
+    void setPoints() {
+        bulletsFlag = !bulletsFlag;
+        if (bulletsFlag) {
+            ivPoints.setBackgroundColor(getResources().getColor(R.color.translucent));
+        } else {
+            ivPoints.setBackgroundColor(0x00000000);
+        }
+        etMessage.setBullets();
+        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
+    }
+
+    @OnClick(R.id.iv_numbering)
+    void setNumbers() {
+        numberFlag = !numberFlag;
+        if (numberFlag) {
+            ivNumbering.setBackgroundColor(getResources().getColor(R.color.translucent));
+        } else {
+            ivNumbering.setBackgroundColor(0x00000000);
+        }
+        etMessage.setNumbers();
+        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
+    }
+
+    @OnClick(R.id.iv_strikethrough)
+    void setStrikeThroughText() {
+        strikeThroughFlag = !strikeThroughFlag;
+        if (strikeThroughFlag) {
+            ivStrikeThrough.setBackgroundColor(getResources().getColor(R.color.translucent));
+        } else {
+            ivStrikeThrough.setBackgroundColor(0x00000000);
+        }
+        etMessage.setStrikeThrough();
+        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
+    }
+
+    @OnClick(R.id.iv_underline)
+    void underlineText() {
+        underlineFlag = !underlineFlag;
+        if (underlineFlag) {
+            ivUnderline.setBackgroundColor(getResources().getColor(R.color.translucent));
+        } else {
+            ivUnderline.setBackgroundColor(0x00000000);
+        }
+        etMessage.setUnderline();
+        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
+    }
+
 
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
@@ -301,7 +433,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         GlobalUtils.showLog(TAG, "get message id: " + longClickedMessage.getConversationId());
         ClipboardManager clipboard = (ClipboardManager) Objects.requireNonNull(getContext())
                 .getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("copied_text", longClickedMessage.getMessage());
+        ClipData clip = ClipData.newPlainText("copied_text",
+                Html.fromHtml(longClickedMessage.getMessage()));
         assert clipboard != null;
         clipboard.setPrimaryClip(clip);
         toggleMessageBottomSheet();
@@ -347,7 +480,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         layoutManager.setStackFromEnd(true);
         rvConversation.setLayoutManager(layoutManager);
         Collections.reverse(conversationList);
-        adapter = new MessageAdapter(conversationList, getActivity());
+        adapter = new CommentAdapter(conversationList, getActivity());
         adapter.setOnItemLongClickListener(message -> {
             longClickedMessage = message;
             toggleMessageBottomSheet();
@@ -701,7 +834,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onConnectionSuccess() {
-        presenter.publishTextOrUrlMessage(UiUtils.getString(etMessage), ticketId);
+        presenter.publishTextOrUrlMessage(etMessage.getHtml(), ticketId);
     }
 
     @Override
@@ -759,19 +892,23 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     public void onTextPreConversationSuccess(Conversation conversation) {
         GlobalUtils.showLog(TAG, "before post check: " + conversation.isSent());
         adapter.setData(conversation);
-        Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (0), 100));
-        etMessage.setText("");
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+            rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                    (0), 100);
+            etMessage.setHtml(null);
+        });
+//        etMessage.setText("");
+
         GlobalUtils.showLog(TAG, "message type qwer: " + conversation.getMessageType());
-        if (conversation.getMessageType()
-                .equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
+        if (conversation.getMessageType().
+                equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
             presenter.publishLinkMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
                     userAccountId, conversation.getClientId());
         } else {
             presenter.publishTextMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
                     userAccountId, conversation.getClientId());
         }
+
     }
 
     @Override
@@ -1144,7 +1281,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.iv_clear)
     void clearText() {
-        Objects.requireNonNull(etMessage.getText()).clear();
+//        Objects.requireNonNull(etMessage.getText()).clear();
         ivClear.setVisibility(View.GONE);
         etMessage.requestFocus();
 //        ivSpeech.setVisibility(View.VISIBLE);

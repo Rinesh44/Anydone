@@ -93,6 +93,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 //        if (fetchList) {
         inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         if (CollectionUtils.isEmpty(inProgressTickets)) {
             GlobalUtils.showLog(TAG, "in progress tickets empty");
             presenter.getInProgressTickets(true, 0, System.currentTimeMillis(),

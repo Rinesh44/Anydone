@@ -206,6 +206,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     TextView tvAddDesc;
     @BindView(R.id.tv_add_est_time)
     TextView tvAddEstTime;
+    @BindView(R.id.ll_status_holder)
+    LinearLayout llStatusHolder;
 
     private boolean expandEmployee = true;
     private boolean expandCustomer = true;
@@ -243,6 +245,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private EditText etSearchLabel;
     private SearchLabelAdapter labelAdapter;
     private RecyclerView rvLabels;
+    private boolean subscribed, contributed;
 
 
     public TicketTimelineFragment() {
@@ -255,6 +258,16 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         ticketId = i.getLongExtra("selected_ticket_id", -1);
+        contributed = i.getBooleanExtra("contributed", false);
+        subscribed = i.getBooleanExtra("subscribed", false);
+
+        if (contributed) {
+            setContributorPermissions();
+            removeScrollviewMargin();
+        } else if (subscribed) {
+            setSubscriberPermissions();
+            removeScrollviewMargin();
+        }
 
         createEmployeeSheet();
         if (ticketId != -1) {
@@ -315,6 +328,19 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 
         setBotReplyChangeListener();
+    }
+
+    private void setSubscriberPermissions() {
+        llStatusHolder.setVisibility(View.GONE);
+        ivAssignEmployee.setVisibility(View.GONE);
+        tvContributor.setVisibility(View.GONE);
+        rlBotReplyHolder.setVisibility(View.GONE);
+    }
+
+    private void setContributorPermissions() {
+        llStatusHolder.setVisibility(View.GONE);
+        ivAssignEmployee.setVisibility(View.GONE);
+        tvContributor.setVisibility(View.GONE);
     }
 
     private void setContributors() {
@@ -1157,6 +1183,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             TextView employeeName = viewAssignedEmployee.findViewById(R.id.tv_field);
             CircleImageView employeePic = viewAssignedEmployee.findViewById(R.id.civ_field);
             ImageView deleteEmployee = viewAssignedEmployee.findViewById(R.id.iv_delete);
+
+            if (subscribed || contributed) {
+                deleteEmployee.setVisibility(View.GONE);
+            }
 
             deleteEmployee.setOnClickListener(v -> {
                 GlobalUtils.showLog(TAG, "employee id: " + contributor.getEmployeeId());

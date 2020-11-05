@@ -41,19 +41,16 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -117,28 +114,18 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-    /*    sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
-
-        sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-                    bottomSheetShadow.setVisibility(View.GONE);
-                    hideKeyBoard();
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });*/
-
-        presenter.getConversationThreads(false);
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
+        if (!CollectionUtils.isEmpty(threadList)) {
+            setUpThreadRecyclerView(threadList);
+            rvThreads.setVisibility(View.VISIBLE);
+            ivThreadNotFound.setVisibility(View.GONE);
+        } else presenter.getConversationThreads(false);
 
         createServiceBottomSheet();
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh threads called");
@@ -220,13 +207,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             setUpServiceRecyclerView(serviceList);
         }
 
-        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-    /*    List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
-        if (!CollectionUtils.isEmpty(threadList)) {
-            setUpThreadRecyclerView(threadList);
-        } else {
-            presenter.getConversationThreads(true);
-        }*/
 
         searchService.addTextChangedListener(new TextWatcher() {
             @Override
@@ -248,18 +228,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
 
     public void toggleServiceBottomSheet() {
-     /*   if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
-            bottomSheetShadow.setVisibility(View.VISIBLE);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-        } else if (sheetBehavior.getState() == BottomSheetBehavior.STATE_HALF_EXPANDED) {
-            bottomSheetShadow.setVisibility(View.GONE);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        } else {
-            sheetBehavior.setPeekHeight(0);
-            bottomSheetShadow.setVisibility(View.GONE);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        }*/
-
         if (serviceSheet.isShowing()) {
             serviceSheet.dismiss();
         } else {

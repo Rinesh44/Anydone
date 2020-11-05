@@ -93,6 +93,6 @@
             android:layout_below="@+id/iv_create_ticket"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dimen_10x1"
-            android:text="@string/add_ticket" />
+            android:text="Create ticket" />
     </RelativeLayout>
 </LinearLayout>

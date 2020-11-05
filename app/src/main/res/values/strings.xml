@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Anydone Business</string>
+    <string name="app_name">Anydone Tickets</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -346,4 +346,6 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="zip_code">Zip Code</string>
     <string name="estimated_time">Estimated Time</string>
     <string name="contributed_by_me">Contributed By Me</string>
+    <string name="today">Today</string>
+    <string name="add_comment">Add Comment</string>
 </resources>

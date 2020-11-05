@@ -73,6 +73,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
             setUpRecyclerView(contributedTickets);
         }
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh contributed called");
@@ -82,7 +83,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
-                        //Do something after 1 sec
+                        //Do something after 1 setOnItemClickListener
                         if (swipeRefreshLayout != null)
                             swipeRefreshLayout.setRefreshing(false);
                     }, 1000);
@@ -141,6 +142,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
                     i.putExtra("selected_ticket_type", Constants.CONTRIBUTED);
                     i.putExtra("ticket_desc", ticket.getTitle());
                     i.putExtra("selected_ticket_name", callees);
+                    i.putExtra("contributed", true);
                     i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                     i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                     startActivity(i);

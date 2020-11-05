@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/spacing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10x1"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_sent_at"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spacing"
+        android:layout_margin="@dimen/dimen_10x2"
+        android:gravity="center"
+        android:text="16th may at 8:pm"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_sent_at"
+        android:layout_gravity="end"
+        android:background="@drawable/chat_bg_incoming"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:layout_marginTop="@dimen/dimen_2x1"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:padding="@dimen/dimen_10x1">
+
+        <TextView
+            android:id="@+id/tv_call_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Video call"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_call_elapsed_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tv_call_title"
+            android:text=" (0:34)"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_call_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_call_elapsed_time"
+            android:layout_centerVertical="true"
+            android:drawablePadding="@dimen/dimen_10x1"
+            android:gravity="center"
+            android:padding="@dimen/dimen_2x1"
+            android:text="6:45 PM"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+</RelativeLayout>
