@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/top_round_corners"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:background="@drawable/bottomsheet_drawer" />
+
+    <EditText
+        android:id="@+id/et_search_ticket_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:hint="Search Ticket Type"
+        android:inputType="textVisiblePassword"
+        android:paddingStart="@dimen/dimens_2x"
+        android:paddingTop="@dimen/dimen_10x1"
+        android:paddingEnd="@dimen/dimens_2x"
+        android:paddingBottom="@dimen/dimen_10x1"
+        android:textSize="@dimen/material_text_subhead" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E7E7" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ticket_type"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/dimen_10x2" />
+
+</LinearLayout>
+

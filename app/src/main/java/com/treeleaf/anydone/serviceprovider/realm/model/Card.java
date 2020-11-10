@@ -5,13 +5,13 @@ import io.realm.annotations.PrimaryKey;
 
 public class Card extends RealmObject {
     @PrimaryKey
-    private String refId;
     private String cardNumber;
+    private String cardId;
+    private String refId;
     private String accountId;
     private String cardHolderName;
-    private String month;
-    private String year;
-    private String cvv;
+    private long expiryDate;
+    private int cvv;
     private String streetAddress;
     private String city;
     private String state;
@@ -25,12 +25,12 @@ public class Card extends RealmObject {
     public Card() {
     }
 
-    public String getRefId() {
-        return refId;
+    public String getCardId() {
+        return cardId;
     }
 
-    public void setRefId(String refId) {
-        this.refId = refId;
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public String getCardNumber() {
@@ -49,27 +49,11 @@ public class Card extends RealmObject {
         this.cardHolderName = cardHolderName;
     }
 
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         this.cvv = cvv;
     }
 
@@ -151,5 +135,21 @@ public class Card extends RealmObject {
 
     public void setCardType(String cardType) {
         this.cardType = cardType;
+    }
+
+    public long getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(long expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public String getRefId() {
+        return refId;
+    }
+
+    public void setRefId(String refId) {
+        this.refId = refId;
     }
 }

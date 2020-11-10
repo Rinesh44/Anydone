@@ -72,7 +72,7 @@ public class CardRepo extends Repo {
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Card> result = realm1.where(Card.class)
-                    .equalTo("refId", id).findAll();
+                    .equalTo("cardId", id).findAll();
             result.deleteAllFromRealm();
         });
     }
@@ -82,7 +82,7 @@ public class CardRepo extends Repo {
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Card> result = realm1.where(Card.class)
-                    .equalTo("refId", id).findAll();
+                    .equalTo("cardId", id).findAll();
             result.setBoolean("primary", true);
         });
     }
@@ -100,10 +100,10 @@ public class CardRepo extends Repo {
     private Card transformCard(PaymentProto.Card cardPb) {
         Card card = new Card();
         card.setAccountId(cardPb.getAccountId());
+        card.setCardId(cardPb.getCardId());
         card.setRefId(cardPb.getRefId());
         card.setCardNumber(cardPb.getCardNumber());
-        card.setMonth(cardPb.getExpiryMonth());
-        card.setYear(cardPb.getExpiryYear());
+        card.setExpiryDate(cardPb.getExpiryDate());
         card.setCvv(cardPb.getCvc());
         card.setStreetAddress(cardPb.getBillingAddress().getStreet());
         card.setCity(cardPb.getBillingAddress().getCity());

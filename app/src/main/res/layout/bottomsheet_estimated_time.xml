@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/top_round_corners"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:background="@drawable/bottomsheet_drawer" />
+
+    <TextView
+        android:id="@+id/tv_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:layout_marginEnd="@dimen/dimen_10x2"
+        android:text="@string/done"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_estimated_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:hint="Set estimated time"
+        android:inputType="textVisiblePassword"
+        android:paddingStart="@dimen/dimens_2x"
+        android:paddingTop="@dimen/dimen_10x1"
+        android:paddingEnd="@dimen/dimens_2x"
+        android:paddingBottom="@dimen/dimen_10x1"
+        android:textSize="@dimen/material_text_subhead" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E7E7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimen_6x1"
+            android:paddingBottom="@dimen/dimen_6x1"
+            android:text="Suggestions"
+            android:textColor="@color/charcoal_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_1_hr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimen_2x4"
+            android:paddingBottom="@dimen/dimen_2x4"
+            android:text="1 hour"
+            android:textColor="@color/charcoal_text"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8F8" />
+
+        <TextView
+            android:id="@+id/tv_4_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimen_2x4"
+            android:paddingBottom="@dimen/dimen_2x4"
+            android:text="4 hour"
+            android:textColor="@color/charcoal_text"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8F8" />
+
+        <TextView
+            android:id="@+id/tv_1_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimen_2x4"
+            android:paddingBottom="@dimen/dimen_2x4"
+            android:text="1 day"
+            android:textColor="@color/charcoal_text"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8F8" />
+
+        <TextView
+            android:id="@+id/tv_1_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimen_2x4"
+            android:paddingBottom="@dimen/dimen_2x4"
+            android:text="1 week"
+            android:textColor="@color/charcoal_text"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8F8" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

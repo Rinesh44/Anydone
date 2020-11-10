@@ -134,15 +134,6 @@ public final class NLURpcProto {
      * <code>repeated .treeleaf.anydone.entities.SimilarSentenceRequest similarSentenceRequests = 13;</code>
      */
     int getSimilarSentenceRequestsCount();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    boolean hasBotTrainRequest();
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    com.treeleaf.anydone.entities.NLUProto.BotTrainRequest getBotTrainRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.NLUBaseRequest}
@@ -876,58 +867,6 @@ public final class NLURpcProto {
       similarSentenceRequests_.remove(index);
     }
 
-    public static final int BOTTRAINREQUEST_FIELD_NUMBER = 14;
-    private com.treeleaf.anydone.entities.NLUProto.BotTrainRequest botTrainRequest_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    public boolean hasBotTrainRequest() {
-      return botTrainRequest_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    public com.treeleaf.anydone.entities.NLUProto.BotTrainRequest getBotTrainRequest() {
-      return botTrainRequest_ == null ? com.treeleaf.anydone.entities.NLUProto.BotTrainRequest.getDefaultInstance() : botTrainRequest_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    private void setBotTrainRequest(com.treeleaf.anydone.entities.NLUProto.BotTrainRequest value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      botTrainRequest_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    private void setBotTrainRequest(
-        com.treeleaf.anydone.entities.NLUProto.BotTrainRequest.Builder builderForValue) {
-      botTrainRequest_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    private void mergeBotTrainRequest(com.treeleaf.anydone.entities.NLUProto.BotTrainRequest value) {
-      if (botTrainRequest_ != null &&
-          botTrainRequest_ != com.treeleaf.anydone.entities.NLUProto.BotTrainRequest.getDefaultInstance()) {
-        botTrainRequest_ =
-          com.treeleaf.anydone.entities.NLUProto.BotTrainRequest.newBuilder(botTrainRequest_).mergeFrom(value).buildPartial();
-      } else {
-        botTrainRequest_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-     */
-    private void clearBotTrainRequest() {  botTrainRequest_ = null;
-      
-    }
-
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -968,9 +907,6 @@ public final class NLURpcProto {
       }
       for (int i = 0; i < similarSentenceRequests_.size(); i++) {
         output.writeMessage(13, similarSentenceRequests_.get(i));
-      }
-      if (botTrainRequest_ != null) {
-        output.writeMessage(14, getBotTrainRequest());
       }
     }
 
@@ -1035,10 +971,6 @@ public final class NLURpcProto {
       for (int i = 0; i < similarSentenceRequests_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, similarSentenceRequests_.get(i));
-      }
-      if (botTrainRequest_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(14, getBotTrainRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1744,51 +1676,6 @@ public final class NLURpcProto {
         return this;
       }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-       */
-      public boolean hasBotTrainRequest() {
-        return instance.hasBotTrainRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-       */
-      public com.treeleaf.anydone.entities.NLUProto.BotTrainRequest getBotTrainRequest() {
-        return instance.getBotTrainRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-       */
-      public Builder setBotTrainRequest(com.treeleaf.anydone.entities.NLUProto.BotTrainRequest value) {
-        copyOnWrite();
-        instance.setBotTrainRequest(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-       */
-      public Builder setBotTrainRequest(
-          com.treeleaf.anydone.entities.NLUProto.BotTrainRequest.Builder builderForValue) {
-        copyOnWrite();
-        instance.setBotTrainRequest(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-       */
-      public Builder mergeBotTrainRequest(com.treeleaf.anydone.entities.NLUProto.BotTrainRequest value) {
-        copyOnWrite();
-        instance.mergeBotTrainRequest(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BotTrainRequest botTrainRequest = 14;</code>
-       */
-      public Builder clearBotTrainRequest() {  copyOnWrite();
-        instance.clearBotTrainRequest();
-        return this;
-      }
-
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.NLUBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1832,7 +1719,6 @@ public final class NLURpcProto {
           nluInputs_= visitor.visitList(nluInputs_, other.nluInputs_);
           similarSentenceRequest_ = visitor.visitMessage(similarSentenceRequest_, other.similarSentenceRequest_);
           similarSentenceRequests_= visitor.visitList(similarSentenceRequests_, other.similarSentenceRequests_);
-          botTrainRequest_ = visitor.visitMessage(botTrainRequest_, other.botTrainRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1967,19 +1853,6 @@ public final class NLURpcProto {
                   }
                   similarSentenceRequests_.add(
                       input.readMessage(com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest.parser(), extensionRegistry));
-                  break;
-                }
-                case 114: {
-                  com.treeleaf.anydone.entities.NLUProto.BotTrainRequest.Builder subBuilder = null;
-                  if (botTrainRequest_ != null) {
-                    subBuilder = botTrainRequest_.toBuilder();
-                  }
-                  botTrainRequest_ = input.readMessage(com.treeleaf.anydone.entities.NLUProto.BotTrainRequest.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(botTrainRequest_);
-                    botTrainRequest_ = subBuilder.buildPartial();
-                  }
-
                   break;
                 }
               }

@@ -31,6 +31,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -52,27 +53,22 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
     @Override
     public void findCustomers() {
-        Observable<TicketServiceRpcProto.TicketBaseResponse> customersObservable;
+        Observable<UserRpcProto.UserBaseResponse> customersObservable;
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
-        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        customersObservable = service.findCustomers(token, serviceId);
+        customersObservable = service.findCustomers(token, "",
+                0, System.currentTimeMillis(), 100);
 
         addSubscription(customersObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse consumerResponse) {
+                    public void onNext(@NonNull UserRpcProto.UserBaseResponse consumerResponse) {
                         GlobalUtils.showLog(TAG, "get customer response:"
                                 + consumerResponse);
-
-                        if (consumerResponse == null) {
-                            getView().findCustomerFail("Failed to get consumers");
-                            return;
-                        }
 
                         if (consumerResponse.getError()) {
                             getView().findCustomerFail(consumerResponse.getMsg());
@@ -83,7 +79,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().onFailure(e.getLocalizedMessage());
                     }
@@ -125,14 +121,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse tagResponse) {
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse tagResponse) {
                         GlobalUtils.showLog(TAG, "get tag response:"
                                 + tagResponse);
-
-                        if (tagResponse == null) {
-                            getView().findTagsFail("Failed to get tags");
-                            return;
-                        }
 
                         if (tagResponse.getError()) {
                             getView().findTagsFail(tagResponse.getMsg());
@@ -143,7 +134,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().onFailure(e.getLocalizedMessage());
                     }
@@ -171,14 +162,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
                         GlobalUtils.showLog(TAG, "get labels response:"
                                 + response);
-
-                        if (response == null) {
-                            getView().getLabelFail("Failed to get labels");
-                            return;
-                        }
 
                         if (response.getError()) {
                             getView().getLabelFail(response.getMsg());
@@ -189,7 +175,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().onFailure(e.getLocalizedMessage());
                     }
@@ -218,14 +204,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse response) {
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
                         GlobalUtils.showLog(TAG, "get ticket types response:"
                                 + response);
-
-                        if (response == null) {
-                            getView().getTypeFail("Failed to get ticket types");
-                            return;
-                        }
 
                         if (response.getError()) {
                             getView().getTypeFail(response.getMsg());
@@ -236,7 +217,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().onFailure(e.getLocalizedMessage());
                     }
@@ -308,14 +289,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                     @Override
-                    public void onNext(UserRpcProto.UserBaseResponse getEmployeeResponse) {
+                    public void onNext(@NonNull UserRpcProto.UserBaseResponse getEmployeeResponse) {
                         GlobalUtils.showLog(TAG, "find employees response:"
                                 + getEmployeeResponse);
-
-                        if (getEmployeeResponse == null) {
-                            getView().findEmployeeFail("Failed to get employee");
-                            return;
-                        }
 
                         if (getEmployeeResponse.getError()) {
                             getView().findEmployeeFail(getEmployeeResponse.getMsg());
@@ -326,7 +302,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().onFailure(e.getLocalizedMessage());
                     }
@@ -374,16 +350,12 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     .subscribeWith(
                             new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                                 @Override
-                                public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
                                     GlobalUtils.showLog(TAG, "filter pending ticket response: "
                                             + filterTicketBaseResponse);
 
                                     getView().hideProgressBar();
-                                    if (filterTicketBaseResponse == null) {
-                                        getView().filterPendingTicketsFailed("Filter pending ticket failed");
-                                        return;
-                                    }
 
                                     if (filterTicketBaseResponse.getError()) {
                                         getView().filterPendingTicketsFailed(filterTicketBaseResponse.getMsg());
@@ -403,7 +375,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                 }
 
                                 @Override
-                                public void onError(Throwable e) {
+                                public void onError(@NonNull Throwable e) {
                                     getView().hideProgressBar();
                                     getView().filterPendingTicketsFailed(e.getLocalizedMessage());
                                 }
@@ -438,16 +410,12 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     .subscribeWith(
                             new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                                 @Override
-                                public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
                                     GlobalUtils.showLog(TAG, "filter subscribed ticket response: "
                                             + filterTicketBaseResponse);
 
                                     getView().hideProgressBar();
-                                    if (filterTicketBaseResponse == null) {
-                                        getView().filterInProgressTicketFailed("Filter subscribed ticket failed");
-                                        return;
-                                    }
 
                                     if (filterTicketBaseResponse.getError()) {
                                         getView().filterInProgressTicketFailed(filterTicketBaseResponse.getMsg());
@@ -468,7 +436,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                 }
 
                                 @Override
-                                public void onError(Throwable e) {
+                                public void onError(@NonNull Throwable e) {
                                     getView().hideProgressBar();
                                     getView().filterInProgressTicketFailed(e.getLocalizedMessage());
                                 }
@@ -504,16 +472,12 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                     .subscribeWith(
                             new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                                 @Override
-                                public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
                                     GlobalUtils.showLog(TAG, "filter closed ticket response: "
                                             + filterTicketBaseResponse);
 
                                     getView().hideProgressBar();
-                                    if (filterTicketBaseResponse == null) {
-                                        getView().filterClosedTicketFailed("Filter closed ticket failed");
-                                        return;
-                                    }
 
                                     if (filterTicketBaseResponse.getError()) {
                                         getView().filterClosedTicketFailed(filterTicketBaseResponse.getMsg());
@@ -523,7 +487,9 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                     if (!CollectionUtils.isEmpty(
                                             filterTicketBaseResponse.getTicketsList())) {
                                         List<Tickets> filteredTickets = TicketRepo.
-                                                getInstance().transformTicketProto(filterTicketBaseResponse.getTicketsList(), Constants.CLOSED_RESOLVED);
+                                                getInstance().transformTicketProto
+                                                (filterTicketBaseResponse.getTicketsList(),
+                                                        Constants.CLOSED_RESOLVED);
 
                                         getView().updateClosedTicketList(filteredTickets);
                                     } else {
@@ -532,7 +498,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                 }
 
                                 @Override
-                                public void onError(Throwable e) {
+                                public void onError(@NonNull Throwable e) {
                                     getView().hideProgressBar();
                                     getView().filterClosedTicketFailed(e.getLocalizedMessage());
                                 }
@@ -561,15 +527,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                 .subscribeWith(
                         new DisposableObserver<ServiceRpcProto.ServiceBaseResponse>() {
                             @Override
-                            public void onNext(ServiceRpcProto.ServiceBaseResponse
+                            public void onNext(@NonNull ServiceRpcProto.ServiceBaseResponse
                                                        getServicesBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get services response: "
                                         + getServicesBaseResponse);
-
-                                if (getServicesBaseResponse == null) {
-                                    getView().getServiceFail("get services failed");
-                                    return;
-                                }
 
                                 if (getServicesBaseResponse.getError()) {
                                     getView().getServiceFail(getServicesBaseResponse.getMsg());
@@ -585,7 +546,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NonNull Throwable e) {
                                 getView().hideProgressBar();
                                 getView().getServiceFail(e.getLocalizedMessage());
                             }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_ticket_type"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_6x1"
     android:padding="@dimen/dimen_10x1"
-    android:id="@+id/tv_ticket_type"
     android:text="Ticket type"
     android:textColor="@color/charcoal_text" />

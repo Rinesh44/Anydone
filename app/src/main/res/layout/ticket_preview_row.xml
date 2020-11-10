@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_5x1"
+        android:layout_marginEnd="@dimen/dimen_5x1"
+        android:drawableEnd="@drawable/ic_ticket_highlight"
+        android:drawablePadding="@dimen/dimen_10x2"
+        android:padding="@dimen/dimen_10x1"
+        android:text="My internet is not working since yesterday.need it fixed by tomorrow"
+        android:textColor="#525252" />
+
+    <!-- <ImageView
+         android:id="@+id/iv_ticket_highlight"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentEnd="true"
+         android:layout_centerVertical="true"
+         android:layout_marginEnd="@dimen/dimen_10x1"
+         android:src="@drawable/ic_ticket_highlight" />-->
+
+    <TextView
+        android:id="@+id/tv_sent_at"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_message"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:gravity="end"
+        android:text="15 Mar, 2020 2:30 PM"
+        android:textSize="10sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_sent_at"
+        android:layout_marginTop="@dimen/dimen_6x1"
+        android:background="#E7E7E7" />
+
+</RelativeLayout>
+

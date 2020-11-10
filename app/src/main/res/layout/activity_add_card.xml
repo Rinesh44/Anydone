@@ -22,26 +22,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--        <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/il_name"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimens_2x"
-                        android:layout_marginTop="@dimen/dimens_2x"
-                        android:layout_marginRight="@dimen/dimens_2x"
-                        android:hint="@string/cardholder_name">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:layout_marginRight="@dimen/dimens_2x"
+                android:hint="@string/cardholder_name">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:maxLength="30"
-                            android:singleLine="true"
-                            android:textSize="@dimen/material_text_subhead" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textVisiblePassword"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_subhead" />
 
-                    </com.google.android.material.textfield.TextInputLayout>-->
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout

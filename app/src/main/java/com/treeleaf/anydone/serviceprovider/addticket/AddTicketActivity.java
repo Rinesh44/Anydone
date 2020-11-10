@@ -78,18 +78,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     AutoCompleteTextView etCustomerName;
     @BindView(R.id.et_assign_employee)
     EditText etAssignEmployee;
-    @BindView(R.id.search_employee)
-    ScrollView svSearchEmployee;
-    @BindView(R.id.ll_self)
-    LinearLayout llEmployeeAsSelf;
-    @BindView(R.id.civ_image_self)
-    CircleImageView civEmployeeAsSelf;
-    @BindView(R.id.tv_name_self)
-    TextView tvEmployeeAsSelf;
-    @BindView(R.id.tv_all_users)
-    TextView tvEmployeeAllUsers;
-    @BindView(R.id.rv_all_users)
-    RecyclerView rvEmployeeAllUsers;
     @BindView(R.id.btn_create_ticket)
     MaterialButton btnCreateTicket;
     @BindView(R.id.et_email)
@@ -104,12 +92,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     ProgressBar progress;
     @BindView(R.id.et_priority)
     AppCompatEditText etPriority;
-    @BindView(R.id.rl_customer_self_holder)
-    RelativeLayout rlCustomerSelfHolder;
-    @BindView(R.id.tv_customer_self)
-    TextView tvCustomerSelf;
-    @BindView(R.id.civ_self)
-    CircleImageView civSelf;
     @BindView(R.id.iv_priority)
     ImageView ivPriority;
     @BindView(R.id.civ_customer)
@@ -122,22 +104,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     FlexboxLayout fblLabel;
     @BindView(R.id.scroll_view)
     ScrollView scrollView;
-    @BindView(R.id.tv_suggestions)
-    TextView tvSuggestions;
     @BindView(R.id.et_ticket_type)
     AutoCompleteTextView etTicketType;
-    @BindView(R.id.estimated_time_suggestions)
-    ScrollView svEstimatedTimeSuggestions;
     @BindView(R.id.et_estimated_time)
     AppCompatEditText etEstimatedTime;
-    @BindView(R.id.tv_1_hr)
-    TextView tv1hr;
-    @BindView(R.id.tv_4_hour)
-    TextView tv4Hour;
-    @BindView(R.id.tv_1_day)
-    TextView tv1Day;
-    @BindView(R.id.tv_1_week)
-    TextView tv1Week;
 
     private List<AssignEmployee> employeeList;
     private List<Customer> customerList;
@@ -170,6 +140,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private TicketProto.TicketSource ticketSource = TicketProto.TicketSource.MANUAL_TICKET_SOURCE;
     private boolean customerAsSelf;
     private String threadId = "";
+    private BottomSheetDialog ticketTypeBottomSheet;
+    private BottomSheetDialog estimatedTimeBottomSheet;
+    private BottomSheetDialog employeeBottomSheet;
+    private BottomSheetDialog customerBottomSheet;
+    private RecyclerView rvTicketType;
+    private RecyclerView rvCustomers;
+    private TicketCategorySearchAdapter ticketCategorySearchAdapter;
+    private CustomerSearchAdapter customerSearchAdapter;
+
 
     @Override
     protected int getLayout() {
@@ -185,29 +164,20 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
         serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
-        setUpRecyclerView();
-
         customerList = CustomerRepo.getInstance().getAllCustomers();
-        CustomerSearchAdapter customerSearchAdapter = new CustomerSearchAdapter
-                (this, customerList);
-        etCustomerName.setAdapter(customerSearchAdapter);
-
         tagsList = TagRepo.getInstance().getAllTags();
         labelList = LabelRepo.getInstance().getAllLabels();
+        ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
+
+        createTicketTypeBottomSheet();
         createPriorityBottomSheet();
         createTeamBottomSheet();
         createLabelBottomSheet();
-
-        setUpEstimatedTimeSuggestions();
-
-        ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
-        TicketCategorySearchAdapter ticketCategorySearchAdapter = new TicketCategorySearchAdapter
-                (this, ticketTypeList);
-        etTicketType.setAdapter(ticketCategorySearchAdapter);
+        createCustomerBottomSheet();
+        createEmployeeBottomSheet();
+        createEstimatedTimeBottomSheet();
 
 //        setUpTeamRecyclerView();
-
-        setSelfDetails();
 
         Intent intent = getIntent();
         createTicketFromThread = intent.getBooleanExtra("create_ticket_from_thread",
@@ -256,34 +226,11 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         fblTeam.setOnClickListener(v -> teamSheet.show());
         fblLabel.setOnClickListener(v -> labelSheet.show());
 
-        etTicketType.setOnItemClickListener((parent, view, position, id) -> {
-            UiUtils.hideKeyboard(this);
-            etTicketType.setError(null);
-            ticketCategoryId = ticketTypeList.get(position).getCategoryId();
-        });
+        etTicketType.setOnClickListener(v -> ticketTypeBottomSheet.show());
+        etCustomerName.setOnClickListener(v -> customerBottomSheet.show());
+        etAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
 
-        etTicketType.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                etTicketType.showDropDown();
-            } else {
-                etTicketType.dismissDropDown();
-            }
-        });
-
-        etCustomerName.setOnItemClickListener((parent, view, position, id) -> {
-            UiUtils.hideKeyboard(this);
-            etCustomerName.setError(null);
-            rlCustomerSelfHolder.setVisibility(View.GONE);
-            if (!CollectionUtils.isEmpty(customerList)) {
-                selectedCustomer = customerList.get(position);
-                setEmailAndPhoneIfAvailable();
-                showCustomerWithImage();
-                customerAsSelf = false;
-            }
-        });
-
-
-        etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
+ /*       etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus && selfEmployee != null) {
                 etCustomerName.setError(null);
                 if (selfEmployee != null) {
@@ -310,48 +257,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             } else {
                 rlCustomerSelfHolder.setVisibility(View.GONE);
             }
-        });
+        });*/
 
-        rlCustomerSelfHolder.setOnClickListener(v -> {
-            selectedCustomer = new Customer();
-            GlobalUtils.showLog(TAG, "employee checkout:" + selfEmployee);
-            selectedCustomer.setCustomerId(selfEmployee.getEmployeeId());
-            selectedCustomer.setEmail(selfEmployee.getEmail());
-            selectedCustomer.setPhone(selfEmployee.getPhone());
-            selectedCustomer.setFullName(selfEmployee.getName());
-            selectedCustomer.setProfilePic(selfEmployee.getEmployeeImageUrl());
-
-            etCustomerName.setText(selectedCustomer.getFullName());
-            etCustomerName.dismissDropDown();
-            showCustomerWithImage();
-
-            if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
-                etEmail.setText(selectedCustomer.getEmail());
-                etEmail.setFocusable(false);
-                etEmail.setEnabled(false);
-
-                etPhone.setFocusable(false);
-                etPhone.setEnabled(false);
-            }
-
-            if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
-                etPhone.setText(selectedCustomer.getPhone());
-                etPhone.setFocusable(false);
-                etPhone.setEnabled(false);
-
-                etEmail.setFocusable(false);
-                etEmail.setEnabled(false);
-            }
-
-            etCustomerName.setSelection(etCustomerName.getText().length());
-            rlCustomerSelfHolder.setVisibility(View.GONE);
-            hideKeyBoard();
-            customerAsSelf = true;
-        });
 
         etPriority.setOnClickListener(v -> prioritySheet.show());
+        etEstimatedTime.setOnClickListener(v -> estimatedTimeBottomSheet.show());
 
-        etCustomerName.addTextChangedListener(new TextWatcher() {
+   /*     etCustomerName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -395,32 +307,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
 
-        llEmployeeAsSelf.setOnClickListener(v -> {
-            Employee self = EmployeeRepo.getInstance().getEmployee();
-            if (self != null) {
-                AssignEmployee selfEmployee = new AssignEmployee();
-                selfEmployee.setPhone(self.getPhone());
-                selfEmployee.setName(self.getName());
-                selfEmployee.setEmployeeImageUrl(self.getEmployeeImageUrl());
-                selfEmployee.setEmployeeId(self.getEmployeeId());
-                selfEmployee.setEmail(self.getEmail());
-                selfEmployee.setCreatedAt(self.getCreatedAt());
-                selfEmployee.setAccountId(self.getAccountId());
-
-                selectedEmployeeId = self.getEmployeeId();
-                showEmployeeWithImage(selfEmployee);
-            }
-
-            etAssignEmployee.setText(selfEmployee.getName());
-            etAssignEmployee.setSelection(selfEmployee.getName().length());
-            svSearchEmployee.setVisibility(View.GONE);
-
-            hideKeyBoard();
-        });
-
-        etAssignEmployee.addTextChangedListener(new TextWatcher() {
+/*        etAssignEmployee.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -455,12 +344,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             }
         });
-
-        etAssignEmployee.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
-                svSearchEmployee.setVisibility(View.GONE);
-            }
-        });
+        */
 
         btnCreateTicket.setOnClickListener(v -> {
             GlobalUtils.showLog(TAG, "emp id checK: " + selectedEmployeeId);
@@ -482,41 +366,137 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
-    private void setUpEstimatedTimeSuggestions() {
-        etEstimatedTime.setOnFocusChangeListener((v, hasFocus) -> {
+    private void createEstimatedTimeBottomSheet() {
+        estimatedTimeBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_estimated_time, null);
+
+        estimatedTimeBottomSheet.setContentView(llBottomSheet);
+        EditText etSetEstimatedTime = llBottomSheet.findViewById(R.id.et_estimated_time);
+        TextView tvDone = llBottomSheet.findViewById(R.id.tv_done);
+        TextView tv1hr = llBottomSheet.findViewById(R.id.tv_1_hr);
+        TextView tv4Hour = llBottomSheet.findViewById(R.id.tv_4_hour);
+        TextView tv1Day = llBottomSheet.findViewById(R.id.tv_1_day);
+        TextView tv1Week = llBottomSheet.findViewById(R.id.tv_1_week);
+
+        estimatedTimeBottomSheet.setOnShowListener(dialog -> {
+            etSetEstimatedTime.setText(etEstimatedTime.getText().toString().trim());
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+        tv1hr.setOnClickListener(v1 -> {
+            etEstimatedTime.setText(tv1hr.getText().toString().trim());
+            etEstimatedTime.setSelection(etEstimatedTime.length());
+            estimatedTimeBottomSheet.dismiss();
+            hideKeyBoard();
+        });
+
+        tv4Hour.setOnClickListener(v1 -> {
+            etEstimatedTime.setText(tv4Hour.getText().toString().trim());
+            etEstimatedTime.setSelection(etEstimatedTime.length());
+            estimatedTimeBottomSheet.dismiss();
+            hideKeyBoard();
+        });
+
+        tv1Day.setOnClickListener(v1 -> {
+            etEstimatedTime.setText(tv1Day.getText().toString().trim());
+            etEstimatedTime.setSelection(etEstimatedTime.length());
+            estimatedTimeBottomSheet.dismiss();
+            hideKeyBoard();
+        });
+
+        tv1Week.setOnClickListener(v1 -> {
+            etEstimatedTime.setText(tv1Week.getText().toString().trim());
+            etEstimatedTime.setSelection(etEstimatedTime.length());
+            estimatedTimeBottomSheet.dismiss();
+            hideKeyBoard();
+        });
+
+        etSetEstimatedTime.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
-                svEstimatedTimeSuggestions.setVisibility(View.VISIBLE);
-
-                tv1hr.setOnClickListener(v1 -> {
-                    etEstimatedTime.setText(tv1hr.getText().toString().trim());
-                    etEstimatedTime.setSelection(etEstimatedTime.length());
-                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
-                });
-
-                tv4Hour.setOnClickListener(v1 -> {
-                    etEstimatedTime.setText(tv4Hour.getText().toString().trim());
-                    etEstimatedTime.setSelection(etEstimatedTime.length());
-                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
-                });
-
-                tv1Day.setOnClickListener(v1 -> {
-                    etEstimatedTime.setText(tv1Day.getText().toString().trim());
-                    etEstimatedTime.setSelection(etEstimatedTime.length());
-                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
-                });
-
-                tv1Week.setOnClickListener(v1 -> {
-                    etEstimatedTime.setText(tv1Week.getText().toString().trim());
-                    etEstimatedTime.setSelection(etEstimatedTime.length());
-                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
-                });
-
-            } else {
-                svEstimatedTimeSuggestions.setVisibility(View.GONE);
+                setupSheetHeight(estimatedTimeBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
             }
         });
 
-        etEstimatedTime.addTextChangedListener(new TextWatcher() {
+        estimatedTimeBottomSheet.setOnDismissListener(dialog -> {
+            etSetEstimatedTime.clearFocus();
+            etSetEstimatedTime.getText().clear();
+        });
+
+        tvDone.setOnClickListener(v -> {
+            etEstimatedTime.setText(etSetEstimatedTime.getText().toString().trim());
+            estimatedTimeBottomSheet.dismiss();
+        });
+    }
+
+    private void createEmployeeBottomSheet() {
+        employeeBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_employee, null);
+
+        employeeBottomSheet.setContentView(llBottomSheet);
+
+        employeeBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+
+        EditText searchEmployee = llBottomSheet.findViewById(R.id.et_search_employee);
+        LinearLayout llEmployeeAsSelf = llBottomSheet.findViewById(R.id.ll_self);
+        CircleImageView civEmployeeAsSelf = llBottomSheet.findViewById(R.id.civ_image_self);
+        TextView tvEmployeeAsSelf = llBottomSheet.findViewById(R.id.tv_name_self);
+        TextView tvEmployeeAllUsers = llBottomSheet.findViewById(R.id.tv_all_users);
+        TextView tvSuggestions = llBottomSheet.findViewById(R.id.tv_suggestions);
+        RecyclerView rvEmployee = llBottomSheet.findViewById(R.id.rv_all_users);
+
+        setSelfDetails(llEmployeeAsSelf, tvEmployeeAsSelf, civEmployeeAsSelf, tvSuggestions);
+
+        llEmployeeAsSelf.setOnClickListener(v -> {
+            Employee self = EmployeeRepo.getInstance().getEmployee();
+            if (self != null) {
+                AssignEmployee selfEmployee = new AssignEmployee();
+                selfEmployee.setPhone(self.getPhone());
+                selfEmployee.setName(self.getName());
+                selfEmployee.setEmployeeImageUrl(self.getEmployeeImageUrl());
+                selfEmployee.setEmployeeId(self.getEmployeeId());
+                selfEmployee.setEmail(self.getEmail());
+                selfEmployee.setCreatedAt(self.getCreatedAt());
+                selfEmployee.setAccountId(self.getAccountId());
+
+                selectedEmployeeId = self.getEmployeeId();
+                showEmployeeWithImage(selfEmployee);
+            }
+
+            etAssignEmployee.setText(selfEmployee.getName());
+            employeeBottomSheet.dismiss();
+            hideKeyBoard();
+        });
+
+        searchEmployee.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(employeeBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        employeeBottomSheet.setOnDismissListener(dialog -> {
+            searchEmployee.clearFocus();
+            searchEmployee.getText().clear();
+        });
+
+        setUpEmployeeRecyclerView(rvEmployee);
+        searchEmployee.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -524,11 +504,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    svEstimatedTimeSuggestions.setVisibility(View.GONE);
-                } else {
-                    svEstimatedTimeSuggestions.setVisibility(View.VISIBLE);
-                }
+                employeeSearchAdapter.getFilter().filter(s);
             }
 
             @Override
@@ -537,6 +513,204 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
     }
+
+    private void createCustomerBottomSheet() {
+        customerBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_customer, null);
+
+        customerBottomSheet.setContentView(llBottomSheet);
+        customerBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+        EditText searchCustomer = llBottomSheet.findViewById(R.id.et_search_customer);
+        RelativeLayout rlCustomerSelfHolder = llBottomSheet.findViewById(R.id.rl_customer_self_holder);
+        TextView tvSuggestions = llBottomSheet.findViewById(R.id.tv_suggestions);
+        TextView tvCustomerSelf = llBottomSheet.findViewById(R.id.tv_customer_self);
+        CircleImageView civSelf = llBottomSheet.findViewById(R.id.civ_self);
+        rvCustomers = llBottomSheet.findViewById(R.id.rv_customer);
+
+        Employee employee = EmployeeRepo.getInstance().getEmployee();
+        if (employee == null) {
+            tvSuggestions.setVisibility(View.GONE);
+            rlCustomerSelfHolder.setVisibility(View.GONE);
+        }
+        setCustomerSuggestions(rlCustomerSelfHolder, tvCustomerSelf, civSelf);
+        rlCustomerSelfHolder.setOnClickListener(v ->
+        {
+            selectedCustomer = new Customer();
+            GlobalUtils.showLog(TAG, "employee checkout:" + selfEmployee);
+            selectedCustomer.setCustomerId(selfEmployee.getEmployeeId());
+            selectedCustomer.setEmail(selfEmployee.getEmail());
+            selectedCustomer.setPhone(selfEmployee.getPhone());
+            selectedCustomer.setFullName(selfEmployee.getName());
+            selectedCustomer.setProfilePic(selfEmployee.getEmployeeImageUrl());
+
+            etCustomerName.setText(selectedCustomer.getFullName());
+            etCustomerName.dismissDropDown();
+            showCustomerWithImage();
+
+            if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
+                etEmail.setText(selectedCustomer.getEmail());
+                etEmail.setFocusable(false);
+                etEmail.setEnabled(false);
+
+                etPhone.setFocusable(false);
+                etPhone.setEnabled(false);
+            }
+
+            if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
+                etPhone.setText(selectedCustomer.getPhone());
+                etPhone.setFocusable(false);
+                etPhone.setEnabled(false);
+
+                etEmail.setFocusable(false);
+                etEmail.setEnabled(false);
+            }
+
+            hideKeyBoard();
+            customerAsSelf = true;
+            customerBottomSheet.dismiss();
+        });
+
+        searchCustomer.setOnFocusChangeListener((v, hasFocus) ->
+        {
+            if (hasFocus) {
+                setupSheetHeight(customerBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        customerBottomSheet.setOnDismissListener(dialog ->
+        {
+            searchCustomer.clearFocus();
+            searchCustomer.getText().clear();
+        });
+
+        setUpCustomerRecyclerView();
+
+        searchCustomer.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                customerSearchAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void setCustomerSuggestions(RelativeLayout rlCustomerSelfHolder, TextView tvCustomerSelf, CircleImageView civSelf) {
+        if (selfEmployee != null) {
+            StringBuilder selfCustomerText = new StringBuilder(selfEmployee.getName());
+            selfCustomerText.append(" (Me)");
+            tvCustomerSelf.setText(selfCustomerText);
+        } else {
+            tvCustomerSelf.setVisibility(View.GONE);
+        }
+
+        if (selfEmployee != null) {
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(AddTicketActivity.this).load(selfEmployee.getEmployeeImageUrl())
+                    .apply(options).into(civSelf);
+        } else {
+            civSelf.setVisibility(View.GONE);
+        }
+
+        rlCustomerSelfHolder.setVisibility(View.VISIBLE);
+    }
+
+    private void setUpCustomerRecyclerView() {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvCustomers.setLayoutManager(mLayoutManager);
+
+        customerSearchAdapter = new CustomerSearchAdapter
+                (this, customerList);
+        rvCustomers.setAdapter(customerSearchAdapter);
+
+        customerSearchAdapter.setOnItemClickListener((customer) -> {
+            UiUtils.hideKeyboardForced(this);
+            etCustomerName.setError(null);
+            selectedCustomer = customer;
+            setEmailAndPhoneIfAvailable();
+            showCustomerWithImage();
+            customerAsSelf = false;
+
+            etCustomerName.setText(customer.getFullName());
+            customerBottomSheet.dismiss();
+        });
+
+    }
+
+    private void createTicketTypeBottomSheet() {
+        ticketTypeBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_ticket_type, null);
+
+        ticketTypeBottomSheet.setContentView(llBottomSheet);
+
+        ticketTypeBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+
+        EditText searchTicketType = llBottomSheet.findViewById(R.id.et_search_ticket_type);
+        rvTicketType = llBottomSheet.findViewById(R.id.rv_ticket_type);
+
+        searchTicketType.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(ticketTypeBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        ticketTypeBottomSheet.setOnDismissListener(dialog -> {
+            searchTicketType.clearFocus();
+            searchTicketType.getText().clear();
+        });
+        setUpTicketTypeRecyclerView();
+
+        searchTicketType.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ticketCategorySearchAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
 
     private void createLabelBottomSheet() {
         labelSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
@@ -548,13 +722,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         TextView tvLabelDone = view.findViewById(R.id.tv_done);
         etSearchLabel = view.findViewById(R.id.et_search_label);
         rvLabels = view.findViewById(R.id.rv_labels);
-        ImageView ivBack = view.findViewById(R.id.iv_back);
         RelativeLayout rlNewLabel = view.findViewById(R.id.rl_new_label);
         TextView tvNewLabel = view.findViewById(R.id.tv_new_label);
 
-        ivBack.setOnClickListener(v -> labelSheet.dismiss());
         setUpLabelRecyclerView(labelList, rvLabels, rlNewLabel, tvNewLabel);
-
 
         labelSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
@@ -563,21 +734,24 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     (com.google.android.material.R.id.design_bottom_sheet);
             if (bottomSheet != null)
                 BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
-            setupFullHeight(d);
-            etSearchLabel.requestFocus();
-            UiUtils.showKeyboardForced(this);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
 
             //check mark selected teams
             if (!labels.isEmpty())
                 labelAdapter.setData(labels);
 
-            llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+        /*    llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
                 int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
                 ViewGroup.LayoutParams params = rvLabels.getLayoutParams();
                 params.height = getWindowHeight() - heightDiff + 100;
-            });
+            });*/
         });
 
+        etSearchLabel.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(labelSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
 
         etSearchLabel.addTextChangedListener(new TextWatcher() {
             @Override
@@ -599,8 +773,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
 
-
-        tvLabelDone.setOnClickListener(v -> labelSheet.dismiss());
+        tvLabelDone.setOnClickListener(v -> {
+            labelSheet.dismiss();
+            hideKeyBoard();
+        });
 
         labelSheet.setOnDismissListener(dialog -> {
             GlobalUtils.showLog(TAG, "label dismissed");
@@ -615,7 +791,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             addLabelsToLayout();
 
-            etSearchLabel.setText("");
+            etSearchLabel.clearFocus();
+            etSearchLabel.getText().clear();
             UiUtils.hideKeyboardForced(this);
         });
     }
@@ -695,9 +872,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         TextView tvTeamDone = view.findViewById(R.id.tv_done);
         etSearchTeam = view.findViewById(R.id.et_search_employee);
         rvTeams = view.findViewById(R.id.rv_teams);
-        ImageView ivBack = view.findViewById(R.id.iv_back);
-
-        ivBack.setOnClickListener(v -> teamSheet.dismiss());
 
         setUpTeamRecyclerView(tagsList, rvTeams);
 
@@ -707,18 +881,16 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
             if (bottomSheet != null)
                 BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
-            setupFullHeight(d);
-            etSearchTeam.requestFocus();
-            UiUtils.showKeyboardForced(this);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
 
             //check mark selected teams
             teamAdapter.setData(tags);
 
-            llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+        /*    llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
                 int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
                 ViewGroup.LayoutParams params = rvTeams.getLayoutParams();
                 params.height = getWindowHeight() - heightDiff + 100;
-            });
+            });*/
         });
 
 
@@ -739,6 +911,12 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
 
+        etSearchTeam.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(teamSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
         tvTeamDone.setOnClickListener(v -> teamSheet.dismiss());
 
         teamSheet.setOnDismissListener(dialog -> {
@@ -754,7 +932,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             addTeamsToLayout();
 
-            etSearchTeam.setText("");
+            etSearchTeam.clearFocus();
+            etSearchTeam.getText().clear();
             UiUtils.hideKeyboardForced(this);
         });
     }
@@ -978,12 +1157,12 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             etPhone.setFocusable(false);
             etPhone.setEnabled(false);
-        }/* else {
+        } else {
             etEmail.setText("");
-            etEmail.setFocusable(true);
+      /*      etEmail.setFocusable(true);
             etEmail.setEnabled(true);
-            etEmail.setFocusableInTouchMode(true);
-        }*/
+            etEmail.setFocusableInTouchMode(true);*/
+        }
 
         if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
             etPhone.setText(selectedCustomer.getPhone());
@@ -992,14 +1171,16 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             etEmail.setFocusable(false);
             etEmail.setEnabled(false);
-        } /*else {
+        } else {
             etPhone.setText("");
-            etPhone.setFocusable(true);
+        /*    etPhone.setFocusable(true);
             etPhone.setEnabled(true);
-        }*/
-        etPhone.setFocusableInTouchMode(true);
+            etPhone.setFocusableInTouchMode(true);*/
+        }
 
-        if (selectedCustomer.getPhone() == null && selectedCustomer.getEmail() == null) {
+
+        if (selectedCustomer.getPhone().isEmpty()
+                && selectedCustomer.getEmail().isEmpty()) {
             etPhone.setText("");
             etPhone.setEnabled(true);
             etPhone.setFocusable(true);
@@ -1012,7 +1193,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         }
     }
 
-    private void setSelfDetails() {
+    private void setSelfDetails(LinearLayout llEmployeeAsSelf, TextView tvEmployeeAsSelf,
+                                CircleImageView civEmployeeAsSelf, TextView tvSuggestions) {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
         GlobalUtils.showLog(TAG, "employee check: " + employee);
         if (employee != null) {
@@ -1044,7 +1226,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     }
 
 
-    private void setUpRecyclerView() {
+    private void setUpEmployeeRecyclerView(RecyclerView rvEmployeeAllUsers
+    ) {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvEmployeeAllUsers.setLayoutManager(mLayoutManager);
 
@@ -1053,16 +1236,33 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
-                hideKeyBoard();
-
+                UiUtils.hideKeyboardForced(this);
                 selectedEmployeeId = employee.getEmployeeId();
                 etAssignEmployee.setText(employee.getName());
                 etAssignEmployee.setSelection(employee.getName().length());
-                svSearchEmployee.setVisibility(View.GONE);
 
                 showEmployeeWithImage(employee);
+                employeeBottomSheet.dismiss();
             });
         }
+    }
+
+    private void setUpTicketTypeRecyclerView() {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvTicketType.setLayoutManager(mLayoutManager);
+
+        ticketCategorySearchAdapter = new TicketCategorySearchAdapter
+                (this, ticketTypeList);
+        rvTicketType.setAdapter(ticketCategorySearchAdapter);
+
+        ticketCategorySearchAdapter.setOnItemClickListener((ticketType) -> {
+            hideKeyBoard();
+
+            etTicketType.setError(null);
+            ticketCategoryId = ticketType.getCategoryId();
+            etTicketType.setText(ticketType.getName());
+            ticketTypeBottomSheet.dismiss();
+        });
     }
 
     private void showEmployeeWithImage(AssignEmployee employee) {
@@ -1196,6 +1396,23 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(state);
+        } else {
+            Toast.makeText(this, "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

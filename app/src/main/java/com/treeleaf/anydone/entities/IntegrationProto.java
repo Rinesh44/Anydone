@@ -281,6 +281,167 @@ public final class IntegrationProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ThirdPartyApiBodyType)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.EmailProvider}
+   */
+  public enum EmailProvider
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_EMAIL_PROVIDER = 0;</code>
+     */
+    UNKNOWN_EMAIL_PROVIDER(0),
+    /**
+     * <code>GMAIL = 1;</code>
+     */
+    GMAIL(1),
+    /**
+     * <code>YAHOO = 2;</code>
+     */
+    YAHOO(2),
+    /**
+     * <code>OUTLOOK = 3;</code>
+     */
+    OUTLOOK(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_EMAIL_PROVIDER = 0;</code>
+     */
+    public static final int UNKNOWN_EMAIL_PROVIDER_VALUE = 0;
+    /**
+     * <code>GMAIL = 1;</code>
+     */
+    public static final int GMAIL_VALUE = 1;
+    /**
+     * <code>YAHOO = 2;</code>
+     */
+    public static final int YAHOO_VALUE = 2;
+    /**
+     * <code>OUTLOOK = 3;</code>
+     */
+    public static final int OUTLOOK_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static EmailProvider valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static EmailProvider forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_EMAIL_PROVIDER;
+        case 1: return GMAIL;
+        case 2: return YAHOO;
+        case 3: return OUTLOOK;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmailProvider>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        EmailProvider> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmailProvider>() {
+            public EmailProvider findValueByNumber(int number) {
+              return EmailProvider.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private EmailProvider(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.EmailProvider)
+  }
+
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.SecureConnection}
+   */
+  public enum SecureConnection
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_SECURE_CONNECTION = 0;</code>
+     */
+    UNKNOWN_SECURE_CONNECTION(0),
+    /**
+     * <code>SSL = 1;</code>
+     */
+    SSL(1),
+    /**
+     * <code>TLS = 2;</code>
+     */
+    TLS(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_SECURE_CONNECTION = 0;</code>
+     */
+    public static final int UNKNOWN_SECURE_CONNECTION_VALUE = 0;
+    /**
+     * <code>SSL = 1;</code>
+     */
+    public static final int SSL_VALUE = 1;
+    /**
+     * <code>TLS = 2;</code>
+     */
+    public static final int TLS_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static SecureConnection valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SecureConnection forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_SECURE_CONNECTION;
+        case 1: return SSL;
+        case 2: return TLS;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SecureConnection>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SecureConnection> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SecureConnection>() {
+            public SecureConnection findValueByNumber(int number) {
+              return SecureConnection.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private SecureConnection(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.SecureConnection)
+  }
+
   public interface IntegrationOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Integration)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -375,6 +536,15 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.IntegrationSlack integrationSlack = 11;</code>
      */
     IntegrationSlack getIntegrationSlack();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    boolean hasIntegrationMail();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    IntegrationMail getIntegrationMail();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Integration}
@@ -838,6 +1008,58 @@ public final class IntegrationProto {
       
     }
 
+    public static final int INTEGRATIONMAIL_FIELD_NUMBER = 12;
+    private IntegrationMail integrationMail_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    public boolean hasIntegrationMail() {
+      return integrationMail_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    public IntegrationMail getIntegrationMail() {
+      return integrationMail_ == null ? IntegrationMail.getDefaultInstance() : integrationMail_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    private void setIntegrationMail(IntegrationMail value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      integrationMail_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    private void setIntegrationMail(
+        IntegrationMail.Builder builderForValue) {
+      integrationMail_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    private void mergeIntegrationMail(IntegrationMail value) {
+      if (integrationMail_ != null &&
+          integrationMail_ != IntegrationMail.getDefaultInstance()) {
+        integrationMail_ =
+          IntegrationMail.newBuilder(integrationMail_).mergeFrom(value).buildPartial();
+      } else {
+        integrationMail_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+     */
+    private void clearIntegrationMail() {  integrationMail_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!integrationId_.isEmpty()) {
@@ -872,6 +1094,9 @@ public final class IntegrationProto {
       }
       if (integrationSlack_ != null) {
         output.writeMessage(11, getIntegrationSlack());
+      }
+      if (integrationMail_ != null) {
+        output.writeMessage(12, getIntegrationMail());
       }
     }
 
@@ -923,6 +1148,10 @@ public final class IntegrationProto {
       if (integrationSlack_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getIntegrationSlack());
+      }
+      if (integrationMail_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getIntegrationMail());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1411,6 +1640,51 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+       */
+      public boolean hasIntegrationMail() {
+        return instance.hasIntegrationMail();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+       */
+      public IntegrationMail getIntegrationMail() {
+        return instance.getIntegrationMail();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+       */
+      public Builder setIntegrationMail(IntegrationMail value) {
+        copyOnWrite();
+        instance.setIntegrationMail(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+       */
+      public Builder setIntegrationMail(
+          IntegrationMail.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIntegrationMail(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+       */
+      public Builder mergeIntegrationMail(IntegrationMail value) {
+        copyOnWrite();
+        instance.mergeIntegrationMail(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationMail integrationMail = 12;</code>
+       */
+      public Builder clearIntegrationMail() {  copyOnWrite();
+        instance.clearIntegrationMail();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Integration)
     }
     protected final Object dynamicMethod(
@@ -1450,6 +1724,7 @@ public final class IntegrationProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           integrationSlack_ = visitor.visitMessage(integrationSlack_, other.integrationSlack_);
+          integrationMail_ = visitor.visitMessage(integrationMail_, other.integrationMail_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -1554,6 +1829,19 @@ public final class IntegrationProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(integrationSlack_);
                     integrationSlack_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 98: {
+                  IntegrationMail.Builder subBuilder = null;
+                  if (integrationMail_ != null) {
+                    subBuilder = integrationMail_.toBuilder();
+                  }
+                  integrationMail_ = input.readMessage(IntegrationMail.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(integrationMail_);
+                    integrationMail_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -6919,6 +7207,1857 @@ public final class IntegrationProto {
     private static volatile com.google.protobuf.Parser<IntegrationSlack> PARSER;
 
     public static com.google.protobuf.Parser<IntegrationSlack> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface IntegrationMailOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.IntegrationMail)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string integrationMailId = 1;</code>
+     */
+    String getIntegrationMailId();
+    /**
+     * <code>optional string integrationMailId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntegrationMailIdBytes();
+
+    /**
+     * <pre>
+     *Service Provider's Email
+     * </pre>
+     *
+     * <code>optional string email = 2;</code>
+     */
+    String getEmail();
+    /**
+     * <pre>
+     *Service Provider's Email
+     * </pre>
+     *
+     * <code>optional string email = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getEmailBytes();
+
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    String getPassword();
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+
+    /**
+     * <code>optional string smtpHostName = 4;</code>
+     */
+    String getSmtpHostName();
+    /**
+     * <code>optional string smtpHostName = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getSmtpHostNameBytes();
+
+    /**
+     * <code>optional string smtpPort = 5;</code>
+     */
+    String getSmtpPort();
+    /**
+     * <code>optional string smtpPort = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getSmtpPortBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+     */
+    int getSecureConnectionValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+     */
+    SecureConnection getSecureConnection();
+
+    /**
+     * <code>optional bool mailSmtpAuth = 7;</code>
+     */
+    boolean getMailSmtpAuth();
+
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+     */
+    String getSmtpSslSocketFactoryPort();
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getSmtpSslSocketFactoryPortBytes();
+
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+     */
+    String getSmtpSslSocketFactoryClass();
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getSmtpSslSocketFactoryClassBytes();
+
+    /**
+     * <pre>
+     *for TLS only
+     * </pre>
+     *
+     * <code>optional bool smtpStartTlsEnable = 10;</code>
+     */
+    boolean getSmtpStartTlsEnable();
+
+    /**
+     * <code>optional string imapHostName = 11;</code>
+     */
+    String getImapHostName();
+    /**
+     * <code>optional string imapHostName = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getImapHostNameBytes();
+
+    /**
+     * <code>optional string imapPort = 12;</code>
+     */
+    String getImapPort();
+    /**
+     * <code>optional string imapPort = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getImapPortBytes();
+
+    /**
+     * <code>optional string integrationId = 13;</code>
+     */
+    String getIntegrationId();
+    /**
+     * <code>optional string integrationId = 13;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntegrationIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 14;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 15;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.IntegrationMail}
+   */
+  public  static final class IntegrationMail extends
+      com.google.protobuf.GeneratedMessageLite<
+          IntegrationMail, IntegrationMail.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.IntegrationMail)
+      IntegrationMailOrBuilder {
+    private IntegrationMail() {
+      integrationMailId_ = "";
+      email_ = "";
+      password_ = "";
+      smtpHostName_ = "";
+      smtpPort_ = "";
+      smtpSslSocketFactoryPort_ = "";
+      smtpSslSocketFactoryClass_ = "";
+      imapHostName_ = "";
+      imapPort_ = "";
+      integrationId_ = "";
+    }
+    public static final int INTEGRATIONMAILID_FIELD_NUMBER = 1;
+    private String integrationMailId_;
+    /**
+     * <code>optional string integrationMailId = 1;</code>
+     */
+    public String getIntegrationMailId() {
+      return integrationMailId_;
+    }
+    /**
+     * <code>optional string integrationMailId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntegrationMailIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(integrationMailId_);
+    }
+    /**
+     * <code>optional string integrationMailId = 1;</code>
+     */
+    private void setIntegrationMailId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      integrationMailId_ = value;
+    }
+    /**
+     * <code>optional string integrationMailId = 1;</code>
+     */
+    private void clearIntegrationMailId() {
+      
+      integrationMailId_ = getDefaultInstance().getIntegrationMailId();
+    }
+    /**
+     * <code>optional string integrationMailId = 1;</code>
+     */
+    private void setIntegrationMailIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      integrationMailId_ = value.toStringUtf8();
+    }
+
+    public static final int EMAIL_FIELD_NUMBER = 2;
+    private String email_;
+    /**
+     * <pre>
+     *Service Provider's Email
+     * </pre>
+     *
+     * <code>optional string email = 2;</code>
+     */
+    public String getEmail() {
+      return email_;
+    }
+    /**
+     * <pre>
+     *Service Provider's Email
+     * </pre>
+     *
+     * <code>optional string email = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEmailBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(email_);
+    }
+    /**
+     * <pre>
+     *Service Provider's Email
+     * </pre>
+     *
+     * <code>optional string email = 2;</code>
+     */
+    private void setEmail(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      email_ = value;
+    }
+    /**
+     * <pre>
+     *Service Provider's Email
+     * </pre>
+     *
+     * <code>optional string email = 2;</code>
+     */
+    private void clearEmail() {
+      
+      email_ = getDefaultInstance().getEmail();
+    }
+    /**
+     * <pre>
+     *Service Provider's Email
+     * </pre>
+     *
+     * <code>optional string email = 2;</code>
+     */
+    private void setEmailBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      email_ = value.toStringUtf8();
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 3;
+    private String password_;
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public String getPassword() {
+      return password_;
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(password_);
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void setPassword(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      password_ = value;
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void clearPassword() {
+      
+      password_ = getDefaultInstance().getPassword();
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void setPasswordBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      password_ = value.toStringUtf8();
+    }
+
+    public static final int SMTPHOSTNAME_FIELD_NUMBER = 4;
+    private String smtpHostName_;
+    /**
+     * <code>optional string smtpHostName = 4;</code>
+     */
+    public String getSmtpHostName() {
+      return smtpHostName_;
+    }
+    /**
+     * <code>optional string smtpHostName = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSmtpHostNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(smtpHostName_);
+    }
+    /**
+     * <code>optional string smtpHostName = 4;</code>
+     */
+    private void setSmtpHostName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      smtpHostName_ = value;
+    }
+    /**
+     * <code>optional string smtpHostName = 4;</code>
+     */
+    private void clearSmtpHostName() {
+      
+      smtpHostName_ = getDefaultInstance().getSmtpHostName();
+    }
+    /**
+     * <code>optional string smtpHostName = 4;</code>
+     */
+    private void setSmtpHostNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      smtpHostName_ = value.toStringUtf8();
+    }
+
+    public static final int SMTPPORT_FIELD_NUMBER = 5;
+    private String smtpPort_;
+    /**
+     * <code>optional string smtpPort = 5;</code>
+     */
+    public String getSmtpPort() {
+      return smtpPort_;
+    }
+    /**
+     * <code>optional string smtpPort = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSmtpPortBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(smtpPort_);
+    }
+    /**
+     * <code>optional string smtpPort = 5;</code>
+     */
+    private void setSmtpPort(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      smtpPort_ = value;
+    }
+    /**
+     * <code>optional string smtpPort = 5;</code>
+     */
+    private void clearSmtpPort() {
+      
+      smtpPort_ = getDefaultInstance().getSmtpPort();
+    }
+    /**
+     * <code>optional string smtpPort = 5;</code>
+     */
+    private void setSmtpPortBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      smtpPort_ = value.toStringUtf8();
+    }
+
+    public static final int SECURECONNECTION_FIELD_NUMBER = 6;
+    private int secureConnection_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+     */
+    public int getSecureConnectionValue() {
+      return secureConnection_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+     */
+    public SecureConnection getSecureConnection() {
+      SecureConnection result = SecureConnection.forNumber(secureConnection_);
+      return result == null ? SecureConnection.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+     */
+    private void setSecureConnectionValue(int value) {
+        secureConnection_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+     */
+    private void setSecureConnection(SecureConnection value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      secureConnection_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+     */
+    private void clearSecureConnection() {
+      
+      secureConnection_ = 0;
+    }
+
+    public static final int MAILSMTPAUTH_FIELD_NUMBER = 7;
+    private boolean mailSmtpAuth_;
+    /**
+     * <code>optional bool mailSmtpAuth = 7;</code>
+     */
+    public boolean getMailSmtpAuth() {
+      return mailSmtpAuth_;
+    }
+    /**
+     * <code>optional bool mailSmtpAuth = 7;</code>
+     */
+    private void setMailSmtpAuth(boolean value) {
+      
+      mailSmtpAuth_ = value;
+    }
+    /**
+     * <code>optional bool mailSmtpAuth = 7;</code>
+     */
+    private void clearMailSmtpAuth() {
+      
+      mailSmtpAuth_ = false;
+    }
+
+    public static final int SMTPSSLSOCKETFACTORYPORT_FIELD_NUMBER = 8;
+    private String smtpSslSocketFactoryPort_;
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+     */
+    public String getSmtpSslSocketFactoryPort() {
+      return smtpSslSocketFactoryPort_;
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSmtpSslSocketFactoryPortBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(smtpSslSocketFactoryPort_);
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+     */
+    private void setSmtpSslSocketFactoryPort(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      smtpSslSocketFactoryPort_ = value;
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+     */
+    private void clearSmtpSslSocketFactoryPort() {
+      
+      smtpSslSocketFactoryPort_ = getDefaultInstance().getSmtpSslSocketFactoryPort();
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+     */
+    private void setSmtpSslSocketFactoryPortBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      smtpSslSocketFactoryPort_ = value.toStringUtf8();
+    }
+
+    public static final int SMTPSSLSOCKETFACTORYCLASS_FIELD_NUMBER = 9;
+    private String smtpSslSocketFactoryClass_;
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+     */
+    public String getSmtpSslSocketFactoryClass() {
+      return smtpSslSocketFactoryClass_;
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSmtpSslSocketFactoryClassBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(smtpSslSocketFactoryClass_);
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+     */
+    private void setSmtpSslSocketFactoryClass(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      smtpSslSocketFactoryClass_ = value;
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+     */
+    private void clearSmtpSslSocketFactoryClass() {
+      
+      smtpSslSocketFactoryClass_ = getDefaultInstance().getSmtpSslSocketFactoryClass();
+    }
+    /**
+     * <pre>
+     *for SSL only
+     * </pre>
+     *
+     * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+     */
+    private void setSmtpSslSocketFactoryClassBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      smtpSslSocketFactoryClass_ = value.toStringUtf8();
+    }
+
+    public static final int SMTPSTARTTLSENABLE_FIELD_NUMBER = 10;
+    private boolean smtpStartTlsEnable_;
+    /**
+     * <pre>
+     *for TLS only
+     * </pre>
+     *
+     * <code>optional bool smtpStartTlsEnable = 10;</code>
+     */
+    public boolean getSmtpStartTlsEnable() {
+      return smtpStartTlsEnable_;
+    }
+    /**
+     * <pre>
+     *for TLS only
+     * </pre>
+     *
+     * <code>optional bool smtpStartTlsEnable = 10;</code>
+     */
+    private void setSmtpStartTlsEnable(boolean value) {
+      
+      smtpStartTlsEnable_ = value;
+    }
+    /**
+     * <pre>
+     *for TLS only
+     * </pre>
+     *
+     * <code>optional bool smtpStartTlsEnable = 10;</code>
+     */
+    private void clearSmtpStartTlsEnable() {
+      
+      smtpStartTlsEnable_ = false;
+    }
+
+    public static final int IMAPHOSTNAME_FIELD_NUMBER = 11;
+    private String imapHostName_;
+    /**
+     * <code>optional string imapHostName = 11;</code>
+     */
+    public String getImapHostName() {
+      return imapHostName_;
+    }
+    /**
+     * <code>optional string imapHostName = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImapHostNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imapHostName_);
+    }
+    /**
+     * <code>optional string imapHostName = 11;</code>
+     */
+    private void setImapHostName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imapHostName_ = value;
+    }
+    /**
+     * <code>optional string imapHostName = 11;</code>
+     */
+    private void clearImapHostName() {
+      
+      imapHostName_ = getDefaultInstance().getImapHostName();
+    }
+    /**
+     * <code>optional string imapHostName = 11;</code>
+     */
+    private void setImapHostNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imapHostName_ = value.toStringUtf8();
+    }
+
+    public static final int IMAPPORT_FIELD_NUMBER = 12;
+    private String imapPort_;
+    /**
+     * <code>optional string imapPort = 12;</code>
+     */
+    public String getImapPort() {
+      return imapPort_;
+    }
+    /**
+     * <code>optional string imapPort = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImapPortBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imapPort_);
+    }
+    /**
+     * <code>optional string imapPort = 12;</code>
+     */
+    private void setImapPort(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imapPort_ = value;
+    }
+    /**
+     * <code>optional string imapPort = 12;</code>
+     */
+    private void clearImapPort() {
+      
+      imapPort_ = getDefaultInstance().getImapPort();
+    }
+    /**
+     * <code>optional string imapPort = 12;</code>
+     */
+    private void setImapPortBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imapPort_ = value.toStringUtf8();
+    }
+
+    public static final int INTEGRATIONID_FIELD_NUMBER = 13;
+    private String integrationId_;
+    /**
+     * <code>optional string integrationId = 13;</code>
+     */
+    public String getIntegrationId() {
+      return integrationId_;
+    }
+    /**
+     * <code>optional string integrationId = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntegrationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(integrationId_);
+    }
+    /**
+     * <code>optional string integrationId = 13;</code>
+     */
+    private void setIntegrationId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      integrationId_ = value;
+    }
+    /**
+     * <code>optional string integrationId = 13;</code>
+     */
+    private void clearIntegrationId() {
+      
+      integrationId_ = getDefaultInstance().getIntegrationId();
+    }
+    /**
+     * <code>optional string integrationId = 13;</code>
+     */
+    private void setIntegrationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      integrationId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 14;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 14;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 14;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 14;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 15;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 15;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 15;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 15;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!integrationMailId_.isEmpty()) {
+        output.writeString(1, getIntegrationMailId());
+      }
+      if (!email_.isEmpty()) {
+        output.writeString(2, getEmail());
+      }
+      if (!password_.isEmpty()) {
+        output.writeString(3, getPassword());
+      }
+      if (!smtpHostName_.isEmpty()) {
+        output.writeString(4, getSmtpHostName());
+      }
+      if (!smtpPort_.isEmpty()) {
+        output.writeString(5, getSmtpPort());
+      }
+      if (secureConnection_ != SecureConnection.UNKNOWN_SECURE_CONNECTION.getNumber()) {
+        output.writeEnum(6, secureConnection_);
+      }
+      if (mailSmtpAuth_ != false) {
+        output.writeBool(7, mailSmtpAuth_);
+      }
+      if (!smtpSslSocketFactoryPort_.isEmpty()) {
+        output.writeString(8, getSmtpSslSocketFactoryPort());
+      }
+      if (!smtpSslSocketFactoryClass_.isEmpty()) {
+        output.writeString(9, getSmtpSslSocketFactoryClass());
+      }
+      if (smtpStartTlsEnable_ != false) {
+        output.writeBool(10, smtpStartTlsEnable_);
+      }
+      if (!imapHostName_.isEmpty()) {
+        output.writeString(11, getImapHostName());
+      }
+      if (!imapPort_.isEmpty()) {
+        output.writeString(12, getImapPort());
+      }
+      if (!integrationId_.isEmpty()) {
+        output.writeString(13, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(14, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(15, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!integrationMailId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getIntegrationMailId());
+      }
+      if (!email_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getEmail());
+      }
+      if (!password_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getPassword());
+      }
+      if (!smtpHostName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getSmtpHostName());
+      }
+      if (!smtpPort_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getSmtpPort());
+      }
+      if (secureConnection_ != SecureConnection.UNKNOWN_SECURE_CONNECTION.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, secureConnection_);
+      }
+      if (mailSmtpAuth_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, mailSmtpAuth_);
+      }
+      if (!smtpSslSocketFactoryPort_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getSmtpSslSocketFactoryPort());
+      }
+      if (!smtpSslSocketFactoryClass_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(9, getSmtpSslSocketFactoryClass());
+      }
+      if (smtpStartTlsEnable_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, smtpStartTlsEnable_);
+      }
+      if (!imapHostName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getImapHostName());
+      }
+      if (!imapPort_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getImapPort());
+      }
+      if (!integrationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(13, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(14, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(15, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static IntegrationMail parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static IntegrationMail parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static IntegrationMail parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static IntegrationMail parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static IntegrationMail parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static IntegrationMail parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static IntegrationMail parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static IntegrationMail parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static IntegrationMail parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static IntegrationMail parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(IntegrationMail prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.IntegrationMail}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          IntegrationMail, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntegrationMail)
+        IntegrationMailOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.IntegrationProto.IntegrationMail.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string integrationMailId = 1;</code>
+       */
+      public String getIntegrationMailId() {
+        return instance.getIntegrationMailId();
+      }
+      /**
+       * <code>optional string integrationMailId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntegrationMailIdBytes() {
+        return instance.getIntegrationMailIdBytes();
+      }
+      /**
+       * <code>optional string integrationMailId = 1;</code>
+       */
+      public Builder setIntegrationMailId(
+          String value) {
+        copyOnWrite();
+        instance.setIntegrationMailId(value);
+        return this;
+      }
+      /**
+       * <code>optional string integrationMailId = 1;</code>
+       */
+      public Builder clearIntegrationMailId() {
+        copyOnWrite();
+        instance.clearIntegrationMailId();
+        return this;
+      }
+      /**
+       * <code>optional string integrationMailId = 1;</code>
+       */
+      public Builder setIntegrationMailIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIntegrationMailIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *Service Provider's Email
+       * </pre>
+       *
+       * <code>optional string email = 2;</code>
+       */
+      public String getEmail() {
+        return instance.getEmail();
+      }
+      /**
+       * <pre>
+       *Service Provider's Email
+       * </pre>
+       *
+       * <code>optional string email = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getEmailBytes() {
+        return instance.getEmailBytes();
+      }
+      /**
+       * <pre>
+       *Service Provider's Email
+       * </pre>
+       *
+       * <code>optional string email = 2;</code>
+       */
+      public Builder setEmail(
+          String value) {
+        copyOnWrite();
+        instance.setEmail(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *Service Provider's Email
+       * </pre>
+       *
+       * <code>optional string email = 2;</code>
+       */
+      public Builder clearEmail() {
+        copyOnWrite();
+        instance.clearEmail();
+        return this;
+      }
+      /**
+       * <pre>
+       *Service Provider's Email
+       * </pre>
+       *
+       * <code>optional string email = 2;</code>
+       */
+      public Builder setEmailBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setEmailBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public String getPassword() {
+        return instance.getPassword();
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        return instance.getPasswordBytes();
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPassword(
+          String value) {
+        copyOnWrite();
+        instance.setPassword(value);
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder clearPassword() {
+        copyOnWrite();
+        instance.clearPassword();
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPasswordBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string smtpHostName = 4;</code>
+       */
+      public String getSmtpHostName() {
+        return instance.getSmtpHostName();
+      }
+      /**
+       * <code>optional string smtpHostName = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSmtpHostNameBytes() {
+        return instance.getSmtpHostNameBytes();
+      }
+      /**
+       * <code>optional string smtpHostName = 4;</code>
+       */
+      public Builder setSmtpHostName(
+          String value) {
+        copyOnWrite();
+        instance.setSmtpHostName(value);
+        return this;
+      }
+      /**
+       * <code>optional string smtpHostName = 4;</code>
+       */
+      public Builder clearSmtpHostName() {
+        copyOnWrite();
+        instance.clearSmtpHostName();
+        return this;
+      }
+      /**
+       * <code>optional string smtpHostName = 4;</code>
+       */
+      public Builder setSmtpHostNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSmtpHostNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string smtpPort = 5;</code>
+       */
+      public String getSmtpPort() {
+        return instance.getSmtpPort();
+      }
+      /**
+       * <code>optional string smtpPort = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSmtpPortBytes() {
+        return instance.getSmtpPortBytes();
+      }
+      /**
+       * <code>optional string smtpPort = 5;</code>
+       */
+      public Builder setSmtpPort(
+          String value) {
+        copyOnWrite();
+        instance.setSmtpPort(value);
+        return this;
+      }
+      /**
+       * <code>optional string smtpPort = 5;</code>
+       */
+      public Builder clearSmtpPort() {
+        copyOnWrite();
+        instance.clearSmtpPort();
+        return this;
+      }
+      /**
+       * <code>optional string smtpPort = 5;</code>
+       */
+      public Builder setSmtpPortBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSmtpPortBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+       */
+      public int getSecureConnectionValue() {
+        return instance.getSecureConnectionValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+       */
+      public Builder setSecureConnectionValue(int value) {
+        copyOnWrite();
+        instance.setSecureConnectionValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+       */
+      public SecureConnection getSecureConnection() {
+        return instance.getSecureConnection();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+       */
+      public Builder setSecureConnection(SecureConnection value) {
+        copyOnWrite();
+        instance.setSecureConnection(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SecureConnection secureConnection = 6;</code>
+       */
+      public Builder clearSecureConnection() {
+        copyOnWrite();
+        instance.clearSecureConnection();
+        return this;
+      }
+
+      /**
+       * <code>optional bool mailSmtpAuth = 7;</code>
+       */
+      public boolean getMailSmtpAuth() {
+        return instance.getMailSmtpAuth();
+      }
+      /**
+       * <code>optional bool mailSmtpAuth = 7;</code>
+       */
+      public Builder setMailSmtpAuth(boolean value) {
+        copyOnWrite();
+        instance.setMailSmtpAuth(value);
+        return this;
+      }
+      /**
+       * <code>optional bool mailSmtpAuth = 7;</code>
+       */
+      public Builder clearMailSmtpAuth() {
+        copyOnWrite();
+        instance.clearMailSmtpAuth();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+       */
+      public String getSmtpSslSocketFactoryPort() {
+        return instance.getSmtpSslSocketFactoryPort();
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSmtpSslSocketFactoryPortBytes() {
+        return instance.getSmtpSslSocketFactoryPortBytes();
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+       */
+      public Builder setSmtpSslSocketFactoryPort(
+          String value) {
+        copyOnWrite();
+        instance.setSmtpSslSocketFactoryPort(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+       */
+      public Builder clearSmtpSslSocketFactoryPort() {
+        copyOnWrite();
+        instance.clearSmtpSslSocketFactoryPort();
+        return this;
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryPort = 8;</code>
+       */
+      public Builder setSmtpSslSocketFactoryPortBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSmtpSslSocketFactoryPortBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+       */
+      public String getSmtpSslSocketFactoryClass() {
+        return instance.getSmtpSslSocketFactoryClass();
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSmtpSslSocketFactoryClassBytes() {
+        return instance.getSmtpSslSocketFactoryClassBytes();
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+       */
+      public Builder setSmtpSslSocketFactoryClass(
+          String value) {
+        copyOnWrite();
+        instance.setSmtpSslSocketFactoryClass(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+       */
+      public Builder clearSmtpSslSocketFactoryClass() {
+        copyOnWrite();
+        instance.clearSmtpSslSocketFactoryClass();
+        return this;
+      }
+      /**
+       * <pre>
+       *for SSL only
+       * </pre>
+       *
+       * <code>optional string smtpSslSocketFactoryClass = 9;</code>
+       */
+      public Builder setSmtpSslSocketFactoryClassBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSmtpSslSocketFactoryClassBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *for TLS only
+       * </pre>
+       *
+       * <code>optional bool smtpStartTlsEnable = 10;</code>
+       */
+      public boolean getSmtpStartTlsEnable() {
+        return instance.getSmtpStartTlsEnable();
+      }
+      /**
+       * <pre>
+       *for TLS only
+       * </pre>
+       *
+       * <code>optional bool smtpStartTlsEnable = 10;</code>
+       */
+      public Builder setSmtpStartTlsEnable(boolean value) {
+        copyOnWrite();
+        instance.setSmtpStartTlsEnable(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *for TLS only
+       * </pre>
+       *
+       * <code>optional bool smtpStartTlsEnable = 10;</code>
+       */
+      public Builder clearSmtpStartTlsEnable() {
+        copyOnWrite();
+        instance.clearSmtpStartTlsEnable();
+        return this;
+      }
+
+      /**
+       * <code>optional string imapHostName = 11;</code>
+       */
+      public String getImapHostName() {
+        return instance.getImapHostName();
+      }
+      /**
+       * <code>optional string imapHostName = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImapHostNameBytes() {
+        return instance.getImapHostNameBytes();
+      }
+      /**
+       * <code>optional string imapHostName = 11;</code>
+       */
+      public Builder setImapHostName(
+          String value) {
+        copyOnWrite();
+        instance.setImapHostName(value);
+        return this;
+      }
+      /**
+       * <code>optional string imapHostName = 11;</code>
+       */
+      public Builder clearImapHostName() {
+        copyOnWrite();
+        instance.clearImapHostName();
+        return this;
+      }
+      /**
+       * <code>optional string imapHostName = 11;</code>
+       */
+      public Builder setImapHostNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImapHostNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string imapPort = 12;</code>
+       */
+      public String getImapPort() {
+        return instance.getImapPort();
+      }
+      /**
+       * <code>optional string imapPort = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImapPortBytes() {
+        return instance.getImapPortBytes();
+      }
+      /**
+       * <code>optional string imapPort = 12;</code>
+       */
+      public Builder setImapPort(
+          String value) {
+        copyOnWrite();
+        instance.setImapPort(value);
+        return this;
+      }
+      /**
+       * <code>optional string imapPort = 12;</code>
+       */
+      public Builder clearImapPort() {
+        copyOnWrite();
+        instance.clearImapPort();
+        return this;
+      }
+      /**
+       * <code>optional string imapPort = 12;</code>
+       */
+      public Builder setImapPortBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImapPortBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string integrationId = 13;</code>
+       */
+      public String getIntegrationId() {
+        return instance.getIntegrationId();
+      }
+      /**
+       * <code>optional string integrationId = 13;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntegrationIdBytes() {
+        return instance.getIntegrationIdBytes();
+      }
+      /**
+       * <code>optional string integrationId = 13;</code>
+       */
+      public Builder setIntegrationId(
+          String value) {
+        copyOnWrite();
+        instance.setIntegrationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 13;</code>
+       */
+      public Builder clearIntegrationId() {
+        copyOnWrite();
+        instance.clearIntegrationId();
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 13;</code>
+       */
+      public Builder setIntegrationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIntegrationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 14;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 14;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 14;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 15;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 15;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 15;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntegrationMail)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new IntegrationMail();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          IntegrationMail other = (IntegrationMail) arg1;
+          integrationMailId_ = visitor.visitString(!integrationMailId_.isEmpty(), integrationMailId_,
+              !other.integrationMailId_.isEmpty(), other.integrationMailId_);
+          email_ = visitor.visitString(!email_.isEmpty(), email_,
+              !other.email_.isEmpty(), other.email_);
+          password_ = visitor.visitString(!password_.isEmpty(), password_,
+              !other.password_.isEmpty(), other.password_);
+          smtpHostName_ = visitor.visitString(!smtpHostName_.isEmpty(), smtpHostName_,
+              !other.smtpHostName_.isEmpty(), other.smtpHostName_);
+          smtpPort_ = visitor.visitString(!smtpPort_.isEmpty(), smtpPort_,
+              !other.smtpPort_.isEmpty(), other.smtpPort_);
+          secureConnection_ = visitor.visitInt(secureConnection_ != 0, secureConnection_,    other.secureConnection_ != 0, other.secureConnection_);
+          mailSmtpAuth_ = visitor.visitBoolean(mailSmtpAuth_ != false, mailSmtpAuth_,
+              other.mailSmtpAuth_ != false, other.mailSmtpAuth_);
+          smtpSslSocketFactoryPort_ = visitor.visitString(!smtpSslSocketFactoryPort_.isEmpty(), smtpSslSocketFactoryPort_,
+              !other.smtpSslSocketFactoryPort_.isEmpty(), other.smtpSslSocketFactoryPort_);
+          smtpSslSocketFactoryClass_ = visitor.visitString(!smtpSslSocketFactoryClass_.isEmpty(), smtpSslSocketFactoryClass_,
+              !other.smtpSslSocketFactoryClass_.isEmpty(), other.smtpSslSocketFactoryClass_);
+          smtpStartTlsEnable_ = visitor.visitBoolean(smtpStartTlsEnable_ != false, smtpStartTlsEnable_,
+              other.smtpStartTlsEnable_ != false, other.smtpStartTlsEnable_);
+          imapHostName_ = visitor.visitString(!imapHostName_.isEmpty(), imapHostName_,
+              !other.imapHostName_.isEmpty(), other.imapHostName_);
+          imapPort_ = visitor.visitString(!imapPort_.isEmpty(), imapPort_,
+              !other.imapPort_.isEmpty(), other.imapPort_);
+          integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
+              !other.integrationId_.isEmpty(), other.integrationId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  integrationMailId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  email_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  password_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  smtpHostName_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  smtpPort_ = s;
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  secureConnection_ = rawValue;
+                  break;
+                }
+                case 56: {
+
+                  mailSmtpAuth_ = input.readBool();
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  smtpSslSocketFactoryPort_ = s;
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  smtpSslSocketFactoryClass_ = s;
+                  break;
+                }
+                case 80: {
+
+                  smtpStartTlsEnable_ = input.readBool();
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+
+                  imapHostName_ = s;
+                  break;
+                }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  imapPort_ = s;
+                  break;
+                }
+                case 106: {
+                  String s = input.readStringRequireUtf8();
+
+                  integrationId_ = s;
+                  break;
+                }
+                case 112: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 120: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (IntegrationMail.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntegrationMail)
+    private static final IntegrationMail DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new IntegrationMail();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static IntegrationMail getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<IntegrationMail> PARSER;
+
+    public static com.google.protobuf.Parser<IntegrationMail> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

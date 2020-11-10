@@ -5709,6 +5709,921 @@ public final class NotificationProto {
     }
   }
 
+  public interface NotificationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Notification)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     */
+    Notification.NotificationType getType();
+
+    /**
+     * <code>optional string notificationId = 2;</code>
+     */
+    String getNotificationId();
+    /**
+     * <code>optional string notificationId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNotificationIdBytes();
+
+    /**
+     * <code>optional string title = 3;</code>
+     */
+    String getTitle();
+    /**
+     * <code>optional string title = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTitleBytes();
+
+    /**
+     * <code>optional string body = 4;</code>
+     */
+    String getBody();
+    /**
+     * <code>optional string body = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getBodyBytes();
+
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    String getSenderId();
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderIdBytes();
+
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     */
+    long getTimestamp();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.Notification}
+   */
+  public  static final class Notification extends
+      com.google.protobuf.GeneratedMessageLite<
+          Notification, Notification.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Notification)
+      NotificationOrBuilder {
+    private Notification() {
+      notificationId_ = "";
+      title_ = "";
+      body_ = "";
+      senderId_ = "";
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.Notification.NotificationType}
+     */
+    public enum NotificationType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_NOTIFICATION_TYPE = 0;</code>
+       */
+      UNKNOWN_NOTIFICATION_TYPE(0),
+      /**
+       * <code>BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE = 1;</code>
+       */
+      BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE(1),
+      /**
+       * <code>TICKET_ADDED_TYPE = 2;</code>
+       */
+      TICKET_ADDED_TYPE(2),
+      /**
+       * <code>TICKET_UPDATED_TYPE = 3;</code>
+       */
+      TICKET_UPDATED_TYPE(3),
+      /**
+       * <code>TICKET_DELETED_TYPE = 4;</code>
+       */
+      TICKET_DELETED_TYPE(4),
+      /**
+       * <code>TICKET_STATUS_UPDATED_TYPE = 5;</code>
+       */
+      TICKET_STATUS_UPDATED_TYPE(5),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_NOTIFICATION_TYPE = 0;</code>
+       */
+      public static final int UNKNOWN_NOTIFICATION_TYPE_VALUE = 0;
+      /**
+       * <code>BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE = 1;</code>
+       */
+      public static final int BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE_VALUE = 1;
+      /**
+       * <code>TICKET_ADDED_TYPE = 2;</code>
+       */
+      public static final int TICKET_ADDED_TYPE_VALUE = 2;
+      /**
+       * <code>TICKET_UPDATED_TYPE = 3;</code>
+       */
+      public static final int TICKET_UPDATED_TYPE_VALUE = 3;
+      /**
+       * <code>TICKET_DELETED_TYPE = 4;</code>
+       */
+      public static final int TICKET_DELETED_TYPE_VALUE = 4;
+      /**
+       * <code>TICKET_STATUS_UPDATED_TYPE = 5;</code>
+       */
+      public static final int TICKET_STATUS_UPDATED_TYPE_VALUE = 5;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @Deprecated
+      public static NotificationType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static NotificationType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_NOTIFICATION_TYPE;
+          case 1: return BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE;
+          case 2: return TICKET_ADDED_TYPE;
+          case 3: return TICKET_UPDATED_TYPE;
+          case 4: return TICKET_DELETED_TYPE;
+          case 5: return TICKET_STATUS_UPDATED_TYPE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<NotificationType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          NotificationType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<NotificationType>() {
+              public NotificationType findValueByNumber(int number) {
+                return NotificationType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private NotificationType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.Notification.NotificationType)
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     */
+    public NotificationType getType() {
+      NotificationType result = NotificationType.forNumber(type_);
+      return result == null ? NotificationType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     */
+    private void setTypeValue(int value) {
+        type_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     */
+    private void setType(NotificationType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      type_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     */
+    private void clearType() {
+      
+      type_ = 0;
+    }
+
+    public static final int NOTIFICATIONID_FIELD_NUMBER = 2;
+    private String notificationId_;
+    /**
+     * <code>optional string notificationId = 2;</code>
+     */
+    public String getNotificationId() {
+      return notificationId_;
+    }
+    /**
+     * <code>optional string notificationId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNotificationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(notificationId_);
+    }
+    /**
+     * <code>optional string notificationId = 2;</code>
+     */
+    private void setNotificationId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      notificationId_ = value;
+    }
+    /**
+     * <code>optional string notificationId = 2;</code>
+     */
+    private void clearNotificationId() {
+      
+      notificationId_ = getDefaultInstance().getNotificationId();
+    }
+    /**
+     * <code>optional string notificationId = 2;</code>
+     */
+    private void setNotificationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      notificationId_ = value.toStringUtf8();
+    }
+
+    public static final int TITLE_FIELD_NUMBER = 3;
+    private String title_;
+    /**
+     * <code>optional string title = 3;</code>
+     */
+    public String getTitle() {
+      return title_;
+    }
+    /**
+     * <code>optional string title = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTitleBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(title_);
+    }
+    /**
+     * <code>optional string title = 3;</code>
+     */
+    private void setTitle(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      title_ = value;
+    }
+    /**
+     * <code>optional string title = 3;</code>
+     */
+    private void clearTitle() {
+      
+      title_ = getDefaultInstance().getTitle();
+    }
+    /**
+     * <code>optional string title = 3;</code>
+     */
+    private void setTitleBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      title_ = value.toStringUtf8();
+    }
+
+    public static final int BODY_FIELD_NUMBER = 4;
+    private String body_;
+    /**
+     * <code>optional string body = 4;</code>
+     */
+    public String getBody() {
+      return body_;
+    }
+    /**
+     * <code>optional string body = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBodyBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(body_);
+    }
+    /**
+     * <code>optional string body = 4;</code>
+     */
+    private void setBody(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      body_ = value;
+    }
+    /**
+     * <code>optional string body = 4;</code>
+     */
+    private void clearBody() {
+      
+      body_ = getDefaultInstance().getBody();
+    }
+    /**
+     * <code>optional string body = 4;</code>
+     */
+    private void setBodyBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      body_ = value.toStringUtf8();
+    }
+
+    public static final int SENDERID_FIELD_NUMBER = 5;
+    private String senderId_;
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    public String getSenderId() {
+      return senderId_;
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderId_);
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    private void setSenderId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderId_ = value;
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    private void clearSenderId() {
+      
+      senderId_ = getDefaultInstance().getSenderId();
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    private void setSenderIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderId_ = value.toStringUtf8();
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 6;
+    private long timestamp_;
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     */
+    private void setTimestamp(long value) {
+      
+      timestamp_ = value;
+    }
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     */
+    private void clearTimestamp() {
+      
+      timestamp_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
+        output.writeEnum(1, type_);
+      }
+      if (!notificationId_.isEmpty()) {
+        output.writeString(2, getNotificationId());
+      }
+      if (!title_.isEmpty()) {
+        output.writeString(3, getTitle());
+      }
+      if (!body_.isEmpty()) {
+        output.writeString(4, getBody());
+      }
+      if (!senderId_.isEmpty()) {
+        output.writeString(5, getSenderId());
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(6, timestamp_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, type_);
+      }
+      if (!notificationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getNotificationId());
+      }
+      if (!title_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getTitle());
+      }
+      if (!body_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getBody());
+      }
+      if (!senderId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getSenderId());
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, timestamp_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static Notification parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Notification parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Notification parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Notification parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Notification parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Notification parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Notification parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static Notification parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Notification parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Notification parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(Notification prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.Notification}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          Notification, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Notification)
+        NotificationOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.NotificationProto.Notification.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       */
+      public int getTypeValue() {
+        return instance.getTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       */
+      public Builder setTypeValue(int value) {
+        copyOnWrite();
+        instance.setTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       */
+      public NotificationType getType() {
+        return instance.getType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       */
+      public Builder setType(NotificationType value) {
+        copyOnWrite();
+        instance.setType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       */
+      public Builder clearType() {
+        copyOnWrite();
+        instance.clearType();
+        return this;
+      }
+
+      /**
+       * <code>optional string notificationId = 2;</code>
+       */
+      public String getNotificationId() {
+        return instance.getNotificationId();
+      }
+      /**
+       * <code>optional string notificationId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNotificationIdBytes() {
+        return instance.getNotificationIdBytes();
+      }
+      /**
+       * <code>optional string notificationId = 2;</code>
+       */
+      public Builder setNotificationId(
+          String value) {
+        copyOnWrite();
+        instance.setNotificationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string notificationId = 2;</code>
+       */
+      public Builder clearNotificationId() {
+        copyOnWrite();
+        instance.clearNotificationId();
+        return this;
+      }
+      /**
+       * <code>optional string notificationId = 2;</code>
+       */
+      public Builder setNotificationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNotificationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string title = 3;</code>
+       */
+      public String getTitle() {
+        return instance.getTitle();
+      }
+      /**
+       * <code>optional string title = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTitleBytes() {
+        return instance.getTitleBytes();
+      }
+      /**
+       * <code>optional string title = 3;</code>
+       */
+      public Builder setTitle(
+          String value) {
+        copyOnWrite();
+        instance.setTitle(value);
+        return this;
+      }
+      /**
+       * <code>optional string title = 3;</code>
+       */
+      public Builder clearTitle() {
+        copyOnWrite();
+        instance.clearTitle();
+        return this;
+      }
+      /**
+       * <code>optional string title = 3;</code>
+       */
+      public Builder setTitleBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTitleBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string body = 4;</code>
+       */
+      public String getBody() {
+        return instance.getBody();
+      }
+      /**
+       * <code>optional string body = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBodyBytes() {
+        return instance.getBodyBytes();
+      }
+      /**
+       * <code>optional string body = 4;</code>
+       */
+      public Builder setBody(
+          String value) {
+        copyOnWrite();
+        instance.setBody(value);
+        return this;
+      }
+      /**
+       * <code>optional string body = 4;</code>
+       */
+      public Builder clearBody() {
+        copyOnWrite();
+        instance.clearBody();
+        return this;
+      }
+      /**
+       * <code>optional string body = 4;</code>
+       */
+      public Builder setBodyBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBodyBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public String getSenderId() {
+        return instance.getSenderId();
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderIdBytes() {
+        return instance.getSenderIdBytes();
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public Builder setSenderId(
+          String value) {
+        copyOnWrite();
+        instance.setSenderId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public Builder clearSenderId() {
+        copyOnWrite();
+        instance.clearSenderId();
+        return this;
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public Builder setSenderIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 timestamp = 6;</code>
+       */
+      public long getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <code>optional int64 timestamp = 6;</code>
+       */
+      public Builder setTimestamp(long value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 6;</code>
+       */
+      public Builder clearTimestamp() {
+        copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Notification)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new Notification();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          Notification other = (Notification) arg1;
+          type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
+          notificationId_ = visitor.visitString(!notificationId_.isEmpty(), notificationId_,
+              !other.notificationId_.isEmpty(), other.notificationId_);
+          title_ = visitor.visitString(!title_.isEmpty(), title_,
+              !other.title_.isEmpty(), other.title_);
+          body_ = visitor.visitString(!body_.isEmpty(), body_,
+              !other.body_.isEmpty(), other.body_);
+          senderId_ = visitor.visitString(!senderId_.isEmpty(), senderId_,
+              !other.senderId_.isEmpty(), other.senderId_);
+          timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
+              other.timestamp_ != 0L, other.timestamp_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  int rawValue = input.readEnum();
+
+                  type_ = rawValue;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  notificationId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  title_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  body_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderId_ = s;
+                  break;
+                }
+                case 48: {
+
+                  timestamp_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (Notification.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Notification)
+    private static final Notification DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Notification();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static Notification getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Notification> PARSER;
+
+    public static com.google.protobuf.Parser<Notification> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

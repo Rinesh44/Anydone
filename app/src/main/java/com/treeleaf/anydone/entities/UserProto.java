@@ -109,6 +109,10 @@ public final class UserProto {
      * <code>SLACK_THIRD_PARTY_SOURCE = 4;</code>
      */
     SLACK_THIRD_PARTY_SOURCE(4),
+    /**
+     * <code>MAIL_THIRD_PARTY_SOURCE = 5;</code>
+     */
+    MAIL_THIRD_PARTY_SOURCE(5),
     UNRECOGNIZED(-1),
     ;
 
@@ -132,6 +136,10 @@ public final class UserProto {
      * <code>SLACK_THIRD_PARTY_SOURCE = 4;</code>
      */
     public static final int SLACK_THIRD_PARTY_SOURCE_VALUE = 4;
+    /**
+     * <code>MAIL_THIRD_PARTY_SOURCE = 5;</code>
+     */
+    public static final int MAIL_THIRD_PARTY_SOURCE_VALUE = 5;
 
 
     public final int getNumber() {
@@ -153,6 +161,7 @@ public final class UserProto {
         case 2: return VIBER_THIRD_PARTY_SOURCE;
         case 3: return SERVICE_PROVIDER_SOURCE;
         case 4: return SLACK_THIRD_PARTY_SOURCE;
+        case 5: return MAIL_THIRD_PARTY_SOURCE;
         default: return null;
       }
     }

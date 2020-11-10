@@ -15,6 +15,8 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
 
+import java.util.Calendar;
+
 import javax.inject.Inject;
 
 import dagger.internal.Preconditions;
@@ -38,19 +40,21 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
 
     @Override
     public void addCard(@NonNull String cardNumber,
-                        @NonNull String month, @NonNull String year, @NonNull String CVV,
+                        @NonNull String cardHolderName,
+                        @NonNull String month,
+                        @NonNull String year,
+                        @NonNull String CVV,
                         @NonNull String streetAddress,
                         @NonNull String city, @NonNull String state, @NonNull String zipCode,
                         @NonNull String cardType,
                         boolean isDefault) {
         Preconditions.checkNotNull(getView(), "View is not attached");
-//        Preconditions.checkNotNull(cardHolderName, "CardHolderName cannot be null");
+        Preconditions.checkNotNull(cardHolderName, "CardHolderName cannot be null");
         Preconditions.checkNotNull(cardNumber, "Card Number cannot be null");
-        Preconditions.checkNotNull(month, "Month cannot be null");
-        Preconditions.checkNotNull(year, "Year cannot be null");
+        Preconditions.checkNotNull(month, "month cannot be null");
+        Preconditions.checkNotNull(year, "year cannot be null");
 
-
-        if (!validateCredentials(cardNumber, month, year, CVV)) {
+        if (!validateCredentials(cardNumber, cardHolderName, month, year, CVV)) {
             return;
         }
 
@@ -68,12 +72,17 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
                 .setCity(city)
                 .build();
 
+        Calendar cal = Calendar.getInstance();
+        cal.set(Integer.parseInt(year), Integer.parseInt(month) - 1, 1, 0, 0, 0);
+        long expiryDate = cal.getTimeInMillis();
+        GlobalUtils.showLog(TAG, "expiry date check: " + expiryDate);
+
         PaymentProto.Card card = PaymentProto.Card.newBuilder()
                 .setAccountId(userAccountId)
+                .setCardHolderName(cardHolderName)
                 .setCardNumber(cardNumber)
-                .setExpiryYear(year)
-                .setExpiryMonth(month)
-                .setCvc(CVV)
+                .setExpiryDate(expiryDate)
+                .setCvc(Integer.parseInt(CVV))
                 .setCardType(cardType)
                 .setBillingAddress(billingAddress)
                 .setIsDefault(isDefault)
@@ -138,13 +147,14 @@ public class AddCardPresenterImpl extends BasePresenter<AddCardContract.AddCardV
     }
 
 
-    private boolean validateCredentials(String cardNumber, String month,
-                                        String year, String cvv) {
+    private boolean validateCredentials(String cardNumber, String cardHolderName, String month,
+                                        String year,
+                                        String cvv) {
 
-      /*  if (ValidationUtils.isEmpty(cardHolderName)) {
+        if (ValidationUtils.isEmpty(cardHolderName)) {
             getView().showInvalidCardHolderNameError();
             return false;
-        }*/
+        }
 
         if (ValidationUtils.isEmpty(cardNumber) || cardNumber.length() != 19) {
             getView().showInvalidCardNumberError();

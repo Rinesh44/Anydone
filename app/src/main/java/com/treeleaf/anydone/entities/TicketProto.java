@@ -6191,6 +6191,16 @@ public final class TicketProto {
      */
     com.google.protobuf.ByteString
         getEstimatedTimeDescBytes();
+
+    /**
+     * <code>optional string msgId = 35;</code>
+     */
+    String getMsgId();
+    /**
+     * <code>optional string msgId = 35;</code>
+     */
+    com.google.protobuf.ByteString
+        getMsgIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Ticket}
@@ -6212,6 +6222,7 @@ public final class TicketProto {
       refId_ = "";
       label_ = emptyProtobufList();
       estimatedTimeDesc_ = "";
+      msgId_ = "";
     }
     private int bitField0_;
     public static final int TICKETID_FIELD_NUMBER = 1;
@@ -8109,6 +8120,52 @@ public final class TicketProto {
       estimatedTimeDesc_ = value.toStringUtf8();
     }
 
+    public static final int MSGID_FIELD_NUMBER = 35;
+    private String msgId_;
+    /**
+     * <code>optional string msgId = 35;</code>
+     */
+    public String getMsgId() {
+      return msgId_;
+    }
+    /**
+     * <code>optional string msgId = 35;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMsgIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(msgId_);
+    }
+    /**
+     * <code>optional string msgId = 35;</code>
+     */
+    private void setMsgId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      msgId_ = value;
+    }
+    /**
+     * <code>optional string msgId = 35;</code>
+     */
+    private void clearMsgId() {
+      
+      msgId_ = getDefaultInstance().getMsgId();
+    }
+    /**
+     * <code>optional string msgId = 35;</code>
+     */
+    private void setMsgIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      msgId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ticketId_ != 0L) {
@@ -8212,6 +8269,9 @@ public final class TicketProto {
       }
       if (!estimatedTimeDesc_.isEmpty()) {
         output.writeString(34, getEstimatedTimeDesc());
+      }
+      if (!msgId_.isEmpty()) {
+        output.writeString(35, getMsgId());
       }
     }
 
@@ -8355,6 +8415,10 @@ public final class TicketProto {
       if (!estimatedTimeDesc_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(34, getEstimatedTimeDesc());
+      }
+      if (!msgId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(35, getMsgId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -10100,6 +10164,46 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional string msgId = 35;</code>
+       */
+      public String getMsgId() {
+        return instance.getMsgId();
+      }
+      /**
+       * <code>optional string msgId = 35;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMsgIdBytes() {
+        return instance.getMsgIdBytes();
+      }
+      /**
+       * <code>optional string msgId = 35;</code>
+       */
+      public Builder setMsgId(
+          String value) {
+        copyOnWrite();
+        instance.setMsgId(value);
+        return this;
+      }
+      /**
+       * <code>optional string msgId = 35;</code>
+       */
+      public Builder clearMsgId() {
+        copyOnWrite();
+        instance.clearMsgId();
+        return this;
+      }
+      /**
+       * <code>optional string msgId = 35;</code>
+       */
+      public Builder setMsgIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMsgIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Ticket)
     }
     protected final Object dynamicMethod(
@@ -10175,6 +10279,8 @@ public final class TicketProto {
               other.estimatedTime_ != 0L, other.estimatedTime_);
           estimatedTimeDesc_ = visitor.visitString(!estimatedTimeDesc_.isEmpty(), estimatedTimeDesc_,
               !other.estimatedTimeDesc_.isEmpty(), other.estimatedTimeDesc_);
+          msgId_ = visitor.visitString(!msgId_.isEmpty(), msgId_,
+              !other.msgId_.isEmpty(), other.msgId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -10478,6 +10584,12 @@ public final class TicketProto {
                   String s = input.readStringRequireUtf8();
 
                   estimatedTimeDesc_ = s;
+                  break;
+                }
+                case 282: {
+                  String s = input.readStringRequireUtf8();
+
+                  msgId_ = s;
                   break;
                 }
               }
@@ -13088,6 +13200,571 @@ public final class TicketProto {
     private static volatile com.google.protobuf.Parser<GetSharableLinkRequest> PARSER;
 
     public static com.google.protobuf.Parser<GetSharableLinkRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface TicketEventPayloadOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TicketEventPayload)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional int64 ticketId = 1;</code>
+     */
+    long getTicketId();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+     */
+    int getStateValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+     */
+    TicketState getState();
+
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    java.util.List<String>
+        getRecipientsList();
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    int getRecipientsCount();
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    String getRecipients(int index);
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.TicketEventPayload}
+   */
+  public  static final class TicketEventPayload extends
+      com.google.protobuf.GeneratedMessageLite<
+          TicketEventPayload, TicketEventPayload.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketEventPayload)
+      TicketEventPayloadOrBuilder {
+    private TicketEventPayload() {
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int TICKETID_FIELD_NUMBER = 1;
+    private long ticketId_;
+    /**
+     * <code>optional int64 ticketId = 1;</code>
+     */
+    public long getTicketId() {
+      return ticketId_;
+    }
+    /**
+     * <code>optional int64 ticketId = 1;</code>
+     */
+    private void setTicketId(long value) {
+      
+      ticketId_ = value;
+    }
+    /**
+     * <code>optional int64 ticketId = 1;</code>
+     */
+    private void clearTicketId() {
+      
+      ticketId_ = 0L;
+    }
+
+    public static final int STATE_FIELD_NUMBER = 2;
+    private int state_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+     */
+    public int getStateValue() {
+      return state_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+     */
+    public TicketState getState() {
+      TicketState result = TicketState.forNumber(state_);
+      return result == null ? TicketState.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+     */
+    private void setStateValue(int value) {
+        state_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+     */
+    private void setState(TicketState value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      state_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+     */
+    private void clearState() {
+      
+      state_ = 0;
+    }
+
+    public static final int RECIPIENTS_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<String> recipients_;
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    public java.util.List<String> getRecipientsList() {
+      return recipients_;
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    public int getRecipientsCount() {
+      return recipients_.size();
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    public String getRecipients(int index) {
+      return recipients_.get(index);
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          recipients_.get(index));
+    }
+    private void ensureRecipientsIsMutable() {
+      if (!recipients_.isModifiable()) {
+        recipients_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+       }
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    private void setRecipients(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.set(index, value);
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    private void addRecipients(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.add(value);
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    private void addAllRecipients(
+        Iterable<String> values) {
+      ensureRecipientsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, recipients_);
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    private void clearRecipients() {
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string recipients = 3;</code>
+     */
+    private void addRecipientsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureRecipientsIsMutable();
+      recipients_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (ticketId_ != 0L) {
+        output.writeInt64(1, ticketId_);
+      }
+      if (state_ != TicketState.UNKNOWN_TICKET_STATE.getNumber()) {
+        output.writeEnum(2, state_);
+      }
+      for (int i = 0; i < recipients_.size(); i++) {
+        output.writeString(3, recipients_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (ticketId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, ticketId_);
+      }
+      if (state_ != TicketState.UNKNOWN_TICKET_STATE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, state_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < recipients_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(recipients_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getRecipientsList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static TicketEventPayload parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static TicketEventPayload parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static TicketEventPayload parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static TicketEventPayload parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static TicketEventPayload parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static TicketEventPayload parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static TicketEventPayload parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static TicketEventPayload parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static TicketEventPayload parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static TicketEventPayload parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(TicketEventPayload prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.TicketEventPayload}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          TicketEventPayload, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketEventPayload)
+        TicketEventPayloadOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.TicketEventPayload.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional int64 ticketId = 1;</code>
+       */
+      public long getTicketId() {
+        return instance.getTicketId();
+      }
+      /**
+       * <code>optional int64 ticketId = 1;</code>
+       */
+      public Builder setTicketId(long value) {
+        copyOnWrite();
+        instance.setTicketId(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 ticketId = 1;</code>
+       */
+      public Builder clearTicketId() {
+        copyOnWrite();
+        instance.clearTicketId();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+       */
+      public int getStateValue() {
+        return instance.getStateValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+       */
+      public Builder setStateValue(int value) {
+        copyOnWrite();
+        instance.setStateValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+       */
+      public TicketState getState() {
+        return instance.getState();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+       */
+      public Builder setState(TicketState value) {
+        copyOnWrite();
+        instance.setState(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketState state = 2;</code>
+       */
+      public Builder clearState() {
+        copyOnWrite();
+        instance.clearState();
+        return this;
+      }
+
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public java.util.List<String>
+          getRecipientsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRecipientsList());
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public int getRecipientsCount() {
+        return instance.getRecipientsCount();
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public String getRecipients(int index) {
+        return instance.getRecipients(index);
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientsBytes(int index) {
+        return instance.getRecipientsBytes(index);
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public Builder setRecipients(
+          int index, String value) {
+        copyOnWrite();
+        instance.setRecipients(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public Builder addRecipients(
+          String value) {
+        copyOnWrite();
+        instance.addRecipients(value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public Builder addAllRecipients(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllRecipients(values);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public Builder clearRecipients() {
+        copyOnWrite();
+        instance.clearRecipients();
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 3;</code>
+       */
+      public Builder addRecipientsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addRecipientsBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketEventPayload)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new TicketEventPayload();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          recipients_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          TicketEventPayload other = (TicketEventPayload) arg1;
+          ticketId_ = visitor.visitLong(ticketId_ != 0L, ticketId_,
+              other.ticketId_ != 0L, other.ticketId_);
+          state_ = visitor.visitInt(state_ != 0, state_,    other.state_ != 0, other.state_);
+          recipients_= visitor.visitList(recipients_, other.recipients_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  ticketId_ = input.readInt64();
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  state_ = rawValue;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+                  if (!recipients_.isModifiable()) {
+                    recipients_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+                  }
+                  recipients_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (TicketEventPayload.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketEventPayload)
+    private static final TicketEventPayload DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TicketEventPayload();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static TicketEventPayload getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<TicketEventPayload> PARSER;
+
+    public static com.google.protobuf.Parser<TicketEventPayload> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

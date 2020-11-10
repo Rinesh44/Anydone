@@ -15334,6 +15334,20 @@ public final class ThirdPartyProto {
      */
     com.google.protobuf.ByteString
         getChannelTypeBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    java.util.List<SlackFiles>
+        getFilesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    SlackFiles getFiles(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    int getFilesCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.SlackEvent}
@@ -15353,7 +15367,9 @@ public final class ThirdPartyProto {
       channel_ = "";
       eventTs_ = "";
       channelType_ = "";
+      files_ = emptyProtobufList();
     }
+    private int bitField0_;
     public static final int CLIENTMSGID_FIELD_NUMBER = 1;
     private String clientMsgId_;
     /**
@@ -15768,6 +15784,126 @@ public final class ThirdPartyProto {
       channelType_ = value.toStringUtf8();
     }
 
+    public static final int FILES_FIELD_NUMBER = 10;
+    private com.google.protobuf.Internal.ProtobufList<SlackFiles> files_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    public java.util.List<SlackFiles> getFilesList() {
+      return files_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    public java.util.List<? extends SlackFilesOrBuilder>
+        getFilesOrBuilderList() {
+      return files_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    public int getFilesCount() {
+      return files_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    public SlackFiles getFiles(int index) {
+      return files_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    public SlackFilesOrBuilder getFilesOrBuilder(
+        int index) {
+      return files_.get(index);
+    }
+    private void ensureFilesIsMutable() {
+      if (!files_.isModifiable()) {
+        files_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(files_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void setFiles(
+        int index, SlackFiles value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureFilesIsMutable();
+      files_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void setFiles(
+        int index, SlackFiles.Builder builderForValue) {
+      ensureFilesIsMutable();
+      files_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void addFiles(SlackFiles value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureFilesIsMutable();
+      files_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void addFiles(
+        int index, SlackFiles value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureFilesIsMutable();
+      files_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void addFiles(
+        SlackFiles.Builder builderForValue) {
+      ensureFilesIsMutable();
+      files_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void addFiles(
+        int index, SlackFiles.Builder builderForValue) {
+      ensureFilesIsMutable();
+      files_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void addAllFiles(
+        Iterable<? extends SlackFiles> values) {
+      ensureFilesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, files_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void clearFiles() {
+      files_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+     */
+    private void removeFiles(int index) {
+      ensureFilesIsMutable();
+      files_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!clientMsgId_.isEmpty()) {
@@ -15796,6 +15932,9 @@ public final class ThirdPartyProto {
       }
       if (!channelType_.isEmpty()) {
         output.writeString(9, getChannelType());
+      }
+      for (int i = 0; i < files_.size(); i++) {
+        output.writeMessage(10, files_.get(i));
       }
     }
 
@@ -15839,6 +15978,10 @@ public final class ThirdPartyProto {
       if (!channelType_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(9, getChannelType());
+      }
+      for (int i = 0; i < files_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, files_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -16286,6 +16429,103 @@ public final class ThirdPartyProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public java.util.List<SlackFiles> getFilesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getFilesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public int getFilesCount() {
+        return instance.getFilesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public SlackFiles getFiles(int index) {
+        return instance.getFiles(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder setFiles(
+          int index, SlackFiles value) {
+        copyOnWrite();
+        instance.setFiles(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder setFiles(
+          int index, SlackFiles.Builder builderForValue) {
+        copyOnWrite();
+        instance.setFiles(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder addFiles(SlackFiles value) {
+        copyOnWrite();
+        instance.addFiles(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder addFiles(
+          int index, SlackFiles value) {
+        copyOnWrite();
+        instance.addFiles(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder addFiles(
+          SlackFiles.Builder builderForValue) {
+        copyOnWrite();
+        instance.addFiles(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder addFiles(
+          int index, SlackFiles.Builder builderForValue) {
+        copyOnWrite();
+        instance.addFiles(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder addAllFiles(
+          Iterable<? extends SlackFiles> values) {
+        copyOnWrite();
+        instance.addAllFiles(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder clearFiles() {
+        copyOnWrite();
+        instance.clearFiles();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.SlackFiles files = 10;</code>
+       */
+      public Builder removeFiles(int index) {
+        copyOnWrite();
+        instance.removeFiles(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SlackEvent)
     }
     protected final Object dynamicMethod(
@@ -16299,6 +16539,7 @@ public final class ThirdPartyProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          files_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -16325,8 +16566,10 @@ public final class ThirdPartyProto {
               !other.eventTs_.isEmpty(), other.eventTs_);
           channelType_ = visitor.visitString(!channelType_.isEmpty(), channelType_,
               !other.channelType_.isEmpty(), other.channelType_);
+          files_= visitor.visitList(files_, other.files_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -16401,6 +16644,15 @@ public final class ThirdPartyProto {
                   String s = input.readStringRequireUtf8();
 
                   channelType_ = s;
+                  break;
+                }
+                case 82: {
+                  if (!files_.isModifiable()) {
+                    files_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(files_);
+                  }
+                  files_.add(
+                      input.readMessage(SlackFiles.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -17261,6 +17513,774 @@ public final class ThirdPartyProto {
     private static volatile com.google.protobuf.Parser<SlackPayload> PARSER;
 
     public static com.google.protobuf.Parser<SlackPayload> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface SlackFilesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.SlackFiles)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional string created = 2;</code>
+     */
+    String getCreated();
+    /**
+     * <code>optional string created = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getCreatedBytes();
+
+    /**
+     * <code>optional string timestamp = 3;</code>
+     */
+    String getTimestamp();
+    /**
+     * <code>optional string timestamp = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTimestampBytes();
+
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    String getName();
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional string urlPrivate = 5;</code>
+     */
+    String getUrlPrivate();
+    /**
+     * <code>optional string urlPrivate = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlPrivateBytes();
+  }
+  /**
+   * <pre>
+   *slack payload for image
+   * </pre>
+   *
+   * Protobuf type {@code treeleaf.anydone.entities.SlackFiles}
+   */
+  public  static final class SlackFiles extends
+      com.google.protobuf.GeneratedMessageLite<
+          SlackFiles, SlackFiles.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.SlackFiles)
+      SlackFilesOrBuilder {
+    private SlackFiles() {
+      id_ = "";
+      created_ = "";
+      timestamp_ = "";
+      name_ = "";
+      urlPrivate_ = "";
+    }
+    public static final int ID_FIELD_NUMBER = 1;
+    private String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int CREATED_FIELD_NUMBER = 2;
+    private String created_;
+    /**
+     * <code>optional string created = 2;</code>
+     */
+    public String getCreated() {
+      return created_;
+    }
+    /**
+     * <code>optional string created = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCreatedBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(created_);
+    }
+    /**
+     * <code>optional string created = 2;</code>
+     */
+    private void setCreated(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      created_ = value;
+    }
+    /**
+     * <code>optional string created = 2;</code>
+     */
+    private void clearCreated() {
+      
+      created_ = getDefaultInstance().getCreated();
+    }
+    /**
+     * <code>optional string created = 2;</code>
+     */
+    private void setCreatedBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      created_ = value.toStringUtf8();
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 3;
+    private String timestamp_;
+    /**
+     * <code>optional string timestamp = 3;</code>
+     */
+    public String getTimestamp() {
+      return timestamp_;
+    }
+    /**
+     * <code>optional string timestamp = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTimestampBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(timestamp_);
+    }
+    /**
+     * <code>optional string timestamp = 3;</code>
+     */
+    private void setTimestamp(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      timestamp_ = value;
+    }
+    /**
+     * <code>optional string timestamp = 3;</code>
+     */
+    private void clearTimestamp() {
+      
+      timestamp_ = getDefaultInstance().getTimestamp();
+    }
+    /**
+     * <code>optional string timestamp = 3;</code>
+     */
+    private void setTimestampBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      timestamp_ = value.toStringUtf8();
+    }
+
+    public static final int NAME_FIELD_NUMBER = 4;
+    private String name_;
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    public String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    private void setName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public static final int URLPRIVATE_FIELD_NUMBER = 5;
+    private String urlPrivate_;
+    /**
+     * <code>optional string urlPrivate = 5;</code>
+     */
+    public String getUrlPrivate() {
+      return urlPrivate_;
+    }
+    /**
+     * <code>optional string urlPrivate = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlPrivateBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(urlPrivate_);
+    }
+    /**
+     * <code>optional string urlPrivate = 5;</code>
+     */
+    private void setUrlPrivate(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      urlPrivate_ = value;
+    }
+    /**
+     * <code>optional string urlPrivate = 5;</code>
+     */
+    private void clearUrlPrivate() {
+      
+      urlPrivate_ = getDefaultInstance().getUrlPrivate();
+    }
+    /**
+     * <code>optional string urlPrivate = 5;</code>
+     */
+    private void setUrlPrivateBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      urlPrivate_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (!created_.isEmpty()) {
+        output.writeString(2, getCreated());
+      }
+      if (!timestamp_.isEmpty()) {
+        output.writeString(3, getTimestamp());
+      }
+      if (!name_.isEmpty()) {
+        output.writeString(4, getName());
+      }
+      if (!urlPrivate_.isEmpty()) {
+        output.writeString(5, getUrlPrivate());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (!created_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getCreated());
+      }
+      if (!timestamp_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getTimestamp());
+      }
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getName());
+      }
+      if (!urlPrivate_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getUrlPrivate());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static SlackFiles parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static SlackFiles parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static SlackFiles parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static SlackFiles parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static SlackFiles parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static SlackFiles parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static SlackFiles parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static SlackFiles parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static SlackFiles parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static SlackFiles parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(SlackFiles prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     *slack payload for image
+     * </pre>
+     *
+     * Protobuf type {@code treeleaf.anydone.entities.SlackFiles}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          SlackFiles, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.SlackFiles)
+        SlackFilesOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.SlackFiles.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string created = 2;</code>
+       */
+      public String getCreated() {
+        return instance.getCreated();
+      }
+      /**
+       * <code>optional string created = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCreatedBytes() {
+        return instance.getCreatedBytes();
+      }
+      /**
+       * <code>optional string created = 2;</code>
+       */
+      public Builder setCreated(
+          String value) {
+        copyOnWrite();
+        instance.setCreated(value);
+        return this;
+      }
+      /**
+       * <code>optional string created = 2;</code>
+       */
+      public Builder clearCreated() {
+        copyOnWrite();
+        instance.clearCreated();
+        return this;
+      }
+      /**
+       * <code>optional string created = 2;</code>
+       */
+      public Builder setCreatedBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCreatedBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string timestamp = 3;</code>
+       */
+      public String getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <code>optional string timestamp = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTimestampBytes() {
+        return instance.getTimestampBytes();
+      }
+      /**
+       * <code>optional string timestamp = 3;</code>
+       */
+      public Builder setTimestamp(
+          String value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+      }
+      /**
+       * <code>optional string timestamp = 3;</code>
+       */
+      public Builder clearTimestamp() {
+        copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+      /**
+       * <code>optional string timestamp = 3;</code>
+       */
+      public Builder setTimestampBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTimestampBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public Builder setName(
+          String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string urlPrivate = 5;</code>
+       */
+      public String getUrlPrivate() {
+        return instance.getUrlPrivate();
+      }
+      /**
+       * <code>optional string urlPrivate = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlPrivateBytes() {
+        return instance.getUrlPrivateBytes();
+      }
+      /**
+       * <code>optional string urlPrivate = 5;</code>
+       */
+      public Builder setUrlPrivate(
+          String value) {
+        copyOnWrite();
+        instance.setUrlPrivate(value);
+        return this;
+      }
+      /**
+       * <code>optional string urlPrivate = 5;</code>
+       */
+      public Builder clearUrlPrivate() {
+        copyOnWrite();
+        instance.clearUrlPrivate();
+        return this;
+      }
+      /**
+       * <code>optional string urlPrivate = 5;</code>
+       */
+      public Builder setUrlPrivateBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setUrlPrivateBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SlackFiles)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new SlackFiles();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          SlackFiles other = (SlackFiles) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          created_ = visitor.visitString(!created_.isEmpty(), created_,
+              !other.created_.isEmpty(), other.created_);
+          timestamp_ = visitor.visitString(!timestamp_.isEmpty(), timestamp_,
+              !other.timestamp_.isEmpty(), other.timestamp_);
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          urlPrivate_ = visitor.visitString(!urlPrivate_.isEmpty(), urlPrivate_,
+              !other.urlPrivate_.isEmpty(), other.urlPrivate_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  created_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  timestamp_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  urlPrivate_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (SlackFiles.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.SlackFiles)
+    private static final SlackFiles DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new SlackFiles();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static SlackFiles getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<SlackFiles> PARSER;
+
+    public static com.google.protobuf.Parser<SlackFiles> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

@@ -21,6 +21,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
@@ -57,7 +58,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
 
         Card card = cardList.get(position);
-        viewBinderHelper.bind(holder.swipeRevealLayout, card.getRefId());
+        viewBinderHelper.bind(holder.swipeRevealLayout, card.getCardId());
         setCardType(card, holder.cardImage);
 
         GlobalUtils.showLog(TAG, "card number check: " + card.getCardNumber());
@@ -75,10 +76,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
             holder.tvCardNumber.setText(cardNo);
         }
 
+        long cardExpiryDate = card.getExpiryDate();
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(cardExpiryDate);
+        String year = String.valueOf(cal.get(Calendar.YEAR));
+        int month = (cal.get(Calendar.MONTH)) + 1;
+
         StringBuilder expiryDate = new StringBuilder("Expires on ");
-        expiryDate.append(card.getMonth());
+        expiryDate.append(month);
         expiryDate.append("/");
-        expiryDate.append(card.getYear());
+        expiryDate.append(year);
         holder.tvExpiryDate.setText(expiryDate);
 
         if (card.isPrimary()) {
@@ -87,13 +94,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
 
         holder.ibPrimary.setOnClickListener(v -> {
             if (primaryListener != null) {
-                primaryListener.onPrimaryClicked(card.getRefId(), cardList.indexOf(card));
+                primaryListener.onPrimaryClicked(card.getCardId(), cardList.indexOf(card));
             }
         });
 
         holder.ibDelete.setOnClickListener(view -> {
             if (deleteListener != null) {
-                deleteListener.onDeleteClicked(card.getRefId(), cardList.indexOf(card));
+                deleteListener.onDeleteClicked(card.getCardId(), cardList.indexOf(card));
             }
         });
     }

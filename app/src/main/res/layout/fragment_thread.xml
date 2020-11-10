@@ -26,7 +26,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dimens_2x">
 
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,6 +61,47 @@
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/rl_ticket_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:padding="@dimen/dimen_10x1">
+
+            <TextView
+                android:id="@+id/tv_suggested_ticket_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_5x1"
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:text="Suggested Tickets"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_suggested_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_suggested_ticket_title"
+                android:layout_marginStart="@dimen/dimen_5x1"
+                android:layout_marginTop="@dimen/dimen_2x2"
+                android:layout_marginBottom="@dimen/dimen_10x1"
+                android:text="8 New Tickets"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/iv_close_ticket_suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_close_blue"
+                android:tint="@color/white" />
+
+
+        </RelativeLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_threads"

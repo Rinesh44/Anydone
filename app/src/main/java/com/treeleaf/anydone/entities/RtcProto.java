@@ -16582,15 +16582,6 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
     SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    boolean hasEventNotification();
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    EventNotificationProto.EventNotification getEventNotification();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayResponse}
@@ -16692,10 +16683,6 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_RESPONSE = 20;</code>
        */
       DRAW_META_DATA_CHANGE_RESPONSE(20),
-      /**
-       * <code>EVENT_NOTIFICATION_RESPONSE = 21;</code>
-       */
-      EVENT_NOTIFICATION_RESPONSE(21),
       UNRECOGNIZED(-1),
       ;
 
@@ -16783,10 +16770,6 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_RESPONSE = 20;</code>
        */
       public static final int DRAW_META_DATA_CHANGE_RESPONSE_VALUE = 20;
-      /**
-       * <code>EVENT_NOTIFICATION_RESPONSE = 21;</code>
-       */
-      public static final int EVENT_NOTIFICATION_RESPONSE_VALUE = 21;
 
 
       public final int getNumber() {
@@ -16824,7 +16807,6 @@ public final class RtcProto {
           case 18: return DRAW_TOUCH_UP_RESPONSE;
           case 19: return DRAW_CANVAS_CLEAR_RESPONSE;
           case 20: return DRAW_META_DATA_CHANGE_RESPONSE;
-          case 21: return EVENT_NOTIFICATION_RESPONSE;
           default: return null;
         }
       }
@@ -18037,58 +18019,6 @@ public final class RtcProto {
       
     }
 
-    public static final int EVENTNOTIFICATION_FIELD_NUMBER = 25;
-    private EventNotificationProto.EventNotification eventNotification_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    public boolean hasEventNotification() {
-      return eventNotification_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    public EventNotificationProto.EventNotification getEventNotification() {
-      return eventNotification_ == null ? EventNotificationProto.EventNotification.getDefaultInstance() : eventNotification_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    private void setEventNotification(EventNotificationProto.EventNotification value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      eventNotification_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    private void setEventNotification(
-        EventNotificationProto.EventNotification.Builder builderForValue) {
-      eventNotification_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    private void mergeEventNotification(EventNotificationProto.EventNotification value) {
-      if (eventNotification_ != null &&
-          eventNotification_ != EventNotificationProto.EventNotification.getDefaultInstance()) {
-        eventNotification_ =
-          EventNotificationProto.EventNotification.newBuilder(eventNotification_).mergeFrom(value).buildPartial();
-      } else {
-        eventNotification_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-     */
-    private void clearEventNotification() {  eventNotification_ = null;
-      
-    }
-
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (responseType_ != RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
@@ -18162,9 +18092,6 @@ public final class RtcProto {
       }
       if (drawMetaDataChangeResponse_ != null) {
         output.writeMessage(24, getDrawMetaDataChangeResponse());
-      }
-      if (eventNotification_ != null) {
-        output.writeMessage(25, getEventNotification());
       }
     }
 
@@ -18268,10 +18195,6 @@ public final class RtcProto {
       if (drawMetaDataChangeResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(24, getDrawMetaDataChangeResponse());
-      }
-      if (eventNotification_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(25, getEventNotification());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19396,51 +19319,6 @@ public final class RtcProto {
         return this;
       }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-       */
-      public boolean hasEventNotification() {
-        return instance.hasEventNotification();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-       */
-      public EventNotificationProto.EventNotification getEventNotification() {
-        return instance.getEventNotification();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-       */
-      public Builder setEventNotification(EventNotificationProto.EventNotification value) {
-        copyOnWrite();
-        instance.setEventNotification(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-       */
-      public Builder setEventNotification(
-          EventNotificationProto.EventNotification.Builder builderForValue) {
-        copyOnWrite();
-        instance.setEventNotification(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-       */
-      public Builder mergeEventNotification(EventNotificationProto.EventNotification value) {
-        copyOnWrite();
-        instance.mergeEventNotification(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 25;</code>
-       */
-      public Builder clearEventNotification() {  copyOnWrite();
-        instance.clearEventNotification();
-        return this;
-      }
-
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayResponse)
     }
     protected final Object dynamicMethod(
@@ -19488,7 +19366,6 @@ public final class RtcProto {
           drawTouchUpResponse_ = visitor.visitMessage(drawTouchUpResponse_, other.drawTouchUpResponse_);
           drawCanvasClearResponse_ = visitor.visitMessage(drawCanvasClearResponse_, other.drawCanvasClearResponse_);
           drawMetaDataChangeResponse_ = visitor.visitMessage(drawMetaDataChangeResponse_, other.drawMetaDataChangeResponse_);
-          eventNotification_ = visitor.visitMessage(eventNotification_, other.eventNotification_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -19792,19 +19669,6 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawMetaDataChangeResponse_);
                     drawMetaDataChangeResponse_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 202: {
-                  EventNotificationProto.EventNotification.Builder subBuilder = null;
-                  if (eventNotification_ != null) {
-                    subBuilder = eventNotification_.toBuilder();
-                  }
-                  eventNotification_ = input.readMessage(EventNotificationProto.EventNotification.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(eventNotification_);
-                    eventNotification_ = subBuilder.buildPartial();
                   }
 
                   break;
