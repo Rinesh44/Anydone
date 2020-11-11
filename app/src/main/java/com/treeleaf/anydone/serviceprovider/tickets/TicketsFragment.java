@@ -159,6 +159,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
 
+        presenter.findCustomers();
         presenter.findEmployees();
         presenter.getTicketTypes();
         presenter.getLabels();

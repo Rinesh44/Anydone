@@ -153,13 +153,13 @@ public final class RtcServiceRpcProto {
     com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    boolean hasEventNotification();
+    boolean hasBotTrainingCompletedEvent();
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    com.treeleaf.anydone.entities.EventNotificationProto.EventNotification getEventNotification();
+    com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseRequest}
@@ -911,55 +911,55 @@ public final class RtcServiceRpcProto {
       
     }
 
-    public static final int EVENTNOTIFICATION_FIELD_NUMBER = 17;
-    private com.treeleaf.anydone.entities.EventNotificationProto.EventNotification eventNotification_;
+    public static final int BOTTRAININGCOMPLETEDEVENT_FIELD_NUMBER = 17;
+    private com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent botTrainingCompletedEvent_;
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    public boolean hasEventNotification() {
-      return eventNotification_ != null;
+    public boolean hasBotTrainingCompletedEvent() {
+      return botTrainingCompletedEvent_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    public com.treeleaf.anydone.entities.EventNotificationProto.EventNotification getEventNotification() {
-      return eventNotification_ == null ? com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.getDefaultInstance() : eventNotification_;
+    public com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent() {
+      return botTrainingCompletedEvent_ == null ? com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.getDefaultInstance() : botTrainingCompletedEvent_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    private void setEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
+    private void setBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      eventNotification_ = value;
+      botTrainingCompletedEvent_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    private void setEventNotification(
-        com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.Builder builderForValue) {
-      eventNotification_ = builderForValue.build();
+    private void setBotTrainingCompletedEvent(
+        com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.Builder builderForValue) {
+      botTrainingCompletedEvent_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    private void mergeEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
-      if (eventNotification_ != null &&
-          eventNotification_ != com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.getDefaultInstance()) {
-        eventNotification_ =
-          com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.newBuilder(eventNotification_).mergeFrom(value).buildPartial();
+    private void mergeBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
+      if (botTrainingCompletedEvent_ != null &&
+          botTrainingCompletedEvent_ != com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.getDefaultInstance()) {
+        botTrainingCompletedEvent_ =
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.newBuilder(botTrainingCompletedEvent_).mergeFrom(value).buildPartial();
       } else {
-        eventNotification_ = value;
+        botTrainingCompletedEvent_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
-    private void clearEventNotification() {  eventNotification_ = null;
+    private void clearBotTrainingCompletedEvent() {  botTrainingCompletedEvent_ = null;
       
     }
 
@@ -1013,8 +1013,8 @@ public final class RtcServiceRpcProto {
       if (rtcMessage_ != null) {
         output.writeMessage(16, getRtcMessage());
       }
-      if (eventNotification_ != null) {
-        output.writeMessage(17, getEventNotification());
+      if (botTrainingCompletedEvent_ != null) {
+        output.writeMessage(17, getBotTrainingCompletedEvent());
       }
     }
 
@@ -1092,9 +1092,9 @@ public final class RtcServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getRtcMessage());
       }
-      if (eventNotification_ != null) {
+      if (botTrainingCompletedEvent_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(17, getEventNotification());
+          .computeMessageSize(17, getBotTrainingCompletedEvent());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1832,47 +1832,47 @@ public final class RtcServiceRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
        */
-      public boolean hasEventNotification() {
-        return instance.hasEventNotification();
+      public boolean hasBotTrainingCompletedEvent() {
+        return instance.hasBotTrainingCompletedEvent();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
        */
-      public com.treeleaf.anydone.entities.EventNotificationProto.EventNotification getEventNotification() {
-        return instance.getEventNotification();
+      public com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent() {
+        return instance.getBotTrainingCompletedEvent();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
        */
-      public Builder setEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
+      public Builder setBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
         copyOnWrite();
-        instance.setEventNotification(value);
+        instance.setBotTrainingCompletedEvent(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
        */
-      public Builder setEventNotification(
-          com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.Builder builderForValue) {
+      public Builder setBotTrainingCompletedEvent(
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.Builder builderForValue) {
         copyOnWrite();
-        instance.setEventNotification(builderForValue);
+        instance.setBotTrainingCompletedEvent(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
        */
-      public Builder mergeEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
+      public Builder mergeBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
         copyOnWrite();
-        instance.mergeEventNotification(value);
+        instance.mergeBotTrainingCompletedEvent(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 17;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
        */
-      public Builder clearEventNotification() {  copyOnWrite();
-        instance.clearEventNotification();
+      public Builder clearBotTrainingCompletedEvent() {  copyOnWrite();
+        instance.clearBotTrainingCompletedEvent();
         return this;
       }
 
@@ -1920,7 +1920,7 @@ public final class RtcServiceRpcProto {
           getMessageDetail_ = visitor.visitMessage(getMessageDetail_, other.getMessageDetail_);
           deleteMessageReq_ = visitor.visitMessage(deleteMessageReq_, other.deleteMessageReq_);
           rtcMessage_ = visitor.visitMessage(rtcMessage_, other.rtcMessage_);
-          eventNotification_ = visitor.visitMessage(eventNotification_, other.eventNotification_);
+          botTrainingCompletedEvent_ = visitor.visitMessage(botTrainingCompletedEvent_, other.botTrainingCompletedEvent_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2105,14 +2105,14 @@ public final class RtcServiceRpcProto {
                   break;
                 }
                 case 138: {
-                  com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.Builder subBuilder = null;
-                  if (eventNotification_ != null) {
-                    subBuilder = eventNotification_.toBuilder();
+                  com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.Builder subBuilder = null;
+                  if (botTrainingCompletedEvent_ != null) {
+                    subBuilder = botTrainingCompletedEvent_.toBuilder();
                   }
-                  eventNotification_ = input.readMessage(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.parser(), extensionRegistry);
+                  botTrainingCompletedEvent_ = input.readMessage(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(eventNotification_);
-                    eventNotification_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(botTrainingCompletedEvent_);
+                    botTrainingCompletedEvent_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -2286,13 +2286,13 @@ public final class RtcServiceRpcProto {
     int getAvConnectDetailsCount();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    boolean hasEventNotification();
+    boolean hasBotTrainingCompletedEvent();
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    com.treeleaf.anydone.entities.EventNotificationProto.EventNotification getEventNotification();
+    com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseResponse}
@@ -3049,55 +3049,55 @@ public final class RtcServiceRpcProto {
       avConnectDetails_.remove(index);
     }
 
-    public static final int EVENTNOTIFICATION_FIELD_NUMBER = 18;
-    private com.treeleaf.anydone.entities.EventNotificationProto.EventNotification eventNotification_;
+    public static final int BOTTRAININGCOMPLETEDEVENT_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent botTrainingCompletedEvent_;
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    public boolean hasEventNotification() {
-      return eventNotification_ != null;
+    public boolean hasBotTrainingCompletedEvent() {
+      return botTrainingCompletedEvent_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    public com.treeleaf.anydone.entities.EventNotificationProto.EventNotification getEventNotification() {
-      return eventNotification_ == null ? com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.getDefaultInstance() : eventNotification_;
+    public com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent() {
+      return botTrainingCompletedEvent_ == null ? com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.getDefaultInstance() : botTrainingCompletedEvent_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    private void setEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
+    private void setBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      eventNotification_ = value;
+      botTrainingCompletedEvent_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    private void setEventNotification(
-        com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.Builder builderForValue) {
-      eventNotification_ = builderForValue.build();
+    private void setBotTrainingCompletedEvent(
+        com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.Builder builderForValue) {
+      botTrainingCompletedEvent_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    private void mergeEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
-      if (eventNotification_ != null &&
-          eventNotification_ != com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.getDefaultInstance()) {
-        eventNotification_ =
-          com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.newBuilder(eventNotification_).mergeFrom(value).buildPartial();
+    private void mergeBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
+      if (botTrainingCompletedEvent_ != null &&
+          botTrainingCompletedEvent_ != com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.getDefaultInstance()) {
+        botTrainingCompletedEvent_ =
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.newBuilder(botTrainingCompletedEvent_).mergeFrom(value).buildPartial();
       } else {
-        eventNotification_ = value;
+        botTrainingCompletedEvent_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+     * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
-    private void clearEventNotification() {  eventNotification_ = null;
+    private void clearBotTrainingCompletedEvent() {  botTrainingCompletedEvent_ = null;
       
     }
 
@@ -3142,8 +3142,8 @@ public final class RtcServiceRpcProto {
       for (int i = 0; i < avConnectDetails_.size(); i++) {
         output.writeMessage(13, avConnectDetails_.get(i));
       }
-      if (eventNotification_ != null) {
-        output.writeMessage(18, getEventNotification());
+      if (botTrainingCompletedEvent_ != null) {
+        output.writeMessage(14, getBotTrainingCompletedEvent());
       }
     }
 
@@ -3204,9 +3204,9 @@ public final class RtcServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, avConnectDetails_.get(i));
       }
-      if (eventNotification_ != null) {
+      if (botTrainingCompletedEvent_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(18, getEventNotification());
+          .computeMessageSize(14, getBotTrainingCompletedEvent());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3930,47 +3930,47 @@ public final class RtcServiceRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
        */
-      public boolean hasEventNotification() {
-        return instance.hasEventNotification();
+      public boolean hasBotTrainingCompletedEvent() {
+        return instance.hasBotTrainingCompletedEvent();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
        */
-      public com.treeleaf.anydone.entities.EventNotificationProto.EventNotification getEventNotification() {
-        return instance.getEventNotification();
+      public com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent() {
+        return instance.getBotTrainingCompletedEvent();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
        */
-      public Builder setEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
+      public Builder setBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
         copyOnWrite();
-        instance.setEventNotification(value);
+        instance.setBotTrainingCompletedEvent(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
        */
-      public Builder setEventNotification(
-          com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.Builder builderForValue) {
+      public Builder setBotTrainingCompletedEvent(
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.Builder builderForValue) {
         copyOnWrite();
-        instance.setEventNotification(builderForValue);
+        instance.setBotTrainingCompletedEvent(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
        */
-      public Builder mergeEventNotification(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification value) {
+      public Builder mergeBotTrainingCompletedEvent(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent value) {
         copyOnWrite();
-        instance.mergeEventNotification(value);
+        instance.mergeBotTrainingCompletedEvent(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.EventNotification eventNotification = 18;</code>
+       * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
        */
-      public Builder clearEventNotification() {  copyOnWrite();
-        instance.clearEventNotification();
+      public Builder clearBotTrainingCompletedEvent() {  copyOnWrite();
+        instance.clearBotTrainingCompletedEvent();
         return this;
       }
 
@@ -4017,7 +4017,7 @@ public final class RtcServiceRpcProto {
           rtcSession_ = visitor.visitMessage(rtcSession_, other.rtcSession_);
           rtcSessions_= visitor.visitList(rtcSessions_, other.rtcSessions_);
           avConnectDetails_= visitor.visitList(avConnectDetails_, other.avConnectDetails_);
-          eventNotification_ = visitor.visitMessage(eventNotification_, other.eventNotification_);
+          botTrainingCompletedEvent_ = visitor.visitMessage(botTrainingCompletedEvent_, other.botTrainingCompletedEvent_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4147,15 +4147,15 @@ public final class RtcServiceRpcProto {
                       input.readMessage(com.treeleaf.anydone.entities.SignalingProto.AvConnectDetails.parser(), extensionRegistry));
                   break;
                 }
-                case 146: {
-                  com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.Builder subBuilder = null;
-                  if (eventNotification_ != null) {
-                    subBuilder = eventNotification_.toBuilder();
+                case 114: {
+                  com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.Builder subBuilder = null;
+                  if (botTrainingCompletedEvent_ != null) {
+                    subBuilder = botTrainingCompletedEvent_.toBuilder();
                   }
-                  eventNotification_ = input.readMessage(com.treeleaf.anydone.entities.EventNotificationProto.EventNotification.parser(), extensionRegistry);
+                  botTrainingCompletedEvent_ = input.readMessage(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(eventNotification_);
-                    eventNotification_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(botTrainingCompletedEvent_);
+                    botTrainingCompletedEvent_ = subBuilder.buildPartial();
                   }
 
                   break;

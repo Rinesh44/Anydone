@@ -138,6 +138,15 @@ public final class KGraphRpcProto {
      * <code>optional .treeleaf.anydone.entities.Attribute attribute = 14;</code>
      */
     com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    boolean hasKnowledgeBuilderRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest getKnowledgeBuilderRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.KGraphBaseRequest}
@@ -854,6 +863,58 @@ public final class KGraphRpcProto {
       
     }
 
+    public static final int KNOWLEDGEBUILDERREQUEST_FIELD_NUMBER = 15;
+    private com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest knowledgeBuilderRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    public boolean hasKnowledgeBuilderRequest() {
+      return knowledgeBuilderRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest getKnowledgeBuilderRequest() {
+      return knowledgeBuilderRequest_ == null ? com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.getDefaultInstance() : knowledgeBuilderRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    private void setKnowledgeBuilderRequest(com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      knowledgeBuilderRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    private void setKnowledgeBuilderRequest(
+        com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.Builder builderForValue) {
+      knowledgeBuilderRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    private void mergeKnowledgeBuilderRequest(com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest value) {
+      if (knowledgeBuilderRequest_ != null &&
+          knowledgeBuilderRequest_ != com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.getDefaultInstance()) {
+        knowledgeBuilderRequest_ =
+          com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.newBuilder(knowledgeBuilderRequest_).mergeFrom(value).buildPartial();
+      } else {
+        knowledgeBuilderRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+     */
+    private void clearKnowledgeBuilderRequest() {  knowledgeBuilderRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -897,6 +958,9 @@ public final class KGraphRpcProto {
       }
       if (attribute_ != null) {
         output.writeMessage(14, getAttribute());
+      }
+      if (knowledgeBuilderRequest_ != null) {
+        output.writeMessage(15, getKnowledgeBuilderRequest());
       }
     }
 
@@ -965,6 +1029,10 @@ public final class KGraphRpcProto {
       if (attribute_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getAttribute());
+      }
+      if (knowledgeBuilderRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getKnowledgeBuilderRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1663,6 +1731,51 @@ public final class KGraphRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+       */
+      public boolean hasKnowledgeBuilderRequest() {
+        return instance.hasKnowledgeBuilderRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest getKnowledgeBuilderRequest() {
+        return instance.getKnowledgeBuilderRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+       */
+      public Builder setKnowledgeBuilderRequest(com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest value) {
+        copyOnWrite();
+        instance.setKnowledgeBuilderRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+       */
+      public Builder setKnowledgeBuilderRequest(
+          com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setKnowledgeBuilderRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+       */
+      public Builder mergeKnowledgeBuilderRequest(com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest value) {
+        copyOnWrite();
+        instance.mergeKnowledgeBuilderRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KnowledgeBuilderRequest knowledgeBuilderRequest = 15;</code>
+       */
+      public Builder clearKnowledgeBuilderRequest() {  copyOnWrite();
+        instance.clearKnowledgeBuilderRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.KGraphBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1706,6 +1819,7 @@ public final class KGraphRpcProto {
           question_ = visitor.visitMessage(question_, other.question_);
           answer_ = visitor.visitMessage(answer_, other.answer_);
           attribute_ = visitor.visitMessage(attribute_, other.attribute_);
+          knowledgeBuilderRequest_ = visitor.visitMessage(knowledgeBuilderRequest_, other.knowledgeBuilderRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1859,6 +1973,19 @@ public final class KGraphRpcProto {
 
                   break;
                 }
+                case 122: {
+                  com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.Builder subBuilder = null;
+                  if (knowledgeBuilderRequest_ != null) {
+                    subBuilder = knowledgeBuilderRequest_.toBuilder();
+                  }
+                  knowledgeBuilderRequest_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(knowledgeBuilderRequest_);
+                    knowledgeBuilderRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2007,6 +2134,29 @@ public final class KGraphRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Answer answers = 11;</code>
      */
     int getAnswersCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    boolean hasKnowledge();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.Knowledge getKnowledge();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.KGraphProto.QATuple> 
+        getQaTuplesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.QATuple getQaTuples(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    int getQaTuplesCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.KGraphBaseResponse}
@@ -2021,6 +2171,7 @@ public final class KGraphRpcProto {
       refId_ = "";
       questions_ = emptyProtobufList();
       answers_ = emptyProtobufList();
+      qaTuples_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2619,6 +2770,178 @@ public final class KGraphRpcProto {
       answers_.remove(index);
     }
 
+    public static final int KNOWLEDGE_FIELD_NUMBER = 12;
+    private com.treeleaf.anydone.entities.KGraphProto.Knowledge knowledge_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    public boolean hasKnowledge() {
+      return knowledge_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.Knowledge getKnowledge() {
+      return knowledge_ == null ? com.treeleaf.anydone.entities.KGraphProto.Knowledge.getDefaultInstance() : knowledge_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    private void setKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      knowledge_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    private void setKnowledge(
+        com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder builderForValue) {
+      knowledge_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    private void mergeKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+      if (knowledge_ != null &&
+          knowledge_ != com.treeleaf.anydone.entities.KGraphProto.Knowledge.getDefaultInstance()) {
+        knowledge_ =
+          com.treeleaf.anydone.entities.KGraphProto.Knowledge.newBuilder(knowledge_).mergeFrom(value).buildPartial();
+      } else {
+        knowledge_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+     */
+    private void clearKnowledge() {  knowledge_ = null;
+      
+    }
+
+    public static final int QATUPLES_FIELD_NUMBER = 13;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.QATuple> qaTuples_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.QATuple> getQaTuplesList() {
+      return qaTuples_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.QATupleOrBuilder> 
+        getQaTuplesOrBuilderList() {
+      return qaTuples_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    public int getQaTuplesCount() {
+      return qaTuples_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.QATuple getQaTuples(int index) {
+      return qaTuples_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.QATupleOrBuilder getQaTuplesOrBuilder(
+        int index) {
+      return qaTuples_.get(index);
+    }
+    private void ensureQaTuplesIsMutable() {
+      if (!qaTuples_.isModifiable()) {
+        qaTuples_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(qaTuples_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void setQaTuples(
+        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureQaTuplesIsMutable();
+      qaTuples_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void setQaTuples(
+        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void addQaTuples(com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void addQaTuples(
+        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void addQaTuples(
+        com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void addQaTuples(
+        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void addAllQaTuples(
+        Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
+      ensureQaTuplesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, qaTuples_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void clearQaTuples() {
+      qaTuples_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+     */
+    private void removeQaTuples(int index) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2653,6 +2976,12 @@ public final class KGraphRpcProto {
       }
       for (int i = 0; i < answers_.size(); i++) {
         output.writeMessage(11, answers_.get(i));
+      }
+      if (knowledge_ != null) {
+        output.writeMessage(12, getKnowledge());
+      }
+      for (int i = 0; i < qaTuples_.size(); i++) {
+        output.writeMessage(13, qaTuples_.get(i));
       }
     }
 
@@ -2704,6 +3033,14 @@ public final class KGraphRpcProto {
       for (int i = 0; i < answers_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, answers_.get(i));
+      }
+      if (knowledge_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getKnowledge());
+      }
+      for (int i = 0; i < qaTuples_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, qaTuples_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -3306,6 +3643,148 @@ public final class KGraphRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+       */
+      public boolean hasKnowledge() {
+        return instance.hasKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.Knowledge getKnowledge() {
+        return instance.getKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+       */
+      public Builder setKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+        copyOnWrite();
+        instance.setKnowledge(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+       */
+      public Builder setKnowledge(
+          com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.setKnowledge(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+       */
+      public Builder mergeKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+        copyOnWrite();
+        instance.mergeKnowledge(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 12;</code>
+       */
+      public Builder clearKnowledge() {  copyOnWrite();
+        instance.clearKnowledge();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.QATuple> getQaTuplesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getQaTuplesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public int getQaTuplesCount() {
+        return instance.getQaTuplesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.QATuple getQaTuples(int index) {
+        return instance.getQaTuples(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder setQaTuples(
+          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+        copyOnWrite();
+        instance.setQaTuples(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder setQaTuples(
+          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.setQaTuples(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder addQaTuples(com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+        copyOnWrite();
+        instance.addQaTuples(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder addQaTuples(
+          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+        copyOnWrite();
+        instance.addQaTuples(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder addQaTuples(
+          com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.addQaTuples(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder addQaTuples(
+          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.addQaTuples(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder addAllQaTuples(
+          Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
+        copyOnWrite();
+        instance.addAllQaTuples(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder clearQaTuples() {
+        copyOnWrite();
+        instance.clearQaTuples();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
+       */
+      public Builder removeQaTuples(int index) {
+        copyOnWrite();
+        instance.removeQaTuples(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.KGraphBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -3321,6 +3800,7 @@ public final class KGraphRpcProto {
         case MAKE_IMMUTABLE: {
           questions_.makeImmutable();
           answers_.makeImmutable();
+          qaTuples_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3345,6 +3825,8 @@ public final class KGraphRpcProto {
           questions_= visitor.visitList(questions_, other.questions_);
           answer_ = visitor.visitMessage(answer_, other.answer_);
           answers_= visitor.visitList(answers_, other.answers_);
+          knowledge_ = visitor.visitMessage(knowledge_, other.knowledge_);
+          qaTuples_= visitor.visitList(qaTuples_, other.qaTuples_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3458,6 +3940,28 @@ public final class KGraphRpcProto {
                   }
                   answers_.add(
                       input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Answer.parser(), extensionRegistry));
+                  break;
+                }
+                case 98: {
+                  com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder subBuilder = null;
+                  if (knowledge_ != null) {
+                    subBuilder = knowledge_.toBuilder();
+                  }
+                  knowledge_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Knowledge.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(knowledge_);
+                    knowledge_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 106: {
+                  if (!qaTuples_.isModifiable()) {
+                    qaTuples_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(qaTuples_);
+                  }
+                  qaTuples_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.QATuple.parser(), extensionRegistry));
                   break;
                 }
               }

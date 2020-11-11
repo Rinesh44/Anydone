@@ -805,7 +805,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         labelSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
-                .inflate(R.layout.layout_bottom_sheet_label, null);
+                .inflate(R.layout.bottom_sheeet_label_alternate, null);
 
         labelSheet.setContentView(view);
         TextView tvLabelDone = view.findViewById(R.id.tv_done);
@@ -1259,7 +1259,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         teamSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
-                .inflate(R.layout.layout_bottom_sheet_team, null);
+                .inflate(R.layout.bottom_sheet_team_alternate, null);
 
         teamSheet.setContentView(view);
         TextView tvTeamDone = view.findViewById(R.id.tv_done);

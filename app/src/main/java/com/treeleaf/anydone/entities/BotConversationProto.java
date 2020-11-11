@@ -1017,6 +1017,16 @@ public final class BotConversationProto {
         getSenderAccountIdBytes();
 
     /**
+     * <code>optional string queryText = 3;</code>
+     */
+    String getQueryText();
+    /**
+     * <code>optional string queryText = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getQueryTextBytes();
+
+    /**
      * <code>optional .treeleaf.anydone.entities.BotReply botReply = 4;</code>
      */
     boolean hasBotReply();
@@ -1024,6 +1034,16 @@ public final class BotConversationProto {
      * <code>optional .treeleaf.anydone.entities.BotReply botReply = 4;</code>
      */
     NLUProto.BotReply getBotReply();
+
+    /**
+     * <code>optional string query = 5;</code>
+     */
+    String getQuery();
+    /**
+     * <code>optional string query = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getQueryBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationResponse}
@@ -1036,6 +1056,8 @@ public final class BotConversationProto {
     private ConversationResponse() {
       messageId_ = "";
       senderAccountId_ = "";
+      queryText_ = "";
+      query_ = "";
     }
     public static final int MESSAGEID_FIELD_NUMBER = 1;
     private String messageId_;
@@ -1129,6 +1151,52 @@ public final class BotConversationProto {
       senderAccountId_ = value.toStringUtf8();
     }
 
+    public static final int QUERYTEXT_FIELD_NUMBER = 3;
+    private String queryText_;
+    /**
+     * <code>optional string queryText = 3;</code>
+     */
+    public String getQueryText() {
+      return queryText_;
+    }
+    /**
+     * <code>optional string queryText = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getQueryTextBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(queryText_);
+    }
+    /**
+     * <code>optional string queryText = 3;</code>
+     */
+    private void setQueryText(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      queryText_ = value;
+    }
+    /**
+     * <code>optional string queryText = 3;</code>
+     */
+    private void clearQueryText() {
+      
+      queryText_ = getDefaultInstance().getQueryText();
+    }
+    /**
+     * <code>optional string queryText = 3;</code>
+     */
+    private void setQueryTextBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      queryText_ = value.toStringUtf8();
+    }
+
     public static final int BOTREPLY_FIELD_NUMBER = 4;
     private NLUProto.BotReply botReply_;
     /**
@@ -1181,6 +1249,52 @@ public final class BotConversationProto {
       
     }
 
+    public static final int QUERY_FIELD_NUMBER = 5;
+    private String query_;
+    /**
+     * <code>optional string query = 5;</code>
+     */
+    public String getQuery() {
+      return query_;
+    }
+    /**
+     * <code>optional string query = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getQueryBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(query_);
+    }
+    /**
+     * <code>optional string query = 5;</code>
+     */
+    private void setQuery(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      query_ = value;
+    }
+    /**
+     * <code>optional string query = 5;</code>
+     */
+    private void clearQuery() {
+      
+      query_ = getDefaultInstance().getQuery();
+    }
+    /**
+     * <code>optional string query = 5;</code>
+     */
+    private void setQueryBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      query_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!messageId_.isEmpty()) {
@@ -1189,8 +1303,14 @@ public final class BotConversationProto {
       if (!senderAccountId_.isEmpty()) {
         output.writeString(2, getSenderAccountId());
       }
+      if (!queryText_.isEmpty()) {
+        output.writeString(3, getQueryText());
+      }
       if (botReply_ != null) {
         output.writeMessage(4, getBotReply());
+      }
+      if (!query_.isEmpty()) {
+        output.writeString(5, getQuery());
       }
     }
 
@@ -1207,9 +1327,17 @@ public final class BotConversationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getSenderAccountId());
       }
+      if (!queryText_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getQueryText());
+      }
       if (botReply_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getBotReply());
+      }
+      if (!query_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getQuery());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1378,6 +1506,46 @@ public final class BotConversationProto {
       }
 
       /**
+       * <code>optional string queryText = 3;</code>
+       */
+      public String getQueryText() {
+        return instance.getQueryText();
+      }
+      /**
+       * <code>optional string queryText = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getQueryTextBytes() {
+        return instance.getQueryTextBytes();
+      }
+      /**
+       * <code>optional string queryText = 3;</code>
+       */
+      public Builder setQueryText(
+          String value) {
+        copyOnWrite();
+        instance.setQueryText(value);
+        return this;
+      }
+      /**
+       * <code>optional string queryText = 3;</code>
+       */
+      public Builder clearQueryText() {
+        copyOnWrite();
+        instance.clearQueryText();
+        return this;
+      }
+      /**
+       * <code>optional string queryText = 3;</code>
+       */
+      public Builder setQueryTextBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setQueryTextBytes(value);
+        return this;
+      }
+
+      /**
        * <code>optional .treeleaf.anydone.entities.BotReply botReply = 4;</code>
        */
       public boolean hasBotReply() {
@@ -1422,6 +1590,46 @@ public final class BotConversationProto {
         return this;
       }
 
+      /**
+       * <code>optional string query = 5;</code>
+       */
+      public String getQuery() {
+        return instance.getQuery();
+      }
+      /**
+       * <code>optional string query = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getQueryBytes() {
+        return instance.getQueryBytes();
+      }
+      /**
+       * <code>optional string query = 5;</code>
+       */
+      public Builder setQuery(
+          String value) {
+        copyOnWrite();
+        instance.setQuery(value);
+        return this;
+      }
+      /**
+       * <code>optional string query = 5;</code>
+       */
+      public Builder clearQuery() {
+        copyOnWrite();
+        instance.clearQuery();
+        return this;
+      }
+      /**
+       * <code>optional string query = 5;</code>
+       */
+      public Builder setQueryBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setQueryBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationResponse)
     }
     protected final Object dynamicMethod(
@@ -1447,7 +1655,11 @@ public final class BotConversationProto {
               !other.messageId_.isEmpty(), other.messageId_);
           senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
               !other.senderAccountId_.isEmpty(), other.senderAccountId_);
+          queryText_ = visitor.visitString(!queryText_.isEmpty(), queryText_,
+              !other.queryText_.isEmpty(), other.queryText_);
           botReply_ = visitor.visitMessage(botReply_, other.botReply_);
+          query_ = visitor.visitString(!query_.isEmpty(), query_,
+              !other.query_.isEmpty(), other.query_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -1484,6 +1696,12 @@ public final class BotConversationProto {
                   senderAccountId_ = s;
                   break;
                 }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  queryText_ = s;
+                  break;
+                }
                 case 34: {
                   NLUProto.BotReply.Builder subBuilder = null;
                   if (botReply_ != null) {
@@ -1495,6 +1713,12 @@ public final class BotConversationProto {
                     botReply_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  query_ = s;
                   break;
                 }
               }

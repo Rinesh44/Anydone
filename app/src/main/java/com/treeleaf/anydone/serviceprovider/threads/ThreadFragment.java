@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         implements ThreadContract.ThreadView {
@@ -81,6 +83,12 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     CoordinatorLayout root;
     @BindView(R.id.swipe_refresh_threads)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.rl_ticket_suggestion)
+    RelativeLayout rlTicketSuggestion;
+    @BindView(R.id.tv_suggested_ticket)
+    TextView tvSuggestedTicket;
+    @BindView(R.id.iv_close_ticket_suggestion)
+    ImageView ivCloseTicketSuggestion;
 
     private RecyclerView rvServices;
     //    private BottomSheetBehavior sheetBehavior;
@@ -145,6 +153,17 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         } catch (MqttException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @OnClick(R.id.rl_ticket_suggestion)
+    void onTicketSuggestionClick() {
+
+    }
+
+    @OnClick(R.id.iv_close_ticket_suggestion)
+    void onTicketSuggestionClose() {
+
     }
 
     private void createServiceBottomSheet() {

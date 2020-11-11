@@ -235,6 +235,15 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Label labels = 24;</code>
      */
     int getLabelsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    boolean hasTicketParserRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest getTicketParserRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -1620,6 +1629,58 @@ public final class TicketServiceRpcProto {
       labels_.remove(index);
     }
 
+    public static final int TICKETPARSERREQUEST_FIELD_NUMBER = 25;
+    private com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest ticketParserRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    public boolean hasTicketParserRequest() {
+      return ticketParserRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest getTicketParserRequest() {
+      return ticketParserRequest_ == null ? com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.getDefaultInstance() : ticketParserRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    private void setTicketParserRequest(com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticketParserRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    private void setTicketParserRequest(
+        com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.Builder builderForValue) {
+      ticketParserRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    private void mergeTicketParserRequest(com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest value) {
+      if (ticketParserRequest_ != null &&
+          ticketParserRequest_ != com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.getDefaultInstance()) {
+        ticketParserRequest_ =
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.newBuilder(ticketParserRequest_).mergeFrom(value).buildPartial();
+      } else {
+        ticketParserRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+     */
+    private void clearTicketParserRequest() {  ticketParserRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1693,6 +1754,9 @@ public final class TicketServiceRpcProto {
       }
       for (int i = 0; i < labels_.size(); i++) {
         output.writeMessage(24, labels_.get(i));
+      }
+      if (ticketParserRequest_ != null) {
+        output.writeMessage(25, getTicketParserRequest());
       }
     }
 
@@ -1801,6 +1865,10 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < labels_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(24, labels_.get(i));
+      }
+      if (ticketParserRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, getTicketParserRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3061,6 +3129,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+       */
+      public boolean hasTicketParserRequest() {
+        return instance.hasTicketParserRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest getTicketParserRequest() {
+        return instance.getTicketParserRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+       */
+      public Builder setTicketParserRequest(com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest value) {
+        copyOnWrite();
+        instance.setTicketParserRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+       */
+      public Builder setTicketParserRequest(
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketParserRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+       */
+      public Builder mergeTicketParserRequest(com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest value) {
+        copyOnWrite();
+        instance.mergeTicketParserRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
+       */
+      public Builder clearTicketParserRequest() {  copyOnWrite();
+        instance.clearTicketParserRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -3119,6 +3232,7 @@ public final class TicketServiceRpcProto {
           ticketTypes_= visitor.visitList(ticketTypes_, other.ticketTypes_);
           label_ = visitor.visitMessage(label_, other.label_);
           labels_= visitor.visitList(labels_, other.labels_);
+          ticketParserRequest_ = visitor.visitMessage(ticketParserRequest_, other.ticketParserRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3372,6 +3486,19 @@ public final class TicketServiceRpcProto {
                   }
                   labels_.add(
                       input.readMessage(com.treeleaf.anydone.entities.TicketProto.Label.parser(), extensionRegistry));
+                  break;
+                }
+                case 202: {
+                  com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.Builder subBuilder = null;
+                  if (ticketParserRequest_ != null) {
+                    subBuilder = ticketParserRequest_.toBuilder();
+                  }
+                  ticketParserRequest_ = input.readMessage(com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticketParserRequest_);
+                    ticketParserRequest_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -3650,6 +3777,15 @@ public final class TicketServiceRpcProto {
      * <code>optional int64 estimatedTime = 25;</code>
      */
     long getEstimatedTime();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    boolean hasTicketParserResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse getTicketParserResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -5149,6 +5285,58 @@ public final class TicketServiceRpcProto {
       estimatedTime_ = 0L;
     }
 
+    public static final int TICKETPARSERRESPONSE_FIELD_NUMBER = 26;
+    private com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse ticketParserResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    public boolean hasTicketParserResponse() {
+      return ticketParserResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse getTicketParserResponse() {
+      return ticketParserResponse_ == null ? com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.getDefaultInstance() : ticketParserResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    private void setTicketParserResponse(com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticketParserResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    private void setTicketParserResponse(
+        com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.Builder builderForValue) {
+      ticketParserResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    private void mergeTicketParserResponse(com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse value) {
+      if (ticketParserResponse_ != null &&
+          ticketParserResponse_ != com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.getDefaultInstance()) {
+        ticketParserResponse_ =
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.newBuilder(ticketParserResponse_).mergeFrom(value).buildPartial();
+      } else {
+        ticketParserResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+     */
+    private void clearTicketParserResponse() {  ticketParserResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -5219,6 +5407,9 @@ public final class TicketServiceRpcProto {
       }
       if (estimatedTime_ != 0L) {
         output.writeInt64(25, estimatedTime_);
+      }
+      if (ticketParserResponse_ != null) {
+        output.writeMessage(26, getTicketParserResponse());
       }
     }
 
@@ -5318,6 +5509,10 @@ public final class TicketServiceRpcProto {
       if (estimatedTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(25, estimatedTime_);
+      }
+      if (ticketParserResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, getTicketParserResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6660,6 +6855,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+       */
+      public boolean hasTicketParserResponse() {
+        return instance.hasTicketParserResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse getTicketParserResponse() {
+        return instance.getTicketParserResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+       */
+      public Builder setTicketParserResponse(com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse value) {
+        copyOnWrite();
+        instance.setTicketParserResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+       */
+      public Builder setTicketParserResponse(
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketParserResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+       */
+      public Builder mergeTicketParserResponse(com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse value) {
+        copyOnWrite();
+        instance.mergeTicketParserResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
+       */
+      public Builder clearTicketParserResponse() {  copyOnWrite();
+        instance.clearTicketParserResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -6715,6 +6955,7 @@ public final class TicketServiceRpcProto {
           labels_= visitor.visitList(labels_, other.labels_);
           estimatedTime_ = visitor.visitLong(estimatedTime_ != 0L, estimatedTime_,
               other.estimatedTime_ != 0L, other.estimatedTime_);
+          ticketParserResponse_ = visitor.visitMessage(ticketParserResponse_, other.ticketParserResponse_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -6961,6 +7202,19 @@ public final class TicketServiceRpcProto {
                 case 200: {
 
                   estimatedTime_ = input.readInt64();
+                  break;
+                }
+                case 210: {
+                  com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.Builder subBuilder = null;
+                  if (ticketParserResponse_ != null) {
+                    subBuilder = ticketParserResponse_.toBuilder();
+                  }
+                  ticketParserResponse_ = input.readMessage(com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticketParserResponse_);
+                    ticketParserResponse_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

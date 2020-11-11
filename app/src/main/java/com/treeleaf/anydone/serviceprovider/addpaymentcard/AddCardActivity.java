@@ -36,10 +36,10 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     TextInputLayout ilCardNumber;
     @BindView(R.id.et_card_number)
     TextInputEditText etCardNumber;
-    /*    @BindView(R.id.il_name)
-        TextInputLayout ilName;
-        @BindView(R.id.et_name)
-        TextInputEditText etName;*/
+    @BindView(R.id.il_name)
+    TextInputLayout ilName;
+    @BindView(R.id.et_name)
+    TextInputEditText etName;
     @BindView(R.id.il_month)
     TextInputLayout ilMonth;
     @BindView(R.id.et_month)
@@ -115,6 +115,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
             hideKeyBoard();
             presenter.addCard(
                     UiUtils.getString(etCardNumber),
+                    UiUtils.getString(etName),
                     UiUtils.getString(etMonth),
                     UiUtils.getString(etYear),
                     UiUtils.getString(etCvv),
@@ -230,6 +231,15 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     }*/
 
     @Override
+    public void showInvalidCardHolderNameError() {
+        etName.requestFocus();
+        ilName.setErrorEnabled(true);
+        ilName.setError("Invalid card holder name");
+
+        onInvalidCardHolderName();
+    }
+
+    @Override
     public void showInvalidCardNumberError() {
         etCardNumber.requestFocus();
         ilCardNumber.setErrorEnabled(true);
@@ -265,8 +275,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         onInvalidCVV();
     }
 
-
-/*    @Override
+    @Override
     public void onInvalidCardHolderName() {
         ilCardNumber.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
@@ -275,11 +284,11 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         ilStreetAddress.setErrorEnabled(false);
         ilCity.setErrorEnabled(false);
         ilState.setErrorEnabled(false);
-    }*/
+    }
 
     @Override
     public void onInvalidCardNumber() {
-//        ilName.setErrorEnabled(false);
+        ilName.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
         ilYear.setErrorEnabled(false);
         ilCvv.setErrorEnabled(false);
@@ -291,7 +300,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     @Override
     public void onInvalidMonth() {
         ilCardNumber.setErrorEnabled(false);
-//        ilName.setErrorEnabled(false);
+        ilName.setErrorEnabled(false);
         ilYear.setErrorEnabled(false);
         ilCvv.setErrorEnabled(false);
         ilStreetAddress.setErrorEnabled(false);
@@ -303,7 +312,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
     public void onInvalidYear() {
         ilCardNumber.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
-//        ilName.setErrorEnabled(false);
+        ilName.setErrorEnabled(false);
         ilCvv.setErrorEnabled(false);
         ilStreetAddress.setErrorEnabled(false);
         ilCity.setErrorEnabled(false);
@@ -315,7 +324,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         ilCardNumber.setErrorEnabled(false);
         ilMonth.setErrorEnabled(false);
         ilYear.setErrorEnabled(false);
-//        ilName.setErrorEnabled(false);
+        ilName.setErrorEnabled(false);
         ilStreetAddress.setErrorEnabled(false);
         ilCity.setErrorEnabled(false);
         ilState.setErrorEnabled(false);

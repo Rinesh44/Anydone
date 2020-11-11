@@ -335,11 +335,14 @@ public interface AnyDoneService {
                          String token,
                  @Body TicketProto.Ticket ticket);
 
-    @GET("customers/service/{serviceId}")
-    Observable<TicketServiceRpcProto.TicketBaseResponse> findCustomers(@Header(AUTHORIZATION)
-                                                                               String token,
-                                                                       @Path(value = "serviceId")
-                                                                               String serviceId);
+    @GET("customers")
+    Observable<UserRpcProto.UserBaseResponse> findCustomers(@Header(AUTHORIZATION)
+                                                                    String token,
+                                                            @Query("query") String query,
+                                                            @Query("from") long from,
+                                                            @Query("to") long to,
+                                                            @Query("pageSize") int pageSize);
+
 
     @GET("employees")
     Observable<UserRpcProto.UserBaseResponse> findEmployees(@Header(AUTHORIZATION)
@@ -561,10 +564,11 @@ public interface AnyDoneService {
                                                                            token,
                                                                    @Body PaymentProto.Card card);
 
-    @PATCH("payment/card/default")
+    @PATCH("payment/card/default/{cardId}")
     Observable<PaymentRpcProto.PaymentBaseResponse> setPaymentCardAsPrimary(@Header(AUTHORIZATION)
                                                                                     String token,
-                                                                            @Body String cardId);
+                                                                            @Path(value = "cardId")
+                                                                                    String cardId);
 
     @DELETE("payment/card/{cardId}")
     Observable<PaymentRpcProto.PaymentBaseResponse> deletePaymentCard(@Header(AUTHORIZATION) String

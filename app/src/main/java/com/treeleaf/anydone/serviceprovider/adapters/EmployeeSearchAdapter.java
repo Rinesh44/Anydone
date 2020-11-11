@@ -1,10 +1,13 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,20 +18,25 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAdapter.EmployeeHolder> {
+public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAdapter.EmployeeHolder>
+        implements Filterable {
     private static final String TAG = "EmployeeSearchAdapter";
     private List<AssignEmployee> assignEmployeeList;
+    private List<AssignEmployee> assignEmployeeListFiltered;
     private Context mContext;
     private OnItemClickListener listener;
 
     public EmployeeSearchAdapter(List<AssignEmployee> assignEmployeeList, Context mContext) {
         this.assignEmployeeList = assignEmployeeList;
+        this.assignEmployeeListFiltered = assignEmployeeList;
         this.mContext = mContext;
     }
 
@@ -65,10 +73,51 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
 
     @Override
     public int getItemCount() {
-        if (assignEmployeeList != null) {
-            return assignEmployeeList.size();
+        if (assignEmployeeListFiltered != null) {
+            return assignEmployeeListFiltered.size();
         } else return 0;
     }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return employeeFilter;
+    }
+
+    private Filter employeeFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            ((Activity) mContext).runOnUiThread(() -> {
+                List<AssignEmployee> suggestions = new ArrayList<>();
+                if (constraint == null || constraint.length() == 0) {
+                    suggestions.addAll(assignEmployeeList);
+                } else {
+                    String filterPattern = constraint.toString().toLowerCase().trim();
+                    for (AssignEmployee item : assignEmployeeList) {
+                        if (item.getName().toLowerCase().contains(filterPattern) ||
+                                item.getPhone().contains(filterPattern)) {
+                            suggestions.add(item);
+                        }
+                    }
+                }
+                results.values = suggestions;
+                results.count = suggestions.size();
+            });
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            assignEmployeeListFiltered = (List<AssignEmployee>) results.values;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public CharSequence convertResultToString(Object resultValue) {
+            return ((AssignEmployee) resultValue).getName();
+        }
+    };
 
 
     class EmployeeHolder extends RecyclerView.ViewHolder {

@@ -3343,6 +3343,2610 @@ public final class KGraphProto {
     }
   }
 
+  public interface KnowledgeBuilderRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.KnowledgeBuilderRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string text = 1;</code>
+     */
+    String getText();
+    /**
+     * <code>optional string text = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTextBytes();
+
+    /**
+     * <code>optional string url = 2;</code>
+     */
+    String getUrl();
+    /**
+     * <code>optional string url = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlBytes();
+
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    java.util.List<String>
+        getUrlsList();
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    int getUrlsCount();
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    String getUrls(int index);
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlsBytes(int index);
+
+    /**
+     * <code>optional string filePath = 4;</code>
+     */
+    String getFilePath();
+    /**
+     * <code>optional string filePath = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getFilePathBytes();
+
+    /**
+     * <code>optional string filePaths = 5;</code>
+     */
+    String getFilePaths();
+    /**
+     * <code>optional string filePaths = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getFilePathsBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.KnowledgeBuilderRequest}
+   */
+  public  static final class KnowledgeBuilderRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          KnowledgeBuilderRequest, KnowledgeBuilderRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.KnowledgeBuilderRequest)
+      KnowledgeBuilderRequestOrBuilder {
+    private KnowledgeBuilderRequest() {
+      text_ = "";
+      url_ = "";
+      urls_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      filePath_ = "";
+      filePaths_ = "";
+    }
+    private int bitField0_;
+    public static final int TEXT_FIELD_NUMBER = 1;
+    private String text_;
+    /**
+     * <code>optional string text = 1;</code>
+     */
+    public String getText() {
+      return text_;
+    }
+    /**
+     * <code>optional string text = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTextBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(text_);
+    }
+    /**
+     * <code>optional string text = 1;</code>
+     */
+    private void setText(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      text_ = value;
+    }
+    /**
+     * <code>optional string text = 1;</code>
+     */
+    private void clearText() {
+      
+      text_ = getDefaultInstance().getText();
+    }
+    /**
+     * <code>optional string text = 1;</code>
+     */
+    private void setTextBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      text_ = value.toStringUtf8();
+    }
+
+    public static final int URL_FIELD_NUMBER = 2;
+    private String url_;
+    /**
+     * <code>optional string url = 2;</code>
+     */
+    public String getUrl() {
+      return url_;
+    }
+    /**
+     * <code>optional string url = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(url_);
+    }
+    /**
+     * <code>optional string url = 2;</code>
+     */
+    private void setUrl(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      url_ = value;
+    }
+    /**
+     * <code>optional string url = 2;</code>
+     */
+    private void clearUrl() {
+      
+      url_ = getDefaultInstance().getUrl();
+    }
+    /**
+     * <code>optional string url = 2;</code>
+     */
+    private void setUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      url_ = value.toStringUtf8();
+    }
+
+    public static final int URLS_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<String> urls_;
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    public java.util.List<String> getUrlsList() {
+      return urls_;
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    public int getUrlsCount() {
+      return urls_.size();
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    public String getUrls(int index) {
+      return urls_.get(index);
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          urls_.get(index));
+    }
+    private void ensureUrlsIsMutable() {
+      if (!urls_.isModifiable()) {
+        urls_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(urls_);
+       }
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    private void setUrls(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureUrlsIsMutable();
+      urls_.set(index, value);
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    private void addUrls(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureUrlsIsMutable();
+      urls_.add(value);
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    private void addAllUrls(
+        Iterable<String> values) {
+      ensureUrlsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, urls_);
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    private void clearUrls() {
+      urls_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string urls = 3;</code>
+     */
+    private void addUrlsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureUrlsIsMutable();
+      urls_.add(value.toStringUtf8());
+    }
+
+    public static final int FILEPATH_FIELD_NUMBER = 4;
+    private String filePath_;
+    /**
+     * <code>optional string filePath = 4;</code>
+     */
+    public String getFilePath() {
+      return filePath_;
+    }
+    /**
+     * <code>optional string filePath = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFilePathBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(filePath_);
+    }
+    /**
+     * <code>optional string filePath = 4;</code>
+     */
+    private void setFilePath(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      filePath_ = value;
+    }
+    /**
+     * <code>optional string filePath = 4;</code>
+     */
+    private void clearFilePath() {
+      
+      filePath_ = getDefaultInstance().getFilePath();
+    }
+    /**
+     * <code>optional string filePath = 4;</code>
+     */
+    private void setFilePathBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      filePath_ = value.toStringUtf8();
+    }
+
+    public static final int FILEPATHS_FIELD_NUMBER = 5;
+    private String filePaths_;
+    /**
+     * <code>optional string filePaths = 5;</code>
+     */
+    public String getFilePaths() {
+      return filePaths_;
+    }
+    /**
+     * <code>optional string filePaths = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFilePathsBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(filePaths_);
+    }
+    /**
+     * <code>optional string filePaths = 5;</code>
+     */
+    private void setFilePaths(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      filePaths_ = value;
+    }
+    /**
+     * <code>optional string filePaths = 5;</code>
+     */
+    private void clearFilePaths() {
+      
+      filePaths_ = getDefaultInstance().getFilePaths();
+    }
+    /**
+     * <code>optional string filePaths = 5;</code>
+     */
+    private void setFilePathsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      filePaths_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!text_.isEmpty()) {
+        output.writeString(1, getText());
+      }
+      if (!url_.isEmpty()) {
+        output.writeString(2, getUrl());
+      }
+      for (int i = 0; i < urls_.size(); i++) {
+        output.writeString(3, urls_.get(i));
+      }
+      if (!filePath_.isEmpty()) {
+        output.writeString(4, getFilePath());
+      }
+      if (!filePaths_.isEmpty()) {
+        output.writeString(5, getFilePaths());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!text_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getText());
+      }
+      if (!url_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getUrl());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < urls_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(urls_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getUrlsList().size();
+      }
+      if (!filePath_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getFilePath());
+      }
+      if (!filePaths_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getFilePaths());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static KnowledgeBuilderRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static KnowledgeBuilderRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static KnowledgeBuilderRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static KnowledgeBuilderRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static KnowledgeBuilderRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static KnowledgeBuilderRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static KnowledgeBuilderRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static KnowledgeBuilderRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static KnowledgeBuilderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static KnowledgeBuilderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(KnowledgeBuilderRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.KnowledgeBuilderRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          KnowledgeBuilderRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KnowledgeBuilderRequest)
+        KnowledgeBuilderRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string text = 1;</code>
+       */
+      public String getText() {
+        return instance.getText();
+      }
+      /**
+       * <code>optional string text = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTextBytes() {
+        return instance.getTextBytes();
+      }
+      /**
+       * <code>optional string text = 1;</code>
+       */
+      public Builder setText(
+          String value) {
+        copyOnWrite();
+        instance.setText(value);
+        return this;
+      }
+      /**
+       * <code>optional string text = 1;</code>
+       */
+      public Builder clearText() {
+        copyOnWrite();
+        instance.clearText();
+        return this;
+      }
+      /**
+       * <code>optional string text = 1;</code>
+       */
+      public Builder setTextBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTextBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string url = 2;</code>
+       */
+      public String getUrl() {
+        return instance.getUrl();
+      }
+      /**
+       * <code>optional string url = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlBytes() {
+        return instance.getUrlBytes();
+      }
+      /**
+       * <code>optional string url = 2;</code>
+       */
+      public Builder setUrl(
+          String value) {
+        copyOnWrite();
+        instance.setUrl(value);
+        return this;
+      }
+      /**
+       * <code>optional string url = 2;</code>
+       */
+      public Builder clearUrl() {
+        copyOnWrite();
+        instance.clearUrl();
+        return this;
+      }
+      /**
+       * <code>optional string url = 2;</code>
+       */
+      public Builder setUrlBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setUrlBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public java.util.List<String>
+          getUrlsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getUrlsList());
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public int getUrlsCount() {
+        return instance.getUrlsCount();
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public String getUrls(int index) {
+        return instance.getUrls(index);
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlsBytes(int index) {
+        return instance.getUrlsBytes(index);
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public Builder setUrls(
+          int index, String value) {
+        copyOnWrite();
+        instance.setUrls(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public Builder addUrls(
+          String value) {
+        copyOnWrite();
+        instance.addUrls(value);
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public Builder addAllUrls(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllUrls(values);
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public Builder clearUrls() {
+        copyOnWrite();
+        instance.clearUrls();
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 3;</code>
+       */
+      public Builder addUrlsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addUrlsBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string filePath = 4;</code>
+       */
+      public String getFilePath() {
+        return instance.getFilePath();
+      }
+      /**
+       * <code>optional string filePath = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFilePathBytes() {
+        return instance.getFilePathBytes();
+      }
+      /**
+       * <code>optional string filePath = 4;</code>
+       */
+      public Builder setFilePath(
+          String value) {
+        copyOnWrite();
+        instance.setFilePath(value);
+        return this;
+      }
+      /**
+       * <code>optional string filePath = 4;</code>
+       */
+      public Builder clearFilePath() {
+        copyOnWrite();
+        instance.clearFilePath();
+        return this;
+      }
+      /**
+       * <code>optional string filePath = 4;</code>
+       */
+      public Builder setFilePathBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFilePathBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string filePaths = 5;</code>
+       */
+      public String getFilePaths() {
+        return instance.getFilePaths();
+      }
+      /**
+       * <code>optional string filePaths = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFilePathsBytes() {
+        return instance.getFilePathsBytes();
+      }
+      /**
+       * <code>optional string filePaths = 5;</code>
+       */
+      public Builder setFilePaths(
+          String value) {
+        copyOnWrite();
+        instance.setFilePaths(value);
+        return this;
+      }
+      /**
+       * <code>optional string filePaths = 5;</code>
+       */
+      public Builder clearFilePaths() {
+        copyOnWrite();
+        instance.clearFilePaths();
+        return this;
+      }
+      /**
+       * <code>optional string filePaths = 5;</code>
+       */
+      public Builder setFilePathsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFilePathsBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KnowledgeBuilderRequest)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new KnowledgeBuilderRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          urls_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          KnowledgeBuilderRequest other = (KnowledgeBuilderRequest) arg1;
+          text_ = visitor.visitString(!text_.isEmpty(), text_,
+              !other.text_.isEmpty(), other.text_);
+          url_ = visitor.visitString(!url_.isEmpty(), url_,
+              !other.url_.isEmpty(), other.url_);
+          urls_= visitor.visitList(urls_, other.urls_);
+          filePath_ = visitor.visitString(!filePath_.isEmpty(), filePath_,
+              !other.filePath_.isEmpty(), other.filePath_);
+          filePaths_ = visitor.visitString(!filePaths_.isEmpty(), filePaths_,
+              !other.filePaths_.isEmpty(), other.filePaths_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  text_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  url_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+                  if (!urls_.isModifiable()) {
+                    urls_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(urls_);
+                  }
+                  urls_.add(s);
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  filePath_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  filePaths_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (KnowledgeBuilderRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KnowledgeBuilderRequest)
+    private static final KnowledgeBuilderRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new KnowledgeBuilderRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static KnowledgeBuilderRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<KnowledgeBuilderRequest> PARSER;
+
+    public static com.google.protobuf.Parser<KnowledgeBuilderRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface KnowledgeTupleOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.KnowledgeTuple)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string entity1 = 1;</code>
+     */
+    String getEntity1();
+    /**
+     * <code>optional string entity1 = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getEntity1Bytes();
+
+    /**
+     * <code>optional string entity2 = 2;</code>
+     */
+    String getEntity2();
+    /**
+     * <code>optional string entity2 = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getEntity2Bytes();
+
+    /**
+     * <code>optional string relation = 3;</code>
+     */
+    String getRelation();
+    /**
+     * <code>optional string relation = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getRelationBytes();
+
+    /**
+     * <code>optional bool directed = 4;</code>
+     */
+    boolean getDirected();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.KnowledgeTuple}
+   */
+  public  static final class KnowledgeTuple extends
+      com.google.protobuf.GeneratedMessageLite<
+          KnowledgeTuple, KnowledgeTuple.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.KnowledgeTuple)
+      KnowledgeTupleOrBuilder {
+    private KnowledgeTuple() {
+      entity1_ = "";
+      entity2_ = "";
+      relation_ = "";
+    }
+    public static final int ENTITY1_FIELD_NUMBER = 1;
+    private String entity1_;
+    /**
+     * <code>optional string entity1 = 1;</code>
+     */
+    public String getEntity1() {
+      return entity1_;
+    }
+    /**
+     * <code>optional string entity1 = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEntity1Bytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(entity1_);
+    }
+    /**
+     * <code>optional string entity1 = 1;</code>
+     */
+    private void setEntity1(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      entity1_ = value;
+    }
+    /**
+     * <code>optional string entity1 = 1;</code>
+     */
+    private void clearEntity1() {
+      
+      entity1_ = getDefaultInstance().getEntity1();
+    }
+    /**
+     * <code>optional string entity1 = 1;</code>
+     */
+    private void setEntity1Bytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      entity1_ = value.toStringUtf8();
+    }
+
+    public static final int ENTITY2_FIELD_NUMBER = 2;
+    private String entity2_;
+    /**
+     * <code>optional string entity2 = 2;</code>
+     */
+    public String getEntity2() {
+      return entity2_;
+    }
+    /**
+     * <code>optional string entity2 = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEntity2Bytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(entity2_);
+    }
+    /**
+     * <code>optional string entity2 = 2;</code>
+     */
+    private void setEntity2(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      entity2_ = value;
+    }
+    /**
+     * <code>optional string entity2 = 2;</code>
+     */
+    private void clearEntity2() {
+      
+      entity2_ = getDefaultInstance().getEntity2();
+    }
+    /**
+     * <code>optional string entity2 = 2;</code>
+     */
+    private void setEntity2Bytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      entity2_ = value.toStringUtf8();
+    }
+
+    public static final int RELATION_FIELD_NUMBER = 3;
+    private String relation_;
+    /**
+     * <code>optional string relation = 3;</code>
+     */
+    public String getRelation() {
+      return relation_;
+    }
+    /**
+     * <code>optional string relation = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRelationBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(relation_);
+    }
+    /**
+     * <code>optional string relation = 3;</code>
+     */
+    private void setRelation(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      relation_ = value;
+    }
+    /**
+     * <code>optional string relation = 3;</code>
+     */
+    private void clearRelation() {
+      
+      relation_ = getDefaultInstance().getRelation();
+    }
+    /**
+     * <code>optional string relation = 3;</code>
+     */
+    private void setRelationBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      relation_ = value.toStringUtf8();
+    }
+
+    public static final int DIRECTED_FIELD_NUMBER = 4;
+    private boolean directed_;
+    /**
+     * <code>optional bool directed = 4;</code>
+     */
+    public boolean getDirected() {
+      return directed_;
+    }
+    /**
+     * <code>optional bool directed = 4;</code>
+     */
+    private void setDirected(boolean value) {
+      
+      directed_ = value;
+    }
+    /**
+     * <code>optional bool directed = 4;</code>
+     */
+    private void clearDirected() {
+      
+      directed_ = false;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!entity1_.isEmpty()) {
+        output.writeString(1, getEntity1());
+      }
+      if (!entity2_.isEmpty()) {
+        output.writeString(2, getEntity2());
+      }
+      if (!relation_.isEmpty()) {
+        output.writeString(3, getRelation());
+      }
+      if (directed_ != false) {
+        output.writeBool(4, directed_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!entity1_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getEntity1());
+      }
+      if (!entity2_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getEntity2());
+      }
+      if (!relation_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getRelation());
+      }
+      if (directed_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, directed_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static KnowledgeTuple parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static KnowledgeTuple parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static KnowledgeTuple parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static KnowledgeTuple parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static KnowledgeTuple parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static KnowledgeTuple parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static KnowledgeTuple parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static KnowledgeTuple parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static KnowledgeTuple parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static KnowledgeTuple parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(KnowledgeTuple prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.KnowledgeTuple}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          KnowledgeTuple, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KnowledgeTuple)
+        KnowledgeTupleOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string entity1 = 1;</code>
+       */
+      public String getEntity1() {
+        return instance.getEntity1();
+      }
+      /**
+       * <code>optional string entity1 = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getEntity1Bytes() {
+        return instance.getEntity1Bytes();
+      }
+      /**
+       * <code>optional string entity1 = 1;</code>
+       */
+      public Builder setEntity1(
+          String value) {
+        copyOnWrite();
+        instance.setEntity1(value);
+        return this;
+      }
+      /**
+       * <code>optional string entity1 = 1;</code>
+       */
+      public Builder clearEntity1() {
+        copyOnWrite();
+        instance.clearEntity1();
+        return this;
+      }
+      /**
+       * <code>optional string entity1 = 1;</code>
+       */
+      public Builder setEntity1Bytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setEntity1Bytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string entity2 = 2;</code>
+       */
+      public String getEntity2() {
+        return instance.getEntity2();
+      }
+      /**
+       * <code>optional string entity2 = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getEntity2Bytes() {
+        return instance.getEntity2Bytes();
+      }
+      /**
+       * <code>optional string entity2 = 2;</code>
+       */
+      public Builder setEntity2(
+          String value) {
+        copyOnWrite();
+        instance.setEntity2(value);
+        return this;
+      }
+      /**
+       * <code>optional string entity2 = 2;</code>
+       */
+      public Builder clearEntity2() {
+        copyOnWrite();
+        instance.clearEntity2();
+        return this;
+      }
+      /**
+       * <code>optional string entity2 = 2;</code>
+       */
+      public Builder setEntity2Bytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setEntity2Bytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string relation = 3;</code>
+       */
+      public String getRelation() {
+        return instance.getRelation();
+      }
+      /**
+       * <code>optional string relation = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRelationBytes() {
+        return instance.getRelationBytes();
+      }
+      /**
+       * <code>optional string relation = 3;</code>
+       */
+      public Builder setRelation(
+          String value) {
+        copyOnWrite();
+        instance.setRelation(value);
+        return this;
+      }
+      /**
+       * <code>optional string relation = 3;</code>
+       */
+      public Builder clearRelation() {
+        copyOnWrite();
+        instance.clearRelation();
+        return this;
+      }
+      /**
+       * <code>optional string relation = 3;</code>
+       */
+      public Builder setRelationBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRelationBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional bool directed = 4;</code>
+       */
+      public boolean getDirected() {
+        return instance.getDirected();
+      }
+      /**
+       * <code>optional bool directed = 4;</code>
+       */
+      public Builder setDirected(boolean value) {
+        copyOnWrite();
+        instance.setDirected(value);
+        return this;
+      }
+      /**
+       * <code>optional bool directed = 4;</code>
+       */
+      public Builder clearDirected() {
+        copyOnWrite();
+        instance.clearDirected();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KnowledgeTuple)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new KnowledgeTuple();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          KnowledgeTuple other = (KnowledgeTuple) arg1;
+          entity1_ = visitor.visitString(!entity1_.isEmpty(), entity1_,
+              !other.entity1_.isEmpty(), other.entity1_);
+          entity2_ = visitor.visitString(!entity2_.isEmpty(), entity2_,
+              !other.entity2_.isEmpty(), other.entity2_);
+          relation_ = visitor.visitString(!relation_.isEmpty(), relation_,
+              !other.relation_.isEmpty(), other.relation_);
+          directed_ = visitor.visitBoolean(directed_ != false, directed_,
+              other.directed_ != false, other.directed_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  entity1_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  entity2_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  relation_ = s;
+                  break;
+                }
+                case 32: {
+
+                  directed_ = input.readBool();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (KnowledgeTuple.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KnowledgeTuple)
+    private static final KnowledgeTuple DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new KnowledgeTuple();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static KnowledgeTuple getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<KnowledgeTuple> PARSER;
+
+    public static com.google.protobuf.Parser<KnowledgeTuple> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface QATupleOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.QATuple)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    boolean hasQuestion();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    Question getQuestion();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    boolean hasAnswer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    Answer getAnswer();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.QATuple}
+   */
+  public  static final class QATuple extends
+      com.google.protobuf.GeneratedMessageLite<
+          QATuple, QATuple.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.QATuple)
+      QATupleOrBuilder {
+    private QATuple() {
+    }
+    public static final int QUESTION_FIELD_NUMBER = 1;
+    private Question question_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    public boolean hasQuestion() {
+      return question_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    public Question getQuestion() {
+      return question_ == null ? Question.getDefaultInstance() : question_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    private void setQuestion(Question value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      question_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    private void setQuestion(
+        Question.Builder builderForValue) {
+      question_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    private void mergeQuestion(Question value) {
+      if (question_ != null &&
+          question_ != Question.getDefaultInstance()) {
+        question_ =
+          Question.newBuilder(question_).mergeFrom(value).buildPartial();
+      } else {
+        question_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     */
+    private void clearQuestion() {  question_ = null;
+      
+    }
+
+    public static final int ANSWER_FIELD_NUMBER = 2;
+    private Answer answer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    public boolean hasAnswer() {
+      return answer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    public Answer getAnswer() {
+      return answer_ == null ? Answer.getDefaultInstance() : answer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    private void setAnswer(Answer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      answer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    private void setAnswer(
+        Answer.Builder builderForValue) {
+      answer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    private void mergeAnswer(Answer value) {
+      if (answer_ != null &&
+          answer_ != Answer.getDefaultInstance()) {
+        answer_ =
+          Answer.newBuilder(answer_).mergeFrom(value).buildPartial();
+      } else {
+        answer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     */
+    private void clearAnswer() {  answer_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (question_ != null) {
+        output.writeMessage(1, getQuestion());
+      }
+      if (answer_ != null) {
+        output.writeMessage(2, getAnswer());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (question_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getQuestion());
+      }
+      if (answer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getAnswer());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static QATuple parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static QATuple parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static QATuple parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static QATuple parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static QATuple parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static QATuple parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static QATuple parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static QATuple parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static QATuple parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static QATuple parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(QATuple prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.QATuple}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          QATuple, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.QATuple)
+        QATupleOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.QATuple.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       */
+      public boolean hasQuestion() {
+        return instance.hasQuestion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       */
+      public Question getQuestion() {
+        return instance.getQuestion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       */
+      public Builder setQuestion(Question value) {
+        copyOnWrite();
+        instance.setQuestion(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       */
+      public Builder setQuestion(
+          Question.Builder builderForValue) {
+        copyOnWrite();
+        instance.setQuestion(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       */
+      public Builder mergeQuestion(Question value) {
+        copyOnWrite();
+        instance.mergeQuestion(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       */
+      public Builder clearQuestion() {  copyOnWrite();
+        instance.clearQuestion();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       */
+      public boolean hasAnswer() {
+        return instance.hasAnswer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       */
+      public Answer getAnswer() {
+        return instance.getAnswer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       */
+      public Builder setAnswer(Answer value) {
+        copyOnWrite();
+        instance.setAnswer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       */
+      public Builder setAnswer(
+          Answer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAnswer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       */
+      public Builder mergeAnswer(Answer value) {
+        copyOnWrite();
+        instance.mergeAnswer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       */
+      public Builder clearAnswer() {  copyOnWrite();
+        instance.clearAnswer();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.QATuple)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new QATuple();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          QATuple other = (QATuple) arg1;
+          question_ = visitor.visitMessage(question_, other.question_);
+          answer_ = visitor.visitMessage(answer_, other.answer_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  Question.Builder subBuilder = null;
+                  if (question_ != null) {
+                    subBuilder = question_.toBuilder();
+                  }
+                  question_ = input.readMessage(Question.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(question_);
+                    question_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 18: {
+                  Answer.Builder subBuilder = null;
+                  if (answer_ != null) {
+                    subBuilder = answer_.toBuilder();
+                  }
+                  answer_ = input.readMessage(Answer.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(answer_);
+                    answer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (QATuple.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.QATuple)
+    private static final QATuple DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new QATuple();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static QATuple getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<QATuple> PARSER;
+
+    public static com.google.protobuf.Parser<QATuple> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface KnowledgeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Knowledge)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    java.util.List<KnowledgeTuple>
+        getKTuplesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    KnowledgeTuple getKTuples(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    int getKTuplesCount();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    java.util.List<QATuple>
+        getQaTuplesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    QATuple getQaTuples(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    int getQaTuplesCount();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
+   */
+  public  static final class Knowledge extends
+      com.google.protobuf.GeneratedMessageLite<
+          Knowledge, Knowledge.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Knowledge)
+      KnowledgeOrBuilder {
+    private Knowledge() {
+      kTuples_ = emptyProtobufList();
+      qaTuples_ = emptyProtobufList();
+    }
+    public static final int KTUPLES_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<KnowledgeTuple> kTuples_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    public java.util.List<KnowledgeTuple> getKTuplesList() {
+      return kTuples_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    public java.util.List<? extends KnowledgeTupleOrBuilder>
+        getKTuplesOrBuilderList() {
+      return kTuples_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    public int getKTuplesCount() {
+      return kTuples_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    public KnowledgeTuple getKTuples(int index) {
+      return kTuples_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    public KnowledgeTupleOrBuilder getKTuplesOrBuilder(
+        int index) {
+      return kTuples_.get(index);
+    }
+    private void ensureKTuplesIsMutable() {
+      if (!kTuples_.isModifiable()) {
+        kTuples_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(kTuples_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void setKTuples(
+        int index, KnowledgeTuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureKTuplesIsMutable();
+      kTuples_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void setKTuples(
+        int index, KnowledgeTuple.Builder builderForValue) {
+      ensureKTuplesIsMutable();
+      kTuples_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void addKTuples(KnowledgeTuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureKTuplesIsMutable();
+      kTuples_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void addKTuples(
+        int index, KnowledgeTuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureKTuplesIsMutable();
+      kTuples_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void addKTuples(
+        KnowledgeTuple.Builder builderForValue) {
+      ensureKTuplesIsMutable();
+      kTuples_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void addKTuples(
+        int index, KnowledgeTuple.Builder builderForValue) {
+      ensureKTuplesIsMutable();
+      kTuples_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void addAllKTuples(
+        Iterable<? extends KnowledgeTuple> values) {
+      ensureKTuplesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, kTuples_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void clearKTuples() {
+      kTuples_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+     */
+    private void removeKTuples(int index) {
+      ensureKTuplesIsMutable();
+      kTuples_.remove(index);
+    }
+
+    public static final int QATUPLES_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.ProtobufList<QATuple> qaTuples_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    public java.util.List<QATuple> getQaTuplesList() {
+      return qaTuples_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    public java.util.List<? extends QATupleOrBuilder>
+        getQaTuplesOrBuilderList() {
+      return qaTuples_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    public int getQaTuplesCount() {
+      return qaTuples_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    public QATuple getQaTuples(int index) {
+      return qaTuples_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    public QATupleOrBuilder getQaTuplesOrBuilder(
+        int index) {
+      return qaTuples_.get(index);
+    }
+    private void ensureQaTuplesIsMutable() {
+      if (!qaTuples_.isModifiable()) {
+        qaTuples_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(qaTuples_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void setQaTuples(
+        int index, QATuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureQaTuplesIsMutable();
+      qaTuples_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void setQaTuples(
+        int index, QATuple.Builder builderForValue) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void addQaTuples(QATuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void addQaTuples(
+        int index, QATuple value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void addQaTuples(
+        QATuple.Builder builderForValue) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void addQaTuples(
+        int index, QATuple.Builder builderForValue) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void addAllQaTuples(
+        Iterable<? extends QATuple> values) {
+      ensureQaTuplesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, qaTuples_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void clearQaTuples() {
+      qaTuples_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+     */
+    private void removeQaTuples(int index) {
+      ensureQaTuplesIsMutable();
+      qaTuples_.remove(index);
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < kTuples_.size(); i++) {
+        output.writeMessage(1, kTuples_.get(i));
+      }
+      for (int i = 0; i < qaTuples_.size(); i++) {
+        output.writeMessage(2, qaTuples_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < kTuples_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, kTuples_.get(i));
+      }
+      for (int i = 0; i < qaTuples_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, qaTuples_.get(i));
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static Knowledge parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Knowledge parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Knowledge parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static Knowledge parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static Knowledge parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Knowledge parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Knowledge parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static Knowledge parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static Knowledge parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static Knowledge parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(Knowledge prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          Knowledge, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Knowledge)
+        KnowledgeOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.Knowledge.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public java.util.List<KnowledgeTuple> getKTuplesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getKTuplesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public int getKTuplesCount() {
+        return instance.getKTuplesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public KnowledgeTuple getKTuples(int index) {
+        return instance.getKTuples(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder setKTuples(
+          int index, KnowledgeTuple value) {
+        copyOnWrite();
+        instance.setKTuples(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder setKTuples(
+          int index, KnowledgeTuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.setKTuples(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder addKTuples(KnowledgeTuple value) {
+        copyOnWrite();
+        instance.addKTuples(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder addKTuples(
+          int index, KnowledgeTuple value) {
+        copyOnWrite();
+        instance.addKTuples(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder addKTuples(
+          KnowledgeTuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.addKTuples(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder addKTuples(
+          int index, KnowledgeTuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.addKTuples(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder addAllKTuples(
+          Iterable<? extends KnowledgeTuple> values) {
+        copyOnWrite();
+        instance.addAllKTuples(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder clearKTuples() {
+        copyOnWrite();
+        instance.clearKTuples();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
+       */
+      public Builder removeKTuples(int index) {
+        copyOnWrite();
+        instance.removeKTuples(index);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public java.util.List<QATuple> getQaTuplesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getQaTuplesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public int getQaTuplesCount() {
+        return instance.getQaTuplesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public QATuple getQaTuples(int index) {
+        return instance.getQaTuples(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder setQaTuples(
+          int index, QATuple value) {
+        copyOnWrite();
+        instance.setQaTuples(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder setQaTuples(
+          int index, QATuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.setQaTuples(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder addQaTuples(QATuple value) {
+        copyOnWrite();
+        instance.addQaTuples(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder addQaTuples(
+          int index, QATuple value) {
+        copyOnWrite();
+        instance.addQaTuples(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder addQaTuples(
+          QATuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.addQaTuples(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder addQaTuples(
+          int index, QATuple.Builder builderForValue) {
+        copyOnWrite();
+        instance.addQaTuples(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder addAllQaTuples(
+          Iterable<? extends QATuple> values) {
+        copyOnWrite();
+        instance.addAllQaTuples(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder clearQaTuples() {
+        copyOnWrite();
+        instance.clearQaTuples();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
+       */
+      public Builder removeQaTuples(int index) {
+        copyOnWrite();
+        instance.removeQaTuples(index);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Knowledge)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new Knowledge();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          kTuples_.makeImmutable();
+          qaTuples_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          Knowledge other = (Knowledge) arg1;
+          kTuples_= visitor.visitList(kTuples_, other.kTuples_);
+          qaTuples_= visitor.visitList(qaTuples_, other.qaTuples_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  if (!kTuples_.isModifiable()) {
+                    kTuples_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(kTuples_);
+                  }
+                  kTuples_.add(
+                      input.readMessage(KnowledgeTuple.parser(), extensionRegistry));
+                  break;
+                }
+                case 18: {
+                  if (!qaTuples_.isModifiable()) {
+                    qaTuples_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(qaTuples_);
+                  }
+                  qaTuples_.add(
+                      input.readMessage(QATuple.parser(), extensionRegistry));
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (Knowledge.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Knowledge)
+    private static final Knowledge DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Knowledge();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static Knowledge getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Knowledge> PARSER;
+
+    public static com.google.protobuf.Parser<Knowledge> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }
