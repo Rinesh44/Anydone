@@ -67,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
+            android:visibility="visible"
             android:elevation="4dp"
             android:padding="@dimen/dimen_10x1">
 
@@ -78,7 +79,7 @@
                 android:layout_marginTop="@dimen/dimen_10x1"
                 android:text="Suggested Tickets"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -89,6 +90,7 @@
                 android:layout_marginStart="@dimen/dimen_5x1"
                 android:layout_marginTop="@dimen/dimen_2x2"
                 android:layout_marginBottom="@dimen/dimen_10x1"
+                android:textSize="@dimen/material_text_caption"
                 android:text="8 New Tickets"
                 android:textColor="@color/white" />
 

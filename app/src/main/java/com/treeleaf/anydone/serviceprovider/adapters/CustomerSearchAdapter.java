@@ -33,6 +33,7 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
     private static final String TAG = "CustomerSearchAdapter";
     private List<Customer> customerList;
     private List<Customer> customerListFiltered;
+    private OnFilterListEmptyListener filterListEmptyListener;
     private Context mContext;
     private OnItemClickListener listener;
 
@@ -131,6 +132,16 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
         protected void publishResults(CharSequence constraint, FilterResults results) {
             customerListFiltered = (List<Customer>) results.values;
             notifyDataSetChanged();
+            if (customerListFiltered.isEmpty()) {
+                if (filterListEmptyListener != null) {
+                    filterListEmptyListener.showNewCustomer();
+                }
+            } else {
+                if (filterListEmptyListener != null) {
+                    filterListEmptyListener.hideNewCustomer();
+                }
+            }
+
         }
 
         @Override
@@ -169,4 +180,15 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+    public interface OnFilterListEmptyListener {
+        void showNewCustomer();
+
+        void hideNewCustomer();
+    }
+
+    public void setOnFilterListEmptyListener(OnFilterListEmptyListener listener) {
+        this.filterListEmptyListener = listener;
+    }
+
 }

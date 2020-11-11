@@ -12347,6 +12347,42 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
      */
     SignalingProto.DrawMetaDataChange getDrawMetaDataChangeRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    boolean hasDrawMinimizeRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    SignalingProto.DrawMinize getDrawMinimizeRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    boolean hasDrawMaximizeReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    SignalingProto.DrawMaximize getDrawMaximizeReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    boolean hasDrawCloseReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    SignalingProto.DrawClose getDrawCloseReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    boolean hasDrawCollabReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    SignalingProto.DrawCollab getDrawCollabReq();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayRequest}
@@ -12443,6 +12479,22 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_REQUEST = 20;</code>
        */
       DRAW_META_DATA_CHANGE_REQUEST(20),
+      /**
+       * <code>DRAW_MINIMIZE_REQUEST = 21;</code>
+       */
+      DRAW_MINIMIZE_REQUEST(21),
+      /**
+       * <code>DRAW_MAXIMIZE_REQUEST = 22;</code>
+       */
+      DRAW_MAXIMIZE_REQUEST(22),
+      /**
+       * <code>DRAW_CLOSE_REQUEST = 23;</code>
+       */
+      DRAW_CLOSE_REQUEST(23),
+      /**
+       * <code>DRAW_COLlAB_REQUEST = 24;</code>
+       */
+      DRAW_COLlAB_REQUEST(24),
       UNRECOGNIZED(-1),
       ;
 
@@ -12526,6 +12578,22 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_REQUEST = 20;</code>
        */
       public static final int DRAW_META_DATA_CHANGE_REQUEST_VALUE = 20;
+      /**
+       * <code>DRAW_MINIMIZE_REQUEST = 21;</code>
+       */
+      public static final int DRAW_MINIMIZE_REQUEST_VALUE = 21;
+      /**
+       * <code>DRAW_MAXIMIZE_REQUEST = 22;</code>
+       */
+      public static final int DRAW_MAXIMIZE_REQUEST_VALUE = 22;
+      /**
+       * <code>DRAW_CLOSE_REQUEST = 23;</code>
+       */
+      public static final int DRAW_CLOSE_REQUEST_VALUE = 23;
+      /**
+       * <code>DRAW_COLlAB_REQUEST = 24;</code>
+       */
+      public static final int DRAW_COLlAB_REQUEST_VALUE = 24;
 
 
       public final int getNumber() {
@@ -12562,6 +12630,10 @@ public final class RtcProto {
           case 18: return DRAW_TOUCH_UP_REQUEST;
           case 19: return DRAW_CANVAS_CLEAR_REQUEST;
           case 20: return DRAW_META_DATA_CHANGE_REQUEST;
+          case 21: return DRAW_MINIMIZE_REQUEST;
+          case 22: return DRAW_MAXIMIZE_REQUEST;
+          case 23: return DRAW_CLOSE_REQUEST;
+          case 24: return DRAW_COLlAB_REQUEST;
           default: return null;
         }
       }
@@ -13653,6 +13725,214 @@ public final class RtcProto {
       
     }
 
+    public static final int DRAWMINIMIZEREQUEST_FIELD_NUMBER = 22;
+    private SignalingProto.DrawMinize drawMinimizeRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    public boolean hasDrawMinimizeRequest() {
+      return drawMinimizeRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    public SignalingProto.DrawMinize getDrawMinimizeRequest() {
+      return drawMinimizeRequest_ == null ? SignalingProto.DrawMinize.getDefaultInstance() : drawMinimizeRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void setDrawMinimizeRequest(SignalingProto.DrawMinize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMinimizeRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void setDrawMinimizeRequest(
+        SignalingProto.DrawMinize.Builder builderForValue) {
+      drawMinimizeRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void mergeDrawMinimizeRequest(SignalingProto.DrawMinize value) {
+      if (drawMinimizeRequest_ != null &&
+          drawMinimizeRequest_ != SignalingProto.DrawMinize.getDefaultInstance()) {
+        drawMinimizeRequest_ =
+          SignalingProto.DrawMinize.newBuilder(drawMinimizeRequest_).mergeFrom(value).buildPartial();
+      } else {
+        drawMinimizeRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void clearDrawMinimizeRequest() {  drawMinimizeRequest_ = null;
+      
+    }
+
+    public static final int DRAWMAXIMIZEREQ_FIELD_NUMBER = 23;
+    private SignalingProto.DrawMaximize drawMaximizeReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    public boolean hasDrawMaximizeReq() {
+      return drawMaximizeReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    public SignalingProto.DrawMaximize getDrawMaximizeReq() {
+      return drawMaximizeReq_ == null ? SignalingProto.DrawMaximize.getDefaultInstance() : drawMaximizeReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void setDrawMaximizeReq(SignalingProto.DrawMaximize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMaximizeReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void setDrawMaximizeReq(
+        SignalingProto.DrawMaximize.Builder builderForValue) {
+      drawMaximizeReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void mergeDrawMaximizeReq(SignalingProto.DrawMaximize value) {
+      if (drawMaximizeReq_ != null &&
+          drawMaximizeReq_ != SignalingProto.DrawMaximize.getDefaultInstance()) {
+        drawMaximizeReq_ =
+          SignalingProto.DrawMaximize.newBuilder(drawMaximizeReq_).mergeFrom(value).buildPartial();
+      } else {
+        drawMaximizeReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void clearDrawMaximizeReq() {  drawMaximizeReq_ = null;
+      
+    }
+
+    public static final int DRAWCLOSEREQ_FIELD_NUMBER = 24;
+    private SignalingProto.DrawClose drawCloseReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    public boolean hasDrawCloseReq() {
+      return drawCloseReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    public SignalingProto.DrawClose getDrawCloseReq() {
+      return drawCloseReq_ == null ? SignalingProto.DrawClose.getDefaultInstance() : drawCloseReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void setDrawCloseReq(SignalingProto.DrawClose value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCloseReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void setDrawCloseReq(
+        SignalingProto.DrawClose.Builder builderForValue) {
+      drawCloseReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void mergeDrawCloseReq(SignalingProto.DrawClose value) {
+      if (drawCloseReq_ != null &&
+          drawCloseReq_ != SignalingProto.DrawClose.getDefaultInstance()) {
+        drawCloseReq_ =
+          SignalingProto.DrawClose.newBuilder(drawCloseReq_).mergeFrom(value).buildPartial();
+      } else {
+        drawCloseReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void clearDrawCloseReq() {  drawCloseReq_ = null;
+      
+    }
+
+    public static final int DRAWCOLLABREQ_FIELD_NUMBER = 25;
+    private SignalingProto.DrawCollab drawCollabReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    public boolean hasDrawCollabReq() {
+      return drawCollabReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    public SignalingProto.DrawCollab getDrawCollabReq() {
+      return drawCollabReq_ == null ? SignalingProto.DrawCollab.getDefaultInstance() : drawCollabReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void setDrawCollabReq(SignalingProto.DrawCollab value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void setDrawCollabReq(
+        SignalingProto.DrawCollab.Builder builderForValue) {
+      drawCollabReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void mergeDrawCollabReq(SignalingProto.DrawCollab value) {
+      if (drawCollabReq_ != null &&
+          drawCollabReq_ != SignalingProto.DrawCollab.getDefaultInstance()) {
+        drawCollabReq_ =
+          SignalingProto.DrawCollab.newBuilder(drawCollabReq_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void clearDrawCollabReq() {  drawCollabReq_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (relayType_ != RelayRequestType.NO_RELAY.getNumber()) {
@@ -13717,6 +13997,18 @@ public final class RtcProto {
       }
       if (drawMetaDataChangeRequest_ != null) {
         output.writeMessage(21, getDrawMetaDataChangeRequest());
+      }
+      if (drawMinimizeRequest_ != null) {
+        output.writeMessage(22, getDrawMinimizeRequest());
+      }
+      if (drawMaximizeReq_ != null) {
+        output.writeMessage(23, getDrawMaximizeReq());
+      }
+      if (drawCloseReq_ != null) {
+        output.writeMessage(24, getDrawCloseReq());
+      }
+      if (drawCollabReq_ != null) {
+        output.writeMessage(25, getDrawCollabReq());
       }
     }
 
@@ -13808,6 +14100,22 @@ public final class RtcProto {
       if (drawMetaDataChangeRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(21, getDrawMetaDataChangeRequest());
+      }
+      if (drawMinimizeRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getDrawMinimizeRequest());
+      }
+      if (drawMaximizeReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(23, getDrawMaximizeReq());
+      }
+      if (drawCloseReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(24, getDrawCloseReq());
+      }
+      if (drawCollabReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, getDrawCollabReq());
       }
       memoizedSerializedSize = size;
       return size;
@@ -14824,6 +15132,186 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public boolean hasDrawMinimizeRequest() {
+        return instance.hasDrawMinimizeRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public SignalingProto.DrawMinize getDrawMinimizeRequest() {
+        return instance.getDrawMinimizeRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder setDrawMinimizeRequest(SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.setDrawMinimizeRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder setDrawMinimizeRequest(
+          SignalingProto.DrawMinize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMinimizeRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder mergeDrawMinimizeRequest(SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.mergeDrawMinimizeRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder clearDrawMinimizeRequest() {  copyOnWrite();
+        instance.clearDrawMinimizeRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public boolean hasDrawMaximizeReq() {
+        return instance.hasDrawMaximizeReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public SignalingProto.DrawMaximize getDrawMaximizeReq() {
+        return instance.getDrawMaximizeReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder setDrawMaximizeReq(SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.setDrawMaximizeReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder setDrawMaximizeReq(
+          SignalingProto.DrawMaximize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMaximizeReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder mergeDrawMaximizeReq(SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.mergeDrawMaximizeReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder clearDrawMaximizeReq() {  copyOnWrite();
+        instance.clearDrawMaximizeReq();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public boolean hasDrawCloseReq() {
+        return instance.hasDrawCloseReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public SignalingProto.DrawClose getDrawCloseReq() {
+        return instance.getDrawCloseReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder setDrawCloseReq(SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.setDrawCloseReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder setDrawCloseReq(
+          SignalingProto.DrawClose.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCloseReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder mergeDrawCloseReq(SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.mergeDrawCloseReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder clearDrawCloseReq() {  copyOnWrite();
+        instance.clearDrawCloseReq();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public boolean hasDrawCollabReq() {
+        return instance.hasDrawCollabReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public SignalingProto.DrawCollab getDrawCollabReq() {
+        return instance.getDrawCollabReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder setDrawCollabReq(SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.setDrawCollabReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder setDrawCollabReq(
+          SignalingProto.DrawCollab.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder mergeDrawCollabReq(SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.mergeDrawCollabReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder clearDrawCollabReq() {  copyOnWrite();
+        instance.clearDrawCollabReq();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayRequest)
     }
     protected final Object dynamicMethod(
@@ -14866,6 +15354,10 @@ public final class RtcProto {
           drawTouchUpRequest_ = visitor.visitMessage(drawTouchUpRequest_, other.drawTouchUpRequest_);
           drawCanvasClearRequest_ = visitor.visitMessage(drawCanvasClearRequest_, other.drawCanvasClearRequest_);
           drawMetaDataChangeRequest_ = visitor.visitMessage(drawMetaDataChangeRequest_, other.drawMetaDataChangeRequest_);
+          drawMinimizeRequest_ = visitor.visitMessage(drawMinimizeRequest_, other.drawMinimizeRequest_);
+          drawMaximizeReq_ = visitor.visitMessage(drawMaximizeReq_, other.drawMaximizeReq_);
+          drawCloseReq_ = visitor.visitMessage(drawCloseReq_, other.drawCloseReq_);
+          drawCollabReq_ = visitor.visitMessage(drawCollabReq_, other.drawCollabReq_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -15145,6 +15637,58 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawMetaDataChangeRequest_);
                     drawMetaDataChangeRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 178: {
+                  SignalingProto.DrawMinize.Builder subBuilder = null;
+                  if (drawMinimizeRequest_ != null) {
+                    subBuilder = drawMinimizeRequest_.toBuilder();
+                  }
+                  drawMinimizeRequest_ = input.readMessage(SignalingProto.DrawMinize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMinimizeRequest_);
+                    drawMinimizeRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 186: {
+                  SignalingProto.DrawMaximize.Builder subBuilder = null;
+                  if (drawMaximizeReq_ != null) {
+                    subBuilder = drawMaximizeReq_.toBuilder();
+                  }
+                  drawMaximizeReq_ = input.readMessage(SignalingProto.DrawMaximize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMaximizeReq_);
+                    drawMaximizeReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 194: {
+                  SignalingProto.DrawClose.Builder subBuilder = null;
+                  if (drawCloseReq_ != null) {
+                    subBuilder = drawCloseReq_.toBuilder();
+                  }
+                  drawCloseReq_ = input.readMessage(SignalingProto.DrawClose.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCloseReq_);
+                    drawCloseReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 202: {
+                  SignalingProto.DrawCollab.Builder subBuilder = null;
+                  if (drawCollabReq_ != null) {
+                    subBuilder = drawCollabReq_.toBuilder();
+                  }
+                  drawCollabReq_ = input.readMessage(SignalingProto.DrawCollab.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabReq_);
+                    drawCollabReq_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -16582,6 +17126,42 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
     SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    boolean hasDrawMinimizeResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    SignalingProto.DrawMinize getDrawMinimizeResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    boolean hasDrawMaximizeResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    SignalingProto.DrawMaximize getDrawMaximizeResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    boolean hasDrawCloseResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    SignalingProto.DrawClose getDrawCloseResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    boolean hasDrawCollabResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    SignalingProto.DrawCollab getDrawCollabResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayResponse}
@@ -16683,6 +17263,22 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_RESPONSE = 20;</code>
        */
       DRAW_META_DATA_CHANGE_RESPONSE(20),
+      /**
+       * <code>DRAW_MINIMIZE_RESPONSE = 21;</code>
+       */
+      DRAW_MINIMIZE_RESPONSE(21),
+      /**
+       * <code>DRAW_MAXIMIZE_RESPONSE = 22;</code>
+       */
+      DRAW_MAXIMIZE_RESPONSE(22),
+      /**
+       * <code>DRAW_CLOSE_RESPONSE = 23;</code>
+       */
+      DRAW_CLOSE_RESPONSE(23),
+      /**
+       * <code>DRAW_COLlAB_RESPONSE = 24;</code>
+       */
+      DRAW_COLlAB_RESPONSE(24),
       UNRECOGNIZED(-1),
       ;
 
@@ -16770,6 +17366,22 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_RESPONSE = 20;</code>
        */
       public static final int DRAW_META_DATA_CHANGE_RESPONSE_VALUE = 20;
+      /**
+       * <code>DRAW_MINIMIZE_RESPONSE = 21;</code>
+       */
+      public static final int DRAW_MINIMIZE_RESPONSE_VALUE = 21;
+      /**
+       * <code>DRAW_MAXIMIZE_RESPONSE = 22;</code>
+       */
+      public static final int DRAW_MAXIMIZE_RESPONSE_VALUE = 22;
+      /**
+       * <code>DRAW_CLOSE_RESPONSE = 23;</code>
+       */
+      public static final int DRAW_CLOSE_RESPONSE_VALUE = 23;
+      /**
+       * <code>DRAW_COLlAB_RESPONSE = 24;</code>
+       */
+      public static final int DRAW_COLlAB_RESPONSE_VALUE = 24;
 
 
       public final int getNumber() {
@@ -16807,6 +17419,10 @@ public final class RtcProto {
           case 18: return DRAW_TOUCH_UP_RESPONSE;
           case 19: return DRAW_CANVAS_CLEAR_RESPONSE;
           case 20: return DRAW_META_DATA_CHANGE_RESPONSE;
+          case 21: return DRAW_MINIMIZE_RESPONSE;
+          case 22: return DRAW_MAXIMIZE_RESPONSE;
+          case 23: return DRAW_CLOSE_RESPONSE;
+          case 24: return DRAW_COLlAB_RESPONSE;
           default: return null;
         }
       }
@@ -18019,6 +18635,214 @@ public final class RtcProto {
       
     }
 
+    public static final int DRAWMINIMIZERESPONSE_FIELD_NUMBER = 25;
+    private SignalingProto.DrawMinize drawMinimizeResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    public boolean hasDrawMinimizeResponse() {
+      return drawMinimizeResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    public SignalingProto.DrawMinize getDrawMinimizeResponse() {
+      return drawMinimizeResponse_ == null ? SignalingProto.DrawMinize.getDefaultInstance() : drawMinimizeResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void setDrawMinimizeResponse(SignalingProto.DrawMinize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMinimizeResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void setDrawMinimizeResponse(
+        SignalingProto.DrawMinize.Builder builderForValue) {
+      drawMinimizeResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void mergeDrawMinimizeResponse(SignalingProto.DrawMinize value) {
+      if (drawMinimizeResponse_ != null &&
+          drawMinimizeResponse_ != SignalingProto.DrawMinize.getDefaultInstance()) {
+        drawMinimizeResponse_ =
+          SignalingProto.DrawMinize.newBuilder(drawMinimizeResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawMinimizeResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void clearDrawMinimizeResponse() {  drawMinimizeResponse_ = null;
+      
+    }
+
+    public static final int DRAWMAXIMIZERESPONSE_FIELD_NUMBER = 26;
+    private SignalingProto.DrawMaximize drawMaximizeResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    public boolean hasDrawMaximizeResponse() {
+      return drawMaximizeResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    public SignalingProto.DrawMaximize getDrawMaximizeResponse() {
+      return drawMaximizeResponse_ == null ? SignalingProto.DrawMaximize.getDefaultInstance() : drawMaximizeResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void setDrawMaximizeResponse(SignalingProto.DrawMaximize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMaximizeResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void setDrawMaximizeResponse(
+        SignalingProto.DrawMaximize.Builder builderForValue) {
+      drawMaximizeResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void mergeDrawMaximizeResponse(SignalingProto.DrawMaximize value) {
+      if (drawMaximizeResponse_ != null &&
+          drawMaximizeResponse_ != SignalingProto.DrawMaximize.getDefaultInstance()) {
+        drawMaximizeResponse_ =
+          SignalingProto.DrawMaximize.newBuilder(drawMaximizeResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawMaximizeResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void clearDrawMaximizeResponse() {  drawMaximizeResponse_ = null;
+      
+    }
+
+    public static final int DRAWCLOSERESPONSE_FIELD_NUMBER = 27;
+    private SignalingProto.DrawClose drawCloseResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    public boolean hasDrawCloseResponse() {
+      return drawCloseResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    public SignalingProto.DrawClose getDrawCloseResponse() {
+      return drawCloseResponse_ == null ? SignalingProto.DrawClose.getDefaultInstance() : drawCloseResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void setDrawCloseResponse(SignalingProto.DrawClose value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCloseResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void setDrawCloseResponse(
+        SignalingProto.DrawClose.Builder builderForValue) {
+      drawCloseResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void mergeDrawCloseResponse(SignalingProto.DrawClose value) {
+      if (drawCloseResponse_ != null &&
+          drawCloseResponse_ != SignalingProto.DrawClose.getDefaultInstance()) {
+        drawCloseResponse_ =
+          SignalingProto.DrawClose.newBuilder(drawCloseResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawCloseResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void clearDrawCloseResponse() {  drawCloseResponse_ = null;
+      
+    }
+
+    public static final int DRAWCOLLABRESPONSE_FIELD_NUMBER = 28;
+    private SignalingProto.DrawCollab drawCollabResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    public boolean hasDrawCollabResponse() {
+      return drawCollabResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    public SignalingProto.DrawCollab getDrawCollabResponse() {
+      return drawCollabResponse_ == null ? SignalingProto.DrawCollab.getDefaultInstance() : drawCollabResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void setDrawCollabResponse(SignalingProto.DrawCollab value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void setDrawCollabResponse(
+        SignalingProto.DrawCollab.Builder builderForValue) {
+      drawCollabResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void mergeDrawCollabResponse(SignalingProto.DrawCollab value) {
+      if (drawCollabResponse_ != null &&
+          drawCollabResponse_ != SignalingProto.DrawCollab.getDefaultInstance()) {
+        drawCollabResponse_ =
+          SignalingProto.DrawCollab.newBuilder(drawCollabResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void clearDrawCollabResponse() {  drawCollabResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (responseType_ != RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
@@ -18092,6 +18916,18 @@ public final class RtcProto {
       }
       if (drawMetaDataChangeResponse_ != null) {
         output.writeMessage(24, getDrawMetaDataChangeResponse());
+      }
+      if (drawMinimizeResponse_ != null) {
+        output.writeMessage(25, getDrawMinimizeResponse());
+      }
+      if (drawMaximizeResponse_ != null) {
+        output.writeMessage(26, getDrawMaximizeResponse());
+      }
+      if (drawCloseResponse_ != null) {
+        output.writeMessage(27, getDrawCloseResponse());
+      }
+      if (drawCollabResponse_ != null) {
+        output.writeMessage(28, getDrawCollabResponse());
       }
     }
 
@@ -18195,6 +19031,22 @@ public final class RtcProto {
       if (drawMetaDataChangeResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(24, getDrawMetaDataChangeResponse());
+      }
+      if (drawMinimizeResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, getDrawMinimizeResponse());
+      }
+      if (drawMaximizeResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, getDrawMaximizeResponse());
+      }
+      if (drawCloseResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(27, getDrawCloseResponse());
+      }
+      if (drawCollabResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(28, getDrawCollabResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19319,6 +20171,186 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public boolean hasDrawMinimizeResponse() {
+        return instance.hasDrawMinimizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public SignalingProto.DrawMinize getDrawMinimizeResponse() {
+        return instance.getDrawMinimizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder setDrawMinimizeResponse(SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.setDrawMinimizeResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder setDrawMinimizeResponse(
+          SignalingProto.DrawMinize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMinimizeResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder mergeDrawMinimizeResponse(SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.mergeDrawMinimizeResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder clearDrawMinimizeResponse() {  copyOnWrite();
+        instance.clearDrawMinimizeResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public boolean hasDrawMaximizeResponse() {
+        return instance.hasDrawMaximizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public SignalingProto.DrawMaximize getDrawMaximizeResponse() {
+        return instance.getDrawMaximizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder setDrawMaximizeResponse(SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.setDrawMaximizeResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder setDrawMaximizeResponse(
+          SignalingProto.DrawMaximize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMaximizeResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder mergeDrawMaximizeResponse(SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.mergeDrawMaximizeResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder clearDrawMaximizeResponse() {  copyOnWrite();
+        instance.clearDrawMaximizeResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public boolean hasDrawCloseResponse() {
+        return instance.hasDrawCloseResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public SignalingProto.DrawClose getDrawCloseResponse() {
+        return instance.getDrawCloseResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder setDrawCloseResponse(SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.setDrawCloseResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder setDrawCloseResponse(
+          SignalingProto.DrawClose.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCloseResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder mergeDrawCloseResponse(SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.mergeDrawCloseResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder clearDrawCloseResponse() {  copyOnWrite();
+        instance.clearDrawCloseResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public boolean hasDrawCollabResponse() {
+        return instance.hasDrawCollabResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public SignalingProto.DrawCollab getDrawCollabResponse() {
+        return instance.getDrawCollabResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder setDrawCollabResponse(SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.setDrawCollabResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder setDrawCollabResponse(
+          SignalingProto.DrawCollab.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder mergeDrawCollabResponse(SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.mergeDrawCollabResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder clearDrawCollabResponse() {  copyOnWrite();
+        instance.clearDrawCollabResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayResponse)
     }
     protected final Object dynamicMethod(
@@ -19366,6 +20398,10 @@ public final class RtcProto {
           drawTouchUpResponse_ = visitor.visitMessage(drawTouchUpResponse_, other.drawTouchUpResponse_);
           drawCanvasClearResponse_ = visitor.visitMessage(drawCanvasClearResponse_, other.drawCanvasClearResponse_);
           drawMetaDataChangeResponse_ = visitor.visitMessage(drawMetaDataChangeResponse_, other.drawMetaDataChangeResponse_);
+          drawMinimizeResponse_ = visitor.visitMessage(drawMinimizeResponse_, other.drawMinimizeResponse_);
+          drawMaximizeResponse_ = visitor.visitMessage(drawMaximizeResponse_, other.drawMaximizeResponse_);
+          drawCloseResponse_ = visitor.visitMessage(drawCloseResponse_, other.drawCloseResponse_);
+          drawCollabResponse_ = visitor.visitMessage(drawCollabResponse_, other.drawCollabResponse_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -19669,6 +20705,58 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawMetaDataChangeResponse_);
                     drawMetaDataChangeResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 202: {
+                  SignalingProto.DrawMinize.Builder subBuilder = null;
+                  if (drawMinimizeResponse_ != null) {
+                    subBuilder = drawMinimizeResponse_.toBuilder();
+                  }
+                  drawMinimizeResponse_ = input.readMessage(SignalingProto.DrawMinize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMinimizeResponse_);
+                    drawMinimizeResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 210: {
+                  SignalingProto.DrawMaximize.Builder subBuilder = null;
+                  if (drawMaximizeResponse_ != null) {
+                    subBuilder = drawMaximizeResponse_.toBuilder();
+                  }
+                  drawMaximizeResponse_ = input.readMessage(SignalingProto.DrawMaximize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMaximizeResponse_);
+                    drawMaximizeResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 218: {
+                  SignalingProto.DrawClose.Builder subBuilder = null;
+                  if (drawCloseResponse_ != null) {
+                    subBuilder = drawCloseResponse_.toBuilder();
+                  }
+                  drawCloseResponse_ = input.readMessage(SignalingProto.DrawClose.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCloseResponse_);
+                    drawCloseResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 226: {
+                  SignalingProto.DrawCollab.Builder subBuilder = null;
+                  if (drawCollabResponse_ != null) {
+                    subBuilder = drawCollabResponse_.toBuilder();
+                  }
+                  drawCollabResponse_ = input.readMessage(SignalingProto.DrawCollab.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabResponse_);
+                    drawCollabResponse_ = subBuilder.buildPartial();
                   }
 
                   break;

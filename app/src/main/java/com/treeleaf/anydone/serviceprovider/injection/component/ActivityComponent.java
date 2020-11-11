@@ -25,10 +25,12 @@ import com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.SelectTimezoneActivity;
 import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.suggestedTicketPreview.SuggestedTicketPreviewActivity;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.ticketsuggestions.TicketSuggestionActivity;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
@@ -93,5 +95,10 @@ public interface ActivityComponent {
     void inject(EditTicketActivity editTicketActivity);
 
     void inject(ContributedTicketsActivity contributedTicketsActivity);
+
     void inject(SubscribedTicketsActivity subscribedTicketsActivity);
+
+    void inject(TicketSuggestionActivity ticketSuggestionActivity);
+
+    void inject(SuggestedTicketPreviewActivity suggestedTicketPreviewActivity);
 }

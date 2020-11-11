@@ -244,6 +244,20 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.TicketParserRequest ticketParserRequest = 25;</code>
      */
     com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest getTicketParserRequest();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> 
+        getTicketSuggestionsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestions(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    int getTicketSuggestionsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -261,6 +275,7 @@ public final class TicketServiceRpcProto {
       teams_ = emptyProtobufList();
       ticketTypes_ = emptyProtobufList();
       labels_ = emptyProtobufList();
+      ticketSuggestions_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
@@ -1681,6 +1696,126 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int TICKETSUGGESTIONS_FIELD_NUMBER = 26;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> ticketSuggestions_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> getTicketSuggestionsList() {
+      return ticketSuggestions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.TicketProto.TicketSuggestionOrBuilder> 
+        getTicketSuggestionsOrBuilderList() {
+      return ticketSuggestions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    public int getTicketSuggestionsCount() {
+      return ticketSuggestions_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestions(int index) {
+      return ticketSuggestions_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketSuggestionOrBuilder getTicketSuggestionsOrBuilder(
+        int index) {
+      return ticketSuggestions_.get(index);
+    }
+    private void ensureTicketSuggestionsIsMutable() {
+      if (!ticketSuggestions_.isModifiable()) {
+        ticketSuggestions_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(ticketSuggestions_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void setTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void setTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void addTicketSuggestions(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void addTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void addTicketSuggestions(
+        com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void addTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void addAllTicketSuggestions(
+        Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> values) {
+      ensureTicketSuggestionsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, ticketSuggestions_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void clearTicketSuggestions() {
+      ticketSuggestions_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+     */
+    private void removeTicketSuggestions(int index) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1757,6 +1892,9 @@ public final class TicketServiceRpcProto {
       }
       if (ticketParserRequest_ != null) {
         output.writeMessage(25, getTicketParserRequest());
+      }
+      for (int i = 0; i < ticketSuggestions_.size(); i++) {
+        output.writeMessage(26, ticketSuggestions_.get(i));
       }
     }
 
@@ -1869,6 +2007,10 @@ public final class TicketServiceRpcProto {
       if (ticketParserRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(25, getTicketParserRequest());
+      }
+      for (int i = 0; i < ticketSuggestions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, ticketSuggestions_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -3174,6 +3316,103 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> getTicketSuggestionsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getTicketSuggestionsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public int getTicketSuggestionsCount() {
+        return instance.getTicketSuggestionsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestions(int index) {
+        return instance.getTicketSuggestions(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder setTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.setTicketSuggestions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder setTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketSuggestions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder addTicketSuggestions(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.addTicketSuggestions(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder addTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.addTicketSuggestions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder addTicketSuggestions(
+          com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTicketSuggestions(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder addTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTicketSuggestions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder addAllTicketSuggestions(
+          Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> values) {
+        copyOnWrite();
+        instance.addAllTicketSuggestions(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder clearTicketSuggestions() {
+        copyOnWrite();
+        instance.clearTicketSuggestions();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 26;</code>
+       */
+      public Builder removeTicketSuggestions(int index) {
+        copyOnWrite();
+        instance.removeTicketSuggestions(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -3192,6 +3431,7 @@ public final class TicketServiceRpcProto {
           teams_.makeImmutable();
           ticketTypes_.makeImmutable();
           labels_.makeImmutable();
+          ticketSuggestions_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3233,6 +3473,7 @@ public final class TicketServiceRpcProto {
           label_ = visitor.visitMessage(label_, other.label_);
           labels_= visitor.visitList(labels_, other.labels_);
           ticketParserRequest_ = visitor.visitMessage(ticketParserRequest_, other.ticketParserRequest_);
+          ticketSuggestions_= visitor.visitList(ticketSuggestions_, other.ticketSuggestions_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3499,6 +3740,15 @@ public final class TicketServiceRpcProto {
                     ticketParserRequest_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 210: {
+                  if (!ticketSuggestions_.isModifiable()) {
+                    ticketSuggestions_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(ticketSuggestions_);
+                  }
+                  ticketSuggestions_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -3786,6 +4036,29 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.TicketParserResponse ticketParserResponse = 26;</code>
      */
     com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse getTicketParserResponse();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> 
+        getTicketSuggestionsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestions(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    int getTicketSuggestionsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    boolean hasTicketSuggestion();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestion();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -3804,6 +4077,7 @@ public final class TicketServiceRpcProto {
       ticketsByStatuses_ = emptyProtobufList();
       ticketTypes_ = emptyProtobufList();
       labels_ = emptyProtobufList();
+      ticketSuggestions_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -5337,6 +5611,178 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int TICKETSUGGESTIONS_FIELD_NUMBER = 27;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> ticketSuggestions_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> getTicketSuggestionsList() {
+      return ticketSuggestions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.TicketProto.TicketSuggestionOrBuilder> 
+        getTicketSuggestionsOrBuilderList() {
+      return ticketSuggestions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    public int getTicketSuggestionsCount() {
+      return ticketSuggestions_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestions(int index) {
+      return ticketSuggestions_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketSuggestionOrBuilder getTicketSuggestionsOrBuilder(
+        int index) {
+      return ticketSuggestions_.get(index);
+    }
+    private void ensureTicketSuggestionsIsMutable() {
+      if (!ticketSuggestions_.isModifiable()) {
+        ticketSuggestions_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(ticketSuggestions_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void setTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void setTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void addTicketSuggestions(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void addTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void addTicketSuggestions(
+        com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void addTicketSuggestions(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void addAllTicketSuggestions(
+        Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> values) {
+      ensureTicketSuggestionsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, ticketSuggestions_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void clearTicketSuggestions() {
+      ticketSuggestions_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+     */
+    private void removeTicketSuggestions(int index) {
+      ensureTicketSuggestionsIsMutable();
+      ticketSuggestions_.remove(index);
+    }
+
+    public static final int TICKETSUGGESTION_FIELD_NUMBER = 28;
+    private com.treeleaf.anydone.entities.TicketProto.TicketSuggestion ticketSuggestion_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    public boolean hasTicketSuggestion() {
+      return ticketSuggestion_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestion() {
+      return ticketSuggestion_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.getDefaultInstance() : ticketSuggestion_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    private void setTicketSuggestion(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticketSuggestion_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    private void setTicketSuggestion(
+        com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+      ticketSuggestion_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    private void mergeTicketSuggestion(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+      if (ticketSuggestion_ != null &&
+          ticketSuggestion_ != com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.getDefaultInstance()) {
+        ticketSuggestion_ =
+          com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.newBuilder(ticketSuggestion_).mergeFrom(value).buildPartial();
+      } else {
+        ticketSuggestion_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+     */
+    private void clearTicketSuggestion() {  ticketSuggestion_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -5410,6 +5856,12 @@ public final class TicketServiceRpcProto {
       }
       if (ticketParserResponse_ != null) {
         output.writeMessage(26, getTicketParserResponse());
+      }
+      for (int i = 0; i < ticketSuggestions_.size(); i++) {
+        output.writeMessage(27, ticketSuggestions_.get(i));
+      }
+      if (ticketSuggestion_ != null) {
+        output.writeMessage(28, getTicketSuggestion());
       }
     }
 
@@ -5513,6 +5965,14 @@ public final class TicketServiceRpcProto {
       if (ticketParserResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(26, getTicketParserResponse());
+      }
+      for (int i = 0; i < ticketSuggestions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(27, ticketSuggestions_.get(i));
+      }
+      if (ticketSuggestion_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(28, getTicketSuggestion());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6900,6 +7360,148 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> getTicketSuggestionsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getTicketSuggestionsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public int getTicketSuggestionsCount() {
+        return instance.getTicketSuggestionsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestions(int index) {
+        return instance.getTicketSuggestions(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder setTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.setTicketSuggestions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder setTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketSuggestions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder addTicketSuggestions(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.addTicketSuggestions(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder addTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.addTicketSuggestions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder addTicketSuggestions(
+          com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTicketSuggestions(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder addTicketSuggestions(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTicketSuggestions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder addAllTicketSuggestions(
+          Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketSuggestion> values) {
+        copyOnWrite();
+        instance.addAllTicketSuggestions(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder clearTicketSuggestions() {
+        copyOnWrite();
+        instance.clearTicketSuggestions();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketSuggestion ticketSuggestions = 27;</code>
+       */
+      public Builder removeTicketSuggestions(int index) {
+        copyOnWrite();
+        instance.removeTicketSuggestions(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+       */
+      public boolean hasTicketSuggestion() {
+        return instance.hasTicketSuggestion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketSuggestion getTicketSuggestion() {
+        return instance.getTicketSuggestion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+       */
+      public Builder setTicketSuggestion(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.setTicketSuggestion(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+       */
+      public Builder setTicketSuggestion(
+          com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketSuggestion(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+       */
+      public Builder mergeTicketSuggestion(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion value) {
+        copyOnWrite();
+        instance.mergeTicketSuggestion(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSuggestion ticketSuggestion = 28;</code>
+       */
+      public Builder clearTicketSuggestion() {  copyOnWrite();
+        instance.clearTicketSuggestion();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -6919,6 +7521,7 @@ public final class TicketServiceRpcProto {
           ticketsByStatuses_.makeImmutable();
           ticketTypes_.makeImmutable();
           labels_.makeImmutable();
+          ticketSuggestions_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -6956,6 +7559,8 @@ public final class TicketServiceRpcProto {
           estimatedTime_ = visitor.visitLong(estimatedTime_ != 0L, estimatedTime_,
               other.estimatedTime_ != 0L, other.estimatedTime_);
           ticketParserResponse_ = visitor.visitMessage(ticketParserResponse_, other.ticketParserResponse_);
+          ticketSuggestions_= visitor.visitList(ticketSuggestions_, other.ticketSuggestions_);
+          ticketSuggestion_ = visitor.visitMessage(ticketSuggestion_, other.ticketSuggestion_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -7213,6 +7818,28 @@ public final class TicketServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(ticketParserResponse_);
                     ticketParserResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 218: {
+                  if (!ticketSuggestions_.isModifiable()) {
+                    ticketSuggestions_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(ticketSuggestions_);
+                  }
+                  ticketSuggestions_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.parser(), extensionRegistry));
+                  break;
+                }
+                case 226: {
+                  com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.Builder subBuilder = null;
+                  if (ticketSuggestion_ != null) {
+                    subBuilder = ticketSuggestion_.toBuilder();
+                  }
+                  ticketSuggestion_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketSuggestion.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticketSuggestion_);
+                    ticketSuggestion_ = subBuilder.buildPartial();
                   }
 
                   break;

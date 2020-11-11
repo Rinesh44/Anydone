@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -493,6 +494,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         employeeBottomSheet.setOnDismissListener(dialog -> {
             searchEmployee.clearFocus();
             searchEmployee.getText().clear();
+            if (rvEmployee.getChildCount() > 0) rvEmployee.scrollToPosition(0);
         });
 
         setUpEmployeeRecyclerView(rvEmployee);
@@ -535,6 +537,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         TextView tvSuggestions = llBottomSheet.findViewById(R.id.tv_suggestions);
         TextView tvCustomerSelf = llBottomSheet.findViewById(R.id.tv_customer_self);
         CircleImageView civSelf = llBottomSheet.findViewById(R.id.civ_self);
+        RelativeLayout rlNewCustomer = llBottomSheet.findViewById(R.id.rl_new_customer);
+        TextView tvNewCustomer = llBottomSheet.findViewById(R.id.tv_new_customer);
         rvCustomers = llBottomSheet.findViewById(R.id.rv_customer);
 
         Employee employee = EmployeeRepo.getInstance().getEmployee();
@@ -591,9 +595,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         {
             searchCustomer.clearFocus();
             searchCustomer.getText().clear();
+            if (rvCustomers.getChildCount() > 0) rvCustomers.scrollToPosition(0);
         });
 
-        setUpCustomerRecyclerView();
+        setUpCustomerRecyclerView(rlNewCustomer, tvNewCustomer, searchCustomer);
 
         searchCustomer.addTextChangedListener(new TextWatcher() {
             @Override
@@ -604,6 +609,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 customerSearchAdapter.getFilter().filter(s);
+                if (s.length() == 0) {
+                    rlNewCustomer.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -637,13 +645,44 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         rlCustomerSelfHolder.setVisibility(View.VISIBLE);
     }
 
-    private void setUpCustomerRecyclerView() {
+    @SuppressLint("ClickableViewAccessibility")
+    private void setUpCustomerRecyclerView(RelativeLayout rlNewCustomer, TextView tvNewCustomer,
+                                           EditText etSearchCustomer) {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvCustomers.setLayoutManager(mLayoutManager);
 
         customerSearchAdapter = new CustomerSearchAdapter
                 (this, customerList);
         rvCustomers.setAdapter(customerSearchAdapter);
+
+        rvCustomers.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
+        customerSearchAdapter.setOnFilterListEmptyListener(new CustomerSearchAdapter.OnFilterListEmptyListener() {
+            @Override
+            public void showNewCustomer() {
+                tvNewCustomer.setText(etSearchCustomer.getText().toString().trim());
+                if (etSearchCustomer.getText().toString().length() > 0)
+                    rlNewCustomer.setVisibility(View.VISIBLE);
+
+                rlNewCustomer.setOnClickListener(v -> {
+                    etCustomerName.setText(etSearchCustomer.getText().toString().trim());
+                    rlNewCustomer.setVisibility(View.GONE);
+                    etSearchCustomer.setText("");
+                    customerBottomSheet.dismiss();
+                    UiUtils.hideKeyboardForced(AddTicketActivity.this);
+                });
+            }
+
+            @Override
+            public void hideNewCustomer() {
+                rlNewCustomer.setVisibility(View.GONE);
+            }
+        });
 
         customerSearchAdapter.setOnItemClickListener((customer) -> {
             UiUtils.hideKeyboardForced(this);
@@ -797,6 +836,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setUpLabelRecyclerView(List<Label> labelList, RecyclerView rvLabels,
                                         RelativeLayout rlNewLabel, TextView tvNewLabel) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -804,6 +844,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         labelAdapter = new SearchLabelAdapter(labelList, this);
         rvLabels.setAdapter(labelAdapter);
+
+        rvLabels.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
 
         labelAdapter.setOnFilterListEmptyListener(() -> {
             tvNewLabel.setText(etSearchLabel.getText().toString().trim());
@@ -1024,12 +1071,20 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         return displayMetrics.heightPixels;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setUpTeamRecyclerView(List<Tags> tagsList, RecyclerView rvTeams) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvTeams.setLayoutManager(mLayoutManager);
 
         teamAdapter = new SearchTeamAdapter(tagsList, this);
         rvTeams.setAdapter(teamAdapter);
+
+        rvTeams.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
 
         teamAdapter.setOnItemClickListener(new SearchTeamAdapter.OnItemClickListener() {
             @Override
@@ -1226,6 +1281,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setUpEmployeeRecyclerView(RecyclerView rvEmployeeAllUsers
     ) {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -1233,6 +1289,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this);
         rvEmployeeAllUsers.setAdapter(employeeSearchAdapter);
+
+        rvEmployeeAllUsers.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
@@ -1247,6 +1310,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setUpTicketTypeRecyclerView() {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvTicketType.setLayoutManager(mLayoutManager);
@@ -1254,6 +1318,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         ticketCategorySearchAdapter = new TicketCategorySearchAdapter
                 (this, ticketTypeList);
         rvTicketType.setAdapter(ticketCategorySearchAdapter);
+
+        rvTicketType.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
 
         ticketCategorySearchAdapter.setOnItemClickListener((ticketType) -> {
             hideKeyBoard();

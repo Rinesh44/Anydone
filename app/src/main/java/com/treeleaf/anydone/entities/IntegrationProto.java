@@ -7371,6 +7371,15 @@ public final class IntegrationProto {
      * <code>optional int64 updatedAt = 15;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+     */
+    int getEmailProviderValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+     */
+    EmailProvider getEmailProvider();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.IntegrationMail}
@@ -8055,6 +8064,45 @@ public final class IntegrationProto {
       updatedAt_ = 0L;
     }
 
+    public static final int EMAILPROVIDER_FIELD_NUMBER = 16;
+    private int emailProvider_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+     */
+    public int getEmailProviderValue() {
+      return emailProvider_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+     */
+    public EmailProvider getEmailProvider() {
+      EmailProvider result = EmailProvider.forNumber(emailProvider_);
+      return result == null ? EmailProvider.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+     */
+    private void setEmailProviderValue(int value) {
+        emailProvider_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+     */
+    private void setEmailProvider(EmailProvider value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      emailProvider_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+     */
+    private void clearEmailProvider() {
+      
+      emailProvider_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!integrationMailId_.isEmpty()) {
@@ -8101,6 +8149,9 @@ public final class IntegrationProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(15, updatedAt_);
+      }
+      if (emailProvider_ != EmailProvider.UNKNOWN_EMAIL_PROVIDER.getNumber()) {
+        output.writeEnum(16, emailProvider_);
       }
     }
 
@@ -8168,6 +8219,10 @@ public final class IntegrationProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(15, updatedAt_);
+      }
+      if (emailProvider_ != EmailProvider.UNKNOWN_EMAIL_PROVIDER.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(16, emailProvider_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -8856,6 +8911,43 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+       */
+      public int getEmailProviderValue() {
+        return instance.getEmailProviderValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+       */
+      public Builder setEmailProviderValue(int value) {
+        copyOnWrite();
+        instance.setEmailProviderValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+       */
+      public EmailProvider getEmailProvider() {
+        return instance.getEmailProvider();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+       */
+      public Builder setEmailProvider(EmailProvider value) {
+        copyOnWrite();
+        instance.setEmailProvider(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EmailProvider emailProvider = 16;</code>
+       */
+      public Builder clearEmailProvider() {
+        copyOnWrite();
+        instance.clearEmailProvider();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntegrationMail)
     }
     protected final Object dynamicMethod(
@@ -8906,6 +8998,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          emailProvider_ = visitor.visitInt(emailProvider_ != 0, emailProvider_,    other.emailProvider_ != 0, other.emailProvider_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -9014,6 +9107,12 @@ public final class IntegrationProto {
                 case 120: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 128: {
+                  int rawValue = input.readEnum();
+
+                  emailProvider_ = rawValue;
                   break;
                 }
               }

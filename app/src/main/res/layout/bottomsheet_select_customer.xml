@@ -84,12 +84,30 @@
         android:textColor="@color/black"
         android:textStyle="bold" />
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/rl_new_customer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_10x1"
+        android:background="#F0F0F0"
         android:padding="@dimen/dimen_10x1"
-        android:text="new person (Create new)"/>
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_new_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:text="New"
+            android:textColor="@color/charcoal_text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tv_new_customer"
+            android:text=" (Create new)"
+            android:textColor="@color/colorPrimary" />
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_customer"

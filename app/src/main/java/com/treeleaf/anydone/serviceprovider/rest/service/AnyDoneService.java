@@ -619,6 +619,30 @@ public interface AnyDoneService {
                       String ticketId,
               @Body TicketProto.Ticket ticket);
 
+    @GET("ticket/suggestions/service/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketSuggestions(@Header(AUTHORIZATION)
+                                                                                      String token,
+                                                                              @Path(value = "serviceId")
+                                                                                      String serviceId);
+
+    @GET("ticket/suggestions/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketSuggestionById(@Header(AUTHORIZATION)
+                                                                                         String token,
+                                                                                 @Path(value = "serviceId")
+                                                                                         String serviceId);
+
+    @PATCH("ticket/suggestions/accept")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> acceptTicketSuggestion(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Body TicketProto.TicketSuggestionReq
+                                                                                        ticketSuggestionReq);
+
+    @PATCH("ticket/suggestions/reject")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> rejectTicketSuggestion(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Body TicketProto.TicketSuggestionReq
+                                                                                        ticketSuggestionReq);
+
 
 }
 

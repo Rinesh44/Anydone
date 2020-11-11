@@ -482,7 +482,7 @@ public class ServiceRequestDetailPresenterImpl extends
 
     @Override
     public void getSuggestions(String nextMessageId, long refId, boolean backClicked) {
-        Preconditions.checkNotNull(nextMessageId, "Message id cannot be null");
+        Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
         Observable<BotConversationRpcProto.BotConversationBaseResponse> getBotConversationObservable;

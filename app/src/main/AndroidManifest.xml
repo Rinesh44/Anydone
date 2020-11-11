@@ -28,7 +28,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".linkedticketdetail.LinkedTicketDetailActivity"/>
+        <activity
+            android:name=".suggestedTicketPreview.SuggestedTicketPreviewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ticketsuggestions.TicketSuggestionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linkedticketdetail.LinkedTicketDetailActivity" />
         <activity android:name=".subscribed.SubscribedTicketsActivity" />
         <activity
             android:name=".contributed.ContributedTicketsActivity"

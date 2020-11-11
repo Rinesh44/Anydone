@@ -17,7 +17,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
-import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -175,6 +174,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     TextView tvAddCommentHint;
     @BindView(R.id.editor_scrollview)
     MaxHeightScrollView editorScrollview;
+    @BindView(R.id.view)
+    View view;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -262,8 +263,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         if (subscribed) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
         } else {
             llSearchContainer.setVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
         }
 
         if (ticketId != -1) {
@@ -656,6 +659,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private void setStatusViews(Tickets tickets) {
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CLOSED.name())) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             tvClosed.setVisibility(View.VISIBLE);
             tvClosed.setText("Closed");
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
@@ -665,6 +669,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_RESOLVED.name())) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             tvClosed.setText("Resolved");
             tvClosed.setVisibility(View.VISIBLE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
@@ -677,8 +682,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
                 || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.VISIBLE);
             tvClosed.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
 
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                     rvConversation.getLayoutParams();
@@ -687,7 +694,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         if (ticketType.equalsIgnoreCase(Constants.SUBSCRIBED)) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.GONE);
+            view.setVisibility(View.VISIBLE);
         }
 
 
@@ -697,6 +706,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 tickets.getTicketStatus().equalsIgnoreCase(
                         TicketProto.TicketState.TICKET_STARTED.name())) {
             llSearchContainer.setVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1092,6 +1102,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onTaskStartSuccess(long estTime) {
         btnStartTask.setVisibility(View.GONE);
+        view.setVisibility(View.VISIBLE);
         llSearchContainer.setVisibility(View.VISIBLE);
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
       /*  if (onTicketStartListener != null)

@@ -53,6 +53,8 @@ import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLo
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepository;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.TimezoneRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.suggestedTicketPreview.SuggestedTicketPreviewRepository;
+import com.treeleaf.anydone.serviceprovider.suggestedTicketPreview.SuggestedTicketPreviewRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailsRepository;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationRepository;
@@ -81,6 +83,8 @@ import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.Unassigned
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnsubscribedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnsubscribedTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.ticketsuggestions.TicketSuggestionRepository;
+import com.treeleaf.anydone.serviceprovider.ticketsuggestions.TicketSuggestionRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationRepository;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationRepositoryImpl;
 
@@ -299,6 +303,16 @@ public class PresenterModule {
     @Provides
     EditTicketRepository getEditTicketRepository(AnyDoneService anyDoneService) {
         return new EditTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    TicketSuggestionRepository getTicketSuggestionRepository(AnyDoneService anyDoneService) {
+        return new TicketSuggestionRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    SuggestedTicketPreviewRepository getSuggestedTicketPreviewRepository(AnyDoneService anyDoneService) {
+        return new SuggestedTicketPreviewRepositoryImpl(anyDoneService);
     }
 }
 
