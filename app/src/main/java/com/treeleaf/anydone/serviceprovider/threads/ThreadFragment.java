@@ -478,6 +478,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         rvThreads.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(threadList)) {
             ivThreadNotFound.setVisibility(View.GONE);
+            etSearch.setVisibility(View.VISIBLE);
         } else etSearch.setVisibility(View.GONE);
     }
 

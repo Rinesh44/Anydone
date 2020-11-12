@@ -170,13 +170,17 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         labelList = LabelRepo.getInstance().getAllLabels();
         ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
 
-        createTicketTypeBottomSheet();
         createPriorityBottomSheet();
         createTeamBottomSheet();
         createLabelBottomSheet();
         createCustomerBottomSheet();
         createEmployeeBottomSheet();
         createEstimatedTimeBottomSheet();
+
+        ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
+        TicketCategorySearchAdapter ticketCategorySearchAdapter = new TicketCategorySearchAdapter
+                (this, ticketTypeList);
+        etTicketType.setAdapter(ticketCategorySearchAdapter);
 
 //        setUpTeamRecyclerView();
 
@@ -227,7 +231,20 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         fblTeam.setOnClickListener(v -> teamSheet.show());
         fblLabel.setOnClickListener(v -> labelSheet.show());
 
-        etTicketType.setOnClickListener(v -> ticketTypeBottomSheet.show());
+        etTicketType.setOnItemClickListener((parent, view, position, id) -> {
+            UiUtils.hideKeyboard(this);
+            etTicketType.setError(null);
+            ticketCategoryId = ticketTypeList.get(position).getCategoryId();
+        });
+
+        etTicketType.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etTicketType.showDropDown();
+            } else {
+                etTicketType.dismissDropDown();
+            }
+        });
+
         etCustomerName.setOnClickListener(v -> customerBottomSheet.show());
         etAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
 
@@ -694,58 +711,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             etCustomerName.setText(customer.getFullName());
             customerBottomSheet.dismiss();
-        });
-
-    }
-
-    private void createTicketTypeBottomSheet() {
-        ticketTypeBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
-                R.style.BottomSheetDialog);
-        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
-                .inflate(R.layout.bottomsheet_select_ticket_type, null);
-
-        ticketTypeBottomSheet.setContentView(llBottomSheet);
-
-        ticketTypeBottomSheet.setOnShowListener(dialog -> {
-            BottomSheetDialog d = (BottomSheetDialog) dialog;
-
-            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
-            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
-        });
-
-
-        EditText searchTicketType = llBottomSheet.findViewById(R.id.et_search_ticket_type);
-        rvTicketType = llBottomSheet.findViewById(R.id.rv_ticket_type);
-
-        searchTicketType.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                setupSheetHeight(ticketTypeBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
-            }
-        });
-
-        ticketTypeBottomSheet.setOnDismissListener(dialog -> {
-            searchTicketType.clearFocus();
-            searchTicketType.getText().clear();
-        });
-        setUpTicketTypeRecyclerView();
-
-        searchTicketType.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                ticketCategorySearchAdapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
         });
 
     }
@@ -1308,32 +1273,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 employeeBottomSheet.dismiss();
             });
         }
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    private void setUpTicketTypeRecyclerView() {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        rvTicketType.setLayoutManager(mLayoutManager);
-
-        ticketCategorySearchAdapter = new TicketCategorySearchAdapter
-                (this, ticketTypeList);
-        rvTicketType.setAdapter(ticketCategorySearchAdapter);
-
-        rvTicketType.setOnTouchListener((v, event) -> {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            assert imm != null;
-            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            return false;
-        });
-
-        ticketCategorySearchAdapter.setOnItemClickListener((ticketType) -> {
-            hideKeyBoard();
-
-            etTicketType.setError(null);
-            ticketCategoryId = ticketType.getCategoryId();
-            etTicketType.setText(ticketType.getName());
-            ticketTypeBottomSheet.dismiss();
-        });
     }
 
     private void showEmployeeWithImage(AssignEmployee employee) {
