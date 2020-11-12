@@ -43,6 +43,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
 
     public void setData(List<Thread> threadList) {
         this.threadList = threadList;
+        notifyDataSetChanged();
     }
 
 

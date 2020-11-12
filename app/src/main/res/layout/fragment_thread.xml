@@ -67,9 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:visibility="visible"
             android:elevation="4dp"
-            android:padding="@dimen/dimen_10x1">
+            android:padding="@dimen/dimen_10x1"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_suggested_ticket_title"
@@ -90,9 +90,9 @@
                 android:layout_marginStart="@dimen/dimen_5x1"
                 android:layout_marginTop="@dimen/dimen_2x2"
                 android:layout_marginBottom="@dimen/dimen_10x1"
-                android:textSize="@dimen/material_text_caption"
                 android:text="8 New Tickets"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/material_text_caption" />
 
             <ImageView
                 android:id="@+id/iv_close_ticket_suggestion"
@@ -104,6 +104,21 @@
 
 
         </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10x1"
+            android:background="@drawable/search_bg"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/dimen_2x4"
+            android:inputType="textVisiblePassword"
+            android:drawableTint="#9D9D9D"
+            android:textSize="15sp"
+            android:hint="@string/search"
+            android:padding="@dimen/dimen_2x4" />
+
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_threads"

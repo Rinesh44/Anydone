@@ -15,6 +15,7 @@ import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -314,5 +315,21 @@ public class ThreadRepo extends Repo {
             close(realm);
         }
     }
+
+    public List<Thread> searchThread(String query) {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+        try {
+            GlobalUtils.showLog(TAG, "search query: " + query);
+            return new ArrayList<>(realm.where(Thread.class)
+                    .contains("customerName", query, Case.INSENSITIVE)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
 
 }

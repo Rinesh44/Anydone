@@ -92,6 +92,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     TextView tvSuggestedTicket;
     @BindView(R.id.iv_close_ticket_suggestion)
     ImageView ivCloseTicketSuggestion;
+    @BindView(R.id.et_search)
+    EditText etSearch;
 
     private RecyclerView rvServices;
     //    private BottomSheetBehavior sheetBehavior;
@@ -158,6 +160,24 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         } catch (MqttException e) {
             e.printStackTrace();
         }
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                List<Thread> searchResults = ThreadRepo.getInstance().searchThread(s.toString());
+                threadAdapter.setData(searchResults);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
@@ -348,6 +368,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
             ivThreadNotFound.setVisibility(View.GONE);
             presenter.getConversationThreads(true);
+            presenter.getTicketSuggestions();
         });
     }
 
@@ -457,7 +478,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         rvThreads.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(threadList)) {
             ivThreadNotFound.setVisibility(View.GONE);
-        }
+        } else etSearch.setVisibility(View.GONE);
     }
 
     @Override
@@ -473,6 +494,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 msg);*/
 //        showCustomSnackBar(msg);
         rvThreads.setVisibility(View.GONE);
+        etSearch.setVisibility(View.GONE);
         ivThreadNotFound.setVisibility(View.VISIBLE);
 
     }

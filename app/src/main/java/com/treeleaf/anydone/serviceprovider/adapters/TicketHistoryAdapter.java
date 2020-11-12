@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
