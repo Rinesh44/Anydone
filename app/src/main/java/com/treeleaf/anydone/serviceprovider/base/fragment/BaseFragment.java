@@ -1,13 +1,18 @@
 package com.treeleaf.anydone.serviceprovider.base.fragment;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.orhanobut.hawk.Hawk;
@@ -17,6 +22,8 @@ import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -96,5 +103,27 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         Hawk.deleteAll();
         final Realm realm = RealmUtils.getInstance().getRealm();
         realm.executeTransaction(realm1 -> realm1.deleteAll());
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void requestPermissionsSafely(String[] permissions, int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions, requestCode);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public boolean hasPermission(String permission) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+                checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+
+    }
+
+    public int checkSelfPermission(String permission) {
+        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
+                permission)
+                == PackageManager.PERMISSION_GRANTED) {
+            return PackageManager.PERMISSION_GRANTED;
+        } else return -1;
     }
 }

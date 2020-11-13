@@ -1,8 +1,10 @@
 package com.treeleaf.anydone.serviceprovider.setting.location.showLocation;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -11,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,12 +63,24 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
         List<Location> locationList = LocationRepo.getInstance().getAllLocation();
         setUpRecyclerView(locationList);
 
-        btnAddLocation.setOnClickListener(v ->
+        btnAddLocation.setOnClickListener(v -> {
+            if (!hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                requestLocationPermissions();
+            } else {
+                startActivity(new Intent(
+                        ShowLocationActivity.this, AddLocationActivity.class));
+            }
+        });
+
+        tvAddLocation.setOnClickListener(v ->
                 startActivity(new Intent(
                         ShowLocationActivity.this, AddLocationActivity.class)));
+    }
 
-        tvAddLocation.setOnClickListener(v -> startActivity(new Intent(
-                ShowLocationActivity.this, AddLocationActivity.class)));
+    private void requestLocationPermissions() {
+        requestPermissionsSafely(new String[]{
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION}, 789);
     }
 
     @Override

@@ -95,7 +95,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 //        btnGoogleSignIn.setOnClickListener(this);
         tvForgotPassword.setOnClickListener(this);
 
-        checkRequiredPermissions();
+//        checkRequiredPermissions();
         configureGoogleSignIn();
         addTextInputListeners();
 
@@ -340,26 +340,25 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
         return this;
     }
 
-    @SuppressLint("InlinedApi")
+ /*   @SuppressLint("InlinedApi")
     private void checkRequiredPermissions() {
         if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 && hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 && hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 && hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 && hasPermission(Manifest.permission.ACCESS_MEDIA_LOCATION)
-                && hasPermission(Manifest.permission.CAMERA)
-                && hasPermission(Manifest.permission.RECORD_AUDIO)) {
+                && hasPermission(Manifest.permission.CAMERA)) {
             return;
         }
 
-        requestPermissionsSafely(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        requestPermissionsSafely(new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA,
                 Manifest.permission.ACCESS_MEDIA_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                Manifest.permission.RECORD_AUDIO}, PERMISSIONS_CODE);
-    }
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PERMISSIONS_CODE);
+    }*/
 
     public static Retrofit getClient(Context context) {
 

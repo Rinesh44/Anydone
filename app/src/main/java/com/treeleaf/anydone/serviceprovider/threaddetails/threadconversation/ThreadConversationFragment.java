@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -926,11 +927,19 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_camera)
     void initCamera() {
-        try {
-            llAttachOptions.setVisibility(View.GONE);
-            openCamera();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!hasPermission(Manifest.permission.CAMERA)) {
+            requestPermissionsForCamera();
+        } else if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            requestPermissionsForCamera();
+        } else if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            requestPermissionsForCamera();
+        } else {
+            try {
+                llAttachOptions.setVisibility(View.GONE);
+                openCamera();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -946,14 +955,18 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_files)
     void openFiles() {
-        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS)));
-        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
-        llAttachOptions.setVisibility(View.GONE);
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setDataAndType(selectedUri, "application/pdf");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
+        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            requestPermissionsForGallery();
+        } else {
+            Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOWNLOADS)));
+            GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
+            llAttachOptions.setVisibility(View.GONE);
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setDataAndType(selectedUri, "application/pdf");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
+        }
     }
 
     @OnClick(R.id.tv_recorder)
@@ -963,8 +976,12 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_gallery)
     void showGallery() {
-        llAttachOptions.setVisibility(View.GONE);
-        openGallery();
+        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            requestPermissionsForGallery();
+        } else {
+            llAttachOptions.setVisibility(View.GONE);
+            openGallery();
+        }
     }
 
     private void openGallery() {
@@ -1161,4 +1178,16 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
     }
 
+
+    private void requestPermissionsForCamera() {
+        requestPermissionsSafely(new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA}, 789);
+    }
+
+    private void requestPermissionsForGallery() {
+        requestPermissionsSafely(new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE}, 987);
+    }
 }

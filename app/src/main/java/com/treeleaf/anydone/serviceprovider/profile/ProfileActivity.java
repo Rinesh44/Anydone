@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.profile;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -137,13 +138,40 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
 
         civProfileImage.setOnClickListener(v -> toggleBottomSheet());
         tvCamera.setOnClickListener(v -> {
-            try {
-                openCamera();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (!hasPermission(Manifest.permission.CAMERA)) {
+                requestPermissionsForCamera();
+            } else if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                requestPermissionsForCamera();
+            } else if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                requestPermissionsForCamera();
+            } else {
+                try {
+                    openCamera();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
-        tvGallery.setOnClickListener(v -> openGallery());
+
+        tvGallery.setOnClickListener(v -> {
+            if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                requestPermissionsForGallery();
+            } else {
+                openGallery();
+            }
+        });
+    }
+
+    private void requestPermissionsForCamera() {
+        requestPermissionsSafely(new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA}, 789);
+    }
+
+    private void requestPermissionsForGallery() {
+        requestPermissionsSafely(new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE}, 987);
     }
 
     private void openGallery() {
@@ -602,4 +630,6 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
                 .withAspectRatio(5f, 5f)
                 .start(ProfileActivity.this);
     }
+
+
 }
