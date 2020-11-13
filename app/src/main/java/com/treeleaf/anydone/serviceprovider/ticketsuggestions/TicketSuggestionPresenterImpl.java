@@ -4,9 +4,11 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketSuggestion;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,31 +33,32 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
     }
 
     @Override
-    public void acceptTicketSuggestion(List<String> ticketSuggestionIds) {
+    public void acceptTicketSuggestion(List<TicketSuggestion> ticketSuggestions) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        List<TicketProto.TicketSuggestion> suggestions = new ArrayList<>();
-        for (String suggestionId : ticketSuggestionIds
+        List<TicketProto.TicketSuggestion> suggestionList = new ArrayList<>();
+        for (TicketSuggestion suggestions : ticketSuggestions
         ) {
-            GlobalUtils.showLog(TAG, "suggestion ids: " + suggestionId);
+            GlobalUtils.showLog(TAG, "suggestion ids: " + suggestions.getSuggestionId());
             TicketProto.TicketSuggestion ticketSuggestion = TicketProto.TicketSuggestion.newBuilder()
-                    .setSuggestionId(suggestionId)
+                    .setSuggestionId(suggestions.getSuggestionId())
                     .build();
 
-            suggestions.add(ticketSuggestion);
+            suggestionList.add(ticketSuggestion);
         }
 
         TicketProto.TicketSuggestionReq ticketSuggestionReq = TicketProto.TicketSuggestionReq.newBuilder()
-                .addAllSuggestions(suggestions)
+                .addAllSuggestions(suggestionList)
                 .build();
 
         GlobalUtils.showLog(TAG, "ticket suggestion check: " + ticketSuggestionReq);
 
-        ticketObservable = service.acceptTicketSuggestion(token, ticketSuggestionReq);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        ticketObservable = service.acceptTicketSuggestion(token, serviceId, ticketSuggestionReq);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
@@ -78,7 +81,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
                             return;
                         }
 
-                        getView().acceptTicketSuggestionSuccess();
+                        getView().acceptTicketSuggestionSuccess(ticketSuggestions);
                     }
 
                     @Override
@@ -94,7 +97,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
     }
 
     @Override
-    public void rejectTicketSuggestion(List<String> ticketSuggestionIds) {
+    public void rejectTicketSuggestion(List<TicketSuggestion> ticketSuggestions) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -102,11 +105,11 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
         String token = Hawk.get(Constants.TOKEN);
 
         List<TicketProto.TicketSuggestion> suggestions = new ArrayList<>();
-        for (String suggestionId : ticketSuggestionIds
+        for (TicketSuggestion suggestion : ticketSuggestions
         ) {
-            GlobalUtils.showLog(TAG, "suggestion ids: " + suggestionId);
+            GlobalUtils.showLog(TAG, "suggestion ids: " + suggestion.getSuggestionId());
             TicketProto.TicketSuggestion ticketSuggestion = TicketProto.TicketSuggestion.newBuilder()
-                    .setSuggestionId(suggestionId)
+                    .setSuggestionId(suggestion.getSuggestionId())
                     .build();
 
             suggestions.add(ticketSuggestion);
@@ -118,7 +121,8 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
 
         GlobalUtils.showLog(TAG, "ticket suggestion check: " + ticketSuggestionReq);
 
-        ticketObservable = service.rejectTicketSuggestion(token, ticketSuggestionReq);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        ticketObservable = service.rejectTicketSuggestion(token, serviceId, ticketSuggestionReq);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
@@ -141,7 +145,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
                             return;
                         }
 
-                        getView().rejectTicketSuggestionSuccess();
+                        getView().rejectTicketSuggestionSuccess(ticketSuggestions);
                     }
 
                     @Override
@@ -157,7 +161,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
     }
 
     @Override
-    public void acceptTicketSuggestion(String ticketSuggestionId) {
+    public void acceptTicketSuggestion(TicketSuggestion suggestion) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -165,7 +169,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
         String token = Hawk.get(Constants.TOKEN);
 
         TicketProto.TicketSuggestion ticketSuggestion = TicketProto.TicketSuggestion.newBuilder()
-                .setSuggestionId(ticketSuggestionId)
+                .setSuggestionId(suggestion.getSuggestionId())
                 .build();
 
         TicketProto.TicketSuggestionReq ticketSuggestionReq = TicketProto.TicketSuggestionReq.newBuilder()
@@ -174,7 +178,8 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
 
         GlobalUtils.showLog(TAG, "ticket suggestion check: " + ticketSuggestionReq);
 
-        ticketObservable = service.acceptTicketSuggestion(token, ticketSuggestionReq);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        ticketObservable = service.acceptTicketSuggestion(token, serviceId, ticketSuggestionReq);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
@@ -197,7 +202,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
                             return;
                         }
 
-                        getView().acceptParticularTicketSuggestionSuccess(ticketSuggestionId);
+                        getView().acceptParticularTicketSuggestionSuccess(suggestion);
                     }
 
                     @Override
@@ -213,7 +218,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
     }
 
     @Override
-    public void rejectTicketSuggestion(String ticketSuggestionId) {
+    public void rejectTicketSuggestion(TicketSuggestion suggestion) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -221,7 +226,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
         String token = Hawk.get(Constants.TOKEN);
 
         TicketProto.TicketSuggestion ticketSuggestion = TicketProto.TicketSuggestion.newBuilder()
-                .setSuggestionId(ticketSuggestionId)
+                .setSuggestionId(suggestion.getSuggestionId())
                 .build();
 
         TicketProto.TicketSuggestionReq ticketSuggestionReq = TicketProto.TicketSuggestionReq.newBuilder()
@@ -230,7 +235,8 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
 
         GlobalUtils.showLog(TAG, "ticket suggestion check: " + ticketSuggestionReq);
 
-        ticketObservable = service.rejectTicketSuggestion(token, ticketSuggestionReq);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        ticketObservable = service.rejectTicketSuggestion(token, serviceId, ticketSuggestionReq);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
@@ -253,7 +259,7 @@ public class TicketSuggestionPresenterImpl extends BasePresenter<TicketSuggestio
                             return;
                         }
 
-                        getView().rejectParticularTicketSuggestionSuccess(ticketSuggestionId);
+                        getView().rejectParticularTicketSuggestionSuccess(suggestion);
                     }
 
                     @Override

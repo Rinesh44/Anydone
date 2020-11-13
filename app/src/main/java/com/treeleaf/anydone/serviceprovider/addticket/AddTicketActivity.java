@@ -692,6 +692,16 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     etSearchCustomer.setText("");
                     customerBottomSheet.dismiss();
                     UiUtils.hideKeyboardForced(AddTicketActivity.this);
+
+                    etEmail.setText("");
+                    etEmail.setFocusable(true);
+                    etEmail.setEnabled(true);
+                    etEmail.setFocusableInTouchMode(true);
+
+                    etPhone.setText("");
+                    etPhone.setFocusable(true);
+                    etPhone.setEnabled(true);
+                    etPhone.setFocusableInTouchMode(true);
                 });
             }
 
@@ -1364,7 +1374,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
-
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.suggestedTicketPreview;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -87,9 +88,8 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
                 .apply(options)
                 .into(civCustomer);
 
-        tvAccept.setOnClickListener(v -> presenter.acceptTicketSuggestion(ticketSuggestionId));
-
-        tvReject.setOnClickListener(v -> presenter.rejectTicketSuggestion(ticketSuggestionId));
+        tvAccept.setOnClickListener(v -> showAcceptDialog(ticketSuggestionId));
+        tvReject.setOnClickListener(v -> showRejectDialog(ticketSuggestionId));
         ivBack.setOnClickListener(v -> onBackPressed());
 
     }
@@ -211,4 +211,71 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
         adapter = new TicketHistoryAdapter(messageList, msgId, this);
         rvTicketHistory.setAdapter(adapter);
     }
+
+    private void showAcceptDialog(String ticketSuggestionId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Accept ticket suggestion?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                (dialog, id) -> {
+                    presenter.acceptTicketSuggestion(ticketSuggestionId);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
+    private void showRejectDialog(String ticketSuggestionId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Reject ticket suggestion?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                (dialog, id) -> {
+                    presenter.rejectTicketSuggestion(ticketSuggestionId);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
 }

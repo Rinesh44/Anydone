@@ -7,6 +7,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import javax.inject.Inject;
 
@@ -44,7 +45,8 @@ public class SuggestedTicketPreviewPresenterImpl extends BasePresenter<Suggested
 
         GlobalUtils.showLog(TAG, "ticket suggestion check: " + ticketSuggestionReq);
 
-        ticketObservable = service.acceptTicketSuggestion(token, ticketSuggestionReq);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        ticketObservable = service.acceptTicketSuggestion(token, serviceId, ticketSuggestionReq);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())
@@ -100,7 +102,8 @@ public class SuggestedTicketPreviewPresenterImpl extends BasePresenter<Suggested
 
         GlobalUtils.showLog(TAG, "ticket suggestion check: " + ticketSuggestionReq);
 
-        ticketObservable = service.rejectTicketSuggestion(token, ticketSuggestionReq);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        ticketObservable = service.rejectTicketSuggestion(token, serviceId, ticketSuggestionReq);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())

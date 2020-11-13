@@ -62,14 +62,14 @@ public class TicketSuggestionRepo extends Repo {
         }
     }
 
-    public void deleteTicketSuggestionById(List<String> idList) {
+    public void deleteTicketSuggestionById(List<TicketSuggestion> suggestionList) {
         final Realm realm = RealmUtils.getInstance().getRealm();
 
         realm.executeTransaction(realm1 -> {
-            for (String id : idList
+            for (TicketSuggestion suggestion : suggestionList
             ) {
                 RealmResults<TicketSuggestion> result = realm1.where(TicketSuggestion.class)
-                        .equalTo("suggestionId", id).findAll();
+                        .equalTo("suggestionId", suggestion.getSuggestionId()).findAll();
                 result.deleteAllFromRealm();
             }
         });
@@ -81,6 +81,15 @@ public class TicketSuggestionRepo extends Repo {
         realm.executeTransaction(realm1 -> {
             RealmResults<TicketSuggestion> result = realm1.where(TicketSuggestion.class)
                     .equalTo("suggestionId", id).findAll();
+            result.deleteAllFromRealm();
+        });
+    }
+
+    public void deleteAllTicketSuggestions() {
+        final Realm realm = RealmUtils.getInstance().getRealm();
+
+        realm.executeTransaction(realm1 -> {
+            RealmResults<TicketSuggestion> result = realm1.where(TicketSuggestion.class).findAll();
             result.deleteAllFromRealm();
         });
     }

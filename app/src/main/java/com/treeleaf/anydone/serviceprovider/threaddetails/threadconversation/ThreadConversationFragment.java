@@ -197,6 +197,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
 
             if (CollectionUtils.isEmpty(conversationList)) {
+                pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(threadId, 0, System.currentTimeMillis(),
                         100);
             } else {
@@ -607,6 +608,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @Override
     public void getMessagesSuccess(List<Conversation> conversationList) {
+        pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
@@ -622,6 +624,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @Override
     public void getMessageFail(String message) {
+        pbLoadData.setVisibility(View.GONE);
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), message);
             onAuthorizationFailed(getActivity());

@@ -50,10 +50,13 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
     TextView tvSelectedTicketCount;
     @BindView(R.id.cb_select_all)
     CheckBox cbSelectAll;
+    @BindView(R.id.tv_no_suggestions)
+    TextView tvNoSuggestions;
 
     private ProgressDialog progress;
-    List<String> suggestedTicketIds = new ArrayList<>();
+    List<TicketSuggestion> suggestedTickets = new ArrayList<>();
     private SuggestedTicketAdapter adapter;
+    private List<TicketSuggestion> ticketSuggestionList;
 
     @Override
     protected int getLayout() {
@@ -64,28 +67,67 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        List<TicketSuggestion> ticketSuggestionList = TicketSuggestionRepo.getInstance().getAllTicketSuggestions();
+        ticketSuggestionList = TicketSuggestionRepo.getInstance().getAllTicketSuggestions();
         setUpRecyclerView(ticketSuggestionList);
         ivBack.setOnClickListener(v -> onBackPressed());
         tvAcceptAll.setOnClickListener(v -> {
-            if (suggestedTicketIds.isEmpty()) {
+            if (suggestedTickets.isEmpty()) {
                 Toast.makeText(TicketSuggestionActivity.this,
                         "Please select ticket suggestions to accept", Toast.LENGTH_SHORT).show();
             } else {
-                presenter.acceptTicketSuggestion(suggestedTicketIds);
+                String count = String.valueOf(suggestedTickets.size());
+                if (Integer.parseInt(count) > 1)
+                    showAcceptDialog(suggestedTickets, "Accept " + count + " selected " +
+                            "suggestions?");
+                else
+                    showAcceptDialog(suggestedTickets, "Accept " + count + " selected " +
+                            "suggestion?");
             }
         });
 
         tvRejectAll.setOnClickListener(v -> {
-            if (suggestedTicketIds.isEmpty()) {
+            if (suggestedTickets.isEmpty()) {
                 Toast.makeText(TicketSuggestionActivity.this,
                         "Please select ticket suggestions to reject", Toast.LENGTH_SHORT).show();
             } else {
-                presenter.rejectTicketSuggestion(suggestedTicketIds);
+                String count = String.valueOf(suggestedTickets.size());
+                if (Integer.parseInt(count) > 1)
+                    showRejectDialog(suggestedTickets, "Reject " + count + " selected " +
+                            "suggestions?");
+                else
+                    showRejectDialog(suggestedTickets, "Reject " + count + " selected " +
+                            "suggestion?");
             }
         });
 
-        cbSelectAll.setOnCheckedChangeListener((buttonView, isChecked) -> adapter.selectAll(isChecked));
+        cbSelectAll.setOnClickListener(v -> {
+            boolean isChecked = cbSelectAll.isChecked();
+            adapter.selectAll(isChecked);
+            suggestedTickets.clear();
+            if (isChecked) {
+                suggestedTickets.addAll(ticketSuggestionList);
+                enableAcceptReject();
+                tvSelectedTicketCount.setVisibility(View.VISIBLE);
+                setItemCount();
+            } else {
+                disableAcceptReject();
+                tvSelectedTicketCount.setVisibility(View.GONE);
+            }
+
+        });
+
+    /*    cbSelectAll.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            adapter.selectAll(isChecked);
+            if (isChecked) {
+                suggestedTickets.clear();
+                suggestedTickets.addAll(ticketSuggestionList);
+                enableAcceptReject();
+            } else {
+                suggestedTickets.clear();
+                disableAcceptReject();
+            }
+            setItemCount();
+        });*/
 
     }
 
@@ -98,41 +140,40 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
 
         adapter.setOnItemClickListener(new SuggestedTicketAdapter.OnItemClickListener() {
             @Override
-            public void onItemAdd(String ticketSuggestionId) {
+            public void onItemAdd(TicketSuggestion ticketSuggestion) {
                 GlobalUtils.showLog(TAG, "item add listen");
-                suggestedTicketIds.add(ticketSuggestionId);
-                GlobalUtils.showLog(TAG, "suggested ticket list size: " + suggestedTicketIds.size());
-                if (suggestedTicketIds.size() > 0) {
+                suggestedTickets.add(ticketSuggestion);
+                GlobalUtils.showLog(TAG, "suggested ticket list size: " + suggestedTickets.size());
+                if (suggestedTickets.size() > 0) {
                     enableAcceptReject();
                 }
 
-                StringBuilder selectedTicketCount = new StringBuilder(String.valueOf(suggestedTicketIds.size()));
-                selectedTicketCount.append(" selected");
-                tvSelectedTicketCount.setText(selectedTicketCount);
+                tvSelectedTicketCount.setVisibility(View.VISIBLE);
+                setItemCount();
             }
 
             @Override
-            public void onItemRemove(String ticketSuggestionId) {
+            public void onItemRemove(TicketSuggestion ticketSuggestion) {
                 GlobalUtils.showLog(TAG, "item remove listen");
-                suggestedTicketIds.remove(ticketSuggestionId);
-                GlobalUtils.showLog(TAG, "suggested ticket list size: " + suggestedTicketIds.size());
-                if (suggestedTicketIds.size() == 0) {
+                suggestedTickets.remove(ticketSuggestion);
+                GlobalUtils.showLog(TAG, "suggested ticket list size: " + suggestedTickets.size());
+                if (suggestedTickets.size() == 0) {
                     disableAcceptReject();
                 }
 
-                StringBuilder selectedTicketCount = new StringBuilder(String.valueOf(suggestedTicketIds.size()));
-                selectedTicketCount.append(" selected");
-                tvSelectedTicketCount.setText(selectedTicketCount);
+                setItemCount();
+                if (suggestedTickets.size() == 0) tvSelectedTicketCount.setVisibility(View.GONE);
+                if (cbSelectAll.isChecked()) cbSelectAll.setChecked(false);
             }
 
             @Override
-            public void onAccept(String ticketSuggestionId) {
-                showAcceptDialog(ticketSuggestionId);
+            public void onAccept(TicketSuggestion ticketSuggestion) {
+                showAcceptDialog(ticketSuggestion);
             }
 
             @Override
-            public void onReject(String ticketSuggestionId) {
-                showRejectDialog(ticketSuggestionId);
+            public void onReject(TicketSuggestion ticketSuggestion) {
+                showRejectDialog(ticketSuggestion);
             }
 
             @Override
@@ -150,8 +191,14 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         });
     }
 
+    private void setItemCount() {
+        StringBuilder selectedTicketCount = new StringBuilder(String.valueOf(suggestedTickets.size()));
+        selectedTicketCount.append(" selected");
+        tvSelectedTicketCount.setText(selectedTicketCount);
+    }
 
-    private void showAcceptDialog(String ticketSuggestionId) {
+
+    private void showAcceptDialog(TicketSuggestion ticketSuggestion) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setMessage("Accept ticket suggestion?");
         builder1.setCancelable(true);
@@ -159,7 +206,7 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         builder1.setPositiveButton(
                 "Ok",
                 (dialog, id) -> {
-                    presenter.acceptTicketSuggestion(ticketSuggestionId);
+                    presenter.acceptTicketSuggestion(ticketSuggestion);
                     dialog.dismiss();
                 });
 
@@ -184,7 +231,7 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         alert11.show();
     }
 
-    private void showRejectDialog(String ticketSuggestionId) {
+    private void showRejectDialog(TicketSuggestion ticketSuggestion) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setMessage("Reject ticket suggestion?");
         builder1.setCancelable(true);
@@ -192,7 +239,73 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         builder1.setPositiveButton(
                 "Ok",
                 (dialog, id) -> {
-                    presenter.rejectTicketSuggestion(ticketSuggestionId);
+                    presenter.rejectTicketSuggestion(ticketSuggestion);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
+    private void showAcceptDialog(List<TicketSuggestion> ticketSuggestions, String dialogTitle) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage(dialogTitle);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                (dialog, id) -> {
+                    presenter.acceptTicketSuggestion(ticketSuggestions);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
+    private void showRejectDialog(List<TicketSuggestion> ticketSuggestions, String dialogTitle) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage(dialogTitle);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                (dialog, id) -> {
+                    presenter.rejectTicketSuggestion(ticketSuggestions);
                     dialog.dismiss();
                 });
 
@@ -264,9 +377,17 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
     }
 
     @Override
-    public void acceptTicketSuggestionSuccess() {
-        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestedTicketIds);
-        adapter.notifyDataSetChanged();
+    protected void onResume() {
+        super.onResume();
+        ticketSuggestionList = TicketSuggestionRepo.getInstance().getAllTicketSuggestions();
+        setUpRecyclerView(ticketSuggestionList);
+    }
+
+    @Override
+    public void acceptTicketSuggestionSuccess(List<TicketSuggestion> suggestionList) {
+        adapter.removeSuggestionList(suggestionList);
+        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionList);
+        if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -281,9 +402,10 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
     }
 
     @Override
-    public void rejectTicketSuggestionSuccess() {
-        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestedTicketIds);
-        adapter.notifyDataSetChanged();
+    public void rejectTicketSuggestionSuccess(List<TicketSuggestion> suggestionList) {
+        adapter.removeSuggestionList(suggestionList);
+        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionList);
+        if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -298,26 +420,38 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
     }
 
     @Override
-    public void acceptParticularTicketSuggestionSuccess(String suggestionId) {
-        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionId);
-        adapter.notifyDataSetChanged();
+    public void acceptParticularTicketSuggestionSuccess(TicketSuggestion suggestion) {
+        adapter.removeSuggestion(suggestion);
+        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestion.getSuggestionId());
+        if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void rejectParticularTicketSuggestionSuccess(String suggestionId) {
-        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionId);
-        adapter.notifyDataSetChanged();
+    public void rejectParticularTicketSuggestionSuccess(TicketSuggestion suggestion) {
+        adapter.removeSuggestion(suggestion);
+        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestion.getSuggestionId());
+        if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void rejectParticularTicketSuggestionFail(String suggestionId) {
-        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionId);
-        adapter.notifyDataSetChanged();
+    public void rejectParticularTicketSuggestionFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     @Override
-    public void acceptParticularTicketSuggestionFail(String suggestionId) {
-        TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionId);
-        adapter.notifyDataSetChanged();
+    public void acceptParticularTicketSuggestionFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 }

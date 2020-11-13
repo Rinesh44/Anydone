@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +39,17 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
         this.suggestionList = suggestionList;
         this.mContext = mContext;
         this.suggestionFiltered = suggestionList;
+    }
+
+    public void removeSuggestion(TicketSuggestion suggestion) {
+        int index = suggestionFiltered.indexOf(suggestion);
+        suggestionFiltered.remove(suggestion);
+        notifyItemRemoved(index);
+    }
+
+    public void removeSuggestionList(List<TicketSuggestion> suggestionList) {
+        suggestionFiltered.removeAll(suggestionList);
+        notifyDataSetChanged();
     }
 
     public void selectAll(boolean selectAll) {
@@ -199,25 +209,33 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
 
 //            cbMessage.setOnClickListener(view -> cbMessage.setChecked(!cbMessage.isChecked()));
 
-            cbMessage.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (isChecked) {
-                    GlobalUtils.showLog(TAG, "check listened");
-                    listener.onItemAdd(suggestionFiltered.get(getAdapterPosition()).getSuggestionId());
+            cbMessage.setOnClickListener(v -> {
+                if (cbMessage.isChecked()) {
+                    listener.onItemAdd(suggestionFiltered.get(getAdapterPosition()));
                 } else {
-                    GlobalUtils.showLog(TAG, "uncheck listened");
-                    listener.onItemRemove(suggestionFiltered.get(getAdapterPosition()).getSuggestionId());
+                    listener.onItemRemove(suggestionFiltered.get(getAdapterPosition()));
                 }
             });
 
+         /*   cbMessage.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    GlobalUtils.showLog(TAG, "check listened");
+                    listener.onItemAdd(suggestionFiltered.get(getAdapterPosition()));
+                } else {
+                    GlobalUtils.showLog(TAG, "uncheck listened");
+                    listener.onItemRemove(suggestionFiltered.get(getAdapterPosition()));
+                }
+            });*/
+
             ivAccept.setOnClickListener(v -> {
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
-                    listener.onAccept(suggestionFiltered.get(getAdapterPosition()).getSuggestionId());
+                    listener.onAccept(suggestionFiltered.get(getAdapterPosition()));
                 }
             });
 
             ivReject.setOnClickListener(v -> {
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
-                    listener.onReject(suggestionFiltered.get(getAdapterPosition()).getSuggestionId());
+                    listener.onReject(suggestionFiltered.get(getAdapterPosition()));
                 }
             });
 
@@ -226,13 +244,13 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
 
 
     public interface OnItemClickListener {
-        void onItemAdd(String ticketSuggestionId);
+        void onItemAdd(TicketSuggestion ticketSuggestion);
 
-        void onItemRemove(String ticketSuggestionId);
+        void onItemRemove(TicketSuggestion ticketSuggestion);
 
-        void onAccept(String ticketSuggestionId);
+        void onAccept(TicketSuggestion ticketSuggestion);
 
-        void onReject(String ticketSuggestionId);
+        void onReject(TicketSuggestion ticketSuggestion);
 
         void showHistory(String ticketSuggestionId, String msgId, String customerName, String
                 customerImage, String messageText, long sentAt);

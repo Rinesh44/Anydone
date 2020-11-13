@@ -111,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:visibility="gone"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/dimens_2x"
                 android:text=" 0 Selected"
@@ -122,6 +123,17 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_suggested_tickets"
             android:layout_width="match_parent"
+            android:paddingBottom="@dimen/dimen_10x1"
+            android:clipToPadding="false"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_no_suggestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No suggestions"
+        android:textSize="20sp"
+        android:visibility="gone" />
 </RelativeLayout>

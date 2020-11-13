@@ -56,10 +56,11 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     public void findCustomers() {
         Observable<UserRpcProto.UserBaseResponse> customersObservable;
         String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        customersObservable = service.findCustomers(token, "",
+        customersObservable = service.findCustomers(token, serviceId, "",
                 0, System.currentTimeMillis(), 100);
 
         addSubscription(customersObservable

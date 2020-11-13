@@ -163,6 +163,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .build();
         }
 
+        GlobalUtils.showLog(TAG, "sent ticket det: " + ticket);
         ticketObservable = anyDoneService.createTicket(token, ticket);
 
         addSubscription(ticketObservable

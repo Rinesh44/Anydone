@@ -2,37 +2,38 @@ package com.treeleaf.anydone.serviceprovider.ticketsuggestions;
 
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketSuggestion;
 
 import java.util.List;
 
 public class TicketSuggestionContract {
 
     public interface TicketSuggestionView extends BaseView {
-        void acceptTicketSuggestionSuccess();
+        void acceptTicketSuggestionSuccess(List<TicketSuggestion> ticketSuggestionList);
 
         void acceptTicketSuggestionFail(String msg);
 
-        void rejectTicketSuggestionSuccess();
+        void rejectTicketSuggestionSuccess(List<TicketSuggestion> ticketSuggestionList);
 
         void rejectTicketSuggestionFail(String msg);
 
-        void acceptParticularTicketSuggestionSuccess(String suggestionId);
+        void acceptParticularTicketSuggestionSuccess(TicketSuggestion suggestion);
 
-        void rejectParticularTicketSuggestionSuccess(String suggestionId);
+        void rejectParticularTicketSuggestionSuccess(TicketSuggestion suggestion);
 
-        void rejectParticularTicketSuggestionFail(String suggestionId);
+        void rejectParticularTicketSuggestionFail(String msg);
 
-        void acceptParticularTicketSuggestionFail(String suggestionId);
+        void acceptParticularTicketSuggestionFail(String msg);
     }
 
     public interface TicketSuggestionPresenter extends Presenter<TicketSuggestionView> {
-        void acceptTicketSuggestion(List<String> ticketSuggestionIds);
+        void acceptTicketSuggestion(List<TicketSuggestion> ticketSuggestionIds);
 
-        void rejectTicketSuggestion(List<String> ticketSuggestionIds);
+        void rejectTicketSuggestion(List<TicketSuggestion> ticketSuggestionIds);
 
-        void acceptTicketSuggestion(String ticketSuggestionId);
+        void acceptTicketSuggestion(TicketSuggestion ticketSuggestionId);
 
-        void rejectTicketSuggestion(String ticketSuggestionId);
+        void rejectTicketSuggestion(TicketSuggestion ticketSuggestionId);
 
     }
 }

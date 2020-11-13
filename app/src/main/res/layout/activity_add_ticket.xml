@@ -59,7 +59,7 @@
                     android:layout_height="@dimen/dimen_10x4"
                     android:backgroundTint="@color/edit_text_color"
                     android:drawableEnd="@drawable/ic_dropdown"
-                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:inputType="textVisiblePassword|textFilter"
                     android:maxLength="45"
                     android:paddingEnd="@dimen/dimens_2x"
                     android:textSize="@dimen/material_text_body1" />
@@ -90,8 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/edit_text_color"
-                    android:inputType="textVisiblePassword|textNoSuggestions"
-                    android:maxLength="45"
+                    android:inputType="textVisiblePassword|textFilter"
+                    android:maxLength="55"
                     android:textSize="@dimen/material_text_body1" />
 
 
@@ -110,7 +110,7 @@
                     android:layout_height="80dp"
                     android:backgroundTint="@color/edit_text_color"
                     android:gravity="start"
-                    android:inputType="textVisiblePassword|textMultiLine|textNoSuggestions"
+                    android:inputType="textVisiblePassword|textMultiLine|textFilter"
                     android:maxLines="7"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
@@ -161,7 +161,7 @@
                         android:cursorVisible="false"
                         android:drawableEnd="@drawable/ic_dropdown"
                         android:focusable="false"
-                        android:inputType="textVisiblePassword|textNoSuggestions"
+                        android:inputType="textVisiblePassword|textFilter"
                         android:maxLength="45"
                         android:paddingEnd="@dimen/dimens_2x"
                         android:textSize="@dimen/material_text_body1" />
@@ -182,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/edit_text_color"
-                    android:inputType="numberSigned|textNoSuggestions"
+                    android:inputType="numberSigned|textFilter"
                     android:maxLength="15"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_body1" />
@@ -203,7 +203,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dimen_10x2"
                     android:backgroundTint="@color/edit_text_color"
-                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:inputType="textVisiblePassword|textFilter"
                     android:maxLength="45"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_body1" />
@@ -237,7 +237,7 @@
                         android:cursorVisible="false"
                         android:drawableEnd="@drawable/ic_dropdown"
                         android:focusable="false"
-                        android:inputType="textVisiblePassword|textNoSuggestions"
+                        android:inputType="textVisiblePassword|textFilter"
                         android:maxLength="45"
                         android:paddingEnd="@dimen/dimens_2x"
                         android:singleLine="true"
@@ -365,7 +365,7 @@
                     android:cursorVisible="false"
                     android:drawableEnd="@drawable/ic_dropdown"
                     android:focusable="false"
-                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:inputType="textVisiblePassword|textFilter"
                     android:maxLength="45"
                     android:paddingEnd="@dimen/dimens_2x"
                     android:singleLine="true"

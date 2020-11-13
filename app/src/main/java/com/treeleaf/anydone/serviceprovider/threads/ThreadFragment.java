@@ -368,6 +368,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
             ivThreadNotFound.setVisibility(View.GONE);
             presenter.getConversationThreads(true);
+            TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
             presenter.getTicketSuggestions();
         });
     }
@@ -438,6 +439,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void onResume() {
         super.onResume();
+        TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
         presenter.getTicketSuggestions();
   /*      boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_TICKET, false);
         if (serviceChanged) {
@@ -549,6 +551,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void onNoTicketSuggestion() {
         rlTicketSuggestion.setVisibility(View.GONE);
+        TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
     }
 
     @Override

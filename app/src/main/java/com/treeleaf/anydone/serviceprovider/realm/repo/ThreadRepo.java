@@ -4,9 +4,7 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -322,6 +320,7 @@ public class ThreadRepo extends Repo {
             GlobalUtils.showLog(TAG, "search query: " + query);
             return new ArrayList<>(realm.where(Thread.class)
                     .contains("customerName", query, Case.INSENSITIVE)
+                    .sort("lastMessageDate", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

@@ -335,9 +335,11 @@ public interface AnyDoneService {
                          String token,
                  @Body TicketProto.Ticket ticket);
 
-    @GET("customers")
+    @GET("customers/{serviceId}")
     Observable<UserRpcProto.UserBaseResponse> findCustomers(@Header(AUTHORIZATION)
                                                                     String token,
+                                                            @Path(value = "serviceId")
+                                                                    String serviceId,
                                                             @Query("query") String query,
                                                             @Query("from") long from,
                                                             @Query("to") long to,
@@ -631,18 +633,21 @@ public interface AnyDoneService {
                                                                                  @Path(value = "serviceId")
                                                                                          String serviceId);
 
-    @PATCH("ticket/suggestions/accept")
+    @PATCH("ticket/suggestions/accept/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> acceptTicketSuggestion(@Header(AUTHORIZATION)
                                                                                         String token,
+                                                                                @Path(value = "serviceId")
+                                                                                        String serviceId,
                                                                                 @Body TicketProto.TicketSuggestionReq
                                                                                         ticketSuggestionReq);
 
-    @PATCH("ticket/suggestions/reject")
+    @PATCH("ticket/suggestions/reject/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> rejectTicketSuggestion(@Header(AUTHORIZATION)
                                                                                         String token,
+                                                                                @Path(value = "serviceId")
+                                                                                        String serviceId,
                                                                                 @Body TicketProto.TicketSuggestionReq
                                                                                         ticketSuggestionReq);
-
 
 }
 
