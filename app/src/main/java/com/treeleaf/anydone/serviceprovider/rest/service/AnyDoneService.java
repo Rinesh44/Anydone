@@ -354,7 +354,7 @@ public interface AnyDoneService {
                                                             @Path(value = "serviceId")
                                                                     String serviceId);
 
-    @GET("ticket/{ticketId}/timeline")
+    @GET("ticket/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(@Header(AUTHORIZATION)
                                                                                    String token,
                                                                            @Path(value = "ticketId")

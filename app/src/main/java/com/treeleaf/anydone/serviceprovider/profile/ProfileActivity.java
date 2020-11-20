@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
@@ -37,6 +38,11 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -52,6 +58,7 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -110,7 +117,6 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         tvName.setOnClickListener(v -> openProfileEditActivity());
 
         tvPhone.setOnClickListener(v -> {
-
             if (account.getPhone() == null || account.getPhone().isEmpty()) {
                 showEmailPhoneDialog();
                 return;
@@ -138,41 +144,70 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         tvGender.setOnClickListener(v -> openProfileEditActivity());
 
         civProfileImage.setOnClickListener(v -> toggleBottomSheet());
-        tvCamera.setOnClickListener(v -> {
-            if (!hasPermission(Manifest.permission.CAMERA)) {
-                requestPermissionsForCamera();
-            } else if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                requestPermissionsForCamera();
-            } else if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                requestPermissionsForCamera();
-            } else {
-                try {
-                    openCamera();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        tvCamera.setOnClickListener(v -> Dexter.withContext(this)
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(ProfileActivity.this,
+                                    "Camera and media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
 
-        tvGallery.setOnClickListener(v -> {
-            if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                requestPermissionsForGallery();
-            } else {
-                openGallery();
-            }
-        });
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            try {
+                                openCamera();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check());
+
+        tvGallery.setOnClickListener(v -> Dexter.withContext(this)
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(ProfileActivity.this,
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openGallery();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check());
     }
 
-    private void requestPermissionsForCamera() {
-        requestPermissionsSafely(new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA}, 789);
-    }
-
-    private void requestPermissionsForGallery() {
-        requestPermissionsSafely(new String[]{
-                Manifest.permission.READ_EXTERNAL_STORAGE}, 987);
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
     }
 
     private void openGallery() {
@@ -552,7 +587,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             } catch (IOException e) {
                 e.printStackTrace();
             }
-                Uri destinationUri = Uri.fromFile(file);  // 3
+            Uri destinationUri = Uri.fromFile(file);  // 3
             openCropActivity(sourceUri, destinationUri);  // 4
         }
 
@@ -611,6 +646,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
 
         return super.dispatchTouchEvent(event);
     }
+
 
     private File getImageFile() throws IOException {
         String imageFileName = "JPEG_" + System.currentTimeMillis() + "_";

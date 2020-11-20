@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Html;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -45,6 +46,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -55,6 +61,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.CommentAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
@@ -277,6 +284,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
 
             if (CollectionUtils.isEmpty(conversationList)) {
+                pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(ticketId, 0, System.currentTimeMillis(),
                         100);
             } else {
@@ -512,7 +520,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 if (!CollectionUtils.isEmpty(imagesList)) {
                     for (String imageUrl : imagesList
                     ) {
-                        if (imageUrl.equalsIgnoreCase(conversation.getMessage())) {
+                        if (imageUrl != null && imageUrl.equalsIgnoreCase(conversation.getMessage())) {
                             int imagePosition = imagesList.indexOf(imageUrl);
 
                             Bundle bundle = new Bundle();
@@ -856,6 +864,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void getMessagesSuccess(List<Conversation> conversationList) {
+        pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
@@ -1301,20 +1310,35 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.tv_camera)
     void initCamera() {
-        if (!hasPermission(Manifest.permission.CAMERA)) {
-            requestPermissionsForCamera();
-        } else if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            requestPermissionsForCamera();
-        } else if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            requestPermissionsForCamera();
-        } else {
-            try {
-                llAttachOptions.setVisibility(View.GONE);
-                openCamera();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Camera and media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            try {
+                                openCamera();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     @OnClick(R.id.iv_attachment)
@@ -1329,18 +1353,41 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.tv_files)
     void openFiles() {
-        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            requestPermissionsForGallery();
-        } else {
-            Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_DOWNLOADS)));
-            GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
-            llAttachOptions.setVisibility(View.GONE);
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setDataAndType(selectedUri, "application/pdf");
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            gotoFiles();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    private void gotoFiles() {
+        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS)));
+        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
+        llAttachOptions.setVisibility(View.GONE);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setDataAndType(selectedUri, "application/pdf");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
     }
 
     @OnClick(R.id.tv_recorder)
@@ -1350,12 +1397,30 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.tv_gallery)
     void showGallery() {
-        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            requestPermissionsForGallery();
-        } else {
-            llAttachOptions.setVisibility(View.GONE);
-            openGallery();
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openGallery();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     private void openGallery() {
@@ -1500,18 +1565,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         });
     }
 
-    private void requestPermissionsForCamera() {
-        requestPermissionsSafely(new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA}, 789);
-    }
-
-    private void requestPermissionsForGallery() {
-        requestPermissionsSafely(new String[]{
-                Manifest.permission.READ_EXTERNAL_STORAGE}, 987);
-    }
-
     private void unregisterReceiver() {
         if (networkChangeReceiver != null)
             Objects.requireNonNull(getActivity()).unregisterReceiver(networkChangeReceiver);
@@ -1609,5 +1662,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId);
     }
 
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+    }
 
 }

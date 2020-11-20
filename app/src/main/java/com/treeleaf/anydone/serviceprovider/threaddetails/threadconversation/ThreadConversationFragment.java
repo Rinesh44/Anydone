@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -46,6 +47,11 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -927,20 +933,36 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_camera)
     void initCamera() {
-        if (!hasPermission(Manifest.permission.CAMERA)) {
-            requestPermissionsForCamera();
-        } else if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            requestPermissionsForCamera();
-        } else if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            requestPermissionsForCamera();
-        } else {
-            try {
-                llAttachOptions.setVisibility(View.GONE);
-                openCamera();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Camera and media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            try {
+                                llAttachOptions.setVisibility(View.GONE);
+                                openCamera();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     @OnClick(R.id.iv_attachment)
@@ -955,18 +977,30 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_files)
     void openFiles() {
-        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            requestPermissionsForGallery();
-        } else {
-            Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_DOWNLOADS)));
-            GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
-            llAttachOptions.setVisibility(View.GONE);
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setDataAndType(selectedUri, "application/pdf");
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            gotoFiles();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     @OnClick(R.id.tv_recorder)
@@ -976,12 +1010,30 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_gallery)
     void showGallery() {
-        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            requestPermissionsForGallery();
-        } else {
-            llAttachOptions.setVisibility(View.GONE);
-            openGallery();
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openGallery();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     private void openGallery() {
@@ -1028,6 +1080,17 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             setUpNetworkBroadCastReceiver();
         }
         registerReceiver();
+    }
+
+    private void gotoFiles() {
+        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS)));
+        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
+        llAttachOptions.setVisibility(View.GONE);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setDataAndType(selectedUri, "application/pdf");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
     }
 
     @Override
@@ -1178,16 +1241,11 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
     }
 
-
-    private void requestPermissionsForCamera() {
-        requestPermissionsSafely(new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA}, 789);
-    }
-
-    private void requestPermissionsForGallery() {
-        requestPermissionsSafely(new String[]{
-                Manifest.permission.READ_EXTERNAL_STORAGE}, 987);
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
     }
 }

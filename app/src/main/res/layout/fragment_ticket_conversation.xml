@@ -17,7 +17,7 @@
             android:layout_centerInParent="true"
             android:elevation="8dp"
             android:paddingBottom="@dimen/dimen_10x3"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_connection_status"
@@ -79,7 +79,7 @@
             android:id="@+id/pb_load_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
             android:visibility="gone" />
 
 
