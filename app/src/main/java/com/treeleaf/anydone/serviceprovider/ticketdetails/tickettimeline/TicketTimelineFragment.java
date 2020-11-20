@@ -572,8 +572,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             botReply.setChecked(true);
         }*/
         tvTicketId.setText(String.valueOf(tickets.getTicketId()));
-        tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
-        tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
+        tvTicketCreatedDate.setText(GlobalUtils.getDateLong(tickets.getCreatedAt()));
+        tvTicketCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(tickets.getCreatedAt()));
         tvTicketTitle.setText(tickets.getTitle());
 
         if (!tickets.getTicketCategory().isEmpty())

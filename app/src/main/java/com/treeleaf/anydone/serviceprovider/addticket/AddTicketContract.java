@@ -31,6 +31,7 @@ public class AddTicketContract {
     public interface AddTicketPresenter extends Presenter<AddTicketView> {
         void createTicket(String ticketType, String title, String description, String customerId,
                           String customerEmail, String customerPhone, String customerName,
+                          String customerPic,
                           List<String> tags, List<Label> ticketLabels, String estimatedTime,
                           String assignedEmployeeId, int priority,
                           TicketProto.TicketSource ticketSource, boolean customerAsSelf,

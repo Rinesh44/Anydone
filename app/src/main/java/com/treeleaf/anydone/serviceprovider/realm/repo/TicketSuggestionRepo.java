@@ -5,7 +5,6 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketSuggestion;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class TicketSuggestionRepo extends Repo {
     public void saveTicketSuggestionList(final List<TicketProto.TicketSuggestion> ticketSuggestionList,
                                          long estimatedTime,
                                          final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformTicketSuggestions(ticketSuggestionList,
@@ -47,7 +46,7 @@ public class TicketSuggestionRepo extends Repo {
     }
 
     public List<TicketSuggestion> getAllTicketSuggestions() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(TicketSuggestion.class)
@@ -63,7 +62,7 @@ public class TicketSuggestionRepo extends Repo {
     }
 
     public void deleteTicketSuggestionById(List<TicketSuggestion> suggestionList) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             for (TicketSuggestion suggestion : suggestionList
@@ -76,7 +75,7 @@ public class TicketSuggestionRepo extends Repo {
     }
 
     public void deleteTicketSuggestionById(String id) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<TicketSuggestion> result = realm1.where(TicketSuggestion.class)
@@ -86,7 +85,7 @@ public class TicketSuggestionRepo extends Repo {
     }
 
     public void deleteAllTicketSuggestions() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<TicketSuggestion> result = realm1.where(TicketSuggestion.class).findAll();

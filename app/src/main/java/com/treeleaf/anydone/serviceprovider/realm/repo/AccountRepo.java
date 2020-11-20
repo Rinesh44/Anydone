@@ -23,7 +23,7 @@ public class AccountRepo extends Repo {
 
     public void saveAccount(final AuthProto.LoginResponse loginResponse, boolean employee,
                             final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -64,7 +64,7 @@ public class AccountRepo extends Repo {
 
     public void editEmployeeAccount(String accountId, UserProto.EmployeeProfile accountPb,
                                     final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -88,7 +88,7 @@ public class AccountRepo extends Repo {
 
     public void editServiceProviderAccount(String accountId, UserProto.ServiceProviderProfile accountPb,
                                            final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -111,7 +111,7 @@ public class AccountRepo extends Repo {
     }
 
     public void addProfilePicUrl(String profilePicUrl, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -132,7 +132,7 @@ public class AccountRepo extends Repo {
     }
 
     public void addEmail(String email, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
 
@@ -152,7 +152,7 @@ public class AccountRepo extends Repo {
     }
 
     public void addPhone(String phone, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -174,7 +174,7 @@ public class AccountRepo extends Repo {
     }
 
     public void setEmailVerified(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -195,7 +195,7 @@ public class AccountRepo extends Repo {
     }
 
     public void setPhoneVerified(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -302,7 +302,7 @@ public class AccountRepo extends Repo {
     }
 
     public Account getAccount() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Account.class).findFirst();
         } catch (Throwable throwable) {

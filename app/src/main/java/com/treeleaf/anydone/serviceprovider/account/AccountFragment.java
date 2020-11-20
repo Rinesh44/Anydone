@@ -217,7 +217,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
         //clear all databases
         Hawk.deleteAll();
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> realm1.deleteAll());
 
         Intent i = new Intent(getActivity(), LoginActivity.class);

@@ -25,7 +25,7 @@ public class LabelRepo extends Repo {
     }
 
     public void saveLabelList(final List<TicketProto.Label> labelList, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformLabelList(labelList));
@@ -62,7 +62,7 @@ public class LabelRepo extends Repo {
     }
 
     public List<Label> getAllLabels() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Label.class)
@@ -77,7 +77,7 @@ public class LabelRepo extends Repo {
     }
 
     public Label getLabelById(String labelId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Label.class)
                     .equalTo("labelId", labelId).findFirst();

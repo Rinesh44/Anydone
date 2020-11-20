@@ -31,8 +31,10 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
@@ -94,6 +96,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     ImageView ivCloseTicketSuggestion;
     @BindView(R.id.et_search)
     EditText etSearch;
+    @BindView(R.id.btn_reload)
+    MaterialButton btnReload;
 
     private RecyclerView rvServices;
     //    private BottomSheetBehavior sheetBehavior;
@@ -134,6 +138,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             setUpThreadRecyclerView(threadList);
             rvThreads.setVisibility(View.VISIBLE);
             ivThreadNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
         } else presenter.getConversationThreads(true);
 
         createServiceBottomSheet();
@@ -279,6 +284,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         }
     }
 
+    @OnClick(R.id.btn_reload)
+    void reload() {
+        btnReload.setVisibility(View.GONE);
+        ivThreadNotFound.setVisibility(View.GONE);
+        presenter.getConversationThreads(true);
+    }
+
+
     private void listenConversationMessages() throws MqttException {
         GlobalUtils.showLog(TAG, "listen convo");
         Account userAccount = AccountRepo.getInstance().getAccount();
@@ -367,6 +380,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             serviceSheet.dismiss();
 
             ivThreadNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
             presenter.getConversationThreads(true);
             TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
             presenter.getTicketSuggestions();
@@ -470,6 +484,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 Constants.SERVER_ERROR);
 
         ivThreadNotFound.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -480,6 +495,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         rvThreads.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(threadList)) {
             ivThreadNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
             etSearch.setVisibility(View.VISIBLE);
         } else etSearch.setVisibility(View.GONE);
     }
@@ -499,6 +515,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         rvThreads.setVisibility(View.GONE);
         etSearch.setVisibility(View.GONE);
         ivThreadNotFound.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.VISIBLE);
 
     }
 
@@ -525,9 +542,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                Constants.SERVER_ERROR);
+        Banner.make(getActivity().getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg,
+                Banner.TOP, 2000).show();
     }
 
     @Override

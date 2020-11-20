@@ -55,7 +55,6 @@ public class TicketHistoryAdapter extends RecyclerView.Adapter<TicketHistoryAdap
             holder.tvMessage.setCompoundDrawablePadding(50);
         }
 
-
     }
 
     @Override

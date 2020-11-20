@@ -54,7 +54,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_assign)
+    @BindView(R.id.fab_backlog)
     FloatingActionButton fabAssign;
     @BindView(R.id.pb_search)
     ProgressBar progressBar;
@@ -310,8 +310,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                 Constants.SERVER_ERROR);
     }
 
-    @OnClick(R.id.fab_assign)
-    void gotoAssignableTicketList() {
+    @OnClick(R.id.fab_backlog)
+    void getBackLogTickets() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
     }

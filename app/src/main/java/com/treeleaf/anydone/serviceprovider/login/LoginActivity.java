@@ -98,7 +98,6 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 //        checkRequiredPermissions();
         configureGoogleSignIn();
         addTextInputListeners();
-
         setupBranchSpinner();
     }
 

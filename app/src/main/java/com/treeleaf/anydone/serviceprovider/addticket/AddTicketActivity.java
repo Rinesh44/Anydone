@@ -165,6 +165,12 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
         serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
+        for (AssignEmployee emp : employeeList
+        ) {
+            if (emp.getEmployeeId().isEmpty()) {
+                employeeList.remove(emp);
+            }
+        }
         customerList = CustomerRepo.getInstance().getAllCustomers();
         tagsList = TagRepo.getInstance().getAllTags();
         labelList = LabelRepo.getInstance().getAllLabels();
@@ -237,13 +243,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             ticketCategoryId = ticketTypeList.get(position).getCategoryId();
         });
 
-        etTicketType.setOnFocusChangeListener((v, hasFocus) -> {
+   /*     etTicketType.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 etTicketType.showDropDown();
             } else {
                 etTicketType.dismissDropDown();
             }
-        });
+        });*/
+
+        etTicketType.setOnClickListener(v -> etTicketType.showDropDown());
 
         etCustomerName.setOnClickListener(v -> customerBottomSheet.show());
         etAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
@@ -370,14 +378,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 presenter.createTicket(ticketCategoryId, UiUtils.getString(etSummary),
                         UiUtils.getString(etDesc), selectedCustomer.getCustomerId(),
                         UiUtils.getString(etEmail), UiUtils.getString(etPhone),
-                        selectedCustomer.getFullName(), tags,
+                        selectedCustomer.getFullName(), selectedCustomer.getProfilePic(), tags,
                         labels, UiUtils.getString(etEstimatedTime),
                         selectedEmployeeId, priorityNum, ticketSource, customerAsSelf,
                         threadId);
             } else {
                 presenter.createTicket(ticketCategoryId, UiUtils.getString(etSummary),
                         UiUtils.getString(etDesc), null, UiUtils.getString(etEmail),
-                        UiUtils.getString(etPhone), UiUtils.getString(etCustomerName), tags,
+                        UiUtils.getString(etPhone), UiUtils.getString(etCustomerName),
+                        "", tags,
                         labels, UiUtils.getString(etEstimatedTime),
                         selectedEmployeeId, priorityNum, ticketSource, customerAsSelf, threadId);
             }
@@ -1262,11 +1271,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvEmployeeAllUsers.setLayoutManager(mLayoutManager);
 
+        GlobalUtils.showLog(TAG, "employee list: " + employeeList);
         employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this);
         rvEmployeeAllUsers.setAdapter(employeeSearchAdapter);
 
         rvEmployeeAllUsers.setOnTouchListener((v, event) -> {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
             assert imm != null;
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             return false;

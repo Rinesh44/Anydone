@@ -20,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -30,6 +31,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -60,6 +62,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     RelativeLayout rlRoot;
     @BindView(R.id.btn_reload)
     MaterialButton btnReload;
+    @BindView(R.id.fab_backlog)
+    FloatingActionButton fabBacklog;
 
     private Unbinder unbinder;
     private TicketsAdapter adapter;
@@ -344,6 +348,12 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void showClosedTicketList(List<Tickets> closedTicketList) {
         setUpRecyclerView(closedTicketList);
     }*/
+
+    @OnClick(R.id.fab_backlog)
+    void getBackLogTickets() {
+        Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
+        startActivity(i);
+    }
 
 
     @Override

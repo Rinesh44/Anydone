@@ -88,6 +88,26 @@ public class GlobalUtils {
         return "";
     }
 
+    public static String getDateDigits(long time) {
+        try {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+            return sdf.format(new Date(time));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static String getDateLong(long time) {
+        try {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd, MMM yyyy");
+            return sdf.format(new Date(time));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public static String getDateAlternate(long time) {
         try {
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
@@ -110,7 +130,7 @@ public class GlobalUtils {
 
     public static String getDateNormal(long time) {
         try {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("d MMM, yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
             return sdf.format(new Date(time));
         } catch (Exception e) {
             e.printStackTrace();

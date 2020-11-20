@@ -57,6 +57,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
 public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         implements ProfileContract.ProfileView {
 
@@ -292,7 +293,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             tvEmail.setText(account.getEmail());
             tvEmail.setTextColor(getResources().getColor(R.color.black));
 
-            if (isPhone && !account.isEmailVerified()) {
+            if (!isPhone && !account.isEmailVerified()) {
                 tvEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_not_verified,
                         0, 0, 0);
             } else {
@@ -439,15 +440,15 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
     @Override
     public void onResendCodeSuccess() {
         if (isPhone) {
-            Hawk.put(Constants.EMAIL_PHONE, account.getEmail());
-            Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
-            i.putExtra("edit_profile", true);
-            startActivityForResult(i, ADD_EMAIL_REQUEST);
-        } else {
             Hawk.put(Constants.EMAIL_PHONE, account.getPhone());
             Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
             i.putExtra("edit_profile", true);
             startActivityForResult(i, ADD_PHONE_REQUEST);
+        } else {
+            Hawk.put(Constants.EMAIL_PHONE, account.getEmail());
+            Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
+            i.putExtra("edit_profile", true);
+            startActivityForResult(i, ADD_EMAIL_REQUEST);
         }
     }
 
@@ -551,7 +552,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Uri destinationUri = Uri.fromFile(file);  // 3
+                Uri destinationUri = Uri.fromFile(file);  // 3
             openCropActivity(sourceUri, destinationUri);  // 4
         }
 

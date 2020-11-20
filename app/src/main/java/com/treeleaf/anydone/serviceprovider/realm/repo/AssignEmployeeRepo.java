@@ -27,7 +27,7 @@ public class AssignEmployeeRepo extends Repo {
 
     public void saveAssignEmployeeList(final List<UserProto.EmployeeProfile> employeeList,
                                        final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformAssignEmployee(employeeList));
@@ -61,7 +61,7 @@ public class AssignEmployeeRepo extends Repo {
 
 
     public List<AssignEmployee> getAllAssignEmployees() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             Employee self = EmployeeRepo.getInstance().getEmployee();
             if (self != null) {
@@ -82,7 +82,7 @@ public class AssignEmployeeRepo extends Repo {
     }
 
     public List<AssignEmployee> searchEmployee(String query) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             RealmQuery<AssignEmployee> result = performSearch(query, realm);
             return result.findAll();
@@ -102,7 +102,7 @@ public class AssignEmployeeRepo extends Repo {
     }
 
     public AssignEmployee getAssignedEmployeeById(String employeeId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         return realm.where(AssignEmployee.class)
                 .equalTo("assignEmployeeId", employeeId)
                 .findFirst();

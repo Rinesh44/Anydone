@@ -148,7 +148,7 @@ public final class ProtoMapper {
     }
 
     public static List<Label> transformLabelsManaged(List<TicketProto.Label> labelListPb) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         GlobalUtils.showLog(TAG, "label list count: " + labelListPb.size());
         List<Label> labelRealmList = new ArrayList<>();
         for (TicketProto.Label ticketLabelPb : labelListPb

@@ -40,8 +40,8 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
     @Override
     public void createTicket(String ticketType, String title, String description, String customerId,
                              String customerEmail, String customerPhone, String customerName,
-                             List<String> tags, List<Label> ticketLabels, String estimatedTime,
-                             String assignedEmployeeId, int priority,
+                             String customerPic, List<String> tags, List<Label> ticketLabels,
+                             String estimatedTime, String assignedEmployeeId, int priority,
                              TicketProto.TicketSource ticketSource, boolean customerAsSelf,
                              String refId) {
 
@@ -63,14 +63,16 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setEmail(customerEmail)
                     .setPhone(customerPhone)
                     .setFullName(customerName)
+                    .setProfilePic(customerPic)
                     .build();
 
-            customerType = TicketProto.CustomerType.ANYDONE_CONSUMER;
+            customerType = TicketProto.CustomerType.EXTERNAL_CUSTOMER;
         } else {
             customer = UserProto.Customer.newBuilder()
                     .setEmail(customerEmail)
                     .setPhone(customerPhone)
                     .setFullName(customerName)
+                    .setProfilePic(customerPic)
                     .build();
         }
 

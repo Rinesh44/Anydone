@@ -29,7 +29,7 @@ public class TagRepo extends Repo {
 
     public void saveTags(final List<TicketProto.Team> tagListPb,
                          final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 List<Tags> tagList =
@@ -47,7 +47,7 @@ public class TagRepo extends Repo {
     }
 
     public Tags getTagById(String tagId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Tags.class)
                     .equalTo("tagId", tagId).findFirst();
@@ -81,7 +81,7 @@ public class TagRepo extends Repo {
     }
 
     public List<Tags> getAllTags() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tags.class)
@@ -96,7 +96,7 @@ public class TagRepo extends Repo {
     }
 
     public List<Tags> searchTags(String query) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             RealmQuery<Tags> result = performSearch(query, realm);
             return result.findAll();

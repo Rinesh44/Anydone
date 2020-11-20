@@ -4,9 +4,12 @@
        <color name="colorPrimaryDark">#3700B3</color>
        <color name="colorAccent">#03DAC5</color>-->
 
-    <color name="colorPrimary">#3A5090</color>
-    <color name="colorPrimaryDark">#0A2470</color>
-    <color name="colorAccent">#3A5090</color>
+    <!--    <color name="colorPrimary">#3A5090</color>-->
+    <color name="colorPrimary">#376AF5</color>
+    <!--    <color name="colorPrimaryDark">#0A2470</color>-->
+    <color name="colorPrimaryDark">#0040c1</color>
+    <!--    <color name="colorAccent">#3A5090</color>-->
+    <color name="colorAccent">#376AF5</color>
 
 
     <color name="bluePurple">#05376C</color>

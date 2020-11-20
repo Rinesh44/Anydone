@@ -286,15 +286,15 @@ public interface AnyDoneService {
                              @Query("to") long to,
                              @Query("page") int page);
 
-    @GET("ticket/assignable/{serviceId}")
+    @GET("ticket/backlog/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
-    getAssignableTickets(@Header(AUTHORIZATION)
-                                 String token,
-                         @Path(value = "serviceId")
-                                 String serviceId,
-                         @Query("from") long from,
-                         @Query("to") long to,
-                         @Query("page") int page);
+    getBacklogTickets(@Header(AUTHORIZATION)
+                              String token,
+                      @Path(value = "serviceId")
+                              String serviceId,
+                      @Query("from") long from,
+                      @Query("to") long to,
+                      @Query("page") int page);
 
     @GET("ticket/subscribable/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -335,11 +335,9 @@ public interface AnyDoneService {
                          String token,
                  @Body TicketProto.Ticket ticket);
 
-    @GET("customers/{serviceId}")
+    @GET("customers")
     Observable<UserRpcProto.UserBaseResponse> findCustomers(@Header(AUTHORIZATION)
                                                                     String token,
-                                                            @Path(value = "serviceId")
-                                                                    String serviceId,
                                                             @Query("query") String query,
                                                             @Query("from") long from,
                                                             @Query("to") long to,

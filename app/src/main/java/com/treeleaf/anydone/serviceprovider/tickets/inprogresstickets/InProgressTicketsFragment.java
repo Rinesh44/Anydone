@@ -56,7 +56,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_subscribe)
+    @BindView(R.id.fab_backlog)
     FloatingActionButton fabSubscribe;
     @BindView(R.id.pb_search)
     ProgressBar progressBar;
@@ -238,8 +238,8 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         setUpRecyclerView(subscribeTicketList);
     }*/
 
-    @OnClick(R.id.fab_subscribe)
-    void subscribe() {
+    @OnClick(R.id.fab_backlog)
+    void getBackLogTickets() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
     }

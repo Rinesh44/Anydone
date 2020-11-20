@@ -102,7 +102,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_10x6"
                 android:layout_margin="@dimen/dimens_1x"
-                android:background="@color/green"
                 android:text="@string/save"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
