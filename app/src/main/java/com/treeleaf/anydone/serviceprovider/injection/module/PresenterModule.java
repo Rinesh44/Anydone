@@ -33,16 +33,8 @@ import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationRepositoryI
 import com.treeleaf.anydone.serviceprovider.profile.ProfileRepository;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestDetailRepository;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestDetailRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityRepository;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestRepository;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRepository;
-import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.currency.CurrencyRepository;
 import com.treeleaf.anydone.serviceprovider.setting.currency.CurrencyRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.language.LanguageRepository;
@@ -71,14 +63,14 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketT
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketRepositoryImpl;
-import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketRepository;
-import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketRepository;
+import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepository;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnsubscribedTicketRepository;
@@ -142,35 +134,14 @@ public class PresenterModule {
         return new AccountRepositoryImpl((anyDoneService));
     }
 
-
-    @Provides
-    ServiceRequestRepository getServiceRequestRepository(AnyDoneService anyDoneService) {
-        return new ServiceRequestRepositoryImpl(anyDoneService);
-    }
-
-    @Provides
-    ServiceRequestDetailRepository getServiceRequestDetailRepository(AnyDoneService anyDoneService) {
-        return new ServiceRequestDetailRepositoryImpl(anyDoneService);
-    }
-
     @Provides
     ServiceRequestDetailActivityRepository getServiceRequestDetailActivityRepository(AnyDoneService anyDoneService) {
         return new ServiceRequestDetailActivityRepositoryImpl(anyDoneService);
     }
 
     @Provides
-    ActivityRepository getActivityRepository(AnyDoneService anyDoneService) {
-        return new ActivityRepositoryImpl(anyDoneService);
-    }
-
-    @Provides
     AddLocationRepository getAddLocationRepository(AnyDoneService anyDoneService) {
         return new AddLocationRepositoryImpl(anyDoneService);
-    }
-
-    @Provides
-    AcceptedRepository getOngoingRepository(AnyDoneService anyDoneService) {
-        return new AcceptedRepositoryImpl(anyDoneService);
     }
 
     @Provides

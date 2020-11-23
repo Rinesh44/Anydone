@@ -230,7 +230,7 @@ public final class ProtoMapper {
 
             case "VIDEO_CALL_RTC_MESSAGE":
                 conversation.setCallDuration(GlobalUtils.getFormattedDuration(message.getCall().getDuration()));
-                conversation.setCallInitiateTime(GlobalUtils.getTime(message.getSentAt()));
+                conversation.setCallInitiateTime(GlobalUtils.getTimeExcludeMillis(message.getSentAt()));
                 break;
 
             case "AUDIO_CALL_RTC_MESSAGE":

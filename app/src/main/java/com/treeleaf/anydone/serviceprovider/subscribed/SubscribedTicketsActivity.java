@@ -29,7 +29,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.OnInProgressTicketsListener;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
@@ -61,7 +60,6 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
     @BindView(R.id.pb_progress)
     ProgressBar progress;
     private Unbinder unbinder;
-    private OnSwipeListener swipeListener;
     private OnInProgressTicketsListener onInProgressTicketsListener;
     private TicketsAdapter adapter;
     private int unsubscribedTicketPos;

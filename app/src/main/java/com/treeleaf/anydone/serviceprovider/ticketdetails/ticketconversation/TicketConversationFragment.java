@@ -61,7 +61,6 @@ import com.treeleaf.anydone.serviceprovider.adapters.CommentAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
-import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
@@ -71,10 +70,10 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.MaxHeightScrollView;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -882,12 +881,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void getMessageFail(String message) {
+        pbLoadData.setVisibility(View.GONE);
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), message);
             onAuthorizationFailed(getActivity());
-            return;
         }
-        UiUtils.showToast(getActivity(), message);
     }
 
     @Override
@@ -1252,26 +1250,29 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     private void setupSingleImageView(Uri uri) {
+
+    /*    capturedBitmap = GlobalUtils.decodeSampledBitmapFromResource(currentPhotoPath,
+                150, 150);*/
         try {
             capturedBitmap = MediaStore.Images.Media.getBitmap(
                     Objects.requireNonNull(getContext()).getContentResolver(), uri);
-            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
-
-            if (capturedBitmap.getWidth() > capturedBitmap.getHeight()) {
-                imageOrientation = "landscape";
-                ivCaptureView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            } else {
-                imageOrientation = "portrait";
-                ivCaptureView.setScaleType(ImageView.ScaleType.FIT_XY);
-            }
-
-            GlobalUtils.showLog(TAG, "Orientation: " + imageOrientation);
-            ivCaptureView.setImageBitmap(capturedBitmap);
-            clCaptureView.setVisibility(View.VISIBLE);
-            etImageDesc.requestFocus();
+            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, capturedBitmap, getActivity());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (capturedBitmap.getWidth() > capturedBitmap.getHeight()) {
+            imageOrientation = "landscape";
+            ivCaptureView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        } else {
+            imageOrientation = "portrait";
+            ivCaptureView.setScaleType(ImageView.ScaleType.FIT_XY);
+        }
+
+        GlobalUtils.showLog(TAG, "Orientation: " + imageOrientation);
+        ivCaptureView.setImageBitmap(capturedBitmap);
+        clCaptureView.setVisibility(View.VISIBLE);
+        etImageDesc.requestFocus();
     }
 
     @OnClick(R.id.iv_send_desc)
@@ -1289,7 +1290,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Bitmap convertedBitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
+            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, bitmap, getActivity());
             convertedBitmap = UiUtils.getResizedBitmap(convertedBitmap, 200);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             convertedBitmap.compress(Bitmap.CompressFormat.WEBP, 50, baos);

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
@@ -368,10 +369,8 @@ Limit selectable Date range
     }
 
 
-    public static Bitmap fixBitmapRotation(Uri uri, Activity activity) throws IOException {
+    public static Bitmap fixBitmapRotation(Uri uri, Bitmap bitmap, Activity activity) throws IOException {
         ExifInterface ei;
-        Bitmap bitmap = MediaStore.Images.Media.getBitmap(
-                Objects.requireNonNull(activity).getContentResolver(), uri);
         if (Build.VERSION.SDK_INT > 23) {
             InputStream input = activity.getContentResolver().openInputStream(uri);
             assert input != null;
@@ -447,6 +446,44 @@ Limit selectable Date range
                 TypedValue.COMPLEX_UNIT_DIP, dp,
                 r.getDisplayMetrics()
         );
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(String imagePath,
+                                                         int reqWidth, int reqHeight) {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(imagePath, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(imagePath, options);
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
     }
 
     public static String getImagePathFromURI(Context context, Uri uri) {

@@ -30,7 +30,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
@@ -66,7 +65,6 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     MaterialButton btnReload;
 
     private Unbinder unbinder;
-    private OnSwipeListener swipeListener;
     private OnInProgressTicketsListener onInProgressTicketsListener;
     private TicketsAdapter adapter;
     private int unsubscribedTicketPos;

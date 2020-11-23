@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 
@@ -120,7 +121,9 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         Observable<UserRpcProto.UserBaseResponse> imageUploadObservable;
 
         try {
-            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, activity);
+            Bitmap decodedBitmap = MediaStore.Images.Media.getBitmap(
+                    Objects.requireNonNull(getContext()).getContentResolver(), uri);
+            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, decodedBitmap, activity);
             byte[] byteArray = getByteArrayFromBitmap(bitmap);
             String mimeType = getMimeType(uri);
 
@@ -1095,6 +1098,8 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                                 rtcThreadBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(rtcThreadBaseResponse.getRtcMessagesList())) {
                             saveConversations(rtcThreadBaseResponse.getRtcMessagesList());
+                        } else {
+                            getView().getMessageFail("stop progress");
                         }
                     }
 

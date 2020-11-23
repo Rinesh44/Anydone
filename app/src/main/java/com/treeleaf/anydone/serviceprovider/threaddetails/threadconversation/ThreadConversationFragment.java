@@ -70,10 +70,10 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -635,9 +635,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), message);
             onAuthorizationFailed(getActivity());
-            return;
         }
-        UiUtils.showToast(getActivity(), message);
     }
 
     @Override
@@ -878,7 +876,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         try {
             capturedBitmap = MediaStore.Images.Media.getBitmap(
                     Objects.requireNonNull(getContext()).getContentResolver(), uri);
-            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
+            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, capturedBitmap, getActivity());
 
             if (capturedBitmap.getWidth() > capturedBitmap.getHeight()) {
                 imageOrientation = "landscape";
@@ -912,7 +910,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         Bitmap convertedBitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
+            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, bitmap, getActivity());
             convertedBitmap = UiUtils.getResizedBitmap(convertedBitmap, 200);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             convertedBitmap.compress(Bitmap.CompressFormat.WEBP, 50, baos);
@@ -944,7 +942,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                         if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
                             Toast.makeText(getContext(),
                                     "Camera and media/files access permissions are required",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
                             openAppSettings();
                         }
 
@@ -987,7 +985,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                         if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
                             Toast.makeText(getContext(),
                                     "Media/files access permissions are required",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
                             openAppSettings();
                         }
 
@@ -1020,7 +1018,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                         if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
                             Toast.makeText(getContext(),
                                     "Media/files access permissions are required",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
                             openAppSettings();
                         }
 

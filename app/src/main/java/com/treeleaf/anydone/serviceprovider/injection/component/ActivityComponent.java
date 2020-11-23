@@ -35,7 +35,6 @@ import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import dagger.Subcomponent;
-import retrofit2.Retrofit;
 
 @Subcomponent(modules = {ActivityModule.class})
 @ScopeActivity
@@ -60,8 +59,6 @@ public interface ActivityComponent {
 
     void inject(ResetPasswordActivity resetPasswordActivity);
 
-    void inject(ServiceRequestDetailActivity serviceRequestActivity);
-
     void inject(AddLocationActivity addLocationActivity);
 
     void inject(SelectTimezoneActivity selectTimezoneActivity);
@@ -73,6 +70,8 @@ public interface ActivityComponent {
     void inject(PickLocationActivity pickLocationActivity);
 
     void inject(LanguagesActivity languagesActivity);
+
+    void inject(ServiceRequestDetailActivity serviceRequestActivity);
 
     void inject(UnassignedTicketsActivity unassignedTicketsActivity);
 

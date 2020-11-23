@@ -45,8 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimens_2x"
                 android:layout_marginEnd="@dimen/dimens_2x"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:id="@+id/tv_ticket_id_value"
@@ -100,19 +100,12 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/v_title_separator"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/rl_title"
-                android:layout_marginBottom="@dimen/dimen_2x4"
-                android:background="#DDDDDD" />
 
             <RelativeLayout
                 android:id="@+id/rl_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/v_title_separator"
+                android:layout_below="@+id/rl_title"
                 android:layout_marginStart="@dimen/dimens_2x"
                 android:layout_marginEnd="@dimen/dimens_2x"
                 android:layout_marginBottom="@dimen/dimen_6x1">
@@ -157,8 +150,8 @@
                     android:id="@+id/hsv_tags"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_2x2"
                     android:layout_below="@+id/rl_customer_holder"
+                    android:layout_marginTop="@dimen/dimen_2x2"
                     android:scrollbars="none">
 
                     <LinearLayout
@@ -182,7 +175,7 @@
             android:layout_height="1dp"
             android:layout_below="@+id/rl_main"
             android:layout_marginTop="7dp"
-            android:background="#B8CBFF" />
+            android:background="#E4E4E4" />
 
     </RelativeLayout>
 </com.chauthai.swipereveallayout.SwipeRevealLayout>

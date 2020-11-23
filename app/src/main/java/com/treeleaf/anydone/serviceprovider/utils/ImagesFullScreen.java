@@ -1,4 +1,5 @@
-package com.treeleaf.anydone.serviceprovider.servicerequestdetail;
+package com.treeleaf.anydone.serviceprovider.utils;
+
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,8 +17,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.TouchImageView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -141,4 +140,3 @@ public class ImagesFullScreen extends DialogFragment {
     }
 
 }
-

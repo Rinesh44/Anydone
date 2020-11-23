@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 
@@ -66,6 +67,7 @@ import dagger.internal.Preconditions;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.RealmList;
@@ -115,7 +117,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         Observable<UserRpcProto.UserBaseResponse> imageUploadObservable;
 
         try {
-            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, activity);
+            Bitmap decodedBitmap = MediaStore.Images.Media
+                    .getBitmap(Objects.requireNonNull(getContext()).getContentResolver(), uri);
+
+            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, decodedBitmap, activity);
             byte[] byteArray = getByteArrayFromBitmap(bitmap);
             String mimeType = getMimeType(uri);
 
@@ -156,7 +161,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         }
 
                         @Override
-                        public void onError(Throwable e) {
+                        public void onError(@NonNull Throwable e) {
                             getView().hideProgressBar();
                             setUpFailedConversation(clientId);
                         }
@@ -264,7 +269,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         GlobalUtils.showLog(TAG, "doc upload fail 2");
                         GlobalUtils.showLog(TAG, e.getLocalizedMessage());
                         getView().hideProgressBar();
@@ -440,7 +445,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .subscribeWith(new DisposableObserver
                         <BotConversationRpcProto.BotConversationBaseResponse>() {
                     @Override
-                    public void onNext(BotConversationRpcProto.BotConversationBaseResponse
+                    public void onNext(@NonNull BotConversationRpcProto.BotConversationBaseResponse
                                                botConversationBaseResponse) {
                         GlobalUtils.showLog(TAG, "bot conversation response: " +
                                 botConversationBaseResponse);
@@ -489,7 +494,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getSuggestionFail(e.getLocalizedMessage());
                     }
@@ -1323,6 +1328,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 rtcServiceBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(rtcServiceBaseResponse.getRtcMessagesList())) {
                             saveConversations(rtcServiceBaseResponse.getRtcMessagesList());
+                        } else {
+                            getView().getMessageFail("hide progress");
                         }
                     }
 
