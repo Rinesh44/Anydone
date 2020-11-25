@@ -4,7 +4,6 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,15 +45,17 @@ public class AssignEmployeeRepo extends Repo {
         List<AssignEmployee> assignEmployeeList = new ArrayList<>();
         for (UserProto.EmployeeProfile profile : employeeList
         ) {
-            AssignEmployee employee = new AssignEmployee();
-            employee.setAccountId(profile.getAccount().getAccountId());
-            employee.setCreatedAt(profile.getCreatedAt());
-            employee.setEmail(profile.getAccount().getEmail());
-            employee.setEmployeeId(profile.getEmployeeProfileId());
-            employee.setEmployeeImageUrl(profile.getAccount().getProfilePic());
-            employee.setName(profile.getAccount().getFullName());
-            employee.setPhone(profile.getAccount().getPhone());
-            assignEmployeeList.add(employee);
+            if (profile.getAccount().getAccountId() != null && !profile.getAccount().getAccountId().isEmpty()) {
+                AssignEmployee employee = new AssignEmployee();
+                employee.setAccountId(profile.getAccount().getAccountId());
+                employee.setCreatedAt(profile.getCreatedAt());
+                employee.setEmail(profile.getAccount().getEmail());
+                employee.setEmployeeId(profile.getEmployeeProfileId());
+                employee.setEmployeeImageUrl(profile.getAccount().getProfilePic());
+                employee.setName(profile.getAccount().getFullName());
+                employee.setPhone(profile.getAccount().getPhone());
+                assignEmployeeList.add(employee);
+            }
         }
         return assignEmployeeList;
     }
@@ -68,6 +69,7 @@ public class AssignEmployeeRepo extends Repo {
                 GlobalUtils.showLog(TAG, "check self emp id: " + self.getEmployeeId());
                 return new ArrayList<>(realm.where(AssignEmployee.class)
                         .notEqualTo("assignEmployeeId", self.getEmployeeId())
+                        .notEqualTo("accountId", "")
                         .findAll());
             } else {
                 return new ArrayList<>(realm.where(AssignEmployee.class)

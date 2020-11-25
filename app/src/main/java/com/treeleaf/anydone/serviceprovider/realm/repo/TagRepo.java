@@ -5,6 +5,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
@@ -83,7 +84,9 @@ public class TagRepo extends Repo {
     public List<Tags> getAllTags() {
         final Realm realm = Realm.getDefaultInstance();
         try {
+            GlobalUtils.showLog(TAG, "get all tags()");
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            GlobalUtils.showLog(TAG, "service id: " + serviceId);
             return new ArrayList<>(realm.where(Tags.class)
                     .equalTo("serviceId", serviceId)
                     .findAll());

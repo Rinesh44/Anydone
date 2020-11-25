@@ -161,7 +161,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
                 .setEmployeeAssigned(employeeAssigned)
                 .build();
 
-        GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
+        GlobalUtils.showLog(TAG, "employee assigned check:" + ticket);
 
         getTicketsObservable = service.assignEmployee(token, ticketId, ticket);
         addSubscription(getTicketsObservable

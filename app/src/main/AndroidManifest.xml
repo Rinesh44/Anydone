@@ -30,65 +30,107 @@
         tools:replace="android:allowBackup">
         <activity
             android:name=".suggestedTicketPreview.SuggestedTicketPreviewActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ticketsuggestions.TicketSuggestionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".linkedticketdetail.LinkedTicketDetailActivity" />
-        <activity android:name=".subscribed.SubscribedTicketsActivity" />
+        <activity
+            android:name=".linkedticketdetail.LinkedTicketDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".subscribed.SubscribedTicketsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".contributed.ContributedTicketsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".editticket.EditTicketActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".addpaymentcard.AddCardActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
-        <activity android:name=".paymentmethod.PaymentMethodActivity" />
-        <activity android:name=".billing.BillingActivity" />
-        <activity android:name=".OpenSourceLibraryActivity" />
+        <activity
+            android:name=".paymentmethod.PaymentMethodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".billing.BillingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OpenSourceLibraryActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ticketdetails.TicketDetailsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".addcontributor.AddContributorActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".threaddetails.ThreadDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".tickets.unassignedtickets.UnassignedTicketsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".addticket.AddTicketActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".linkshare.LinkShareActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".weblink.WebLinkActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".picklocation.PickLocationActivity" />
-        <activity android:name=".aboutus.AboutUsActivity" />
-        <activity android:name=".setting.timezone.SelectTimezoneActivity" />
-        <activity android:name=".setting.timezone.TimezoneActivity" />
+        <activity
+            android:name=".picklocation.PickLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".aboutus.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.timezone.SelectTimezoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.timezone.TimezoneActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".setting.location.AddLocationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
-        <activity android:name=".setting.location.showLocation.ShowLocationActivity" />
-        <activity android:name=".setting.currency.SelectCurrencyActivity" />
-        <activity android:name=".setting.currency.CurrencyActivity" />
-        <activity android:name=".setting.video.VideoSettingActivity" />
+        <activity
+            android:name=".setting.location.showLocation.ShowLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.currency.SelectCurrencyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.currency.CurrencyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.video.VideoSettingActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".setting.language.LanguagesActivity"
-            android:configChanges="locale" />
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".splash.SplashActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -98,42 +140,53 @@
         </activity>
         <activity
             android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".profile.ProfileActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".verification.VerificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".landing.LandingActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".forgotpassword.ForgotPasswordActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".editprofile.EditProfileActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".changepassword.ChangePasswordActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".setting.SettingsActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
             android:name=".forgotpassword.resetpassword.ResetPasswordActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".forgotpassword.verifyCode.VerifyCodeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <!--

@@ -1,7 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.login;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -37,7 +35,6 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
-import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 

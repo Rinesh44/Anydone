@@ -79,6 +79,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         mFragment.setPendingListListener(this);
         userAccount = AccountRepo.getInstance().getAccount();
         localAccountId = userAccount.getAccountId();
+
     }
 
     @Override

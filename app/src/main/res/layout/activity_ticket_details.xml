@@ -80,7 +80,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:padding="@dimen/dimen_10x1"
                             android:src="@drawable/ic_video"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                     </LinearLayout>
 

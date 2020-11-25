@@ -8,8 +8,11 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.LabelRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -23,6 +26,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -228,18 +232,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
     }
 
     private void saveTicket(TicketProto.Ticket ticketPb) {
-        TicketRepo.getInstance().saveTicket(ticketPb, Constants.SUBSCRIBED, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                GlobalUtils.showLog(TAG, "saved as subscribed ticket");
-                Hawk.put(Constants.TICKET_SUBSCRIBED, true);
-            }
-
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "failed to save subscribed ticket");
-            }
-        });
+        Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
 
         Account userAccount = AccountRepo.getInstance().getAccount();
         if (ticketPb.getEmployeeAssigned().getAssignedTo()
@@ -299,5 +292,120 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         }
 
         return true;
+    }
+
+    @Override
+    public void findTags() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> tagObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        tagObservable = service.getTicketTeams(token, serviceId);
+
+        addSubscription(tagObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse tagResponse) {
+                        GlobalUtils.showLog(TAG, "get tag response:"
+                                + tagResponse);
+
+                        if (tagResponse.getError()) {
+                            getView().findTagsFail(tagResponse.getMsg());
+                            return;
+                        }
+
+                        saveTags(tagResponse.getTeamsList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+    }
+
+    @Override
+    public void getLabels() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getTicketLabels(token, serviceId);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "get labels response:"
+                                + response);
+
+                        if (response.getError()) {
+                            getView().getLabelFail(response.getMsg());
+                            return;
+                        }
+
+                        saveLabels(response.getLabelsList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+
+    }
+
+    private void saveLabels(List<TicketProto.Label> labels) {
+        LabelRepo.getInstance().saveLabelList(labels, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved labels");
+                getView().getLabelSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save labels");
+            }
+        });
+    }
+
+    private void saveTags(List<TicketProto.Team> tagsList) {
+        TagRepo.getInstance().saveTags(tagsList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved tags");
+                getView().findTagsSuccess();
+                List<Tags> tags = TagRepo.getInstance().getAllTags();
+                GlobalUtils.showLog(TAG, "saved tags: " + tags);
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save tags");
+            }
+        });
     }
 }

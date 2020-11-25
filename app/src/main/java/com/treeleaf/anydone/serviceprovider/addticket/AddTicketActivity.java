@@ -9,7 +9,6 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -162,23 +161,17 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         super.onCreate(savedInstanceState);
 
         setToolbar();
+
+        presenter.findTags();
+        presenter.getLabels();
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
         serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
-        employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
-        for (AssignEmployee emp : employeeList
-        ) {
-            if (emp.getEmployeeId().isEmpty()) {
-                employeeList.remove(emp);
-            }
-        }
-        customerList = CustomerRepo.getInstance().getAllCustomers();
-        tagsList = TagRepo.getInstance().getAllTags();
-        labelList = LabelRepo.getInstance().getAllLabels();
         ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
+        customerList = CustomerRepo.getInstance().getAllCustomers();
+        GlobalUtils.showLog(TAG, "tagList: " + tagsList);
+        employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
 
         createPriorityBottomSheet();
-        createTeamBottomSheet();
-        createLabelBottomSheet();
         createCustomerBottomSheet();
         createEmployeeBottomSheet();
         createEstimatedTimeBottomSheet();
@@ -199,7 +192,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             ticketSource = TicketProto.TicketSource.CONVERSATION_TICKET_SOURCE;
         }
 
-        etDesc.setOnTouchListener((v, event) -> {
+      /*  etDesc.setOnTouchListener((v, event) -> {
             if (v.getId() == R.id.et_description) {
                 v.getParent().requestDisallowInterceptTouchEvent(true);
                 if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
@@ -207,7 +200,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 }
             }
             return false;
-        });
+        });*/
 
         etDesc.addTextChangedListener(new TextWatcher() {
             @Override
@@ -224,7 +217,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             public void afterTextChanged(Editable s) {
                 etDesc.removeTextChangedListener(this);
 
-                if (etDesc.getLineCount() > 7) {
+                if (etDesc.getLineCount() > 5) {
                     etDesc.setText(description);
                     etDesc.setSelection(lastDescCursorPosition);
                 } else
@@ -234,8 +227,16 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });
 
-        fblTeam.setOnClickListener(v -> teamSheet.show());
-        fblLabel.setOnClickListener(v -> labelSheet.show());
+        fblTeam.setOnClickListener(v -> {
+            clearFocusFromInputFields();
+            if (!tagsList.isEmpty()) teamSheet.show();
+            else Toast.makeText(this, "Teams not available", Toast.LENGTH_SHORT).show();
+        });
+
+        fblLabel.setOnClickListener(v -> {
+            clearFocusFromInputFields();
+            labelSheet.show();
+        });
 
         etTicketType.setOnItemClickListener((parent, view, position, id) -> {
             UiUtils.hideKeyboard(this);
@@ -251,10 +252,20 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             }
         });*/
 
-        etTicketType.setOnClickListener(v -> etTicketType.showDropDown());
+        etTicketType.setOnClickListener(v -> {
+            clearFocusFromInputFields();
+            etTicketType.showDropDown();
+        });
 
-        etCustomerName.setOnClickListener(v -> customerBottomSheet.show());
-        etAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
+        etCustomerName.setOnClickListener(v -> {
+            clearFocusFromInputFields();
+            customerBottomSheet.show();
+        });
+
+        etAssignEmployee.setOnClickListener(v -> {
+            clearFocusFromInputFields();
+            employeeBottomSheet.show();
+        });
 
  /*       etCustomerName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus && selfEmployee != null) {
@@ -286,8 +297,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });*/
 
 
-        etPriority.setOnClickListener(v -> prioritySheet.show());
-        etEstimatedTime.setOnClickListener(v -> estimatedTimeBottomSheet.show());
+        etPriority.setOnClickListener(v -> {
+            clearFocusFromInputFields();
+            prioritySheet.show();
+        });
+
+        etEstimatedTime.setOnClickListener(v -> {
+            clearFocusFromInputFields();
+            estimatedTimeBottomSheet.show();
+        });
 
    /*     etCustomerName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -393,6 +411,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
+
     private void createEstimatedTimeBottomSheet() {
         estimatedTimeBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
@@ -457,8 +476,11 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
 
         tvDone.setOnClickListener(v -> {
+            UiUtils.hideKeyboardForced(this);
+            scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
             etEstimatedTime.setText(etSetEstimatedTime.getText().toString().trim());
             estimatedTimeBottomSheet.dismiss();
+            clearFocusFromInputFields();
         });
     }
 
@@ -540,6 +562,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             }
         });
+    }
+
+    private void clearFocusFromInputFields() {
+        etSummary.clearFocus();
+        etDesc.clearFocus();
+        etPhone.clearFocus();
+        etDesc.clearFocus();
     }
 
     private void createCustomerBottomSheet() {
@@ -1380,6 +1409,40 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
   /*      ilDesc.setErrorEnabled(false);
         ilCustomerName.setErrorEnabled(false);
         ilSummary.setErrorEnabled(false);*/
+    }
+
+    @Override
+    public void findTagsSuccess() {
+        tagsList = TagRepo.getInstance().getAllTags();
+        createTeamBottomSheet();
+    }
+
+    @Override
+    public void findTagsFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        Banner.make(Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
+    }
+
+    @Override
+    public void getLabelSuccess() {
+        labelList = LabelRepo.getInstance().getAllLabels();
+        createLabelBottomSheet();
+    }
+
+    @Override
+    public void getLabelFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+            return;
+        }
+        Banner.make(Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     @Override

@@ -324,7 +324,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             }
         });
 
-        serviceBottomSheet.setOnDismissListener(dialog -> searchService.clearFocus());
+        serviceBottomSheet.setOnDismissListener(dialog -> {
+            searchService.clearFocus();
+            UiUtils.hideKeyboardForced(getActivity());
+        });
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         if (CollectionUtils.isEmpty(serviceList)) {

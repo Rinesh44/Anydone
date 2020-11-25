@@ -73,7 +73,9 @@
     <color name="ticket_pending_text">#FFBB24</color>
     <color name="ticket_started_text">#2F80ED</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#3A5090</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
+        #0076FF
+    </color>
 
 
 </resources>

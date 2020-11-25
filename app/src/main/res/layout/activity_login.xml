@@ -44,7 +44,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimens_2x"
                 android:hint="@string/email_phone"
-                app:boxStrokeColor="@color/colorPrimary"
                 app:startIconContentDescription="@string/email_phone"
                 app:startIconDrawable="@drawable/ic_user">
 
@@ -61,13 +60,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_password"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
                 android:hint="@string/password"
-                app:boxStrokeColor="@color/colorPrimary"
                 app:endIconMode="password_toggle"
                 app:startIconContentDescription="@string/email_phone"
                 app:startIconDrawable="@drawable/ic_password">

@@ -205,12 +205,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private String userAccountId;
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
-    private OnTicketStartListener onTicketStartListener;
     private String ticketType;
     private boolean contributed, subscribed;
     private boolean boldFlag = false, italicFlag = false, underlineFlag, strikeThroughFlag = false,
             bulletsFlag = false, numberFlag = false;
     private boolean keyboardShown = false;
+    private OnTaskStartListener listener;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -704,7 +704,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             llSearchContainer.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.GONE);
-            view.setVisibility(View.VISIBLE);
         }
 
 
@@ -1109,6 +1108,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onTaskStartSuccess(long estTime) {
+        listener.onTaskStarted();
         btnStartTask.setVisibility(View.GONE);
         view.setVisibility(View.VISIBLE);
         llSearchContainer.setVisibility(View.VISIBLE);
@@ -1467,7 +1467,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         super.onDetach();
         TreeleafMqttClient.mqttClient.unregisterResources();
         unregisterReceiver();
-        onTicketStartListener = null;
+        listener = null;
     }
 
     @Override
@@ -1669,6 +1669,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
         intent.setData(uri);
         startActivity(intent);
+    }
+
+    public void setOnTicketStartListener(OnTaskStartListener listener) {
+        this.listener = listener;
     }
 
 }

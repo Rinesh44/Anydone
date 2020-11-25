@@ -324,19 +324,26 @@ Limit selectable Date range
 
     public static String getFormattedDuration(int duration) {
         if (duration != 0) {
-            long hours = TimeUnit.MILLISECONDS
-                    .toHours(duration);
+            String hours = String.valueOf(TimeUnit.MILLISECONDS
+                    .toHours(duration));
 
-            long minutes = TimeUnit.MILLISECONDS
-                    .toMinutes(duration);
+            String minutes = String.valueOf(TimeUnit.MILLISECONDS
+                    .toMinutes(duration));
 
-            long seconds = TimeUnit.MILLISECONDS
-                    .toSeconds(duration);
+            if (minutes.length() > 2) minutes = minutes.substring(0, 2);
 
-            if (hours != 0) {
-                return hours + ":" + minutes + ":" + seconds;
+            String seconds = String.valueOf(TimeUnit.MILLISECONDS
+                    .toSeconds(duration));
+
+            if (seconds.length() > 2) seconds = seconds.substring(0, 2);
+
+            if (!hours.equals("0")) {
+                return hours + ":"
+                        + minutes
+                        + ":" + seconds;
             } else {
-                return minutes + ":" + seconds;
+                return minutes
+                        + ":" + seconds;
             }
         } else {
             return "0:00";

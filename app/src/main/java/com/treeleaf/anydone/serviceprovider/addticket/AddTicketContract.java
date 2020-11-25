@@ -26,9 +26,22 @@ public class AddTicketContract {
 
         void onInvalidEmail();
 
+        void findTagsSuccess();
+
+        void findTagsFail(String msg);
+
+        void getLabelSuccess();
+
+        void getLabelFail(String msg);
+
     }
 
     public interface AddTicketPresenter extends Presenter<AddTicketView> {
+
+        void findTags();
+
+        void getLabels();
+
         void createTicket(String ticketType, String title, String description, String customerId,
                           String customerEmail, String customerPhone, String customerName,
                           String customerPic,
