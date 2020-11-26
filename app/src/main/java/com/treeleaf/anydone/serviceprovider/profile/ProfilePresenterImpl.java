@@ -3,8 +3,10 @@ package com.treeleaf.anydone.serviceprovider.profile;
 
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.webkit.MimeTypeMap;
 
 import com.orhanobut.hawk.Hawk;
@@ -60,62 +62,59 @@ public class ProfilePresenterImpl extends BasePresenter<ProfileContract.ProfileV
 
         Observable<UserRpcProto.UserBaseResponse> profileObservable;
 
-        try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext()
-                    .getContentResolver(), resultUri);
-            byte[] byteArray = getByteArrayFromBitmap(bitmap);
-            String mimeType = getMimeType(resultUri);
+        Bitmap decodedBitmap = GlobalUtils.decodeSampledBitmapFromResource(resultUri.getPath(),
+                150, 150);
 
-            RequestBody imageReqBody = RequestBody.create(MediaType.parse(mimeType), byteArray);
-            MultipartBody.Part body =
-                    MultipartBody.Part.createFormData("image",
-                            "image.jpg", imageReqBody);
+        BitmapFactory.decodeFile(resultUri.getPath());
+        byte[] byteArray = getByteArrayFromBitmap(decodedBitmap);
+        String mimeType = getMimeType(resultUri);
 
-            Retrofit retrofit = getRetrofitInstance();
+        RequestBody imageReqBody = RequestBody.create(MediaType.parse(mimeType), byteArray);
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image",
+                        "image.jpg", imageReqBody);
 
-            AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Retrofit retrofit = getRetrofitInstance();
 
-            profileObservable = service.uploadImage(Hawk.get(Constants.TOKEN), body);
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-            addSubscription(profileObservable
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
-                        @Override
-                        public void onNext(UserRpcProto.UserBaseResponse uploadPicResponse) {
-                            GlobalUtils.showLog(TAG, "upload pic response: "
-                                    + uploadPicResponse);
+        profileObservable = service.uploadImage(Hawk.get(Constants.TOKEN), body);
 
-                            getView().hideProgressBar();
-                            if (uploadPicResponse == null) {
-                                getView().onUploadImageFail("Upload image failed");
-                                return;
-                            }
+        addSubscription(profileObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                    @Override
+                    public void onNext(UserRpcProto.UserBaseResponse uploadPicResponse) {
+                        GlobalUtils.showLog(TAG, "upload pic response: "
+                                + uploadPicResponse);
 
-                            if (uploadPicResponse.getError()) {
-                                getView().onUploadImageFail(uploadPicResponse.getMsg());
-                                return;
-                            }
-
-                            setProfilePicToUser(uploadPicResponse.getRefId());
+                        getView().hideProgressBar();
+                        if (uploadPicResponse == null) {
+                            getView().onUploadImageFail("Upload image failed");
+                            return;
                         }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            getView().hideProgressBar();
-                            getView().onUploadImageFail(e.getLocalizedMessage());
+                        if (uploadPicResponse.getError()) {
+                            getView().onUploadImageFail(uploadPicResponse.getMsg());
+                            return;
                         }
 
-                        @Override
-                        public void onComplete() {
-                            getView().hideProgressBar();
-                        }
-                    })
-            );
+                        setProfilePicToUser(uploadPicResponse.getRefId());
+                    }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onUploadImageFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
 
     }
 
@@ -169,7 +168,6 @@ public class ProfilePresenterImpl extends BasePresenter<ProfileContract.ProfileV
     @Override
     public void addPhone(String phone) {
         Preconditions.checkNotNull(phone, "Phone cannot be null");
-
         if (!validatePhone(phone)) {
             return;
         }

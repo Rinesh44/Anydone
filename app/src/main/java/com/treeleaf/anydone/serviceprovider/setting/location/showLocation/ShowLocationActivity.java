@@ -1,21 +1,30 @@
 package com.treeleaf.anydone.serviceprovider.setting.location.showLocation;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.button.MaterialButton;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.LocationAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
@@ -60,12 +69,31 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
         List<Location> locationList = LocationRepo.getInstance().getAllLocation();
         setUpRecyclerView(locationList);
 
-        btnAddLocation.setOnClickListener(v ->
-                startActivity(new Intent(
-                        ShowLocationActivity.this, AddLocationActivity.class)));
+        btnAddLocation.setOnClickListener(v -> Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Location access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
 
-        tvAddLocation.setOnClickListener(v -> startActivity(new Intent(
-                ShowLocationActivity.this, AddLocationActivity.class)));
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            startActivity(new Intent(
+                                    ShowLocationActivity.this, AddLocationActivity.class));
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check());
     }
 
     @Override
@@ -208,5 +236,13 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
     @Override
     public Context getContext() {
         return this;
+    }
+
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
     }
 }

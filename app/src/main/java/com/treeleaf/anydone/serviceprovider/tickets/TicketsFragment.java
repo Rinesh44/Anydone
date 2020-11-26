@@ -162,8 +162,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         presenter.findCustomers();
         presenter.findEmployees();
         presenter.getTicketTypes();
-        presenter.getLabels();
-        presenter.findTags();
+
     }
 
     private void createServiceBottomSheet() {

@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.profile;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
@@ -36,6 +38,11 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -51,10 +58,12 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         implements ProfileContract.ProfileView {
@@ -108,7 +117,6 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         tvName.setOnClickListener(v -> openProfileEditActivity());
 
         tvPhone.setOnClickListener(v -> {
-
             if (account.getPhone() == null || account.getPhone().isEmpty()) {
                 showEmailPhoneDialog();
                 return;
@@ -136,14 +144,70 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         tvGender.setOnClickListener(v -> openProfileEditActivity());
 
         civProfileImage.setOnClickListener(v -> toggleBottomSheet());
-        tvCamera.setOnClickListener(v -> {
-            try {
-                openCamera();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        tvGallery.setOnClickListener(v -> openGallery());
+        tvCamera.setOnClickListener(v -> Dexter.withContext(this)
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(ProfileActivity.this,
+                                    "Camera and media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            try {
+                                openCamera();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check());
+
+        tvGallery.setOnClickListener(v -> Dexter.withContext(this)
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(ProfileActivity.this,
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openGallery();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check());
+    }
+
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
     }
 
     private void openGallery() {
@@ -264,7 +328,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             tvEmail.setText(account.getEmail());
             tvEmail.setTextColor(getResources().getColor(R.color.black));
 
-            if (isPhone && !account.isEmailVerified()) {
+            if (!isPhone && !account.isEmailVerified()) {
                 tvEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_not_verified,
                         0, 0, 0);
             } else {
@@ -411,15 +475,15 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
     @Override
     public void onResendCodeSuccess() {
         if (isPhone) {
-            Hawk.put(Constants.EMAIL_PHONE, account.getEmail());
-            Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
-            i.putExtra("edit_profile", true);
-            startActivityForResult(i, ADD_EMAIL_REQUEST);
-        } else {
             Hawk.put(Constants.EMAIL_PHONE, account.getPhone());
             Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
             i.putExtra("edit_profile", true);
             startActivityForResult(i, ADD_PHONE_REQUEST);
+        } else {
+            Hawk.put(Constants.EMAIL_PHONE, account.getEmail());
+            Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
+            i.putExtra("edit_profile", true);
+            startActivityForResult(i, ADD_EMAIL_REQUEST);
         }
     }
 
@@ -583,6 +647,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         return super.dispatchTouchEvent(event);
     }
 
+
     private File getImageFile() throws IOException {
         String imageFileName = "JPEG_" + System.currentTimeMillis() + "_";
         File storageDir = new File(
@@ -602,4 +667,6 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
                 .withAspectRatio(5f, 5f)
                 .start(ProfileActivity.this);
     }
+
+
 }

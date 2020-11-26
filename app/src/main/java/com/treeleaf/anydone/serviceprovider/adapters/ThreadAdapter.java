@@ -43,6 +43,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
 
     public void setData(List<Thread> threadList) {
         this.threadList = threadList;
+        notifyDataSetChanged();
     }
 
 
@@ -78,7 +79,16 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
         }
 
         holder.tvCustomerName.setText(thread.getCustomerName());
-        holder.tvLastMsg.setText(thread.getFinalMessage());
+
+        if (thread.getFinalMessage().isEmpty()) {
+            holder.tvLastMsg.setText("Attachment");
+            holder.tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
+                    0, 0, 0);
+            holder.tvLastMsg.setCompoundDrawablePadding(20);
+        } else {
+            holder.tvLastMsg.setText(thread.getFinalMessage());
+            holder.tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
         GlobalUtils.showLog(TAG, "seedn status check: " + thread.isSeen());
         if (!thread.isSeen()) {
             holder.tvLastMsg.setTypeface(holder.tvLastMsg.getTypeface(), Typeface.BOLD);
@@ -89,8 +99,6 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
         GlobalUtils.showLog(TAG, "current date: " + thread.getLastMessageDate());
         setSourceImg(holder.ivSource, thread);
         showMessagedDateTime(holder.tvDate, thread);
-
-
     }
 
     private void setSourceImg(ImageView ivSource, Thread thread) {

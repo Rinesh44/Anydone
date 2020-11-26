@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -16,8 +17,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Html;
-import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +46,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -64,10 +70,10 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.MaxHeightScrollView;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -175,6 +181,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     TextView tvAddCommentHint;
     @BindView(R.id.editor_scrollview)
     MaxHeightScrollView editorScrollview;
+    @BindView(R.id.view)
+    View view;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -197,12 +205,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private String userAccountId;
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
-    private OnTicketStartListener onTicketStartListener;
     private String ticketType;
     private boolean contributed, subscribed;
     private boolean boldFlag = false, italicFlag = false, underlineFlag, strikeThroughFlag = false,
             bulletsFlag = false, numberFlag = false;
     private boolean keyboardShown = false;
+    private OnTaskStartListener listener;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -262,8 +270,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         if (subscribed) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
         } else {
             llSearchContainer.setVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
         }
 
         if (ticketId != -1) {
@@ -273,6 +283,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
 
             if (CollectionUtils.isEmpty(conversationList)) {
+                pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(ticketId, 0, System.currentTimeMillis(),
                         100);
             } else {
@@ -508,7 +519,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 if (!CollectionUtils.isEmpty(imagesList)) {
                     for (String imageUrl : imagesList
                     ) {
-                        if (imageUrl.equalsIgnoreCase(conversation.getMessage())) {
+                        if (imageUrl != null && imageUrl.equalsIgnoreCase(conversation.getMessage())) {
                             int imagePosition = imagesList.indexOf(imageUrl);
 
                             Bundle bundle = new Bundle();
@@ -656,6 +667,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private void setStatusViews(Tickets tickets) {
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CLOSED.name())) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             tvClosed.setVisibility(View.VISIBLE);
             tvClosed.setText("Closed");
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
@@ -665,6 +677,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_RESOLVED.name())) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             tvClosed.setText("Resolved");
             tvClosed.setVisibility(View.VISIBLE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
@@ -677,8 +690,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
                 || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.VISIBLE);
             tvClosed.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
 
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                     rvConversation.getLayoutParams();
@@ -687,6 +702,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         if (ticketType.equalsIgnoreCase(Constants.SUBSCRIBED)) {
             llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
             btnStartTask.setVisibility(View.GONE);
         }
 
@@ -697,6 +713,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 tickets.getTicketStatus().equalsIgnoreCase(
                         TicketProto.TicketState.TICKET_STARTED.name())) {
             llSearchContainer.setVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
         }
     }
 
@@ -845,6 +862,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void getMessagesSuccess(List<Conversation> conversationList) {
+        pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
@@ -862,12 +880,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void getMessageFail(String message) {
+        pbLoadData.setVisibility(View.GONE);
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), message);
             onAuthorizationFailed(getActivity());
-            return;
         }
-        UiUtils.showToast(getActivity(), message);
     }
 
     @Override
@@ -1091,7 +1108,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onTaskStartSuccess(long estTime) {
+        listener.onTaskStarted();
         btnStartTask.setVisibility(View.GONE);
+        view.setVisibility(View.VISIBLE);
         llSearchContainer.setVisibility(View.VISIBLE);
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
       /*  if (onTicketStartListener != null)
@@ -1231,26 +1250,29 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     private void setupSingleImageView(Uri uri) {
+
+    /*    capturedBitmap = GlobalUtils.decodeSampledBitmapFromResource(currentPhotoPath,
+                150, 150);*/
         try {
             capturedBitmap = MediaStore.Images.Media.getBitmap(
                     Objects.requireNonNull(getContext()).getContentResolver(), uri);
-            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
-
-            if (capturedBitmap.getWidth() > capturedBitmap.getHeight()) {
-                imageOrientation = "landscape";
-                ivCaptureView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            } else {
-                imageOrientation = "portrait";
-                ivCaptureView.setScaleType(ImageView.ScaleType.FIT_XY);
-            }
-
-            GlobalUtils.showLog(TAG, "Orientation: " + imageOrientation);
-            ivCaptureView.setImageBitmap(capturedBitmap);
-            clCaptureView.setVisibility(View.VISIBLE);
-            etImageDesc.requestFocus();
+            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, capturedBitmap, getActivity());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (capturedBitmap.getWidth() > capturedBitmap.getHeight()) {
+            imageOrientation = "landscape";
+            ivCaptureView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        } else {
+            imageOrientation = "portrait";
+            ivCaptureView.setScaleType(ImageView.ScaleType.FIT_XY);
+        }
+
+        GlobalUtils.showLog(TAG, "Orientation: " + imageOrientation);
+        ivCaptureView.setImageBitmap(capturedBitmap);
+        clCaptureView.setVisibility(View.VISIBLE);
+        etImageDesc.requestFocus();
     }
 
     @OnClick(R.id.iv_send_desc)
@@ -1268,7 +1290,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Bitmap convertedBitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
+            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, bitmap, getActivity());
             convertedBitmap = UiUtils.getResizedBitmap(convertedBitmap, 200);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             convertedBitmap.compress(Bitmap.CompressFormat.WEBP, 50, baos);
@@ -1289,12 +1311,35 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.tv_camera)
     void initCamera() {
-        try {
-            llAttachOptions.setVisibility(View.GONE);
-            openCamera();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Camera and media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            try {
+                                openCamera();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     @OnClick(R.id.iv_attachment)
@@ -1309,6 +1354,33 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.tv_files)
     void openFiles() {
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            gotoFiles();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    private void gotoFiles() {
         Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS)));
         GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
@@ -1326,8 +1398,30 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @OnClick(R.id.tv_gallery)
     void showGallery() {
-        llAttachOptions.setVisibility(View.GONE);
-        openGallery();
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openGallery();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     private void openGallery() {
@@ -1373,7 +1467,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         super.onDetach();
         TreeleafMqttClient.mqttClient.unregisterResources();
         unregisterReceiver();
-        onTicketStartListener = null;
+        listener = null;
     }
 
     @Override
@@ -1567,6 +1661,18 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onDrawCanvasCleared(String accountId) {
         ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId);
+    }
+
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
+    public void setOnTicketStartListener(OnTaskStartListener listener) {
+        this.listener = listener;
     }
 
 }

@@ -2,10 +2,10 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
 import android.os.Build;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
@@ -133,37 +132,24 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             viewBinderHelper.bind(holder.swipeRevealLayout,
                     String.valueOf(tickets.getTicketId()));
         }
-/*
-        ViewGroup.LayoutParams ticketViewLp = holder.llTicketView.getLayoutParams();
-        ticketViewLp.height = GlobalUtils.convertDpToPixel(mContext, 90);
 
-        ViewGroup.LayoutParams ticketDetailLp = holder.llDetailsHolder.getLayoutParams();
-        ticketDetailLp.height = GlobalUtils.convertDpToPixel(mContext, 90);*/
-
-
-        //change layout design if no assigned employee found
-        if ((tickets.getAssignedEmployee().getEmployeeId().isEmpty())) {
-            holder.dots.setVisibility(View.GONE);
-            holder.rlAssignedEmployeeHolder.setVisibility(View.GONE);
-            holder.llTicketView.setGravity(Gravity.CENTER);
-        } else {
-            RequestOptions options = new RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.ic_assigned_emp_placeholder)
-                    .error(R.drawable.ic_assigned_emp_placeholder);
-
-            Glide.with(mContext).load(tickets.getAssignedEmployee().getEmployeeImageUrl())
-                    .apply(options)
-                    .into(holder.civAssignedEmployee);
-        }
-
-        String date = GlobalUtils.getDateNormal(tickets.getCreatedAt());
-        String[] dateSeparated = date.split("\\s+");
-        holder.tvDate1.setText(dateSeparated[0]);
-        holder.tvDate2.setText(dateSeparated[1] + " " + dateSeparated[2]);
+        String date = GlobalUtils.getDateDigits(tickets.getCreatedAt());
+        holder.tvDate.setText(date);
         holder.ticketId.setText("#" + tickets.getTicketId());
         holder.summary.setText(tickets.getTitle());
         holder.customer.setText(tickets.getCustomer().getFullName());
+
+        String customerPic = tickets.getCustomer().getProfilePic();
+        if (customerPic != null && !customerPic.isEmpty()) {
+
+            RequestOptions options = new RequestOptions()
+                    .fitCenter()
+                    .placeholder(R.drawable.ic_profile_icon)
+                    .error(R.drawable.ic_profile_icon);
+
+            Glide.with(mContext).load(customerPic).apply(options).into(holder.civCustomer);
+        }
+
         setPriority(tickets.getPriority(), holder);
         GlobalUtils.showLog(TAG, "ticket priority check: " + tickets.getPriority());
         GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
@@ -226,6 +212,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                                 ticketsList.indexOf(tickets));
                     }
                 });
+
                 break;
 
             case "CLOSED_RESOLVED":
@@ -235,6 +222,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                                 ticketsList.indexOf(tickets));
                     }
                 });
+
                 break;
 
             case "ASSIGNABLE":
@@ -244,6 +232,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                                 ticketsList.indexOf(tickets));
                     }
                 });
+
                 break;
 
             case "SUBSCRIBEABLE":
@@ -253,6 +242,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                                 ticketsList.indexOf(tickets));
                     }
                 });
+
                 break;
         }
 
@@ -268,6 +258,12 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             params.setMargins(0, 0, 20, 0);
             tagView.setLayoutParams(params);
             holder.tags.addView(tagView);
+        }
+
+        if (tickets.getLabelRealmList().isEmpty()) {
+            holder.hsvTags.setVisibility(View.GONE);
+        } else {
+            holder.hsvTags.setVisibility(View.VISIBLE);
         }
 
         GlobalUtils.showLog(TAG, "ticket id: " + tickets.getTicketId());
@@ -321,11 +317,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
 
     class TicketHolder extends RecyclerView.ViewHolder {
-        private TextView tvDate1;
-        private TextView tvDate2;
-        private CircleImageView civAssignedEmployee;
+        private TextView tvDate;
+        private CircleImageView civCustomer;
         private RelativeLayout rlTicketHolder;
-        private RelativeLayout rlAssignedEmployeeHolder;
         private TextView ticketId;
         private TextView summary;
         private TextView customer;
@@ -336,17 +330,15 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         private LinearLayout llSubscribe;
         private LinearLayout llAssign;
         private LinearLayout llReopen;
-        private View dots;
-        private LinearLayout llTicketView;
         private TextView ticketPriority;
-        private LinearLayout llDetailsHolder;
+        private HorizontalScrollView hsvTags;
+        private RelativeLayout rlMain;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
             rlTicketHolder = itemView.findViewById(R.id.rl_ticket_holder);
-            tvDate1 = itemView.findViewById(R.id.date1);
-            tvDate2 = itemView.findViewById(R.id.date2);
-            civAssignedEmployee = itemView.findViewById(R.id.assigned_employee);
+            tvDate = itemView.findViewById(R.id.tv_date);
+            civCustomer = itemView.findViewById(R.id.civ_customer);
             ticketId = itemView.findViewById(R.id.tv_ticket_id_value);
             summary = itemView.findViewById(R.id.tv_summary);
             customer = itemView.findViewById(R.id.tv_customer_value);
@@ -357,11 +349,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             llUnsubscribe = itemView.findViewById(R.id.ll_swipe_unsubscribe);
             llAssign = itemView.findViewById(R.id.ll_swipe_assign);
             llSubscribe = itemView.findViewById(R.id.ll_swipe_subscribe);
-            dots = itemView.findViewById(R.id.v_dots);
-            llTicketView = itemView.findViewById(R.id.ll_ticket_view);
             ticketPriority = itemView.findViewById(R.id.tv_priority);
-            llDetailsHolder = itemView.findViewById(R.id.ll_details_holder);
-            rlAssignedEmployeeHolder = itemView.findViewById(R.id.rl_assigned_employee_holder);
+            hsvTags = itemView.findViewById(R.id.hsv_tags);
+            rlMain = itemView.findViewById(R.id.rl_main);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {

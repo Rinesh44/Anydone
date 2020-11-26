@@ -25,15 +25,16 @@ import com.treeleaf.anydone.serviceprovider.setting.location.AddLocationActivity
 import com.treeleaf.anydone.serviceprovider.setting.location.showLocation.ShowLocationActivity;
 import com.treeleaf.anydone.serviceprovider.setting.timezone.SelectTimezoneActivity;
 import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.suggestedTicketPreview.SuggestedTicketPreviewActivity;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.ticketsuggestions.TicketSuggestionActivity;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import dagger.Subcomponent;
-import retrofit2.Retrofit;
 
 @Subcomponent(modules = {ActivityModule.class})
 @ScopeActivity
@@ -58,8 +59,6 @@ public interface ActivityComponent {
 
     void inject(ResetPasswordActivity resetPasswordActivity);
 
-    void inject(ServiceRequestDetailActivity serviceRequestActivity);
-
     void inject(AddLocationActivity addLocationActivity);
 
     void inject(SelectTimezoneActivity selectTimezoneActivity);
@@ -71,6 +70,8 @@ public interface ActivityComponent {
     void inject(PickLocationActivity pickLocationActivity);
 
     void inject(LanguagesActivity languagesActivity);
+
+    void inject(ServiceRequestDetailActivity serviceRequestActivity);
 
     void inject(UnassignedTicketsActivity unassignedTicketsActivity);
 
@@ -93,5 +94,10 @@ public interface ActivityComponent {
     void inject(EditTicketActivity editTicketActivity);
 
     void inject(ContributedTicketsActivity contributedTicketsActivity);
+
     void inject(SubscribedTicketsActivity subscribedTicketsActivity);
+
+    void inject(TicketSuggestionActivity ticketSuggestionActivity);
+
+    void inject(SuggestedTicketPreviewActivity suggestedTicketPreviewActivity);
 }

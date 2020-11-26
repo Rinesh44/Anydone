@@ -70,8 +70,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimens_2x"
-            android:inputType="textMultiLine|textVisiblePassword"
             android:background="@android:color/transparent"
+            android:inputType="textMultiLine|textVisiblePassword"
+            android:maxLines="5"
             android:text="asfasd"
             android:textSize="14sp" />
 

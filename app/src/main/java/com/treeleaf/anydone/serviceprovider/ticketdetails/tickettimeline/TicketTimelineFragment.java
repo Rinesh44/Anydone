@@ -246,6 +246,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private SearchLabelAdapter labelAdapter;
     private RecyclerView rvLabels;
     private boolean subscribed, contributed;
+    private String userType;
 
 
     public TicketTimelineFragment() {
@@ -277,8 +278,9 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             presenter.getTicketTimeline(ticketId);
             presenter.getEmployees();
             setTicketDetails();
-
             setContributors();
+            setUserType();
+            setPermissions();
         }
 
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
@@ -328,6 +330,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 
         setBotReplyChangeListener();
+    }
+
+    private void setUserType() {
+
+    }
+
+    private void setPermissions() {
+
     }
 
     private void setSubscriberPermissions() {
@@ -501,6 +511,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             labels.addAll(tickets.getLabelRealmList());
             makeViewsEditable();
         }
+
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
                 tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity())
@@ -572,8 +583,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             botReply.setChecked(true);
         }*/
         tvTicketId.setText(String.valueOf(tickets.getTicketId()));
-        tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
-        tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
+        tvTicketCreatedDate.setText(GlobalUtils.getDateLong(tickets.getCreatedAt()));
+        tvTicketCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(tickets.getCreatedAt()));
         tvTicketTitle.setText(tickets.getTitle());
 
         if (!tickets.getTicketCategory().isEmpty())

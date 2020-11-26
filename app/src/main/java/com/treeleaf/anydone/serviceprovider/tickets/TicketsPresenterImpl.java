@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ServiceProto;
+
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
@@ -12,6 +13,7 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
@@ -266,6 +268,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "saved tags");
                 getView().findTagsSuccess();
+                List<Tags> tags = TagRepo.getInstance().getAllTags();
+                GlobalUtils.showLog(TAG, "saved tags: " + tags);
             }
 
             @Override

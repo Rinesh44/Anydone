@@ -286,15 +286,15 @@ public interface AnyDoneService {
                              @Query("to") long to,
                              @Query("page") int page);
 
-    @GET("ticket/assignable/{serviceId}")
+    @GET("ticket/backlog/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
-    getAssignableTickets(@Header(AUTHORIZATION)
-                                 String token,
-                         @Path(value = "serviceId")
-                                 String serviceId,
-                         @Query("from") long from,
-                         @Query("to") long to,
-                         @Query("page") int page);
+    getBacklogTickets(@Header(AUTHORIZATION)
+                              String token,
+                      @Path(value = "serviceId")
+                              String serviceId,
+                      @Query("from") long from,
+                      @Query("to") long to,
+                      @Query("page") int page);
 
     @GET("ticket/subscribable/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -354,7 +354,7 @@ public interface AnyDoneService {
                                                             @Path(value = "serviceId")
                                                                     String serviceId);
 
-    @GET("ticket/{ticketId}/timeline")
+    @GET("ticket/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(@Header(AUTHORIZATION)
                                                                                    String token,
                                                                            @Path(value = "ticketId")
@@ -619,6 +619,33 @@ public interface AnyDoneService {
                       String ticketId,
               @Body TicketProto.Ticket ticket);
 
+    @GET("ticket/suggestions/service/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketSuggestions(@Header(AUTHORIZATION)
+                                                                                      String token,
+                                                                              @Path(value = "serviceId")
+                                                                                      String serviceId);
+
+    @GET("ticket/suggestions/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketSuggestionById(@Header(AUTHORIZATION)
+                                                                                         String token,
+                                                                                 @Path(value = "serviceId")
+                                                                                         String serviceId);
+
+    @PATCH("ticket/suggestions/accept/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> acceptTicketSuggestion(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Path(value = "serviceId")
+                                                                                        String serviceId,
+                                                                                @Body TicketProto.TicketSuggestionReq
+                                                                                        ticketSuggestionReq);
+
+    @PATCH("ticket/suggestions/reject/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> rejectTicketSuggestion(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Path(value = "serviceId")
+                                                                                        String serviceId,
+                                                                                @Body TicketProto.TicketSuggestionReq
+                                                                                        ticketSuggestionReq);
 
 }
 

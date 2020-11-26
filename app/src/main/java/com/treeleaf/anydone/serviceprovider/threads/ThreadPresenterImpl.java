@@ -6,10 +6,12 @@ import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
+import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketSuggestionRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -20,6 +22,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -52,17 +55,12 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
                 .subscribeWith(
                         new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
                             @Override
-                            public void onNext(ConversationRpcProto.ConversationBaseResponse
+                            public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse
                                                        conversationThreadBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get conversation threads response: "
                                         + conversationThreadBaseResponse);
 
                                 getView().hideProgressBar();
-                                if (conversationThreadBaseResponse == null) {
-                                    getView().getConversationThreadFail(
-                                            "get conversation thread failed");
-                                    return;
-                                }
 
                                 if (conversationThreadBaseResponse.getError()) {
                                     getView().getConversationThreadFail(
@@ -125,15 +123,10 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
                 .subscribeWith(
                         new DisposableObserver<ServiceRpcProto.ServiceBaseResponse>() {
                             @Override
-                            public void onNext(ServiceRpcProto.ServiceBaseResponse
+                            public void onNext(@NonNull ServiceRpcProto.ServiceBaseResponse
                                                        getServicesBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get services response: "
                                         + getServicesBaseResponse);
-
-                                if (getServicesBaseResponse == null) {
-                                    getView().getServiceFail("get services failed");
-                                    return;
-                                }
 
                                 if (getServicesBaseResponse.getError()) {
                                     getView().getServiceFail(getServicesBaseResponse.getMsg());
@@ -162,6 +155,67 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
                         })
         );
     }
+
+    @Override
+    public void getTicketSuggestions() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        ticketObservable = service.getTicketSuggestions(token, serviceId);
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                            @Override
+                            public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
+                                                       ticketSuggestionResponse) {
+                                GlobalUtils.showLog(TAG, "ticket suggestions response: "
+                                        + ticketSuggestionResponse);
+
+                                if (ticketSuggestionResponse.getError()) {
+                                    getView().getServiceFail(ticketSuggestionResponse.getMsg());
+                                    return;
+                                }
+
+                                if (!CollectionUtils.isEmpty(
+                                        ticketSuggestionResponse.getTicketSuggestionsList())) {
+                                    TicketSuggestionRepo.getInstance().saveTicketSuggestionList(
+                                            ticketSuggestionResponse.getTicketSuggestionsList(),
+                                            ticketSuggestionResponse.getEstimatedTime(), new Repo.Callback() {
+                                                @Override
+                                                public void success(Object o) {
+                                                    GlobalUtils.showLog(TAG, "ticket suggestions saved");
+                                                    getView().getTicketSuggestionSuccess();
+                                                }
+
+                                                @Override
+                                                public void fail() {
+                                                    GlobalUtils.showLog(TAG, "failed to save ticket" +
+                                                            "suggestions");
+                                                }
+                                            });
+
+                                } else {
+                                    getView().onNoTicketSuggestion();
+                                }
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+                                getView().getServiceFail(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                            }
+                        })
+        );
+    }
+
 
     private void saveAvailableServices(List<ServiceProto.Service> availableServicesList) {
         AvailableServicesRepo.getInstance().saveAvailableServices(availableServicesList,

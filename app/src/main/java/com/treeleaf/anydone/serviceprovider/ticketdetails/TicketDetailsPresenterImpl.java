@@ -1,8 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.ticketdetails;
 
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;

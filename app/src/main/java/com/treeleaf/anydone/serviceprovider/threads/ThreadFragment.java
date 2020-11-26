@@ -31,14 +31,17 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.ThreadAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketSuggestion;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
@@ -48,7 +51,9 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketSuggestionRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
+import com.treeleaf.anydone.serviceprovider.ticketsuggestions.TicketSuggestionActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -89,6 +94,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     TextView tvSuggestedTicket;
     @BindView(R.id.iv_close_ticket_suggestion)
     ImageView ivCloseTicketSuggestion;
+    @BindView(R.id.et_search)
+    EditText etSearch;
+    @BindView(R.id.btn_reload)
+    MaterialButton btnReload;
 
     private RecyclerView rvServices;
     //    private BottomSheetBehavior sheetBehavior;
@@ -96,6 +105,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private ThreadAdapter threadAdapter;
     private BottomSheetDialog serviceSheet;
     private List<Thread> threadList;
+    private List<TicketSuggestion> ticketSuggestionList;
 
     @Override
     protected int getLayout() {
@@ -128,9 +138,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             setUpThreadRecyclerView(threadList);
             rvThreads.setVisibility(View.VISIBLE);
             ivThreadNotFound.setVisibility(View.GONE);
-        } else presenter.getConversationThreads(false);
+            btnReload.setVisibility(View.GONE);
+        } else presenter.getConversationThreads(true);
 
         createServiceBottomSheet();
+        setDataToSuggestionView();
         tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
@@ -154,16 +166,34 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             e.printStackTrace();
         }
 
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                List<Thread> searchResults = ThreadRepo.getInstance().searchThread(s.toString());
+                threadAdapter.setData(searchResults);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     @OnClick(R.id.rl_ticket_suggestion)
     void onTicketSuggestionClick() {
-
+        startActivity(new Intent(getActivity(), TicketSuggestionActivity.class));
     }
 
     @OnClick(R.id.iv_close_ticket_suggestion)
     void onTicketSuggestionClose() {
-
+        rlTicketSuggestion.setVisibility(View.GONE);
     }
 
     private void createServiceBottomSheet() {
@@ -254,6 +284,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         }
     }
 
+    @OnClick(R.id.btn_reload)
+    void reload() {
+        btnReload.setVisibility(View.GONE);
+        ivThreadNotFound.setVisibility(View.GONE);
+        presenter.getConversationThreads(true);
+    }
+
+
     private void listenConversationMessages() throws MqttException {
         GlobalUtils.showLog(TAG, "listen convo");
         Account userAccount = AccountRepo.getInstance().getAccount();
@@ -342,7 +380,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             serviceSheet.dismiss();
 
             ivThreadNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
             presenter.getConversationThreads(true);
+            TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
+            presenter.getTicketSuggestions();
         });
     }
 
@@ -412,12 +453,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void onResume() {
         super.onResume();
-
+        TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
+        presenter.getTicketSuggestions();
   /*      boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_TICKET, false);
         if (serviceChanged) {
             presenter.getConversationThreads();
             Hawk.put(Constants.SERVICE_CHANGED_TICKET, false);
         }
+
 */
         try {
             listenConversationMessages();
@@ -441,6 +484,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 Constants.SERVER_ERROR);
 
         ivThreadNotFound.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -451,7 +495,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         rvThreads.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(threadList)) {
             ivThreadNotFound.setVisibility(View.GONE);
-        }
+            btnReload.setVisibility(View.GONE);
+            etSearch.setVisibility(View.VISIBLE);
+        } else etSearch.setVisibility(View.GONE);
     }
 
     @Override
@@ -467,7 +513,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 msg);*/
 //        showCustomSnackBar(msg);
         rvThreads.setVisibility(View.GONE);
+        etSearch.setVisibility(View.GONE);
         ivThreadNotFound.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.VISIBLE);
 
     }
 
@@ -488,6 +536,43 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     @Override
     public void getServiceFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        Banner.make(getActivity().getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg,
+                Banner.TOP, 2000).show();
+    }
+
+    @Override
+    public void getTicketSuggestionSuccess() {
+        setDataToSuggestionView();
+    }
+
+    private void setDataToSuggestionView() {
+        ticketSuggestionList = TicketSuggestionRepo.getInstance().getAllTicketSuggestions();
+        if (ticketSuggestionList != null && !ticketSuggestionList.isEmpty()) {
+            int suggestionCount = ticketSuggestionList.size();
+            StringBuilder suggestedTicketCount = new StringBuilder(String.valueOf(suggestionCount));
+            if (suggestionCount > 1)
+                suggestedTicketCount.append(" new tickets");
+            else suggestedTicketCount.append(" new ticket");
+            tvSuggestedTicket.setText(suggestedTicketCount);
+            rlTicketSuggestion.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onNoTicketSuggestion() {
+        rlTicketSuggestion.setVisibility(View.GONE);
+        TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
+    }
+
+    @Override
+    public void getTicketSuggestionFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

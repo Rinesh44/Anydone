@@ -6,6 +6,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
@@ -15,6 +16,7 @@ import io.realm.Realm;
 
 public class TicketStatRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
+    private static final String TAG = "TicketStatRepo";
     private static final TicketStatRepo statRepo;
 
     static {
@@ -27,7 +29,7 @@ public class TicketStatRepo extends Repo {
 
     public void saveTicketStatListByDate(List<TicketProto.TicketStatByStatus> ticketStatByStatusListPb,
                                          final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByDate ticketStatByDate = ProtoMapper
@@ -46,10 +48,11 @@ public class TicketStatRepo extends Repo {
 
 
     public TicketStatByDate getTicketStatByDate() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(TicketStatByDate.class).findFirst();
         } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "throwable result: " + throwable);
             throwable.printStackTrace();
             return null;
         } finally {
@@ -59,7 +62,7 @@ public class TicketStatRepo extends Repo {
 
     public void saveTicketByStatus(TicketProto.TicketStatByStatus ticketStatByStatusPb,
                                    final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByStatus ticketStatByStatus = ProtoMapper
@@ -76,7 +79,7 @@ public class TicketStatRepo extends Repo {
     }
 
     public TicketStatByStatus getTicketStatByStatus() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(TicketStatByStatus.class).findFirst();
         } catch (Throwable throwable) {
@@ -89,7 +92,7 @@ public class TicketStatRepo extends Repo {
 
     public void saveTicketByPriority(TicketProto.TicketStatByPriority ticketStatByPriorityPb,
                                      final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByPriority ticketStatByPriority = ProtoMapper
@@ -106,7 +109,7 @@ public class TicketStatRepo extends Repo {
     }
 
     public TicketStatByPriority getTicketStatByPriority() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(TicketStatByPriority.class).findFirst();
         } catch (Throwable throwable) {
@@ -120,7 +123,7 @@ public class TicketStatRepo extends Repo {
 
     public void saveTicketBySource(TicketProto.TicketStatBySource ticketStatBySourcePb,
                                    final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatBySource ticketStatBySource = ProtoMapper
@@ -137,7 +140,7 @@ public class TicketStatRepo extends Repo {
     }
 
     public TicketStatBySource getTicketStatBySource() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(TicketStatBySource.class).findFirst();
         } catch (Throwable throwable) {
@@ -151,7 +154,7 @@ public class TicketStatRepo extends Repo {
 
     public void saveTicketByResolvedTime(TicketProto.TicketStatResolveTime ticketStatResolveTimePb,
                                          final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 TicketStatByResolvedTime ticketStatByResolvedTime = ProtoMapper
@@ -168,7 +171,7 @@ public class TicketStatRepo extends Repo {
     }
 
     public TicketStatByResolvedTime getTicketStatByResolvedTime() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(TicketStatByResolvedTime.class).findFirst();
         } catch (Throwable throwable) {

@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -45,6 +47,11 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -63,10 +70,10 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -197,6 +204,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
 
             if (CollectionUtils.isEmpty(conversationList)) {
+                pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(threadId, 0, System.currentTimeMillis(),
                         100);
             } else {
@@ -607,6 +615,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @Override
     public void getMessagesSuccess(List<Conversation> conversationList) {
+        pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
@@ -622,12 +631,11 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @Override
     public void getMessageFail(String message) {
+        pbLoadData.setVisibility(View.GONE);
         if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), message);
             onAuthorizationFailed(getActivity());
-            return;
         }
-        UiUtils.showToast(getActivity(), message);
     }
 
     @Override
@@ -868,7 +876,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         try {
             capturedBitmap = MediaStore.Images.Media.getBitmap(
                     Objects.requireNonNull(getContext()).getContentResolver(), uri);
-            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
+            capturedBitmap = GlobalUtils.fixBitmapRotation(uri, capturedBitmap, getActivity());
 
             if (capturedBitmap.getWidth() > capturedBitmap.getHeight()) {
                 imageOrientation = "landscape";
@@ -902,7 +910,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         Bitmap convertedBitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, getActivity());
+            convertedBitmap = GlobalUtils.fixBitmapRotation(uri, bitmap, getActivity());
             convertedBitmap = UiUtils.getResizedBitmap(convertedBitmap, 200);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             convertedBitmap.compress(Bitmap.CompressFormat.WEBP, 50, baos);
@@ -923,12 +931,36 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_camera)
     void initCamera() {
-        try {
-            llAttachOptions.setVisibility(View.GONE);
-            openCamera();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Camera and media/files access permissions are required",
+                                    Toast.LENGTH_SHORT).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            try {
+                                llAttachOptions.setVisibility(View.GONE);
+                                openCamera();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     @OnClick(R.id.iv_attachment)
@@ -943,14 +975,30 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_files)
     void openFiles() {
-        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS)));
-        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
-        llAttachOptions.setVisibility(View.GONE);
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setDataAndType(selectedUri, "application/pdf");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_SHORT).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            gotoFiles();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     @OnClick(R.id.tv_recorder)
@@ -960,8 +1008,30 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
     @OnClick(R.id.tv_gallery)
     void showGallery() {
-        llAttachOptions.setVisibility(View.GONE);
-        openGallery();
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_SHORT).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openGallery();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     private void openGallery() {
@@ -1008,6 +1078,17 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             setUpNetworkBroadCastReceiver();
         }
         registerReceiver();
+    }
+
+    private void gotoFiles() {
+        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS)));
+        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
+        llAttachOptions.setVisibility(View.GONE);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setDataAndType(selectedUri, "application/pdf");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
     }
 
     @Override
@@ -1158,4 +1239,11 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
     }
 
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+    }
 }

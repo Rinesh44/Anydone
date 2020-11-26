@@ -174,12 +174,13 @@ public class SearchLabelAdapter extends RecyclerView.Adapter<SearchLabelAdapter.
     public interface OnFilterListEmptyListener {
         void showNewLabel();
     }
+    public void setOnFilterListEmptyListener(OnFilterListEmptyListener listener) {
+        this.filterListEmptyListener = listener;
+    }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public void setOnFilterListEmptyListener(OnFilterListEmptyListener listener) {
-        this.filterListEmptyListener = listener;
-    }
+
 }

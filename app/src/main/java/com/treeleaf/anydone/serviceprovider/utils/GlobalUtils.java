@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
@@ -88,6 +89,26 @@ public class GlobalUtils {
         return "";
     }
 
+    public static String getDateDigits(long time) {
+        try {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+            return sdf.format(new Date(time));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static String getDateLong(long time) {
+        try {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd, MMM yyyy");
+            return sdf.format(new Date(time));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public static String getDateAlternate(long time) {
         try {
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
@@ -110,7 +131,7 @@ public class GlobalUtils {
 
     public static String getDateNormal(long time) {
         try {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("d MMM, yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
             return sdf.format(new Date(time));
         } catch (Exception e) {
             e.printStackTrace();
@@ -303,19 +324,26 @@ Limit selectable Date range
 
     public static String getFormattedDuration(int duration) {
         if (duration != 0) {
-            long hours = TimeUnit.MILLISECONDS
-                    .toHours(duration);
+            String hours = String.valueOf(TimeUnit.MILLISECONDS
+                    .toHours(duration));
 
-            long minutes = TimeUnit.MILLISECONDS
-                    .toMinutes(duration);
+            String minutes = String.valueOf(TimeUnit.MILLISECONDS
+                    .toMinutes(duration));
 
-            long seconds = TimeUnit.MILLISECONDS
-                    .toSeconds(duration);
+            if (minutes.length() > 2) minutes = minutes.substring(0, 2);
 
-            if (hours != 0) {
-                return hours + ":" + minutes + ":" + seconds;
+            String seconds = String.valueOf(TimeUnit.MILLISECONDS
+                    .toSeconds(duration));
+
+            if (seconds.length() > 2) seconds = seconds.substring(0, 2);
+
+            if (!hours.equals("0")) {
+                return hours + ":"
+                        + minutes
+                        + ":" + seconds;
             } else {
-                return minutes + ":" + seconds;
+                return minutes
+                        + ":" + seconds;
             }
         } else {
             return "0:00";
@@ -348,10 +376,8 @@ Limit selectable Date range
     }
 
 
-    public static Bitmap fixBitmapRotation(Uri uri, Activity activity) throws IOException {
+    public static Bitmap fixBitmapRotation(Uri uri, Bitmap bitmap, Activity activity) throws IOException {
         ExifInterface ei;
-        Bitmap bitmap = MediaStore.Images.Media.getBitmap(
-                Objects.requireNonNull(activity).getContentResolver(), uri);
         if (Build.VERSION.SDK_INT > 23) {
             InputStream input = activity.getContentResolver().openInputStream(uri);
             assert input != null;
@@ -427,6 +453,44 @@ Limit selectable Date range
                 TypedValue.COMPLEX_UNIT_DIP, dp,
                 r.getDisplayMetrics()
         );
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(String imagePath,
+                                                         int reqWidth, int reqHeight) {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(imagePath, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(imagePath, options);
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
     }
 
     public static String getImagePathFromURI(Context context, Uri uri) {

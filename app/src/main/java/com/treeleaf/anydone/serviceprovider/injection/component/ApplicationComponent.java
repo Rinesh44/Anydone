@@ -6,20 +6,16 @@ import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.ApplicationModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.NetworkModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.PresenterModule;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestDetailFragment;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityFragment;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
-import com.treeleaf.anydone.serviceprovider.servicerequests.accepted.AcceptedRequestFragment;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationFragment;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.contributedtickets.ContributedTicketFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketsFragment;
 
 import javax.inject.Singleton;
 
@@ -37,14 +33,6 @@ public interface ApplicationComponent {
     void inject(AccountFragment accountFragment);
 
     void inject(TicketsFragment ticketsFragment);
-
-    void inject(ServiceRequestDetailFragment homeFragment);
-
-    void inject(ActivityFragment activityFragment);
-
-    void inject(AcceptedRequestFragment acceptedRequestFragment);
-
-    void inject(ServiceRequestFragment serviceRequestFragment);
 
     void inject(PendingTicketsFragment pendingTicketsFragment);
 

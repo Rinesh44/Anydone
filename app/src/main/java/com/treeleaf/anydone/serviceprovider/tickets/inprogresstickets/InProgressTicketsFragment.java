@@ -30,7 +30,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequests.OnSwipeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
@@ -56,7 +55,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_subscribe)
+    @BindView(R.id.fab_backlog)
     FloatingActionButton fabSubscribe;
     @BindView(R.id.pb_search)
     ProgressBar progressBar;
@@ -66,7 +65,6 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     MaterialButton btnReload;
 
     private Unbinder unbinder;
-    private OnSwipeListener swipeListener;
     private OnInProgressTicketsListener onInProgressTicketsListener;
     private TicketsAdapter adapter;
     private int unsubscribedTicketPos;
@@ -238,8 +236,8 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         setUpRecyclerView(subscribeTicketList);
     }*/
 
-    @OnClick(R.id.fab_subscribe)
-    void subscribe() {
+    @OnClick(R.id.fab_backlog)
+    void getBackLogTickets() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
     }

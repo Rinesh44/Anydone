@@ -23300,6 +23300,4394 @@ public final class SignalingProto {
     }
   }
 
+  public interface DrawMinizeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.DrawMinize)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    long getEventTime();
+
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    String getSenderAccountId();
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderAccountIdBytes();
+
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    String getParticipantId();
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getParticipantIdBytes();
+
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    String getClientId();
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    String getRefId();
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    boolean hasSenderAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    UserProto.Account getSenderAccount();
+
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    java.util.List<String>
+        getRecipientsList();
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    int getRecipientsCount();
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    String getRecipients(int index);
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.DrawMinize}
+   */
+  public  static final class DrawMinize extends
+      com.google.protobuf.GeneratedMessageLite<
+          DrawMinize, DrawMinize.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.DrawMinize)
+      DrawMinizeOrBuilder {
+    private DrawMinize() {
+      senderAccountId_ = "";
+      participantId_ = "";
+      clientId_ = "";
+      refId_ = "";
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int EVENTTIME_FIELD_NUMBER = 1;
+    private long eventTime_;
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    public long getEventTime() {
+      return eventTime_;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void setEventTime(long value) {
+      
+      eventTime_ = value;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void clearEventTime() {
+      
+      eventTime_ = 0L;
+    }
+
+    public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
+    private String senderAccountId_;
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public String getSenderAccountId() {
+      return senderAccountId_;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderAccountId_);
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderAccountId_ = value;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void clearSenderAccountId() {
+      
+      senderAccountId_ = getDefaultInstance().getSenderAccountId();
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int PARTICIPANTID_FIELD_NUMBER = 3;
+    private String participantId_;
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public String getParticipantId() {
+      return participantId_;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParticipantIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      participantId_ = value;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void clearParticipantId() {
+      
+      participantId_ = getDefaultInstance().getParticipantId();
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      participantId_ = value.toStringUtf8();
+    }
+
+    public static final int CLIENTID_FIELD_NUMBER = 4;
+    private String clientId_;
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public String getClientId() {
+      return clientId_;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clientId_ = value;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void clearClientId() {
+      
+      clientId_ = getDefaultInstance().getClientId();
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clientId_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 5;
+    private String refId_;
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public String getRefId() {
+      return refId_;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refId_ = value;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void clearRefId() {
+      
+      refId_ = getDefaultInstance().getRefId();
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refId_ = value.toStringUtf8();
+    }
+
+    public static final int SENDERACCOUNT_FIELD_NUMBER = 6;
+    private UserProto.Account senderAccount_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    public boolean hasSenderAccount() {
+      return senderAccount_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    public UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void setSenderAccount(UserProto.Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      senderAccount_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void setSenderAccount(
+        UserProto.Account.Builder builderForValue) {
+      senderAccount_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void mergeSenderAccount(UserProto.Account value) {
+      if (senderAccount_ != null &&
+          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+        senderAccount_ =
+          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+      } else {
+        senderAccount_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void clearSenderAccount() {  senderAccount_ = null;
+      
+    }
+
+    public static final int RECIPIENTS_FIELD_NUMBER = 7;
+    private com.google.protobuf.Internal.ProtobufList<String> recipients_;
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public java.util.List<String> getRecipientsList() {
+      return recipients_;
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public int getRecipientsCount() {
+      return recipients_.size();
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public String getRecipients(int index) {
+      return recipients_.get(index);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          recipients_.get(index));
+    }
+    private void ensureRecipientsIsMutable() {
+      if (!recipients_.isModifiable()) {
+        recipients_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+       }
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void setRecipients(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.set(index, value);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addRecipients(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.add(value);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addAllRecipients(
+        Iterable<String> values) {
+      ensureRecipientsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, recipients_);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void clearRecipients() {
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addRecipientsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureRecipientsIsMutable();
+      recipients_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (eventTime_ != 0L) {
+        output.writeInt64(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        output.writeString(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        output.writeString(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        output.writeString(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        output.writeString(5, getRefId());
+      }
+      if (senderAccount_ != null) {
+        output.writeMessage(6, getSenderAccount());
+      }
+      for (int i = 0; i < recipients_.size(); i++) {
+        output.writeString(7, recipients_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (eventTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getRefId());
+      }
+      if (senderAccount_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getSenderAccount());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < recipients_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(recipients_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getRecipientsList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static DrawMinize parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawMinize parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawMinize parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawMinize parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawMinize parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawMinize parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawMinize parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static DrawMinize parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawMinize parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawMinize parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(DrawMinize prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.DrawMinize}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          DrawMinize, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DrawMinize)
+        DrawMinizeOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.DrawMinize.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public long getEventTime() {
+        return instance.getEventTime();
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder setEventTime(long value) {
+        copyOnWrite();
+        instance.setEventTime(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder clearEventTime() {
+        copyOnWrite();
+        instance.clearEventTime();
+        return this;
+      }
+
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public String getSenderAccountId() {
+        return instance.getSenderAccountId();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderAccountIdBytes() {
+        return instance.getSenderAccountIdBytes();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setSenderAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder clearSenderAccountId() {
+        copyOnWrite();
+        instance.clearSenderAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public String getParticipantId() {
+        return instance.getParticipantId();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParticipantIdBytes() {
+        return instance.getParticipantIdBytes();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantId(
+          String value) {
+        copyOnWrite();
+        instance.setParticipantId(value);
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder clearParticipantId() {
+        copyOnWrite();
+        instance.clearParticipantId();
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setParticipantIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public String getClientId() {
+        return instance.getClientId();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        return instance.getClientIdBytes();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientId(
+          String value) {
+        copyOnWrite();
+        instance.setClientId(value);
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder clearClientId() {
+        copyOnWrite();
+        instance.clearClientId();
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClientIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public String getRefId() {
+        return instance.getRefId();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefId(
+          String value) {
+        copyOnWrite();
+        instance.setRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder clearRefId() {
+        copyOnWrite();
+        instance.clearRefId();
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public boolean hasSenderAccount() {
+        return instance.hasSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public UserProto.Account getSenderAccount() {
+        return instance.getSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder setSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.setSenderAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder setSenderAccount(
+          UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSenderAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder mergeSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.mergeSenderAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder clearSenderAccount() {  copyOnWrite();
+        instance.clearSenderAccount();
+        return this;
+      }
+
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public java.util.List<String>
+          getRecipientsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRecipientsList());
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public int getRecipientsCount() {
+        return instance.getRecipientsCount();
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public String getRecipients(int index) {
+        return instance.getRecipients(index);
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientsBytes(int index) {
+        return instance.getRecipientsBytes(index);
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder setRecipients(
+          int index, String value) {
+        copyOnWrite();
+        instance.setRecipients(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addRecipients(
+          String value) {
+        copyOnWrite();
+        instance.addRecipients(value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addAllRecipients(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllRecipients(values);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder clearRecipients() {
+        copyOnWrite();
+        instance.clearRecipients();
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addRecipientsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addRecipientsBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawMinize)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new DrawMinize();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          recipients_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          DrawMinize other = (DrawMinize) arg1;
+          eventTime_ = visitor.visitLong(eventTime_ != 0L, eventTime_,
+              other.eventTime_ != 0L, other.eventTime_);
+          senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
+              !other.senderAccountId_.isEmpty(), other.senderAccountId_);
+          participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
+              !other.participantId_.isEmpty(), other.participantId_);
+          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
+              !other.clientId_.isEmpty(), other.clientId_);
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
+          senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
+          recipients_= visitor.visitList(recipients_, other.recipients_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  eventTime_ = input.readInt64();
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderAccountId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  participantId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  clientId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 50: {
+                  UserProto.Account.Builder subBuilder = null;
+                  if (senderAccount_ != null) {
+                    subBuilder = senderAccount_.toBuilder();
+                  }
+                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(senderAccount_);
+                    senderAccount_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+                  if (!recipients_.isModifiable()) {
+                    recipients_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+                  }
+                  recipients_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (DrawMinize.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DrawMinize)
+    private static final DrawMinize DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new DrawMinize();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static DrawMinize getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<DrawMinize> PARSER;
+
+    public static com.google.protobuf.Parser<DrawMinize> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface DrawMaximizeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.DrawMaximize)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    long getEventTime();
+
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    String getSenderAccountId();
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderAccountIdBytes();
+
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    String getParticipantId();
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getParticipantIdBytes();
+
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    String getClientId();
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    String getRefId();
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    boolean hasSenderAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    UserProto.Account getSenderAccount();
+
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    java.util.List<String>
+        getRecipientsList();
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    int getRecipientsCount();
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    String getRecipients(int index);
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.DrawMaximize}
+   */
+  public  static final class DrawMaximize extends
+      com.google.protobuf.GeneratedMessageLite<
+          DrawMaximize, DrawMaximize.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.DrawMaximize)
+      DrawMaximizeOrBuilder {
+    private DrawMaximize() {
+      senderAccountId_ = "";
+      participantId_ = "";
+      clientId_ = "";
+      refId_ = "";
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int EVENTTIME_FIELD_NUMBER = 1;
+    private long eventTime_;
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    public long getEventTime() {
+      return eventTime_;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void setEventTime(long value) {
+      
+      eventTime_ = value;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void clearEventTime() {
+      
+      eventTime_ = 0L;
+    }
+
+    public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
+    private String senderAccountId_;
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public String getSenderAccountId() {
+      return senderAccountId_;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderAccountId_);
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderAccountId_ = value;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void clearSenderAccountId() {
+      
+      senderAccountId_ = getDefaultInstance().getSenderAccountId();
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int PARTICIPANTID_FIELD_NUMBER = 3;
+    private String participantId_;
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public String getParticipantId() {
+      return participantId_;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParticipantIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      participantId_ = value;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void clearParticipantId() {
+      
+      participantId_ = getDefaultInstance().getParticipantId();
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      participantId_ = value.toStringUtf8();
+    }
+
+    public static final int CLIENTID_FIELD_NUMBER = 4;
+    private String clientId_;
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public String getClientId() {
+      return clientId_;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clientId_ = value;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void clearClientId() {
+      
+      clientId_ = getDefaultInstance().getClientId();
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clientId_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 5;
+    private String refId_;
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public String getRefId() {
+      return refId_;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refId_ = value;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void clearRefId() {
+      
+      refId_ = getDefaultInstance().getRefId();
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refId_ = value.toStringUtf8();
+    }
+
+    public static final int SENDERACCOUNT_FIELD_NUMBER = 6;
+    private UserProto.Account senderAccount_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    public boolean hasSenderAccount() {
+      return senderAccount_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    public UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void setSenderAccount(UserProto.Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      senderAccount_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void setSenderAccount(
+        UserProto.Account.Builder builderForValue) {
+      senderAccount_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void mergeSenderAccount(UserProto.Account value) {
+      if (senderAccount_ != null &&
+          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+        senderAccount_ =
+          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+      } else {
+        senderAccount_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void clearSenderAccount() {  senderAccount_ = null;
+      
+    }
+
+    public static final int RECIPIENTS_FIELD_NUMBER = 7;
+    private com.google.protobuf.Internal.ProtobufList<String> recipients_;
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public java.util.List<String> getRecipientsList() {
+      return recipients_;
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public int getRecipientsCount() {
+      return recipients_.size();
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public String getRecipients(int index) {
+      return recipients_.get(index);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          recipients_.get(index));
+    }
+    private void ensureRecipientsIsMutable() {
+      if (!recipients_.isModifiable()) {
+        recipients_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+       }
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void setRecipients(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.set(index, value);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addRecipients(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.add(value);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addAllRecipients(
+        Iterable<String> values) {
+      ensureRecipientsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, recipients_);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void clearRecipients() {
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addRecipientsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureRecipientsIsMutable();
+      recipients_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (eventTime_ != 0L) {
+        output.writeInt64(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        output.writeString(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        output.writeString(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        output.writeString(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        output.writeString(5, getRefId());
+      }
+      if (senderAccount_ != null) {
+        output.writeMessage(6, getSenderAccount());
+      }
+      for (int i = 0; i < recipients_.size(); i++) {
+        output.writeString(7, recipients_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (eventTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getRefId());
+      }
+      if (senderAccount_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getSenderAccount());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < recipients_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(recipients_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getRecipientsList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static DrawMaximize parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawMaximize parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawMaximize parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawMaximize parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawMaximize parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawMaximize parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawMaximize parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static DrawMaximize parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawMaximize parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawMaximize parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(DrawMaximize prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.DrawMaximize}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          DrawMaximize, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DrawMaximize)
+        DrawMaximizeOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public long getEventTime() {
+        return instance.getEventTime();
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder setEventTime(long value) {
+        copyOnWrite();
+        instance.setEventTime(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder clearEventTime() {
+        copyOnWrite();
+        instance.clearEventTime();
+        return this;
+      }
+
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public String getSenderAccountId() {
+        return instance.getSenderAccountId();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderAccountIdBytes() {
+        return instance.getSenderAccountIdBytes();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setSenderAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder clearSenderAccountId() {
+        copyOnWrite();
+        instance.clearSenderAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public String getParticipantId() {
+        return instance.getParticipantId();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParticipantIdBytes() {
+        return instance.getParticipantIdBytes();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantId(
+          String value) {
+        copyOnWrite();
+        instance.setParticipantId(value);
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder clearParticipantId() {
+        copyOnWrite();
+        instance.clearParticipantId();
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setParticipantIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public String getClientId() {
+        return instance.getClientId();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        return instance.getClientIdBytes();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientId(
+          String value) {
+        copyOnWrite();
+        instance.setClientId(value);
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder clearClientId() {
+        copyOnWrite();
+        instance.clearClientId();
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClientIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public String getRefId() {
+        return instance.getRefId();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefId(
+          String value) {
+        copyOnWrite();
+        instance.setRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder clearRefId() {
+        copyOnWrite();
+        instance.clearRefId();
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public boolean hasSenderAccount() {
+        return instance.hasSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public UserProto.Account getSenderAccount() {
+        return instance.getSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder setSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.setSenderAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder setSenderAccount(
+          UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSenderAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder mergeSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.mergeSenderAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder clearSenderAccount() {  copyOnWrite();
+        instance.clearSenderAccount();
+        return this;
+      }
+
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public java.util.List<String>
+          getRecipientsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRecipientsList());
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public int getRecipientsCount() {
+        return instance.getRecipientsCount();
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public String getRecipients(int index) {
+        return instance.getRecipients(index);
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientsBytes(int index) {
+        return instance.getRecipientsBytes(index);
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder setRecipients(
+          int index, String value) {
+        copyOnWrite();
+        instance.setRecipients(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addRecipients(
+          String value) {
+        copyOnWrite();
+        instance.addRecipients(value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addAllRecipients(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllRecipients(values);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder clearRecipients() {
+        copyOnWrite();
+        instance.clearRecipients();
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addRecipientsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addRecipientsBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawMaximize)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new DrawMaximize();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          recipients_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          DrawMaximize other = (DrawMaximize) arg1;
+          eventTime_ = visitor.visitLong(eventTime_ != 0L, eventTime_,
+              other.eventTime_ != 0L, other.eventTime_);
+          senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
+              !other.senderAccountId_.isEmpty(), other.senderAccountId_);
+          participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
+              !other.participantId_.isEmpty(), other.participantId_);
+          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
+              !other.clientId_.isEmpty(), other.clientId_);
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
+          senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
+          recipients_= visitor.visitList(recipients_, other.recipients_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  eventTime_ = input.readInt64();
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderAccountId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  participantId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  clientId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 50: {
+                  UserProto.Account.Builder subBuilder = null;
+                  if (senderAccount_ != null) {
+                    subBuilder = senderAccount_.toBuilder();
+                  }
+                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(senderAccount_);
+                    senderAccount_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+                  if (!recipients_.isModifiable()) {
+                    recipients_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+                  }
+                  recipients_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (DrawMaximize.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DrawMaximize)
+    private static final DrawMaximize DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new DrawMaximize();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static DrawMaximize getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<DrawMaximize> PARSER;
+
+    public static com.google.protobuf.Parser<DrawMaximize> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface DrawCloseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.DrawClose)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    long getEventTime();
+
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    String getSenderAccountId();
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderAccountIdBytes();
+
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    String getParticipantId();
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getParticipantIdBytes();
+
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    String getClientId();
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    String getRefId();
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    boolean hasSenderAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    UserProto.Account getSenderAccount();
+
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    java.util.List<String>
+        getRecipientsList();
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    int getRecipientsCount();
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    String getRecipients(int index);
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.DrawClose}
+   */
+  public  static final class DrawClose extends
+      com.google.protobuf.GeneratedMessageLite<
+          DrawClose, DrawClose.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.DrawClose)
+      DrawCloseOrBuilder {
+    private DrawClose() {
+      senderAccountId_ = "";
+      participantId_ = "";
+      clientId_ = "";
+      refId_ = "";
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int EVENTTIME_FIELD_NUMBER = 1;
+    private long eventTime_;
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    public long getEventTime() {
+      return eventTime_;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void setEventTime(long value) {
+      
+      eventTime_ = value;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void clearEventTime() {
+      
+      eventTime_ = 0L;
+    }
+
+    public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
+    private String senderAccountId_;
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public String getSenderAccountId() {
+      return senderAccountId_;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderAccountId_);
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderAccountId_ = value;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void clearSenderAccountId() {
+      
+      senderAccountId_ = getDefaultInstance().getSenderAccountId();
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int PARTICIPANTID_FIELD_NUMBER = 3;
+    private String participantId_;
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public String getParticipantId() {
+      return participantId_;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParticipantIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      participantId_ = value;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void clearParticipantId() {
+      
+      participantId_ = getDefaultInstance().getParticipantId();
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      participantId_ = value.toStringUtf8();
+    }
+
+    public static final int CLIENTID_FIELD_NUMBER = 4;
+    private String clientId_;
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public String getClientId() {
+      return clientId_;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clientId_ = value;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void clearClientId() {
+      
+      clientId_ = getDefaultInstance().getClientId();
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clientId_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 5;
+    private String refId_;
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public String getRefId() {
+      return refId_;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refId_ = value;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void clearRefId() {
+      
+      refId_ = getDefaultInstance().getRefId();
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refId_ = value.toStringUtf8();
+    }
+
+    public static final int SENDERACCOUNT_FIELD_NUMBER = 6;
+    private UserProto.Account senderAccount_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    public boolean hasSenderAccount() {
+      return senderAccount_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    public UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void setSenderAccount(UserProto.Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      senderAccount_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void setSenderAccount(
+        UserProto.Account.Builder builderForValue) {
+      senderAccount_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void mergeSenderAccount(UserProto.Account value) {
+      if (senderAccount_ != null &&
+          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+        senderAccount_ =
+          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+      } else {
+        senderAccount_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+     */
+    private void clearSenderAccount() {  senderAccount_ = null;
+      
+    }
+
+    public static final int RECIPIENTS_FIELD_NUMBER = 7;
+    private com.google.protobuf.Internal.ProtobufList<String> recipients_;
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public java.util.List<String> getRecipientsList() {
+      return recipients_;
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public int getRecipientsCount() {
+      return recipients_.size();
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public String getRecipients(int index) {
+      return recipients_.get(index);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          recipients_.get(index));
+    }
+    private void ensureRecipientsIsMutable() {
+      if (!recipients_.isModifiable()) {
+        recipients_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+       }
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void setRecipients(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.set(index, value);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addRecipients(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.add(value);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addAllRecipients(
+        Iterable<String> values) {
+      ensureRecipientsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, recipients_);
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void clearRecipients() {
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string recipients = 7;</code>
+     */
+    private void addRecipientsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureRecipientsIsMutable();
+      recipients_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (eventTime_ != 0L) {
+        output.writeInt64(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        output.writeString(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        output.writeString(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        output.writeString(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        output.writeString(5, getRefId());
+      }
+      if (senderAccount_ != null) {
+        output.writeMessage(6, getSenderAccount());
+      }
+      for (int i = 0; i < recipients_.size(); i++) {
+        output.writeString(7, recipients_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (eventTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getRefId());
+      }
+      if (senderAccount_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getSenderAccount());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < recipients_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(recipients_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getRecipientsList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static DrawClose parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawClose parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawClose parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawClose parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawClose parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawClose parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawClose parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static DrawClose parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawClose parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawClose parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(DrawClose prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.DrawClose}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          DrawClose, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DrawClose)
+        DrawCloseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.DrawClose.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public long getEventTime() {
+        return instance.getEventTime();
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder setEventTime(long value) {
+        copyOnWrite();
+        instance.setEventTime(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder clearEventTime() {
+        copyOnWrite();
+        instance.clearEventTime();
+        return this;
+      }
+
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public String getSenderAccountId() {
+        return instance.getSenderAccountId();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderAccountIdBytes() {
+        return instance.getSenderAccountIdBytes();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setSenderAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder clearSenderAccountId() {
+        copyOnWrite();
+        instance.clearSenderAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public String getParticipantId() {
+        return instance.getParticipantId();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParticipantIdBytes() {
+        return instance.getParticipantIdBytes();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantId(
+          String value) {
+        copyOnWrite();
+        instance.setParticipantId(value);
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder clearParticipantId() {
+        copyOnWrite();
+        instance.clearParticipantId();
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setParticipantIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public String getClientId() {
+        return instance.getClientId();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        return instance.getClientIdBytes();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientId(
+          String value) {
+        copyOnWrite();
+        instance.setClientId(value);
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder clearClientId() {
+        copyOnWrite();
+        instance.clearClientId();
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClientIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public String getRefId() {
+        return instance.getRefId();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefId(
+          String value) {
+        copyOnWrite();
+        instance.setRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder clearRefId() {
+        copyOnWrite();
+        instance.clearRefId();
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public boolean hasSenderAccount() {
+        return instance.hasSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public UserProto.Account getSenderAccount() {
+        return instance.getSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder setSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.setSenderAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder setSenderAccount(
+          UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSenderAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder mergeSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.mergeSenderAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 6;</code>
+       */
+      public Builder clearSenderAccount() {  copyOnWrite();
+        instance.clearSenderAccount();
+        return this;
+      }
+
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public java.util.List<String>
+          getRecipientsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRecipientsList());
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public int getRecipientsCount() {
+        return instance.getRecipientsCount();
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public String getRecipients(int index) {
+        return instance.getRecipients(index);
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientsBytes(int index) {
+        return instance.getRecipientsBytes(index);
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder setRecipients(
+          int index, String value) {
+        copyOnWrite();
+        instance.setRecipients(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addRecipients(
+          String value) {
+        copyOnWrite();
+        instance.addRecipients(value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addAllRecipients(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllRecipients(values);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder clearRecipients() {
+        copyOnWrite();
+        instance.clearRecipients();
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 7;</code>
+       */
+      public Builder addRecipientsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addRecipientsBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawClose)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new DrawClose();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          recipients_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          DrawClose other = (DrawClose) arg1;
+          eventTime_ = visitor.visitLong(eventTime_ != 0L, eventTime_,
+              other.eventTime_ != 0L, other.eventTime_);
+          senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
+              !other.senderAccountId_.isEmpty(), other.senderAccountId_);
+          participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
+              !other.participantId_.isEmpty(), other.participantId_);
+          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
+              !other.clientId_.isEmpty(), other.clientId_);
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
+          senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
+          recipients_= visitor.visitList(recipients_, other.recipients_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  eventTime_ = input.readInt64();
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderAccountId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  participantId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  clientId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 50: {
+                  UserProto.Account.Builder subBuilder = null;
+                  if (senderAccount_ != null) {
+                    subBuilder = senderAccount_.toBuilder();
+                  }
+                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(senderAccount_);
+                    senderAccount_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+                  if (!recipients_.isModifiable()) {
+                    recipients_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+                  }
+                  recipients_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (DrawClose.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DrawClose)
+    private static final DrawClose DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new DrawClose();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static DrawClose getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<DrawClose> PARSER;
+
+    public static com.google.protobuf.Parser<DrawClose> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface DrawCollabOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.DrawCollab)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    long getEventTime();
+
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    String getSenderAccountId();
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderAccountIdBytes();
+
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    String getParticipantId();
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getParticipantIdBytes();
+
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    String getClientId();
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    String getRefId();
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <code>optional string fromAccountId = 6;</code>
+     */
+    String getFromAccountId();
+    /**
+     * <code>optional string fromAccountId = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getFromAccountIdBytes();
+
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    String getToAccountId();
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getToAccountIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    boolean hasSenderAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    UserProto.Account getSenderAccount();
+
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    java.util.List<String>
+        getRecipientsList();
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    int getRecipientsCount();
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    String getRecipients(int index);
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.DrawCollab}
+   */
+  public  static final class DrawCollab extends
+      com.google.protobuf.GeneratedMessageLite<
+          DrawCollab, DrawCollab.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.DrawCollab)
+      DrawCollabOrBuilder {
+    private DrawCollab() {
+      senderAccountId_ = "";
+      participantId_ = "";
+      clientId_ = "";
+      refId_ = "";
+      fromAccountId_ = "";
+      toAccountId_ = "";
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int EVENTTIME_FIELD_NUMBER = 1;
+    private long eventTime_;
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    public long getEventTime() {
+      return eventTime_;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void setEventTime(long value) {
+      
+      eventTime_ = value;
+    }
+    /**
+     * <code>optional int64 eventTime = 1;</code>
+     */
+    private void clearEventTime() {
+      
+      eventTime_ = 0L;
+    }
+
+    public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
+    private String senderAccountId_;
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public String getSenderAccountId() {
+      return senderAccountId_;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderAccountId_);
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderAccountId_ = value;
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void clearSenderAccountId() {
+      
+      senderAccountId_ = getDefaultInstance().getSenderAccountId();
+    }
+    /**
+     * <code>optional string senderAccountId = 2;</code>
+     */
+    private void setSenderAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int PARTICIPANTID_FIELD_NUMBER = 3;
+    private String participantId_;
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public String getParticipantId() {
+      return participantId_;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParticipantIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      participantId_ = value;
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void clearParticipantId() {
+      
+      participantId_ = getDefaultInstance().getParticipantId();
+    }
+    /**
+     * <code>optional string participantId = 3;</code>
+     */
+    private void setParticipantIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      participantId_ = value.toStringUtf8();
+    }
+
+    public static final int CLIENTID_FIELD_NUMBER = 4;
+    private String clientId_;
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public String getClientId() {
+      return clientId_;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clientId_ = value;
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void clearClientId() {
+      
+      clientId_ = getDefaultInstance().getClientId();
+    }
+    /**
+     * <code>optional string clientId = 4;</code>
+     */
+    private void setClientIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clientId_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 5;
+    private String refId_;
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public String getRefId() {
+      return refId_;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refId_ = value;
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void clearRefId() {
+      
+      refId_ = getDefaultInstance().getRefId();
+    }
+    /**
+     * <code>optional string refId = 5;</code>
+     */
+    private void setRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refId_ = value.toStringUtf8();
+    }
+
+    public static final int FROMACCOUNTID_FIELD_NUMBER = 6;
+    private String fromAccountId_;
+    /**
+     * <code>optional string fromAccountId = 6;</code>
+     */
+    public String getFromAccountId() {
+      return fromAccountId_;
+    }
+    /**
+     * <code>optional string fromAccountId = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFromAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fromAccountId_);
+    }
+    /**
+     * <code>optional string fromAccountId = 6;</code>
+     */
+    private void setFromAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fromAccountId_ = value;
+    }
+    /**
+     * <code>optional string fromAccountId = 6;</code>
+     */
+    private void clearFromAccountId() {
+      
+      fromAccountId_ = getDefaultInstance().getFromAccountId();
+    }
+    /**
+     * <code>optional string fromAccountId = 6;</code>
+     */
+    private void setFromAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fromAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int TOACCOUNTID_FIELD_NUMBER = 7;
+    private String toAccountId_;
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    public String getToAccountId() {
+      return toAccountId_;
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getToAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(toAccountId_);
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    private void setToAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      toAccountId_ = value;
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    private void clearToAccountId() {
+      
+      toAccountId_ = getDefaultInstance().getToAccountId();
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    private void setToAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      toAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
+    private UserProto.Account senderAccount_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    public boolean hasSenderAccount() {
+      return senderAccount_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    public UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    private void setSenderAccount(UserProto.Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      senderAccount_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    private void setSenderAccount(
+        UserProto.Account.Builder builderForValue) {
+      senderAccount_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    private void mergeSenderAccount(UserProto.Account value) {
+      if (senderAccount_ != null &&
+          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+        senderAccount_ =
+          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+      } else {
+        senderAccount_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+     */
+    private void clearSenderAccount() {  senderAccount_ = null;
+      
+    }
+
+    public static final int RECIPIENTS_FIELD_NUMBER = 9;
+    private com.google.protobuf.Internal.ProtobufList<String> recipients_;
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    public java.util.List<String> getRecipientsList() {
+      return recipients_;
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    public int getRecipientsCount() {
+      return recipients_.size();
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    public String getRecipients(int index) {
+      return recipients_.get(index);
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          recipients_.get(index));
+    }
+    private void ensureRecipientsIsMutable() {
+      if (!recipients_.isModifiable()) {
+        recipients_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+       }
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    private void setRecipients(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.set(index, value);
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    private void addRecipients(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.add(value);
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    private void addAllRecipients(
+        Iterable<String> values) {
+      ensureRecipientsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, recipients_);
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    private void clearRecipients() {
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string recipients = 9;</code>
+     */
+    private void addRecipientsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureRecipientsIsMutable();
+      recipients_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (eventTime_ != 0L) {
+        output.writeInt64(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        output.writeString(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        output.writeString(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        output.writeString(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        output.writeString(5, getRefId());
+      }
+      if (!fromAccountId_.isEmpty()) {
+        output.writeString(6, getFromAccountId());
+      }
+      if (!toAccountId_.isEmpty()) {
+        output.writeString(7, getToAccountId());
+      }
+      if (senderAccount_ != null) {
+        output.writeMessage(8, getSenderAccount());
+      }
+      for (int i = 0; i < recipients_.size(); i++) {
+        output.writeString(9, recipients_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (eventTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, eventTime_);
+      }
+      if (!senderAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getSenderAccountId());
+      }
+      if (!participantId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getRefId());
+      }
+      if (!fromAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getFromAccountId());
+      }
+      if (!toAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getToAccountId());
+      }
+      if (senderAccount_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getSenderAccount());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < recipients_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(recipients_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getRecipientsList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static DrawCollab parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawCollab parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawCollab parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawCollab parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawCollab parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawCollab parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawCollab parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static DrawCollab parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawCollab parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawCollab parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(DrawCollab prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.DrawCollab}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          DrawCollab, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DrawCollab)
+        DrawCollabOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.DrawCollab.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public long getEventTime() {
+        return instance.getEventTime();
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder setEventTime(long value) {
+        copyOnWrite();
+        instance.setEventTime(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 eventTime = 1;</code>
+       */
+      public Builder clearEventTime() {
+        copyOnWrite();
+        instance.clearEventTime();
+        return this;
+      }
+
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public String getSenderAccountId() {
+        return instance.getSenderAccountId();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderAccountIdBytes() {
+        return instance.getSenderAccountIdBytes();
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setSenderAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder clearSenderAccountId() {
+        copyOnWrite();
+        instance.clearSenderAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 2;</code>
+       */
+      public Builder setSenderAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public String getParticipantId() {
+        return instance.getParticipantId();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParticipantIdBytes() {
+        return instance.getParticipantIdBytes();
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantId(
+          String value) {
+        copyOnWrite();
+        instance.setParticipantId(value);
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder clearParticipantId() {
+        copyOnWrite();
+        instance.clearParticipantId();
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 3;</code>
+       */
+      public Builder setParticipantIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setParticipantIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public String getClientId() {
+        return instance.getClientId();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        return instance.getClientIdBytes();
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientId(
+          String value) {
+        copyOnWrite();
+        instance.setClientId(value);
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder clearClientId() {
+        copyOnWrite();
+        instance.clearClientId();
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 4;</code>
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClientIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public String getRefId() {
+        return instance.getRefId();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefId(
+          String value) {
+        copyOnWrite();
+        instance.setRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder clearRefId() {
+        copyOnWrite();
+        instance.clearRefId();
+        return this;
+      }
+      /**
+       * <code>optional string refId = 5;</code>
+       */
+      public Builder setRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string fromAccountId = 6;</code>
+       */
+      public String getFromAccountId() {
+        return instance.getFromAccountId();
+      }
+      /**
+       * <code>optional string fromAccountId = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFromAccountIdBytes() {
+        return instance.getFromAccountIdBytes();
+      }
+      /**
+       * <code>optional string fromAccountId = 6;</code>
+       */
+      public Builder setFromAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setFromAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string fromAccountId = 6;</code>
+       */
+      public Builder clearFromAccountId() {
+        copyOnWrite();
+        instance.clearFromAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string fromAccountId = 6;</code>
+       */
+      public Builder setFromAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFromAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public String getToAccountId() {
+        return instance.getToAccountId();
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getToAccountIdBytes() {
+        return instance.getToAccountIdBytes();
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public Builder setToAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setToAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public Builder clearToAccountId() {
+        copyOnWrite();
+        instance.clearToAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public Builder setToAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setToAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+       */
+      public boolean hasSenderAccount() {
+        return instance.hasSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+       */
+      public UserProto.Account getSenderAccount() {
+        return instance.getSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+       */
+      public Builder setSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.setSenderAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+       */
+      public Builder setSenderAccount(
+          UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSenderAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+       */
+      public Builder mergeSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.mergeSenderAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
+       */
+      public Builder clearSenderAccount() {  copyOnWrite();
+        instance.clearSenderAccount();
+        return this;
+      }
+
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public java.util.List<String>
+          getRecipientsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRecipientsList());
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public int getRecipientsCount() {
+        return instance.getRecipientsCount();
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public String getRecipients(int index) {
+        return instance.getRecipients(index);
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientsBytes(int index) {
+        return instance.getRecipientsBytes(index);
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public Builder setRecipients(
+          int index, String value) {
+        copyOnWrite();
+        instance.setRecipients(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public Builder addRecipients(
+          String value) {
+        copyOnWrite();
+        instance.addRecipients(value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public Builder addAllRecipients(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllRecipients(values);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public Builder clearRecipients() {
+        copyOnWrite();
+        instance.clearRecipients();
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 9;</code>
+       */
+      public Builder addRecipientsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addRecipientsBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawCollab)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new DrawCollab();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          recipients_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          DrawCollab other = (DrawCollab) arg1;
+          eventTime_ = visitor.visitLong(eventTime_ != 0L, eventTime_,
+              other.eventTime_ != 0L, other.eventTime_);
+          senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
+              !other.senderAccountId_.isEmpty(), other.senderAccountId_);
+          participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
+              !other.participantId_.isEmpty(), other.participantId_);
+          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
+              !other.clientId_.isEmpty(), other.clientId_);
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
+          fromAccountId_ = visitor.visitString(!fromAccountId_.isEmpty(), fromAccountId_,
+              !other.fromAccountId_.isEmpty(), other.fromAccountId_);
+          toAccountId_ = visitor.visitString(!toAccountId_.isEmpty(), toAccountId_,
+              !other.toAccountId_.isEmpty(), other.toAccountId_);
+          senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
+          recipients_= visitor.visitList(recipients_, other.recipients_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  eventTime_ = input.readInt64();
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderAccountId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  participantId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  clientId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  fromAccountId_ = s;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  toAccountId_ = s;
+                  break;
+                }
+                case 66: {
+                  UserProto.Account.Builder subBuilder = null;
+                  if (senderAccount_ != null) {
+                    subBuilder = senderAccount_.toBuilder();
+                  }
+                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(senderAccount_);
+                    senderAccount_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+                  if (!recipients_.isModifiable()) {
+                    recipients_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+                  }
+                  recipients_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (DrawCollab.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DrawCollab)
+    private static final DrawCollab DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new DrawCollab();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static DrawCollab getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<DrawCollab> PARSER;
+
+    public static com.google.protobuf.Parser<DrawCollab> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

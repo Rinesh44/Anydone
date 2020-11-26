@@ -4,7 +4,6 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class AssignEmployeeRepo extends Repo {
 
     public void saveAssignEmployeeList(final List<UserProto.EmployeeProfile> employeeList,
                                        final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformAssignEmployee(employeeList));
@@ -46,28 +45,31 @@ public class AssignEmployeeRepo extends Repo {
         List<AssignEmployee> assignEmployeeList = new ArrayList<>();
         for (UserProto.EmployeeProfile profile : employeeList
         ) {
-            AssignEmployee employee = new AssignEmployee();
-            employee.setAccountId(profile.getAccount().getAccountId());
-            employee.setCreatedAt(profile.getCreatedAt());
-            employee.setEmail(profile.getAccount().getEmail());
-            employee.setEmployeeId(profile.getEmployeeProfileId());
-            employee.setEmployeeImageUrl(profile.getAccount().getProfilePic());
-            employee.setName(profile.getAccount().getFullName());
-            employee.setPhone(profile.getAccount().getPhone());
-            assignEmployeeList.add(employee);
+            if (profile.getAccount().getAccountId() != null && !profile.getAccount().getAccountId().isEmpty()) {
+                AssignEmployee employee = new AssignEmployee();
+                employee.setAccountId(profile.getAccount().getAccountId());
+                employee.setCreatedAt(profile.getCreatedAt());
+                employee.setEmail(profile.getAccount().getEmail());
+                employee.setEmployeeId(profile.getEmployeeProfileId());
+                employee.setEmployeeImageUrl(profile.getAccount().getProfilePic());
+                employee.setName(profile.getAccount().getFullName());
+                employee.setPhone(profile.getAccount().getPhone());
+                assignEmployeeList.add(employee);
+            }
         }
         return assignEmployeeList;
     }
 
 
     public List<AssignEmployee> getAllAssignEmployees() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             Employee self = EmployeeRepo.getInstance().getEmployee();
             if (self != null) {
                 GlobalUtils.showLog(TAG, "check self emp id: " + self.getEmployeeId());
                 return new ArrayList<>(realm.where(AssignEmployee.class)
                         .notEqualTo("assignEmployeeId", self.getEmployeeId())
+                        .notEqualTo("accountId", "")
                         .findAll());
             } else {
                 return new ArrayList<>(realm.where(AssignEmployee.class)
@@ -82,7 +84,7 @@ public class AssignEmployeeRepo extends Repo {
     }
 
     public List<AssignEmployee> searchEmployee(String query) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             RealmQuery<AssignEmployee> result = performSearch(query, realm);
             return result.findAll();
@@ -102,7 +104,7 @@ public class AssignEmployeeRepo extends Repo {
     }
 
     public AssignEmployee getAssignedEmployeeById(String employeeId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         return realm.where(AssignEmployee.class)
                 .equalTo("assignEmployeeId", employeeId)
                 .findFirst();

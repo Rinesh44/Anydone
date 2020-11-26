@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -28,9 +30,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnTaskStartListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
@@ -43,7 +47,7 @@ import butterknife.OnClick;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TICKET_STARTED;
 
 public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
-        TicketDetailsContract.TicketDetailsView {
+        TicketDetailsContract.TicketDetailsView, OnTaskStartListener {
     private static final String TAG = "TicketDetailsActivity";
     private static final int NUM_PAGES = 2;
     private static final String MQTT = "MQTT_EVENT_CHECK";
@@ -106,6 +110,13 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         if (ticketStatus != null && ticketStatus.equalsIgnoreCase(TICKET_STARTED)) {
             ivVideoCall.setVisibility(View.VISIBLE);
+            enableMenuOptions();
+        }
+
+        GlobalUtils.showLog(TAG, "ticket status: " + ticketStatus);
+        if (ticketStatus != null && ticketStatus.equalsIgnoreCase("TICKET_CREATED")) {
+            GlobalUtils.showLog(TAG, "disable menu options called()");
+            disableMenuOptions();
         }
 
         super.setReferenceId(ticketId);
@@ -113,6 +124,34 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
 
+    }
+
+    private void disableMenuOptions() {
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivShare.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.selector_disabled)
+        );
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.selector_disabled)
+        );
+
+        ivShare.setEnabled(false);
+        ivVideoCall.setEnabled(false);
+    }
+
+    private void enableMenuOptions() {
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivShare.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.ticket_created_text)
+        );
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.ticket_created_text)
+        );
+
+        ivShare.setEnabled(true);
+        ivVideoCall.setEnabled(true);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -271,6 +310,12 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
                 this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
+    @Override
+    public void onTaskStarted() {
+        enableMenuOptions();
+    }
+
+
     public interface OnOutsideClickListener {
         void onOutsideClick(MotionEvent event);
     }
@@ -304,4 +349,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         }
     }
 
+    @Override
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        if (fragment instanceof TicketConversationFragment) {
+            ((TicketConversationFragment) fragment).setOnTicketStartListener(this);
+        }
+    }
 }
