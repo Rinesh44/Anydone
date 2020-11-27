@@ -757,8 +757,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 } else {
                                     //sent and received id is different
                                     ByteString imageByteString = startDraw.getCapturedImage();
-                                    int width = startDraw.getBitmapWidth();
-                                    int height = startDraw.getBitmapHeight();
+                                    int width = startDraw.getCanvasWidth();
+                                    int height = startDraw.getCanvasHeight();
                                     long captureTime = startDraw.getCapturedTime();
                                     byte[] convertedBytes = imageByteString.toByteArray();
                                     getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);

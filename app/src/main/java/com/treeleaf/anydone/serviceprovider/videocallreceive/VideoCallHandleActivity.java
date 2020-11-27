@@ -399,8 +399,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
         if (drawPadEventListener != null) {
-            int width = startDrawAckResponse.getBitmapWidth();
-            int height = startDrawAckResponse.getBitmapHeight();
+            int width = startDrawAckResponse.getCanvasWidth();
+            int height = startDrawAckResponse.getCanvasHeight();
             remoteDeviceResolutions.put(accountId, new Integer[]{width, height});
             long timeStamp = startDrawAckResponse.getCapturedTime();
             drawPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp, accountId);
