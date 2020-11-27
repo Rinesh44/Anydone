@@ -15,7 +15,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    String getStringValue();
+    java.lang.String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class UserRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    String getStringValues(int index);
+    java.lang.String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -92,7 +92,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string pictureUrl = 10;</code>
      */
-    String getPictureUrl();
+    java.lang.String getPictureUrl();
     /**
      * <code>optional string pictureUrl = 10;</code>
      */
@@ -265,11 +265,11 @@ public final class UserRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -283,7 +283,7 @@ public final class UserRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -311,11 +311,11 @@ public final class UserRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private String stringValue_;
+    private java.lang.String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public String getStringValue() {
+    public java.lang.String getStringValue() {
       return stringValue_;
     }
     /**
@@ -329,7 +329,7 @@ public final class UserRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -373,7 +373,7 @@ public final class UserRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public String getStringValues(int index) {
+    public java.lang.String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -394,7 +394,7 @@ public final class UserRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -405,7 +405,7 @@ public final class UserRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -416,7 +416,7 @@ public final class UserRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -637,11 +637,11 @@ public final class UserRpcProto {
     }
 
     public static final int PICTUREURL_FIELD_NUMBER = 10;
-    private String pictureUrl_;
+    private java.lang.String pictureUrl_;
     /**
      * <code>optional string pictureUrl = 10;</code>
      */
-    public String getPictureUrl() {
+    public java.lang.String getPictureUrl() {
       return pictureUrl_;
     }
     /**
@@ -655,7 +655,7 @@ public final class UserRpcProto {
      * <code>optional string pictureUrl = 10;</code>
      */
     private void setPictureUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1734,60 +1734,60 @@ public final class UserRpcProto {
       return size;
     }
 
-    public static UserBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static UserBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static UserBaseRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static UserBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static UserBaseRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static UserBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static UserBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static UserBaseRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static UserBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static UserBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1798,7 +1798,7 @@ public final class UserRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(UserBaseRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1807,9 +1807,9 @@ public final class UserRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          UserBaseRequest, Builder> implements
+          com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.UserBaseRequest)
-        UserBaseRequestOrBuilder {
+        com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1819,7 +1819,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1833,7 +1833,7 @@ public final class UserRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1859,7 +1859,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public String getStringValue() {
+      public java.lang.String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1873,7 +1873,7 @@ public final class UserRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1913,7 +1913,7 @@ public final class UserRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public String getStringValues(int index) {
+      public java.lang.String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1927,7 +1927,7 @@ public final class UserRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1936,7 +1936,7 @@ public final class UserRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1945,7 +1945,7 @@ public final class UserRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -2153,7 +2153,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string pictureUrl = 10;</code>
        */
-      public String getPictureUrl() {
+      public java.lang.String getPictureUrl() {
         return instance.getPictureUrl();
       }
       /**
@@ -2167,7 +2167,7 @@ public final class UserRpcProto {
        * <code>optional string pictureUrl = 10;</code>
        */
       public Builder setPictureUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPictureUrl(value);
         return this;
@@ -2928,11 +2928,11 @@ public final class UserRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new UserBaseRequest();
+          return new com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2946,7 +2946,7 @@ public final class UserRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          UserBaseRequest other = (UserBaseRequest) arg1;
+          com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest other = (com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -2982,7 +2982,7 @@ public final class UserRpcProto {
           customer_ = visitor.visitMessage(customer_, other.customer_);
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
           anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3301,7 +3301,7 @@ public final class UserRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (UserBaseRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3315,13 +3315,13 @@ public final class UserRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.UserBaseRequest)
-    private static final UserBaseRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new UserBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static UserBaseRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3344,7 +3344,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -3382,7 +3382,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -3461,7 +3461,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string path = 14;</code>
      */
-    String getPath();
+    java.lang.String getPath();
     /**
      * <code>optional string path = 14;</code>
      */
@@ -3471,7 +3471,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string url = 15;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 15;</code>
      */
@@ -3490,7 +3490,7 @@ public final class UserRpcProto {
     /**
      * <code>optional string stringValue = 17;</code>
      */
-    String getStringValue();
+    java.lang.String getStringValue();
     /**
      * <code>optional string stringValue = 17;</code>
      */
@@ -3654,11 +3654,11 @@ public final class UserRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -3672,7 +3672,7 @@ public final class UserRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3837,11 +3837,11 @@ public final class UserRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -3855,7 +3855,7 @@ public final class UserRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4139,7 +4139,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ConsumerProfile consumers = 11;</code>
      */
     private void addAllConsumers(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.ConsumerProfile> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.ConsumerProfile> values) {
       ensureConsumersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, consumers_);
@@ -4259,7 +4259,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 12;</code>
      */
     private void addAllServiceProviders(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> values) {
       ensureServiceProvidersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceProviders_);
@@ -4379,7 +4379,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
      */
     private void addAllEmployees(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
       ensureEmployeesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, employees_);
@@ -4399,11 +4399,11 @@ public final class UserRpcProto {
     }
 
     public static final int PATH_FIELD_NUMBER = 14;
-    private String path_;
+    private java.lang.String path_;
     /**
      * <code>optional string path = 14;</code>
      */
-    public String getPath() {
+    public java.lang.String getPath() {
       return path_;
     }
     /**
@@ -4417,7 +4417,7 @@ public final class UserRpcProto {
      * <code>optional string path = 14;</code>
      */
     private void setPath(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4445,11 +4445,11 @@ public final class UserRpcProto {
     }
 
     public static final int URL_FIELD_NUMBER = 15;
-    private String url_;
+    private java.lang.String url_;
     /**
      * <code>optional string url = 15;</code>
      */
-    public String getUrl() {
+    public java.lang.String getUrl() {
       return url_;
     }
     /**
@@ -4463,7 +4463,7 @@ public final class UserRpcProto {
      * <code>optional string url = 15;</code>
      */
     private void setUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4543,11 +4543,11 @@ public final class UserRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 17;
-    private String stringValue_;
+    private java.lang.String stringValue_;
     /**
      * <code>optional string stringValue = 17;</code>
      */
-    public String getStringValue() {
+    public java.lang.String getStringValue() {
       return stringValue_;
     }
     /**
@@ -4561,7 +4561,7 @@ public final class UserRpcProto {
      * <code>optional string stringValue = 17;</code>
      */
     private void setStringValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4741,7 +4741,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.User users = 19;</code>
      */
     private void addAllUsers(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.User> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.User> values) {
       ensureUsersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, users_);
@@ -4861,7 +4861,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Location locations = 20;</code>
      */
     private void addAllLocations(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.Location> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.Location> values) {
       ensureLocationsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, locations_);
@@ -5029,7 +5029,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceRating serviceRatings = 21;</code>
      */
     private void addAllServiceRatings(
-        Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceRating> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceRating> values) {
       ensureServiceRatingsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceRatings_);
@@ -5209,7 +5209,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
      */
     private void addAllCustomers(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.Customer> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.Customer> values) {
       ensureCustomersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, customers_);
@@ -5381,7 +5381,7 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
      */
     private void addAllAnydoneUsers(
-        Iterable<? extends com.treeleaf.anydone.entities.UserProto.AnydoneUser> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.AnydoneUser> values) {
       ensureAnydoneUsersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, anydoneUsers_);
@@ -5588,60 +5588,60 @@ public final class UserRpcProto {
       return size;
     }
 
-    public static UserBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static UserBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static UserBaseResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static UserBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static UserBaseResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static UserBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static UserBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static UserBaseResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static UserBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static UserBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5652,7 +5652,7 @@ public final class UserRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(UserBaseResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5661,9 +5661,9 @@ public final class UserRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          UserBaseResponse, Builder> implements
+          com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.UserBaseResponse)
-        UserBaseResponseOrBuilder {
+        com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5696,7 +5696,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -5710,7 +5710,7 @@ public final class UserRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -5864,7 +5864,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -5878,7 +5878,7 @@ public final class UserRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -6111,7 +6111,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ConsumerProfile consumers = 11;</code>
        */
       public Builder addAllConsumers(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.ConsumerProfile> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.ConsumerProfile> values) {
         copyOnWrite();
         instance.addAllConsumers(values);
         return this;
@@ -6208,7 +6208,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 12;</code>
        */
       public Builder addAllServiceProviders(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> values) {
         copyOnWrite();
         instance.addAllServiceProviders(values);
         return this;
@@ -6305,7 +6305,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile employees = 13;</code>
        */
       public Builder addAllEmployees(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
         copyOnWrite();
         instance.addAllEmployees(values);
         return this;
@@ -6330,7 +6330,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string path = 14;</code>
        */
-      public String getPath() {
+      public java.lang.String getPath() {
         return instance.getPath();
       }
       /**
@@ -6344,7 +6344,7 @@ public final class UserRpcProto {
        * <code>optional string path = 14;</code>
        */
       public Builder setPath(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPath(value);
         return this;
@@ -6370,7 +6370,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string url = 15;</code>
        */
-      public String getUrl() {
+      public java.lang.String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -6384,7 +6384,7 @@ public final class UserRpcProto {
        * <code>optional string url = 15;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -6455,7 +6455,7 @@ public final class UserRpcProto {
       /**
        * <code>optional string stringValue = 17;</code>
        */
-      public String getStringValue() {
+      public java.lang.String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -6469,7 +6469,7 @@ public final class UserRpcProto {
        * <code>optional string stringValue = 17;</code>
        */
       public Builder setStringValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -6612,7 +6612,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.User users = 19;</code>
        */
       public Builder addAllUsers(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.User> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.User> values) {
         copyOnWrite();
         instance.addAllUsers(values);
         return this;
@@ -6709,7 +6709,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Location locations = 20;</code>
        */
       public Builder addAllLocations(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.Location> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.Location> values) {
         copyOnWrite();
         instance.addAllLocations(values);
         return this;
@@ -6846,7 +6846,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceRating serviceRatings = 21;</code>
        */
       public Builder addAllServiceRatings(
-          Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceRating> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceRating> values) {
         copyOnWrite();
         instance.addAllServiceRatings(values);
         return this;
@@ -6996,7 +6996,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Customer customers = 23;</code>
        */
       public Builder addAllCustomers(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.Customer> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.Customer> values) {
         copyOnWrite();
         instance.addAllCustomers(values);
         return this;
@@ -7138,7 +7138,7 @@ public final class UserRpcProto {
        * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
        */
       public Builder addAllAnydoneUsers(
-          Iterable<? extends com.treeleaf.anydone.entities.UserProto.AnydoneUser> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.AnydoneUser> values) {
         copyOnWrite();
         instance.addAllAnydoneUsers(values);
         return this;
@@ -7163,11 +7163,11 @@ public final class UserRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new UserBaseResponse();
+          return new com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -7188,7 +7188,7 @@ public final class UserRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          UserBaseResponse other = (UserBaseResponse) arg1;
+          com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse other = (com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -7222,7 +7222,7 @@ public final class UserRpcProto {
           customers_= visitor.visitList(customers_, other.customers_);
           anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           anydoneUsers_= visitor.visitList(anydoneUsers_, other.anydoneUsers_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -7489,7 +7489,7 @@ public final class UserRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (UserBaseResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -7503,13 +7503,13 @@ public final class UserRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.UserBaseResponse)
-    private static final UserBaseResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new UserBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static UserBaseResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.UserRpcProto.UserBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

@@ -129,7 +129,7 @@ public final class RtcProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static RtcMessageType valueOf(int value) {
       return forNumber(value);
     }
@@ -223,7 +223,7 @@ public final class RtcProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static MessageActor valueOf(int value) {
       return forNumber(value);
     }
@@ -292,7 +292,7 @@ public final class RtcProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static RtcMessageStatus valueOf(int value) {
       return forNumber(value);
     }
@@ -333,7 +333,7 @@ public final class RtcProto {
     /**
      * <code>optional string url = 1;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 1;</code>
      */
@@ -343,7 +343,7 @@ public final class RtcProto {
     /**
      * <code>optional string title = 2;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 2;</code>
      */
@@ -353,7 +353,7 @@ public final class RtcProto {
     /**
      * <code>optional string body = 3;</code>
      */
-    String getBody();
+    java.lang.String getBody();
     /**
      * <code>optional string body = 3;</code>
      */
@@ -368,7 +368,7 @@ public final class RtcProto {
     /**
      * <code>optional string attachmentId = 5;</code>
      */
-    String getAttachmentId();
+    java.lang.String getAttachmentId();
     /**
      * <code>optional string attachmentId = 5;</code>
      */
@@ -390,11 +390,11 @@ public final class RtcProto {
       attachmentId_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
-    private String url_;
+    private java.lang.String url_;
     /**
      * <code>optional string url = 1;</code>
      */
-    public String getUrl() {
+    public java.lang.String getUrl() {
       return url_;
     }
     /**
@@ -408,7 +408,7 @@ public final class RtcProto {
      * <code>optional string url = 1;</code>
      */
     private void setUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -436,11 +436,11 @@ public final class RtcProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 2;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 2;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -454,7 +454,7 @@ public final class RtcProto {
      * <code>optional string title = 2;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -482,11 +482,11 @@ public final class RtcProto {
     }
 
     public static final int BODY_FIELD_NUMBER = 3;
-    private String body_;
+    private java.lang.String body_;
     /**
      * <code>optional string body = 3;</code>
      */
-    public String getBody() {
+    public java.lang.String getBody() {
       return body_;
     }
     /**
@@ -500,7 +500,7 @@ public final class RtcProto {
      * <code>optional string body = 3;</code>
      */
     private void setBody(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -551,11 +551,11 @@ public final class RtcProto {
     }
 
     public static final int ATTACHMENTID_FIELD_NUMBER = 5;
-    private String attachmentId_;
+    private java.lang.String attachmentId_;
     /**
      * <code>optional string attachmentId = 5;</code>
      */
-    public String getAttachmentId() {
+    public java.lang.String getAttachmentId() {
       return attachmentId_;
     }
     /**
@@ -569,7 +569,7 @@ public final class RtcProto {
      * <code>optional string attachmentId = 5;</code>
      */
     private void setAttachmentId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -644,60 +644,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static LinkMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static LinkMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static LinkMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static LinkMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static LinkMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static LinkMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static LinkMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static LinkMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static LinkMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static LinkMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -708,7 +708,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(LinkMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.LinkMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -717,9 +717,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          LinkMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.LinkMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.LinkMessage)
-        LinkMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.LinkMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.LinkMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -729,7 +729,7 @@ public final class RtcProto {
       /**
        * <code>optional string url = 1;</code>
        */
-      public String getUrl() {
+      public java.lang.String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -743,7 +743,7 @@ public final class RtcProto {
        * <code>optional string url = 1;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -769,7 +769,7 @@ public final class RtcProto {
       /**
        * <code>optional string title = 2;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -783,7 +783,7 @@ public final class RtcProto {
        * <code>optional string title = 2;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -809,7 +809,7 @@ public final class RtcProto {
       /**
        * <code>optional string body = 3;</code>
        */
-      public String getBody() {
+      public java.lang.String getBody() {
         return instance.getBody();
       }
       /**
@@ -823,7 +823,7 @@ public final class RtcProto {
        * <code>optional string body = 3;</code>
        */
       public Builder setBody(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setBody(value);
         return this;
@@ -872,7 +872,7 @@ public final class RtcProto {
       /**
        * <code>optional string attachmentId = 5;</code>
        */
-      public String getAttachmentId() {
+      public java.lang.String getAttachmentId() {
         return instance.getAttachmentId();
       }
       /**
@@ -886,7 +886,7 @@ public final class RtcProto {
        * <code>optional string attachmentId = 5;</code>
        */
       public Builder setAttachmentId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAttachmentId(value);
         return this;
@@ -912,11 +912,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LinkMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new LinkMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.LinkMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -929,7 +929,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          LinkMessage other = (LinkMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.LinkMessage other = (com.treeleaf.anydone.entities.RtcProto.LinkMessage) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
@@ -940,7 +940,7 @@ public final class RtcProto {
               other.resolvedDate_ != 0L, other.resolvedDate_);
           attachmentId_ = visitor.visitString(!attachmentId_.isEmpty(), attachmentId_,
               !other.attachmentId_.isEmpty(), other.attachmentId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1008,7 +1008,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (LinkMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.LinkMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1022,13 +1022,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.LinkMessage)
-    private static final LinkMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.LinkMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new LinkMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static LinkMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.LinkMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1046,7 +1046,7 @@ public final class RtcProto {
     /**
      * <code>optional string url = 1;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 1;</code>
      */
@@ -1056,7 +1056,7 @@ public final class RtcProto {
     /**
      * <code>optional string title = 2;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 2;</code>
      */
@@ -1066,7 +1066,7 @@ public final class RtcProto {
     /**
      * <code>optional string thumbnailUrl = 3;</code>
      */
-    String getThumbnailUrl();
+    java.lang.String getThumbnailUrl();
     /**
      * <code>optional string thumbnailUrl = 3;</code>
      */
@@ -1076,7 +1076,7 @@ public final class RtcProto {
     /**
      * <code>optional string attachmentId = 4;</code>
      */
-    String getAttachmentId();
+    java.lang.String getAttachmentId();
     /**
      * <code>optional string attachmentId = 4;</code>
      */
@@ -1098,11 +1098,11 @@ public final class RtcProto {
       attachmentId_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
-    private String url_;
+    private java.lang.String url_;
     /**
      * <code>optional string url = 1;</code>
      */
-    public String getUrl() {
+    public java.lang.String getUrl() {
       return url_;
     }
     /**
@@ -1116,7 +1116,7 @@ public final class RtcProto {
      * <code>optional string url = 1;</code>
      */
     private void setUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1144,11 +1144,11 @@ public final class RtcProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 2;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 2;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -1162,7 +1162,7 @@ public final class RtcProto {
      * <code>optional string title = 2;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1190,11 +1190,11 @@ public final class RtcProto {
     }
 
     public static final int THUMBNAILURL_FIELD_NUMBER = 3;
-    private String thumbnailUrl_;
+    private java.lang.String thumbnailUrl_;
     /**
      * <code>optional string thumbnailUrl = 3;</code>
      */
-    public String getThumbnailUrl() {
+    public java.lang.String getThumbnailUrl() {
       return thumbnailUrl_;
     }
     /**
@@ -1208,7 +1208,7 @@ public final class RtcProto {
      * <code>optional string thumbnailUrl = 3;</code>
      */
     private void setThumbnailUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1236,11 +1236,11 @@ public final class RtcProto {
     }
 
     public static final int ATTACHMENTID_FIELD_NUMBER = 4;
-    private String attachmentId_;
+    private java.lang.String attachmentId_;
     /**
      * <code>optional string attachmentId = 4;</code>
      */
-    public String getAttachmentId() {
+    public java.lang.String getAttachmentId() {
       return attachmentId_;
     }
     /**
@@ -1254,7 +1254,7 @@ public final class RtcProto {
      * <code>optional string attachmentId = 4;</code>
      */
     private void setAttachmentId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1322,60 +1322,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static VideoMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static VideoMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static VideoMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static VideoMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static VideoMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static VideoMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1386,7 +1386,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(VideoMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.VideoMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1395,9 +1395,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          VideoMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.VideoMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.VideoMessage)
-        VideoMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.VideoMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.VideoMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1407,7 +1407,7 @@ public final class RtcProto {
       /**
        * <code>optional string url = 1;</code>
        */
-      public String getUrl() {
+      public java.lang.String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -1421,7 +1421,7 @@ public final class RtcProto {
        * <code>optional string url = 1;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -1447,7 +1447,7 @@ public final class RtcProto {
       /**
        * <code>optional string title = 2;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -1461,7 +1461,7 @@ public final class RtcProto {
        * <code>optional string title = 2;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -1487,7 +1487,7 @@ public final class RtcProto {
       /**
        * <code>optional string thumbnailUrl = 3;</code>
        */
-      public String getThumbnailUrl() {
+      public java.lang.String getThumbnailUrl() {
         return instance.getThumbnailUrl();
       }
       /**
@@ -1501,7 +1501,7 @@ public final class RtcProto {
        * <code>optional string thumbnailUrl = 3;</code>
        */
       public Builder setThumbnailUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setThumbnailUrl(value);
         return this;
@@ -1527,7 +1527,7 @@ public final class RtcProto {
       /**
        * <code>optional string attachmentId = 4;</code>
        */
-      public String getAttachmentId() {
+      public java.lang.String getAttachmentId() {
         return instance.getAttachmentId();
       }
       /**
@@ -1541,7 +1541,7 @@ public final class RtcProto {
        * <code>optional string attachmentId = 4;</code>
        */
       public Builder setAttachmentId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAttachmentId(value);
         return this;
@@ -1567,11 +1567,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.VideoMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new VideoMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.VideoMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1584,7 +1584,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          VideoMessage other = (VideoMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.VideoMessage other = (com.treeleaf.anydone.entities.RtcProto.VideoMessage) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
@@ -1593,7 +1593,7 @@ public final class RtcProto {
               !other.thumbnailUrl_.isEmpty(), other.thumbnailUrl_);
           attachmentId_ = visitor.visitString(!attachmentId_.isEmpty(), attachmentId_,
               !other.attachmentId_.isEmpty(), other.attachmentId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1656,7 +1656,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (VideoMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.VideoMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1670,13 +1670,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.VideoMessage)
-    private static final VideoMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.VideoMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new VideoMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static VideoMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.VideoMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1694,7 +1694,7 @@ public final class RtcProto {
     /**
      * <code>optional string url = 1;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 1;</code>
      */
@@ -1704,7 +1704,7 @@ public final class RtcProto {
     /**
      * <code>optional string title = 2;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 2;</code>
      */
@@ -1714,7 +1714,7 @@ public final class RtcProto {
     /**
      * <code>optional string attachmentId = 3;</code>
      */
-    String getAttachmentId();
+    java.lang.String getAttachmentId();
     /**
      * <code>optional string attachmentId = 3;</code>
      */
@@ -1735,11 +1735,11 @@ public final class RtcProto {
       attachmentId_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
-    private String url_;
+    private java.lang.String url_;
     /**
      * <code>optional string url = 1;</code>
      */
-    public String getUrl() {
+    public java.lang.String getUrl() {
       return url_;
     }
     /**
@@ -1753,7 +1753,7 @@ public final class RtcProto {
      * <code>optional string url = 1;</code>
      */
     private void setUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1781,11 +1781,11 @@ public final class RtcProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 2;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 2;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -1799,7 +1799,7 @@ public final class RtcProto {
      * <code>optional string title = 2;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1827,11 +1827,11 @@ public final class RtcProto {
     }
 
     public static final int ATTACHMENTID_FIELD_NUMBER = 3;
-    private String attachmentId_;
+    private java.lang.String attachmentId_;
     /**
      * <code>optional string attachmentId = 3;</code>
      */
-    public String getAttachmentId() {
+    public java.lang.String getAttachmentId() {
       return attachmentId_;
     }
     /**
@@ -1845,7 +1845,7 @@ public final class RtcProto {
      * <code>optional string attachmentId = 3;</code>
      */
     private void setAttachmentId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1906,60 +1906,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static AudioMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AudioMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AudioMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AudioMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AudioMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AudioMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AudioMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static AudioMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AudioMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AudioMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1970,7 +1970,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(AudioMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.AudioMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1979,9 +1979,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          AudioMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.AudioMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AudioMessage)
-        AudioMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.AudioMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.AudioMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1991,7 +1991,7 @@ public final class RtcProto {
       /**
        * <code>optional string url = 1;</code>
        */
-      public String getUrl() {
+      public java.lang.String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -2005,7 +2005,7 @@ public final class RtcProto {
        * <code>optional string url = 1;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -2031,7 +2031,7 @@ public final class RtcProto {
       /**
        * <code>optional string title = 2;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -2045,7 +2045,7 @@ public final class RtcProto {
        * <code>optional string title = 2;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -2071,7 +2071,7 @@ public final class RtcProto {
       /**
        * <code>optional string attachmentId = 3;</code>
        */
-      public String getAttachmentId() {
+      public java.lang.String getAttachmentId() {
         return instance.getAttachmentId();
       }
       /**
@@ -2085,7 +2085,7 @@ public final class RtcProto {
        * <code>optional string attachmentId = 3;</code>
        */
       public Builder setAttachmentId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAttachmentId(value);
         return this;
@@ -2111,11 +2111,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AudioMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new AudioMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.AudioMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2128,14 +2128,14 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          AudioMessage other = (AudioMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.AudioMessage other = (com.treeleaf.anydone.entities.RtcProto.AudioMessage) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
               !other.title_.isEmpty(), other.title_);
           attachmentId_ = visitor.visitString(!attachmentId_.isEmpty(), attachmentId_,
               !other.attachmentId_.isEmpty(), other.attachmentId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2192,7 +2192,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (AudioMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.AudioMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2206,13 +2206,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AudioMessage)
-    private static final AudioMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.AudioMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new AudioMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static AudioMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.AudioMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2230,7 +2230,7 @@ public final class RtcProto {
     /**
      * <code>optional string url = 1;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 1;</code>
      */
@@ -2240,7 +2240,7 @@ public final class RtcProto {
     /**
      * <code>optional string thumbnailUrl = 2;</code>
      */
-    String getThumbnailUrl();
+    java.lang.String getThumbnailUrl();
     /**
      * <code>optional string thumbnailUrl = 2;</code>
      */
@@ -2250,7 +2250,7 @@ public final class RtcProto {
     /**
      * <code>optional string attachmentId = 3;</code>
      */
-    String getAttachmentId();
+    java.lang.String getAttachmentId();
     /**
      * <code>optional string attachmentId = 3;</code>
      */
@@ -2271,11 +2271,11 @@ public final class RtcProto {
       attachmentId_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
-    private String url_;
+    private java.lang.String url_;
     /**
      * <code>optional string url = 1;</code>
      */
-    public String getUrl() {
+    public java.lang.String getUrl() {
       return url_;
     }
     /**
@@ -2289,7 +2289,7 @@ public final class RtcProto {
      * <code>optional string url = 1;</code>
      */
     private void setUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2317,11 +2317,11 @@ public final class RtcProto {
     }
 
     public static final int THUMBNAILURL_FIELD_NUMBER = 2;
-    private String thumbnailUrl_;
+    private java.lang.String thumbnailUrl_;
     /**
      * <code>optional string thumbnailUrl = 2;</code>
      */
-    public String getThumbnailUrl() {
+    public java.lang.String getThumbnailUrl() {
       return thumbnailUrl_;
     }
     /**
@@ -2335,7 +2335,7 @@ public final class RtcProto {
      * <code>optional string thumbnailUrl = 2;</code>
      */
     private void setThumbnailUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2363,11 +2363,11 @@ public final class RtcProto {
     }
 
     public static final int ATTACHMENTID_FIELD_NUMBER = 3;
-    private String attachmentId_;
+    private java.lang.String attachmentId_;
     /**
      * <code>optional string attachmentId = 3;</code>
      */
-    public String getAttachmentId() {
+    public java.lang.String getAttachmentId() {
       return attachmentId_;
     }
     /**
@@ -2381,7 +2381,7 @@ public final class RtcProto {
      * <code>optional string attachmentId = 3;</code>
      */
     private void setAttachmentId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2442,60 +2442,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static Image parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Image parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Image parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Image parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Image parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Image parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Image parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Image parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Image parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Image parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.Image parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2506,7 +2506,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Image prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.Image prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2515,9 +2515,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Image, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.Image, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Image)
-        ImageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.ImageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.Image.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2527,7 +2527,7 @@ public final class RtcProto {
       /**
        * <code>optional string url = 1;</code>
        */
-      public String getUrl() {
+      public java.lang.String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -2541,7 +2541,7 @@ public final class RtcProto {
        * <code>optional string url = 1;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -2567,7 +2567,7 @@ public final class RtcProto {
       /**
        * <code>optional string thumbnailUrl = 2;</code>
        */
-      public String getThumbnailUrl() {
+      public java.lang.String getThumbnailUrl() {
         return instance.getThumbnailUrl();
       }
       /**
@@ -2581,7 +2581,7 @@ public final class RtcProto {
        * <code>optional string thumbnailUrl = 2;</code>
        */
       public Builder setThumbnailUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setThumbnailUrl(value);
         return this;
@@ -2607,7 +2607,7 @@ public final class RtcProto {
       /**
        * <code>optional string attachmentId = 3;</code>
        */
-      public String getAttachmentId() {
+      public java.lang.String getAttachmentId() {
         return instance.getAttachmentId();
       }
       /**
@@ -2621,7 +2621,7 @@ public final class RtcProto {
        * <code>optional string attachmentId = 3;</code>
        */
       public Builder setAttachmentId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAttachmentId(value);
         return this;
@@ -2647,11 +2647,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Image)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Image();
+          return new com.treeleaf.anydone.entities.RtcProto.Image();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2664,14 +2664,14 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Image other = (Image) arg1;
+          com.treeleaf.anydone.entities.RtcProto.Image other = (com.treeleaf.anydone.entities.RtcProto.Image) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
           thumbnailUrl_ = visitor.visitString(!thumbnailUrl_.isEmpty(), thumbnailUrl_,
               !other.thumbnailUrl_.isEmpty(), other.thumbnailUrl_);
           attachmentId_ = visitor.visitString(!attachmentId_.isEmpty(), attachmentId_,
               !other.attachmentId_.isEmpty(), other.attachmentId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2728,7 +2728,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Image.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.Image.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2742,13 +2742,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Image)
-    private static final Image DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.Image DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Image();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Image getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.Image getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2766,12 +2766,12 @@ public final class RtcProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
-    java.util.List<Image>
+    java.util.List<com.treeleaf.anydone.entities.RtcProto.Image> 
         getImagesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
-    Image getImages(int index);
+    com.treeleaf.anydone.entities.RtcProto.Image getImages(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
@@ -2780,7 +2780,7 @@ public final class RtcProto {
     /**
      * <code>optional string title = 2;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 2;</code>
      */
@@ -2801,17 +2801,17 @@ public final class RtcProto {
     }
     private int bitField0_;
     public static final int IMAGES_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<Image> images_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.RtcProto.Image> images_;
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
-    public java.util.List<Image> getImagesList() {
+    public java.util.List<com.treeleaf.anydone.entities.RtcProto.Image> getImagesList() {
       return images_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
-    public java.util.List<? extends ImageOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.RtcProto.ImageOrBuilder> 
         getImagesOrBuilderList() {
       return images_;
     }
@@ -2824,13 +2824,13 @@ public final class RtcProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
-    public Image getImages(int index) {
+    public com.treeleaf.anydone.entities.RtcProto.Image getImages(int index) {
       return images_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
-    public ImageOrBuilder getImagesOrBuilder(
+    public com.treeleaf.anydone.entities.RtcProto.ImageOrBuilder getImagesOrBuilder(
         int index) {
       return images_.get(index);
     }
@@ -2845,7 +2845,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
     private void setImages(
-        int index, Image value) {
+        int index, com.treeleaf.anydone.entities.RtcProto.Image value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2856,14 +2856,14 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
     private void setImages(
-        int index, Image.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.RtcProto.Image.Builder builderForValue) {
       ensureImagesIsMutable();
       images_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
-    private void addImages(Image value) {
+    private void addImages(com.treeleaf.anydone.entities.RtcProto.Image value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2874,7 +2874,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
     private void addImages(
-        int index, Image value) {
+        int index, com.treeleaf.anydone.entities.RtcProto.Image value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2885,7 +2885,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
     private void addImages(
-        Image.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.Image.Builder builderForValue) {
       ensureImagesIsMutable();
       images_.add(builderForValue.build());
     }
@@ -2893,7 +2893,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
     private void addImages(
-        int index, Image.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.RtcProto.Image.Builder builderForValue) {
       ensureImagesIsMutable();
       images_.add(index, builderForValue.build());
     }
@@ -2901,7 +2901,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
      */
     private void addAllImages(
-        Iterable<? extends Image> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.Image> values) {
       ensureImagesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, images_);
@@ -2921,11 +2921,11 @@ public final class RtcProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 2;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 2;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -2939,7 +2939,7 @@ public final class RtcProto {
      * <code>optional string title = 2;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2993,60 +2993,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static ImageMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ImageMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ImageMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ImageMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ImageMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ImageMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ImageMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ImageMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ImageMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ImageMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3057,7 +3057,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ImageMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.ImageMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3066,9 +3066,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ImageMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.ImageMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ImageMessage)
-        ImageMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.ImageMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.ImageMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3078,7 +3078,7 @@ public final class RtcProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
-      public java.util.List<Image> getImagesList() {
+      public java.util.List<com.treeleaf.anydone.entities.RtcProto.Image> getImagesList() {
         return java.util.Collections.unmodifiableList(
             instance.getImagesList());
       }
@@ -3090,14 +3090,14 @@ public final class RtcProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
-      public Image getImages(int index) {
+      public com.treeleaf.anydone.entities.RtcProto.Image getImages(int index) {
         return instance.getImages(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
       public Builder setImages(
-          int index, Image value) {
+          int index, com.treeleaf.anydone.entities.RtcProto.Image value) {
         copyOnWrite();
         instance.setImages(index, value);
         return this;
@@ -3106,7 +3106,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
       public Builder setImages(
-          int index, Image.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.RtcProto.Image.Builder builderForValue) {
         copyOnWrite();
         instance.setImages(index, builderForValue);
         return this;
@@ -3114,7 +3114,7 @@ public final class RtcProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
-      public Builder addImages(Image value) {
+      public Builder addImages(com.treeleaf.anydone.entities.RtcProto.Image value) {
         copyOnWrite();
         instance.addImages(value);
         return this;
@@ -3123,7 +3123,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
       public Builder addImages(
-          int index, Image value) {
+          int index, com.treeleaf.anydone.entities.RtcProto.Image value) {
         copyOnWrite();
         instance.addImages(index, value);
         return this;
@@ -3132,7 +3132,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
       public Builder addImages(
-          Image.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.Image.Builder builderForValue) {
         copyOnWrite();
         instance.addImages(builderForValue);
         return this;
@@ -3141,7 +3141,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
       public Builder addImages(
-          int index, Image.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.RtcProto.Image.Builder builderForValue) {
         copyOnWrite();
         instance.addImages(index, builderForValue);
         return this;
@@ -3150,7 +3150,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.Image images = 1;</code>
        */
       public Builder addAllImages(
-          Iterable<? extends Image> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.Image> values) {
         copyOnWrite();
         instance.addAllImages(values);
         return this;
@@ -3175,7 +3175,7 @@ public final class RtcProto {
       /**
        * <code>optional string title = 2;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -3189,7 +3189,7 @@ public final class RtcProto {
        * <code>optional string title = 2;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -3215,11 +3215,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ImageMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ImageMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.ImageMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3233,11 +3233,11 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ImageMessage other = (ImageMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.ImageMessage other = (com.treeleaf.anydone.entities.RtcProto.ImageMessage) arg1;
           images_= visitor.visitList(images_, other.images_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
               !other.title_.isEmpty(), other.title_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3268,7 +3268,7 @@ public final class RtcProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(images_);
                   }
                   images_.add(
-                      input.readMessage(Image.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.RtcProto.Image.parser(), extensionRegistry));
                   break;
                 }
                 case 18: {
@@ -3292,7 +3292,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ImageMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.ImageMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3306,13 +3306,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ImageMessage)
-    private static final ImageMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.ImageMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ImageMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ImageMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.ImageMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3330,7 +3330,7 @@ public final class RtcProto {
     /**
      * <code>optional string url = 1;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 1;</code>
      */
@@ -3340,7 +3340,7 @@ public final class RtcProto {
     /**
      * <code>optional string title = 2;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 2;</code>
      */
@@ -3350,7 +3350,7 @@ public final class RtcProto {
     /**
      * <code>optional string attachmentId = 3;</code>
      */
-    String getAttachmentId();
+    java.lang.String getAttachmentId();
     /**
      * <code>optional string attachmentId = 3;</code>
      */
@@ -3371,11 +3371,11 @@ public final class RtcProto {
       attachmentId_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
-    private String url_;
+    private java.lang.String url_;
     /**
      * <code>optional string url = 1;</code>
      */
-    public String getUrl() {
+    public java.lang.String getUrl() {
       return url_;
     }
     /**
@@ -3389,7 +3389,7 @@ public final class RtcProto {
      * <code>optional string url = 1;</code>
      */
     private void setUrl(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3417,11 +3417,11 @@ public final class RtcProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 2;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 2;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -3435,7 +3435,7 @@ public final class RtcProto {
      * <code>optional string title = 2;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3463,11 +3463,11 @@ public final class RtcProto {
     }
 
     public static final int ATTACHMENTID_FIELD_NUMBER = 3;
-    private String attachmentId_;
+    private java.lang.String attachmentId_;
     /**
      * <code>optional string attachmentId = 3;</code>
      */
-    public String getAttachmentId() {
+    public java.lang.String getAttachmentId() {
       return attachmentId_;
     }
     /**
@@ -3481,7 +3481,7 @@ public final class RtcProto {
      * <code>optional string attachmentId = 3;</code>
      */
     private void setAttachmentId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3542,60 +3542,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static AttachmentMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AttachmentMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AttachmentMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AttachmentMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AttachmentMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AttachmentMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AttachmentMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static AttachmentMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AttachmentMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AttachmentMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3606,7 +3606,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(AttachmentMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.AttachmentMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3615,9 +3615,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          AttachmentMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.AttachmentMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AttachmentMessage)
-        AttachmentMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.AttachmentMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3627,7 +3627,7 @@ public final class RtcProto {
       /**
        * <code>optional string url = 1;</code>
        */
-      public String getUrl() {
+      public java.lang.String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -3641,7 +3641,7 @@ public final class RtcProto {
        * <code>optional string url = 1;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -3667,7 +3667,7 @@ public final class RtcProto {
       /**
        * <code>optional string title = 2;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -3681,7 +3681,7 @@ public final class RtcProto {
        * <code>optional string title = 2;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -3707,7 +3707,7 @@ public final class RtcProto {
       /**
        * <code>optional string attachmentId = 3;</code>
        */
-      public String getAttachmentId() {
+      public java.lang.String getAttachmentId() {
         return instance.getAttachmentId();
       }
       /**
@@ -3721,7 +3721,7 @@ public final class RtcProto {
        * <code>optional string attachmentId = 3;</code>
        */
       public Builder setAttachmentId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAttachmentId(value);
         return this;
@@ -3747,11 +3747,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AttachmentMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new AttachmentMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.AttachmentMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3764,14 +3764,14 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          AttachmentMessage other = (AttachmentMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.AttachmentMessage other = (com.treeleaf.anydone.entities.RtcProto.AttachmentMessage) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
               !other.title_.isEmpty(), other.title_);
           attachmentId_ = visitor.visitString(!attachmentId_.isEmpty(), attachmentId_,
               !other.attachmentId_.isEmpty(), other.attachmentId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3828,7 +3828,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (AttachmentMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3842,13 +3842,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AttachmentMessage)
-    private static final AttachmentMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.AttachmentMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new AttachmentMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static AttachmentMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.AttachmentMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3866,7 +3866,7 @@ public final class RtcProto {
     /**
      * <code>optional string message = 1;</code>
      */
-    String getMessage();
+    java.lang.String getMessage();
     /**
      * <code>optional string message = 1;</code>
      */
@@ -3885,11 +3885,11 @@ public final class RtcProto {
       message_ = "";
     }
     public static final int MESSAGE_FIELD_NUMBER = 1;
-    private String message_;
+    private java.lang.String message_;
     /**
      * <code>optional string message = 1;</code>
      */
-    public String getMessage() {
+    public java.lang.String getMessage() {
       return message_;
     }
     /**
@@ -3903,7 +3903,7 @@ public final class RtcProto {
      * <code>optional string message = 1;</code>
      */
     private void setMessage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3950,60 +3950,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static TextMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TextMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TextMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TextMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TextMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TextMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TextMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TextMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TextMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TextMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4014,7 +4014,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TextMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.TextMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4023,9 +4023,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TextMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.TextMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TextMessage)
-        TextMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.TextMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.TextMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4035,7 +4035,7 @@ public final class RtcProto {
       /**
        * <code>optional string message = 1;</code>
        */
-      public String getMessage() {
+      public java.lang.String getMessage() {
         return instance.getMessage();
       }
       /**
@@ -4049,7 +4049,7 @@ public final class RtcProto {
        * <code>optional string message = 1;</code>
        */
       public Builder setMessage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMessage(value);
         return this;
@@ -4075,11 +4075,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TextMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TextMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.TextMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4092,10 +4092,10 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TextMessage other = (TextMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.TextMessage other = (com.treeleaf.anydone.entities.RtcProto.TextMessage) arg1;
           message_ = visitor.visitString(!message_.isEmpty(), message_,
               !other.message_.isEmpty(), other.message_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4140,7 +4140,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TextMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.TextMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4154,13 +4154,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TextMessage)
-    private static final TextMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.TextMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TextMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TextMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.TextMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4178,7 +4178,7 @@ public final class RtcProto {
     /**
      * <code>optional string title = 1;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 1;</code>
      */
@@ -4188,7 +4188,7 @@ public final class RtcProto {
     /**
      * <code>optional string sessionId = 2;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 2;</code>
      */
@@ -4207,7 +4207,7 @@ public final class RtcProto {
     /**
      * <code>optional string callId = 4;</code>
      */
-    String getCallId();
+    java.lang.String getCallId();
     /**
      * <code>optional string callId = 4;</code>
      */
@@ -4228,11 +4228,11 @@ public final class RtcProto {
       callId_ = "";
     }
     public static final int TITLE_FIELD_NUMBER = 1;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 1;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -4246,7 +4246,7 @@ public final class RtcProto {
      * <code>optional string title = 1;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4274,11 +4274,11 @@ public final class RtcProto {
     }
 
     public static final int SESSIONID_FIELD_NUMBER = 2;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 2;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -4292,7 +4292,7 @@ public final class RtcProto {
      * <code>optional string sessionId = 2;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4355,11 +4355,11 @@ public final class RtcProto {
     }
 
     public static final int CALLID_FIELD_NUMBER = 4;
-    private String callId_;
+    private java.lang.String callId_;
     /**
      * <code>optional string callId = 4;</code>
      */
-    public String getCallId() {
+    public java.lang.String getCallId() {
       return callId_;
     }
     /**
@@ -4373,7 +4373,7 @@ public final class RtcProto {
      * <code>optional string callId = 4;</code>
      */
     private void setCallId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4441,60 +4441,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static AudioVideoCallMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AudioVideoCallMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AudioVideoCallMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static AudioVideoCallMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static AudioVideoCallMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AudioVideoCallMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AudioVideoCallMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static AudioVideoCallMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static AudioVideoCallMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static AudioVideoCallMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4505,7 +4505,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(AudioVideoCallMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4514,9 +4514,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          AudioVideoCallMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AudioVideoCallMessage)
-        AudioVideoCallMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4526,7 +4526,7 @@ public final class RtcProto {
       /**
        * <code>optional string title = 1;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -4540,7 +4540,7 @@ public final class RtcProto {
        * <code>optional string title = 1;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -4566,7 +4566,7 @@ public final class RtcProto {
       /**
        * <code>optional string sessionId = 2;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -4580,7 +4580,7 @@ public final class RtcProto {
        * <code>optional string sessionId = 2;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -4641,7 +4641,7 @@ public final class RtcProto {
       /**
        * <code>optional string callId = 4;</code>
        */
-      public String getCallId() {
+      public java.lang.String getCallId() {
         return instance.getCallId();
       }
       /**
@@ -4655,7 +4655,7 @@ public final class RtcProto {
        * <code>optional string callId = 4;</code>
        */
       public Builder setCallId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setCallId(value);
         return this;
@@ -4681,11 +4681,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AudioVideoCallMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new AudioVideoCallMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4698,7 +4698,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          AudioVideoCallMessage other = (AudioVideoCallMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage other = (com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage) arg1;
           title_ = visitor.visitString(!title_.isEmpty(), title_,
               !other.title_.isEmpty(), other.title_);
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
@@ -4707,7 +4707,7 @@ public final class RtcProto {
               other.duration_ != 0, other.duration_);
           callId_ = visitor.visitString(!callId_.isEmpty(), callId_,
               !other.callId_.isEmpty(), other.callId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4769,7 +4769,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (AudioVideoCallMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4783,13 +4783,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AudioVideoCallMessage)
-    private static final AudioVideoCallMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new AudioVideoCallMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static AudioVideoCallMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4807,7 +4807,7 @@ public final class RtcProto {
     /**
      * <code>optional string accountId = 1;</code>
      */
-    String getAccountId();
+    java.lang.String getAccountId();
     /**
      * <code>optional string accountId = 1;</code>
      */
@@ -4821,7 +4821,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor receiverActor = 2;</code>
      */
-    MessageActor getReceiverActor();
+    com.treeleaf.anydone.entities.RtcProto.MessageActor getReceiverActor();
 
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessageStatus rtcMessageStatus = 3;</code>
@@ -4830,7 +4830,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessageStatus rtcMessageStatus = 3;</code>
      */
-    RtcMessageStatus getRtcMessageStatus();
+    com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getRtcMessageStatus();
 
     /**
      * <code>optional int64 seenAt = 4;</code>
@@ -4840,7 +4840,7 @@ public final class RtcProto {
     /**
      * <code>optional string receiverId = 5;</code>
      */
-    String getReceiverId();
+    java.lang.String getReceiverId();
     /**
      * <code>optional string receiverId = 5;</code>
      */
@@ -4854,7 +4854,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
      */
-    UserProto.Account getAccountObj();
+    com.treeleaf.anydone.entities.UserProto.Account getAccountObj();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.MsgReceiver}
@@ -4869,11 +4869,11 @@ public final class RtcProto {
       receiverId_ = "";
     }
     public static final int ACCOUNTID_FIELD_NUMBER = 1;
-    private String accountId_;
+    private java.lang.String accountId_;
     /**
      * <code>optional string accountId = 1;</code>
      */
-    public String getAccountId() {
+    public java.lang.String getAccountId() {
       return accountId_;
     }
     /**
@@ -4887,7 +4887,7 @@ public final class RtcProto {
      * <code>optional string accountId = 1;</code>
      */
     private void setAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4925,9 +4925,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor receiverActor = 2;</code>
      */
-    public MessageActor getReceiverActor() {
-      MessageActor result = MessageActor.forNumber(receiverActor_);
-      return result == null ? MessageActor.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.RtcProto.MessageActor getReceiverActor() {
+      com.treeleaf.anydone.entities.RtcProto.MessageActor result = com.treeleaf.anydone.entities.RtcProto.MessageActor.forNumber(receiverActor_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.MessageActor.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor receiverActor = 2;</code>
@@ -4938,7 +4938,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor receiverActor = 2;</code>
      */
-    private void setReceiverActor(MessageActor value) {
+    private void setReceiverActor(com.treeleaf.anydone.entities.RtcProto.MessageActor value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4964,9 +4964,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessageStatus rtcMessageStatus = 3;</code>
      */
-    public RtcMessageStatus getRtcMessageStatus() {
-      RtcMessageStatus result = RtcMessageStatus.forNumber(rtcMessageStatus_);
-      return result == null ? RtcMessageStatus.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getRtcMessageStatus() {
+      com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus result = com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.forNumber(rtcMessageStatus_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessageStatus rtcMessageStatus = 3;</code>
@@ -4977,7 +4977,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessageStatus rtcMessageStatus = 3;</code>
      */
-    private void setRtcMessageStatus(RtcMessageStatus value) {
+    private void setRtcMessageStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5016,11 +5016,11 @@ public final class RtcProto {
     }
 
     public static final int RECEIVERID_FIELD_NUMBER = 5;
-    private String receiverId_;
+    private java.lang.String receiverId_;
     /**
      * <code>optional string receiverId = 5;</code>
      */
-    public String getReceiverId() {
+    public java.lang.String getReceiverId() {
       return receiverId_;
     }
     /**
@@ -5034,7 +5034,7 @@ public final class RtcProto {
      * <code>optional string receiverId = 5;</code>
      */
     private void setReceiverId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5062,7 +5062,7 @@ public final class RtcProto {
     }
 
     public static final int ACCOUNTOBJ_FIELD_NUMBER = 6;
-    private UserProto.Account accountObj_;
+    private com.treeleaf.anydone.entities.UserProto.Account accountObj_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
      */
@@ -5072,13 +5072,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
      */
-    public UserProto.Account getAccountObj() {
-      return accountObj_ == null ? UserProto.Account.getDefaultInstance() : accountObj_;
+    public com.treeleaf.anydone.entities.UserProto.Account getAccountObj() {
+      return accountObj_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : accountObj_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
      */
-    private void setAccountObj(UserProto.Account value) {
+    private void setAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5089,18 +5089,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
      */
     private void setAccountObj(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       accountObj_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
      */
-    private void mergeAccountObj(UserProto.Account value) {
+    private void mergeAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (accountObj_ != null &&
-          accountObj_ != UserProto.Account.getDefaultInstance()) {
+          accountObj_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         accountObj_ =
-          UserProto.Account.newBuilder(accountObj_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(accountObj_).mergeFrom(value).buildPartial();
       } else {
         accountObj_ = value;
       }
@@ -5118,10 +5118,10 @@ public final class RtcProto {
       if (!accountId_.isEmpty()) {
         output.writeString(1, getAccountId());
       }
-      if (receiverActor_ != MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
+      if (receiverActor_ != com.treeleaf.anydone.entities.RtcProto.MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
         output.writeEnum(2, receiverActor_);
       }
-      if (rtcMessageStatus_ != RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+      if (rtcMessageStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
         output.writeEnum(3, rtcMessageStatus_);
       }
       if (seenAt_ != 0L) {
@@ -5144,11 +5144,11 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getAccountId());
       }
-      if (receiverActor_ != MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
+      if (receiverActor_ != com.treeleaf.anydone.entities.RtcProto.MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, receiverActor_);
       }
-      if (rtcMessageStatus_ != RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+      if (rtcMessageStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, rtcMessageStatus_);
       }
@@ -5168,60 +5168,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static MsgReceiver parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static MsgReceiver parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static MsgReceiver parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static MsgReceiver parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static MsgReceiver parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static MsgReceiver parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static MsgReceiver parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static MsgReceiver parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static MsgReceiver parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static MsgReceiver parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5232,7 +5232,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(MsgReceiver prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.MsgReceiver prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5241,9 +5241,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          MsgReceiver, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.MsgReceiver, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MsgReceiver)
-        MsgReceiverOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.MsgReceiverOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.MsgReceiver.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5253,7 +5253,7 @@ public final class RtcProto {
       /**
        * <code>optional string accountId = 1;</code>
        */
-      public String getAccountId() {
+      public java.lang.String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -5267,7 +5267,7 @@ public final class RtcProto {
        * <code>optional string accountId = 1;</code>
        */
       public Builder setAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -5307,13 +5307,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessageActor receiverActor = 2;</code>
        */
-      public MessageActor getReceiverActor() {
+      public com.treeleaf.anydone.entities.RtcProto.MessageActor getReceiverActor() {
         return instance.getReceiverActor();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.MessageActor receiverActor = 2;</code>
        */
-      public Builder setReceiverActor(MessageActor value) {
+      public Builder setReceiverActor(com.treeleaf.anydone.entities.RtcProto.MessageActor value) {
         copyOnWrite();
         instance.setReceiverActor(value);
         return this;
@@ -5344,13 +5344,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessageStatus rtcMessageStatus = 3;</code>
        */
-      public RtcMessageStatus getRtcMessageStatus() {
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getRtcMessageStatus() {
         return instance.getRtcMessageStatus();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessageStatus rtcMessageStatus = 3;</code>
        */
-      public Builder setRtcMessageStatus(RtcMessageStatus value) {
+      public Builder setRtcMessageStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
         copyOnWrite();
         instance.setRtcMessageStatus(value);
         return this;
@@ -5390,7 +5390,7 @@ public final class RtcProto {
       /**
        * <code>optional string receiverId = 5;</code>
        */
-      public String getReceiverId() {
+      public java.lang.String getReceiverId() {
         return instance.getReceiverId();
       }
       /**
@@ -5404,7 +5404,7 @@ public final class RtcProto {
        * <code>optional string receiverId = 5;</code>
        */
       public Builder setReceiverId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setReceiverId(value);
         return this;
@@ -5436,13 +5436,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
        */
-      public UserProto.Account getAccountObj() {
+      public com.treeleaf.anydone.entities.UserProto.Account getAccountObj() {
         return instance.getAccountObj();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
        */
-      public Builder setAccountObj(UserProto.Account value) {
+      public Builder setAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setAccountObj(value);
         return this;
@@ -5451,7 +5451,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
        */
       public Builder setAccountObj(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setAccountObj(builderForValue);
         return this;
@@ -5459,7 +5459,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account accountObj = 6;</code>
        */
-      public Builder mergeAccountObj(UserProto.Account value) {
+      public Builder mergeAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeAccountObj(value);
         return this;
@@ -5475,11 +5475,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MsgReceiver)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new MsgReceiver();
+          return new com.treeleaf.anydone.entities.RtcProto.MsgReceiver();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5492,7 +5492,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          MsgReceiver other = (MsgReceiver) arg1;
+          com.treeleaf.anydone.entities.RtcProto.MsgReceiver other = (com.treeleaf.anydone.entities.RtcProto.MsgReceiver) arg1;
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
               !other.accountId_.isEmpty(), other.accountId_);
           receiverActor_ = visitor.visitInt(receiverActor_ != 0, receiverActor_,    other.receiverActor_ != 0, other.receiverActor_);
@@ -5502,7 +5502,7 @@ public final class RtcProto {
           receiverId_ = visitor.visitString(!receiverId_.isEmpty(), receiverId_,
               !other.receiverId_.isEmpty(), other.receiverId_);
           accountObj_ = visitor.visitMessage(accountObj_, other.accountObj_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5556,11 +5556,11 @@ public final class RtcProto {
                   break;
                 }
                 case 50: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (accountObj_ != null) {
                     subBuilder = accountObj_.toBuilder();
                   }
-                  accountObj_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  accountObj_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(accountObj_);
                     accountObj_ = subBuilder.buildPartial();
@@ -5583,7 +5583,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (MsgReceiver.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.MsgReceiver.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5597,13 +5597,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MsgReceiver)
-    private static final MsgReceiver DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.MsgReceiver DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new MsgReceiver();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static MsgReceiver getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.MsgReceiver getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5621,7 +5621,7 @@ public final class RtcProto {
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    String getRtcMessageId();
+    java.lang.String getRtcMessageId();
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
@@ -5635,7 +5635,7 @@ public final class RtcProto {
      *
      * <code>optional string senderAccountId = 2;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <pre>
      *Its account id of service provider, consumer or employee
@@ -5653,7 +5653,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor senderActor = 3;</code>
      */
-    MessageActor getSenderActor();
+    com.treeleaf.anydone.entities.RtcProto.MessageActor getSenderActor();
 
     /**
      * <pre>
@@ -5662,7 +5662,7 @@ public final class RtcProto {
      *
      * <code>optional string clientId = 4;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <pre>
      *Unique id sent by sender
@@ -5680,7 +5680,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
      */
-    TextMessage getText();
+    com.treeleaf.anydone.entities.RtcProto.TextMessage getText();
 
     /**
      * <pre>
@@ -5697,7 +5697,7 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
      */
-    AttachmentMessage getAttachment();
+    com.treeleaf.anydone.entities.RtcProto.AttachmentMessage getAttachment();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
@@ -5706,7 +5706,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
      */
-    ImageMessage getImage();
+    com.treeleaf.anydone.entities.RtcProto.ImageMessage getImage();
 
     /**
      * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
@@ -5715,7 +5715,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
      */
-    AudioMessage getAudio();
+    com.treeleaf.anydone.entities.RtcProto.AudioMessage getAudio();
 
     /**
      * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
@@ -5724,7 +5724,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
      */
-    VideoMessage getVideo();
+    com.treeleaf.anydone.entities.RtcProto.VideoMessage getVideo();
 
     /**
      * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
@@ -5733,7 +5733,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
      */
-    LinkMessage getLink();
+    com.treeleaf.anydone.entities.RtcProto.LinkMessage getLink();
 
     /**
      * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
@@ -5742,7 +5742,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
      */
-    AudioVideoCallMessage getCall();
+    com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage getCall();
 
     /**
      * <code>optional int64 sentAt = 12;</code>
@@ -5757,12 +5757,12 @@ public final class RtcProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
-    java.util.List<MsgReceiver>
+    java.util.List<com.treeleaf.anydone.entities.RtcProto.MsgReceiver> 
         getReceiversList();
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
-    MsgReceiver getReceivers(int index);
+    com.treeleaf.anydone.entities.RtcProto.MsgReceiver getReceivers(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
@@ -5771,7 +5771,7 @@ public final class RtcProto {
     /**
      * <code>optional string parentMessageId = 15;</code>
      */
-    String getParentMessageId();
+    java.lang.String getParentMessageId();
     /**
      * <code>optional string parentMessageId = 15;</code>
      */
@@ -5793,7 +5793,7 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
-    RtcMessageType getRtcMessageType();
+    com.treeleaf.anydone.entities.RtcProto.RtcMessageType getRtcMessageType();
 
     /**
      * <pre>
@@ -5802,7 +5802,7 @@ public final class RtcProto {
      *
      * <code>optional string refId = 17;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <pre>
      *Normally order id. To which order this conversation belongs.
@@ -5820,7 +5820,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
      */
-    UserProto.Account getSenderAccountObj();
+    com.treeleaf.anydone.entities.UserProto.Account getSenderAccountObj();
 
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
@@ -5829,7 +5829,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
      */
-    NLUProto.KGraphReply getKGraphReply();
+    com.treeleaf.anydone.entities.NLUProto.KGraphReply getKGraphReply();
 
     /**
      * <pre>
@@ -5838,7 +5838,7 @@ public final class RtcProto {
      *
      * <code>optional string timezone = 20;</code>
      */
-    String getTimezone();
+    java.lang.String getTimezone();
     /**
      * <pre>
      *timezone to send to bot service
@@ -5864,7 +5864,7 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
-    AnydoneProto.ServiceContext getContext();
+    com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext();
 
     /**
      * <pre>
@@ -5873,7 +5873,7 @@ public final class RtcProto {
      *
      * <code>optional string serviceId = 22;</code>
      */
-    String getServiceId();
+    java.lang.String getServiceId();
     /**
      * <pre>
      *used for conversation
@@ -5887,7 +5887,7 @@ public final class RtcProto {
     /**
      * <code>optional string serviceProviderAccountId = 23;</code>
      */
-    String getServiceProviderAccountId();
+    java.lang.String getServiceProviderAccountId();
     /**
      * <code>optional string serviceProviderAccountId = 23;</code>
      */
@@ -5897,7 +5897,7 @@ public final class RtcProto {
     /**
      * <code>optional string defaultLabelId = 24;</code>
      */
-    String getDefaultLabelId();
+    java.lang.String getDefaultLabelId();
     /**
      * <code>optional string defaultLabelId = 24;</code>
      */
@@ -5907,7 +5907,7 @@ public final class RtcProto {
     /**
      * <code>optional string language = 25;</code>
      */
-    String getLanguage();
+    java.lang.String getLanguage();
     /**
      * <code>optional string language = 25;</code>
      */
@@ -5937,11 +5937,11 @@ public final class RtcProto {
     }
     private int bitField0_;
     public static final int RTCMESSAGEID_FIELD_NUMBER = 1;
-    private String rtcMessageId_;
+    private java.lang.String rtcMessageId_;
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    public String getRtcMessageId() {
+    public java.lang.String getRtcMessageId() {
       return rtcMessageId_;
     }
     /**
@@ -5955,7 +5955,7 @@ public final class RtcProto {
      * <code>optional string rtcMessageId = 1;</code>
      */
     private void setRtcMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5983,7 +5983,7 @@ public final class RtcProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <pre>
      *Its account id of service provider, consumer or employee
@@ -5991,7 +5991,7 @@ public final class RtcProto {
      *
      * <code>optional string senderAccountId = 2;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -6013,7 +6013,7 @@ public final class RtcProto {
      * <code>optional string senderAccountId = 2;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6059,9 +6059,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor senderActor = 3;</code>
      */
-    public MessageActor getSenderActor() {
-      MessageActor result = MessageActor.forNumber(senderActor_);
-      return result == null ? MessageActor.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.RtcProto.MessageActor getSenderActor() {
+      com.treeleaf.anydone.entities.RtcProto.MessageActor result = com.treeleaf.anydone.entities.RtcProto.MessageActor.forNumber(senderActor_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.MessageActor.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor senderActor = 3;</code>
@@ -6072,7 +6072,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageActor senderActor = 3;</code>
      */
-    private void setSenderActor(MessageActor value) {
+    private void setSenderActor(com.treeleaf.anydone.entities.RtcProto.MessageActor value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6088,7 +6088,7 @@ public final class RtcProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 4;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <pre>
      *Unique id sent by sender
@@ -6096,7 +6096,7 @@ public final class RtcProto {
      *
      * <code>optional string clientId = 4;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -6118,7 +6118,7 @@ public final class RtcProto {
      * <code>optional string clientId = 4;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6154,7 +6154,7 @@ public final class RtcProto {
     }
 
     public static final int TEXT_FIELD_NUMBER = 5;
-    private TextMessage text_;
+    private com.treeleaf.anydone.entities.RtcProto.TextMessage text_;
     /**
      * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
      */
@@ -6164,13 +6164,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
      */
-    public TextMessage getText() {
-      return text_ == null ? TextMessage.getDefaultInstance() : text_;
+    public com.treeleaf.anydone.entities.RtcProto.TextMessage getText() {
+      return text_ == null ? com.treeleaf.anydone.entities.RtcProto.TextMessage.getDefaultInstance() : text_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
      */
-    private void setText(TextMessage value) {
+    private void setText(com.treeleaf.anydone.entities.RtcProto.TextMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6181,18 +6181,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
      */
     private void setText(
-        TextMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.TextMessage.Builder builderForValue) {
       text_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
      */
-    private void mergeText(TextMessage value) {
+    private void mergeText(com.treeleaf.anydone.entities.RtcProto.TextMessage value) {
       if (text_ != null &&
-          text_ != TextMessage.getDefaultInstance()) {
+          text_ != com.treeleaf.anydone.entities.RtcProto.TextMessage.getDefaultInstance()) {
         text_ =
-          TextMessage.newBuilder(text_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.TextMessage.newBuilder(text_).mergeFrom(value).buildPartial();
       } else {
         text_ = value;
       }
@@ -6206,7 +6206,7 @@ public final class RtcProto {
     }
 
     public static final int ATTACHMENT_FIELD_NUMBER = 6;
-    private AttachmentMessage attachment_;
+    private com.treeleaf.anydone.entities.RtcProto.AttachmentMessage attachment_;
     /**
      * <pre>
      *Any doc
@@ -6224,8 +6224,8 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
      */
-    public AttachmentMessage getAttachment() {
-      return attachment_ == null ? AttachmentMessage.getDefaultInstance() : attachment_;
+    public com.treeleaf.anydone.entities.RtcProto.AttachmentMessage getAttachment() {
+      return attachment_ == null ? com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.getDefaultInstance() : attachment_;
     }
     /**
      * <pre>
@@ -6234,7 +6234,7 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
      */
-    private void setAttachment(AttachmentMessage value) {
+    private void setAttachment(com.treeleaf.anydone.entities.RtcProto.AttachmentMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6249,7 +6249,7 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
      */
     private void setAttachment(
-        AttachmentMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.Builder builderForValue) {
       attachment_ = builderForValue.build();
       
     }
@@ -6260,11 +6260,11 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
      */
-    private void mergeAttachment(AttachmentMessage value) {
+    private void mergeAttachment(com.treeleaf.anydone.entities.RtcProto.AttachmentMessage value) {
       if (attachment_ != null &&
-          attachment_ != AttachmentMessage.getDefaultInstance()) {
+          attachment_ != com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.getDefaultInstance()) {
         attachment_ =
-          AttachmentMessage.newBuilder(attachment_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.newBuilder(attachment_).mergeFrom(value).buildPartial();
       } else {
         attachment_ = value;
       }
@@ -6282,7 +6282,7 @@ public final class RtcProto {
     }
 
     public static final int IMAGE_FIELD_NUMBER = 7;
-    private ImageMessage image_;
+    private com.treeleaf.anydone.entities.RtcProto.ImageMessage image_;
     /**
      * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
      */
@@ -6292,13 +6292,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
      */
-    public ImageMessage getImage() {
-      return image_ == null ? ImageMessage.getDefaultInstance() : image_;
+    public com.treeleaf.anydone.entities.RtcProto.ImageMessage getImage() {
+      return image_ == null ? com.treeleaf.anydone.entities.RtcProto.ImageMessage.getDefaultInstance() : image_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
      */
-    private void setImage(ImageMessage value) {
+    private void setImage(com.treeleaf.anydone.entities.RtcProto.ImageMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6309,18 +6309,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
      */
     private void setImage(
-        ImageMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.ImageMessage.Builder builderForValue) {
       image_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
      */
-    private void mergeImage(ImageMessage value) {
+    private void mergeImage(com.treeleaf.anydone.entities.RtcProto.ImageMessage value) {
       if (image_ != null &&
-          image_ != ImageMessage.getDefaultInstance()) {
+          image_ != com.treeleaf.anydone.entities.RtcProto.ImageMessage.getDefaultInstance()) {
         image_ =
-          ImageMessage.newBuilder(image_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.ImageMessage.newBuilder(image_).mergeFrom(value).buildPartial();
       } else {
         image_ = value;
       }
@@ -6334,7 +6334,7 @@ public final class RtcProto {
     }
 
     public static final int AUDIO_FIELD_NUMBER = 8;
-    private AudioMessage audio_;
+    private com.treeleaf.anydone.entities.RtcProto.AudioMessage audio_;
     /**
      * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
      */
@@ -6344,13 +6344,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
      */
-    public AudioMessage getAudio() {
-      return audio_ == null ? AudioMessage.getDefaultInstance() : audio_;
+    public com.treeleaf.anydone.entities.RtcProto.AudioMessage getAudio() {
+      return audio_ == null ? com.treeleaf.anydone.entities.RtcProto.AudioMessage.getDefaultInstance() : audio_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
      */
-    private void setAudio(AudioMessage value) {
+    private void setAudio(com.treeleaf.anydone.entities.RtcProto.AudioMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6361,18 +6361,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
      */
     private void setAudio(
-        AudioMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.AudioMessage.Builder builderForValue) {
       audio_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
      */
-    private void mergeAudio(AudioMessage value) {
+    private void mergeAudio(com.treeleaf.anydone.entities.RtcProto.AudioMessage value) {
       if (audio_ != null &&
-          audio_ != AudioMessage.getDefaultInstance()) {
+          audio_ != com.treeleaf.anydone.entities.RtcProto.AudioMessage.getDefaultInstance()) {
         audio_ =
-          AudioMessage.newBuilder(audio_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.AudioMessage.newBuilder(audio_).mergeFrom(value).buildPartial();
       } else {
         audio_ = value;
       }
@@ -6386,7 +6386,7 @@ public final class RtcProto {
     }
 
     public static final int VIDEO_FIELD_NUMBER = 9;
-    private VideoMessage video_;
+    private com.treeleaf.anydone.entities.RtcProto.VideoMessage video_;
     /**
      * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
      */
@@ -6396,13 +6396,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
      */
-    public VideoMessage getVideo() {
-      return video_ == null ? VideoMessage.getDefaultInstance() : video_;
+    public com.treeleaf.anydone.entities.RtcProto.VideoMessage getVideo() {
+      return video_ == null ? com.treeleaf.anydone.entities.RtcProto.VideoMessage.getDefaultInstance() : video_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
      */
-    private void setVideo(VideoMessage value) {
+    private void setVideo(com.treeleaf.anydone.entities.RtcProto.VideoMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6413,18 +6413,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
      */
     private void setVideo(
-        VideoMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.VideoMessage.Builder builderForValue) {
       video_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
      */
-    private void mergeVideo(VideoMessage value) {
+    private void mergeVideo(com.treeleaf.anydone.entities.RtcProto.VideoMessage value) {
       if (video_ != null &&
-          video_ != VideoMessage.getDefaultInstance()) {
+          video_ != com.treeleaf.anydone.entities.RtcProto.VideoMessage.getDefaultInstance()) {
         video_ =
-          VideoMessage.newBuilder(video_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.VideoMessage.newBuilder(video_).mergeFrom(value).buildPartial();
       } else {
         video_ = value;
       }
@@ -6438,7 +6438,7 @@ public final class RtcProto {
     }
 
     public static final int LINK_FIELD_NUMBER = 10;
-    private LinkMessage link_;
+    private com.treeleaf.anydone.entities.RtcProto.LinkMessage link_;
     /**
      * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
      */
@@ -6448,13 +6448,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
      */
-    public LinkMessage getLink() {
-      return link_ == null ? LinkMessage.getDefaultInstance() : link_;
+    public com.treeleaf.anydone.entities.RtcProto.LinkMessage getLink() {
+      return link_ == null ? com.treeleaf.anydone.entities.RtcProto.LinkMessage.getDefaultInstance() : link_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
      */
-    private void setLink(LinkMessage value) {
+    private void setLink(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6465,18 +6465,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
      */
     private void setLink(
-        LinkMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.LinkMessage.Builder builderForValue) {
       link_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
      */
-    private void mergeLink(LinkMessage value) {
+    private void mergeLink(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
       if (link_ != null &&
-          link_ != LinkMessage.getDefaultInstance()) {
+          link_ != com.treeleaf.anydone.entities.RtcProto.LinkMessage.getDefaultInstance()) {
         link_ =
-          LinkMessage.newBuilder(link_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.LinkMessage.newBuilder(link_).mergeFrom(value).buildPartial();
       } else {
         link_ = value;
       }
@@ -6490,7 +6490,7 @@ public final class RtcProto {
     }
 
     public static final int CALL_FIELD_NUMBER = 11;
-    private AudioVideoCallMessage call_;
+    private com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage call_;
     /**
      * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
      */
@@ -6500,13 +6500,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
      */
-    public AudioVideoCallMessage getCall() {
-      return call_ == null ? AudioVideoCallMessage.getDefaultInstance() : call_;
+    public com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage getCall() {
+      return call_ == null ? com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.getDefaultInstance() : call_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
      */
-    private void setCall(AudioVideoCallMessage value) {
+    private void setCall(com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6517,18 +6517,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
      */
     private void setCall(
-        AudioVideoCallMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.Builder builderForValue) {
       call_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
      */
-    private void mergeCall(AudioVideoCallMessage value) {
+    private void mergeCall(com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage value) {
       if (call_ != null &&
-          call_ != AudioVideoCallMessage.getDefaultInstance()) {
+          call_ != com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.getDefaultInstance()) {
         call_ =
-          AudioVideoCallMessage.newBuilder(call_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.newBuilder(call_).mergeFrom(value).buildPartial();
       } else {
         call_ = value;
       }
@@ -6588,17 +6588,17 @@ public final class RtcProto {
     }
 
     public static final int RECEIVERS_FIELD_NUMBER = 14;
-    private com.google.protobuf.Internal.ProtobufList<MsgReceiver> receivers_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.RtcProto.MsgReceiver> receivers_;
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
-    public java.util.List<MsgReceiver> getReceiversList() {
+    public java.util.List<com.treeleaf.anydone.entities.RtcProto.MsgReceiver> getReceiversList() {
       return receivers_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
-    public java.util.List<? extends MsgReceiverOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.RtcProto.MsgReceiverOrBuilder> 
         getReceiversOrBuilderList() {
       return receivers_;
     }
@@ -6611,13 +6611,13 @@ public final class RtcProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
-    public MsgReceiver getReceivers(int index) {
+    public com.treeleaf.anydone.entities.RtcProto.MsgReceiver getReceivers(int index) {
       return receivers_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
-    public MsgReceiverOrBuilder getReceiversOrBuilder(
+    public com.treeleaf.anydone.entities.RtcProto.MsgReceiverOrBuilder getReceiversOrBuilder(
         int index) {
       return receivers_.get(index);
     }
@@ -6632,7 +6632,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
     private void setReceivers(
-        int index, MsgReceiver value) {
+        int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6643,14 +6643,14 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
     private void setReceivers(
-        int index, MsgReceiver.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver.Builder builderForValue) {
       ensureReceiversIsMutable();
       receivers_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
-    private void addReceivers(MsgReceiver value) {
+    private void addReceivers(com.treeleaf.anydone.entities.RtcProto.MsgReceiver value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6661,7 +6661,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
     private void addReceivers(
-        int index, MsgReceiver value) {
+        int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6672,7 +6672,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
     private void addReceivers(
-        MsgReceiver.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.MsgReceiver.Builder builderForValue) {
       ensureReceiversIsMutable();
       receivers_.add(builderForValue.build());
     }
@@ -6680,7 +6680,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
     private void addReceivers(
-        int index, MsgReceiver.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver.Builder builderForValue) {
       ensureReceiversIsMutable();
       receivers_.add(index, builderForValue.build());
     }
@@ -6688,7 +6688,7 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
      */
     private void addAllReceivers(
-        Iterable<? extends MsgReceiver> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.MsgReceiver> values) {
       ensureReceiversIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, receivers_);
@@ -6708,11 +6708,11 @@ public final class RtcProto {
     }
 
     public static final int PARENTMESSAGEID_FIELD_NUMBER = 15;
-    private String parentMessageId_;
+    private java.lang.String parentMessageId_;
     /**
      * <code>optional string parentMessageId = 15;</code>
      */
-    public String getParentMessageId() {
+    public java.lang.String getParentMessageId() {
       return parentMessageId_;
     }
     /**
@@ -6726,7 +6726,7 @@ public final class RtcProto {
      * <code>optional string parentMessageId = 15;</code>
      */
     private void setParentMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6772,9 +6772,9 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
-    public RtcMessageType getRtcMessageType() {
-      RtcMessageType result = RtcMessageType.forNumber(rtcMessageType_);
-      return result == null ? RtcMessageType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessageType getRtcMessageType() {
+      com.treeleaf.anydone.entities.RtcProto.RtcMessageType result = com.treeleaf.anydone.entities.RtcProto.RtcMessageType.forNumber(rtcMessageType_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageType.UNRECOGNIZED : result;
     }
     /**
      * <pre>
@@ -6793,7 +6793,7 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
      */
-    private void setRtcMessageType(RtcMessageType value) {
+    private void setRtcMessageType(com.treeleaf.anydone.entities.RtcProto.RtcMessageType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6813,7 +6813,7 @@ public final class RtcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 17;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <pre>
      *Normally order id. To which order this conversation belongs.
@@ -6821,7 +6821,7 @@ public final class RtcProto {
      *
      * <code>optional string refId = 17;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -6843,7 +6843,7 @@ public final class RtcProto {
      * <code>optional string refId = 17;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6879,7 +6879,7 @@ public final class RtcProto {
     }
 
     public static final int SENDERACCOUNTOBJ_FIELD_NUMBER = 18;
-    private UserProto.Account senderAccountObj_;
+    private com.treeleaf.anydone.entities.UserProto.Account senderAccountObj_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
      */
@@ -6889,13 +6889,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
      */
-    public UserProto.Account getSenderAccountObj() {
-      return senderAccountObj_ == null ? UserProto.Account.getDefaultInstance() : senderAccountObj_;
+    public com.treeleaf.anydone.entities.UserProto.Account getSenderAccountObj() {
+      return senderAccountObj_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : senderAccountObj_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
      */
-    private void setSenderAccountObj(UserProto.Account value) {
+    private void setSenderAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6906,18 +6906,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
      */
     private void setSenderAccountObj(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       senderAccountObj_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
      */
-    private void mergeSenderAccountObj(UserProto.Account value) {
+    private void mergeSenderAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (senderAccountObj_ != null &&
-          senderAccountObj_ != UserProto.Account.getDefaultInstance()) {
+          senderAccountObj_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         senderAccountObj_ =
-          UserProto.Account.newBuilder(senderAccountObj_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(senderAccountObj_).mergeFrom(value).buildPartial();
       } else {
         senderAccountObj_ = value;
       }
@@ -6931,7 +6931,7 @@ public final class RtcProto {
     }
 
     public static final int KGRAPHREPLY_FIELD_NUMBER = 19;
-    private NLUProto.KGraphReply kGraphReply_;
+    private com.treeleaf.anydone.entities.NLUProto.KGraphReply kGraphReply_;
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
      */
@@ -6941,13 +6941,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
      */
-    public NLUProto.KGraphReply getKGraphReply() {
-      return kGraphReply_ == null ? NLUProto.KGraphReply.getDefaultInstance() : kGraphReply_;
+    public com.treeleaf.anydone.entities.NLUProto.KGraphReply getKGraphReply() {
+      return kGraphReply_ == null ? com.treeleaf.anydone.entities.NLUProto.KGraphReply.getDefaultInstance() : kGraphReply_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
      */
-    private void setKGraphReply(NLUProto.KGraphReply value) {
+    private void setKGraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6958,18 +6958,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
      */
     private void setKGraphReply(
-        NLUProto.KGraphReply.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder builderForValue) {
       kGraphReply_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
      */
-    private void mergeKGraphReply(NLUProto.KGraphReply value) {
+    private void mergeKGraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
       if (kGraphReply_ != null &&
-          kGraphReply_ != NLUProto.KGraphReply.getDefaultInstance()) {
+          kGraphReply_ != com.treeleaf.anydone.entities.NLUProto.KGraphReply.getDefaultInstance()) {
         kGraphReply_ =
-          NLUProto.KGraphReply.newBuilder(kGraphReply_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply.newBuilder(kGraphReply_).mergeFrom(value).buildPartial();
       } else {
         kGraphReply_ = value;
       }
@@ -6983,7 +6983,7 @@ public final class RtcProto {
     }
 
     public static final int TIMEZONE_FIELD_NUMBER = 20;
-    private String timezone_;
+    private java.lang.String timezone_;
     /**
      * <pre>
      *timezone to send to bot service
@@ -6991,7 +6991,7 @@ public final class RtcProto {
      *
      * <code>optional string timezone = 20;</code>
      */
-    public String getTimezone() {
+    public java.lang.String getTimezone() {
       return timezone_;
     }
     /**
@@ -7013,7 +7013,7 @@ public final class RtcProto {
      * <code>optional string timezone = 20;</code>
      */
     private void setTimezone(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7067,9 +7067,9 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
-    public AnydoneProto.ServiceContext getContext() {
-      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
-      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
+      com.treeleaf.anydone.entities.AnydoneProto.ServiceContext result = com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
      * <pre>
@@ -7088,7 +7088,7 @@ public final class RtcProto {
      *
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
      */
-    private void setContext(AnydoneProto.ServiceContext value) {
+    private void setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -7108,7 +7108,7 @@ public final class RtcProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 22;
-    private String serviceId_;
+    private java.lang.String serviceId_;
     /**
      * <pre>
      *used for conversation
@@ -7116,7 +7116,7 @@ public final class RtcProto {
      *
      * <code>optional string serviceId = 22;</code>
      */
-    public String getServiceId() {
+    public java.lang.String getServiceId() {
       return serviceId_;
     }
     /**
@@ -7138,7 +7138,7 @@ public final class RtcProto {
      * <code>optional string serviceId = 22;</code>
      */
     private void setServiceId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7174,11 +7174,11 @@ public final class RtcProto {
     }
 
     public static final int SERVICEPROVIDERACCOUNTID_FIELD_NUMBER = 23;
-    private String serviceProviderAccountId_;
+    private java.lang.String serviceProviderAccountId_;
     /**
      * <code>optional string serviceProviderAccountId = 23;</code>
      */
-    public String getServiceProviderAccountId() {
+    public java.lang.String getServiceProviderAccountId() {
       return serviceProviderAccountId_;
     }
     /**
@@ -7192,7 +7192,7 @@ public final class RtcProto {
      * <code>optional string serviceProviderAccountId = 23;</code>
      */
     private void setServiceProviderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7220,11 +7220,11 @@ public final class RtcProto {
     }
 
     public static final int DEFAULTLABELID_FIELD_NUMBER = 24;
-    private String defaultLabelId_;
+    private java.lang.String defaultLabelId_;
     /**
      * <code>optional string defaultLabelId = 24;</code>
      */
-    public String getDefaultLabelId() {
+    public java.lang.String getDefaultLabelId() {
       return defaultLabelId_;
     }
     /**
@@ -7238,7 +7238,7 @@ public final class RtcProto {
      * <code>optional string defaultLabelId = 24;</code>
      */
     private void setDefaultLabelId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7266,11 +7266,11 @@ public final class RtcProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 25;
-    private String language_;
+    private java.lang.String language_;
     /**
      * <code>optional string language = 25;</code>
      */
-    public String getLanguage() {
+    public java.lang.String getLanguage() {
       return language_;
     }
     /**
@@ -7284,7 +7284,7 @@ public final class RtcProto {
      * <code>optional string language = 25;</code>
      */
     private void setLanguage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7319,7 +7319,7 @@ public final class RtcProto {
       if (!senderAccountId_.isEmpty()) {
         output.writeString(2, getSenderAccountId());
       }
-      if (senderActor_ != MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
+      if (senderActor_ != com.treeleaf.anydone.entities.RtcProto.MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
         output.writeEnum(3, senderActor_);
       }
       if (!clientId_.isEmpty()) {
@@ -7358,7 +7358,7 @@ public final class RtcProto {
       if (!parentMessageId_.isEmpty()) {
         output.writeString(15, getParentMessageId());
       }
-      if (rtcMessageType_ != RtcMessageType.UNKNOWN_RTC_MESSAGE_TYPE.getNumber()) {
+      if (rtcMessageType_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageType.UNKNOWN_RTC_MESSAGE_TYPE.getNumber()) {
         output.writeEnum(16, rtcMessageType_);
       }
       if (!refId_.isEmpty()) {
@@ -7373,7 +7373,7 @@ public final class RtcProto {
       if (!timezone_.isEmpty()) {
         output.writeString(20, getTimezone());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(21, context_);
       }
       if (!serviceId_.isEmpty()) {
@@ -7403,7 +7403,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getSenderAccountId());
       }
-      if (senderActor_ != MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
+      if (senderActor_ != com.treeleaf.anydone.entities.RtcProto.MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, senderActor_);
       }
@@ -7455,7 +7455,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(15, getParentMessageId());
       }
-      if (rtcMessageType_ != RtcMessageType.UNKNOWN_RTC_MESSAGE_TYPE.getNumber()) {
+      if (rtcMessageType_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageType.UNKNOWN_RTC_MESSAGE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(16, rtcMessageType_);
       }
@@ -7475,7 +7475,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(20, getTimezone());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(21, context_);
       }
@@ -7499,60 +7499,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static RtcMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcMessage parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RtcMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RtcMessage parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RtcMessage parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RtcMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RtcMessage parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -7563,7 +7563,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RtcMessage prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.RtcMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -7572,9 +7572,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RtcMessage, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RtcMessage)
-        RtcMessageOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.RtcMessageOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -7584,7 +7584,7 @@ public final class RtcProto {
       /**
        * <code>optional string rtcMessageId = 1;</code>
        */
-      public String getRtcMessageId() {
+      public java.lang.String getRtcMessageId() {
         return instance.getRtcMessageId();
       }
       /**
@@ -7598,7 +7598,7 @@ public final class RtcProto {
        * <code>optional string rtcMessageId = 1;</code>
        */
       public Builder setRtcMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRtcMessageId(value);
         return this;
@@ -7628,7 +7628,7 @@ public final class RtcProto {
        *
        * <code>optional string senderAccountId = 2;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -7650,7 +7650,7 @@ public final class RtcProto {
        * <code>optional string senderAccountId = 2;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -7698,13 +7698,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessageActor senderActor = 3;</code>
        */
-      public MessageActor getSenderActor() {
+      public com.treeleaf.anydone.entities.RtcProto.MessageActor getSenderActor() {
         return instance.getSenderActor();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.MessageActor senderActor = 3;</code>
        */
-      public Builder setSenderActor(MessageActor value) {
+      public Builder setSenderActor(com.treeleaf.anydone.entities.RtcProto.MessageActor value) {
         copyOnWrite();
         instance.setSenderActor(value);
         return this;
@@ -7725,7 +7725,7 @@ public final class RtcProto {
        *
        * <code>optional string clientId = 4;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -7747,7 +7747,7 @@ public final class RtcProto {
        * <code>optional string clientId = 4;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -7787,13 +7787,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
        */
-      public TextMessage getText() {
+      public com.treeleaf.anydone.entities.RtcProto.TextMessage getText() {
         return instance.getText();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
        */
-      public Builder setText(TextMessage value) {
+      public Builder setText(com.treeleaf.anydone.entities.RtcProto.TextMessage value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -7802,7 +7802,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
        */
       public Builder setText(
-          TextMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.TextMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setText(builderForValue);
         return this;
@@ -7810,7 +7810,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextMessage text = 5;</code>
        */
-      public Builder mergeText(TextMessage value) {
+      public Builder mergeText(com.treeleaf.anydone.entities.RtcProto.TextMessage value) {
         copyOnWrite();
         instance.mergeText(value);
         return this;
@@ -7840,7 +7840,7 @@ public final class RtcProto {
        *
        * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
        */
-      public AttachmentMessage getAttachment() {
+      public com.treeleaf.anydone.entities.RtcProto.AttachmentMessage getAttachment() {
         return instance.getAttachment();
       }
       /**
@@ -7850,7 +7850,7 @@ public final class RtcProto {
        *
        * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
        */
-      public Builder setAttachment(AttachmentMessage value) {
+      public Builder setAttachment(com.treeleaf.anydone.entities.RtcProto.AttachmentMessage value) {
         copyOnWrite();
         instance.setAttachment(value);
         return this;
@@ -7863,7 +7863,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
        */
       public Builder setAttachment(
-          AttachmentMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setAttachment(builderForValue);
         return this;
@@ -7875,7 +7875,7 @@ public final class RtcProto {
        *
        * <code>optional .treeleaf.anydone.entities.AttachmentMessage attachment = 6;</code>
        */
-      public Builder mergeAttachment(AttachmentMessage value) {
+      public Builder mergeAttachment(com.treeleaf.anydone.entities.RtcProto.AttachmentMessage value) {
         copyOnWrite();
         instance.mergeAttachment(value);
         return this;
@@ -7901,13 +7901,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
        */
-      public ImageMessage getImage() {
+      public com.treeleaf.anydone.entities.RtcProto.ImageMessage getImage() {
         return instance.getImage();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
        */
-      public Builder setImage(ImageMessage value) {
+      public Builder setImage(com.treeleaf.anydone.entities.RtcProto.ImageMessage value) {
         copyOnWrite();
         instance.setImage(value);
         return this;
@@ -7916,7 +7916,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
        */
       public Builder setImage(
-          ImageMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.ImageMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setImage(builderForValue);
         return this;
@@ -7924,7 +7924,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ImageMessage image = 7;</code>
        */
-      public Builder mergeImage(ImageMessage value) {
+      public Builder mergeImage(com.treeleaf.anydone.entities.RtcProto.ImageMessage value) {
         copyOnWrite();
         instance.mergeImage(value);
         return this;
@@ -7946,13 +7946,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
        */
-      public AudioMessage getAudio() {
+      public com.treeleaf.anydone.entities.RtcProto.AudioMessage getAudio() {
         return instance.getAudio();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
        */
-      public Builder setAudio(AudioMessage value) {
+      public Builder setAudio(com.treeleaf.anydone.entities.RtcProto.AudioMessage value) {
         copyOnWrite();
         instance.setAudio(value);
         return this;
@@ -7961,7 +7961,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
        */
       public Builder setAudio(
-          AudioMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.AudioMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setAudio(builderForValue);
         return this;
@@ -7969,7 +7969,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.AudioMessage audio = 8;</code>
        */
-      public Builder mergeAudio(AudioMessage value) {
+      public Builder mergeAudio(com.treeleaf.anydone.entities.RtcProto.AudioMessage value) {
         copyOnWrite();
         instance.mergeAudio(value);
         return this;
@@ -7991,13 +7991,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
        */
-      public VideoMessage getVideo() {
+      public com.treeleaf.anydone.entities.RtcProto.VideoMessage getVideo() {
         return instance.getVideo();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
        */
-      public Builder setVideo(VideoMessage value) {
+      public Builder setVideo(com.treeleaf.anydone.entities.RtcProto.VideoMessage value) {
         copyOnWrite();
         instance.setVideo(value);
         return this;
@@ -8006,7 +8006,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
        */
       public Builder setVideo(
-          VideoMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.VideoMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setVideo(builderForValue);
         return this;
@@ -8014,7 +8014,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoMessage video = 9;</code>
        */
-      public Builder mergeVideo(VideoMessage value) {
+      public Builder mergeVideo(com.treeleaf.anydone.entities.RtcProto.VideoMessage value) {
         copyOnWrite();
         instance.mergeVideo(value);
         return this;
@@ -8036,13 +8036,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
        */
-      public LinkMessage getLink() {
+      public com.treeleaf.anydone.entities.RtcProto.LinkMessage getLink() {
         return instance.getLink();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
        */
-      public Builder setLink(LinkMessage value) {
+      public Builder setLink(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
         copyOnWrite();
         instance.setLink(value);
         return this;
@@ -8051,7 +8051,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
        */
       public Builder setLink(
-          LinkMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.LinkMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setLink(builderForValue);
         return this;
@@ -8059,7 +8059,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.LinkMessage link = 10;</code>
        */
-      public Builder mergeLink(LinkMessage value) {
+      public Builder mergeLink(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
         copyOnWrite();
         instance.mergeLink(value);
         return this;
@@ -8081,13 +8081,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
        */
-      public AudioVideoCallMessage getCall() {
+      public com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage getCall() {
         return instance.getCall();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
        */
-      public Builder setCall(AudioVideoCallMessage value) {
+      public Builder setCall(com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage value) {
         copyOnWrite();
         instance.setCall(value);
         return this;
@@ -8096,7 +8096,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
        */
       public Builder setCall(
-          AudioVideoCallMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setCall(builderForValue);
         return this;
@@ -8104,7 +8104,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.AudioVideoCallMessage call = 11;</code>
        */
-      public Builder mergeCall(AudioVideoCallMessage value) {
+      public Builder mergeCall(com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage value) {
         copyOnWrite();
         instance.mergeCall(value);
         return this;
@@ -8166,7 +8166,7 @@ public final class RtcProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
-      public java.util.List<MsgReceiver> getReceiversList() {
+      public java.util.List<com.treeleaf.anydone.entities.RtcProto.MsgReceiver> getReceiversList() {
         return java.util.Collections.unmodifiableList(
             instance.getReceiversList());
       }
@@ -8178,14 +8178,14 @@ public final class RtcProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
-      public MsgReceiver getReceivers(int index) {
+      public com.treeleaf.anydone.entities.RtcProto.MsgReceiver getReceivers(int index) {
         return instance.getReceivers(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
       public Builder setReceivers(
-          int index, MsgReceiver value) {
+          int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver value) {
         copyOnWrite();
         instance.setReceivers(index, value);
         return this;
@@ -8194,7 +8194,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
       public Builder setReceivers(
-          int index, MsgReceiver.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver.Builder builderForValue) {
         copyOnWrite();
         instance.setReceivers(index, builderForValue);
         return this;
@@ -8202,7 +8202,7 @@ public final class RtcProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
-      public Builder addReceivers(MsgReceiver value) {
+      public Builder addReceivers(com.treeleaf.anydone.entities.RtcProto.MsgReceiver value) {
         copyOnWrite();
         instance.addReceivers(value);
         return this;
@@ -8211,7 +8211,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
       public Builder addReceivers(
-          int index, MsgReceiver value) {
+          int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver value) {
         copyOnWrite();
         instance.addReceivers(index, value);
         return this;
@@ -8220,7 +8220,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
       public Builder addReceivers(
-          MsgReceiver.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.MsgReceiver.Builder builderForValue) {
         copyOnWrite();
         instance.addReceivers(builderForValue);
         return this;
@@ -8229,7 +8229,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
       public Builder addReceivers(
-          int index, MsgReceiver.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.RtcProto.MsgReceiver.Builder builderForValue) {
         copyOnWrite();
         instance.addReceivers(index, builderForValue);
         return this;
@@ -8238,7 +8238,7 @@ public final class RtcProto {
        * <code>repeated .treeleaf.anydone.entities.MsgReceiver receivers = 14;</code>
        */
       public Builder addAllReceivers(
-          Iterable<? extends MsgReceiver> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.MsgReceiver> values) {
         copyOnWrite();
         instance.addAllReceivers(values);
         return this;
@@ -8263,7 +8263,7 @@ public final class RtcProto {
       /**
        * <code>optional string parentMessageId = 15;</code>
        */
-      public String getParentMessageId() {
+      public java.lang.String getParentMessageId() {
         return instance.getParentMessageId();
       }
       /**
@@ -8277,7 +8277,7 @@ public final class RtcProto {
        * <code>optional string parentMessageId = 15;</code>
        */
       public Builder setParentMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setParentMessageId(value);
         return this;
@@ -8329,7 +8329,7 @@ public final class RtcProto {
        *
        * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
        */
-      public RtcMessageType getRtcMessageType() {
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessageType getRtcMessageType() {
         return instance.getRtcMessageType();
       }
       /**
@@ -8339,7 +8339,7 @@ public final class RtcProto {
        *
        * <code>optional .treeleaf.anydone.entities.RtcMessageType rtcMessageType = 16;</code>
        */
-      public Builder setRtcMessageType(RtcMessageType value) {
+      public Builder setRtcMessageType(com.treeleaf.anydone.entities.RtcProto.RtcMessageType value) {
         copyOnWrite();
         instance.setRtcMessageType(value);
         return this;
@@ -8364,7 +8364,7 @@ public final class RtcProto {
        *
        * <code>optional string refId = 17;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -8386,7 +8386,7 @@ public final class RtcProto {
        * <code>optional string refId = 17;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -8426,13 +8426,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
        */
-      public UserProto.Account getSenderAccountObj() {
+      public com.treeleaf.anydone.entities.UserProto.Account getSenderAccountObj() {
         return instance.getSenderAccountObj();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
        */
-      public Builder setSenderAccountObj(UserProto.Account value) {
+      public Builder setSenderAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setSenderAccountObj(value);
         return this;
@@ -8441,7 +8441,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
        */
       public Builder setSenderAccountObj(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setSenderAccountObj(builderForValue);
         return this;
@@ -8449,7 +8449,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccountObj = 18;</code>
        */
-      public Builder mergeSenderAccountObj(UserProto.Account value) {
+      public Builder mergeSenderAccountObj(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeSenderAccountObj(value);
         return this;
@@ -8471,13 +8471,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
        */
-      public NLUProto.KGraphReply getKGraphReply() {
+      public com.treeleaf.anydone.entities.NLUProto.KGraphReply getKGraphReply() {
         return instance.getKGraphReply();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
        */
-      public Builder setKGraphReply(NLUProto.KGraphReply value) {
+      public Builder setKGraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
         copyOnWrite();
         instance.setKGraphReply(value);
         return this;
@@ -8486,7 +8486,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
        */
       public Builder setKGraphReply(
-          NLUProto.KGraphReply.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder builderForValue) {
         copyOnWrite();
         instance.setKGraphReply(builderForValue);
         return this;
@@ -8494,7 +8494,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.KGraphReply kGraphReply = 19;</code>
        */
-      public Builder mergeKGraphReply(NLUProto.KGraphReply value) {
+      public Builder mergeKGraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
         copyOnWrite();
         instance.mergeKGraphReply(value);
         return this;
@@ -8514,7 +8514,7 @@ public final class RtcProto {
        *
        * <code>optional string timezone = 20;</code>
        */
-      public String getTimezone() {
+      public java.lang.String getTimezone() {
         return instance.getTimezone();
       }
       /**
@@ -8536,7 +8536,7 @@ public final class RtcProto {
        * <code>optional string timezone = 20;</code>
        */
       public Builder setTimezone(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTimezone(value);
         return this;
@@ -8596,7 +8596,7 @@ public final class RtcProto {
        *
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
        */
-      public AnydoneProto.ServiceContext getContext() {
+      public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
@@ -8606,7 +8606,7 @@ public final class RtcProto {
        *
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 21;</code>
        */
-      public Builder setContext(AnydoneProto.ServiceContext value) {
+      public Builder setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
@@ -8631,7 +8631,7 @@ public final class RtcProto {
        *
        * <code>optional string serviceId = 22;</code>
        */
-      public String getServiceId() {
+      public java.lang.String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -8653,7 +8653,7 @@ public final class RtcProto {
        * <code>optional string serviceId = 22;</code>
        */
       public Builder setServiceId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -8687,7 +8687,7 @@ public final class RtcProto {
       /**
        * <code>optional string serviceProviderAccountId = 23;</code>
        */
-      public String getServiceProviderAccountId() {
+      public java.lang.String getServiceProviderAccountId() {
         return instance.getServiceProviderAccountId();
       }
       /**
@@ -8701,7 +8701,7 @@ public final class RtcProto {
        * <code>optional string serviceProviderAccountId = 23;</code>
        */
       public Builder setServiceProviderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceProviderAccountId(value);
         return this;
@@ -8727,7 +8727,7 @@ public final class RtcProto {
       /**
        * <code>optional string defaultLabelId = 24;</code>
        */
-      public String getDefaultLabelId() {
+      public java.lang.String getDefaultLabelId() {
         return instance.getDefaultLabelId();
       }
       /**
@@ -8741,7 +8741,7 @@ public final class RtcProto {
        * <code>optional string defaultLabelId = 24;</code>
        */
       public Builder setDefaultLabelId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setDefaultLabelId(value);
         return this;
@@ -8767,7 +8767,7 @@ public final class RtcProto {
       /**
        * <code>optional string language = 25;</code>
        */
-      public String getLanguage() {
+      public java.lang.String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -8781,7 +8781,7 @@ public final class RtcProto {
        * <code>optional string language = 25;</code>
        */
       public Builder setLanguage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -8807,11 +8807,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcMessage)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RtcMessage();
+          return new com.treeleaf.anydone.entities.RtcProto.RtcMessage();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -8825,7 +8825,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RtcMessage other = (RtcMessage) arg1;
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage other = (com.treeleaf.anydone.entities.RtcProto.RtcMessage) arg1;
           rtcMessageId_ = visitor.visitString(!rtcMessageId_.isEmpty(), rtcMessageId_,
               !other.rtcMessageId_.isEmpty(), other.rtcMessageId_);
           senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
@@ -8863,7 +8863,7 @@ public final class RtcProto {
               !other.defaultLabelId_.isEmpty(), other.defaultLabelId_);
           language_ = visitor.visitString(!language_.isEmpty(), language_,
               !other.language_.isEmpty(), other.language_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -8913,11 +8913,11 @@ public final class RtcProto {
                   break;
                 }
                 case 42: {
-                  TextMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.TextMessage.Builder subBuilder = null;
                   if (text_ != null) {
                     subBuilder = text_.toBuilder();
                   }
-                  text_ = input.readMessage(TextMessage.parser(), extensionRegistry);
+                  text_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.TextMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(text_);
                     text_ = subBuilder.buildPartial();
@@ -8926,11 +8926,11 @@ public final class RtcProto {
                   break;
                 }
                 case 50: {
-                  AttachmentMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.Builder subBuilder = null;
                   if (attachment_ != null) {
                     subBuilder = attachment_.toBuilder();
                   }
-                  attachment_ = input.readMessage(AttachmentMessage.parser(), extensionRegistry);
+                  attachment_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.AttachmentMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(attachment_);
                     attachment_ = subBuilder.buildPartial();
@@ -8939,11 +8939,11 @@ public final class RtcProto {
                   break;
                 }
                 case 58: {
-                  ImageMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.ImageMessage.Builder subBuilder = null;
                   if (image_ != null) {
                     subBuilder = image_.toBuilder();
                   }
-                  image_ = input.readMessage(ImageMessage.parser(), extensionRegistry);
+                  image_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.ImageMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(image_);
                     image_ = subBuilder.buildPartial();
@@ -8952,11 +8952,11 @@ public final class RtcProto {
                   break;
                 }
                 case 66: {
-                  AudioMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.AudioMessage.Builder subBuilder = null;
                   if (audio_ != null) {
                     subBuilder = audio_.toBuilder();
                   }
-                  audio_ = input.readMessage(AudioMessage.parser(), extensionRegistry);
+                  audio_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.AudioMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(audio_);
                     audio_ = subBuilder.buildPartial();
@@ -8965,11 +8965,11 @@ public final class RtcProto {
                   break;
                 }
                 case 74: {
-                  VideoMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.VideoMessage.Builder subBuilder = null;
                   if (video_ != null) {
                     subBuilder = video_.toBuilder();
                   }
-                  video_ = input.readMessage(VideoMessage.parser(), extensionRegistry);
+                  video_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.VideoMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(video_);
                     video_ = subBuilder.buildPartial();
@@ -8978,11 +8978,11 @@ public final class RtcProto {
                   break;
                 }
                 case 82: {
-                  LinkMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.LinkMessage.Builder subBuilder = null;
                   if (link_ != null) {
                     subBuilder = link_.toBuilder();
                   }
-                  link_ = input.readMessage(LinkMessage.parser(), extensionRegistry);
+                  link_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.LinkMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(link_);
                     link_ = subBuilder.buildPartial();
@@ -8991,11 +8991,11 @@ public final class RtcProto {
                   break;
                 }
                 case 90: {
-                  AudioVideoCallMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.Builder subBuilder = null;
                   if (call_ != null) {
                     subBuilder = call_.toBuilder();
                   }
-                  call_ = input.readMessage(AudioVideoCallMessage.parser(), extensionRegistry);
+                  call_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.AudioVideoCallMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(call_);
                     call_ = subBuilder.buildPartial();
@@ -9019,7 +9019,7 @@ public final class RtcProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(receivers_);
                   }
                   receivers_.add(
-                      input.readMessage(MsgReceiver.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.RtcProto.MsgReceiver.parser(), extensionRegistry));
                   break;
                 }
                 case 122: {
@@ -9041,11 +9041,11 @@ public final class RtcProto {
                   break;
                 }
                 case 146: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccountObj_ != null) {
                     subBuilder = senderAccountObj_.toBuilder();
                   }
-                  senderAccountObj_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  senderAccountObj_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(senderAccountObj_);
                     senderAccountObj_ = subBuilder.buildPartial();
@@ -9054,11 +9054,11 @@ public final class RtcProto {
                   break;
                 }
                 case 154: {
-                  NLUProto.KGraphReply.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder subBuilder = null;
                   if (kGraphReply_ != null) {
                     subBuilder = kGraphReply_.toBuilder();
                   }
-                  kGraphReply_ = input.readMessage(NLUProto.KGraphReply.parser(), extensionRegistry);
+                  kGraphReply_ = input.readMessage(com.treeleaf.anydone.entities.NLUProto.KGraphReply.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(kGraphReply_);
                     kGraphReply_ = subBuilder.buildPartial();
@@ -9117,7 +9117,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RtcMessage.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.RtcMessage.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -9131,13 +9131,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RtcMessage)
-    private static final RtcMessage DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.RtcMessage DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RtcMessage();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RtcMessage getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.RtcMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9155,7 +9155,7 @@ public final class RtcProto {
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    String getRtcMessageId();
+    java.lang.String getRtcMessageId();
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
@@ -9165,7 +9165,7 @@ public final class RtcProto {
     /**
      * <code>optional string senderAccountId = 2;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 2;</code>
      */
@@ -9175,7 +9175,7 @@ public final class RtcProto {
     /**
      * <code>optional string clientId = 3;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 3;</code>
      */
@@ -9201,11 +9201,11 @@ public final class RtcProto {
       clientId_ = "";
     }
     public static final int RTCMESSAGEID_FIELD_NUMBER = 1;
-    private String rtcMessageId_;
+    private java.lang.String rtcMessageId_;
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    public String getRtcMessageId() {
+    public java.lang.String getRtcMessageId() {
       return rtcMessageId_;
     }
     /**
@@ -9219,7 +9219,7 @@ public final class RtcProto {
      * <code>optional string rtcMessageId = 1;</code>
      */
     private void setRtcMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9247,11 +9247,11 @@ public final class RtcProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 2;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -9265,7 +9265,7 @@ public final class RtcProto {
      * <code>optional string senderAccountId = 2;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9293,11 +9293,11 @@ public final class RtcProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 3;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 3;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -9311,7 +9311,7 @@ public final class RtcProto {
      * <code>optional string clientId = 3;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9402,60 +9402,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static MessageDeliveredRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static MessageDeliveredRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static MessageDeliveredRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static MessageDeliveredRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static MessageDeliveredRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static MessageDeliveredRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static MessageDeliveredRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static MessageDeliveredRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static MessageDeliveredRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static MessageDeliveredRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -9466,7 +9466,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(MessageDeliveredRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -9475,9 +9475,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          MessageDeliveredRequest, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MessageDeliveredRequest)
-        MessageDeliveredRequestOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -9487,7 +9487,7 @@ public final class RtcProto {
       /**
        * <code>optional string rtcMessageId = 1;</code>
        */
-      public String getRtcMessageId() {
+      public java.lang.String getRtcMessageId() {
         return instance.getRtcMessageId();
       }
       /**
@@ -9501,7 +9501,7 @@ public final class RtcProto {
        * <code>optional string rtcMessageId = 1;</code>
        */
       public Builder setRtcMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRtcMessageId(value);
         return this;
@@ -9527,7 +9527,7 @@ public final class RtcProto {
       /**
        * <code>optional string senderAccountId = 2;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -9541,7 +9541,7 @@ public final class RtcProto {
        * <code>optional string senderAccountId = 2;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -9567,7 +9567,7 @@ public final class RtcProto {
       /**
        * <code>optional string clientId = 3;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -9581,7 +9581,7 @@ public final class RtcProto {
        * <code>optional string clientId = 3;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -9630,11 +9630,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessageDeliveredRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new MessageDeliveredRequest();
+          return new com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -9647,7 +9647,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          MessageDeliveredRequest other = (MessageDeliveredRequest) arg1;
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest other = (com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest) arg1;
           rtcMessageId_ = visitor.visitString(!rtcMessageId_.isEmpty(), rtcMessageId_,
               !other.rtcMessageId_.isEmpty(), other.rtcMessageId_);
           senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
@@ -9656,7 +9656,7 @@ public final class RtcProto {
               !other.clientId_.isEmpty(), other.clientId_);
           timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
               other.timestamp_ != 0L, other.timestamp_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -9718,7 +9718,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (MessageDeliveredRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -9732,13 +9732,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MessageDeliveredRequest)
-    private static final MessageDeliveredRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new MessageDeliveredRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static MessageDeliveredRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9756,7 +9756,7 @@ public final class RtcProto {
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    String getRtcMessageId();
+    java.lang.String getRtcMessageId();
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
@@ -9766,7 +9766,7 @@ public final class RtcProto {
     /**
      * <code>optional string senderAccountId = 2;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 2;</code>
      */
@@ -9776,7 +9776,7 @@ public final class RtcProto {
     /**
      * <code>optional string clientId = 3;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 3;</code>
      */
@@ -9795,7 +9795,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
      */
-    RtcMessage getRtcMessage();
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.MessageDeliveredResponse}
@@ -9811,11 +9811,11 @@ public final class RtcProto {
       clientId_ = "";
     }
     public static final int RTCMESSAGEID_FIELD_NUMBER = 1;
-    private String rtcMessageId_;
+    private java.lang.String rtcMessageId_;
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    public String getRtcMessageId() {
+    public java.lang.String getRtcMessageId() {
       return rtcMessageId_;
     }
     /**
@@ -9829,7 +9829,7 @@ public final class RtcProto {
      * <code>optional string rtcMessageId = 1;</code>
      */
     private void setRtcMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9857,11 +9857,11 @@ public final class RtcProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 2;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -9875,7 +9875,7 @@ public final class RtcProto {
      * <code>optional string senderAccountId = 2;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9903,11 +9903,11 @@ public final class RtcProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 3;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 3;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -9921,7 +9921,7 @@ public final class RtcProto {
      * <code>optional string clientId = 3;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -9972,7 +9972,7 @@ public final class RtcProto {
     }
 
     public static final int RTCMESSAGE_FIELD_NUMBER = 5;
-    private RtcMessage rtcMessage_;
+    private com.treeleaf.anydone.entities.RtcProto.RtcMessage rtcMessage_;
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
      */
@@ -9982,13 +9982,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
      */
-    public RtcMessage getRtcMessage() {
-      return rtcMessage_ == null ? RtcMessage.getDefaultInstance() : rtcMessage_;
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
+      return rtcMessage_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : rtcMessage_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
      */
-    private void setRtcMessage(RtcMessage value) {
+    private void setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -9999,18 +9999,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
      */
     private void setRtcMessage(
-        RtcMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
       rtcMessage_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
      */
-    private void mergeRtcMessage(RtcMessage value) {
+    private void mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
       if (rtcMessage_ != null &&
-          rtcMessage_ != RtcMessage.getDefaultInstance()) {
+          rtcMessage_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
         rtcMessage_ =
-          RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
       } else {
         rtcMessage_ = value;
       }
@@ -10071,60 +10071,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static MessageDeliveredResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static MessageDeliveredResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static MessageDeliveredResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static MessageDeliveredResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static MessageDeliveredResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static MessageDeliveredResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static MessageDeliveredResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static MessageDeliveredResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static MessageDeliveredResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static MessageDeliveredResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -10135,7 +10135,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(MessageDeliveredResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -10144,9 +10144,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          MessageDeliveredResponse, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MessageDeliveredResponse)
-        MessageDeliveredResponseOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -10156,7 +10156,7 @@ public final class RtcProto {
       /**
        * <code>optional string rtcMessageId = 1;</code>
        */
-      public String getRtcMessageId() {
+      public java.lang.String getRtcMessageId() {
         return instance.getRtcMessageId();
       }
       /**
@@ -10170,7 +10170,7 @@ public final class RtcProto {
        * <code>optional string rtcMessageId = 1;</code>
        */
       public Builder setRtcMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRtcMessageId(value);
         return this;
@@ -10196,7 +10196,7 @@ public final class RtcProto {
       /**
        * <code>optional string senderAccountId = 2;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -10210,7 +10210,7 @@ public final class RtcProto {
        * <code>optional string senderAccountId = 2;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -10236,7 +10236,7 @@ public final class RtcProto {
       /**
        * <code>optional string clientId = 3;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -10250,7 +10250,7 @@ public final class RtcProto {
        * <code>optional string clientId = 3;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -10305,13 +10305,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
        */
-      public RtcMessage getRtcMessage() {
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
         return instance.getRtcMessage();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
        */
-      public Builder setRtcMessage(RtcMessage value) {
+      public Builder setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
         copyOnWrite();
         instance.setRtcMessage(value);
         return this;
@@ -10320,7 +10320,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
        */
       public Builder setRtcMessage(
-          RtcMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setRtcMessage(builderForValue);
         return this;
@@ -10328,7 +10328,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 5;</code>
        */
-      public Builder mergeRtcMessage(RtcMessage value) {
+      public Builder mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
         copyOnWrite();
         instance.mergeRtcMessage(value);
         return this;
@@ -10344,11 +10344,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessageDeliveredResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new MessageDeliveredResponse();
+          return new com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -10361,7 +10361,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          MessageDeliveredResponse other = (MessageDeliveredResponse) arg1;
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse other = (com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse) arg1;
           rtcMessageId_ = visitor.visitString(!rtcMessageId_.isEmpty(), rtcMessageId_,
               !other.rtcMessageId_.isEmpty(), other.rtcMessageId_);
           senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
@@ -10371,7 +10371,7 @@ public final class RtcProto {
           timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
               other.timestamp_ != 0L, other.timestamp_);
           rtcMessage_ = visitor.visitMessage(rtcMessage_, other.rtcMessage_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -10419,11 +10419,11 @@ public final class RtcProto {
                   break;
                 }
                 case 42: {
-                  RtcMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
                   if (rtcMessage_ != null) {
                     subBuilder = rtcMessage_.toBuilder();
                   }
-                  rtcMessage_ = input.readMessage(RtcMessage.parser(), extensionRegistry);
+                  rtcMessage_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(rtcMessage_);
                     rtcMessage_ = subBuilder.buildPartial();
@@ -10446,7 +10446,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (MessageDeliveredResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -10460,13 +10460,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MessageDeliveredResponse)
-    private static final MessageDeliveredResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new MessageDeliveredResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static MessageDeliveredResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10499,7 +10499,7 @@ public final class RtcProto {
     /**
      * <code>optional string refId = 4;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 4;</code>
      */
@@ -10513,7 +10513,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
-    AnydoneProto.ServiceContext getContext();
+    com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.GetMessageRequest}
@@ -10596,11 +10596,11 @@ public final class RtcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 4;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 4;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -10614,7 +10614,7 @@ public final class RtcProto {
      * <code>optional string refId = 4;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -10652,9 +10652,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
-    public AnydoneProto.ServiceContext getContext() {
-      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
-      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
+      com.treeleaf.anydone.entities.AnydoneProto.ServiceContext result = com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
@@ -10665,7 +10665,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
      */
-    private void setContext(AnydoneProto.ServiceContext value) {
+    private void setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -10694,7 +10694,7 @@ public final class RtcProto {
       if (!refId_.isEmpty()) {
         output.writeString(4, getRefId());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(5, context_);
       }
     }
@@ -10720,7 +10720,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getRefId());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, context_);
       }
@@ -10728,60 +10728,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static GetMessageRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static GetMessageRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static GetMessageRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static GetMessageRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static GetMessageRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static GetMessageRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static GetMessageRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static GetMessageRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static GetMessageRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static GetMessageRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -10792,7 +10792,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(GetMessageRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.GetMessageRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -10801,9 +10801,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          GetMessageRequest, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.GetMessageRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.GetMessageRequest)
-        GetMessageRequestOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.GetMessageRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.GetMessageRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -10882,7 +10882,7 @@ public final class RtcProto {
       /**
        * <code>optional string refId = 4;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -10896,7 +10896,7 @@ public final class RtcProto {
        * <code>optional string refId = 4;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -10936,13 +10936,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
        */
-      public AnydoneProto.ServiceContext getContext() {
+      public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 5;</code>
        */
-      public Builder setContext(AnydoneProto.ServiceContext value) {
+      public Builder setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
@@ -10959,11 +10959,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.GetMessageRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new GetMessageRequest();
+          return new com.treeleaf.anydone.entities.RtcProto.GetMessageRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -10976,7 +10976,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          GetMessageRequest other = (GetMessageRequest) arg1;
+          com.treeleaf.anydone.entities.RtcProto.GetMessageRequest other = (com.treeleaf.anydone.entities.RtcProto.GetMessageRequest) arg1;
           from_ = visitor.visitLong(from_ != 0L, from_,
               other.from_ != 0L, other.from_);
           to_ = visitor.visitLong(to_ != 0L, to_,
@@ -10986,7 +10986,7 @@ public final class RtcProto {
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           context_ = visitor.visitInt(context_ != 0, context_,    other.context_ != 0, other.context_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -11052,7 +11052,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (GetMessageRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.GetMessageRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -11066,13 +11066,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.GetMessageRequest)
-    private static final GetMessageRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.GetMessageRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new GetMessageRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static GetMessageRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11090,7 +11090,7 @@ public final class RtcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -11100,7 +11100,7 @@ public final class RtcProto {
     /**
      * <code>optional string messageId = 2;</code>
      */
-    String getMessageId();
+    java.lang.String getMessageId();
     /**
      * <code>optional string messageId = 2;</code>
      */
@@ -11120,11 +11120,11 @@ public final class RtcProto {
       messageId_ = "";
     }
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -11138,7 +11138,7 @@ public final class RtcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11166,11 +11166,11 @@ public final class RtcProto {
     }
 
     public static final int MESSAGEID_FIELD_NUMBER = 2;
-    private String messageId_;
+    private java.lang.String messageId_;
     /**
      * <code>optional string messageId = 2;</code>
      */
-    public String getMessageId() {
+    public java.lang.String getMessageId() {
       return messageId_;
     }
     /**
@@ -11184,7 +11184,7 @@ public final class RtcProto {
      * <code>optional string messageId = 2;</code>
      */
     private void setMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11238,60 +11238,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static GetMessageDetail parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static GetMessageDetail parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static GetMessageDetail parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static GetMessageDetail parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static GetMessageDetail parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static GetMessageDetail parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static GetMessageDetail parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static GetMessageDetail parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static GetMessageDetail parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static GetMessageDetail parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -11302,7 +11302,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(GetMessageDetail prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.GetMessageDetail prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -11311,9 +11311,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          GetMessageDetail, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.GetMessageDetail, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.GetMessageDetail)
-        GetMessageDetailOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.GetMessageDetailOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.GetMessageDetail.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -11323,7 +11323,7 @@ public final class RtcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -11337,7 +11337,7 @@ public final class RtcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -11363,7 +11363,7 @@ public final class RtcProto {
       /**
        * <code>optional string messageId = 2;</code>
        */
-      public String getMessageId() {
+      public java.lang.String getMessageId() {
         return instance.getMessageId();
       }
       /**
@@ -11377,7 +11377,7 @@ public final class RtcProto {
        * <code>optional string messageId = 2;</code>
        */
       public Builder setMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMessageId(value);
         return this;
@@ -11403,11 +11403,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.GetMessageDetail)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new GetMessageDetail();
+          return new com.treeleaf.anydone.entities.RtcProto.GetMessageDetail();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -11420,12 +11420,12 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          GetMessageDetail other = (GetMessageDetail) arg1;
+          com.treeleaf.anydone.entities.RtcProto.GetMessageDetail other = (com.treeleaf.anydone.entities.RtcProto.GetMessageDetail) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           messageId_ = visitor.visitString(!messageId_.isEmpty(), messageId_,
               !other.messageId_.isEmpty(), other.messageId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -11476,7 +11476,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (GetMessageDetail.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.GetMessageDetail.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -11490,13 +11490,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.GetMessageDetail)
-    private static final GetMessageDetail DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.GetMessageDetail DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new GetMessageDetail();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static GetMessageDetail getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.GetMessageDetail getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11514,7 +11514,7 @@ public final class RtcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -11524,7 +11524,7 @@ public final class RtcProto {
     /**
      * <code>optional string messageId = 2;</code>
      */
-    String getMessageId();
+    java.lang.String getMessageId();
     /**
      * <code>optional string messageId = 2;</code>
      */
@@ -11534,7 +11534,7 @@ public final class RtcProto {
     /**
      * <code>optional string senderAccountId = 3;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 3;</code>
      */
@@ -11544,7 +11544,7 @@ public final class RtcProto {
     /**
      * <code>optional string clientId = 4;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 4;</code>
      */
@@ -11566,11 +11566,11 @@ public final class RtcProto {
       clientId_ = "";
     }
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -11584,7 +11584,7 @@ public final class RtcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11612,11 +11612,11 @@ public final class RtcProto {
     }
 
     public static final int MESSAGEID_FIELD_NUMBER = 2;
-    private String messageId_;
+    private java.lang.String messageId_;
     /**
      * <code>optional string messageId = 2;</code>
      */
-    public String getMessageId() {
+    public java.lang.String getMessageId() {
       return messageId_;
     }
     /**
@@ -11630,7 +11630,7 @@ public final class RtcProto {
      * <code>optional string messageId = 2;</code>
      */
     private void setMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11658,11 +11658,11 @@ public final class RtcProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 3;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 3;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -11676,7 +11676,7 @@ public final class RtcProto {
      * <code>optional string senderAccountId = 3;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11704,11 +11704,11 @@ public final class RtcProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 4;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 4;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -11722,7 +11722,7 @@ public final class RtcProto {
      * <code>optional string clientId = 4;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -11790,60 +11790,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static DeleteMessageReq parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static DeleteMessageReq parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static DeleteMessageReq parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static DeleteMessageReq parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static DeleteMessageReq parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static DeleteMessageReq parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static DeleteMessageReq parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static DeleteMessageReq parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static DeleteMessageReq parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static DeleteMessageReq parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -11854,7 +11854,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(DeleteMessageReq prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -11863,9 +11863,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          DeleteMessageReq, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DeleteMessageReq)
-        DeleteMessageReqOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.DeleteMessageReqOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -11875,7 +11875,7 @@ public final class RtcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -11889,7 +11889,7 @@ public final class RtcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -11915,7 +11915,7 @@ public final class RtcProto {
       /**
        * <code>optional string messageId = 2;</code>
        */
-      public String getMessageId() {
+      public java.lang.String getMessageId() {
         return instance.getMessageId();
       }
       /**
@@ -11929,7 +11929,7 @@ public final class RtcProto {
        * <code>optional string messageId = 2;</code>
        */
       public Builder setMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMessageId(value);
         return this;
@@ -11955,7 +11955,7 @@ public final class RtcProto {
       /**
        * <code>optional string senderAccountId = 3;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -11969,7 +11969,7 @@ public final class RtcProto {
        * <code>optional string senderAccountId = 3;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -11995,7 +11995,7 @@ public final class RtcProto {
       /**
        * <code>optional string clientId = 4;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -12009,7 +12009,7 @@ public final class RtcProto {
        * <code>optional string clientId = 4;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -12035,11 +12035,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DeleteMessageReq)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new DeleteMessageReq();
+          return new com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -12052,7 +12052,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          DeleteMessageReq other = (DeleteMessageReq) arg1;
+          com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq other = (com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           messageId_ = visitor.visitString(!messageId_.isEmpty(), messageId_,
@@ -12061,7 +12061,7 @@ public final class RtcProto {
               !other.senderAccountId_.isEmpty(), other.senderAccountId_);
           clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
               !other.clientId_.isEmpty(), other.clientId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -12124,7 +12124,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (DeleteMessageReq.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -12138,13 +12138,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DeleteMessageReq)
-    private static final DeleteMessageReq DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new DeleteMessageReq();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static DeleteMessageReq getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -12166,7 +12166,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayRequest.RelayRequestType relayType = 1;</code>
      */
-    RelayRequest.RelayRequestType getRelayType();
+    com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType getRelayType();
 
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
@@ -12175,7 +12175,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    RtcMessage getRtcMessage();
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage();
 
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
@@ -12184,7 +12184,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
      */
-    MessageDeliveredRequest getMessageDeliveredRequest();
+    com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest getMessageDeliveredRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
@@ -12193,7 +12193,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
      */
-    DeleteMessageReq getDeleteMessageReq();
+    com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq getDeleteMessageReq();
 
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
@@ -12202,16 +12202,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
      */
-    SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    boolean hasScreenDrawRequest();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    SignalingProto.ScreenDrawRequest getScreenDrawRequest();
+    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
 
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
@@ -12220,7 +12211,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
      */
-    SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest();
+    com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
@@ -12229,7 +12220,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
      */
-    SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftRequest();
+    com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
@@ -12238,7 +12229,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
      */
-    SignalingProto.ParticipantLeft getParticipantLeftRequest();
+    com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft getParticipantLeftRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
@@ -12247,7 +12238,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
      */
-    SignalingProto.StartDraw getStartDrawRequest();
+    com.treeleaf.anydone.entities.SignalingProto.StartDraw getStartDrawRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
@@ -12256,7 +12247,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
      */
-    SignalingProto.StartDrawAcknowledgement getStartDrawAckRequest();
+    com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement getStartDrawAckRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
@@ -12265,7 +12256,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
      */
-    SignalingProto.CancelDrawing getCancelDrawRequest();
+    com.treeleaf.anydone.entities.SignalingProto.CancelDrawing getCancelDrawRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
@@ -12274,7 +12265,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
-    AnydoneProto.ServiceContext getContext();
+    com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
@@ -12283,7 +12274,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
      */
-    SignalingProto.ReceiveNewTextField getReceiveNewTextFieldRequest();
+    com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField getReceiveNewTextFieldRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
@@ -12292,7 +12283,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
      */
-    SignalingProto.TextFieldChange getTextFieldChangeRequest();
+    com.treeleaf.anydone.entities.SignalingProto.TextFieldChange getTextFieldChangeRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
@@ -12301,7 +12292,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
      */
-    SignalingProto.TextFieldRemove getTextFieldRemoveRequest();
+    com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove getTextFieldRemoveRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
@@ -12310,7 +12301,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
      */
-    SignalingProto.DrawTouchDown getDrawTouchDownRequest();
+    com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown getDrawTouchDownRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
@@ -12319,7 +12310,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
      */
-    SignalingProto.DrawTouchMove getDrawTouchMoveRequest();
+    com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove getDrawTouchMoveRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
@@ -12328,7 +12319,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
      */
-    SignalingProto.DrawTouchUp getDrawTouchUpRequest();
+    com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp getDrawTouchUpRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
@@ -12337,7 +12328,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
      */
-    SignalingProto.DrawCanvasClear getDrawCanvasClearRequest();
+    com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear getDrawCanvasClearRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
@@ -12346,7 +12337,52 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
      */
-    SignalingProto.DrawMetaDataChange getDrawMetaDataChangeRequest();
+    com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange getDrawMetaDataChangeRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    boolean hasDrawMinimizeRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawMinize getDrawMinimizeRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    boolean hasDrawMaximizeReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawMaximize getDrawMaximizeReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    boolean hasDrawCloseReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawClose getDrawCloseReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    boolean hasDrawCollabReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawCollab getDrawCollabReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    boolean hasDrawCollabAcknowledgement();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayRequest}
@@ -12383,10 +12419,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST = 5;</code>
        */
       VIDEO_CALL_BROADCAST(5),
-      /**
-       * <code>DRAW_REQUEST = 6;</code>
-       */
-      DRAW_REQUEST(6),
       /**
        * <code>VIDEO_CALL_JOIN_REQUEST = 7;</code>
        */
@@ -12443,6 +12475,26 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_REQUEST = 20;</code>
        */
       DRAW_META_DATA_CHANGE_REQUEST(20),
+      /**
+       * <code>DRAW_MINIMIZE_REQUEST = 21;</code>
+       */
+      DRAW_MINIMIZE_REQUEST(21),
+      /**
+       * <code>DRAW_MAXIMIZE_REQUEST = 22;</code>
+       */
+      DRAW_MAXIMIZE_REQUEST(22),
+      /**
+       * <code>DRAW_CLOSE_REQUEST = 23;</code>
+       */
+      DRAW_CLOSE_REQUEST(23),
+      /**
+       * <code>DRAW_COLlAB_REQUEST = 24;</code>
+       */
+      DRAW_COLlAB_REQUEST(24),
+      /**
+       * <code>DRAW_COLlAB_ACKNOWLEDGEMENT_REQUEST = 25;</code>
+       */
+      DRAW_COLlAB_ACKNOWLEDGEMENT_REQUEST(25),
       UNRECOGNIZED(-1),
       ;
 
@@ -12466,10 +12518,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST = 5;</code>
        */
       public static final int VIDEO_CALL_BROADCAST_VALUE = 5;
-      /**
-       * <code>DRAW_REQUEST = 6;</code>
-       */
-      public static final int DRAW_REQUEST_VALUE = 6;
       /**
        * <code>VIDEO_CALL_JOIN_REQUEST = 7;</code>
        */
@@ -12526,6 +12574,26 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_REQUEST = 20;</code>
        */
       public static final int DRAW_META_DATA_CHANGE_REQUEST_VALUE = 20;
+      /**
+       * <code>DRAW_MINIMIZE_REQUEST = 21;</code>
+       */
+      public static final int DRAW_MINIMIZE_REQUEST_VALUE = 21;
+      /**
+       * <code>DRAW_MAXIMIZE_REQUEST = 22;</code>
+       */
+      public static final int DRAW_MAXIMIZE_REQUEST_VALUE = 22;
+      /**
+       * <code>DRAW_CLOSE_REQUEST = 23;</code>
+       */
+      public static final int DRAW_CLOSE_REQUEST_VALUE = 23;
+      /**
+       * <code>DRAW_COLlAB_REQUEST = 24;</code>
+       */
+      public static final int DRAW_COLlAB_REQUEST_VALUE = 24;
+      /**
+       * <code>DRAW_COLlAB_ACKNOWLEDGEMENT_REQUEST = 25;</code>
+       */
+      public static final int DRAW_COLlAB_ACKNOWLEDGEMENT_REQUEST_VALUE = 25;
 
 
       public final int getNumber() {
@@ -12535,7 +12603,7 @@ public final class RtcProto {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static RelayRequestType valueOf(int value) {
         return forNumber(value);
       }
@@ -12547,7 +12615,6 @@ public final class RtcProto {
           case 2: return DELIVERED_MSG_RELAY;
           case 4: return RTC_MESSAGE_DELETE;
           case 5: return VIDEO_CALL_BROADCAST;
-          case 6: return DRAW_REQUEST;
           case 7: return VIDEO_CALL_JOIN_REQUEST;
           case 8: return VIDEO_ROOM_HOST_LEFT_REQUEST;
           case 9: return PARTICIPANT_LEFT_REQUEST;
@@ -12562,6 +12629,11 @@ public final class RtcProto {
           case 18: return DRAW_TOUCH_UP_REQUEST;
           case 19: return DRAW_CANVAS_CLEAR_REQUEST;
           case 20: return DRAW_META_DATA_CHANGE_REQUEST;
+          case 21: return DRAW_MINIMIZE_REQUEST;
+          case 22: return DRAW_MAXIMIZE_REQUEST;
+          case 23: return DRAW_CLOSE_REQUEST;
+          case 24: return DRAW_COLlAB_REQUEST;
+          case 25: return DRAW_COLlAB_ACKNOWLEDGEMENT_REQUEST;
           default: return null;
         }
       }
@@ -12598,9 +12670,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayRequest.RelayRequestType relayType = 1;</code>
      */
-    public RelayRequestType getRelayType() {
-      RelayRequestType result = RelayRequestType.forNumber(relayType_);
-      return result == null ? RelayRequestType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType getRelayType() {
+      com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType result = com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType.forNumber(relayType_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RelayRequest.RelayRequestType relayType = 1;</code>
@@ -12611,7 +12683,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayRequest.RelayRequestType relayType = 1;</code>
      */
-    private void setRelayType(RelayRequestType value) {
+    private void setRelayType(com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12627,7 +12699,7 @@ public final class RtcProto {
     }
 
     public static final int RTCMESSAGE_FIELD_NUMBER = 2;
-    private RtcMessage rtcMessage_;
+    private com.treeleaf.anydone.entities.RtcProto.RtcMessage rtcMessage_;
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
@@ -12637,13 +12709,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    public RtcMessage getRtcMessage() {
-      return rtcMessage_ == null ? RtcMessage.getDefaultInstance() : rtcMessage_;
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
+      return rtcMessage_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : rtcMessage_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    private void setRtcMessage(RtcMessage value) {
+    private void setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12654,18 +12726,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
     private void setRtcMessage(
-        RtcMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
       rtcMessage_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    private void mergeRtcMessage(RtcMessage value) {
+    private void mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
       if (rtcMessage_ != null &&
-          rtcMessage_ != RtcMessage.getDefaultInstance()) {
+          rtcMessage_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
         rtcMessage_ =
-          RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
       } else {
         rtcMessage_ = value;
       }
@@ -12679,7 +12751,7 @@ public final class RtcProto {
     }
 
     public static final int MESSAGEDELIVEREDREQUEST_FIELD_NUMBER = 3;
-    private MessageDeliveredRequest messageDeliveredRequest_;
+    private com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest messageDeliveredRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
      */
@@ -12689,13 +12761,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
      */
-    public MessageDeliveredRequest getMessageDeliveredRequest() {
-      return messageDeliveredRequest_ == null ? MessageDeliveredRequest.getDefaultInstance() : messageDeliveredRequest_;
+    public com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest getMessageDeliveredRequest() {
+      return messageDeliveredRequest_ == null ? com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.getDefaultInstance() : messageDeliveredRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
      */
-    private void setMessageDeliveredRequest(MessageDeliveredRequest value) {
+    private void setMessageDeliveredRequest(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12706,18 +12778,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
      */
     private void setMessageDeliveredRequest(
-        MessageDeliveredRequest.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.Builder builderForValue) {
       messageDeliveredRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
      */
-    private void mergeMessageDeliveredRequest(MessageDeliveredRequest value) {
+    private void mergeMessageDeliveredRequest(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest value) {
       if (messageDeliveredRequest_ != null &&
-          messageDeliveredRequest_ != MessageDeliveredRequest.getDefaultInstance()) {
+          messageDeliveredRequest_ != com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.getDefaultInstance()) {
         messageDeliveredRequest_ =
-          MessageDeliveredRequest.newBuilder(messageDeliveredRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.newBuilder(messageDeliveredRequest_).mergeFrom(value).buildPartial();
       } else {
         messageDeliveredRequest_ = value;
       }
@@ -12731,7 +12803,7 @@ public final class RtcProto {
     }
 
     public static final int DELETEMESSAGEREQ_FIELD_NUMBER = 4;
-    private DeleteMessageReq deleteMessageReq_;
+    private com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq deleteMessageReq_;
     /**
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
      */
@@ -12741,13 +12813,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
      */
-    public DeleteMessageReq getDeleteMessageReq() {
-      return deleteMessageReq_ == null ? DeleteMessageReq.getDefaultInstance() : deleteMessageReq_;
+    public com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq getDeleteMessageReq() {
+      return deleteMessageReq_ == null ? com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.getDefaultInstance() : deleteMessageReq_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
      */
-    private void setDeleteMessageReq(DeleteMessageReq value) {
+    private void setDeleteMessageReq(com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12758,18 +12830,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
      */
     private void setDeleteMessageReq(
-        DeleteMessageReq.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.Builder builderForValue) {
       deleteMessageReq_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
      */
-    private void mergeDeleteMessageReq(DeleteMessageReq value) {
+    private void mergeDeleteMessageReq(com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq value) {
       if (deleteMessageReq_ != null &&
-          deleteMessageReq_ != DeleteMessageReq.getDefaultInstance()) {
+          deleteMessageReq_ != com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.getDefaultInstance()) {
         deleteMessageReq_ =
-          DeleteMessageReq.newBuilder(deleteMessageReq_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.newBuilder(deleteMessageReq_).mergeFrom(value).buildPartial();
       } else {
         deleteMessageReq_ = value;
       }
@@ -12783,7 +12855,7 @@ public final class RtcProto {
     }
 
     public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 5;
-    private SignalingProto.BroadcastVideoCall broadcastVideoCall_;
+    private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastVideoCall_;
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
      */
@@ -12793,13 +12865,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
      */
-    public SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
-      return broadcastVideoCall_ == null ? SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
+    public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+      return broadcastVideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
      */
-    private void setBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+    private void setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12810,18 +12882,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
      */
     private void setBroadcastVideoCall(
-        SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
       broadcastVideoCall_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
      */
-    private void mergeBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+    private void mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
       if (broadcastVideoCall_ != null &&
-          broadcastVideoCall_ != SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
+          broadcastVideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
         broadcastVideoCall_ =
-          SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
       } else {
         broadcastVideoCall_ = value;
       }
@@ -12834,60 +12906,8 @@ public final class RtcProto {
       
     }
 
-    public static final int SCREENDRAWREQUEST_FIELD_NUMBER = 6;
-    private SignalingProto.ScreenDrawRequest screenDrawRequest_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    public boolean hasScreenDrawRequest() {
-      return screenDrawRequest_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    public SignalingProto.ScreenDrawRequest getScreenDrawRequest() {
-      return screenDrawRequest_ == null ? SignalingProto.ScreenDrawRequest.getDefaultInstance() : screenDrawRequest_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void setScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      screenDrawRequest_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void setScreenDrawRequest(
-        SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-      screenDrawRequest_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void mergeScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-      if (screenDrawRequest_ != null &&
-          screenDrawRequest_ != SignalingProto.ScreenDrawRequest.getDefaultInstance()) {
-        screenDrawRequest_ =
-          SignalingProto.ScreenDrawRequest.newBuilder(screenDrawRequest_).mergeFrom(value).buildPartial();
-      } else {
-        screenDrawRequest_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void clearScreenDrawRequest() {  screenDrawRequest_ = null;
-      
-    }
-
     public static final int VIDEOCALLJOINREQUEST_FIELD_NUMBER = 7;
-    private SignalingProto.VideoCallJoinRequest videoCallJoinRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest videoCallJoinRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
      */
@@ -12897,13 +12917,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
      */
-    public SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
-      return videoCallJoinRequest_ == null ? SignalingProto.VideoCallJoinRequest.getDefaultInstance() : videoCallJoinRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+      return videoCallJoinRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance() : videoCallJoinRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
      */
-    private void setVideoCallJoinRequest(SignalingProto.VideoCallJoinRequest value) {
+    private void setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12914,18 +12934,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
      */
     private void setVideoCallJoinRequest(
-        SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
       videoCallJoinRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
      */
-    private void mergeVideoCallJoinRequest(SignalingProto.VideoCallJoinRequest value) {
+    private void mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
       if (videoCallJoinRequest_ != null &&
-          videoCallJoinRequest_ != SignalingProto.VideoCallJoinRequest.getDefaultInstance()) {
+          videoCallJoinRequest_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance()) {
         videoCallJoinRequest_ =
-          SignalingProto.VideoCallJoinRequest.newBuilder(videoCallJoinRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.newBuilder(videoCallJoinRequest_).mergeFrom(value).buildPartial();
       } else {
         videoCallJoinRequest_ = value;
       }
@@ -12939,7 +12959,7 @@ public final class RtcProto {
     }
 
     public static final int VIDEOROOMHOSTLEFTREQUEST_FIELD_NUMBER = 8;
-    private SignalingProto.VideoRoomHostLeft videoRoomHostLeftRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft videoRoomHostLeftRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
      */
@@ -12949,13 +12969,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
      */
-    public SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftRequest() {
-      return videoRoomHostLeftRequest_ == null ? SignalingProto.VideoRoomHostLeft.getDefaultInstance() : videoRoomHostLeftRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftRequest() {
+      return videoRoomHostLeftRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance() : videoRoomHostLeftRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
      */
-    private void setVideoRoomHostLeftRequest(SignalingProto.VideoRoomHostLeft value) {
+    private void setVideoRoomHostLeftRequest(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -12966,18 +12986,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
      */
     private void setVideoRoomHostLeftRequest(
-        SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
       videoRoomHostLeftRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
      */
-    private void mergeVideoRoomHostLeftRequest(SignalingProto.VideoRoomHostLeft value) {
+    private void mergeVideoRoomHostLeftRequest(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
       if (videoRoomHostLeftRequest_ != null &&
-          videoRoomHostLeftRequest_ != SignalingProto.VideoRoomHostLeft.getDefaultInstance()) {
+          videoRoomHostLeftRequest_ != com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance()) {
         videoRoomHostLeftRequest_ =
-          SignalingProto.VideoRoomHostLeft.newBuilder(videoRoomHostLeftRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.newBuilder(videoRoomHostLeftRequest_).mergeFrom(value).buildPartial();
       } else {
         videoRoomHostLeftRequest_ = value;
       }
@@ -12991,7 +13011,7 @@ public final class RtcProto {
     }
 
     public static final int PARTICIPANTLEFTREQUEST_FIELD_NUMBER = 9;
-    private SignalingProto.ParticipantLeft participantLeftRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft participantLeftRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
      */
@@ -13001,13 +13021,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
      */
-    public SignalingProto.ParticipantLeft getParticipantLeftRequest() {
-      return participantLeftRequest_ == null ? SignalingProto.ParticipantLeft.getDefaultInstance() : participantLeftRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft getParticipantLeftRequest() {
+      return participantLeftRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.getDefaultInstance() : participantLeftRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
      */
-    private void setParticipantLeftRequest(SignalingProto.ParticipantLeft value) {
+    private void setParticipantLeftRequest(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13018,18 +13038,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
      */
     private void setParticipantLeftRequest(
-        SignalingProto.ParticipantLeft.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.Builder builderForValue) {
       participantLeftRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
      */
-    private void mergeParticipantLeftRequest(SignalingProto.ParticipantLeft value) {
+    private void mergeParticipantLeftRequest(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
       if (participantLeftRequest_ != null &&
-          participantLeftRequest_ != SignalingProto.ParticipantLeft.getDefaultInstance()) {
+          participantLeftRequest_ != com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.getDefaultInstance()) {
         participantLeftRequest_ =
-          SignalingProto.ParticipantLeft.newBuilder(participantLeftRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.newBuilder(participantLeftRequest_).mergeFrom(value).buildPartial();
       } else {
         participantLeftRequest_ = value;
       }
@@ -13043,7 +13063,7 @@ public final class RtcProto {
     }
 
     public static final int STARTDRAWREQUEST_FIELD_NUMBER = 10;
-    private SignalingProto.StartDraw startDrawRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.StartDraw startDrawRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
      */
@@ -13053,13 +13073,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
      */
-    public SignalingProto.StartDraw getStartDrawRequest() {
-      return startDrawRequest_ == null ? SignalingProto.StartDraw.getDefaultInstance() : startDrawRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.StartDraw getStartDrawRequest() {
+      return startDrawRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.StartDraw.getDefaultInstance() : startDrawRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
      */
-    private void setStartDrawRequest(SignalingProto.StartDraw value) {
+    private void setStartDrawRequest(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13070,18 +13090,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
      */
     private void setStartDrawRequest(
-        SignalingProto.StartDraw.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.StartDraw.Builder builderForValue) {
       startDrawRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
      */
-    private void mergeStartDrawRequest(SignalingProto.StartDraw value) {
+    private void mergeStartDrawRequest(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
       if (startDrawRequest_ != null &&
-          startDrawRequest_ != SignalingProto.StartDraw.getDefaultInstance()) {
+          startDrawRequest_ != com.treeleaf.anydone.entities.SignalingProto.StartDraw.getDefaultInstance()) {
         startDrawRequest_ =
-          SignalingProto.StartDraw.newBuilder(startDrawRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.StartDraw.newBuilder(startDrawRequest_).mergeFrom(value).buildPartial();
       } else {
         startDrawRequest_ = value;
       }
@@ -13095,7 +13115,7 @@ public final class RtcProto {
     }
 
     public static final int STARTDRAWACKREQUEST_FIELD_NUMBER = 11;
-    private SignalingProto.StartDrawAcknowledgement startDrawAckRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement startDrawAckRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
      */
@@ -13105,13 +13125,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
      */
-    public SignalingProto.StartDrawAcknowledgement getStartDrawAckRequest() {
-      return startDrawAckRequest_ == null ? SignalingProto.StartDrawAcknowledgement.getDefaultInstance() : startDrawAckRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement getStartDrawAckRequest() {
+      return startDrawAckRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.getDefaultInstance() : startDrawAckRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
      */
-    private void setStartDrawAckRequest(SignalingProto.StartDrawAcknowledgement value) {
+    private void setStartDrawAckRequest(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13122,18 +13142,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
      */
     private void setStartDrawAckRequest(
-        SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
       startDrawAckRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
      */
-    private void mergeStartDrawAckRequest(SignalingProto.StartDrawAcknowledgement value) {
+    private void mergeStartDrawAckRequest(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
       if (startDrawAckRequest_ != null &&
-          startDrawAckRequest_ != SignalingProto.StartDrawAcknowledgement.getDefaultInstance()) {
+          startDrawAckRequest_ != com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.getDefaultInstance()) {
         startDrawAckRequest_ =
-          SignalingProto.StartDrawAcknowledgement.newBuilder(startDrawAckRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.newBuilder(startDrawAckRequest_).mergeFrom(value).buildPartial();
       } else {
         startDrawAckRequest_ = value;
       }
@@ -13147,7 +13167,7 @@ public final class RtcProto {
     }
 
     public static final int CANCELDRAWREQUEST_FIELD_NUMBER = 12;
-    private SignalingProto.CancelDrawing cancelDrawRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.CancelDrawing cancelDrawRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
      */
@@ -13157,13 +13177,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
      */
-    public SignalingProto.CancelDrawing getCancelDrawRequest() {
-      return cancelDrawRequest_ == null ? SignalingProto.CancelDrawing.getDefaultInstance() : cancelDrawRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.CancelDrawing getCancelDrawRequest() {
+      return cancelDrawRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.getDefaultInstance() : cancelDrawRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
      */
-    private void setCancelDrawRequest(SignalingProto.CancelDrawing value) {
+    private void setCancelDrawRequest(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13174,18 +13194,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
      */
     private void setCancelDrawRequest(
-        SignalingProto.CancelDrawing.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.Builder builderForValue) {
       cancelDrawRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
      */
-    private void mergeCancelDrawRequest(SignalingProto.CancelDrawing value) {
+    private void mergeCancelDrawRequest(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
       if (cancelDrawRequest_ != null &&
-          cancelDrawRequest_ != SignalingProto.CancelDrawing.getDefaultInstance()) {
+          cancelDrawRequest_ != com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.getDefaultInstance()) {
         cancelDrawRequest_ =
-          SignalingProto.CancelDrawing.newBuilder(cancelDrawRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.newBuilder(cancelDrawRequest_).mergeFrom(value).buildPartial();
       } else {
         cancelDrawRequest_ = value;
       }
@@ -13209,9 +13229,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
-    public AnydoneProto.ServiceContext getContext() {
-      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
-      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
+      com.treeleaf.anydone.entities.AnydoneProto.ServiceContext result = com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
@@ -13222,7 +13242,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
      */
-    private void setContext(AnydoneProto.ServiceContext value) {
+    private void setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13238,7 +13258,7 @@ public final class RtcProto {
     }
 
     public static final int RECEIVENEWTEXTFIELDREQUEST_FIELD_NUMBER = 14;
-    private SignalingProto.ReceiveNewTextField receiveNewTextFieldRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField receiveNewTextFieldRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
      */
@@ -13248,13 +13268,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
      */
-    public SignalingProto.ReceiveNewTextField getReceiveNewTextFieldRequest() {
-      return receiveNewTextFieldRequest_ == null ? SignalingProto.ReceiveNewTextField.getDefaultInstance() : receiveNewTextFieldRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField getReceiveNewTextFieldRequest() {
+      return receiveNewTextFieldRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.getDefaultInstance() : receiveNewTextFieldRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
      */
-    private void setReceiveNewTextFieldRequest(SignalingProto.ReceiveNewTextField value) {
+    private void setReceiveNewTextFieldRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13265,18 +13285,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
      */
     private void setReceiveNewTextFieldRequest(
-        SignalingProto.ReceiveNewTextField.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.Builder builderForValue) {
       receiveNewTextFieldRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
      */
-    private void mergeReceiveNewTextFieldRequest(SignalingProto.ReceiveNewTextField value) {
+    private void mergeReceiveNewTextFieldRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
       if (receiveNewTextFieldRequest_ != null &&
-          receiveNewTextFieldRequest_ != SignalingProto.ReceiveNewTextField.getDefaultInstance()) {
+          receiveNewTextFieldRequest_ != com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.getDefaultInstance()) {
         receiveNewTextFieldRequest_ =
-          SignalingProto.ReceiveNewTextField.newBuilder(receiveNewTextFieldRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.newBuilder(receiveNewTextFieldRequest_).mergeFrom(value).buildPartial();
       } else {
         receiveNewTextFieldRequest_ = value;
       }
@@ -13290,7 +13310,7 @@ public final class RtcProto {
     }
 
     public static final int TEXTFIELDCHANGEREQUEST_FIELD_NUMBER = 15;
-    private SignalingProto.TextFieldChange textFieldChangeRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.TextFieldChange textFieldChangeRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
      */
@@ -13300,13 +13320,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
      */
-    public SignalingProto.TextFieldChange getTextFieldChangeRequest() {
-      return textFieldChangeRequest_ == null ? SignalingProto.TextFieldChange.getDefaultInstance() : textFieldChangeRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.TextFieldChange getTextFieldChangeRequest() {
+      return textFieldChangeRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.getDefaultInstance() : textFieldChangeRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
      */
-    private void setTextFieldChangeRequest(SignalingProto.TextFieldChange value) {
+    private void setTextFieldChangeRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13317,18 +13337,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
      */
     private void setTextFieldChangeRequest(
-        SignalingProto.TextFieldChange.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.Builder builderForValue) {
       textFieldChangeRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
      */
-    private void mergeTextFieldChangeRequest(SignalingProto.TextFieldChange value) {
+    private void mergeTextFieldChangeRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
       if (textFieldChangeRequest_ != null &&
-          textFieldChangeRequest_ != SignalingProto.TextFieldChange.getDefaultInstance()) {
+          textFieldChangeRequest_ != com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.getDefaultInstance()) {
         textFieldChangeRequest_ =
-          SignalingProto.TextFieldChange.newBuilder(textFieldChangeRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.newBuilder(textFieldChangeRequest_).mergeFrom(value).buildPartial();
       } else {
         textFieldChangeRequest_ = value;
       }
@@ -13342,7 +13362,7 @@ public final class RtcProto {
     }
 
     public static final int TEXTFIELDREMOVEREQUEST_FIELD_NUMBER = 16;
-    private SignalingProto.TextFieldRemove textFieldRemoveRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove textFieldRemoveRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
      */
@@ -13352,13 +13372,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
      */
-    public SignalingProto.TextFieldRemove getTextFieldRemoveRequest() {
-      return textFieldRemoveRequest_ == null ? SignalingProto.TextFieldRemove.getDefaultInstance() : textFieldRemoveRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove getTextFieldRemoveRequest() {
+      return textFieldRemoveRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.getDefaultInstance() : textFieldRemoveRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
      */
-    private void setTextFieldRemoveRequest(SignalingProto.TextFieldRemove value) {
+    private void setTextFieldRemoveRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13369,18 +13389,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
      */
     private void setTextFieldRemoveRequest(
-        SignalingProto.TextFieldRemove.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.Builder builderForValue) {
       textFieldRemoveRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
      */
-    private void mergeTextFieldRemoveRequest(SignalingProto.TextFieldRemove value) {
+    private void mergeTextFieldRemoveRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
       if (textFieldRemoveRequest_ != null &&
-          textFieldRemoveRequest_ != SignalingProto.TextFieldRemove.getDefaultInstance()) {
+          textFieldRemoveRequest_ != com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.getDefaultInstance()) {
         textFieldRemoveRequest_ =
-          SignalingProto.TextFieldRemove.newBuilder(textFieldRemoveRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.newBuilder(textFieldRemoveRequest_).mergeFrom(value).buildPartial();
       } else {
         textFieldRemoveRequest_ = value;
       }
@@ -13394,7 +13414,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWTOUCHDOWNREQUEST_FIELD_NUMBER = 17;
-    private SignalingProto.DrawTouchDown drawTouchDownRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown drawTouchDownRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
      */
@@ -13404,13 +13424,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
      */
-    public SignalingProto.DrawTouchDown getDrawTouchDownRequest() {
-      return drawTouchDownRequest_ == null ? SignalingProto.DrawTouchDown.getDefaultInstance() : drawTouchDownRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown getDrawTouchDownRequest() {
+      return drawTouchDownRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.getDefaultInstance() : drawTouchDownRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
      */
-    private void setDrawTouchDownRequest(SignalingProto.DrawTouchDown value) {
+    private void setDrawTouchDownRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13421,18 +13441,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
      */
     private void setDrawTouchDownRequest(
-        SignalingProto.DrawTouchDown.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.Builder builderForValue) {
       drawTouchDownRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
      */
-    private void mergeDrawTouchDownRequest(SignalingProto.DrawTouchDown value) {
+    private void mergeDrawTouchDownRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
       if (drawTouchDownRequest_ != null &&
-          drawTouchDownRequest_ != SignalingProto.DrawTouchDown.getDefaultInstance()) {
+          drawTouchDownRequest_ != com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.getDefaultInstance()) {
         drawTouchDownRequest_ =
-          SignalingProto.DrawTouchDown.newBuilder(drawTouchDownRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.newBuilder(drawTouchDownRequest_).mergeFrom(value).buildPartial();
       } else {
         drawTouchDownRequest_ = value;
       }
@@ -13446,7 +13466,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWTOUCHMOVEREQUEST_FIELD_NUMBER = 18;
-    private SignalingProto.DrawTouchMove drawTouchMoveRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove drawTouchMoveRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
      */
@@ -13456,13 +13476,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
      */
-    public SignalingProto.DrawTouchMove getDrawTouchMoveRequest() {
-      return drawTouchMoveRequest_ == null ? SignalingProto.DrawTouchMove.getDefaultInstance() : drawTouchMoveRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove getDrawTouchMoveRequest() {
+      return drawTouchMoveRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.getDefaultInstance() : drawTouchMoveRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
      */
-    private void setDrawTouchMoveRequest(SignalingProto.DrawTouchMove value) {
+    private void setDrawTouchMoveRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13473,18 +13493,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
      */
     private void setDrawTouchMoveRequest(
-        SignalingProto.DrawTouchMove.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.Builder builderForValue) {
       drawTouchMoveRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
      */
-    private void mergeDrawTouchMoveRequest(SignalingProto.DrawTouchMove value) {
+    private void mergeDrawTouchMoveRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
       if (drawTouchMoveRequest_ != null &&
-          drawTouchMoveRequest_ != SignalingProto.DrawTouchMove.getDefaultInstance()) {
+          drawTouchMoveRequest_ != com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.getDefaultInstance()) {
         drawTouchMoveRequest_ =
-          SignalingProto.DrawTouchMove.newBuilder(drawTouchMoveRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.newBuilder(drawTouchMoveRequest_).mergeFrom(value).buildPartial();
       } else {
         drawTouchMoveRequest_ = value;
       }
@@ -13498,7 +13518,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWTOUCHUPREQUEST_FIELD_NUMBER = 19;
-    private SignalingProto.DrawTouchUp drawTouchUpRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp drawTouchUpRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
      */
@@ -13508,13 +13528,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
      */
-    public SignalingProto.DrawTouchUp getDrawTouchUpRequest() {
-      return drawTouchUpRequest_ == null ? SignalingProto.DrawTouchUp.getDefaultInstance() : drawTouchUpRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp getDrawTouchUpRequest() {
+      return drawTouchUpRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.getDefaultInstance() : drawTouchUpRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
      */
-    private void setDrawTouchUpRequest(SignalingProto.DrawTouchUp value) {
+    private void setDrawTouchUpRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13525,18 +13545,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
      */
     private void setDrawTouchUpRequest(
-        SignalingProto.DrawTouchUp.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.Builder builderForValue) {
       drawTouchUpRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
      */
-    private void mergeDrawTouchUpRequest(SignalingProto.DrawTouchUp value) {
+    private void mergeDrawTouchUpRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
       if (drawTouchUpRequest_ != null &&
-          drawTouchUpRequest_ != SignalingProto.DrawTouchUp.getDefaultInstance()) {
+          drawTouchUpRequest_ != com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.getDefaultInstance()) {
         drawTouchUpRequest_ =
-          SignalingProto.DrawTouchUp.newBuilder(drawTouchUpRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.newBuilder(drawTouchUpRequest_).mergeFrom(value).buildPartial();
       } else {
         drawTouchUpRequest_ = value;
       }
@@ -13550,7 +13570,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWCANVASCLEARREQUEST_FIELD_NUMBER = 20;
-    private SignalingProto.DrawCanvasClear drawCanvasClearRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear drawCanvasClearRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
      */
@@ -13560,13 +13580,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
      */
-    public SignalingProto.DrawCanvasClear getDrawCanvasClearRequest() {
-      return drawCanvasClearRequest_ == null ? SignalingProto.DrawCanvasClear.getDefaultInstance() : drawCanvasClearRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear getDrawCanvasClearRequest() {
+      return drawCanvasClearRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.getDefaultInstance() : drawCanvasClearRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
      */
-    private void setDrawCanvasClearRequest(SignalingProto.DrawCanvasClear value) {
+    private void setDrawCanvasClearRequest(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13577,18 +13597,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
      */
     private void setDrawCanvasClearRequest(
-        SignalingProto.DrawCanvasClear.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.Builder builderForValue) {
       drawCanvasClearRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
      */
-    private void mergeDrawCanvasClearRequest(SignalingProto.DrawCanvasClear value) {
+    private void mergeDrawCanvasClearRequest(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
       if (drawCanvasClearRequest_ != null &&
-          drawCanvasClearRequest_ != SignalingProto.DrawCanvasClear.getDefaultInstance()) {
+          drawCanvasClearRequest_ != com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.getDefaultInstance()) {
         drawCanvasClearRequest_ =
-          SignalingProto.DrawCanvasClear.newBuilder(drawCanvasClearRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.newBuilder(drawCanvasClearRequest_).mergeFrom(value).buildPartial();
       } else {
         drawCanvasClearRequest_ = value;
       }
@@ -13602,7 +13622,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWMETADATACHANGEREQUEST_FIELD_NUMBER = 21;
-    private SignalingProto.DrawMetaDataChange drawMetaDataChangeRequest_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange drawMetaDataChangeRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
      */
@@ -13612,13 +13632,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
      */
-    public SignalingProto.DrawMetaDataChange getDrawMetaDataChangeRequest() {
-      return drawMetaDataChangeRequest_ == null ? SignalingProto.DrawMetaDataChange.getDefaultInstance() : drawMetaDataChangeRequest_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange getDrawMetaDataChangeRequest() {
+      return drawMetaDataChangeRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.getDefaultInstance() : drawMetaDataChangeRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
      */
-    private void setDrawMetaDataChangeRequest(SignalingProto.DrawMetaDataChange value) {
+    private void setDrawMetaDataChangeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -13629,18 +13649,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
      */
     private void setDrawMetaDataChangeRequest(
-        SignalingProto.DrawMetaDataChange.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.Builder builderForValue) {
       drawMetaDataChangeRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
      */
-    private void mergeDrawMetaDataChangeRequest(SignalingProto.DrawMetaDataChange value) {
+    private void mergeDrawMetaDataChangeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
       if (drawMetaDataChangeRequest_ != null &&
-          drawMetaDataChangeRequest_ != SignalingProto.DrawMetaDataChange.getDefaultInstance()) {
+          drawMetaDataChangeRequest_ != com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.getDefaultInstance()) {
         drawMetaDataChangeRequest_ =
-          SignalingProto.DrawMetaDataChange.newBuilder(drawMetaDataChangeRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.newBuilder(drawMetaDataChangeRequest_).mergeFrom(value).buildPartial();
       } else {
         drawMetaDataChangeRequest_ = value;
       }
@@ -13653,9 +13673,269 @@ public final class RtcProto {
       
     }
 
+    public static final int DRAWMINIMIZEREQUEST_FIELD_NUMBER = 22;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawMinize drawMinimizeRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    public boolean hasDrawMinimizeRequest() {
+      return drawMinimizeRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawMinize getDrawMinimizeRequest() {
+      return drawMinimizeRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawMinize.getDefaultInstance() : drawMinimizeRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void setDrawMinimizeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMinimizeRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void setDrawMinimizeRequest(
+        com.treeleaf.anydone.entities.SignalingProto.DrawMinize.Builder builderForValue) {
+      drawMinimizeRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void mergeDrawMinimizeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+      if (drawMinimizeRequest_ != null &&
+          drawMinimizeRequest_ != com.treeleaf.anydone.entities.SignalingProto.DrawMinize.getDefaultInstance()) {
+        drawMinimizeRequest_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawMinize.newBuilder(drawMinimizeRequest_).mergeFrom(value).buildPartial();
+      } else {
+        drawMinimizeRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+     */
+    private void clearDrawMinimizeRequest() {  drawMinimizeRequest_ = null;
+      
+    }
+
+    public static final int DRAWMAXIMIZEREQ_FIELD_NUMBER = 23;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawMaximize drawMaximizeReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    public boolean hasDrawMaximizeReq() {
+      return drawMaximizeReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawMaximize getDrawMaximizeReq() {
+      return drawMaximizeReq_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.getDefaultInstance() : drawMaximizeReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void setDrawMaximizeReq(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMaximizeReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void setDrawMaximizeReq(
+        com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.Builder builderForValue) {
+      drawMaximizeReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void mergeDrawMaximizeReq(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+      if (drawMaximizeReq_ != null &&
+          drawMaximizeReq_ != com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.getDefaultInstance()) {
+        drawMaximizeReq_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.newBuilder(drawMaximizeReq_).mergeFrom(value).buildPartial();
+      } else {
+        drawMaximizeReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+     */
+    private void clearDrawMaximizeReq() {  drawMaximizeReq_ = null;
+      
+    }
+
+    public static final int DRAWCLOSEREQ_FIELD_NUMBER = 24;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawClose drawCloseReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    public boolean hasDrawCloseReq() {
+      return drawCloseReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawClose getDrawCloseReq() {
+      return drawCloseReq_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawClose.getDefaultInstance() : drawCloseReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void setDrawCloseReq(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCloseReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void setDrawCloseReq(
+        com.treeleaf.anydone.entities.SignalingProto.DrawClose.Builder builderForValue) {
+      drawCloseReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void mergeDrawCloseReq(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+      if (drawCloseReq_ != null &&
+          drawCloseReq_ != com.treeleaf.anydone.entities.SignalingProto.DrawClose.getDefaultInstance()) {
+        drawCloseReq_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawClose.newBuilder(drawCloseReq_).mergeFrom(value).buildPartial();
+      } else {
+        drawCloseReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+     */
+    private void clearDrawCloseReq() {  drawCloseReq_ = null;
+      
+    }
+
+    public static final int DRAWCOLLABREQ_FIELD_NUMBER = 25;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawCollab drawCollabReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    public boolean hasDrawCollabReq() {
+      return drawCollabReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawCollab getDrawCollabReq() {
+      return drawCollabReq_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawCollab.getDefaultInstance() : drawCollabReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void setDrawCollabReq(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void setDrawCollabReq(
+        com.treeleaf.anydone.entities.SignalingProto.DrawCollab.Builder builderForValue) {
+      drawCollabReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void mergeDrawCollabReq(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+      if (drawCollabReq_ != null &&
+          drawCollabReq_ != com.treeleaf.anydone.entities.SignalingProto.DrawCollab.getDefaultInstance()) {
+        drawCollabReq_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollab.newBuilder(drawCollabReq_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+     */
+    private void clearDrawCollabReq() {  drawCollabReq_ = null;
+      
+    }
+
+    public static final int DRAWCOLLABACKNOWLEDGEMENT_FIELD_NUMBER = 26;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement drawCollabAcknowledgement_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    public boolean hasDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.getDefaultInstance() : drawCollabAcknowledgement_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void setDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabAcknowledgement_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void setDrawCollabAcknowledgement(
+        com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+      drawCollabAcknowledgement_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void mergeDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+      if (drawCollabAcknowledgement_ != null &&
+          drawCollabAcknowledgement_ != com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.getDefaultInstance()) {
+        drawCollabAcknowledgement_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.newBuilder(drawCollabAcknowledgement_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabAcknowledgement_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void clearDrawCollabAcknowledgement() {  drawCollabAcknowledgement_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (relayType_ != RelayRequestType.NO_RELAY.getNumber()) {
+      if (relayType_ != com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType.NO_RELAY.getNumber()) {
         output.writeEnum(1, relayType_);
       }
       if (rtcMessage_ != null) {
@@ -13669,9 +13949,6 @@ public final class RtcProto {
       }
       if (broadcastVideoCall_ != null) {
         output.writeMessage(5, getBroadcastVideoCall());
-      }
-      if (screenDrawRequest_ != null) {
-        output.writeMessage(6, getScreenDrawRequest());
       }
       if (videoCallJoinRequest_ != null) {
         output.writeMessage(7, getVideoCallJoinRequest());
@@ -13691,7 +13968,7 @@ public final class RtcProto {
       if (cancelDrawRequest_ != null) {
         output.writeMessage(12, getCancelDrawRequest());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(13, context_);
       }
       if (receiveNewTextFieldRequest_ != null) {
@@ -13718,6 +13995,21 @@ public final class RtcProto {
       if (drawMetaDataChangeRequest_ != null) {
         output.writeMessage(21, getDrawMetaDataChangeRequest());
       }
+      if (drawMinimizeRequest_ != null) {
+        output.writeMessage(22, getDrawMinimizeRequest());
+      }
+      if (drawMaximizeReq_ != null) {
+        output.writeMessage(23, getDrawMaximizeReq());
+      }
+      if (drawCloseReq_ != null) {
+        output.writeMessage(24, getDrawCloseReq());
+      }
+      if (drawCollabReq_ != null) {
+        output.writeMessage(25, getDrawCollabReq());
+      }
+      if (drawCollabAcknowledgement_ != null) {
+        output.writeMessage(26, getDrawCollabAcknowledgement());
+      }
     }
 
     public int getSerializedSize() {
@@ -13725,7 +14017,7 @@ public final class RtcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (relayType_ != RelayRequestType.NO_RELAY.getNumber()) {
+      if (relayType_ != com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType.NO_RELAY.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, relayType_);
       }
@@ -13744,10 +14036,6 @@ public final class RtcProto {
       if (broadcastVideoCall_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getBroadcastVideoCall());
-      }
-      if (screenDrawRequest_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getScreenDrawRequest());
       }
       if (videoCallJoinRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -13773,7 +14061,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getCancelDrawRequest());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(13, context_);
       }
@@ -13809,64 +14097,84 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(21, getDrawMetaDataChangeRequest());
       }
+      if (drawMinimizeRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getDrawMinimizeRequest());
+      }
+      if (drawMaximizeReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(23, getDrawMaximizeReq());
+      }
+      if (drawCloseReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(24, getDrawCloseReq());
+      }
+      if (drawCollabReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, getDrawCollabReq());
+      }
+      if (drawCollabAcknowledgement_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, getDrawCollabAcknowledgement());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static RelayRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RelayRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RelayRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RelayRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RelayRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RelayRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RelayRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RelayRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RelayRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RelayRequest parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -13877,7 +14185,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RelayRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.RelayRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -13886,9 +14194,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RelayRequest, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.RelayRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RelayRequest)
-        RelayRequestOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.RelayRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.RelayRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -13912,13 +14220,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RelayRequest.RelayRequestType relayType = 1;</code>
        */
-      public RelayRequestType getRelayType() {
+      public com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType getRelayType() {
         return instance.getRelayType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RelayRequest.RelayRequestType relayType = 1;</code>
        */
-      public Builder setRelayType(RelayRequestType value) {
+      public Builder setRelayType(com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType value) {
         copyOnWrite();
         instance.setRelayType(value);
         return this;
@@ -13941,13 +14249,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
-      public RtcMessage getRtcMessage() {
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
         return instance.getRtcMessage();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
-      public Builder setRtcMessage(RtcMessage value) {
+      public Builder setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
         copyOnWrite();
         instance.setRtcMessage(value);
         return this;
@@ -13956,7 +14264,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
       public Builder setRtcMessage(
-          RtcMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setRtcMessage(builderForValue);
         return this;
@@ -13964,7 +14272,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
-      public Builder mergeRtcMessage(RtcMessage value) {
+      public Builder mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
         copyOnWrite();
         instance.mergeRtcMessage(value);
         return this;
@@ -13986,13 +14294,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
        */
-      public MessageDeliveredRequest getMessageDeliveredRequest() {
+      public com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest getMessageDeliveredRequest() {
         return instance.getMessageDeliveredRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
        */
-      public Builder setMessageDeliveredRequest(MessageDeliveredRequest value) {
+      public Builder setMessageDeliveredRequest(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest value) {
         copyOnWrite();
         instance.setMessageDeliveredRequest(value);
         return this;
@@ -14001,7 +14309,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
        */
       public Builder setMessageDeliveredRequest(
-          MessageDeliveredRequest.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.Builder builderForValue) {
         copyOnWrite();
         instance.setMessageDeliveredRequest(builderForValue);
         return this;
@@ -14009,7 +14317,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredRequest messageDeliveredRequest = 3;</code>
        */
-      public Builder mergeMessageDeliveredRequest(MessageDeliveredRequest value) {
+      public Builder mergeMessageDeliveredRequest(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest value) {
         copyOnWrite();
         instance.mergeMessageDeliveredRequest(value);
         return this;
@@ -14031,13 +14339,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
        */
-      public DeleteMessageReq getDeleteMessageReq() {
+      public com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq getDeleteMessageReq() {
         return instance.getDeleteMessageReq();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
        */
-      public Builder setDeleteMessageReq(DeleteMessageReq value) {
+      public Builder setDeleteMessageReq(com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq value) {
         copyOnWrite();
         instance.setDeleteMessageReq(value);
         return this;
@@ -14046,7 +14354,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
        */
       public Builder setDeleteMessageReq(
-          DeleteMessageReq.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.Builder builderForValue) {
         copyOnWrite();
         instance.setDeleteMessageReq(builderForValue);
         return this;
@@ -14054,7 +14362,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DeleteMessageReq deleteMessageReq = 4;</code>
        */
-      public Builder mergeDeleteMessageReq(DeleteMessageReq value) {
+      public Builder mergeDeleteMessageReq(com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq value) {
         copyOnWrite();
         instance.mergeDeleteMessageReq(value);
         return this;
@@ -14076,13 +14384,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
        */
-      public SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+      public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
         return instance.getBroadcastVideoCall();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
        */
-      public Builder setBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+      public Builder setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
         copyOnWrite();
         instance.setBroadcastVideoCall(value);
         return this;
@@ -14091,7 +14399,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
        */
       public Builder setBroadcastVideoCall(
-          SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
         copyOnWrite();
         instance.setBroadcastVideoCall(builderForValue);
         return this;
@@ -14099,7 +14407,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
        */
-      public Builder mergeBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+      public Builder mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
         copyOnWrite();
         instance.mergeBroadcastVideoCall(value);
         return this;
@@ -14113,51 +14421,6 @@ public final class RtcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public boolean hasScreenDrawRequest() {
-        return instance.hasScreenDrawRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public SignalingProto.ScreenDrawRequest getScreenDrawRequest() {
-        return instance.getScreenDrawRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder setScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.setScreenDrawRequest(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder setScreenDrawRequest(
-          SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-        copyOnWrite();
-        instance.setScreenDrawRequest(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder mergeScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.mergeScreenDrawRequest(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder clearScreenDrawRequest() {  copyOnWrite();
-        instance.clearScreenDrawRequest();
-        return this;
-      }
-
-      /**
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
        */
       public boolean hasVideoCallJoinRequest() {
@@ -14166,13 +14429,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
        */
-      public SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
         return instance.getVideoCallJoinRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
        */
-      public Builder setVideoCallJoinRequest(SignalingProto.VideoCallJoinRequest value) {
+      public Builder setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
         copyOnWrite();
         instance.setVideoCallJoinRequest(value);
         return this;
@@ -14181,7 +14444,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
        */
       public Builder setVideoCallJoinRequest(
-          SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
         copyOnWrite();
         instance.setVideoCallJoinRequest(builderForValue);
         return this;
@@ -14189,7 +14452,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
        */
-      public Builder mergeVideoCallJoinRequest(SignalingProto.VideoCallJoinRequest value) {
+      public Builder mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
         copyOnWrite();
         instance.mergeVideoCallJoinRequest(value);
         return this;
@@ -14211,13 +14474,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
        */
-      public SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftRequest() {
         return instance.getVideoRoomHostLeftRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
        */
-      public Builder setVideoRoomHostLeftRequest(SignalingProto.VideoRoomHostLeft value) {
+      public Builder setVideoRoomHostLeftRequest(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
         copyOnWrite();
         instance.setVideoRoomHostLeftRequest(value);
         return this;
@@ -14226,7 +14489,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
        */
       public Builder setVideoRoomHostLeftRequest(
-          SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
         copyOnWrite();
         instance.setVideoRoomHostLeftRequest(builderForValue);
         return this;
@@ -14234,7 +14497,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftRequest = 8;</code>
        */
-      public Builder mergeVideoRoomHostLeftRequest(SignalingProto.VideoRoomHostLeft value) {
+      public Builder mergeVideoRoomHostLeftRequest(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
         copyOnWrite();
         instance.mergeVideoRoomHostLeftRequest(value);
         return this;
@@ -14256,13 +14519,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
        */
-      public SignalingProto.ParticipantLeft getParticipantLeftRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft getParticipantLeftRequest() {
         return instance.getParticipantLeftRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
        */
-      public Builder setParticipantLeftRequest(SignalingProto.ParticipantLeft value) {
+      public Builder setParticipantLeftRequest(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
         copyOnWrite();
         instance.setParticipantLeftRequest(value);
         return this;
@@ -14271,7 +14534,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
        */
       public Builder setParticipantLeftRequest(
-          SignalingProto.ParticipantLeft.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.Builder builderForValue) {
         copyOnWrite();
         instance.setParticipantLeftRequest(builderForValue);
         return this;
@@ -14279,7 +14542,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftRequest = 9;</code>
        */
-      public Builder mergeParticipantLeftRequest(SignalingProto.ParticipantLeft value) {
+      public Builder mergeParticipantLeftRequest(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
         copyOnWrite();
         instance.mergeParticipantLeftRequest(value);
         return this;
@@ -14301,13 +14564,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
        */
-      public SignalingProto.StartDraw getStartDrawRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.StartDraw getStartDrawRequest() {
         return instance.getStartDrawRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
        */
-      public Builder setStartDrawRequest(SignalingProto.StartDraw value) {
+      public Builder setStartDrawRequest(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
         copyOnWrite();
         instance.setStartDrawRequest(value);
         return this;
@@ -14316,7 +14579,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
        */
       public Builder setStartDrawRequest(
-          SignalingProto.StartDraw.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.StartDraw.Builder builderForValue) {
         copyOnWrite();
         instance.setStartDrawRequest(builderForValue);
         return this;
@@ -14324,7 +14587,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawRequest = 10;</code>
        */
-      public Builder mergeStartDrawRequest(SignalingProto.StartDraw value) {
+      public Builder mergeStartDrawRequest(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
         copyOnWrite();
         instance.mergeStartDrawRequest(value);
         return this;
@@ -14346,13 +14609,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
        */
-      public SignalingProto.StartDrawAcknowledgement getStartDrawAckRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement getStartDrawAckRequest() {
         return instance.getStartDrawAckRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
        */
-      public Builder setStartDrawAckRequest(SignalingProto.StartDrawAcknowledgement value) {
+      public Builder setStartDrawAckRequest(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
         copyOnWrite();
         instance.setStartDrawAckRequest(value);
         return this;
@@ -14361,7 +14624,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
        */
       public Builder setStartDrawAckRequest(
-          SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
         copyOnWrite();
         instance.setStartDrawAckRequest(builderForValue);
         return this;
@@ -14369,7 +14632,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckRequest = 11;</code>
        */
-      public Builder mergeStartDrawAckRequest(SignalingProto.StartDrawAcknowledgement value) {
+      public Builder mergeStartDrawAckRequest(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
         copyOnWrite();
         instance.mergeStartDrawAckRequest(value);
         return this;
@@ -14391,13 +14654,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
        */
-      public SignalingProto.CancelDrawing getCancelDrawRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.CancelDrawing getCancelDrawRequest() {
         return instance.getCancelDrawRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
        */
-      public Builder setCancelDrawRequest(SignalingProto.CancelDrawing value) {
+      public Builder setCancelDrawRequest(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
         copyOnWrite();
         instance.setCancelDrawRequest(value);
         return this;
@@ -14406,7 +14669,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
        */
       public Builder setCancelDrawRequest(
-          SignalingProto.CancelDrawing.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.Builder builderForValue) {
         copyOnWrite();
         instance.setCancelDrawRequest(builderForValue);
         return this;
@@ -14414,7 +14677,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawRequest = 12;</code>
        */
-      public Builder mergeCancelDrawRequest(SignalingProto.CancelDrawing value) {
+      public Builder mergeCancelDrawRequest(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
         copyOnWrite();
         instance.mergeCancelDrawRequest(value);
         return this;
@@ -14444,13 +14707,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
        */
-      public AnydoneProto.ServiceContext getContext() {
+      public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 13;</code>
        */
-      public Builder setContext(AnydoneProto.ServiceContext value) {
+      public Builder setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
@@ -14473,13 +14736,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
        */
-      public SignalingProto.ReceiveNewTextField getReceiveNewTextFieldRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField getReceiveNewTextFieldRequest() {
         return instance.getReceiveNewTextFieldRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
        */
-      public Builder setReceiveNewTextFieldRequest(SignalingProto.ReceiveNewTextField value) {
+      public Builder setReceiveNewTextFieldRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
         copyOnWrite();
         instance.setReceiveNewTextFieldRequest(value);
         return this;
@@ -14488,7 +14751,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
        */
       public Builder setReceiveNewTextFieldRequest(
-          SignalingProto.ReceiveNewTextField.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.Builder builderForValue) {
         copyOnWrite();
         instance.setReceiveNewTextFieldRequest(builderForValue);
         return this;
@@ -14496,7 +14759,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldRequest = 14;</code>
        */
-      public Builder mergeReceiveNewTextFieldRequest(SignalingProto.ReceiveNewTextField value) {
+      public Builder mergeReceiveNewTextFieldRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
         copyOnWrite();
         instance.mergeReceiveNewTextFieldRequest(value);
         return this;
@@ -14518,13 +14781,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
        */
-      public SignalingProto.TextFieldChange getTextFieldChangeRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.TextFieldChange getTextFieldChangeRequest() {
         return instance.getTextFieldChangeRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
        */
-      public Builder setTextFieldChangeRequest(SignalingProto.TextFieldChange value) {
+      public Builder setTextFieldChangeRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
         copyOnWrite();
         instance.setTextFieldChangeRequest(value);
         return this;
@@ -14533,7 +14796,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
        */
       public Builder setTextFieldChangeRequest(
-          SignalingProto.TextFieldChange.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.Builder builderForValue) {
         copyOnWrite();
         instance.setTextFieldChangeRequest(builderForValue);
         return this;
@@ -14541,7 +14804,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeRequest = 15;</code>
        */
-      public Builder mergeTextFieldChangeRequest(SignalingProto.TextFieldChange value) {
+      public Builder mergeTextFieldChangeRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
         copyOnWrite();
         instance.mergeTextFieldChangeRequest(value);
         return this;
@@ -14563,13 +14826,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
        */
-      public SignalingProto.TextFieldRemove getTextFieldRemoveRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove getTextFieldRemoveRequest() {
         return instance.getTextFieldRemoveRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
        */
-      public Builder setTextFieldRemoveRequest(SignalingProto.TextFieldRemove value) {
+      public Builder setTextFieldRemoveRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
         copyOnWrite();
         instance.setTextFieldRemoveRequest(value);
         return this;
@@ -14578,7 +14841,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
        */
       public Builder setTextFieldRemoveRequest(
-          SignalingProto.TextFieldRemove.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.Builder builderForValue) {
         copyOnWrite();
         instance.setTextFieldRemoveRequest(builderForValue);
         return this;
@@ -14586,7 +14849,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveRequest = 16;</code>
        */
-      public Builder mergeTextFieldRemoveRequest(SignalingProto.TextFieldRemove value) {
+      public Builder mergeTextFieldRemoveRequest(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
         copyOnWrite();
         instance.mergeTextFieldRemoveRequest(value);
         return this;
@@ -14608,13 +14871,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
        */
-      public SignalingProto.DrawTouchDown getDrawTouchDownRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown getDrawTouchDownRequest() {
         return instance.getDrawTouchDownRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
        */
-      public Builder setDrawTouchDownRequest(SignalingProto.DrawTouchDown value) {
+      public Builder setDrawTouchDownRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
         copyOnWrite();
         instance.setDrawTouchDownRequest(value);
         return this;
@@ -14623,7 +14886,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
        */
       public Builder setDrawTouchDownRequest(
-          SignalingProto.DrawTouchDown.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawTouchDownRequest(builderForValue);
         return this;
@@ -14631,7 +14894,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownRequest = 17;</code>
        */
-      public Builder mergeDrawTouchDownRequest(SignalingProto.DrawTouchDown value) {
+      public Builder mergeDrawTouchDownRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
         copyOnWrite();
         instance.mergeDrawTouchDownRequest(value);
         return this;
@@ -14653,13 +14916,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
        */
-      public SignalingProto.DrawTouchMove getDrawTouchMoveRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove getDrawTouchMoveRequest() {
         return instance.getDrawTouchMoveRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
        */
-      public Builder setDrawTouchMoveRequest(SignalingProto.DrawTouchMove value) {
+      public Builder setDrawTouchMoveRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
         copyOnWrite();
         instance.setDrawTouchMoveRequest(value);
         return this;
@@ -14668,7 +14931,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
        */
       public Builder setDrawTouchMoveRequest(
-          SignalingProto.DrawTouchMove.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawTouchMoveRequest(builderForValue);
         return this;
@@ -14676,7 +14939,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveRequest = 18;</code>
        */
-      public Builder mergeDrawTouchMoveRequest(SignalingProto.DrawTouchMove value) {
+      public Builder mergeDrawTouchMoveRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
         copyOnWrite();
         instance.mergeDrawTouchMoveRequest(value);
         return this;
@@ -14698,13 +14961,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
        */
-      public SignalingProto.DrawTouchUp getDrawTouchUpRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp getDrawTouchUpRequest() {
         return instance.getDrawTouchUpRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
        */
-      public Builder setDrawTouchUpRequest(SignalingProto.DrawTouchUp value) {
+      public Builder setDrawTouchUpRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
         copyOnWrite();
         instance.setDrawTouchUpRequest(value);
         return this;
@@ -14713,7 +14976,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
        */
       public Builder setDrawTouchUpRequest(
-          SignalingProto.DrawTouchUp.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawTouchUpRequest(builderForValue);
         return this;
@@ -14721,7 +14984,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpRequest = 19;</code>
        */
-      public Builder mergeDrawTouchUpRequest(SignalingProto.DrawTouchUp value) {
+      public Builder mergeDrawTouchUpRequest(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
         copyOnWrite();
         instance.mergeDrawTouchUpRequest(value);
         return this;
@@ -14743,13 +15006,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
        */
-      public SignalingProto.DrawCanvasClear getDrawCanvasClearRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear getDrawCanvasClearRequest() {
         return instance.getDrawCanvasClearRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
        */
-      public Builder setDrawCanvasClearRequest(SignalingProto.DrawCanvasClear value) {
+      public Builder setDrawCanvasClearRequest(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
         copyOnWrite();
         instance.setDrawCanvasClearRequest(value);
         return this;
@@ -14758,7 +15021,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
        */
       public Builder setDrawCanvasClearRequest(
-          SignalingProto.DrawCanvasClear.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawCanvasClearRequest(builderForValue);
         return this;
@@ -14766,7 +15029,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearRequest = 20;</code>
        */
-      public Builder mergeDrawCanvasClearRequest(SignalingProto.DrawCanvasClear value) {
+      public Builder mergeDrawCanvasClearRequest(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
         copyOnWrite();
         instance.mergeDrawCanvasClearRequest(value);
         return this;
@@ -14788,13 +15051,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
        */
-      public SignalingProto.DrawMetaDataChange getDrawMetaDataChangeRequest() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange getDrawMetaDataChangeRequest() {
         return instance.getDrawMetaDataChangeRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
        */
-      public Builder setDrawMetaDataChangeRequest(SignalingProto.DrawMetaDataChange value) {
+      public Builder setDrawMetaDataChangeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
         copyOnWrite();
         instance.setDrawMetaDataChangeRequest(value);
         return this;
@@ -14803,7 +15066,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
        */
       public Builder setDrawMetaDataChangeRequest(
-          SignalingProto.DrawMetaDataChange.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawMetaDataChangeRequest(builderForValue);
         return this;
@@ -14811,7 +15074,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeRequest = 21;</code>
        */
-      public Builder mergeDrawMetaDataChangeRequest(SignalingProto.DrawMetaDataChange value) {
+      public Builder mergeDrawMetaDataChangeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
         copyOnWrite();
         instance.mergeDrawMetaDataChangeRequest(value);
         return this;
@@ -14824,14 +15087,239 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public boolean hasDrawMinimizeRequest() {
+        return instance.hasDrawMinimizeRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawMinize getDrawMinimizeRequest() {
+        return instance.getDrawMinimizeRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder setDrawMinimizeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.setDrawMinimizeRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder setDrawMinimizeRequest(
+          com.treeleaf.anydone.entities.SignalingProto.DrawMinize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMinimizeRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder mergeDrawMinimizeRequest(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.mergeDrawMinimizeRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeRequest = 22;</code>
+       */
+      public Builder clearDrawMinimizeRequest() {  copyOnWrite();
+        instance.clearDrawMinimizeRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public boolean hasDrawMaximizeReq() {
+        return instance.hasDrawMaximizeReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawMaximize getDrawMaximizeReq() {
+        return instance.getDrawMaximizeReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder setDrawMaximizeReq(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.setDrawMaximizeReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder setDrawMaximizeReq(
+          com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMaximizeReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder mergeDrawMaximizeReq(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.mergeDrawMaximizeReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeReq = 23;</code>
+       */
+      public Builder clearDrawMaximizeReq() {  copyOnWrite();
+        instance.clearDrawMaximizeReq();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public boolean hasDrawCloseReq() {
+        return instance.hasDrawCloseReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawClose getDrawCloseReq() {
+        return instance.getDrawCloseReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder setDrawCloseReq(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.setDrawCloseReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder setDrawCloseReq(
+          com.treeleaf.anydone.entities.SignalingProto.DrawClose.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCloseReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder mergeDrawCloseReq(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.mergeDrawCloseReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseReq = 24;</code>
+       */
+      public Builder clearDrawCloseReq() {  copyOnWrite();
+        instance.clearDrawCloseReq();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public boolean hasDrawCollabReq() {
+        return instance.hasDrawCollabReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawCollab getDrawCollabReq() {
+        return instance.getDrawCollabReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder setDrawCollabReq(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.setDrawCollabReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder setDrawCollabReq(
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollab.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder mergeDrawCollabReq(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.mergeDrawCollabReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
+       */
+      public Builder clearDrawCollabReq() {  copyOnWrite();
+        instance.clearDrawCollabReq();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public boolean hasDrawCollabAcknowledgement() {
+        return instance.hasDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+        return instance.getDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder mergeDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.mergeDrawCollabAcknowledgement(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder clearDrawCollabAcknowledgement() {  copyOnWrite();
+        instance.clearDrawCollabAcknowledgement();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RelayRequest();
+          return new com.treeleaf.anydone.entities.RtcProto.RelayRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -14844,13 +15332,12 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RelayRequest other = (RelayRequest) arg1;
+          com.treeleaf.anydone.entities.RtcProto.RelayRequest other = (com.treeleaf.anydone.entities.RtcProto.RelayRequest) arg1;
           relayType_ = visitor.visitInt(relayType_ != 0, relayType_,    other.relayType_ != 0, other.relayType_);
           rtcMessage_ = visitor.visitMessage(rtcMessage_, other.rtcMessage_);
           messageDeliveredRequest_ = visitor.visitMessage(messageDeliveredRequest_, other.messageDeliveredRequest_);
           deleteMessageReq_ = visitor.visitMessage(deleteMessageReq_, other.deleteMessageReq_);
           broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
-          screenDrawRequest_ = visitor.visitMessage(screenDrawRequest_, other.screenDrawRequest_);
           videoCallJoinRequest_ = visitor.visitMessage(videoCallJoinRequest_, other.videoCallJoinRequest_);
           videoRoomHostLeftRequest_ = visitor.visitMessage(videoRoomHostLeftRequest_, other.videoRoomHostLeftRequest_);
           participantLeftRequest_ = visitor.visitMessage(participantLeftRequest_, other.participantLeftRequest_);
@@ -14866,7 +15353,12 @@ public final class RtcProto {
           drawTouchUpRequest_ = visitor.visitMessage(drawTouchUpRequest_, other.drawTouchUpRequest_);
           drawCanvasClearRequest_ = visitor.visitMessage(drawCanvasClearRequest_, other.drawCanvasClearRequest_);
           drawMetaDataChangeRequest_ = visitor.visitMessage(drawMetaDataChangeRequest_, other.drawMetaDataChangeRequest_);
-          if (visitor == MergeFromVisitor
+          drawMinimizeRequest_ = visitor.visitMessage(drawMinimizeRequest_, other.drawMinimizeRequest_);
+          drawMaximizeReq_ = visitor.visitMessage(drawMaximizeReq_, other.drawMaximizeReq_);
+          drawCloseReq_ = visitor.visitMessage(drawCloseReq_, other.drawCloseReq_);
+          drawCollabReq_ = visitor.visitMessage(drawCollabReq_, other.drawCollabReq_);
+          drawCollabAcknowledgement_ = visitor.visitMessage(drawCollabAcknowledgement_, other.drawCollabAcknowledgement_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -14897,11 +15389,11 @@ public final class RtcProto {
                   break;
                 }
                 case 18: {
-                  RtcMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
                   if (rtcMessage_ != null) {
                     subBuilder = rtcMessage_.toBuilder();
                   }
-                  rtcMessage_ = input.readMessage(RtcMessage.parser(), extensionRegistry);
+                  rtcMessage_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(rtcMessage_);
                     rtcMessage_ = subBuilder.buildPartial();
@@ -14910,11 +15402,11 @@ public final class RtcProto {
                   break;
                 }
                 case 26: {
-                  MessageDeliveredRequest.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.Builder subBuilder = null;
                   if (messageDeliveredRequest_ != null) {
                     subBuilder = messageDeliveredRequest_.toBuilder();
                   }
-                  messageDeliveredRequest_ = input.readMessage(MessageDeliveredRequest.parser(), extensionRegistry);
+                  messageDeliveredRequest_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(messageDeliveredRequest_);
                     messageDeliveredRequest_ = subBuilder.buildPartial();
@@ -14923,11 +15415,11 @@ public final class RtcProto {
                   break;
                 }
                 case 34: {
-                  DeleteMessageReq.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.Builder subBuilder = null;
                   if (deleteMessageReq_ != null) {
                     subBuilder = deleteMessageReq_.toBuilder();
                   }
-                  deleteMessageReq_ = input.readMessage(DeleteMessageReq.parser(), extensionRegistry);
+                  deleteMessageReq_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.DeleteMessageReq.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(deleteMessageReq_);
                     deleteMessageReq_ = subBuilder.buildPartial();
@@ -14936,11 +15428,11 @@ public final class RtcProto {
                   break;
                 }
                 case 42: {
-                  SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
                   if (broadcastVideoCall_ != null) {
                     subBuilder = broadcastVideoCall_.toBuilder();
                   }
-                  broadcastVideoCall_ = input.readMessage(SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
+                  broadcastVideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(broadcastVideoCall_);
                     broadcastVideoCall_ = subBuilder.buildPartial();
@@ -14948,25 +15440,12 @@ public final class RtcProto {
 
                   break;
                 }
-                case 50: {
-                  SignalingProto.ScreenDrawRequest.Builder subBuilder = null;
-                  if (screenDrawRequest_ != null) {
-                    subBuilder = screenDrawRequest_.toBuilder();
-                  }
-                  screenDrawRequest_ = input.readMessage(SignalingProto.ScreenDrawRequest.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(screenDrawRequest_);
-                    screenDrawRequest_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
                 case 58: {
-                  SignalingProto.VideoCallJoinRequest.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder subBuilder = null;
                   if (videoCallJoinRequest_ != null) {
                     subBuilder = videoCallJoinRequest_.toBuilder();
                   }
-                  videoCallJoinRequest_ = input.readMessage(SignalingProto.VideoCallJoinRequest.parser(), extensionRegistry);
+                  videoCallJoinRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(videoCallJoinRequest_);
                     videoCallJoinRequest_ = subBuilder.buildPartial();
@@ -14975,11 +15454,11 @@ public final class RtcProto {
                   break;
                 }
                 case 66: {
-                  SignalingProto.VideoRoomHostLeft.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder subBuilder = null;
                   if (videoRoomHostLeftRequest_ != null) {
                     subBuilder = videoRoomHostLeftRequest_.toBuilder();
                   }
-                  videoRoomHostLeftRequest_ = input.readMessage(SignalingProto.VideoRoomHostLeft.parser(), extensionRegistry);
+                  videoRoomHostLeftRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(videoRoomHostLeftRequest_);
                     videoRoomHostLeftRequest_ = subBuilder.buildPartial();
@@ -14988,11 +15467,11 @@ public final class RtcProto {
                   break;
                 }
                 case 74: {
-                  SignalingProto.ParticipantLeft.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.Builder subBuilder = null;
                   if (participantLeftRequest_ != null) {
                     subBuilder = participantLeftRequest_.toBuilder();
                   }
-                  participantLeftRequest_ = input.readMessage(SignalingProto.ParticipantLeft.parser(), extensionRegistry);
+                  participantLeftRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(participantLeftRequest_);
                     participantLeftRequest_ = subBuilder.buildPartial();
@@ -15001,11 +15480,11 @@ public final class RtcProto {
                   break;
                 }
                 case 82: {
-                  SignalingProto.StartDraw.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.StartDraw.Builder subBuilder = null;
                   if (startDrawRequest_ != null) {
                     subBuilder = startDrawRequest_.toBuilder();
                   }
-                  startDrawRequest_ = input.readMessage(SignalingProto.StartDraw.parser(), extensionRegistry);
+                  startDrawRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.StartDraw.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(startDrawRequest_);
                     startDrawRequest_ = subBuilder.buildPartial();
@@ -15014,11 +15493,11 @@ public final class RtcProto {
                   break;
                 }
                 case 90: {
-                  SignalingProto.StartDrawAcknowledgement.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.Builder subBuilder = null;
                   if (startDrawAckRequest_ != null) {
                     subBuilder = startDrawAckRequest_.toBuilder();
                   }
-                  startDrawAckRequest_ = input.readMessage(SignalingProto.StartDrawAcknowledgement.parser(), extensionRegistry);
+                  startDrawAckRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(startDrawAckRequest_);
                     startDrawAckRequest_ = subBuilder.buildPartial();
@@ -15027,11 +15506,11 @@ public final class RtcProto {
                   break;
                 }
                 case 98: {
-                  SignalingProto.CancelDrawing.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.Builder subBuilder = null;
                   if (cancelDrawRequest_ != null) {
                     subBuilder = cancelDrawRequest_.toBuilder();
                   }
-                  cancelDrawRequest_ = input.readMessage(SignalingProto.CancelDrawing.parser(), extensionRegistry);
+                  cancelDrawRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(cancelDrawRequest_);
                     cancelDrawRequest_ = subBuilder.buildPartial();
@@ -15046,11 +15525,11 @@ public final class RtcProto {
                   break;
                 }
                 case 114: {
-                  SignalingProto.ReceiveNewTextField.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.Builder subBuilder = null;
                   if (receiveNewTextFieldRequest_ != null) {
                     subBuilder = receiveNewTextFieldRequest_.toBuilder();
                   }
-                  receiveNewTextFieldRequest_ = input.readMessage(SignalingProto.ReceiveNewTextField.parser(), extensionRegistry);
+                  receiveNewTextFieldRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(receiveNewTextFieldRequest_);
                     receiveNewTextFieldRequest_ = subBuilder.buildPartial();
@@ -15059,11 +15538,11 @@ public final class RtcProto {
                   break;
                 }
                 case 122: {
-                  SignalingProto.TextFieldChange.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.Builder subBuilder = null;
                   if (textFieldChangeRequest_ != null) {
                     subBuilder = textFieldChangeRequest_.toBuilder();
                   }
-                  textFieldChangeRequest_ = input.readMessage(SignalingProto.TextFieldChange.parser(), extensionRegistry);
+                  textFieldChangeRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(textFieldChangeRequest_);
                     textFieldChangeRequest_ = subBuilder.buildPartial();
@@ -15072,11 +15551,11 @@ public final class RtcProto {
                   break;
                 }
                 case 130: {
-                  SignalingProto.TextFieldRemove.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.Builder subBuilder = null;
                   if (textFieldRemoveRequest_ != null) {
                     subBuilder = textFieldRemoveRequest_.toBuilder();
                   }
-                  textFieldRemoveRequest_ = input.readMessage(SignalingProto.TextFieldRemove.parser(), extensionRegistry);
+                  textFieldRemoveRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(textFieldRemoveRequest_);
                     textFieldRemoveRequest_ = subBuilder.buildPartial();
@@ -15085,11 +15564,11 @@ public final class RtcProto {
                   break;
                 }
                 case 138: {
-                  SignalingProto.DrawTouchDown.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.Builder subBuilder = null;
                   if (drawTouchDownRequest_ != null) {
                     subBuilder = drawTouchDownRequest_.toBuilder();
                   }
-                  drawTouchDownRequest_ = input.readMessage(SignalingProto.DrawTouchDown.parser(), extensionRegistry);
+                  drawTouchDownRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawTouchDownRequest_);
                     drawTouchDownRequest_ = subBuilder.buildPartial();
@@ -15098,11 +15577,11 @@ public final class RtcProto {
                   break;
                 }
                 case 146: {
-                  SignalingProto.DrawTouchMove.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.Builder subBuilder = null;
                   if (drawTouchMoveRequest_ != null) {
                     subBuilder = drawTouchMoveRequest_.toBuilder();
                   }
-                  drawTouchMoveRequest_ = input.readMessage(SignalingProto.DrawTouchMove.parser(), extensionRegistry);
+                  drawTouchMoveRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawTouchMoveRequest_);
                     drawTouchMoveRequest_ = subBuilder.buildPartial();
@@ -15111,11 +15590,11 @@ public final class RtcProto {
                   break;
                 }
                 case 154: {
-                  SignalingProto.DrawTouchUp.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.Builder subBuilder = null;
                   if (drawTouchUpRequest_ != null) {
                     subBuilder = drawTouchUpRequest_.toBuilder();
                   }
-                  drawTouchUpRequest_ = input.readMessage(SignalingProto.DrawTouchUp.parser(), extensionRegistry);
+                  drawTouchUpRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawTouchUpRequest_);
                     drawTouchUpRequest_ = subBuilder.buildPartial();
@@ -15124,11 +15603,11 @@ public final class RtcProto {
                   break;
                 }
                 case 162: {
-                  SignalingProto.DrawCanvasClear.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.Builder subBuilder = null;
                   if (drawCanvasClearRequest_ != null) {
                     subBuilder = drawCanvasClearRequest_.toBuilder();
                   }
-                  drawCanvasClearRequest_ = input.readMessage(SignalingProto.DrawCanvasClear.parser(), extensionRegistry);
+                  drawCanvasClearRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawCanvasClearRequest_);
                     drawCanvasClearRequest_ = subBuilder.buildPartial();
@@ -15137,14 +15616,79 @@ public final class RtcProto {
                   break;
                 }
                 case 170: {
-                  SignalingProto.DrawMetaDataChange.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.Builder subBuilder = null;
                   if (drawMetaDataChangeRequest_ != null) {
                     subBuilder = drawMetaDataChangeRequest_.toBuilder();
                   }
-                  drawMetaDataChangeRequest_ = input.readMessage(SignalingProto.DrawMetaDataChange.parser(), extensionRegistry);
+                  drawMetaDataChangeRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawMetaDataChangeRequest_);
                     drawMetaDataChangeRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 178: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawMinize.Builder subBuilder = null;
+                  if (drawMinimizeRequest_ != null) {
+                    subBuilder = drawMinimizeRequest_.toBuilder();
+                  }
+                  drawMinimizeRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawMinize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMinimizeRequest_);
+                    drawMinimizeRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 186: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.Builder subBuilder = null;
+                  if (drawMaximizeReq_ != null) {
+                    subBuilder = drawMaximizeReq_.toBuilder();
+                  }
+                  drawMaximizeReq_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMaximizeReq_);
+                    drawMaximizeReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 194: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawClose.Builder subBuilder = null;
+                  if (drawCloseReq_ != null) {
+                    subBuilder = drawCloseReq_.toBuilder();
+                  }
+                  drawCloseReq_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawClose.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCloseReq_);
+                    drawCloseReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 202: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawCollab.Builder subBuilder = null;
+                  if (drawCollabReq_ != null) {
+                    subBuilder = drawCollabReq_.toBuilder();
+                  }
+                  drawCollabReq_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawCollab.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabReq_);
+                    drawCollabReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 210: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.Builder subBuilder = null;
+                  if (drawCollabAcknowledgement_ != null) {
+                    subBuilder = drawCollabAcknowledgement_.toBuilder();
+                  }
+                  drawCollabAcknowledgement_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabAcknowledgement_);
+                    drawCollabAcknowledgement_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -15164,7 +15708,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RelayRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.RelayRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -15178,13 +15722,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RelayRequest)
-    private static final RelayRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.RelayRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RelayRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RelayRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.RelayRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -15202,7 +15746,7 @@ public final class RtcProto {
     /**
      * <code>optional string clientId = 1;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 1;</code>
      */
@@ -15212,7 +15756,7 @@ public final class RtcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -15226,12 +15770,12 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
      */
-    TreeleafProto.ErrorCode getErrorCode();
+    com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode();
 
     /**
      * <code>optional string senderAccountId = 4;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 4;</code>
      */
@@ -15252,11 +15796,11 @@ public final class RtcProto {
       senderAccountId_ = "";
     }
     public static final int CLIENTID_FIELD_NUMBER = 1;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 1;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -15270,7 +15814,7 @@ public final class RtcProto {
      * <code>optional string clientId = 1;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -15298,11 +15842,11 @@ public final class RtcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -15316,7 +15860,7 @@ public final class RtcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -15354,9 +15898,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
      */
-    public TreeleafProto.ErrorCode getErrorCode() {
-      TreeleafProto.ErrorCode result = TreeleafProto.ErrorCode.forNumber(errorCode_);
-      return result == null ? TreeleafProto.ErrorCode.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+      com.treeleaf.anydone.entities.TreeleafProto.ErrorCode result = com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.forNumber(errorCode_);
+      return result == null ? com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
@@ -15367,7 +15911,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
      */
-    private void setErrorCode(TreeleafProto.ErrorCode value) {
+    private void setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -15383,11 +15927,11 @@ public final class RtcProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 4;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 4;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -15401,7 +15945,7 @@ public final class RtcProto {
      * <code>optional string senderAccountId = 4;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -15436,7 +15980,7 @@ public final class RtcProto {
       if (!msg_.isEmpty()) {
         output.writeString(2, getMsg());
       }
-      if (errorCode_ != TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
         output.writeEnum(3, errorCode_);
       }
       if (!senderAccountId_.isEmpty()) {
@@ -15457,7 +16001,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getMsg());
       }
-      if (errorCode_ != TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, errorCode_);
       }
@@ -15469,60 +16013,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static RelayError parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RelayError parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RelayError parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RelayError parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RelayError parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RelayError parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RelayError parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RelayError parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RelayError parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RelayError parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -15533,7 +16077,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RelayError prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.RelayError prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -15542,9 +16086,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RelayError, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.RelayError, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RelayError)
-        RelayErrorOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.RelayErrorOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.RelayError.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -15554,7 +16098,7 @@ public final class RtcProto {
       /**
        * <code>optional string clientId = 1;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -15568,7 +16112,7 @@ public final class RtcProto {
        * <code>optional string clientId = 1;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -15594,7 +16138,7 @@ public final class RtcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -15608,7 +16152,7 @@ public final class RtcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -15648,13 +16192,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
        */
-      public TreeleafProto.ErrorCode getErrorCode() {
+      public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
         return instance.getErrorCode();
       }
       /**
        * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
        */
-      public Builder setErrorCode(TreeleafProto.ErrorCode value) {
+      public Builder setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
         copyOnWrite();
         instance.setErrorCode(value);
         return this;
@@ -15671,7 +16215,7 @@ public final class RtcProto {
       /**
        * <code>optional string senderAccountId = 4;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -15685,7 +16229,7 @@ public final class RtcProto {
        * <code>optional string senderAccountId = 4;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -15711,11 +16255,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayError)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RelayError();
+          return new com.treeleaf.anydone.entities.RtcProto.RelayError();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -15728,7 +16272,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RelayError other = (RelayError) arg1;
+          com.treeleaf.anydone.entities.RtcProto.RelayError other = (com.treeleaf.anydone.entities.RtcProto.RelayError) arg1;
           clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
               !other.clientId_.isEmpty(), other.clientId_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -15736,7 +16280,7 @@ public final class RtcProto {
           errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,    other.errorCode_ != 0, other.errorCode_);
           senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
               !other.senderAccountId_.isEmpty(), other.senderAccountId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -15799,7 +16343,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RelayError.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.RelayError.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -15813,13 +16357,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RelayError)
-    private static final RelayError DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.RelayError DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RelayError();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RelayError getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.RelayError getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -15837,7 +16381,7 @@ public final class RtcProto {
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    String getRtcMessageId();
+    java.lang.String getRtcMessageId();
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
@@ -15847,7 +16391,7 @@ public final class RtcProto {
     /**
      * <code>optional string clientId = 2;</code>
      */
-    String getClientId();
+    java.lang.String getClientId();
     /**
      * <code>optional string clientId = 2;</code>
      */
@@ -15857,7 +16401,7 @@ public final class RtcProto {
     /**
      * <code>optional string senderAccountId = 3;</code>
      */
-    String getSenderAccountId();
+    java.lang.String getSenderAccountId();
     /**
      * <code>optional string senderAccountId = 3;</code>
      */
@@ -15878,11 +16422,11 @@ public final class RtcProto {
       senderAccountId_ = "";
     }
     public static final int RTCMESSAGEID_FIELD_NUMBER = 1;
-    private String rtcMessageId_;
+    private java.lang.String rtcMessageId_;
     /**
      * <code>optional string rtcMessageId = 1;</code>
      */
-    public String getRtcMessageId() {
+    public java.lang.String getRtcMessageId() {
       return rtcMessageId_;
     }
     /**
@@ -15896,7 +16440,7 @@ public final class RtcProto {
      * <code>optional string rtcMessageId = 1;</code>
      */
     private void setRtcMessageId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -15924,11 +16468,11 @@ public final class RtcProto {
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 2;
-    private String clientId_;
+    private java.lang.String clientId_;
     /**
      * <code>optional string clientId = 2;</code>
      */
-    public String getClientId() {
+    public java.lang.String getClientId() {
       return clientId_;
     }
     /**
@@ -15942,7 +16486,7 @@ public final class RtcProto {
      * <code>optional string clientId = 2;</code>
      */
     private void setClientId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -15970,11 +16514,11 @@ public final class RtcProto {
     }
 
     public static final int SENDERACCOUNTID_FIELD_NUMBER = 3;
-    private String senderAccountId_;
+    private java.lang.String senderAccountId_;
     /**
      * <code>optional string senderAccountId = 3;</code>
      */
-    public String getSenderAccountId() {
+    public java.lang.String getSenderAccountId() {
       return senderAccountId_;
     }
     /**
@@ -15988,7 +16532,7 @@ public final class RtcProto {
      * <code>optional string senderAccountId = 3;</code>
      */
     private void setSenderAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -16049,60 +16593,60 @@ public final class RtcProto {
       return size;
     }
 
-    public static DeletedMsgResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static DeletedMsgResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static DeletedMsgResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static DeletedMsgResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static DeletedMsgResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static DeletedMsgResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static DeletedMsgResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static DeletedMsgResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static DeletedMsgResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static DeletedMsgResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -16113,7 +16657,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(DeletedMsgResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -16122,9 +16666,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          DeletedMsgResponse, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DeletedMsgResponse)
-        DeletedMsgResponseOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -16134,7 +16678,7 @@ public final class RtcProto {
       /**
        * <code>optional string rtcMessageId = 1;</code>
        */
-      public String getRtcMessageId() {
+      public java.lang.String getRtcMessageId() {
         return instance.getRtcMessageId();
       }
       /**
@@ -16148,7 +16692,7 @@ public final class RtcProto {
        * <code>optional string rtcMessageId = 1;</code>
        */
       public Builder setRtcMessageId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRtcMessageId(value);
         return this;
@@ -16174,7 +16718,7 @@ public final class RtcProto {
       /**
        * <code>optional string clientId = 2;</code>
        */
-      public String getClientId() {
+      public java.lang.String getClientId() {
         return instance.getClientId();
       }
       /**
@@ -16188,7 +16732,7 @@ public final class RtcProto {
        * <code>optional string clientId = 2;</code>
        */
       public Builder setClientId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setClientId(value);
         return this;
@@ -16214,7 +16758,7 @@ public final class RtcProto {
       /**
        * <code>optional string senderAccountId = 3;</code>
        */
-      public String getSenderAccountId() {
+      public java.lang.String getSenderAccountId() {
         return instance.getSenderAccountId();
       }
       /**
@@ -16228,7 +16772,7 @@ public final class RtcProto {
        * <code>optional string senderAccountId = 3;</code>
        */
       public Builder setSenderAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderAccountId(value);
         return this;
@@ -16254,11 +16798,11 @@ public final class RtcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DeletedMsgResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new DeletedMsgResponse();
+          return new com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -16271,14 +16815,14 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          DeletedMsgResponse other = (DeletedMsgResponse) arg1;
+          com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse other = (com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse) arg1;
           rtcMessageId_ = visitor.visitString(!rtcMessageId_.isEmpty(), rtcMessageId_,
               !other.rtcMessageId_.isEmpty(), other.rtcMessageId_);
           clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
               !other.clientId_.isEmpty(), other.clientId_);
           senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
               !other.senderAccountId_.isEmpty(), other.senderAccountId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -16335,7 +16879,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (DeletedMsgResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -16349,13 +16893,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DeletedMsgResponse)
-    private static final DeletedMsgResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new DeletedMsgResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static DeletedMsgResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -16377,7 +16921,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayResponse.RelayResponseType responseType = 1;</code>
      */
-    RelayResponse.RelayResponseType getResponseType();
+    com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType getResponseType();
 
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
@@ -16386,7 +16930,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    RtcMessage getRtcMessage();
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage();
 
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
@@ -16395,7 +16939,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
      */
-    MessageDeliveredResponse getMessageDeliveredResponse();
+    com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse getMessageDeliveredResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
@@ -16404,7 +16948,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
      */
-    RelayError getRelayError();
+    com.treeleaf.anydone.entities.RtcProto.RelayError getRelayError();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
@@ -16413,7 +16957,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
      */
-    DeletedMsgResponse getDeletedMsgResponse();
+    com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse getDeletedMsgResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
@@ -16422,7 +16966,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
      */
-    SignalingProto.VideoCallJoinResponse getVideoCallJoinResponse();
+    com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse getVideoCallJoinResponse();
 
     /**
      * <code>optional bool botReply = 7;</code>
@@ -16432,7 +16976,7 @@ public final class RtcProto {
     /**
      * <code>optional string ownerAccountId = 8;</code>
      */
-    String getOwnerAccountId();
+    java.lang.String getOwnerAccountId();
     /**
      * <code>optional string ownerAccountId = 8;</code>
      */
@@ -16446,7 +16990,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
      */
-    SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
+    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
 
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
@@ -16455,7 +16999,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
      */
-    SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftResponse();
+    com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
@@ -16464,16 +17008,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
      */
-    SignalingProto.ParticipantLeft getParticipantLeftResponse();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    boolean hasScreenDrawResponse();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    SignalingProto.ScreenDrawRequest getScreenDrawResponse();
+    com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft getParticipantLeftResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
@@ -16482,7 +17017,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
      */
-    SignalingProto.StartDraw getStartDrawResponse();
+    com.treeleaf.anydone.entities.SignalingProto.StartDraw getStartDrawResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
@@ -16491,7 +17026,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
      */
-    SignalingProto.StartDrawAcknowledgement getStartDrawAckResponse();
+    com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement getStartDrawAckResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
@@ -16500,7 +17035,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
      */
-    SignalingProto.CancelDrawing getCancelDrawResponse();
+    com.treeleaf.anydone.entities.SignalingProto.CancelDrawing getCancelDrawResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
@@ -16509,7 +17044,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
-    AnydoneProto.ServiceContext getContext();
+    com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
@@ -16518,7 +17053,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
      */
-    SignalingProto.ReceiveNewTextField getReceiveNewTextFieldResponse();
+    com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField getReceiveNewTextFieldResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
@@ -16527,7 +17062,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
      */
-    SignalingProto.TextFieldChange getTextFieldChangeResponse();
+    com.treeleaf.anydone.entities.SignalingProto.TextFieldChange getTextFieldChangeResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
@@ -16536,7 +17071,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
      */
-    SignalingProto.TextFieldRemove getTextFieldRemoveResponse();
+    com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove getTextFieldRemoveResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
@@ -16545,7 +17080,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
      */
-    SignalingProto.DrawTouchDown getDrawTouchDownResponse();
+    com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown getDrawTouchDownResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
@@ -16554,7 +17089,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
      */
-    SignalingProto.DrawTouchMove getDrawTouchMoveResponse();
+    com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove getDrawTouchMoveResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
@@ -16563,7 +17098,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
      */
-    SignalingProto.DrawTouchUp getDrawTouchUpResponse();
+    com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp getDrawTouchUpResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
@@ -16572,7 +17107,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
      */
-    SignalingProto.DrawCanvasClear getDrawCanvasClearResponse();
+    com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear getDrawCanvasClearResponse();
 
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
@@ -16581,7 +17116,52 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
-    SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse();
+    com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    boolean hasDrawMinimizeResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawMinize getDrawMinimizeResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    boolean hasDrawMaximizeResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawMaximize getDrawMaximizeResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    boolean hasDrawCloseResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawClose getDrawCloseResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    boolean hasDrawCollabResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawCollab getDrawCollabResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    boolean hasDrawCollabAcknowledgement();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayResponse}
@@ -16623,10 +17203,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST_RESPONSE = 5;</code>
        */
       VIDEO_CALL_BROADCAST_RESPONSE(5),
-      /**
-       * <code>DRAW_RESPONSE = 6;</code>
-       */
-      DRAW_RESPONSE(6),
       /**
        * <code>VIDEO_CALL_JOIN_RESPONSE = 7;</code>
        */
@@ -16683,6 +17259,26 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_RESPONSE = 20;</code>
        */
       DRAW_META_DATA_CHANGE_RESPONSE(20),
+      /**
+       * <code>DRAW_MINIMIZE_RESPONSE = 21;</code>
+       */
+      DRAW_MINIMIZE_RESPONSE(21),
+      /**
+       * <code>DRAW_MAXIMIZE_RESPONSE = 22;</code>
+       */
+      DRAW_MAXIMIZE_RESPONSE(22),
+      /**
+       * <code>DRAW_CLOSE_RESPONSE = 23;</code>
+       */
+      DRAW_CLOSE_RESPONSE(23),
+      /**
+       * <code>DRAW_COLlAB_RESPONSE = 24;</code>
+       */
+      DRAW_COLlAB_RESPONSE(24),
+      /**
+       * <code>DRAW_COLlAB_ACKNOWLEDGEMENT_RESPONSE = 25;</code>
+       */
+      DRAW_COLlAB_ACKNOWLEDGEMENT_RESPONSE(25),
       UNRECOGNIZED(-1),
       ;
 
@@ -16710,10 +17306,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST_RESPONSE = 5;</code>
        */
       public static final int VIDEO_CALL_BROADCAST_RESPONSE_VALUE = 5;
-      /**
-       * <code>DRAW_RESPONSE = 6;</code>
-       */
-      public static final int DRAW_RESPONSE_VALUE = 6;
       /**
        * <code>VIDEO_CALL_JOIN_RESPONSE = 7;</code>
        */
@@ -16770,6 +17362,26 @@ public final class RtcProto {
        * <code>DRAW_META_DATA_CHANGE_RESPONSE = 20;</code>
        */
       public static final int DRAW_META_DATA_CHANGE_RESPONSE_VALUE = 20;
+      /**
+       * <code>DRAW_MINIMIZE_RESPONSE = 21;</code>
+       */
+      public static final int DRAW_MINIMIZE_RESPONSE_VALUE = 21;
+      /**
+       * <code>DRAW_MAXIMIZE_RESPONSE = 22;</code>
+       */
+      public static final int DRAW_MAXIMIZE_RESPONSE_VALUE = 22;
+      /**
+       * <code>DRAW_CLOSE_RESPONSE = 23;</code>
+       */
+      public static final int DRAW_CLOSE_RESPONSE_VALUE = 23;
+      /**
+       * <code>DRAW_COLlAB_RESPONSE = 24;</code>
+       */
+      public static final int DRAW_COLlAB_RESPONSE_VALUE = 24;
+      /**
+       * <code>DRAW_COLlAB_ACKNOWLEDGEMENT_RESPONSE = 25;</code>
+       */
+      public static final int DRAW_COLlAB_ACKNOWLEDGEMENT_RESPONSE_VALUE = 25;
 
 
       public final int getNumber() {
@@ -16779,7 +17391,7 @@ public final class RtcProto {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static RelayResponseType valueOf(int value) {
         return forNumber(value);
       }
@@ -16792,7 +17404,6 @@ public final class RtcProto {
           case 3: return RELAY_ERROR_RESPONSE;
           case 4: return RTC_MESSAGE_DELETE;
           case 5: return VIDEO_CALL_BROADCAST_RESPONSE;
-          case 6: return DRAW_RESPONSE;
           case 7: return VIDEO_CALL_JOIN_RESPONSE;
           case 8: return VIDEO_ROOM_HOST_LEFT_RESPONSE;
           case 9: return PARTICIPANT_LEFT_RESPONSE;
@@ -16807,6 +17418,11 @@ public final class RtcProto {
           case 18: return DRAW_TOUCH_UP_RESPONSE;
           case 19: return DRAW_CANVAS_CLEAR_RESPONSE;
           case 20: return DRAW_META_DATA_CHANGE_RESPONSE;
+          case 21: return DRAW_MINIMIZE_RESPONSE;
+          case 22: return DRAW_MAXIMIZE_RESPONSE;
+          case 23: return DRAW_CLOSE_RESPONSE;
+          case 24: return DRAW_COLlAB_RESPONSE;
+          case 25: return DRAW_COLlAB_ACKNOWLEDGEMENT_RESPONSE;
           default: return null;
         }
       }
@@ -16843,9 +17459,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayResponse.RelayResponseType responseType = 1;</code>
      */
-    public RelayResponseType getResponseType() {
-      RelayResponseType result = RelayResponseType.forNumber(responseType_);
-      return result == null ? RelayResponseType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType getResponseType() {
+      com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType result = com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.forNumber(responseType_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RelayResponse.RelayResponseType responseType = 1;</code>
@@ -16856,7 +17472,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayResponse.RelayResponseType responseType = 1;</code>
      */
-    private void setResponseType(RelayResponseType value) {
+    private void setResponseType(com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -16872,7 +17488,7 @@ public final class RtcProto {
     }
 
     public static final int RTCMESSAGE_FIELD_NUMBER = 2;
-    private RtcMessage rtcMessage_;
+    private com.treeleaf.anydone.entities.RtcProto.RtcMessage rtcMessage_;
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
@@ -16882,13 +17498,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    public RtcMessage getRtcMessage() {
-      return rtcMessage_ == null ? RtcMessage.getDefaultInstance() : rtcMessage_;
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
+      return rtcMessage_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : rtcMessage_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    private void setRtcMessage(RtcMessage value) {
+    private void setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -16899,18 +17515,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
     private void setRtcMessage(
-        RtcMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
       rtcMessage_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
      */
-    private void mergeRtcMessage(RtcMessage value) {
+    private void mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
       if (rtcMessage_ != null &&
-          rtcMessage_ != RtcMessage.getDefaultInstance()) {
+          rtcMessage_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
         rtcMessage_ =
-          RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(rtcMessage_).mergeFrom(value).buildPartial();
       } else {
         rtcMessage_ = value;
       }
@@ -16924,7 +17540,7 @@ public final class RtcProto {
     }
 
     public static final int MESSAGEDELIVEREDRESPONSE_FIELD_NUMBER = 3;
-    private MessageDeliveredResponse messageDeliveredResponse_;
+    private com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse messageDeliveredResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
      */
@@ -16934,13 +17550,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
      */
-    public MessageDeliveredResponse getMessageDeliveredResponse() {
-      return messageDeliveredResponse_ == null ? MessageDeliveredResponse.getDefaultInstance() : messageDeliveredResponse_;
+    public com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse getMessageDeliveredResponse() {
+      return messageDeliveredResponse_ == null ? com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.getDefaultInstance() : messageDeliveredResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
      */
-    private void setMessageDeliveredResponse(MessageDeliveredResponse value) {
+    private void setMessageDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -16951,18 +17567,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
      */
     private void setMessageDeliveredResponse(
-        MessageDeliveredResponse.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.Builder builderForValue) {
       messageDeliveredResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
      */
-    private void mergeMessageDeliveredResponse(MessageDeliveredResponse value) {
+    private void mergeMessageDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
       if (messageDeliveredResponse_ != null &&
-          messageDeliveredResponse_ != MessageDeliveredResponse.getDefaultInstance()) {
+          messageDeliveredResponse_ != com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.getDefaultInstance()) {
         messageDeliveredResponse_ =
-          MessageDeliveredResponse.newBuilder(messageDeliveredResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.newBuilder(messageDeliveredResponse_).mergeFrom(value).buildPartial();
       } else {
         messageDeliveredResponse_ = value;
       }
@@ -16976,7 +17592,7 @@ public final class RtcProto {
     }
 
     public static final int RELAYERROR_FIELD_NUMBER = 4;
-    private RelayError relayError_;
+    private com.treeleaf.anydone.entities.RtcProto.RelayError relayError_;
     /**
      * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
      */
@@ -16986,13 +17602,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
      */
-    public RelayError getRelayError() {
-      return relayError_ == null ? RelayError.getDefaultInstance() : relayError_;
+    public com.treeleaf.anydone.entities.RtcProto.RelayError getRelayError() {
+      return relayError_ == null ? com.treeleaf.anydone.entities.RtcProto.RelayError.getDefaultInstance() : relayError_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
      */
-    private void setRelayError(RelayError value) {
+    private void setRelayError(com.treeleaf.anydone.entities.RtcProto.RelayError value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17003,18 +17619,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
      */
     private void setRelayError(
-        RelayError.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.RelayError.Builder builderForValue) {
       relayError_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
      */
-    private void mergeRelayError(RelayError value) {
+    private void mergeRelayError(com.treeleaf.anydone.entities.RtcProto.RelayError value) {
       if (relayError_ != null &&
-          relayError_ != RelayError.getDefaultInstance()) {
+          relayError_ != com.treeleaf.anydone.entities.RtcProto.RelayError.getDefaultInstance()) {
         relayError_ =
-          RelayError.newBuilder(relayError_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.RelayError.newBuilder(relayError_).mergeFrom(value).buildPartial();
       } else {
         relayError_ = value;
       }
@@ -17028,7 +17644,7 @@ public final class RtcProto {
     }
 
     public static final int DELETEDMSGRESPONSE_FIELD_NUMBER = 5;
-    private DeletedMsgResponse deletedMsgResponse_;
+    private com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse deletedMsgResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
      */
@@ -17038,13 +17654,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
      */
-    public DeletedMsgResponse getDeletedMsgResponse() {
-      return deletedMsgResponse_ == null ? DeletedMsgResponse.getDefaultInstance() : deletedMsgResponse_;
+    public com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse getDeletedMsgResponse() {
+      return deletedMsgResponse_ == null ? com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.getDefaultInstance() : deletedMsgResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
      */
-    private void setDeletedMsgResponse(DeletedMsgResponse value) {
+    private void setDeletedMsgResponse(com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17055,18 +17671,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
      */
     private void setDeletedMsgResponse(
-        DeletedMsgResponse.Builder builderForValue) {
+        com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.Builder builderForValue) {
       deletedMsgResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
      */
-    private void mergeDeletedMsgResponse(DeletedMsgResponse value) {
+    private void mergeDeletedMsgResponse(com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse value) {
       if (deletedMsgResponse_ != null &&
-          deletedMsgResponse_ != DeletedMsgResponse.getDefaultInstance()) {
+          deletedMsgResponse_ != com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.getDefaultInstance()) {
         deletedMsgResponse_ =
-          DeletedMsgResponse.newBuilder(deletedMsgResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.newBuilder(deletedMsgResponse_).mergeFrom(value).buildPartial();
       } else {
         deletedMsgResponse_ = value;
       }
@@ -17080,7 +17696,7 @@ public final class RtcProto {
     }
 
     public static final int VIDEOCALLJOINRESPONSE_FIELD_NUMBER = 6;
-    private SignalingProto.VideoCallJoinResponse videoCallJoinResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse videoCallJoinResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
      */
@@ -17090,13 +17706,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
      */
-    public SignalingProto.VideoCallJoinResponse getVideoCallJoinResponse() {
-      return videoCallJoinResponse_ == null ? SignalingProto.VideoCallJoinResponse.getDefaultInstance() : videoCallJoinResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse getVideoCallJoinResponse() {
+      return videoCallJoinResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.getDefaultInstance() : videoCallJoinResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
      */
-    private void setVideoCallJoinResponse(SignalingProto.VideoCallJoinResponse value) {
+    private void setVideoCallJoinResponse(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17107,18 +17723,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
      */
     private void setVideoCallJoinResponse(
-        SignalingProto.VideoCallJoinResponse.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.Builder builderForValue) {
       videoCallJoinResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
      */
-    private void mergeVideoCallJoinResponse(SignalingProto.VideoCallJoinResponse value) {
+    private void mergeVideoCallJoinResponse(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse value) {
       if (videoCallJoinResponse_ != null &&
-          videoCallJoinResponse_ != SignalingProto.VideoCallJoinResponse.getDefaultInstance()) {
+          videoCallJoinResponse_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.getDefaultInstance()) {
         videoCallJoinResponse_ =
-          SignalingProto.VideoCallJoinResponse.newBuilder(videoCallJoinResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.newBuilder(videoCallJoinResponse_).mergeFrom(value).buildPartial();
       } else {
         videoCallJoinResponse_ = value;
       }
@@ -17155,11 +17771,11 @@ public final class RtcProto {
     }
 
     public static final int OWNERACCOUNTID_FIELD_NUMBER = 8;
-    private String ownerAccountId_;
+    private java.lang.String ownerAccountId_;
     /**
      * <code>optional string ownerAccountId = 8;</code>
      */
-    public String getOwnerAccountId() {
+    public java.lang.String getOwnerAccountId() {
       return ownerAccountId_;
     }
     /**
@@ -17173,7 +17789,7 @@ public final class RtcProto {
      * <code>optional string ownerAccountId = 8;</code>
      */
     private void setOwnerAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -17201,7 +17817,7 @@ public final class RtcProto {
     }
 
     public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 9;
-    private SignalingProto.BroadcastVideoCall broadcastVideoCall_;
+    private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastVideoCall_;
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
      */
@@ -17211,13 +17827,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
      */
-    public SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
-      return broadcastVideoCall_ == null ? SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
+    public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+      return broadcastVideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
      */
-    private void setBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+    private void setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17228,18 +17844,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
      */
     private void setBroadcastVideoCall(
-        SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
       broadcastVideoCall_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
      */
-    private void mergeBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+    private void mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
       if (broadcastVideoCall_ != null &&
-          broadcastVideoCall_ != SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
+          broadcastVideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
         broadcastVideoCall_ =
-          SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
       } else {
         broadcastVideoCall_ = value;
       }
@@ -17253,7 +17869,7 @@ public final class RtcProto {
     }
 
     public static final int VIDEOROOMHOSTLEFTRESPONSE_FIELD_NUMBER = 10;
-    private SignalingProto.VideoRoomHostLeft videoRoomHostLeftResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft videoRoomHostLeftResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
      */
@@ -17263,13 +17879,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
      */
-    public SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftResponse() {
-      return videoRoomHostLeftResponse_ == null ? SignalingProto.VideoRoomHostLeft.getDefaultInstance() : videoRoomHostLeftResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftResponse() {
+      return videoRoomHostLeftResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance() : videoRoomHostLeftResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
      */
-    private void setVideoRoomHostLeftResponse(SignalingProto.VideoRoomHostLeft value) {
+    private void setVideoRoomHostLeftResponse(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17280,18 +17896,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
      */
     private void setVideoRoomHostLeftResponse(
-        SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
       videoRoomHostLeftResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
      */
-    private void mergeVideoRoomHostLeftResponse(SignalingProto.VideoRoomHostLeft value) {
+    private void mergeVideoRoomHostLeftResponse(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
       if (videoRoomHostLeftResponse_ != null &&
-          videoRoomHostLeftResponse_ != SignalingProto.VideoRoomHostLeft.getDefaultInstance()) {
+          videoRoomHostLeftResponse_ != com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance()) {
         videoRoomHostLeftResponse_ =
-          SignalingProto.VideoRoomHostLeft.newBuilder(videoRoomHostLeftResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.newBuilder(videoRoomHostLeftResponse_).mergeFrom(value).buildPartial();
       } else {
         videoRoomHostLeftResponse_ = value;
       }
@@ -17305,7 +17921,7 @@ public final class RtcProto {
     }
 
     public static final int PARTICIPANTLEFTRESPONSE_FIELD_NUMBER = 11;
-    private SignalingProto.ParticipantLeft participantLeftResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft participantLeftResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
      */
@@ -17315,13 +17931,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
      */
-    public SignalingProto.ParticipantLeft getParticipantLeftResponse() {
-      return participantLeftResponse_ == null ? SignalingProto.ParticipantLeft.getDefaultInstance() : participantLeftResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft getParticipantLeftResponse() {
+      return participantLeftResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.getDefaultInstance() : participantLeftResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
      */
-    private void setParticipantLeftResponse(SignalingProto.ParticipantLeft value) {
+    private void setParticipantLeftResponse(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17332,18 +17948,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
      */
     private void setParticipantLeftResponse(
-        SignalingProto.ParticipantLeft.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.Builder builderForValue) {
       participantLeftResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
      */
-    private void mergeParticipantLeftResponse(SignalingProto.ParticipantLeft value) {
+    private void mergeParticipantLeftResponse(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
       if (participantLeftResponse_ != null &&
-          participantLeftResponse_ != SignalingProto.ParticipantLeft.getDefaultInstance()) {
+          participantLeftResponse_ != com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.getDefaultInstance()) {
         participantLeftResponse_ =
-          SignalingProto.ParticipantLeft.newBuilder(participantLeftResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.newBuilder(participantLeftResponse_).mergeFrom(value).buildPartial();
       } else {
         participantLeftResponse_ = value;
       }
@@ -17356,60 +17972,8 @@ public final class RtcProto {
       
     }
 
-    public static final int SCREENDRAWRESPONSE_FIELD_NUMBER = 12;
-    private SignalingProto.ScreenDrawRequest screenDrawResponse_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    public boolean hasScreenDrawResponse() {
-      return screenDrawResponse_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    public SignalingProto.ScreenDrawRequest getScreenDrawResponse() {
-      return screenDrawResponse_ == null ? SignalingProto.ScreenDrawRequest.getDefaultInstance() : screenDrawResponse_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void setScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      screenDrawResponse_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void setScreenDrawResponse(
-        SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-      screenDrawResponse_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void mergeScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-      if (screenDrawResponse_ != null &&
-          screenDrawResponse_ != SignalingProto.ScreenDrawRequest.getDefaultInstance()) {
-        screenDrawResponse_ =
-          SignalingProto.ScreenDrawRequest.newBuilder(screenDrawResponse_).mergeFrom(value).buildPartial();
-      } else {
-        screenDrawResponse_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void clearScreenDrawResponse() {  screenDrawResponse_ = null;
-      
-    }
-
     public static final int STARTDRAWRESPONSE_FIELD_NUMBER = 13;
-    private SignalingProto.StartDraw startDrawResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.StartDraw startDrawResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
      */
@@ -17419,13 +17983,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
      */
-    public SignalingProto.StartDraw getStartDrawResponse() {
-      return startDrawResponse_ == null ? SignalingProto.StartDraw.getDefaultInstance() : startDrawResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.StartDraw getStartDrawResponse() {
+      return startDrawResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.StartDraw.getDefaultInstance() : startDrawResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
      */
-    private void setStartDrawResponse(SignalingProto.StartDraw value) {
+    private void setStartDrawResponse(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17436,18 +18000,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
      */
     private void setStartDrawResponse(
-        SignalingProto.StartDraw.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.StartDraw.Builder builderForValue) {
       startDrawResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
      */
-    private void mergeStartDrawResponse(SignalingProto.StartDraw value) {
+    private void mergeStartDrawResponse(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
       if (startDrawResponse_ != null &&
-          startDrawResponse_ != SignalingProto.StartDraw.getDefaultInstance()) {
+          startDrawResponse_ != com.treeleaf.anydone.entities.SignalingProto.StartDraw.getDefaultInstance()) {
         startDrawResponse_ =
-          SignalingProto.StartDraw.newBuilder(startDrawResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.StartDraw.newBuilder(startDrawResponse_).mergeFrom(value).buildPartial();
       } else {
         startDrawResponse_ = value;
       }
@@ -17461,7 +18025,7 @@ public final class RtcProto {
     }
 
     public static final int STARTDRAWACKRESPONSE_FIELD_NUMBER = 14;
-    private SignalingProto.StartDrawAcknowledgement startDrawAckResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement startDrawAckResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
      */
@@ -17471,13 +18035,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
      */
-    public SignalingProto.StartDrawAcknowledgement getStartDrawAckResponse() {
-      return startDrawAckResponse_ == null ? SignalingProto.StartDrawAcknowledgement.getDefaultInstance() : startDrawAckResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement getStartDrawAckResponse() {
+      return startDrawAckResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.getDefaultInstance() : startDrawAckResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
      */
-    private void setStartDrawAckResponse(SignalingProto.StartDrawAcknowledgement value) {
+    private void setStartDrawAckResponse(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17488,18 +18052,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
      */
     private void setStartDrawAckResponse(
-        SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
       startDrawAckResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
      */
-    private void mergeStartDrawAckResponse(SignalingProto.StartDrawAcknowledgement value) {
+    private void mergeStartDrawAckResponse(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
       if (startDrawAckResponse_ != null &&
-          startDrawAckResponse_ != SignalingProto.StartDrawAcknowledgement.getDefaultInstance()) {
+          startDrawAckResponse_ != com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.getDefaultInstance()) {
         startDrawAckResponse_ =
-          SignalingProto.StartDrawAcknowledgement.newBuilder(startDrawAckResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.newBuilder(startDrawAckResponse_).mergeFrom(value).buildPartial();
       } else {
         startDrawAckResponse_ = value;
       }
@@ -17513,7 +18077,7 @@ public final class RtcProto {
     }
 
     public static final int CANCELDRAWRESPONSE_FIELD_NUMBER = 15;
-    private SignalingProto.CancelDrawing cancelDrawResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.CancelDrawing cancelDrawResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
      */
@@ -17523,13 +18087,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
      */
-    public SignalingProto.CancelDrawing getCancelDrawResponse() {
-      return cancelDrawResponse_ == null ? SignalingProto.CancelDrawing.getDefaultInstance() : cancelDrawResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.CancelDrawing getCancelDrawResponse() {
+      return cancelDrawResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.getDefaultInstance() : cancelDrawResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
      */
-    private void setCancelDrawResponse(SignalingProto.CancelDrawing value) {
+    private void setCancelDrawResponse(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17540,18 +18104,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
      */
     private void setCancelDrawResponse(
-        SignalingProto.CancelDrawing.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.Builder builderForValue) {
       cancelDrawResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
      */
-    private void mergeCancelDrawResponse(SignalingProto.CancelDrawing value) {
+    private void mergeCancelDrawResponse(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
       if (cancelDrawResponse_ != null &&
-          cancelDrawResponse_ != SignalingProto.CancelDrawing.getDefaultInstance()) {
+          cancelDrawResponse_ != com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.getDefaultInstance()) {
         cancelDrawResponse_ =
-          SignalingProto.CancelDrawing.newBuilder(cancelDrawResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.newBuilder(cancelDrawResponse_).mergeFrom(value).buildPartial();
       } else {
         cancelDrawResponse_ = value;
       }
@@ -17575,9 +18139,9 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
-    public AnydoneProto.ServiceContext getContext() {
-      AnydoneProto.ServiceContext result = AnydoneProto.ServiceContext.forNumber(context_);
-      return result == null ? AnydoneProto.ServiceContext.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
+      com.treeleaf.anydone.entities.AnydoneProto.ServiceContext result = com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
@@ -17588,7 +18152,7 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
      */
-    private void setContext(AnydoneProto.ServiceContext value) {
+    private void setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17604,7 +18168,7 @@ public final class RtcProto {
     }
 
     public static final int RECEIVENEWTEXTFIELDRESPONSE_FIELD_NUMBER = 17;
-    private SignalingProto.ReceiveNewTextField receiveNewTextFieldResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField receiveNewTextFieldResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
      */
@@ -17614,13 +18178,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
      */
-    public SignalingProto.ReceiveNewTextField getReceiveNewTextFieldResponse() {
-      return receiveNewTextFieldResponse_ == null ? SignalingProto.ReceiveNewTextField.getDefaultInstance() : receiveNewTextFieldResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField getReceiveNewTextFieldResponse() {
+      return receiveNewTextFieldResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.getDefaultInstance() : receiveNewTextFieldResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
      */
-    private void setReceiveNewTextFieldResponse(SignalingProto.ReceiveNewTextField value) {
+    private void setReceiveNewTextFieldResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17631,18 +18195,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
      */
     private void setReceiveNewTextFieldResponse(
-        SignalingProto.ReceiveNewTextField.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.Builder builderForValue) {
       receiveNewTextFieldResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
      */
-    private void mergeReceiveNewTextFieldResponse(SignalingProto.ReceiveNewTextField value) {
+    private void mergeReceiveNewTextFieldResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
       if (receiveNewTextFieldResponse_ != null &&
-          receiveNewTextFieldResponse_ != SignalingProto.ReceiveNewTextField.getDefaultInstance()) {
+          receiveNewTextFieldResponse_ != com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.getDefaultInstance()) {
         receiveNewTextFieldResponse_ =
-          SignalingProto.ReceiveNewTextField.newBuilder(receiveNewTextFieldResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.newBuilder(receiveNewTextFieldResponse_).mergeFrom(value).buildPartial();
       } else {
         receiveNewTextFieldResponse_ = value;
       }
@@ -17656,7 +18220,7 @@ public final class RtcProto {
     }
 
     public static final int TEXTFIELDCHANGERESPONSE_FIELD_NUMBER = 18;
-    private SignalingProto.TextFieldChange textFieldChangeResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.TextFieldChange textFieldChangeResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
      */
@@ -17666,13 +18230,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
      */
-    public SignalingProto.TextFieldChange getTextFieldChangeResponse() {
-      return textFieldChangeResponse_ == null ? SignalingProto.TextFieldChange.getDefaultInstance() : textFieldChangeResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.TextFieldChange getTextFieldChangeResponse() {
+      return textFieldChangeResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.getDefaultInstance() : textFieldChangeResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
      */
-    private void setTextFieldChangeResponse(SignalingProto.TextFieldChange value) {
+    private void setTextFieldChangeResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17683,18 +18247,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
      */
     private void setTextFieldChangeResponse(
-        SignalingProto.TextFieldChange.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.Builder builderForValue) {
       textFieldChangeResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
      */
-    private void mergeTextFieldChangeResponse(SignalingProto.TextFieldChange value) {
+    private void mergeTextFieldChangeResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
       if (textFieldChangeResponse_ != null &&
-          textFieldChangeResponse_ != SignalingProto.TextFieldChange.getDefaultInstance()) {
+          textFieldChangeResponse_ != com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.getDefaultInstance()) {
         textFieldChangeResponse_ =
-          SignalingProto.TextFieldChange.newBuilder(textFieldChangeResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.newBuilder(textFieldChangeResponse_).mergeFrom(value).buildPartial();
       } else {
         textFieldChangeResponse_ = value;
       }
@@ -17708,7 +18272,7 @@ public final class RtcProto {
     }
 
     public static final int TEXTFIELDREMOVERESPONSE_FIELD_NUMBER = 19;
-    private SignalingProto.TextFieldRemove textFieldRemoveResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove textFieldRemoveResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
      */
@@ -17718,13 +18282,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
      */
-    public SignalingProto.TextFieldRemove getTextFieldRemoveResponse() {
-      return textFieldRemoveResponse_ == null ? SignalingProto.TextFieldRemove.getDefaultInstance() : textFieldRemoveResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove getTextFieldRemoveResponse() {
+      return textFieldRemoveResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.getDefaultInstance() : textFieldRemoveResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
      */
-    private void setTextFieldRemoveResponse(SignalingProto.TextFieldRemove value) {
+    private void setTextFieldRemoveResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17735,18 +18299,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
      */
     private void setTextFieldRemoveResponse(
-        SignalingProto.TextFieldRemove.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.Builder builderForValue) {
       textFieldRemoveResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
      */
-    private void mergeTextFieldRemoveResponse(SignalingProto.TextFieldRemove value) {
+    private void mergeTextFieldRemoveResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
       if (textFieldRemoveResponse_ != null &&
-          textFieldRemoveResponse_ != SignalingProto.TextFieldRemove.getDefaultInstance()) {
+          textFieldRemoveResponse_ != com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.getDefaultInstance()) {
         textFieldRemoveResponse_ =
-          SignalingProto.TextFieldRemove.newBuilder(textFieldRemoveResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.newBuilder(textFieldRemoveResponse_).mergeFrom(value).buildPartial();
       } else {
         textFieldRemoveResponse_ = value;
       }
@@ -17760,7 +18324,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWTOUCHDOWNRESPONSE_FIELD_NUMBER = 20;
-    private SignalingProto.DrawTouchDown drawTouchDownResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown drawTouchDownResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
      */
@@ -17770,13 +18334,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
      */
-    public SignalingProto.DrawTouchDown getDrawTouchDownResponse() {
-      return drawTouchDownResponse_ == null ? SignalingProto.DrawTouchDown.getDefaultInstance() : drawTouchDownResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown getDrawTouchDownResponse() {
+      return drawTouchDownResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.getDefaultInstance() : drawTouchDownResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
      */
-    private void setDrawTouchDownResponse(SignalingProto.DrawTouchDown value) {
+    private void setDrawTouchDownResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17787,18 +18351,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
      */
     private void setDrawTouchDownResponse(
-        SignalingProto.DrawTouchDown.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.Builder builderForValue) {
       drawTouchDownResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
      */
-    private void mergeDrawTouchDownResponse(SignalingProto.DrawTouchDown value) {
+    private void mergeDrawTouchDownResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
       if (drawTouchDownResponse_ != null &&
-          drawTouchDownResponse_ != SignalingProto.DrawTouchDown.getDefaultInstance()) {
+          drawTouchDownResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.getDefaultInstance()) {
         drawTouchDownResponse_ =
-          SignalingProto.DrawTouchDown.newBuilder(drawTouchDownResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.newBuilder(drawTouchDownResponse_).mergeFrom(value).buildPartial();
       } else {
         drawTouchDownResponse_ = value;
       }
@@ -17812,7 +18376,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWTOUCHMOVERESPONSE_FIELD_NUMBER = 21;
-    private SignalingProto.DrawTouchMove drawTouchMoveResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove drawTouchMoveResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
      */
@@ -17822,13 +18386,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
      */
-    public SignalingProto.DrawTouchMove getDrawTouchMoveResponse() {
-      return drawTouchMoveResponse_ == null ? SignalingProto.DrawTouchMove.getDefaultInstance() : drawTouchMoveResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove getDrawTouchMoveResponse() {
+      return drawTouchMoveResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.getDefaultInstance() : drawTouchMoveResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
      */
-    private void setDrawTouchMoveResponse(SignalingProto.DrawTouchMove value) {
+    private void setDrawTouchMoveResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17839,18 +18403,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
      */
     private void setDrawTouchMoveResponse(
-        SignalingProto.DrawTouchMove.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.Builder builderForValue) {
       drawTouchMoveResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
      */
-    private void mergeDrawTouchMoveResponse(SignalingProto.DrawTouchMove value) {
+    private void mergeDrawTouchMoveResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
       if (drawTouchMoveResponse_ != null &&
-          drawTouchMoveResponse_ != SignalingProto.DrawTouchMove.getDefaultInstance()) {
+          drawTouchMoveResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.getDefaultInstance()) {
         drawTouchMoveResponse_ =
-          SignalingProto.DrawTouchMove.newBuilder(drawTouchMoveResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.newBuilder(drawTouchMoveResponse_).mergeFrom(value).buildPartial();
       } else {
         drawTouchMoveResponse_ = value;
       }
@@ -17864,7 +18428,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWTOUCHUPRESPONSE_FIELD_NUMBER = 22;
-    private SignalingProto.DrawTouchUp drawTouchUpResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp drawTouchUpResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
      */
@@ -17874,13 +18438,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
      */
-    public SignalingProto.DrawTouchUp getDrawTouchUpResponse() {
-      return drawTouchUpResponse_ == null ? SignalingProto.DrawTouchUp.getDefaultInstance() : drawTouchUpResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp getDrawTouchUpResponse() {
+      return drawTouchUpResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.getDefaultInstance() : drawTouchUpResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
      */
-    private void setDrawTouchUpResponse(SignalingProto.DrawTouchUp value) {
+    private void setDrawTouchUpResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17891,18 +18455,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
      */
     private void setDrawTouchUpResponse(
-        SignalingProto.DrawTouchUp.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.Builder builderForValue) {
       drawTouchUpResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
      */
-    private void mergeDrawTouchUpResponse(SignalingProto.DrawTouchUp value) {
+    private void mergeDrawTouchUpResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
       if (drawTouchUpResponse_ != null &&
-          drawTouchUpResponse_ != SignalingProto.DrawTouchUp.getDefaultInstance()) {
+          drawTouchUpResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.getDefaultInstance()) {
         drawTouchUpResponse_ =
-          SignalingProto.DrawTouchUp.newBuilder(drawTouchUpResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.newBuilder(drawTouchUpResponse_).mergeFrom(value).buildPartial();
       } else {
         drawTouchUpResponse_ = value;
       }
@@ -17916,7 +18480,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWCANVASCLEARRESPONSE_FIELD_NUMBER = 23;
-    private SignalingProto.DrawCanvasClear drawCanvasClearResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear drawCanvasClearResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
      */
@@ -17926,13 +18490,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
      */
-    public SignalingProto.DrawCanvasClear getDrawCanvasClearResponse() {
-      return drawCanvasClearResponse_ == null ? SignalingProto.DrawCanvasClear.getDefaultInstance() : drawCanvasClearResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear getDrawCanvasClearResponse() {
+      return drawCanvasClearResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.getDefaultInstance() : drawCanvasClearResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
      */
-    private void setDrawCanvasClearResponse(SignalingProto.DrawCanvasClear value) {
+    private void setDrawCanvasClearResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17943,18 +18507,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
      */
     private void setDrawCanvasClearResponse(
-        SignalingProto.DrawCanvasClear.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.Builder builderForValue) {
       drawCanvasClearResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
      */
-    private void mergeDrawCanvasClearResponse(SignalingProto.DrawCanvasClear value) {
+    private void mergeDrawCanvasClearResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
       if (drawCanvasClearResponse_ != null &&
-          drawCanvasClearResponse_ != SignalingProto.DrawCanvasClear.getDefaultInstance()) {
+          drawCanvasClearResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.getDefaultInstance()) {
         drawCanvasClearResponse_ =
-          SignalingProto.DrawCanvasClear.newBuilder(drawCanvasClearResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.newBuilder(drawCanvasClearResponse_).mergeFrom(value).buildPartial();
       } else {
         drawCanvasClearResponse_ = value;
       }
@@ -17968,7 +18532,7 @@ public final class RtcProto {
     }
 
     public static final int DRAWMETADATACHANGERESPONSE_FIELD_NUMBER = 24;
-    private SignalingProto.DrawMetaDataChange drawMetaDataChangeResponse_;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange drawMetaDataChangeResponse_;
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
@@ -17978,13 +18542,13 @@ public final class RtcProto {
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
-    public SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse() {
-      return drawMetaDataChangeResponse_ == null ? SignalingProto.DrawMetaDataChange.getDefaultInstance() : drawMetaDataChangeResponse_;
+    public com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse() {
+      return drawMetaDataChangeResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.getDefaultInstance() : drawMetaDataChangeResponse_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
-    private void setDrawMetaDataChangeResponse(SignalingProto.DrawMetaDataChange value) {
+    private void setDrawMetaDataChangeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -17995,18 +18559,18 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
     private void setDrawMetaDataChangeResponse(
-        SignalingProto.DrawMetaDataChange.Builder builderForValue) {
+        com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.Builder builderForValue) {
       drawMetaDataChangeResponse_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
      */
-    private void mergeDrawMetaDataChangeResponse(SignalingProto.DrawMetaDataChange value) {
+    private void mergeDrawMetaDataChangeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
       if (drawMetaDataChangeResponse_ != null &&
-          drawMetaDataChangeResponse_ != SignalingProto.DrawMetaDataChange.getDefaultInstance()) {
+          drawMetaDataChangeResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.getDefaultInstance()) {
         drawMetaDataChangeResponse_ =
-          SignalingProto.DrawMetaDataChange.newBuilder(drawMetaDataChangeResponse_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.newBuilder(drawMetaDataChangeResponse_).mergeFrom(value).buildPartial();
       } else {
         drawMetaDataChangeResponse_ = value;
       }
@@ -18019,9 +18583,269 @@ public final class RtcProto {
       
     }
 
+    public static final int DRAWMINIMIZERESPONSE_FIELD_NUMBER = 25;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawMinize drawMinimizeResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    public boolean hasDrawMinimizeResponse() {
+      return drawMinimizeResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawMinize getDrawMinimizeResponse() {
+      return drawMinimizeResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawMinize.getDefaultInstance() : drawMinimizeResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void setDrawMinimizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMinimizeResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void setDrawMinimizeResponse(
+        com.treeleaf.anydone.entities.SignalingProto.DrawMinize.Builder builderForValue) {
+      drawMinimizeResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void mergeDrawMinimizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+      if (drawMinimizeResponse_ != null &&
+          drawMinimizeResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawMinize.getDefaultInstance()) {
+        drawMinimizeResponse_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawMinize.newBuilder(drawMinimizeResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawMinimizeResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+     */
+    private void clearDrawMinimizeResponse() {  drawMinimizeResponse_ = null;
+      
+    }
+
+    public static final int DRAWMAXIMIZERESPONSE_FIELD_NUMBER = 26;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawMaximize drawMaximizeResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    public boolean hasDrawMaximizeResponse() {
+      return drawMaximizeResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawMaximize getDrawMaximizeResponse() {
+      return drawMaximizeResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.getDefaultInstance() : drawMaximizeResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void setDrawMaximizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMaximizeResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void setDrawMaximizeResponse(
+        com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.Builder builderForValue) {
+      drawMaximizeResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void mergeDrawMaximizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+      if (drawMaximizeResponse_ != null &&
+          drawMaximizeResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.getDefaultInstance()) {
+        drawMaximizeResponse_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.newBuilder(drawMaximizeResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawMaximizeResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+     */
+    private void clearDrawMaximizeResponse() {  drawMaximizeResponse_ = null;
+      
+    }
+
+    public static final int DRAWCLOSERESPONSE_FIELD_NUMBER = 27;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawClose drawCloseResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    public boolean hasDrawCloseResponse() {
+      return drawCloseResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawClose getDrawCloseResponse() {
+      return drawCloseResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawClose.getDefaultInstance() : drawCloseResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void setDrawCloseResponse(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCloseResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void setDrawCloseResponse(
+        com.treeleaf.anydone.entities.SignalingProto.DrawClose.Builder builderForValue) {
+      drawCloseResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void mergeDrawCloseResponse(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+      if (drawCloseResponse_ != null &&
+          drawCloseResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawClose.getDefaultInstance()) {
+        drawCloseResponse_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawClose.newBuilder(drawCloseResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawCloseResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+     */
+    private void clearDrawCloseResponse() {  drawCloseResponse_ = null;
+      
+    }
+
+    public static final int DRAWCOLLABRESPONSE_FIELD_NUMBER = 28;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawCollab drawCollabResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    public boolean hasDrawCollabResponse() {
+      return drawCollabResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawCollab getDrawCollabResponse() {
+      return drawCollabResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawCollab.getDefaultInstance() : drawCollabResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void setDrawCollabResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void setDrawCollabResponse(
+        com.treeleaf.anydone.entities.SignalingProto.DrawCollab.Builder builderForValue) {
+      drawCollabResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void mergeDrawCollabResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+      if (drawCollabResponse_ != null &&
+          drawCollabResponse_ != com.treeleaf.anydone.entities.SignalingProto.DrawCollab.getDefaultInstance()) {
+        drawCollabResponse_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollab.newBuilder(drawCollabResponse_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+     */
+    private void clearDrawCollabResponse() {  drawCollabResponse_ = null;
+      
+    }
+
+    public static final int DRAWCOLLABACKNOWLEDGEMENT_FIELD_NUMBER = 29;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement drawCollabAcknowledgement_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    public boolean hasDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.getDefaultInstance() : drawCollabAcknowledgement_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void setDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabAcknowledgement_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void setDrawCollabAcknowledgement(
+        com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+      drawCollabAcknowledgement_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void mergeDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+      if (drawCollabAcknowledgement_ != null &&
+          drawCollabAcknowledgement_ != com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.getDefaultInstance()) {
+        drawCollabAcknowledgement_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.newBuilder(drawCollabAcknowledgement_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabAcknowledgement_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void clearDrawCollabAcknowledgement() {  drawCollabAcknowledgement_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (responseType_ != RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
+      if (responseType_ != com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
         output.writeEnum(1, responseType_);
       }
       if (rtcMessage_ != null) {
@@ -18054,9 +18878,6 @@ public final class RtcProto {
       if (participantLeftResponse_ != null) {
         output.writeMessage(11, getParticipantLeftResponse());
       }
-      if (screenDrawResponse_ != null) {
-        output.writeMessage(12, getScreenDrawResponse());
-      }
       if (startDrawResponse_ != null) {
         output.writeMessage(13, getStartDrawResponse());
       }
@@ -18066,7 +18887,7 @@ public final class RtcProto {
       if (cancelDrawResponse_ != null) {
         output.writeMessage(15, getCancelDrawResponse());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(16, context_);
       }
       if (receiveNewTextFieldResponse_ != null) {
@@ -18093,6 +18914,21 @@ public final class RtcProto {
       if (drawMetaDataChangeResponse_ != null) {
         output.writeMessage(24, getDrawMetaDataChangeResponse());
       }
+      if (drawMinimizeResponse_ != null) {
+        output.writeMessage(25, getDrawMinimizeResponse());
+      }
+      if (drawMaximizeResponse_ != null) {
+        output.writeMessage(26, getDrawMaximizeResponse());
+      }
+      if (drawCloseResponse_ != null) {
+        output.writeMessage(27, getDrawCloseResponse());
+      }
+      if (drawCollabResponse_ != null) {
+        output.writeMessage(28, getDrawCollabResponse());
+      }
+      if (drawCollabAcknowledgement_ != null) {
+        output.writeMessage(29, getDrawCollabAcknowledgement());
+      }
     }
 
     public int getSerializedSize() {
@@ -18100,7 +18936,7 @@ public final class RtcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (responseType_ != RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
+      if (responseType_ != com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, responseType_);
       }
@@ -18144,10 +18980,6 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getParticipantLeftResponse());
       }
-      if (screenDrawResponse_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, getScreenDrawResponse());
-      }
       if (startDrawResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getStartDrawResponse());
@@ -18160,7 +18992,7 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getCancelDrawResponse());
       }
-      if (context_ != AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(16, context_);
       }
@@ -18196,64 +19028,84 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(24, getDrawMetaDataChangeResponse());
       }
+      if (drawMinimizeResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, getDrawMinimizeResponse());
+      }
+      if (drawMaximizeResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, getDrawMaximizeResponse());
+      }
+      if (drawCloseResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(27, getDrawCloseResponse());
+      }
+      if (drawCollabResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(28, getDrawCollabResponse());
+      }
+      if (drawCollabAcknowledgement_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(29, getDrawCollabAcknowledgement());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static RelayResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RelayResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RelayResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static RelayResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static RelayResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RelayResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RelayResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static RelayResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static RelayResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static RelayResponse parseFrom(
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -18264,7 +19116,7 @@ public final class RtcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(RelayResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.RelayResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -18273,9 +19125,9 @@ public final class RtcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          RelayResponse, Builder> implements
+          com.treeleaf.anydone.entities.RtcProto.RelayResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RelayResponse)
-        RelayResponseOrBuilder {
+        com.treeleaf.anydone.entities.RtcProto.RelayResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.RtcProto.RelayResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -18299,13 +19151,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RelayResponse.RelayResponseType responseType = 1;</code>
        */
-      public RelayResponseType getResponseType() {
+      public com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType getResponseType() {
         return instance.getResponseType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RelayResponse.RelayResponseType responseType = 1;</code>
        */
-      public Builder setResponseType(RelayResponseType value) {
+      public Builder setResponseType(com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType value) {
         copyOnWrite();
         instance.setResponseType(value);
         return this;
@@ -18328,13 +19180,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
-      public RtcMessage getRtcMessage() {
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getRtcMessage() {
         return instance.getRtcMessage();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
-      public Builder setRtcMessage(RtcMessage value) {
+      public Builder setRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
         copyOnWrite();
         instance.setRtcMessage(value);
         return this;
@@ -18343,7 +19195,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
       public Builder setRtcMessage(
-          RtcMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setRtcMessage(builderForValue);
         return this;
@@ -18351,7 +19203,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RtcMessage rtcMessage = 2;</code>
        */
-      public Builder mergeRtcMessage(RtcMessage value) {
+      public Builder mergeRtcMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
         copyOnWrite();
         instance.mergeRtcMessage(value);
         return this;
@@ -18373,13 +19225,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
        */
-      public MessageDeliveredResponse getMessageDeliveredResponse() {
+      public com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse getMessageDeliveredResponse() {
         return instance.getMessageDeliveredResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
        */
-      public Builder setMessageDeliveredResponse(MessageDeliveredResponse value) {
+      public Builder setMessageDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
         copyOnWrite();
         instance.setMessageDeliveredResponse(value);
         return this;
@@ -18388,7 +19240,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
        */
       public Builder setMessageDeliveredResponse(
-          MessageDeliveredResponse.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.Builder builderForValue) {
         copyOnWrite();
         instance.setMessageDeliveredResponse(builderForValue);
         return this;
@@ -18396,7 +19248,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse messageDeliveredResponse = 3;</code>
        */
-      public Builder mergeMessageDeliveredResponse(MessageDeliveredResponse value) {
+      public Builder mergeMessageDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
         copyOnWrite();
         instance.mergeMessageDeliveredResponse(value);
         return this;
@@ -18418,13 +19270,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
        */
-      public RelayError getRelayError() {
+      public com.treeleaf.anydone.entities.RtcProto.RelayError getRelayError() {
         return instance.getRelayError();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
        */
-      public Builder setRelayError(RelayError value) {
+      public Builder setRelayError(com.treeleaf.anydone.entities.RtcProto.RelayError value) {
         copyOnWrite();
         instance.setRelayError(value);
         return this;
@@ -18433,7 +19285,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
        */
       public Builder setRelayError(
-          RelayError.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.RelayError.Builder builderForValue) {
         copyOnWrite();
         instance.setRelayError(builderForValue);
         return this;
@@ -18441,7 +19293,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.RelayError relayError = 4;</code>
        */
-      public Builder mergeRelayError(RelayError value) {
+      public Builder mergeRelayError(com.treeleaf.anydone.entities.RtcProto.RelayError value) {
         copyOnWrite();
         instance.mergeRelayError(value);
         return this;
@@ -18463,13 +19315,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
        */
-      public DeletedMsgResponse getDeletedMsgResponse() {
+      public com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse getDeletedMsgResponse() {
         return instance.getDeletedMsgResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
        */
-      public Builder setDeletedMsgResponse(DeletedMsgResponse value) {
+      public Builder setDeletedMsgResponse(com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse value) {
         copyOnWrite();
         instance.setDeletedMsgResponse(value);
         return this;
@@ -18478,7 +19330,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
        */
       public Builder setDeletedMsgResponse(
-          DeletedMsgResponse.Builder builderForValue) {
+          com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.Builder builderForValue) {
         copyOnWrite();
         instance.setDeletedMsgResponse(builderForValue);
         return this;
@@ -18486,7 +19338,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DeletedMsgResponse deletedMsgResponse = 5;</code>
        */
-      public Builder mergeDeletedMsgResponse(DeletedMsgResponse value) {
+      public Builder mergeDeletedMsgResponse(com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse value) {
         copyOnWrite();
         instance.mergeDeletedMsgResponse(value);
         return this;
@@ -18508,13 +19360,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
        */
-      public SignalingProto.VideoCallJoinResponse getVideoCallJoinResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse getVideoCallJoinResponse() {
         return instance.getVideoCallJoinResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
        */
-      public Builder setVideoCallJoinResponse(SignalingProto.VideoCallJoinResponse value) {
+      public Builder setVideoCallJoinResponse(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse value) {
         copyOnWrite();
         instance.setVideoCallJoinResponse(value);
         return this;
@@ -18523,7 +19375,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
        */
       public Builder setVideoCallJoinResponse(
-          SignalingProto.VideoCallJoinResponse.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.Builder builderForValue) {
         copyOnWrite();
         instance.setVideoCallJoinResponse(builderForValue);
         return this;
@@ -18531,7 +19383,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoCallJoinResponse videoCallJoinResponse = 6;</code>
        */
-      public Builder mergeVideoCallJoinResponse(SignalingProto.VideoCallJoinResponse value) {
+      public Builder mergeVideoCallJoinResponse(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse value) {
         copyOnWrite();
         instance.mergeVideoCallJoinResponse(value);
         return this;
@@ -18570,7 +19422,7 @@ public final class RtcProto {
       /**
        * <code>optional string ownerAccountId = 8;</code>
        */
-      public String getOwnerAccountId() {
+      public java.lang.String getOwnerAccountId() {
         return instance.getOwnerAccountId();
       }
       /**
@@ -18584,7 +19436,7 @@ public final class RtcProto {
        * <code>optional string ownerAccountId = 8;</code>
        */
       public Builder setOwnerAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setOwnerAccountId(value);
         return this;
@@ -18616,13 +19468,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
        */
-      public SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+      public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
         return instance.getBroadcastVideoCall();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
        */
-      public Builder setBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+      public Builder setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
         copyOnWrite();
         instance.setBroadcastVideoCall(value);
         return this;
@@ -18631,7 +19483,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
        */
       public Builder setBroadcastVideoCall(
-          SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
         copyOnWrite();
         instance.setBroadcastVideoCall(builderForValue);
         return this;
@@ -18639,7 +19491,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 9;</code>
        */
-      public Builder mergeBroadcastVideoCall(SignalingProto.BroadcastVideoCall value) {
+      public Builder mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
         copyOnWrite();
         instance.mergeBroadcastVideoCall(value);
         return this;
@@ -18661,13 +19513,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
        */
-      public SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeftResponse() {
         return instance.getVideoRoomHostLeftResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
        */
-      public Builder setVideoRoomHostLeftResponse(SignalingProto.VideoRoomHostLeft value) {
+      public Builder setVideoRoomHostLeftResponse(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
         copyOnWrite();
         instance.setVideoRoomHostLeftResponse(value);
         return this;
@@ -18676,7 +19528,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
        */
       public Builder setVideoRoomHostLeftResponse(
-          SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
         copyOnWrite();
         instance.setVideoRoomHostLeftResponse(builderForValue);
         return this;
@@ -18684,7 +19536,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeftResponse = 10;</code>
        */
-      public Builder mergeVideoRoomHostLeftResponse(SignalingProto.VideoRoomHostLeft value) {
+      public Builder mergeVideoRoomHostLeftResponse(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
         copyOnWrite();
         instance.mergeVideoRoomHostLeftResponse(value);
         return this;
@@ -18706,13 +19558,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
        */
-      public SignalingProto.ParticipantLeft getParticipantLeftResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft getParticipantLeftResponse() {
         return instance.getParticipantLeftResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
        */
-      public Builder setParticipantLeftResponse(SignalingProto.ParticipantLeft value) {
+      public Builder setParticipantLeftResponse(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
         copyOnWrite();
         instance.setParticipantLeftResponse(value);
         return this;
@@ -18721,7 +19573,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
        */
       public Builder setParticipantLeftResponse(
-          SignalingProto.ParticipantLeft.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.Builder builderForValue) {
         copyOnWrite();
         instance.setParticipantLeftResponse(builderForValue);
         return this;
@@ -18729,7 +19581,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
        */
-      public Builder mergeParticipantLeftResponse(SignalingProto.ParticipantLeft value) {
+      public Builder mergeParticipantLeftResponse(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft value) {
         copyOnWrite();
         instance.mergeParticipantLeftResponse(value);
         return this;
@@ -18743,51 +19595,6 @@ public final class RtcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public boolean hasScreenDrawResponse() {
-        return instance.hasScreenDrawResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public SignalingProto.ScreenDrawRequest getScreenDrawResponse() {
-        return instance.getScreenDrawResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder setScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.setScreenDrawResponse(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder setScreenDrawResponse(
-          SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-        copyOnWrite();
-        instance.setScreenDrawResponse(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder mergeScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.mergeScreenDrawResponse(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder clearScreenDrawResponse() {  copyOnWrite();
-        instance.clearScreenDrawResponse();
-        return this;
-      }
-
-      /**
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
        */
       public boolean hasStartDrawResponse() {
@@ -18796,13 +19603,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
        */
-      public SignalingProto.StartDraw getStartDrawResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.StartDraw getStartDrawResponse() {
         return instance.getStartDrawResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
        */
-      public Builder setStartDrawResponse(SignalingProto.StartDraw value) {
+      public Builder setStartDrawResponse(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
         copyOnWrite();
         instance.setStartDrawResponse(value);
         return this;
@@ -18811,7 +19618,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
        */
       public Builder setStartDrawResponse(
-          SignalingProto.StartDraw.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.StartDraw.Builder builderForValue) {
         copyOnWrite();
         instance.setStartDrawResponse(builderForValue);
         return this;
@@ -18819,7 +19626,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
        */
-      public Builder mergeStartDrawResponse(SignalingProto.StartDraw value) {
+      public Builder mergeStartDrawResponse(com.treeleaf.anydone.entities.SignalingProto.StartDraw value) {
         copyOnWrite();
         instance.mergeStartDrawResponse(value);
         return this;
@@ -18841,13 +19648,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
        */
-      public SignalingProto.StartDrawAcknowledgement getStartDrawAckResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement getStartDrawAckResponse() {
         return instance.getStartDrawAckResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
        */
-      public Builder setStartDrawAckResponse(SignalingProto.StartDrawAcknowledgement value) {
+      public Builder setStartDrawAckResponse(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
         copyOnWrite();
         instance.setStartDrawAckResponse(value);
         return this;
@@ -18856,7 +19663,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
        */
       public Builder setStartDrawAckResponse(
-          SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.Builder builderForValue) {
         copyOnWrite();
         instance.setStartDrawAckResponse(builderForValue);
         return this;
@@ -18864,7 +19671,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StartDrawAcknowledgement startDrawAckResponse = 14;</code>
        */
-      public Builder mergeStartDrawAckResponse(SignalingProto.StartDrawAcknowledgement value) {
+      public Builder mergeStartDrawAckResponse(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement value) {
         copyOnWrite();
         instance.mergeStartDrawAckResponse(value);
         return this;
@@ -18886,13 +19693,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
        */
-      public SignalingProto.CancelDrawing getCancelDrawResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.CancelDrawing getCancelDrawResponse() {
         return instance.getCancelDrawResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
        */
-      public Builder setCancelDrawResponse(SignalingProto.CancelDrawing value) {
+      public Builder setCancelDrawResponse(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
         copyOnWrite();
         instance.setCancelDrawResponse(value);
         return this;
@@ -18901,7 +19708,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
        */
       public Builder setCancelDrawResponse(
-          SignalingProto.CancelDrawing.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.Builder builderForValue) {
         copyOnWrite();
         instance.setCancelDrawResponse(builderForValue);
         return this;
@@ -18909,7 +19716,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.CancelDrawing cancelDrawResponse = 15;</code>
        */
-      public Builder mergeCancelDrawResponse(SignalingProto.CancelDrawing value) {
+      public Builder mergeCancelDrawResponse(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing value) {
         copyOnWrite();
         instance.mergeCancelDrawResponse(value);
         return this;
@@ -18939,13 +19746,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
        */
-      public AnydoneProto.ServiceContext getContext() {
+      public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
         return instance.getContext();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceContext context = 16;</code>
        */
-      public Builder setContext(AnydoneProto.ServiceContext value) {
+      public Builder setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
         copyOnWrite();
         instance.setContext(value);
         return this;
@@ -18968,13 +19775,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
        */
-      public SignalingProto.ReceiveNewTextField getReceiveNewTextFieldResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField getReceiveNewTextFieldResponse() {
         return instance.getReceiveNewTextFieldResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
        */
-      public Builder setReceiveNewTextFieldResponse(SignalingProto.ReceiveNewTextField value) {
+      public Builder setReceiveNewTextFieldResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
         copyOnWrite();
         instance.setReceiveNewTextFieldResponse(value);
         return this;
@@ -18983,7 +19790,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
        */
       public Builder setReceiveNewTextFieldResponse(
-          SignalingProto.ReceiveNewTextField.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.Builder builderForValue) {
         copyOnWrite();
         instance.setReceiveNewTextFieldResponse(builderForValue);
         return this;
@@ -18991,7 +19798,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ReceiveNewTextField receiveNewTextFieldResponse = 17;</code>
        */
-      public Builder mergeReceiveNewTextFieldResponse(SignalingProto.ReceiveNewTextField value) {
+      public Builder mergeReceiveNewTextFieldResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField value) {
         copyOnWrite();
         instance.mergeReceiveNewTextFieldResponse(value);
         return this;
@@ -19013,13 +19820,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
        */
-      public SignalingProto.TextFieldChange getTextFieldChangeResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.TextFieldChange getTextFieldChangeResponse() {
         return instance.getTextFieldChangeResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
        */
-      public Builder setTextFieldChangeResponse(SignalingProto.TextFieldChange value) {
+      public Builder setTextFieldChangeResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
         copyOnWrite();
         instance.setTextFieldChangeResponse(value);
         return this;
@@ -19028,7 +19835,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
        */
       public Builder setTextFieldChangeResponse(
-          SignalingProto.TextFieldChange.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.Builder builderForValue) {
         copyOnWrite();
         instance.setTextFieldChangeResponse(builderForValue);
         return this;
@@ -19036,7 +19843,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldChange textFieldChangeResponse = 18;</code>
        */
-      public Builder mergeTextFieldChangeResponse(SignalingProto.TextFieldChange value) {
+      public Builder mergeTextFieldChangeResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange value) {
         copyOnWrite();
         instance.mergeTextFieldChangeResponse(value);
         return this;
@@ -19058,13 +19865,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
        */
-      public SignalingProto.TextFieldRemove getTextFieldRemoveResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove getTextFieldRemoveResponse() {
         return instance.getTextFieldRemoveResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
        */
-      public Builder setTextFieldRemoveResponse(SignalingProto.TextFieldRemove value) {
+      public Builder setTextFieldRemoveResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
         copyOnWrite();
         instance.setTextFieldRemoveResponse(value);
         return this;
@@ -19073,7 +19880,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
        */
       public Builder setTextFieldRemoveResponse(
-          SignalingProto.TextFieldRemove.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.Builder builderForValue) {
         copyOnWrite();
         instance.setTextFieldRemoveResponse(builderForValue);
         return this;
@@ -19081,7 +19888,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TextFieldRemove textFieldRemoveResponse = 19;</code>
        */
-      public Builder mergeTextFieldRemoveResponse(SignalingProto.TextFieldRemove value) {
+      public Builder mergeTextFieldRemoveResponse(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove value) {
         copyOnWrite();
         instance.mergeTextFieldRemoveResponse(value);
         return this;
@@ -19103,13 +19910,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
        */
-      public SignalingProto.DrawTouchDown getDrawTouchDownResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown getDrawTouchDownResponse() {
         return instance.getDrawTouchDownResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
        */
-      public Builder setDrawTouchDownResponse(SignalingProto.DrawTouchDown value) {
+      public Builder setDrawTouchDownResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
         copyOnWrite();
         instance.setDrawTouchDownResponse(value);
         return this;
@@ -19118,7 +19925,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
        */
       public Builder setDrawTouchDownResponse(
-          SignalingProto.DrawTouchDown.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawTouchDownResponse(builderForValue);
         return this;
@@ -19126,7 +19933,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchDown drawTouchDownResponse = 20;</code>
        */
-      public Builder mergeDrawTouchDownResponse(SignalingProto.DrawTouchDown value) {
+      public Builder mergeDrawTouchDownResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown value) {
         copyOnWrite();
         instance.mergeDrawTouchDownResponse(value);
         return this;
@@ -19148,13 +19955,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
        */
-      public SignalingProto.DrawTouchMove getDrawTouchMoveResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove getDrawTouchMoveResponse() {
         return instance.getDrawTouchMoveResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
        */
-      public Builder setDrawTouchMoveResponse(SignalingProto.DrawTouchMove value) {
+      public Builder setDrawTouchMoveResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
         copyOnWrite();
         instance.setDrawTouchMoveResponse(value);
         return this;
@@ -19163,7 +19970,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
        */
       public Builder setDrawTouchMoveResponse(
-          SignalingProto.DrawTouchMove.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawTouchMoveResponse(builderForValue);
         return this;
@@ -19171,7 +19978,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchMove drawTouchMoveResponse = 21;</code>
        */
-      public Builder mergeDrawTouchMoveResponse(SignalingProto.DrawTouchMove value) {
+      public Builder mergeDrawTouchMoveResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove value) {
         copyOnWrite();
         instance.mergeDrawTouchMoveResponse(value);
         return this;
@@ -19193,13 +20000,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
        */
-      public SignalingProto.DrawTouchUp getDrawTouchUpResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp getDrawTouchUpResponse() {
         return instance.getDrawTouchUpResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
        */
-      public Builder setDrawTouchUpResponse(SignalingProto.DrawTouchUp value) {
+      public Builder setDrawTouchUpResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
         copyOnWrite();
         instance.setDrawTouchUpResponse(value);
         return this;
@@ -19208,7 +20015,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
        */
       public Builder setDrawTouchUpResponse(
-          SignalingProto.DrawTouchUp.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawTouchUpResponse(builderForValue);
         return this;
@@ -19216,7 +20023,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawTouchUp drawTouchUpResponse = 22;</code>
        */
-      public Builder mergeDrawTouchUpResponse(SignalingProto.DrawTouchUp value) {
+      public Builder mergeDrawTouchUpResponse(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp value) {
         copyOnWrite();
         instance.mergeDrawTouchUpResponse(value);
         return this;
@@ -19238,13 +20045,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
        */
-      public SignalingProto.DrawCanvasClear getDrawCanvasClearResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear getDrawCanvasClearResponse() {
         return instance.getDrawCanvasClearResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
        */
-      public Builder setDrawCanvasClearResponse(SignalingProto.DrawCanvasClear value) {
+      public Builder setDrawCanvasClearResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
         copyOnWrite();
         instance.setDrawCanvasClearResponse(value);
         return this;
@@ -19253,7 +20060,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
        */
       public Builder setDrawCanvasClearResponse(
-          SignalingProto.DrawCanvasClear.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawCanvasClearResponse(builderForValue);
         return this;
@@ -19261,7 +20068,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawCanvasClear drawCanvasClearResponse = 23;</code>
        */
-      public Builder mergeDrawCanvasClearResponse(SignalingProto.DrawCanvasClear value) {
+      public Builder mergeDrawCanvasClearResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear value) {
         copyOnWrite();
         instance.mergeDrawCanvasClearResponse(value);
         return this;
@@ -19283,13 +20090,13 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
        */
-      public SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse() {
+      public com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange getDrawMetaDataChangeResponse() {
         return instance.getDrawMetaDataChangeResponse();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
        */
-      public Builder setDrawMetaDataChangeResponse(SignalingProto.DrawMetaDataChange value) {
+      public Builder setDrawMetaDataChangeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
         copyOnWrite();
         instance.setDrawMetaDataChangeResponse(value);
         return this;
@@ -19298,7 +20105,7 @@ public final class RtcProto {
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
        */
       public Builder setDrawMetaDataChangeResponse(
-          SignalingProto.DrawMetaDataChange.Builder builderForValue) {
+          com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.Builder builderForValue) {
         copyOnWrite();
         instance.setDrawMetaDataChangeResponse(builderForValue);
         return this;
@@ -19306,7 +20113,7 @@ public final class RtcProto {
       /**
        * <code>optional .treeleaf.anydone.entities.DrawMetaDataChange drawMetaDataChangeResponse = 24;</code>
        */
-      public Builder mergeDrawMetaDataChangeResponse(SignalingProto.DrawMetaDataChange value) {
+      public Builder mergeDrawMetaDataChangeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange value) {
         copyOnWrite();
         instance.mergeDrawMetaDataChangeResponse(value);
         return this;
@@ -19319,14 +20126,239 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public boolean hasDrawMinimizeResponse() {
+        return instance.hasDrawMinimizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawMinize getDrawMinimizeResponse() {
+        return instance.getDrawMinimizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder setDrawMinimizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.setDrawMinimizeResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder setDrawMinimizeResponse(
+          com.treeleaf.anydone.entities.SignalingProto.DrawMinize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMinimizeResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder mergeDrawMinimizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMinize value) {
+        copyOnWrite();
+        instance.mergeDrawMinimizeResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMinize drawMinimizeResponse = 25;</code>
+       */
+      public Builder clearDrawMinimizeResponse() {  copyOnWrite();
+        instance.clearDrawMinimizeResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public boolean hasDrawMaximizeResponse() {
+        return instance.hasDrawMaximizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawMaximize getDrawMaximizeResponse() {
+        return instance.getDrawMaximizeResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder setDrawMaximizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.setDrawMaximizeResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder setDrawMaximizeResponse(
+          com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMaximizeResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder mergeDrawMaximizeResponse(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize value) {
+        copyOnWrite();
+        instance.mergeDrawMaximizeResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMaximize drawMaximizeResponse = 26;</code>
+       */
+      public Builder clearDrawMaximizeResponse() {  copyOnWrite();
+        instance.clearDrawMaximizeResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public boolean hasDrawCloseResponse() {
+        return instance.hasDrawCloseResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawClose getDrawCloseResponse() {
+        return instance.getDrawCloseResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder setDrawCloseResponse(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.setDrawCloseResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder setDrawCloseResponse(
+          com.treeleaf.anydone.entities.SignalingProto.DrawClose.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCloseResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder mergeDrawCloseResponse(com.treeleaf.anydone.entities.SignalingProto.DrawClose value) {
+        copyOnWrite();
+        instance.mergeDrawCloseResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawClose drawCloseResponse = 27;</code>
+       */
+      public Builder clearDrawCloseResponse() {  copyOnWrite();
+        instance.clearDrawCloseResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public boolean hasDrawCollabResponse() {
+        return instance.hasDrawCollabResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawCollab getDrawCollabResponse() {
+        return instance.getDrawCollabResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder setDrawCollabResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.setDrawCollabResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder setDrawCollabResponse(
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollab.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder mergeDrawCollabResponse(com.treeleaf.anydone.entities.SignalingProto.DrawCollab value) {
+        copyOnWrite();
+        instance.mergeDrawCollabResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
+       */
+      public Builder clearDrawCollabResponse() {  copyOnWrite();
+        instance.clearDrawCollabResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public boolean hasDrawCollabAcknowledgement() {
+        return instance.hasDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+        return instance.getDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(
+          com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder mergeDrawCollabAcknowledgement(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.mergeDrawCollabAcknowledgement(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder clearDrawCollabAcknowledgement() {  copyOnWrite();
+        instance.clearDrawCollabAcknowledgement();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new RelayResponse();
+          return new com.treeleaf.anydone.entities.RtcProto.RelayResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -19339,7 +20371,7 @@ public final class RtcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          RelayResponse other = (RelayResponse) arg1;
+          com.treeleaf.anydone.entities.RtcProto.RelayResponse other = (com.treeleaf.anydone.entities.RtcProto.RelayResponse) arg1;
           responseType_ = visitor.visitInt(responseType_ != 0, responseType_,    other.responseType_ != 0, other.responseType_);
           rtcMessage_ = visitor.visitMessage(rtcMessage_, other.rtcMessage_);
           messageDeliveredResponse_ = visitor.visitMessage(messageDeliveredResponse_, other.messageDeliveredResponse_);
@@ -19353,7 +20385,6 @@ public final class RtcProto {
           broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
           videoRoomHostLeftResponse_ = visitor.visitMessage(videoRoomHostLeftResponse_, other.videoRoomHostLeftResponse_);
           participantLeftResponse_ = visitor.visitMessage(participantLeftResponse_, other.participantLeftResponse_);
-          screenDrawResponse_ = visitor.visitMessage(screenDrawResponse_, other.screenDrawResponse_);
           startDrawResponse_ = visitor.visitMessage(startDrawResponse_, other.startDrawResponse_);
           startDrawAckResponse_ = visitor.visitMessage(startDrawAckResponse_, other.startDrawAckResponse_);
           cancelDrawResponse_ = visitor.visitMessage(cancelDrawResponse_, other.cancelDrawResponse_);
@@ -19366,7 +20397,12 @@ public final class RtcProto {
           drawTouchUpResponse_ = visitor.visitMessage(drawTouchUpResponse_, other.drawTouchUpResponse_);
           drawCanvasClearResponse_ = visitor.visitMessage(drawCanvasClearResponse_, other.drawCanvasClearResponse_);
           drawMetaDataChangeResponse_ = visitor.visitMessage(drawMetaDataChangeResponse_, other.drawMetaDataChangeResponse_);
-          if (visitor == MergeFromVisitor
+          drawMinimizeResponse_ = visitor.visitMessage(drawMinimizeResponse_, other.drawMinimizeResponse_);
+          drawMaximizeResponse_ = visitor.visitMessage(drawMaximizeResponse_, other.drawMaximizeResponse_);
+          drawCloseResponse_ = visitor.visitMessage(drawCloseResponse_, other.drawCloseResponse_);
+          drawCollabResponse_ = visitor.visitMessage(drawCollabResponse_, other.drawCollabResponse_);
+          drawCollabAcknowledgement_ = visitor.visitMessage(drawCollabAcknowledgement_, other.drawCollabAcknowledgement_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -19397,11 +20433,11 @@ public final class RtcProto {
                   break;
                 }
                 case 18: {
-                  RtcMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
                   if (rtcMessage_ != null) {
                     subBuilder = rtcMessage_.toBuilder();
                   }
-                  rtcMessage_ = input.readMessage(RtcMessage.parser(), extensionRegistry);
+                  rtcMessage_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(rtcMessage_);
                     rtcMessage_ = subBuilder.buildPartial();
@@ -19410,11 +20446,11 @@ public final class RtcProto {
                   break;
                 }
                 case 26: {
-                  MessageDeliveredResponse.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.Builder subBuilder = null;
                   if (messageDeliveredResponse_ != null) {
                     subBuilder = messageDeliveredResponse_.toBuilder();
                   }
-                  messageDeliveredResponse_ = input.readMessage(MessageDeliveredResponse.parser(), extensionRegistry);
+                  messageDeliveredResponse_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(messageDeliveredResponse_);
                     messageDeliveredResponse_ = subBuilder.buildPartial();
@@ -19423,11 +20459,11 @@ public final class RtcProto {
                   break;
                 }
                 case 34: {
-                  RelayError.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.RelayError.Builder subBuilder = null;
                   if (relayError_ != null) {
                     subBuilder = relayError_.toBuilder();
                   }
-                  relayError_ = input.readMessage(RelayError.parser(), extensionRegistry);
+                  relayError_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RelayError.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(relayError_);
                     relayError_ = subBuilder.buildPartial();
@@ -19436,11 +20472,11 @@ public final class RtcProto {
                   break;
                 }
                 case 42: {
-                  DeletedMsgResponse.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.Builder subBuilder = null;
                   if (deletedMsgResponse_ != null) {
                     subBuilder = deletedMsgResponse_.toBuilder();
                   }
-                  deletedMsgResponse_ = input.readMessage(DeletedMsgResponse.parser(), extensionRegistry);
+                  deletedMsgResponse_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.DeletedMsgResponse.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(deletedMsgResponse_);
                     deletedMsgResponse_ = subBuilder.buildPartial();
@@ -19449,11 +20485,11 @@ public final class RtcProto {
                   break;
                 }
                 case 50: {
-                  SignalingProto.VideoCallJoinResponse.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.Builder subBuilder = null;
                   if (videoCallJoinResponse_ != null) {
                     subBuilder = videoCallJoinResponse_.toBuilder();
                   }
-                  videoCallJoinResponse_ = input.readMessage(SignalingProto.VideoCallJoinResponse.parser(), extensionRegistry);
+                  videoCallJoinResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinResponse.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(videoCallJoinResponse_);
                     videoCallJoinResponse_ = subBuilder.buildPartial();
@@ -19473,11 +20509,11 @@ public final class RtcProto {
                   break;
                 }
                 case 74: {
-                  SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
                   if (broadcastVideoCall_ != null) {
                     subBuilder = broadcastVideoCall_.toBuilder();
                   }
-                  broadcastVideoCall_ = input.readMessage(SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
+                  broadcastVideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(broadcastVideoCall_);
                     broadcastVideoCall_ = subBuilder.buildPartial();
@@ -19486,11 +20522,11 @@ public final class RtcProto {
                   break;
                 }
                 case 82: {
-                  SignalingProto.VideoRoomHostLeft.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder subBuilder = null;
                   if (videoRoomHostLeftResponse_ != null) {
                     subBuilder = videoRoomHostLeftResponse_.toBuilder();
                   }
-                  videoRoomHostLeftResponse_ = input.readMessage(SignalingProto.VideoRoomHostLeft.parser(), extensionRegistry);
+                  videoRoomHostLeftResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(videoRoomHostLeftResponse_);
                     videoRoomHostLeftResponse_ = subBuilder.buildPartial();
@@ -19499,11 +20535,11 @@ public final class RtcProto {
                   break;
                 }
                 case 90: {
-                  SignalingProto.ParticipantLeft.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.Builder subBuilder = null;
                   if (participantLeftResponse_ != null) {
                     subBuilder = participantLeftResponse_.toBuilder();
                   }
-                  participantLeftResponse_ = input.readMessage(SignalingProto.ParticipantLeft.parser(), extensionRegistry);
+                  participantLeftResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ParticipantLeft.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(participantLeftResponse_);
                     participantLeftResponse_ = subBuilder.buildPartial();
@@ -19511,25 +20547,12 @@ public final class RtcProto {
 
                   break;
                 }
-                case 98: {
-                  SignalingProto.ScreenDrawRequest.Builder subBuilder = null;
-                  if (screenDrawResponse_ != null) {
-                    subBuilder = screenDrawResponse_.toBuilder();
-                  }
-                  screenDrawResponse_ = input.readMessage(SignalingProto.ScreenDrawRequest.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(screenDrawResponse_);
-                    screenDrawResponse_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
                 case 106: {
-                  SignalingProto.StartDraw.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.StartDraw.Builder subBuilder = null;
                   if (startDrawResponse_ != null) {
                     subBuilder = startDrawResponse_.toBuilder();
                   }
-                  startDrawResponse_ = input.readMessage(SignalingProto.StartDraw.parser(), extensionRegistry);
+                  startDrawResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.StartDraw.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(startDrawResponse_);
                     startDrawResponse_ = subBuilder.buildPartial();
@@ -19538,11 +20561,11 @@ public final class RtcProto {
                   break;
                 }
                 case 114: {
-                  SignalingProto.StartDrawAcknowledgement.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.Builder subBuilder = null;
                   if (startDrawAckResponse_ != null) {
                     subBuilder = startDrawAckResponse_.toBuilder();
                   }
-                  startDrawAckResponse_ = input.readMessage(SignalingProto.StartDrawAcknowledgement.parser(), extensionRegistry);
+                  startDrawAckResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.StartDrawAcknowledgement.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(startDrawAckResponse_);
                     startDrawAckResponse_ = subBuilder.buildPartial();
@@ -19551,11 +20574,11 @@ public final class RtcProto {
                   break;
                 }
                 case 122: {
-                  SignalingProto.CancelDrawing.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.Builder subBuilder = null;
                   if (cancelDrawResponse_ != null) {
                     subBuilder = cancelDrawResponse_.toBuilder();
                   }
-                  cancelDrawResponse_ = input.readMessage(SignalingProto.CancelDrawing.parser(), extensionRegistry);
+                  cancelDrawResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.CancelDrawing.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(cancelDrawResponse_);
                     cancelDrawResponse_ = subBuilder.buildPartial();
@@ -19570,11 +20593,11 @@ public final class RtcProto {
                   break;
                 }
                 case 138: {
-                  SignalingProto.ReceiveNewTextField.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.Builder subBuilder = null;
                   if (receiveNewTextFieldResponse_ != null) {
                     subBuilder = receiveNewTextFieldResponse_.toBuilder();
                   }
-                  receiveNewTextFieldResponse_ = input.readMessage(SignalingProto.ReceiveNewTextField.parser(), extensionRegistry);
+                  receiveNewTextFieldResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiveNewTextField.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(receiveNewTextFieldResponse_);
                     receiveNewTextFieldResponse_ = subBuilder.buildPartial();
@@ -19583,11 +20606,11 @@ public final class RtcProto {
                   break;
                 }
                 case 146: {
-                  SignalingProto.TextFieldChange.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.Builder subBuilder = null;
                   if (textFieldChangeResponse_ != null) {
                     subBuilder = textFieldChangeResponse_.toBuilder();
                   }
-                  textFieldChangeResponse_ = input.readMessage(SignalingProto.TextFieldChange.parser(), extensionRegistry);
+                  textFieldChangeResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.TextFieldChange.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(textFieldChangeResponse_);
                     textFieldChangeResponse_ = subBuilder.buildPartial();
@@ -19596,11 +20619,11 @@ public final class RtcProto {
                   break;
                 }
                 case 154: {
-                  SignalingProto.TextFieldRemove.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.Builder subBuilder = null;
                   if (textFieldRemoveResponse_ != null) {
                     subBuilder = textFieldRemoveResponse_.toBuilder();
                   }
-                  textFieldRemoveResponse_ = input.readMessage(SignalingProto.TextFieldRemove.parser(), extensionRegistry);
+                  textFieldRemoveResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.TextFieldRemove.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(textFieldRemoveResponse_);
                     textFieldRemoveResponse_ = subBuilder.buildPartial();
@@ -19609,11 +20632,11 @@ public final class RtcProto {
                   break;
                 }
                 case 162: {
-                  SignalingProto.DrawTouchDown.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.Builder subBuilder = null;
                   if (drawTouchDownResponse_ != null) {
                     subBuilder = drawTouchDownResponse_.toBuilder();
                   }
-                  drawTouchDownResponse_ = input.readMessage(SignalingProto.DrawTouchDown.parser(), extensionRegistry);
+                  drawTouchDownResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawTouchDown.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawTouchDownResponse_);
                     drawTouchDownResponse_ = subBuilder.buildPartial();
@@ -19622,11 +20645,11 @@ public final class RtcProto {
                   break;
                 }
                 case 170: {
-                  SignalingProto.DrawTouchMove.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.Builder subBuilder = null;
                   if (drawTouchMoveResponse_ != null) {
                     subBuilder = drawTouchMoveResponse_.toBuilder();
                   }
-                  drawTouchMoveResponse_ = input.readMessage(SignalingProto.DrawTouchMove.parser(), extensionRegistry);
+                  drawTouchMoveResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawTouchMove.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawTouchMoveResponse_);
                     drawTouchMoveResponse_ = subBuilder.buildPartial();
@@ -19635,11 +20658,11 @@ public final class RtcProto {
                   break;
                 }
                 case 178: {
-                  SignalingProto.DrawTouchUp.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.Builder subBuilder = null;
                   if (drawTouchUpResponse_ != null) {
                     subBuilder = drawTouchUpResponse_.toBuilder();
                   }
-                  drawTouchUpResponse_ = input.readMessage(SignalingProto.DrawTouchUp.parser(), extensionRegistry);
+                  drawTouchUpResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawTouchUp.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawTouchUpResponse_);
                     drawTouchUpResponse_ = subBuilder.buildPartial();
@@ -19648,11 +20671,11 @@ public final class RtcProto {
                   break;
                 }
                 case 186: {
-                  SignalingProto.DrawCanvasClear.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.Builder subBuilder = null;
                   if (drawCanvasClearResponse_ != null) {
                     subBuilder = drawCanvasClearResponse_.toBuilder();
                   }
-                  drawCanvasClearResponse_ = input.readMessage(SignalingProto.DrawCanvasClear.parser(), extensionRegistry);
+                  drawCanvasClearResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawCanvasClear.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawCanvasClearResponse_);
                     drawCanvasClearResponse_ = subBuilder.buildPartial();
@@ -19661,14 +20684,79 @@ public final class RtcProto {
                   break;
                 }
                 case 194: {
-                  SignalingProto.DrawMetaDataChange.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.Builder subBuilder = null;
                   if (drawMetaDataChangeResponse_ != null) {
                     subBuilder = drawMetaDataChangeResponse_.toBuilder();
                   }
-                  drawMetaDataChangeResponse_ = input.readMessage(SignalingProto.DrawMetaDataChange.parser(), extensionRegistry);
+                  drawMetaDataChangeResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawMetaDataChange.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawMetaDataChangeResponse_);
                     drawMetaDataChangeResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 202: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawMinize.Builder subBuilder = null;
+                  if (drawMinimizeResponse_ != null) {
+                    subBuilder = drawMinimizeResponse_.toBuilder();
+                  }
+                  drawMinimizeResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawMinize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMinimizeResponse_);
+                    drawMinimizeResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 210: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.Builder subBuilder = null;
+                  if (drawMaximizeResponse_ != null) {
+                    subBuilder = drawMaximizeResponse_.toBuilder();
+                  }
+                  drawMaximizeResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawMaximize.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMaximizeResponse_);
+                    drawMaximizeResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 218: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawClose.Builder subBuilder = null;
+                  if (drawCloseResponse_ != null) {
+                    subBuilder = drawCloseResponse_.toBuilder();
+                  }
+                  drawCloseResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawClose.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCloseResponse_);
+                    drawCloseResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 226: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawCollab.Builder subBuilder = null;
+                  if (drawCollabResponse_ != null) {
+                    subBuilder = drawCollabResponse_.toBuilder();
+                  }
+                  drawCollabResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawCollab.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabResponse_);
+                    drawCollabResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 234: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.Builder subBuilder = null;
+                  if (drawCollabAcknowledgement_ != null) {
+                    subBuilder = drawCollabAcknowledgement_.toBuilder();
+                  }
+                  drawCollabAcknowledgement_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabAcknowledgement_);
+                    drawCollabAcknowledgement_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -19688,7 +20776,7 @@ public final class RtcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (RelayResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.RelayResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -19702,13 +20790,13 @@ public final class RtcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RelayResponse)
-    private static final RelayResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.RtcProto.RelayResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new RelayResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static RelayResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.RtcProto.RelayResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

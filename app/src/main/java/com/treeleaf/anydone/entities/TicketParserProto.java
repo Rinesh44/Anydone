@@ -15,7 +15,7 @@ public final class TicketParserProto {
     /**
      * <code>optional string conversationText = 1;</code>
      */
-    String getConversationText();
+    java.lang.String getConversationText();
     /**
      * <code>optional string conversationText = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class TicketParserProto {
     /**
      * <code>optional string serviceId = 2;</code>
      */
-    String getServiceId();
+    java.lang.String getServiceId();
     /**
      * <code>optional string serviceId = 2;</code>
      */
@@ -35,7 +35,7 @@ public final class TicketParserProto {
     /**
      * <code>optional string language = 3;</code>
      */
-    String getLanguage();
+    java.lang.String getLanguage();
     /**
      * <code>optional string language = 3;</code>
      */
@@ -54,12 +54,32 @@ public final class TicketParserProto {
     /**
      * <code>repeated string previousMsgs = 4;</code>
      */
-    String getPreviousMsgs(int index);
+    java.lang.String getPreviousMsgs(int index);
     /**
      * <code>repeated string previousMsgs = 4;</code>
      */
     com.google.protobuf.ByteString
         getPreviousMsgsBytes(int index);
+
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    java.lang.String getConversationId();
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getConversationIdBytes();
+
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    java.lang.String getCategory();
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getCategoryBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TicketParserRequest}
@@ -74,14 +94,16 @@ public final class TicketParserProto {
       serviceId_ = "";
       language_ = "";
       previousMsgs_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      conversationId_ = "";
+      category_ = "";
     }
     private int bitField0_;
     public static final int CONVERSATIONTEXT_FIELD_NUMBER = 1;
-    private String conversationText_;
+    private java.lang.String conversationText_;
     /**
      * <code>optional string conversationText = 1;</code>
      */
-    public String getConversationText() {
+    public java.lang.String getConversationText() {
       return conversationText_;
     }
     /**
@@ -95,7 +117,7 @@ public final class TicketParserProto {
      * <code>optional string conversationText = 1;</code>
      */
     private void setConversationText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -123,11 +145,11 @@ public final class TicketParserProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 2;
-    private String serviceId_;
+    private java.lang.String serviceId_;
     /**
      * <code>optional string serviceId = 2;</code>
      */
-    public String getServiceId() {
+    public java.lang.String getServiceId() {
       return serviceId_;
     }
     /**
@@ -141,7 +163,7 @@ public final class TicketParserProto {
      * <code>optional string serviceId = 2;</code>
      */
     private void setServiceId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -169,11 +191,11 @@ public final class TicketParserProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 3;
-    private String language_;
+    private java.lang.String language_;
     /**
      * <code>optional string language = 3;</code>
      */
-    public String getLanguage() {
+    public java.lang.String getLanguage() {
       return language_;
     }
     /**
@@ -187,7 +209,7 @@ public final class TicketParserProto {
      * <code>optional string language = 3;</code>
      */
     private void setLanguage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -231,7 +253,7 @@ public final class TicketParserProto {
     /**
      * <code>repeated string previousMsgs = 4;</code>
      */
-    public String getPreviousMsgs(int index) {
+    public java.lang.String getPreviousMsgs(int index) {
       return previousMsgs_.get(index);
     }
     /**
@@ -252,7 +274,7 @@ public final class TicketParserProto {
      * <code>repeated string previousMsgs = 4;</code>
      */
     private void setPreviousMsgs(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -263,7 +285,7 @@ public final class TicketParserProto {
      * <code>repeated string previousMsgs = 4;</code>
      */
     private void addPreviousMsgs(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -274,7 +296,7 @@ public final class TicketParserProto {
      * <code>repeated string previousMsgs = 4;</code>
      */
     private void addAllPreviousMsgs(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensurePreviousMsgsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, previousMsgs_);
@@ -298,6 +320,98 @@ public final class TicketParserProto {
       previousMsgs_.add(value.toStringUtf8());
     }
 
+    public static final int CONVERSATIONID_FIELD_NUMBER = 5;
+    private java.lang.String conversationId_;
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    public java.lang.String getConversationId() {
+      return conversationId_;
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConversationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(conversationId_);
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    private void setConversationId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      conversationId_ = value;
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    private void clearConversationId() {
+      
+      conversationId_ = getDefaultInstance().getConversationId();
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    private void setConversationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      conversationId_ = value.toStringUtf8();
+    }
+
+    public static final int CATEGORY_FIELD_NUMBER = 6;
+    private java.lang.String category_;
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    public java.lang.String getCategory() {
+      return category_;
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCategoryBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(category_);
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    private void setCategory(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      category_ = value;
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    private void clearCategory() {
+      
+      category_ = getDefaultInstance().getCategory();
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    private void setCategoryBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      category_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!conversationText_.isEmpty()) {
@@ -311,6 +425,12 @@ public final class TicketParserProto {
       }
       for (int i = 0; i < previousMsgs_.size(); i++) {
         output.writeString(4, previousMsgs_.get(i));
+      }
+      if (!conversationId_.isEmpty()) {
+        output.writeString(5, getConversationId());
+      }
+      if (!category_.isEmpty()) {
+        output.writeString(6, getCategory());
       }
     }
 
@@ -340,64 +460,72 @@ public final class TicketParserProto {
         size += dataSize;
         size += 1 * getPreviousMsgsList().size();
       }
+      if (!conversationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getConversationId());
+      }
+      if (!category_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getCategory());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static TicketParserRequest parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserRequest parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserRequest parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserRequest parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TicketParserRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserRequest parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserRequest parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -408,7 +536,7 @@ public final class TicketParserProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TicketParserRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -417,9 +545,9 @@ public final class TicketParserProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TicketParserRequest, Builder> implements
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketParserRequest)
-        TicketParserRequestOrBuilder {
+        com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -429,7 +557,7 @@ public final class TicketParserProto {
       /**
        * <code>optional string conversationText = 1;</code>
        */
-      public String getConversationText() {
+      public java.lang.String getConversationText() {
         return instance.getConversationText();
       }
       /**
@@ -443,7 +571,7 @@ public final class TicketParserProto {
        * <code>optional string conversationText = 1;</code>
        */
       public Builder setConversationText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setConversationText(value);
         return this;
@@ -469,7 +597,7 @@ public final class TicketParserProto {
       /**
        * <code>optional string serviceId = 2;</code>
        */
-      public String getServiceId() {
+      public java.lang.String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -483,7 +611,7 @@ public final class TicketParserProto {
        * <code>optional string serviceId = 2;</code>
        */
       public Builder setServiceId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -509,7 +637,7 @@ public final class TicketParserProto {
       /**
        * <code>optional string language = 3;</code>
        */
-      public String getLanguage() {
+      public java.lang.String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -523,7 +651,7 @@ public final class TicketParserProto {
        * <code>optional string language = 3;</code>
        */
       public Builder setLanguage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -563,7 +691,7 @@ public final class TicketParserProto {
       /**
        * <code>repeated string previousMsgs = 4;</code>
        */
-      public String getPreviousMsgs(int index) {
+      public java.lang.String getPreviousMsgs(int index) {
         return instance.getPreviousMsgs(index);
       }
       /**
@@ -577,7 +705,7 @@ public final class TicketParserProto {
        * <code>repeated string previousMsgs = 4;</code>
        */
       public Builder setPreviousMsgs(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setPreviousMsgs(index, value);
         return this;
@@ -586,7 +714,7 @@ public final class TicketParserProto {
        * <code>repeated string previousMsgs = 4;</code>
        */
       public Builder addPreviousMsgs(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addPreviousMsgs(value);
         return this;
@@ -595,7 +723,7 @@ public final class TicketParserProto {
        * <code>repeated string previousMsgs = 4;</code>
        */
       public Builder addAllPreviousMsgs(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllPreviousMsgs(values);
         return this;
@@ -618,14 +746,94 @@ public final class TicketParserProto {
         return this;
       }
 
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public java.lang.String getConversationId() {
+        return instance.getConversationId();
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConversationIdBytes() {
+        return instance.getConversationIdBytes();
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public Builder setConversationId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setConversationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public Builder clearConversationId() {
+        copyOnWrite();
+        instance.clearConversationId();
+        return this;
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public Builder setConversationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setConversationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public java.lang.String getCategory() {
+        return instance.getCategory();
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCategoryBytes() {
+        return instance.getCategoryBytes();
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public Builder setCategory(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setCategory(value);
+        return this;
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public Builder clearCategory() {
+        copyOnWrite();
+        instance.clearCategory();
+        return this;
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public Builder setCategoryBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCategoryBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketParserRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TicketParserRequest();
+          return new com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -639,7 +847,7 @@ public final class TicketParserProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TicketParserRequest other = (TicketParserRequest) arg1;
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest other = (com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest) arg1;
           conversationText_ = visitor.visitString(!conversationText_.isEmpty(), conversationText_,
               !other.conversationText_.isEmpty(), other.conversationText_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
@@ -647,7 +855,11 @@ public final class TicketParserProto {
           language_ = visitor.visitString(!language_.isEmpty(), language_,
               !other.language_.isEmpty(), other.language_);
           previousMsgs_= visitor.visitList(previousMsgs_, other.previousMsgs_);
-          if (visitor == MergeFromVisitor
+          conversationId_ = visitor.visitString(!conversationId_.isEmpty(), conversationId_,
+              !other.conversationId_.isEmpty(), other.conversationId_);
+          category_ = visitor.visitString(!category_.isEmpty(), category_,
+              !other.category_.isEmpty(), other.category_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -699,6 +911,18 @@ public final class TicketParserProto {
                   previousMsgs_.add(s);
                   break;
                 }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  conversationId_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  category_ = s;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -714,7 +938,7 @@ public final class TicketParserProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TicketParserRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -728,13 +952,13 @@ public final class TicketParserProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketParserRequest)
-    private static final TicketParserRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketParserRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TicketParserRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -842,60 +1066,60 @@ public final class TicketParserProto {
       return size;
     }
 
-    public static TicketParserResponse parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserResponse parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserResponse parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserResponse parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TicketParserResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserResponse parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserResponse parseFrom(
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -906,7 +1130,7 @@ public final class TicketParserProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TicketParserResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -915,9 +1139,9 @@ public final class TicketParserProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TicketParserResponse, Builder> implements
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketParserResponse)
-        TicketParserResponseOrBuilder {
+        com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -973,11 +1197,11 @@ public final class TicketParserProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketParserResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TicketParserResponse();
+          return new com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -990,12 +1214,12 @@ public final class TicketParserProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TicketParserResponse other = (TicketParserResponse) arg1;
+          com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse other = (com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse) arg1;
           isPossibleTicket_ = visitor.visitBoolean(isPossibleTicket_ != false, isPossibleTicket_,
               other.isPossibleTicket_ != false, other.isPossibleTicket_);
           probability_ = visitor.visitFloat(probability_ != 0F, probability_,
               other.probability_ != 0F, other.probability_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1044,7 +1268,7 @@ public final class TicketParserProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TicketParserResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1058,13 +1282,13 @@ public final class TicketParserProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketParserResponse)
-    private static final TicketParserResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketParserResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TicketParserResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.TicketParserProto.TicketParserResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
