@@ -20,6 +20,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
 import com.treeleaf.januswebrtc.ClientActivity;
+import com.treeleaf.januswebrtc.Joinee;
 import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 import com.treeleaf.januswebrtc.VideoCallUtil;
@@ -263,7 +264,39 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 captureImageFrame(bitmap);
             }
 
+            @Override
+            public void onCollabInvite(Joinee joinee, String pictureId, Bitmap bitmap) {
+                prepareCollabInvite(joinee, pictureId, bitmap);
+            }
+
+            @Override
+            public void onMaximizeDrawing(String pictureId) {
+                presenter.publishDrawMaximize(accountId, pictureId, accountName, accountPicture,
+                        refId, System.currentTimeMillis(), rtcContext);
+            }
+
+            @Override
+            public void onMinimizeDrawing(String pictureId) {
+                presenter.publishDrawMinimize(accountId, pictureId, accountName, accountPicture,
+                        refId, System.currentTimeMillis(), rtcContext);
+            }
+
         };
+    }
+
+    private void prepareCollabInvite(Joinee joinee, String pictureId, Bitmap caputureBitmap) {
+        Bitmap bitmap = caputureBitmap;
+        Bitmap convertedBitmap;
+        try {
+            convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
+            byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
+            ByteString imageByteString = ByteString.copyFrom(bytes);
+            presenter.publishInviteToCollabRequest(accountId, joinee.getAccountId(), pictureId, accountName,
+                    accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void captureImageFrame(Bitmap caputureBitmap) {

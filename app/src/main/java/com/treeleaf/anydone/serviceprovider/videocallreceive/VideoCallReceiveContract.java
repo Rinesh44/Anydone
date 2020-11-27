@@ -77,6 +77,17 @@ public class VideoCallReceiveContract {
         void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
                                               String textFieldId, long orderId, long capturedTime, String rtcContext);
 
+
+        void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId, String accountName, String accountPicture,
+                                          long orderId, ByteString capturedImage, long capturedTime, String rtcContext);
+
+        void publishDrawMaximize(String userAccountId, String pictureId, String accountName, String accountPicture,
+                                 long orderId, long eventTime, String rtcContext);
+
+        void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
+                                 long orderId, long eventTime, String rtcContext);
+
+
     }
 
 }

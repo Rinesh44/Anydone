@@ -601,6 +601,119 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
+    public void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId,
+                                             String accountName, String accountPicture, long orderId,
+                                             ByteString capturedImage, long capturedTime, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(fromAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawCollab drawCollab = SignalingProto.DrawCollab.newBuilder()
+                .setEventTime(capturedTime)
+                .setSenderAccountId(fromAccountId)
+                .setCapturedImage(capturedImage)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setFromAccountId(fromAccountId)
+                .setToAccountId(toAccountId)
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_COLlAB_REQUEST)
+                .setDrawCollabReq(drawCollab)
+                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .build();
+
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
+    public void publishDrawMaximize(String userAccountId, String pictureId, String accountName, String accountPicture,
+                                    long orderId, long eventTime, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawMaximize drawMaximize = SignalingProto.DrawMaximize.newBuilder()
+                .setEventTime(eventTime)
+                .setSenderAccountId(userAccountId)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MAXIMIZE_REQUEST)
+                .setDrawMaximizeReq(drawMaximize)
+                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ?
+                        AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT :
+                        AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .build();
+
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
+    public void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
+                                    long orderId, long eventTime, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawMinize drawMinize = SignalingProto.DrawMinize.newBuilder()
+                .setEventTime(eventTime)
+                .setSenderAccountId(userAccountId)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MINIMIZE_REQUEST)
+                .setDrawMinimizeRequest(drawMinize)
+                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ?
+                        AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT :
+                        AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .build();
+
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
     public void checkConnection(MqttAndroidClient client) {
         if (!GlobalUtils.isConnected(getContext())) {
             getView().onConnectionFail("No Internet Connection");
