@@ -17,7 +17,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
-import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -1567,6 +1566,26 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onDrawCanvasCleared(String accountId) {
         ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId);
+    }
+
+    @Override
+    public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
+        ((TicketDetailsActivity) getActivity()).onDrawCollabInvite(drawCollabResponse);
+    }
+
+    @Override
+    public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
+        ((TicketDetailsActivity) getActivity()).onDrawMaximize(drawMaximize);
+    }
+
+    @Override
+    public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
+        ((TicketDetailsActivity) getActivity()).onDrawMinimize(drawMinize);
+    }
+
+    @Override
+    public void onDrawClose(SignalingProto.DrawClose drawClose) {
+        ((TicketDetailsActivity) getActivity()).onDrawClose(drawClose);
     }
 
 }

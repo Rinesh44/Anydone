@@ -82,6 +82,10 @@ import retrofit2.converter.protobuf.ProtoConverterFactory;
 
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CANCEL_DRAWING_MESSAGE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_CLOSE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_COLlAB_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MAXIMIZE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
 
 public class ServiceRequestDetailPresenterImpl extends
@@ -936,6 +940,58 @@ public class ServiceRequestDetailPresenterImpl extends
                     if (drawCanvasClear != null &&
                             !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
                         getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId());
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(DRAW_COLlAB_RESPONSE)) {
+                    SignalingProto.DrawCollab drawCollabResponse = relayResponse.getDrawCollabResponse();
+                    String accountId = drawCollabResponse.getSenderAccount().getAccountId();
+                    if (drawCollabResponse != null) {
+                        if (userAccountId.equals(accountId)) {
+                            //sent and received id is same
+                        } else {
+                            //sent and received id is different
+                            getView().onDrawCollabInvite(drawCollabResponse);
+                        }
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(DRAW_MAXIMIZE_RESPONSE)) {
+                    SignalingProto.DrawMaximize drawMaximizeResponse = relayResponse.getDrawMaximizeResponse();
+                    String accountId = drawMaximizeResponse.getSenderAccount().getAccountId();
+                    if (drawMaximizeResponse != null) {
+                        if (userAccountId.equals(accountId)) {
+                            //sent and received id is same
+                        } else {
+                            //sent and received id is different
+                            getView().onDrawMaximize(drawMaximizeResponse);
+                        }
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(DRAW_MINIMIZE_RESPONSE)) {
+                    SignalingProto.DrawMinize drawMinimizeResponse = relayResponse.getDrawMinimizeResponse();
+                    String accountId = drawMinimizeResponse.getSenderAccount().getAccountId();
+                    if (drawMinimizeResponse != null) {
+                        if (userAccountId.equals(accountId)) {
+                            //sent and received id is same
+                        } else {
+                            //sent and received id is different
+                            getView().onDrawMinimize(drawMinimizeResponse);
+                        }
+                    }
+                }
+
+                if (relayResponse.getResponseType().equals(DRAW_CLOSE_RESPONSE)) {
+                    SignalingProto.DrawClose drawClose = relayResponse.getDrawCloseResponse();
+                    String accountId = drawClose.getSenderAccount().getAccountId();
+                    if (drawClose != null) {
+                        if (userAccountId.equals(accountId)) {
+                            //sent and received id is same
+                        } else {
+                            //sent and received id is different
+                            getView().onDrawClose(drawClose);
+                        }
                     }
                 }
 

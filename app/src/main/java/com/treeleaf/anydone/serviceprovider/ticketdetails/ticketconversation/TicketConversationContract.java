@@ -112,6 +112,14 @@ public class TicketConversationContract {
 
         void onDrawCanvasCleared(String accountId);
 
+        void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse);
+
+        void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize);
+
+        void onDrawMinimize(SignalingProto.DrawMinize drawMinize);
+
+        void onDrawClose(SignalingProto.DrawClose drawClose);
+
         void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId);
 
         void onTaskStartSuccess(long estTime);

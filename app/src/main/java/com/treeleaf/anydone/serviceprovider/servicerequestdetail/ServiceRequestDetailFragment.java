@@ -1425,4 +1425,24 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
         ((ServiceRequestDetailActivity) getActivity()).onDrawCanvasCleared(accountId);
     }
 
+    @Override
+    public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawCollabInvite(drawCollabResponse);
+    }
+
+    @Override
+    public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawMaximize(drawMaximize);
+    }
+
+    @Override
+    public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawMinimize(drawMinize);
+    }
+
+    @Override
+    public void onDrawClose(SignalingProto.DrawClose drawClose) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawClose(drawClose);
+    }
+
 }

@@ -569,6 +569,61 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     }
 
+    public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawCollabResponse.getFromAccountId();
+                    String toAccountId = drawCollabResponse.getToAccountId();
+                    String imageId = drawCollabResponse.getImageId();
+                    ByteString imageByteString = drawCollabResponse.getCapturedImage();
+                    byte[] convertedBytes = imageByteString.toByteArray();
+                    drawPadEventListener.onDrawCollabInvite(fromAccountId, toAccountId, imageId, convertedBytes);
+                }
+            }
+        });
+    }
+
+    public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawMaximize.getSenderAccountId();
+                    String imageId = drawMaximize.getImageId();
+                    drawPadEventListener.onDrawMaximize(fromAccountId, imageId);
+                }
+            }
+        });
+    }
+
+    public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawMinize.getSenderAccountId();
+                    String imageId = drawMinize.getImageId();
+                    drawPadEventListener.onDrawMinimize(fromAccountId, imageId);
+                }
+            }
+        });
+    }
+
+    public void onDrawClose(SignalingProto.DrawClose drawClose) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawClose.getSenderAccountId();
+                    String imageId = drawClose.getImageId();
+                    drawPadEventListener.onDrawClose(fromAccountId, imageId);
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret) {
