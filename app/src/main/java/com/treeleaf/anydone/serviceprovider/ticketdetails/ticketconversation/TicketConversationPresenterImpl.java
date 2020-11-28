@@ -937,7 +937,11 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     //sent and received id is same
                                 } else {
                                     //sent and received id is different
-                                    getView().onDrawCollabInvite(drawCollabResponse);
+                                    if (drawCollabResponse.getToAccountId().equals(userAccountId)) {
+                                        //handle collab response only if it is sent to me
+                                        getView().onDrawCollabInvite(drawCollabResponse);
+                                    }
+
                                 }
                             }
                         }
