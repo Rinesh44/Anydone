@@ -490,8 +490,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(), accountId),
-                    adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+//            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(), accountId),
+//                    adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                    localDeviceHeight), accountId, imageId);
             drawPadEventListener.onDrawTouchDown(accountId, imageId);
         }
     }
@@ -499,8 +502,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
-                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+//            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
+//                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                    localDeviceHeight), accountId, imageId);
             drawPadEventListener.onDrawTouchMove(accountId, imageId);
         }
     }
@@ -518,8 +524,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
-                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId, imageId);
+//                    drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
+//                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId, imageId);
+                    drawPadEventListener.onDrawReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePostPublish(x,
+                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
+                            localDeviceHeight), editTextFieldId, accountId, imageId);
                 }
             }
         });
