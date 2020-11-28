@@ -791,7 +791,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         equals(userAccountId)) {
                                     getView().onImageDrawDiscardLocal();
                                 } else
-                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId());
+                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId(),
+                                            cancelDrawing.getImageId());
                             }
                         }
 
@@ -835,7 +836,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                                 captureDrawParam.setXCoordinate(drawTouchDown.getX());
                                 captureDrawParam.setYCoordinate(drawTouchDown.getY());
-                                getView().onDrawTouchDown(captureDrawParam, drawTouchDown.getSenderAccount().getAccountId());
+                                getView().onDrawTouchDown(captureDrawParam, drawTouchDown.getSenderAccount().getAccountId(),
+                                        drawTouchDown.getImageId());
                             }
                         }
 
@@ -848,7 +850,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                                 captureDrawParam.setXCoordinate(drawTouchMove.getX());
                                 captureDrawParam.setYCoordinate(drawTouchMove.getY());
-                                getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId());
+                                getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId(),
+                                        drawTouchMove.getImageId());
                             }
                         }
 
@@ -858,7 +861,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     .getDrawTouchUpResponse();
                             if (drawTouchUp != null &&
                                     !drawTouchUp.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawTouchUp(drawTouchUp.getSenderAccount().getAccountId());
+                                getView().onDrawTouchUp(drawTouchUp.getSenderAccount().getAccountId(), drawTouchUp.getImageId());
                             }
                         }
 
@@ -870,7 +873,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
                                         receiveNewTextField.getY(), receiveNewTextField.getTextId(),
-                                        receiveNewTextField.getSenderAccount().getAccountId());
+                                        receiveNewTextField.getSenderAccount().getAccountId(), receiveNewTextField.getImageId());
                             }
                         }
 
@@ -881,7 +884,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (textFieldChange != null &&
                                     !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
-                                        textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId());
+                                        textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId(),
+                                        textFieldChange.getImageId());
                             }
                         }
 
@@ -892,7 +896,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (textFieldRemove != null &&
                                     !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId(),
-                                        textFieldRemove.getSenderAccount().getAccountId());
+                                        textFieldRemove.getSenderAccount().getAccountId(), textFieldRemove.getImageId());
                             }
                         }
 
@@ -909,7 +913,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
                                 captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
                                 captureDrawParam.setTextColor(drawMetaDataChange.getTextColor());
-                                getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId());
+                                getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId(),
+                                        drawMetaDataChange.getImageId());
                             }
                         }
 
@@ -919,7 +924,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     .getDrawCanvasClearResponse();
                             if (drawCanvasClear != null &&
                                     !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId());
+                                getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId(),
+                                        drawCanvasClear.getImageId());
                             }
                         }
 

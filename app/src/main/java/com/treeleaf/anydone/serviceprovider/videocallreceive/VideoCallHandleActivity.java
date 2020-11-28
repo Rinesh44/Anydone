@@ -404,13 +404,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     }
 
-    public void onImageDrawDiscardRemote(String accountId) {
+    public void onImageDrawDiscardRemote(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "onImageReceivedFromConsumer");
                 if (drawPadEventListener != null)
-                    drawPadEventListener.onDrawDiscard(accountId);
+                    drawPadEventListener.onDrawDiscard(accountId, imageId);
             }
         });
     }
@@ -488,81 +488,81 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
             drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(), accountId),
-                    adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId);
-            drawPadEventListener.onDrawTouchDown(accountId);
+                    adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+            drawPadEventListener.onDrawTouchDown(accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
             drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
-                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId);
-            drawPadEventListener.onDrawTouchMove(accountId);
+                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+            drawPadEventListener.onDrawTouchMove(accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawTouchUp(String accountId) {
+    public void onDrawTouchUp(String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawTouchUp(accountId);
+            drawPadEventListener.onDrawTouchUp(accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
                     drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
-                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId);
+                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId, imageId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextChange(text, id, accountId);
+                    drawPadEventListener.onDrawReceiveNewTextChange(text, id, accountId, imageId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveEdiTextRemove(editTextId, accountId);
+                    drawPadEventListener.onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId);
+            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawCanvasCleared(String accountId) {
+    public void onDrawCanvasCleared(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawCanvasCleared(accountId);
+                    drawPadEventListener.onDrawCanvasCleared(accountId, imageId);
                 }
             }
         });

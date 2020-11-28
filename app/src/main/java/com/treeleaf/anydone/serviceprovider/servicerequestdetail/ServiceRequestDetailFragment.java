@@ -817,8 +817,8 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onImageDrawDiscardRemote(String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote(accountId);
+    public void onImageDrawDiscardRemote(String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onImageDrawDiscardRemote(accountId, imageId);
     }
 
     @Override
@@ -1386,43 +1386,43 @@ public class ServiceRequestDetailFragment extends BaseFragment<ServiceRequestDet
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId);
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId, imageId);
     }
 
     @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId);
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId, imageId);
     }
 
     @Override
-    public void onDrawTouchUp(String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchUp(accountId);
+    public void onDrawTouchUp(String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawTouchUp(accountId, imageId);
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId);
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId);
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId, imageId);
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId);
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
     }
 
     @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId);
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId, imageId);
     }
 
     @Override
-    public void onDrawCanvasCleared(String accountId) {
-        ((ServiceRequestDetailActivity) getActivity()).onDrawCanvasCleared(accountId);
+    public void onDrawCanvasCleared(String accountId, String imageId) {
+        ((ServiceRequestDetailActivity) getActivity()).onDrawCanvasCleared(accountId, imageId);
     }
 
     @Override
