@@ -2,16 +2,12 @@ package com.treeleaf.anydone.serviceprovider.mqtt;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.annotation.RequiresApi;
 
-import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -25,7 +21,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import java.io.InputStream;
 import java.util.UUID;
 
-import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_URI;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 
 /**
  * Created by Dipak Malla
@@ -160,11 +156,13 @@ public class TreeleafMqttClient {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
                     GlobalUtils.showLog(TAG, "message publish success");
+                    GlobalUtils.showLog(MQTT_LOG, "publish onsuccess");
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     GlobalUtils.showLog(TAG, "failed to publish msg" + exception.toString());
+                    GlobalUtils.showLog(MQTT_LOG, "publish onfailure");
                 }
             });
 

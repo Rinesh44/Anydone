@@ -86,6 +86,7 @@ import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponse
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MAXIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
         implements TicketConversationContract.TicketConversationPresenter {
@@ -694,6 +695,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         .parseFrom(message.getPayload());
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
+                GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + relayResponse.getOwnerAccountId());
 
                 if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
                     if (true) {//TODO: fix this later

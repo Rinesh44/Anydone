@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 
 public class VideoCallReceivePresenterImpl extends
@@ -630,7 +631,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
-
+        GlobalUtils.showLog(MQTT_LOG, "publish invite to collab");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -667,7 +668,7 @@ public class VideoCallReceivePresenterImpl extends
                         AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
-
+        GlobalUtils.showLog(MQTT_LOG, "publish draw maximize");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -704,7 +705,7 @@ public class VideoCallReceivePresenterImpl extends
                         AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
-
+        GlobalUtils.showLog(MQTT_LOG, "publish draw minimize");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
