@@ -50,32 +50,32 @@ public class VideoCallReceiveContract {
                                          long capturedTime, String rtcContext);
 
         void publishCancelDrawEvent(String userAccountId, String accountName, String accountPicture,
-                                    long orderId, long cancellationTime, String rtcContext);
+                                    long orderId, long cancellationTime, String rtcContext, String imageId);
 
         void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, Float x, Float y, long capturedTime, String rtcContext);
+                                       long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, Float x, Float y, long capturedTime, String rtcContext);
+                                       long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
-                                     long orderId, long capturedTime, String rtcContext);
+                                     long orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
                                         Float x, Float y, Float brushWidth, Float brushOpacity,
-                                        int brushColor, int textColor, long orderId, long capturedTime, String rtcContext);
+                                        int brushColor, int textColor, long orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawCanvasClearEvent(String userAccountId, String accountName, String accountPicture,
-                                         long orderId, long capturedTime, String rtcContext);
+                                         long orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
-                                            Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext);
+                                            Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishTextFieldChangeEventEvent(String userAccountId, String accountName, String accountPicture,
-                                              String text, String textFieldId, long orderId, long capturedTime, String rtcContext);
+                                              String text, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
-                                              String textFieldId, long orderId, long capturedTime, String rtcContext);
+                                              String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId);
 
 
         void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId, String accountName, String accountPicture,

@@ -204,59 +204,59 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onDiscardDraw() {
-                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext);
+            public void onDiscardDraw(String imageId) {
+                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onDrawCanvasCleared() {
-                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext);
+            public void onDrawCanvasCleared(String imageId) {
+                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
+            public void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId) {
                 presenter.publishDrawReceiveNewTextEvent(accountId, accountName, accountPicture, x, y,
-                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext);
+                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onReceiveNewTextChange(String text, String id) {
+            public void onReceiveNewTextChange(String text, String id, String imageId) {
                 presenter.publishTextFieldChangeEventEvent(accountId, accountName, accountPicture, text,
-                        id, refId, System.currentTimeMillis(), rtcContext);
+                        id, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onReceiveEdiTextRemove(String editTextId) {
+            public void onReceiveEdiTextRemove(String editTextId, String imageId) {
                 presenter.publishTextFieldRemoveEventEvent(accountId, accountName, accountPicture, editTextId,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+            public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String imageId) {
                 presenter.publishDrawMetaChangeEvent(accountId, accountName, accountPicture, captureDrawParam.getXCoordinate(),
                         captureDrawParam.getYCoordinate(), captureDrawParam.getBrushWidth(),
                         Float.parseFloat(captureDrawParam.getBrushOpacity().toString()),
                         captureDrawParam.getBrushColor(), captureDrawParam.getTextColor(),
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onStartDraw(float x, float y) {
+            public void onStartDraw(float x, float y, String imageId) {
                 presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
-                        refId, x, y, System.currentTimeMillis(), rtcContext);
+                        refId, x, y, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onClientTouchMove(CaptureDrawParam captureDrawParam) {
+            public void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId) {
                 presenter.publishDrawTouchMoveEvent(accountId, accountName, accountPicture,
                         refId, captureDrawParam.getXCoordinate(), captureDrawParam.getYCoordinate(),
-                        System.currentTimeMillis(), rtcContext);
+                        System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onClientTouchUp() {
+            public void onClientTouchUp(String imageId) {
                 presenter.publishDrawTouchUpEvent(accountId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override

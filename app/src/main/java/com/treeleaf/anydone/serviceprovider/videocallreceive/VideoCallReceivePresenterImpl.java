@@ -297,7 +297,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishCancelDrawEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, long cancellationTime, String rtcContext) {
+                                       long orderId, long cancellationTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -311,6 +311,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setCancellationTime(cancellationTime)
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -330,7 +331,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext) {
+                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -346,6 +347,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -364,7 +366,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext) {
+                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -380,6 +382,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -398,7 +401,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
-                                        long orderId, long capturedTime, String rtcContext) {
+                                        long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -412,6 +415,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -431,7 +435,7 @@ public class VideoCallReceivePresenterImpl extends
     @Override
     public void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
                                            Float x, Float y, Float brushWidth, Float brushOpacity,
-                                           int brushColor, int textColor, long orderId, long capturedTime, String rtcContext) {
+                                           int brushColor, int textColor, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -451,6 +455,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -469,7 +474,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawCanvasClearEvent(String userAccountId, String accountName, String accountPicture,
-                                            long orderId, long capturedTime, String rtcContext) {
+                                            long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -483,6 +488,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -501,7 +507,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
-                                               Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext) {
+                                               Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -518,6 +524,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -536,7 +543,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishTextFieldChangeEventEvent(String userAccountId, String accountName, String accountPicture,
-                                                 String text, String textFieldId, long orderId, long capturedTime, String rtcContext) {
+                                                 String text, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -552,6 +559,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -570,7 +578,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
-                                                 String textFieldId, long orderId, long capturedTime, String rtcContext) {
+                                                 String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -585,6 +593,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
