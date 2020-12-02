@@ -111,8 +111,6 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     ImageView ivSend;
     @BindView(R.id.et_message)
     TextInputEditText etMessage;
-    @BindView(R.id.iv_clear)
-    ImageView ivClear;
     @BindView(R.id.rv_conversations)
     RecyclerView rvConversation;
     @BindView(R.id.bottom_sheet)
@@ -233,29 +231,6 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         assert mActivity != null;
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
-
-        etMessage.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    ivClear.setVisibility(View.VISIBLE);
-                } else {
-                    Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                            ivClear.setVisibility(View.GONE));
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
     }
 
@@ -920,14 +895,14 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         presenter.createPreConversationForImage(uri.toString(), threadId,
                 imageCaption, convertedBitmap);
     }
-
+/*
     @OnClick(R.id.iv_clear)
     void clearText() {
         Objects.requireNonNull(etMessage.getText()).clear();
         ivClear.setVisibility(View.GONE);
         etMessage.requestFocus();
 //        ivSpeech.setVisibility(View.VISIBLE);
-    }
+    }*/
 
     @OnClick(R.id.tv_camera)
     void initCamera() {

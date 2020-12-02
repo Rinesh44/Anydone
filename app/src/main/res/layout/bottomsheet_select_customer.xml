@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/tv_customer_self"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dimen_10x1"
@@ -71,6 +71,15 @@
             android:text="My name (Me)"
             android:textColor="@color/black"
             android:textSize="@dimen/material_text_body2" />
+
+        <ImageView
+            android:id="@+id/iv_tick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/tv_customer_self"
+            android:src="@drawable/ic_tick" />
 
     </RelativeLayout>
 

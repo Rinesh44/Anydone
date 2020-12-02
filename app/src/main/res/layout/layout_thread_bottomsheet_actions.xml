@@ -85,7 +85,7 @@
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_ticket"
-            android:tint="@color/colorPrimary" />
+            app:tint="@color/ticket_created_text" />
 
         <TextView
             android:layout_width="wrap_content"

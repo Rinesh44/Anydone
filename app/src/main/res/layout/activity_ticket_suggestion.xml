@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -37,12 +38,15 @@
 
                     <TextView
                         android:id="@+id/toolbar_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x1"
+                        android:layout_toStartOf="@+id/tv_reject_all"
                         android:layout_toEndOf="@+id/iv_back"
+                        android:ellipsize="end"
                         android:gravity="start"
+                        android:singleLine="true"
                         android:text="Suggested Tickets"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -55,7 +59,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x2"
                         android:src="@drawable/ic_back"
-                        android:tint="@color/black" />
+                        app:tint="@color/black" />
 
                     <TextView
                         android:id="@+id/tv_reject_all"
@@ -111,11 +115,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:visibility="gone"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/dimens_2x"
                 android:text=" 0 Selected"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:visibility="gone" />
 
 
         </RelativeLayout>
@@ -123,9 +127,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_suggested_tickets"
             android:layout_width="match_parent"
-            android:paddingBottom="@dimen/dimen_10x1"
+            android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:layout_height="match_parent" />
+            android:paddingBottom="@dimen/dimen_10x1" />
     </LinearLayout>
 
     <TextView

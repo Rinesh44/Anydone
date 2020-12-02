@@ -206,19 +206,22 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     @Override
     public void onResume() {
         super.onResume();
-
+        GlobalUtils.showLog(TAG, "onreume called");
         boolean fetchChanges = Hawk.get(Constants.FETCH_PENDING_LIST, false);
         boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
         boolean ticketPending = Hawk.get(Constants.TICKET_PENDING, false);
         if (fetchChanges) {
+            GlobalUtils.showLog(TAG, "first");
             btnReload.setVisibility(View.GONE);
             presenter.getPendingTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else if (ticketAssigned) {
+            GlobalUtils.showLog(TAG, "second");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_ASSIGNED, false);
         } else if (ticketPending) {
+            GlobalUtils.showLog(TAG, "third");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_PENDING, false);

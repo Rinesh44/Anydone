@@ -26,44 +26,15 @@ public class TicketsContract {
 
         void getServiceFail(String msg);
 
-        void findEmployeeSuccess();
-
-        void findEmployeeFail(String msg);
-
-        void findCustomerSuccess();
-
-        void findCustomerFail(String msg);
-
-        void findTagsSuccess();
-
-        void findTagsFail(String msg);
-
-        void getLabelSuccess();
-
-        void getLabelFail(String msg);
-
-        void getTypeSuccess();
-
-        void getTypeFail(String msg);
     }
 
     public interface TicketsPresenter extends Presenter<TicketsView> {
+        void getServices();
+
         void filterPendingTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 
         void filterInProgressTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
 
         void filterClosedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
-
-        void getServices();
-
-        void findEmployees();
-
-        void findCustomers();
-
-        void findTags();
-
-        void getLabels();
-
-        void getTicketTypes();
     }
 }

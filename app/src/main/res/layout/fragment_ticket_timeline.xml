@@ -107,6 +107,18 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_task"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_2x4"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Start Task"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/rl_selected_status"

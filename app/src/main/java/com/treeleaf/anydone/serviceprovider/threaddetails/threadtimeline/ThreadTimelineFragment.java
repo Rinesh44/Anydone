@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -43,6 +44,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.LinkedTicketAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -51,6 +53,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
@@ -154,7 +157,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private String selectedEmployeeId;
     private Employee selfEmployee;
     private Thread thread;
-    private BottomSheetDialog employeeSheet;
     private ProgressBar pbEmployee;
     private AssignEmployee selectedEmployee;
     private LinkedTicketAdapter adapter;
@@ -193,7 +195,10 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private TextView tvTicketCustomerPhone;
     private TextView tvTicketCustomerEmail;
     private NestedScrollView nestedScrollView;
-
+    private BottomSheetDialog employeeBottomSheet;
+    private RecyclerView rvEmployee;
+    private ImageView ivTick;
+    private LinearLayout llEmployeeAsSelf;
 
     public ThreadTimelineFragment() {
         // Required empty public constructor
@@ -205,18 +210,18 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         threadId = i.getStringExtra("thread_id");
-        createEmployeeSheet();
         if (threadId != null) {
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
             thread = ThreadRepo.getInstance().getThreadById(threadId);
             presenter.getEmployees();
             presenter.getLinkedTickets(threadId);
+            GlobalUtils.showLog(TAG, "thread source: " + thread.getSource());
 //            presenter.getThreadById(threadId);
             setThreadDetails();
             createLinkedTicketBottomSheet();
         }
 
-
+        createEmployeeBottomSheet();
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
         ThreadDetailActivity mActivity = (ThreadDetailActivity) getActivity();
         assert mActivity != null;
@@ -270,8 +275,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
     private void setThreadDetails() {
-        tvConversationCreatedDate.setText(GlobalUtils.getDateAlternate(thread.getCreatedAt()));
-        tvConversationCreatedTime.setText(GlobalUtils.getTime(thread.getCreatedAt()));
+        tvConversationCreatedDate.setText(GlobalUtils.getDateLong(thread.getCreatedAt()));
+        tvConversationCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(thread.getCreatedAt()));
         tvTag.setText(thread.getDefaultLabel());
         setSource(thread);
         setCustomerDetails(thread);
@@ -282,7 +287,10 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private void setAssignedEmployee(Thread thread) {
         if (thread.getAssignedEmployee() == null) {
             tvAssignEmployee.setVisibility(View.VISIBLE);
-            tvAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+            tvAssignEmployee.setOnClickListener(v -> {
+                employeeBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+                employeeBottomSheet.show();
+            });
             GlobalUtils.showLog(TAG, "assigned emp null");
         } else {
             tvAssignEmployee.setVisibility(View.GONE);
@@ -302,7 +310,21 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                     .into(civAssignedEmployee);
 
             ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
-            ivAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+            ivAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
+
+            if (thread.getAssignedEmployee() != null) {
+                employeeSearchAdapter.setChecked(thread.getAssignedEmployee().getEmployeeId());
+                Account userAccount = AccountRepo.getInstance().getAccount();
+                if (userAccount.getAccountId().equalsIgnoreCase(thread.getAssignedEmployee().getAccountId())) {
+                    ivTick.setVisibility(View.VISIBLE);
+                    llEmployeeAsSelf.setClickable(false);
+                    employeeSearchAdapter.removeCheckMark();
+                } else {
+                    ivTick.setVisibility(View.GONE);
+                    llEmployeeAsSelf.setClickable(true);
+                }
+            }
+
         }
     }
 
@@ -348,6 +370,11 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_slack));
                 break;
 
+            case "MAIL_THIRD_PARTY_SOURCE":
+                tvSource.setText("Mail");
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_link_email));
+                break;
+
         }
     }
 
@@ -390,23 +417,37 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         scrollView.setLayoutParams(layoutParams);
     }
 
-    private void createEmployeeSheet() {
-        employeeSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+    private void createEmployeeBottomSheet() {
+        employeeBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
-        @SuppressLint("InflateParams") View view = getLayoutInflater()
-                .inflate(R.layout.layout_bottom_sheet_employee, null);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_employee, null);
 
-        employeeSheet.setContentView(view);
-        EditText etSearchEmployee = view.findViewById(R.id.et_search_employee);
-        LinearLayout llSelf = view.findViewById(R.id.ll_self);
-        tvSelf = view.findViewById(R.id.tv_name_self);
-        civSelf = view.findViewById(R.id.civ_image_self);
-        tvAllUsers = view.findViewById(R.id.tv_all_users);
-        rvAllUsers = view.findViewById(R.id.rv_all_users);
-        pbEmployee = view.findViewById(R.id.pb_progress_employee);
+        employeeBottomSheet.setContentView(llBottomSheet);
+        employeeBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
 
-        setSelfDetails();
-        llSelf.setOnClickListener(v -> {
+        employeeBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+           /* if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+
+        EditText searchEmployee = llBottomSheet.findViewById(R.id.et_search_employee);
+        llEmployeeAsSelf = llBottomSheet.findViewById(R.id.ll_self);
+        CircleImageView civEmployeeAsSelf = llBottomSheet.findViewById(R.id.civ_image_self);
+        TextView tvEmployeeAsSelf = llBottomSheet.findViewById(R.id.tv_name_self);
+        TextView tvEmployeeAllUsers = llBottomSheet.findViewById(R.id.tv_all_users);
+        TextView tvSuggestions = llBottomSheet.findViewById(R.id.tv_suggestions);
+        rvEmployee = llBottomSheet.findViewById(R.id.rv_all_users);
+        ivTick = llBottomSheet.findViewById(R.id.iv_tick);
+
+        setSelfDetails(llEmployeeAsSelf, tvEmployeeAsSelf, civEmployeeAsSelf, tvSuggestions);
+
+        llEmployeeAsSelf.setOnClickListener(v -> {
             Employee self = EmployeeRepo.getInstance().getEmployee();
             if (self != null) {
                 AssignEmployee selfEmployee = new AssignEmployee();
@@ -424,9 +465,21 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             }
         });
 
-        setUpEmployeeRecyclerView();
+        searchEmployee.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(employeeBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
 
-        etSearchEmployee.addTextChangedListener(new TextWatcher() {
+        employeeBottomSheet.setOnDismissListener(dialog -> {
+            setSheetHalfExpanded(dialog);
+            searchEmployee.clearFocus();
+            searchEmployee.getText().clear();
+            if (rvEmployee.getChildCount() > 0) rvEmployee.scrollToPosition(0);
+        });
+
+        setUpEmployeeRecyclerView();
+        searchEmployee.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -434,27 +487,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 1) {
-                    GlobalUtils.showLog(TAG, "text changed");
-                    employeeList = AssignEmployeeRepo.getInstance().searchEmployee(s.toString());
-                    if (CollectionUtils.isEmpty(employeeList)) {
-                        tvAllUsers.setVisibility(View.GONE);
-                    } else {
-                        tvAllUsers.setVisibility(View.VISIBLE);
-                    }
-                    GlobalUtils.showLog(TAG, "searched list size: " + employeeList.size());
-                    if (employeeSearchAdapter != null) {
-                        employeeSearchAdapter.setData(employeeList);
-                        employeeSearchAdapter.notifyDataSetChanged();
-                    }
-
-                    scrollView.fullScroll(View.FOCUS_DOWN);
-                    etSearchEmployee.requestFocus();
-                } else {
-                    employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
-                    employeeSearchAdapter.setData(employeeList);
-                    employeeSearchAdapter.notifyDataSetChanged();
-                }
+                employeeSearchAdapter.getFilter().filter(s);
             }
 
             @Override
@@ -462,25 +495,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
             }
         });
-
-        employeeSheet.setOnShowListener(dialog -> {
-            BottomSheetDialog d = (BottomSheetDialog) dialog;
-
-            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
-            setupFullHeight(d);
-            etSearchEmployee.requestFocus();
-            UiUtils.showKeyboardForced(Objects.requireNonNull(getActivity()));
-
-        /*    llRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-                int heightDiff = llRoot.getRootView().getHeight() - llRoot.getHeight();
-                ViewGroup.LayoutParams params = rvTeams.getLayoutParams();
-                params.height = getWindowHeight() - heightDiff + 100;
-            });*/
-        });
-
-        employeeSheet.setOnDismissListener(dialog -> UiUtils.hideKeyboardForced(getContext()));
     }
 
 
@@ -532,6 +546,15 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         }
     }
 
+
+    private void setSheetHalfExpanded(DialogInterface dialog) {
+        BottomSheetDialog d = (BottomSheetDialog) dialog;
+        FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+        if (bottomSheet != null)
+            BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+    }
+
+
     @Override
     public void onFailure(String message) {
         UiUtils.showSnackBar(getActivity(),
@@ -563,15 +586,26 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         }*/
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setUpEmployeeRecyclerView() {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        rvAllUsers.setLayoutManager(mLayoutManager);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        rvEmployee.setLayoutManager(mLayoutManager);
 
+        GlobalUtils.showLog(TAG, "employee list: " + employeeList);
         employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, getContext());
-        rvAllUsers.setAdapter(employeeSearchAdapter);
+        rvEmployee.setAdapter(employeeSearchAdapter);
+
+        rvEmployee.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager)
+                    getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
 
         if (employeeSearchAdapter != null) {
             employeeSearchAdapter.setOnItemClickListener((employee) -> {
+                UiUtils.hideKeyboardForced(getContext());
                 selectedEmployee = employee;
                 selectedEmployeeId = employee.getEmployeeId();
 
@@ -650,11 +684,10 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
     @Override
-    public void assignSuccess() {
+    public void assignSuccess(String empId) {
         setAssignedEmployeeDetails();
-
-        employeeSheet.dismiss();
         UiUtils.hideKeyboardForced(getActivity());
+
     }
 
     private void setAssignedEmployeeDetails() {
@@ -676,7 +709,18 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 .into(civAssignedEmployee);
 
         ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
-        ivAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+        ivAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
+
+        employeeSearchAdapter.setChecked(selectedEmployee.getEmployeeId());
+        Account userAccount = AccountRepo.getInstance().getAccount();
+        if (userAccount.getAccountId().equalsIgnoreCase(selectedEmployee.getAccountId())) {
+            ivTick.setVisibility(View.VISIBLE);
+            llEmployeeAsSelf.setClickable(false);
+            employeeSearchAdapter.removeCheckMark();
+        } else {
+            ivTick.setVisibility(View.GONE);
+            llEmployeeAsSelf.setClickable(true);
+        }
     }
 
     @Override
@@ -711,7 +755,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
 
-        ivAssignEmployee.setOnClickListener(v -> employeeSheet.show());
+        ivAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
     }
 
     @Override
@@ -748,10 +792,17 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
 
-    private void setSelfDetails() {
+    private void setSelfDetails(LinearLayout llEmployeeAsSelf, TextView tvEmployeeAsSelf,
+                                CircleImageView civEmployeeAsSelf, TextView tvSuggestions) {
         Employee employee = EmployeeRepo.getInstance().getEmployee();
+        GlobalUtils.showLog(TAG, "employee check: " + employee);
         if (employee != null) {
-            tvSelf.setText(employee.getName() + " (Me)");
+            tvSuggestions.setVisibility(View.VISIBLE);
+            llEmployeeAsSelf.setVisibility(View.VISIBLE);
+
+            StringBuilder selfEmployeeText = new StringBuilder(employee.getName());
+            selfEmployeeText.append(" (Me)");
+            tvEmployeeAsSelf.setText(selfEmployeeText);
 
             String profilePicUrl = employee.getEmployeeImageUrl();
             if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
@@ -760,8 +811,11 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                         .placeholder(R.drawable.ic_profile_icon)
                         .error(R.drawable.ic_profile_icon);
 
-                Glide.with(Objects.requireNonNull(getActivity())).load(profilePicUrl).apply(options).into(civSelf);
+                Glide.with(this).load(profilePicUrl).apply(options).into(civEmployeeAsSelf);
             }
+        } else {
+            tvSuggestions.setVisibility(View.GONE);
+            llEmployeeAsSelf.setVisibility(View.GONE);
         }
     }
 
@@ -804,6 +858,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         builder1.setPositiveButton(
                 "Ok",
                 (dialog, id) -> {
+                    employeeBottomSheet.dismiss();
                     presenter.assignEmployee(threadId, employeeId);
                     dialog.dismiss();
                 });

@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
@@ -59,7 +60,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
     private static final String TAG = "UnSubscribedTicketsActi";
     @BindView(R.id.rv_unsubscribed_tickets)
     RecyclerView rvSubscribeableTickets;
-    private TicketsAdapter adapter;
+    private TicketsAdapter ticketsAdapter;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     @BindView(R.id.pb_progress)
@@ -204,6 +205,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
         spPriority = view.findViewById(R.id.sp_priority);
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
 
+        filterBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
         spPriority.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 List<Priority> priorityList = GlobalUtils.getPriorityList();
@@ -270,7 +272,9 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
             tvPriorityHint.setVisibility(View.VISIBLE);
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
-            setUpRecyclerView(subscribeableTickets);
+            subscribeableTickets = TicketRepo.getInstance().getSubscribeableTickets();
+            ticketsAdapter.setData(subscribeableTickets);
+            ticketsAdapter.notifyDataSetChanged();
         });
 
         etSearchText.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
@@ -359,7 +363,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
         getSupportActionBar().setBackgroundDrawable(getResources()
                 .getDrawable(R.drawable.white_bg));
 
-        SpannableStringBuilder str = new SpannableStringBuilder("Backlog");
+        SpannableStringBuilder str = new SpannableStringBuilder("Subscribable Tickets");
         str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
                 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(str);
@@ -376,7 +380,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvSubscribeableTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            adapter = new TicketsAdapter(ticketsList, getContext());
+            ticketsAdapter = new TicketsAdapter(ticketsList, getContext());
        /*     adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(this, TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());
@@ -384,11 +388,11 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
                 startActivity(i);
             });*/
 
-            adapter.setOnSubscribeListener((id, pos) -> {
+            ticketsAdapter.setOnSubscribeListener((id, pos) -> {
                 subscribeTicketPos = pos;
                 showSubscribeDialog(id);
             });
-            rvSubscribeableTickets.setAdapter(adapter);
+            rvSubscribeableTickets.setAdapter(ticketsAdapter);
         } else {
             rvSubscribeableTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
@@ -419,7 +423,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
         builder1.setPositiveButton(
                 "Yes",
                 (dialog, id) -> {
-                    adapter.closeSwipeLayout(ticketId);
+                    ticketsAdapter.closeSwipeLayout(ticketId);
                     dialog.dismiss();
                     presenter.subscribe(Long.parseLong(ticketId));
                 });
@@ -427,7 +431,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
         builder1.setNegativeButton(
                 "Cancel",
                 (dialog, id) -> {
-                    adapter.closeSwipeLayout(ticketId);
+                    ticketsAdapter.closeSwipeLayout(ticketId);
                     dialog.dismiss();
                 });
 
@@ -473,8 +477,18 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
 
     @Override
     public void onSubscribeSuccess(long ticketId) {
-        adapter.deleteItem(subscribeTicketPos, ticketId);
+        ticketsAdapter.deleteItem(subscribeTicketPos, ticketId);
         Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, true);
+        TicketRepo.getInstance().changeTicketTypeToSubscribed(ticketId);
+
+        subscribeableTickets = TicketRepo.getInstance().getSubscribeableTickets();
+        if (subscribeableTickets.isEmpty()) {
+            ivDataNotFound.setVisibility(View.VISIBLE);
+            rvSubscribeableTickets.setVisibility(View.GONE);
+        } else {
+            ivDataNotFound.setVisibility(View.GONE);
+            rvSubscribeableTickets.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

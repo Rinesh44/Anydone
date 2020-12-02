@@ -22,6 +22,8 @@ public class AddTicketContract {
 
         void onInvalidTicketType();
 
+        void onInvalidEstTime();
+
         void onInvalidPhone();
 
         void onInvalidEmail();
@@ -34,6 +36,18 @@ public class AddTicketContract {
 
         void getLabelFail(String msg);
 
+        void findEmployeeSuccess();
+
+        void findEmployeeFail(String msg);
+
+        void findCustomerSuccess();
+
+        void findCustomerFail(String msg);
+
+        void getTypeSuccess();
+
+        void getTypeFail(String msg);
+
     }
 
     public interface AddTicketPresenter extends Presenter<AddTicketView> {
@@ -41,6 +55,12 @@ public class AddTicketContract {
         void findTags();
 
         void getLabels();
+
+        void findEmployees();
+
+        void findCustomers();
+
+        void getTicketTypes();
 
         void createTicket(String ticketType, String title, String description, String customerId,
                           String customerEmail, String customerPhone, String customerName,

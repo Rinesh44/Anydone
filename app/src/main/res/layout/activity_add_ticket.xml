@@ -115,9 +115,8 @@
                     android:backgroundTint="@color/edit_text_color"
                     android:gravity="start"
                     android:inputType="textVisiblePassword|textMultiLine|textFilter"
-                    android:maxLines="5"
-                    android:overScrollMode="always"
-                    android:scrollbarStyle="insideInset"
+                    android:maxLength="250"
+                    android:maxLines="3"
                     android:scrollbars="vertical"
                     android:textSize="@dimen/material_text_body1" />
 

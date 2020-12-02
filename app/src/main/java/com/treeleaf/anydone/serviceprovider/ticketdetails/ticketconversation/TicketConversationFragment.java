@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -19,9 +20,12 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Html;
+import android.util.Patterns;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,12 +41,27 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.chinalwb.are.AREditText;
+import com.chinalwb.are.styles.toolbar.ARE_Toolbar;
+import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
+import com.chinalwb.are.styles.toolbar.IARE_Toolbar;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Bold;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Italic;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_ListBullet;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_ListNumber;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Quote;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Strikethrough;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Underline;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_UpdaterDefault;
+import com.chinalwb.are.styles.toolitems.IARE_ToolItem;
+import com.chinalwb.are.styles.toolitems.IARE_ToolItem_Updater;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
@@ -74,7 +93,6 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
-import com.treeleaf.anydone.serviceprovider.utils.MaxHeightScrollView;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -91,13 +109,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.regex.Matcher;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
 import io.realm.RealmList;
-import jp.wasabeef.richeditor.RichEditor;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -118,9 +136,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @BindView(R.id.iv_send)
     ImageView ivSend;
     @BindView(R.id.rich_editor)
-    RichEditor etMessage;
-    @BindView(R.id.iv_clear)
-    ImageView ivClear;
+    AREditText etMessage;
     @BindView(R.id.rv_conversations)
     RecyclerView rvConversation;
     @BindView(R.id.bottom_sheet)
@@ -161,26 +177,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     ProgressBar pbLoadData;
     @BindView(R.id.ll_bot_replying)
     LinearLayout llBotReplying;
-    @BindView(R.id.btn_start_task)
-    MaterialButton btnStartTask;
-    @BindView(R.id.iv_bold)
-    ImageView ivBold;
-    @BindView(R.id.iv_italic)
-    ImageView ivItalic;
-    @BindView(R.id.iv_points)
-    ImageView ivPoints;
-    @BindView(R.id.iv_numbering)
-    ImageView ivNumbering;
-    @BindView(R.id.iv_underline)
-    ImageView ivUnderline;
-    @BindView(R.id.iv_strikethrough)
-    ImageView ivStrikeThrough;
+    /*    @BindView(R.id.btn_start_task)
+        MaterialButton btnStartTask;*/
     @BindView(R.id.ll_text_modifier)
-    LinearLayout llTextModifier;
-    @BindView(R.id.tv_add_comment_hint)
-    TextView tvAddCommentHint;
-    @BindView(R.id.editor_scrollview)
-    MaxHeightScrollView editorScrollview;
+    ARE_ToolbarDefault llTextModifier;
     @BindView(R.id.view)
     View view;
 
@@ -211,6 +211,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             bulletsFlag = false, numberFlag = false;
     private boolean keyboardShown = false;
     private OnTaskStartListener listener;
+    private Account userAccount;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -223,18 +224,18 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         activity.setOutSideTouchListener(this);
 
 //        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
-        Account userAccount = AccountRepo.getInstance().getAccount();
+        userAccount = AccountRepo.getInstance().getAccount();
         userAccountId = userAccount.getAccountId();
 
         UiUtils.hideKeyboardForced(getActivity());
+        initTextModifier();
 
      /*   etMessage.setContentTypeface(getContentFace());
         etMessage.setHeadingTypeface(getContentFace());*/
 //        etMessage.render();
 
-        etMessage.setEditorFontSize(15);
 
-        etMessage.setOnTextChangeListener(text -> {
+   /*     etMessage.setOnTextChangeListener(text -> {
             if (!text.isEmpty()) {
                 editorScrollview.post(() -> editorScrollview.fullScroll(View.FOCUS_DOWN));
             } else {
@@ -245,7 +246,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             } else {
                 tvAddCommentHint.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
         new TedRxKeyboardObserver(getActivity())
                 .listen()
@@ -268,13 +269,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         contributed = i.getBooleanExtra("contributed", false);
         subscribed = i.getBooleanExtra("subscribed", false);
 
-        if (subscribed) {
-            llSearchContainer.setVisibility(View.GONE);
-            view.setVisibility(View.GONE);
-        } else {
-            llSearchContainer.setVisibility(View.VISIBLE);
-            view.setVisibility(View.VISIBLE);
-        }
+        Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
+
+        setChatVisibility(ticket);
 
         if (ticketId != -1) {
             Hawk.put(Constants.CURRENT_SERVICE_ORDER_ID, ticketId);
@@ -315,6 +312,79 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     }
 
+    private void setChatVisibility(Tickets ticket) {
+        if (subscribed && !ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccountId)
+                && !contributed) {
+            llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
+//            btnStartTask.setVisibility(View.GONE);
+        } else {
+            llSearchContainer.setVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void initTextModifier() {
+        etMessage.setTextSize(15);
+        IARE_ToolItem bold = new ARE_ToolItem_Bold();
+        ARE_ToolItem_UpdaterDefault boldUpdater = new
+                ARE_ToolItem_UpdaterDefault(bold, 0Xffcccccc, 0X00000000);
+        bold.setToolItemUpdater(boldUpdater);
+
+        IARE_ToolItem italic = new ARE_ToolItem_Italic();
+        ARE_ToolItem_UpdaterDefault italicUpdater = new
+                ARE_ToolItem_UpdaterDefault(italic, 0Xffcccccc, 0X00000000);
+        italic.setToolItemUpdater(italicUpdater);
+
+        IARE_ToolItem underline = new ARE_ToolItem_Underline();
+        ARE_ToolItem_UpdaterDefault underlineUpdater = new
+                ARE_ToolItem_UpdaterDefault(underline, 0Xffcccccc, 0X00000000);
+        underline.setToolItemUpdater(underlineUpdater);
+
+        IARE_ToolItem strikeThrough = new ARE_ToolItem_Strikethrough();
+        ARE_ToolItem_UpdaterDefault strikeThroughUpdater = new
+                ARE_ToolItem_UpdaterDefault(strikeThrough, 0Xffcccccc, 0X00000000);
+        strikeThrough.setToolItemUpdater(strikeThroughUpdater);
+
+        IARE_ToolItem listNumber = new ARE_ToolItem_ListNumber();
+        ARE_ToolItem_UpdaterDefault listUpdater = new
+                ARE_ToolItem_UpdaterDefault(listNumber, 0Xffcccccc, 0X00000000);
+        listNumber.setToolItemUpdater(listUpdater);
+
+        IARE_ToolItem listBullet = new ARE_ToolItem_ListBullet();
+
+        ARE_ToolItem_UpdaterDefault bulletUpdater = new
+                ARE_ToolItem_UpdaterDefault(listBullet, 0Xffcccccc, 0X00000000);
+        listBullet.setToolItemUpdater(bulletUpdater);
+
+        llTextModifier.addToolbarItem(bold);
+        llTextModifier.addToolbarItem(italic);
+        llTextModifier.addToolbarItem(underline);
+        llTextModifier.addToolbarItem(strikeThrough);
+        llTextModifier.addToolbarItem(listNumber);
+        llTextModifier.addToolbarItem(listBullet);
+
+        etMessage.setToolbar(llTextModifier);
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        int width = size.x;
+        int unitWidth = width / 6;
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                unitWidth,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        bold.getView(getContext()).setLayoutParams(layoutParams);
+        italic.getView(getContext()).setLayoutParams(layoutParams);
+        underline.getView(getContext()).setLayoutParams(layoutParams);
+        strikeThrough.getView(getContext()).setLayoutParams(layoutParams);
+        listBullet.getView(getContext()).setLayoutParams(layoutParams);
+        listNumber.getView(getContext()).setLayoutParams(layoutParams);
+    }
+
 
     private List<String> getImageList() {
         GlobalUtils.showLog(TAG, "conversation list size: " + conversationList.size());
@@ -336,11 +406,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
     }
 
-    @OnClick(R.id.btn_start_task)
+ /*   @OnClick(R.id.btn_start_task)
     void startTask() {
         GlobalUtils.showLog(TAG, "start task ticket id: " + ticketId);
         presenter.startTask(ticketId);
-    }
+    }*/
 
     public Map<Integer, String> getContentFace() {
         Map<Integer, String> typefaceMap = new HashMap<>();
@@ -350,80 +420,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         typefaceMap.put(Typeface.BOLD_ITALIC, "fonts/bold_italic.ttf");
         return typefaceMap;
     }
-
-
-    @OnClick(R.id.iv_bold)
-    void setBoldText() {
-        boldFlag = !boldFlag;
-        if (boldFlag) {
-            ivBold.setBackgroundColor(getResources().getColor(R.color.translucent));
-        } else {
-            ivBold.setBackgroundColor(0x00000000);
-        }
-        etMessage.setBold();
-        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
-    }
-
-    @OnClick(R.id.iv_italic)
-    void setItalicText() {
-        italicFlag = !italicFlag;
-        if (italicFlag) {
-            ivItalic.setBackgroundColor(getResources().getColor(R.color.translucent));
-        } else {
-            ivItalic.setBackgroundColor(0x00000000);
-        }
-        etMessage.setItalic();
-        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
-    }
-
-    @OnClick(R.id.iv_points)
-    void setPoints() {
-        bulletsFlag = !bulletsFlag;
-        if (bulletsFlag) {
-            ivPoints.setBackgroundColor(getResources().getColor(R.color.translucent));
-        } else {
-            ivPoints.setBackgroundColor(0x00000000);
-        }
-        etMessage.setBullets();
-        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
-    }
-
-    @OnClick(R.id.iv_numbering)
-    void setNumbers() {
-        numberFlag = !numberFlag;
-        if (numberFlag) {
-            ivNumbering.setBackgroundColor(getResources().getColor(R.color.translucent));
-        } else {
-            ivNumbering.setBackgroundColor(0x00000000);
-        }
-        etMessage.setNumbers();
-        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
-    }
-
-    @OnClick(R.id.iv_strikethrough)
-    void setStrikeThroughText() {
-        strikeThroughFlag = !strikeThroughFlag;
-        if (strikeThroughFlag) {
-            ivStrikeThrough.setBackgroundColor(getResources().getColor(R.color.translucent));
-        } else {
-            ivStrikeThrough.setBackgroundColor(0x00000000);
-        }
-        etMessage.setStrikeThrough();
-        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
-    }
-
-    @OnClick(R.id.iv_underline)
-    void underlineText() {
-        underlineFlag = !underlineFlag;
-        if (underlineFlag) {
-            ivUnderline.setBackgroundColor(getResources().getColor(R.color.translucent));
-        } else {
-            ivUnderline.setBackgroundColor(0x00000000);
-        }
-        etMessage.setUnderline();
-        GlobalUtils.showLog(TAG, "html: " + etMessage.getHtml());
-    }
-
 
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
@@ -491,7 +487,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         layoutManager.setStackFromEnd(true);
         rvConversation.setLayoutManager(layoutManager);
         Collections.reverse(conversationList);
-        adapter = new CommentAdapter(conversationList, getActivity());
+        adapter = new CommentAdapter(conversationList, getContext());
         adapter.setOnItemLongClickListener(message -> {
             longClickedMessage = message;
             toggleMessageBottomSheet();
@@ -618,7 +614,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         profileName.setText(name);
         ratingBar.setRating(rating);
         ratingNumber.setText("(" + rating + ")");
-        if (!imageUrl.isEmpty()) {
+        if (imageUrl != null && !imageUrl.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
                     .placeholder(R.drawable.ic_empty_profile_holder_icon)
@@ -689,31 +685,26 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         GlobalUtils.showLog(TAG, "ticket type checkkkk: " + tickets.getTicketType());
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
                 || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
-            llSearchContainer.setVisibility(View.GONE);
-            view.setVisibility(View.GONE);
-            btnStartTask.setVisibility(View.VISIBLE);
+//            llSearchContainer.setVisibility(View.GONE);
+//            btnStartTask.setVisibility(View.VISIBLE);
             tvClosed.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
 
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+        /*    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                     rvConversation.getLayoutParams();
-            params.addRule(RelativeLayout.ABOVE, R.id.btn_start_task);
+            params.addRule(RelativeLayout.ABOVE, R.id.btn_start_task);*/
         }
 
-        if (ticketType.equalsIgnoreCase(Constants.SUBSCRIBED)) {
-            llSearchContainer.setVisibility(View.GONE);
-            view.setVisibility(View.GONE);
-            btnStartTask.setVisibility(View.GONE);
-        }
+        setChatVisibility(tickets);
 
-
-        //enable chat if ticket is created by user
-        Account userAccount = AccountRepo.getInstance().getAccount();
-        if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById()) &&
-                tickets.getTicketStatus().equalsIgnoreCase(
-                        TicketProto.TicketState.TICKET_STARTED.name())) {
+        //enable chat if user is contributor or assigned
+        if (userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())
+                || contributed) {
             llSearchContainer.setVisibility(View.VISIBLE);
             view.setVisibility(View.VISIBLE);
+        } else {
+            llSearchContainer.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
         }
     }
 
@@ -851,7 +842,31 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onConnectionSuccess() {
-        presenter.publishTextOrUrlMessage(etMessage.getHtml(), ticketId);
+        if (isLink(Objects.requireNonNull(etMessage.getText()).toString().trim())) {
+            presenter.publishTextOrUrlMessage(etMessage.getText().toString(), ticketId);
+        } else {
+            presenter.publishTextOrUrlMessage(etMessage.getHtml(), ticketId);
+        }
+    }
+
+    private boolean isLink(String message) {
+        String[] links = extractLinks(message);
+        if (links.length != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String[] extractLinks(String text) {
+        List<String> links = new ArrayList<>();
+        Matcher m = Patterns.WEB_URL.matcher(text);
+        while (m.find()) {
+            String url = m.group();
+            links.add(url);
+        }
+
+        return links.toArray(new String[0]);
     }
 
     @Override
@@ -912,7 +927,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
             rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                     (0), 100);
-            etMessage.setHtml(null);
+            etMessage.setText("");
         });
 //        etMessage.setText("");
 
@@ -1109,7 +1124,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onTaskStartSuccess(long estTime) {
         listener.onTaskStarted();
-        btnStartTask.setVisibility(View.GONE);
+//        btnStartTask.setVisibility(View.GONE);
         view.setVisibility(View.VISIBLE);
         llSearchContainer.setVisibility(View.VISIBLE);
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
@@ -1299,14 +1314,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
         presenter.createPreConversationForImage(uri.toString(), ticketId,
                 imageCaption, convertedBitmap);
-    }
-
-    @OnClick(R.id.iv_clear)
-    void clearText() {
-//        Objects.requireNonNull(etMessage.getText()).clear();
-        ivClear.setVisibility(View.GONE);
-        etMessage.requestFocus();
-//        ivSpeech.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.tv_camera)

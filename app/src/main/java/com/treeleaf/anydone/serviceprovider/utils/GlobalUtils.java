@@ -42,6 +42,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -143,6 +144,11 @@ public class GlobalUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm a");
         Date date = new Date(time);
         return dateFormat.format(date);
+    }
+
+    public static long getTimeStampLocal(long gmtTimestamp) {
+        int offset = TimeZone.getDefault().getRawOffset() + TimeZone.getDefault().getDSTSavings();
+        return System.currentTimeMillis() + offset;
     }
 
     public static String getTimeExcludeMillis(long time) {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.format.DateUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -341,7 +342,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @SuppressLint("SetTextI18n")
     private void showDateAndTime(long sentAt, TextView tvSentAt) {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter =
+       /* @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter =
                 new SimpleDateFormat("dd MMM");
         @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormatter =
                 new SimpleDateFormat("hh:mm a");
@@ -350,7 +351,24 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         String timeString = timeFormatter.format(new Date(sentAt));
 
         tvSentAt.setText(dateString + " At " + timeString);
-        tvSentAt.setVisibility(View.VISIBLE);
+        tvSentAt.setVisibility(View.VISIBLE);*/
+
+        tvSentAt.setVisibility(View.GONE);
+        if (DateUtils.isToday(sentAt)) {
+            tvSentAt.setText(R.string.today);
+            tvSentAt.setVisibility(View.VISIBLE);
+
+        } else if (DateUtils.isToday(sentAt + DateUtils.DAY_IN_MILLIS)) {//check for yesterday
+            tvSentAt.setText(R.string.yesterday);
+            tvSentAt.setVisibility(View.VISIBLE);
+        } else {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter =
+                    new SimpleDateFormat("dd MMM");
+
+            String dateString = dateFormatter.format(new Date(sentAt));
+            tvSentAt.setText(dateString);
+            tvSentAt.setVisibility(View.VISIBLE);
+        }
     }
 
     private void showTime(long sentAt, TextView tvSentAt) {
@@ -1871,7 +1889,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (currentUserID != null && precedingUserId != null) {
             GlobalUtils.showLog(TAG, "both not null");
             return !currentUserID.isEmpty() && !precedingUserId.isEmpty() &&
-                    currentUserID.equalsIgnoreCase(precedingUserId);
+                    currentUserID.equalsIgnoreCase(precedingUserId) &&
+                    currentMsg.getSenderType().equals(precedingMsg.getSenderType());
         } else {
             GlobalUtils.showLog(TAG, "last one");
             return false;

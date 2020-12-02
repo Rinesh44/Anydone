@@ -13,6 +13,8 @@ import android.webkit.MimeTypeMap;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chinalwb.are.AREditText;
+import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -340,7 +342,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
                 .setUrl((links[0]))
-                .setTitle("Link")
+                .setTitle(message)
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
@@ -515,7 +517,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @SuppressLint("CheckResult")
     @Override
-    public void enterMessage(RecyclerView conversation, RichEditor etMessage) {
+    public void enterMessage(RecyclerView conversation, AREditText etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
             conversation.smoothScrollToPosition(0);

@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/tv_name_self"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/dimen_10x1"
@@ -71,6 +71,13 @@
             android:textColor="@color/black"
             android:textSize="@dimen/material_text_body2" />
 
+        <ImageView
+            android:id="@+id/iv_tick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:src="@drawable/ic_tick"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -93,7 +100,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_users"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dimen_10x3" />
 
 </LinearLayout>
 

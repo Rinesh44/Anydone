@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -101,6 +102,8 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
 
     @Override
     public void acceptTicketSuggestionSuccess(String ticketSuggestionId) {
+        Hawk.put(Constants.SUGGESTION_ACCEPTED, true);
+
         TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(ticketSuggestionId);
         finish();
     }
@@ -118,6 +121,8 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
 
     @Override
     public void rejectTicketSuggestionSuccess(String ticketSuggestionId) {
+        Hawk.put(Constants.SUGGESTION_REJECTED, true);
+
         TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(ticketSuggestionId);
         finish();
     }

@@ -109,6 +109,8 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_viber));
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.SLACK_THIRD_PARTY_SOURCE.name())) {
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_slack));
+        } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.MAIL_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_link_email));
         }
     }
 

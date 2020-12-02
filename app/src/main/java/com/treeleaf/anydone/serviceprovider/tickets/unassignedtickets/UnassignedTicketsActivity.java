@@ -490,13 +490,14 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
                 .inflate(R.layout.bottomsheet_select_employee, null);
 
         employeeBottomSheet.setContentView(llBottomSheet);
+        employeeBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
 
         employeeBottomSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
 
             FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+   /*         if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
             setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
@@ -524,9 +525,9 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
                 selfEmployee.setAccountId(self.getAccountId());
 
                 selectedEmployeeId = self.getEmployeeId();
+                showAssignTicketDialog(ticketId);
             }
 
-            employeeBottomSheet.dismiss();
             hideKeyBoard();
         });
 
@@ -652,7 +653,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
     private void showAssignTicketDialog(String ticketId) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Are you sure to assign to this employee?");
+        builder1.setMessage("Assign ticket to employee?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
@@ -725,6 +726,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
         if (CollectionUtils.isEmpty(assignableTickets)) {
             ivDataNotFound.setVisibility(View.VISIBLE);
+            rvAssignableTickets.setVisibility(View.GONE);
         } else {
             setUpRecyclerView(assignableTickets);
         }

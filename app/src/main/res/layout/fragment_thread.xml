@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_close_blue"
-                android:tint="@color/white" />
+                app:tint="@color/white" />
 
 
         </RelativeLayout>
@@ -118,7 +118,7 @@
             android:inputType="textVisiblePassword"
             android:padding="@dimen/dimen_2x4"
             android:textSize="15sp"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

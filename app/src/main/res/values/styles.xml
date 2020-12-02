@@ -60,6 +60,8 @@
         <item name="colorBackgroundFloating">@color/colorPrimary</item>
         <item name="android:statusBarColor" tools:targetApi="m">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:candidatesTextStyleSpans">candidates</item>
+
 
         <!--        <item name="android:windowBackground">@android:color/transparent</item>-->
         <!--        <item name="drawerArrowStyle">@style/DrawerHamburgerStyle</item>-->

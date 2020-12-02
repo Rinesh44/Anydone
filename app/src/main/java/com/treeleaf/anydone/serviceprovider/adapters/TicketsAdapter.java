@@ -416,10 +416,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     public void deleteItem(int pos, long ticketId) {
         ticketsList.remove(pos);
-        notifyItemRemoved(pos);
-        notifyItemRangeChanged(pos, ticketsList.size());
-
-        TicketRepo.getInstance().deleteTicket(ticketId);
+        notifyDataSetChanged();
+//        notifyItemRangeChanged(pos, ticketsList.size());
+//        TicketRepo.getInstance().deleteTicket(ticketId);
     }
 
 }

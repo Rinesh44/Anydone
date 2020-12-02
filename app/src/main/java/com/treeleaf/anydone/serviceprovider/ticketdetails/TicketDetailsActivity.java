@@ -30,6 +30,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnTaskStartListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
@@ -79,6 +83,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     String shareLink = "";
     private long ticketId;
     private String ticketStatus;
+    private Account userAccount;
+    private boolean contributed = false;
+    private Tickets ticket;
+    private boolean isServiceProvider = false;
 
     @Override
     protected int getLayout() {
@@ -98,6 +106,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         ticketType = i.getStringExtra("selected_ticket_type");
         ticketStatus = i.getStringExtra("selected_ticket_status");
         ticketId = i.getLongExtra("selected_ticket_id", 0);
+        contributed = i.getBooleanExtra("contributed", false);
         String ticketTitle = i.getStringExtra("ticket_desc");
         String serviceName = i.getStringExtra("selected_ticket_name");
         ArrayList<String> serviceProfileUri = i.getStringArrayListExtra("selected_ticket_icon_uri");
@@ -108,50 +117,79 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         createLinkShareBottomSheet();
 
+        userAccount = AccountRepo.getInstance().getAccount();
+        ticket = TicketRepo.getInstance().getTicketById(ticketId);
+        isServiceProvider = ticket.getTicketType().equalsIgnoreCase(Constants.SERVICE_PROVIDER);
+        //enable video call condition
         if (ticketStatus != null && ticketStatus.equalsIgnoreCase(TICKET_STARTED)) {
             ivVideoCall.setVisibility(View.VISIBLE);
-            enableMenuOptions();
+            ivShare.setVisibility(View.VISIBLE);
         }
 
+        setVideoCallVisibility();
+
+        //disable video call condition
         GlobalUtils.showLog(TAG, "ticket status: " + ticketStatus);
         if (ticketStatus != null && ticketStatus.equalsIgnoreCase("TICKET_CREATED")) {
             GlobalUtils.showLog(TAG, "disable menu options called()");
-            disableMenuOptions();
+            disableVideoCall();
+        }
+
+
+        //set link share visibility
+        if (!ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
+                && !ticket.getCreatedById().equalsIgnoreCase(userAccount.getAccountId())
+                && !contributed && !isServiceProvider) {
+            disableLinkShare();
+        } else {
+            enableLinkShare();
         }
 
         super.setReferenceId(ticketId);
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
-
     }
 
-    private void disableMenuOptions() {
-        DrawableCompat.setTint(
-                DrawableCompat.wrap(ivShare.getDrawable()),
-                ContextCompat.getColor(getContext(), R.color.selector_disabled)
-        );
+    private void disableVideoCall() {
         DrawableCompat.setTint(
                 DrawableCompat.wrap(ivVideoCall.getDrawable()),
                 ContextCompat.getColor(getContext(), R.color.selector_disabled)
         );
 
-        ivShare.setEnabled(false);
         ivVideoCall.setEnabled(false);
     }
 
-    private void enableMenuOptions() {
+    private void setVideoCallVisibility() {
+        if (ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
+                || contributed) {
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                    ContextCompat.getColor(getContext(), R.color.ticket_created_text)
+            );
+
+            ivVideoCall.setEnabled(true);
+        } else {
+            disableVideoCall();
+        }
+    }
+
+    private void enableLinkShare() {
         DrawableCompat.setTint(
                 DrawableCompat.wrap(ivShare.getDrawable()),
-                ContextCompat.getColor(getContext(), R.color.ticket_created_text)
-        );
-        DrawableCompat.setTint(
-                DrawableCompat.wrap(ivVideoCall.getDrawable()),
                 ContextCompat.getColor(getContext(), R.color.ticket_created_text)
         );
 
         ivShare.setEnabled(true);
-        ivVideoCall.setEnabled(true);
+    }
+
+    private void disableLinkShare() {
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivShare.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.selector_disabled)
+        );
+
+        ivShare.setEnabled(false);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -312,7 +350,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onTaskStarted() {
-        enableMenuOptions();
+        setVideoCallVisibility();
     }
 
 
@@ -351,8 +389,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onAttachFragment(@NonNull Fragment fragment) {
-        if (fragment instanceof TicketConversationFragment) {
-            ((TicketConversationFragment) fragment).setOnTicketStartListener(this);
+        if (fragment instanceof TicketTimelineFragment) {
+            ((TicketTimelineFragment) fragment).setOnTicketStartListener(this);
         }
     }
 }

@@ -284,9 +284,22 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void onReopenSuccess(long ticketId) {
         adapter.deleteItem(reopenTicketPos, ticketId);
+        TicketRepo.getInstance().changeTicketStatusToReopened(ticketId);
+        closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+        GlobalUtils.showLog(TAG, "closed ticket seize: " + closedTickets.size());
+        if (closedTickets.isEmpty()) {
+            ivDataNotFound.setVisibility(View.VISIBLE);
+            rvClosedTickets.setVisibility(View.GONE);
+        } else {
+            rvClosedTickets.setVisibility(View.VISIBLE);
+            ivDataNotFound.setVisibility(View.GONE);
+        }
+        Hawk.put(Constants.REFETCH_TICKET, true);
+        Hawk.put(Constants.TICKET_PENDING, true);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
+        Hawk.put(Constants.REFETCH_TICKET_STAT, true);
       /*  if (listener != null)
             listener.ticketReopened();*/
-        Hawk.put(Constants.FETCH_PENDING_LIST, true);
     }
 
     @Override

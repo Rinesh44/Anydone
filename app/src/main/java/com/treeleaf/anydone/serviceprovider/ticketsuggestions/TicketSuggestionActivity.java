@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SuggestedTicketAdapter;
@@ -34,8 +35,7 @@ import butterknife.BindView;
 
 public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPresenterImpl> implements
         TicketSuggestionContract.TicketSuggestionView {
-
-    private static final String TAG = "AssignEmployeeActivity";
+    private static final String TAG = "TicketSuggestionActivit";
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_accept_all)
@@ -67,8 +67,6 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ticketSuggestionList = TicketSuggestionRepo.getInstance().getAllTicketSuggestions();
-        setUpRecyclerView(ticketSuggestionList);
         ivBack.setOnClickListener(v -> onBackPressed());
         tvAcceptAll.setOnClickListener(v -> {
             if (suggestedTickets.isEmpty()) {
@@ -381,6 +379,8 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         super.onResume();
         ticketSuggestionList = TicketSuggestionRepo.getInstance().getAllTicketSuggestions();
         setUpRecyclerView(ticketSuggestionList);
+        GlobalUtils.showLog(TAG, "ticket suggesti: " + ticketSuggestionList);
+
     }
 
     @Override
@@ -388,6 +388,8 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         adapter.removeSuggestionList(suggestionList);
         TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionList);
         if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
+
+        Hawk.put(Constants.SUGGESTION_ACCEPTED, true);
     }
 
     @Override
@@ -406,6 +408,8 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         adapter.removeSuggestionList(suggestionList);
         TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestionList);
         if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
+
+        Hawk.put(Constants.SUGGESTION_REJECTED, true);
     }
 
     @Override
@@ -424,6 +428,8 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         adapter.removeSuggestion(suggestion);
         TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestion.getSuggestionId());
         if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
+
+        Hawk.put(Constants.SUGGESTION_ACCEPTED, true);
     }
 
     @Override
@@ -431,6 +437,8 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
         adapter.removeSuggestion(suggestion);
         TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(suggestion.getSuggestionId());
         if (adapter.getItemCount() == 0) tvNoSuggestions.setVisibility(View.VISIBLE);
+
+        Hawk.put(Constants.SUGGESTION_REJECTED, true);
     }
 
     @Override

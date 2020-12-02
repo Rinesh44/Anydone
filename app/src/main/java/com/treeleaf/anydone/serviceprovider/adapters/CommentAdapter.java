@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -25,6 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.chinalwb.are.AREditText;
+import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.card.MaterialCardView;
 import com.orhanobut.hawk.Hawk;
@@ -154,10 +155,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
-            case MSG_TEXT_LEFT:
-                View leftTextView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.comment_text, parent, false);
-                return new LeftTextHolder(leftTextView);
 
             case MSG_IMG_LEFT:
                 View leftImageView = LayoutInflater.from(parent.getContext())
@@ -234,8 +231,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT:
-                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
-                        false);
+                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime
+                );
                 break;
 
             case MSG_IMG_LEFT:
@@ -411,7 +408,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private class LeftTextHolder extends RecyclerView.ViewHolder {
         TextView sentAt, senderTitle, time;
-        TextView messageText;
+        AREditor messageText;
         RelativeLayout textHolder;
         ImageView resend;
         CircleImageView civSender;
@@ -429,23 +426,33 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             time = itemView.findViewById(R.id.tv_time);
         }
 
-        void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
-                  boolean isContinuous) {
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime) {
             //show additional padding if not continuous
-            if (!isContinuous) {
-                spacing.setVisibility(View.VISIBLE);
-            } else {
-                spacing.setVisibility(View.GONE);
-                GlobalUtils.showLog(TAG, "spacing deleted");
-            }
+            spacing.setVisibility(View.VISIBLE);
             // Show the date if the message was sent on a different date than the previous message.
 
          /*   messageText.setHtml(conversation.getMessage());
             messageText.setEditorFontSize(15);*/
 
+            messageText.setHideToolbar(true);
+            messageText.getARE().setTextSize(14);
+            messageText.getARE().setLongClickable(false);
             GlobalUtils.showLog(TAG, "html msgs: " + conversation.getMessage());
+            if (conversation.getMessage().toLowerCase().contains("<ol>") ||
+                    conversation.getMessage().toLowerCase().contains("<ul>")) {
+                messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -18),
+                        GlobalUtils.convertDpToPixel(mContext, -10),
+                        0,
+                        GlobalUtils.convertDpToPixel(mContext, -45));
+            } else messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -8),
+                    GlobalUtils.convertDpToPixel(mContext, -10),
+                    0,
+                    GlobalUtils.convertDpToPixel(mContext, -25));
 
-            messageText.setText(Html.fromHtml(conversation.getMessage()));
+            messageText.fromHtml(conversation.getMessage());
+
+            textHolder.setClickable(true);
+            textHolder.setFocusable(true);
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
                 showDateAndTime(conversation.getSentAt(), sentAt);
@@ -464,13 +471,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
             // Hide profile image and name if the previous message was also sent by current sender.
-            if (isContinuous && !showTime && !isNewDay) {
-                civSender.setVisibility(View.INVISIBLE);
-                senderTitle.setVisibility(View.GONE);
-            } else {
-                //check for bot name and image
-                displayBotOrUserMessage(senderTitle, civSender, conversation);
-            }
+            //check for bot name and image
+            displayBotOrUserMessage(senderTitle, civSender, conversation);
 
             if (civSender != null) {
                 civSender.setOnClickListener(v -> {
@@ -552,8 +554,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     urlDesc.setText(metaData.getDescription());
 
                     urlHolder.setOnClickListener(v -> {
+                        String url = metaData.getUrl();
+                        if (!url.startsWith("http://") && !url.startsWith("https://"))
+                            url = "http://" + url;
                         Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(metaData.getUrl()));
+                                Intent.ACTION_VIEW, Uri.parse(url));
                         mContext.startActivity(browserIntent);
                     });
                 }
