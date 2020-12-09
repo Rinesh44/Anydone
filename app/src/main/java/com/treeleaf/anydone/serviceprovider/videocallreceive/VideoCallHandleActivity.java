@@ -285,7 +285,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     private void prepareCollabInvite(Joinee joinee, String pictureId, Bitmap caputureBitmap) {
-        Bitmap bitmap = caputureBitmap;
+//        Bitmap bitmap = caputureBitmap;
+        Bitmap bitmap  = caputureBitmap.copy(Bitmap.Config.ARGB_8888, true);
         Bitmap convertedBitmap;
         try {
             convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
