@@ -47,7 +47,7 @@ public class PendingTicketPresenterImpl extends BasePresenter<PendingTicketContr
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         getTicketsObservable = service
-                .getPendingTickets(token, serviceId, from, to, page);
+                .getPendingTickets(token, serviceId, from, to, page, "ASC");
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

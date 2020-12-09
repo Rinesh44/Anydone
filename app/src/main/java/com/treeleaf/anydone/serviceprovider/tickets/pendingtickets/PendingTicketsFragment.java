@@ -161,6 +161,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                     i.putExtra("selected_ticket_type", Constants.PENDING);
                     i.putExtra("ticket_desc", ticket.getTitle());
                     i.putExtra("selected_ticket_name", callees);
+                    i.putExtra("selected_ticket_index", ticket.getTicketIndex());
                     i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                     i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                     startActivity(i);
@@ -206,19 +207,22 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     @Override
     public void onResume() {
         super.onResume();
-
+        GlobalUtils.showLog(TAG, "onreume called");
         boolean fetchChanges = Hawk.get(Constants.FETCH_PENDING_LIST, false);
         boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
         boolean ticketPending = Hawk.get(Constants.TICKET_PENDING, false);
         if (fetchChanges) {
+            GlobalUtils.showLog(TAG, "first");
             btnReload.setVisibility(View.GONE);
             presenter.getPendingTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else if (ticketAssigned) {
+            GlobalUtils.showLog(TAG, "second");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_ASSIGNED, false);
         } else if (ticketPending) {
+            GlobalUtils.showLog(TAG, "third");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_PENDING, false);

@@ -154,6 +154,8 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_viber));
         } else if (suggestion.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.SLACK_THIRD_PARTY_SOURCE.name())) {
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_slack));
+        } else if (suggestion.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.SLACK_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_link_email));
         }
     }
 
@@ -203,7 +205,8 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
                     TicketSuggestion suggestion = suggestionFiltered.get(getAdapterPosition());
                     listener.showHistory(suggestion.getSuggestionId(), suggestion.getMessageId(),
                             suggestion.getCustomerName(), suggestion.getCustomerImageUrl(),
-                            suggestion.getMessageText(), suggestion.getMessageSentAt());
+                            suggestion.getMessageText(), suggestion.getMessageSentAt(),
+                            suggestion.getSource());
                 }
             });
 
@@ -253,7 +256,7 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
         void onReject(TicketSuggestion ticketSuggestion);
 
         void showHistory(String ticketSuggestionId, String msgId, String customerName, String
-                customerImage, String messageText, long sentAt);
+                customerImage, String messageText, long sentAt, String source);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

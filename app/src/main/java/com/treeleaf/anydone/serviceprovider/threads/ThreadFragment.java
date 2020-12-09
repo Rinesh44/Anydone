@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -57,10 +58,12 @@ import com.treeleaf.anydone.serviceprovider.ticketsuggestions.TicketSuggestionAc
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -106,6 +109,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private BottomSheetDialog serviceSheet;
     private List<Thread> threadList;
     private List<TicketSuggestion> ticketSuggestionList;
+    private boolean dataLoaded = false;
 
     @Override
     protected int getLayout() {
@@ -133,17 +137,22 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        presenter.getTicketSuggestions();
         List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         if (!CollectionUtils.isEmpty(threadList)) {
             setUpThreadRecyclerView(threadList);
             rvThreads.setVisibility(View.VISIBLE);
             ivThreadNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
+            etSearch.setVisibility(View.VISIBLE);
         } else presenter.getConversationThreads(true);
 
         createServiceBottomSheet();
         setDataToSuggestionView();
-        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+        tvToolbarTitle.setOnClickListener(v -> {
+            serviceSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+            toggleServiceBottomSheet();
+        });
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
@@ -175,6 +184,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 List<Thread> searchResults = ThreadRepo.getInstance().searchThread(s.toString());
+                if (searchResults.isEmpty()) {
+                    ivThreadNotFound.setVisibility(View.VISIBLE);
+                } else {
+                    ivThreadNotFound.setVisibility(View.GONE);
+                }
                 threadAdapter.setData(searchResults);
             }
 
@@ -188,7 +202,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     @OnClick(R.id.rl_ticket_suggestion)
     void onTicketSuggestionClick() {
-        startActivity(new Intent(getActivity(), TicketSuggestionActivity.class));
+        Intent i = new Intent(getActivity(), TicketSuggestionActivity.class);
+        startActivity(i);
     }
 
     @OnClick(R.id.iv_close_ticket_suggestion)
@@ -203,14 +218,15 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 .inflate(R.layout.bottomsheet_select_service, null);
 
         serviceSheet.setContentView(llBottomSheet);
+        serviceSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
 
         serviceSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
 
             FrameLayout bottomSheet = d.findViewById
                     (com.google.android.material.R.id.design_bottom_sheet);
-            if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+ /*           if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
             setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
@@ -314,12 +330,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                         new Handler(Looper.getMainLooper()).post(() -> {
                             String threadId = relayResponse.getRtcMessage().getRefId();
 
-                            for (Thread existingThread : threadList
-                            ) {
-                                GlobalUtils.showLog(TAG, "inside for loop");
-                                if (existingThread.getThreadId().equalsIgnoreCase(threadId)) {
-                                    GlobalUtils.showLog(TAG, "thread exists");
-                                    updateThread(existingThread, relayResponse);
+                            if (threadList != null) {
+                                for (Thread existingThread : threadList
+                                ) {
+                                    GlobalUtils.showLog(TAG, "inside for loop");
+                                    if (existingThread.getThreadId().equalsIgnoreCase(threadId)) {
+                                        GlobalUtils.showLog(TAG, "thread exists");
+                                        updateThread(existingThread, relayResponse);
+                                    }
                                 }
                             }
                         });
@@ -453,8 +471,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void onResume() {
         super.onResume();
-        TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
-        presenter.getTicketSuggestions();
+        boolean suggestionAccepted = Hawk.get(Constants.SUGGESTION_ACCEPTED, false);
+        boolean suggestionRejected = Hawk.get(Constants.SUGGESTION_REJECTED, false);
+        if (suggestionAccepted || suggestionRejected) {
+            TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
+            presenter.getTicketSuggestions();
+        }
+
+        presenter.getConversationThreads(false);
   /*      boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_TICKET, false);
         if (serviceChanged) {
             presenter.getConversationThreads();
@@ -508,6 +532,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             return;
         }
 
+        ThreadRepo.getInstance().deleteAllThreads();
+
      /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);*/
@@ -550,6 +576,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void getTicketSuggestionSuccess() {
         setDataToSuggestionView();
+        dataLoaded = true;
+        Hawk.put(Constants.SUGGESTION_REJECTED, false);
+        Hawk.put(Constants.SUGGESTION_ACCEPTED, false);
     }
 
     private void setDataToSuggestionView() {
@@ -558,8 +587,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             int suggestionCount = ticketSuggestionList.size();
             StringBuilder suggestedTicketCount = new StringBuilder(String.valueOf(suggestionCount));
             if (suggestionCount > 1)
-                suggestedTicketCount.append(" new tickets");
-            else suggestedTicketCount.append(" new ticket");
+                suggestedTicketCount.append(" New Tickets");
+            else suggestedTicketCount.append(" New Ticket");
             tvSuggestedTicket.setText(suggestedTicketCount);
             rlTicketSuggestion.setVisibility(View.VISIBLE);
         }
@@ -567,12 +596,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     @Override
     public void onNoTicketSuggestion() {
+        dataLoaded = true;
         rlTicketSuggestion.setVisibility(View.GONE);
         TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
     }
 
     @Override
     public void getTicketSuggestionFail(String msg) {
+        dataLoaded = true;
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

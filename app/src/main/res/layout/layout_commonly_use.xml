@@ -4,5 +4,5 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/dimen_10x1"
     android:text="Today"
-    android:textColor="#333333"
+    android:textColor="@color/service_info_text_color"
     android:textSize="13sp" />

@@ -253,16 +253,6 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     }
 
     @Override
-    public void showEmptyPhoneOrEmailFieldError(String message) {
-        ilEmailPhone.setError(message);
-    }
-
-    @Override
-    public void showEmptyPasswordFieldError(String message) {
-        ilPassword.setError(message);
-    }
-
-    @Override
     public void onAccountNotVerified() {
         Intent i = new Intent(LoginActivity.this, VerificationActivity.class);
         Hawk.put(Constants.EMAIL_PHONE, UiUtils.getString(etEmail));

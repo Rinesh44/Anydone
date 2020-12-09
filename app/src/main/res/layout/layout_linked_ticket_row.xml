@@ -9,54 +9,11 @@
     android:paddingBottom="@dimen/dimen_5x1">
 
     <LinearLayout
-        android:id="@+id/ll_ticket_view"
-        android:layout_width="62dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="@dimen/dimen_10x1"
-        android:layout_marginTop="@dimen/dimen_5x1"
-        android:background="@drawable/blue_round_bg"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/dimen_2x1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/date1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dimen_6x1"
-                android:layout_marginEnd="@dimen/dimen_6x1"
-                android:text="14"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/date2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dimen_2x1"
-                android:layout_marginEnd="@dimen/dimen_2x1"
-                android:text="Nov, 2020"
-                android:textColor="@color/white"
-                android:textSize="10dp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/ll_details_holder"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_marginStart="@dimen/dimen_10x1"
         android:layout_marginTop="@dimen/dimen_5x1"
-        android:layout_toEndOf="@+id/ll_ticket_view"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -69,18 +26,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
+                android:fontFamily="@font/bold"
                 android:gravity="bottom"
                 android:text="#124568"
-                android:textColor="@color/charcoal_text"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_toEndOf="@+id/tv_ticket_id_value"
+                android:layout_centerVertical="true"
+                android:text="19/11/20"
+                android:textColor="@color/service_info_text_color"
+                android:textSize="@dimen/material_text_body2" />
 
             <TextView
                 android:id="@+id/tv_ticket_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/dimen_2x4"
-                android:layout_toEndOf="@+id/tv_ticket_id_value"
                 android:background="@drawable/resolved_bg"
                 android:paddingStart="@dimen/dimen_6x1"
                 android:paddingTop="@dimen/dimen_3x1"
@@ -102,9 +70,8 @@
             android:paddingEnd="@dimen/dimen_10x1"
             android:singleLine="true"
             android:text="Broken tv, fallen from tv stand"
-            android:textColor="@color/charcoal_text"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textColor="@color/service_info_text_color"
+            android:textSize="13sp" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -13,10 +13,10 @@ public class AnydoneRealmMigration implements RealmMigration {
     public void migrate(@NonNull DynamicRealm realm, long oldVersion, long newVersion) {
         final RealmSchema schema = realm.getSchema();
 
-    /*    if (oldVersion == 1) {
-            schema.get("TicketSuggestion")
-                    .addField("dummy", String.class);
+        if (oldVersion == 1) {
+            schema.get("Tickets")
+                    .addField("ticketIndex", long.class);
             oldVersion++;
-        }*/
+        }
     }
 }

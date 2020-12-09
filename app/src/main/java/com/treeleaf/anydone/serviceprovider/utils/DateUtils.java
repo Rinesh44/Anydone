@@ -119,13 +119,18 @@ public class DateUtils {
                 elapsedTime.append(" days ");
             else
                 elapsedTime.append(" day ");
+
+            return elapsedTime.toString();
         }
+
         if (elapsedHours != 0) {
             elapsedTime.append(elapsedHours);
             if (elapsedHours > 1)
                 elapsedTime.append(" hrs ");
             else
                 elapsedTime.append(" hr ");
+
+            return elapsedTime.toString();
         }
         if (elapsedMinutes != 0) {
             elapsedTime.append(elapsedMinutes);
@@ -133,6 +138,7 @@ public class DateUtils {
                 elapsedTime.append(" mins ");
             else
                 elapsedTime.append(" min ");
+            return elapsedTime.toString();
         }
 
         if (elapsedTime.toString().isEmpty()) {
@@ -142,6 +148,7 @@ public class DateUtils {
                     elapsedTime.append(" secs");
                 else
                     elapsedTime.append(" sec");
+                return elapsedTime.toString();
             }
         }
 

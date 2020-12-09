@@ -10169,1374 +10169,19 @@ public final class SignalingProto {
     }
   }
 
-  public interface ScreenDrawRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ScreenDrawRequest)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-     */
-    int getDrawingModeValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-     */
-    ScreenDrawRequest.DrawingMode getDrawingMode();
-
-    /**
-     * <code>optional double brushWidth = 2;</code>
-     */
-    double getBrushWidth();
-
-    /**
-     * <code>optional double brushOpacity = 3;</code>
-     */
-    double getBrushOpacity();
-
-    /**
-     * <code>optional int32 brushColor = 4;</code>
-     */
-    int getBrushColor();
-
-    /**
-     * <code>optional string text = 5;</code>
-     */
-    String getText();
-    /**
-     * <code>optional string text = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getTextBytes();
-
-    /**
-     * <code>optional string senderAccountId = 6;</code>
-     */
-    String getSenderAccountId();
-    /**
-     * <code>optional string senderAccountId = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getSenderAccountIdBytes();
-
-    /**
-     * <code>optional string clientId = 7;</code>
-     */
-    String getClientId();
-    /**
-     * <code>optional string clientId = 7;</code>
-     */
-    com.google.protobuf.ByteString
-        getClientIdBytes();
-
-    /**
-     * <code>optional string refId = 8;</code>
-     */
-    String getRefId();
-    /**
-     * <code>optional string refId = 8;</code>
-     */
-    com.google.protobuf.ByteString
-        getRefIdBytes();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    boolean hasPosition();
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    Position getPosition();
-
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    java.util.List<String>
-        getRecipientsList();
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    int getRecipientsCount();
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    String getRecipients(int index);
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    com.google.protobuf.ByteString
-        getRecipientsBytes(int index);
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.ScreenDrawRequest}
-   */
-  public  static final class ScreenDrawRequest extends
-      com.google.protobuf.GeneratedMessageLite<
-          ScreenDrawRequest, ScreenDrawRequest.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ScreenDrawRequest)
-      ScreenDrawRequestOrBuilder {
-    private ScreenDrawRequest() {
-      text_ = "";
-      senderAccountId_ = "";
-      clientId_ = "";
-      refId_ = "";
-      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    /**
-     * Protobuf enum {@code treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode}
-     */
-    public enum DrawingMode
-        implements com.google.protobuf.Internal.EnumLite {
-      /**
-       * <code>UNKNOWN_DRAWING_MODE = 0;</code>
-       */
-      UNKNOWN_DRAWING_MODE(0),
-      /**
-       * <code>TEXT = 1;</code>
-       */
-      TEXT(1),
-      /**
-       * <code>FREE_HAND = 2;</code>
-       */
-      FREE_HAND(2),
-      /**
-       * <code>CLEAR_SCREEN = 3;</code>
-       */
-      CLEAR_SCREEN(3),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>UNKNOWN_DRAWING_MODE = 0;</code>
-       */
-      public static final int UNKNOWN_DRAWING_MODE_VALUE = 0;
-      /**
-       * <code>TEXT = 1;</code>
-       */
-      public static final int TEXT_VALUE = 1;
-      /**
-       * <code>FREE_HAND = 2;</code>
-       */
-      public static final int FREE_HAND_VALUE = 2;
-      /**
-       * <code>CLEAR_SCREEN = 3;</code>
-       */
-      public static final int CLEAR_SCREEN_VALUE = 3;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @Deprecated
-      public static DrawingMode valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static DrawingMode forNumber(int value) {
-        switch (value) {
-          case 0: return UNKNOWN_DRAWING_MODE;
-          case 1: return TEXT;
-          case 2: return FREE_HAND;
-          case 3: return CLEAR_SCREEN;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<DrawingMode>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          DrawingMode> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<DrawingMode>() {
-              public DrawingMode findValueByNumber(int number) {
-                return DrawingMode.forNumber(number);
-              }
-            };
-
-      private final int value;
-
-      private DrawingMode(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode)
-    }
-
-    private int bitField0_;
-    public static final int DRAWINGMODE_FIELD_NUMBER = 1;
-    private int drawingMode_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-     */
-    public int getDrawingModeValue() {
-      return drawingMode_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-     */
-    public DrawingMode getDrawingMode() {
-      DrawingMode result = DrawingMode.forNumber(drawingMode_);
-      return result == null ? DrawingMode.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-     */
-    private void setDrawingModeValue(int value) {
-        drawingMode_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-     */
-    private void setDrawingMode(DrawingMode value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      drawingMode_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-     */
-    private void clearDrawingMode() {
-      
-      drawingMode_ = 0;
-    }
-
-    public static final int BRUSHWIDTH_FIELD_NUMBER = 2;
-    private double brushWidth_;
-    /**
-     * <code>optional double brushWidth = 2;</code>
-     */
-    public double getBrushWidth() {
-      return brushWidth_;
-    }
-    /**
-     * <code>optional double brushWidth = 2;</code>
-     */
-    private void setBrushWidth(double value) {
-      
-      brushWidth_ = value;
-    }
-    /**
-     * <code>optional double brushWidth = 2;</code>
-     */
-    private void clearBrushWidth() {
-      
-      brushWidth_ = 0D;
-    }
-
-    public static final int BRUSHOPACITY_FIELD_NUMBER = 3;
-    private double brushOpacity_;
-    /**
-     * <code>optional double brushOpacity = 3;</code>
-     */
-    public double getBrushOpacity() {
-      return brushOpacity_;
-    }
-    /**
-     * <code>optional double brushOpacity = 3;</code>
-     */
-    private void setBrushOpacity(double value) {
-      
-      brushOpacity_ = value;
-    }
-    /**
-     * <code>optional double brushOpacity = 3;</code>
-     */
-    private void clearBrushOpacity() {
-      
-      brushOpacity_ = 0D;
-    }
-
-    public static final int BRUSHCOLOR_FIELD_NUMBER = 4;
-    private int brushColor_;
-    /**
-     * <code>optional int32 brushColor = 4;</code>
-     */
-    public int getBrushColor() {
-      return brushColor_;
-    }
-    /**
-     * <code>optional int32 brushColor = 4;</code>
-     */
-    private void setBrushColor(int value) {
-      
-      brushColor_ = value;
-    }
-    /**
-     * <code>optional int32 brushColor = 4;</code>
-     */
-    private void clearBrushColor() {
-      
-      brushColor_ = 0;
-    }
-
-    public static final int TEXT_FIELD_NUMBER = 5;
-    private String text_;
-    /**
-     * <code>optional string text = 5;</code>
-     */
-    public String getText() {
-      return text_;
-    }
-    /**
-     * <code>optional string text = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTextBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(text_);
-    }
-    /**
-     * <code>optional string text = 5;</code>
-     */
-    private void setText(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      text_ = value;
-    }
-    /**
-     * <code>optional string text = 5;</code>
-     */
-    private void clearText() {
-      
-      text_ = getDefaultInstance().getText();
-    }
-    /**
-     * <code>optional string text = 5;</code>
-     */
-    private void setTextBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      text_ = value.toStringUtf8();
-    }
-
-    public static final int SENDERACCOUNTID_FIELD_NUMBER = 6;
-    private String senderAccountId_;
-    /**
-     * <code>optional string senderAccountId = 6;</code>
-     */
-    public String getSenderAccountId() {
-      return senderAccountId_;
-    }
-    /**
-     * <code>optional string senderAccountId = 6;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSenderAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(senderAccountId_);
-    }
-    /**
-     * <code>optional string senderAccountId = 6;</code>
-     */
-    private void setSenderAccountId(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      senderAccountId_ = value;
-    }
-    /**
-     * <code>optional string senderAccountId = 6;</code>
-     */
-    private void clearSenderAccountId() {
-      
-      senderAccountId_ = getDefaultInstance().getSenderAccountId();
-    }
-    /**
-     * <code>optional string senderAccountId = 6;</code>
-     */
-    private void setSenderAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      senderAccountId_ = value.toStringUtf8();
-    }
-
-    public static final int CLIENTID_FIELD_NUMBER = 7;
-    private String clientId_;
-    /**
-     * <code>optional string clientId = 7;</code>
-     */
-    public String getClientId() {
-      return clientId_;
-    }
-    /**
-     * <code>optional string clientId = 7;</code>
-     */
-    public com.google.protobuf.ByteString
-        getClientIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
-    }
-    /**
-     * <code>optional string clientId = 7;</code>
-     */
-    private void setClientId(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      clientId_ = value;
-    }
-    /**
-     * <code>optional string clientId = 7;</code>
-     */
-    private void clearClientId() {
-      
-      clientId_ = getDefaultInstance().getClientId();
-    }
-    /**
-     * <code>optional string clientId = 7;</code>
-     */
-    private void setClientIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      clientId_ = value.toStringUtf8();
-    }
-
-    public static final int REFID_FIELD_NUMBER = 8;
-    private String refId_;
-    /**
-     * <code>optional string refId = 8;</code>
-     */
-    public String getRefId() {
-      return refId_;
-    }
-    /**
-     * <code>optional string refId = 8;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRefIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
-    }
-    /**
-     * <code>optional string refId = 8;</code>
-     */
-    private void setRefId(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      refId_ = value;
-    }
-    /**
-     * <code>optional string refId = 8;</code>
-     */
-    private void clearRefId() {
-      
-      refId_ = getDefaultInstance().getRefId();
-    }
-    /**
-     * <code>optional string refId = 8;</code>
-     */
-    private void setRefIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      refId_ = value.toStringUtf8();
-    }
-
-    public static final int POSITION_FIELD_NUMBER = 9;
-    private Position position_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    public boolean hasPosition() {
-      return position_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    public Position getPosition() {
-      return position_ == null ? Position.getDefaultInstance() : position_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    private void setPosition(Position value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      position_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    private void setPosition(
-        Position.Builder builderForValue) {
-      position_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    private void mergePosition(Position value) {
-      if (position_ != null &&
-          position_ != Position.getDefaultInstance()) {
-        position_ =
-          Position.newBuilder(position_).mergeFrom(value).buildPartial();
-      } else {
-        position_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-     */
-    private void clearPosition() {  position_ = null;
-      
-    }
-
-    public static final int RECIPIENTS_FIELD_NUMBER = 10;
-    private com.google.protobuf.Internal.ProtobufList<String> recipients_;
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    public java.util.List<String> getRecipientsList() {
-      return recipients_;
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    public int getRecipientsCount() {
-      return recipients_.size();
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    public String getRecipients(int index) {
-      return recipients_.get(index);
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRecipientsBytes(int index) {
-      return com.google.protobuf.ByteString.copyFromUtf8(
-          recipients_.get(index));
-    }
-    private void ensureRecipientsIsMutable() {
-      if (!recipients_.isModifiable()) {
-        recipients_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
-       }
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    private void setRecipients(
-        int index, String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRecipientsIsMutable();
-      recipients_.set(index, value);
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    private void addRecipients(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRecipientsIsMutable();
-      recipients_.add(value);
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    private void addAllRecipients(
-        Iterable<String> values) {
-      ensureRecipientsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, recipients_);
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    private void clearRecipients() {
-      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    /**
-     * <code>repeated string recipients = 10;</code>
-     */
-    private void addRecipientsBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensureRecipientsIsMutable();
-      recipients_.add(value.toStringUtf8());
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (drawingMode_ != DrawingMode.UNKNOWN_DRAWING_MODE.getNumber()) {
-        output.writeEnum(1, drawingMode_);
-      }
-      if (brushWidth_ != 0D) {
-        output.writeDouble(2, brushWidth_);
-      }
-      if (brushOpacity_ != 0D) {
-        output.writeDouble(3, brushOpacity_);
-      }
-      if (brushColor_ != 0) {
-        output.writeInt32(4, brushColor_);
-      }
-      if (!text_.isEmpty()) {
-        output.writeString(5, getText());
-      }
-      if (!senderAccountId_.isEmpty()) {
-        output.writeString(6, getSenderAccountId());
-      }
-      if (!clientId_.isEmpty()) {
-        output.writeString(7, getClientId());
-      }
-      if (!refId_.isEmpty()) {
-        output.writeString(8, getRefId());
-      }
-      if (position_ != null) {
-        output.writeMessage(9, getPosition());
-      }
-      for (int i = 0; i < recipients_.size(); i++) {
-        output.writeString(10, recipients_.get(i));
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (drawingMode_ != DrawingMode.UNKNOWN_DRAWING_MODE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, drawingMode_);
-      }
-      if (brushWidth_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, brushWidth_);
-      }
-      if (brushOpacity_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(3, brushOpacity_);
-      }
-      if (brushColor_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, brushColor_);
-      }
-      if (!text_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getText());
-      }
-      if (!senderAccountId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(6, getSenderAccountId());
-      }
-      if (!clientId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(7, getClientId());
-      }
-      if (!refId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(8, getRefId());
-      }
-      if (position_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getPosition());
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < recipients_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeStringSizeNoTag(recipients_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getRecipientsList().size();
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static ScreenDrawRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static ScreenDrawRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static ScreenDrawRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static ScreenDrawRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static ScreenDrawRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static ScreenDrawRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static ScreenDrawRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static ScreenDrawRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static ScreenDrawRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static ScreenDrawRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(ScreenDrawRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    /**
-     * Protobuf type {@code treeleaf.anydone.entities.ScreenDrawRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          ScreenDrawRequest, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ScreenDrawRequest)
-        ScreenDrawRequestOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.SignalingProto.ScreenDrawRequest.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-       */
-      public int getDrawingModeValue() {
-        return instance.getDrawingModeValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-       */
-      public Builder setDrawingModeValue(int value) {
-        copyOnWrite();
-        instance.setDrawingModeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-       */
-      public DrawingMode getDrawingMode() {
-        return instance.getDrawingMode();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-       */
-      public Builder setDrawingMode(DrawingMode value) {
-        copyOnWrite();
-        instance.setDrawingMode(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest.DrawingMode drawingMode = 1;</code>
-       */
-      public Builder clearDrawingMode() {
-        copyOnWrite();
-        instance.clearDrawingMode();
-        return this;
-      }
-
-      /**
-       * <code>optional double brushWidth = 2;</code>
-       */
-      public double getBrushWidth() {
-        return instance.getBrushWidth();
-      }
-      /**
-       * <code>optional double brushWidth = 2;</code>
-       */
-      public Builder setBrushWidth(double value) {
-        copyOnWrite();
-        instance.setBrushWidth(value);
-        return this;
-      }
-      /**
-       * <code>optional double brushWidth = 2;</code>
-       */
-      public Builder clearBrushWidth() {
-        copyOnWrite();
-        instance.clearBrushWidth();
-        return this;
-      }
-
-      /**
-       * <code>optional double brushOpacity = 3;</code>
-       */
-      public double getBrushOpacity() {
-        return instance.getBrushOpacity();
-      }
-      /**
-       * <code>optional double brushOpacity = 3;</code>
-       */
-      public Builder setBrushOpacity(double value) {
-        copyOnWrite();
-        instance.setBrushOpacity(value);
-        return this;
-      }
-      /**
-       * <code>optional double brushOpacity = 3;</code>
-       */
-      public Builder clearBrushOpacity() {
-        copyOnWrite();
-        instance.clearBrushOpacity();
-        return this;
-      }
-
-      /**
-       * <code>optional int32 brushColor = 4;</code>
-       */
-      public int getBrushColor() {
-        return instance.getBrushColor();
-      }
-      /**
-       * <code>optional int32 brushColor = 4;</code>
-       */
-      public Builder setBrushColor(int value) {
-        copyOnWrite();
-        instance.setBrushColor(value);
-        return this;
-      }
-      /**
-       * <code>optional int32 brushColor = 4;</code>
-       */
-      public Builder clearBrushColor() {
-        copyOnWrite();
-        instance.clearBrushColor();
-        return this;
-      }
-
-      /**
-       * <code>optional string text = 5;</code>
-       */
-      public String getText() {
-        return instance.getText();
-      }
-      /**
-       * <code>optional string text = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTextBytes() {
-        return instance.getTextBytes();
-      }
-      /**
-       * <code>optional string text = 5;</code>
-       */
-      public Builder setText(
-          String value) {
-        copyOnWrite();
-        instance.setText(value);
-        return this;
-      }
-      /**
-       * <code>optional string text = 5;</code>
-       */
-      public Builder clearText() {
-        copyOnWrite();
-        instance.clearText();
-        return this;
-      }
-      /**
-       * <code>optional string text = 5;</code>
-       */
-      public Builder setTextBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setTextBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string senderAccountId = 6;</code>
-       */
-      public String getSenderAccountId() {
-        return instance.getSenderAccountId();
-      }
-      /**
-       * <code>optional string senderAccountId = 6;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSenderAccountIdBytes() {
-        return instance.getSenderAccountIdBytes();
-      }
-      /**
-       * <code>optional string senderAccountId = 6;</code>
-       */
-      public Builder setSenderAccountId(
-          String value) {
-        copyOnWrite();
-        instance.setSenderAccountId(value);
-        return this;
-      }
-      /**
-       * <code>optional string senderAccountId = 6;</code>
-       */
-      public Builder clearSenderAccountId() {
-        copyOnWrite();
-        instance.clearSenderAccountId();
-        return this;
-      }
-      /**
-       * <code>optional string senderAccountId = 6;</code>
-       */
-      public Builder setSenderAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSenderAccountIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string clientId = 7;</code>
-       */
-      public String getClientId() {
-        return instance.getClientId();
-      }
-      /**
-       * <code>optional string clientId = 7;</code>
-       */
-      public com.google.protobuf.ByteString
-          getClientIdBytes() {
-        return instance.getClientIdBytes();
-      }
-      /**
-       * <code>optional string clientId = 7;</code>
-       */
-      public Builder setClientId(
-          String value) {
-        copyOnWrite();
-        instance.setClientId(value);
-        return this;
-      }
-      /**
-       * <code>optional string clientId = 7;</code>
-       */
-      public Builder clearClientId() {
-        copyOnWrite();
-        instance.clearClientId();
-        return this;
-      }
-      /**
-       * <code>optional string clientId = 7;</code>
-       */
-      public Builder setClientIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setClientIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string refId = 8;</code>
-       */
-      public String getRefId() {
-        return instance.getRefId();
-      }
-      /**
-       * <code>optional string refId = 8;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRefIdBytes() {
-        return instance.getRefIdBytes();
-      }
-      /**
-       * <code>optional string refId = 8;</code>
-       */
-      public Builder setRefId(
-          String value) {
-        copyOnWrite();
-        instance.setRefId(value);
-        return this;
-      }
-      /**
-       * <code>optional string refId = 8;</code>
-       */
-      public Builder clearRefId() {
-        copyOnWrite();
-        instance.clearRefId();
-        return this;
-      }
-      /**
-       * <code>optional string refId = 8;</code>
-       */
-      public Builder setRefIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setRefIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-       */
-      public boolean hasPosition() {
-        return instance.hasPosition();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-       */
-      public Position getPosition() {
-        return instance.getPosition();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-       */
-      public Builder setPosition(Position value) {
-        copyOnWrite();
-        instance.setPosition(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-       */
-      public Builder setPosition(
-          Position.Builder builderForValue) {
-        copyOnWrite();
-        instance.setPosition(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-       */
-      public Builder mergePosition(Position value) {
-        copyOnWrite();
-        instance.mergePosition(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Position position = 9;</code>
-       */
-      public Builder clearPosition() {  copyOnWrite();
-        instance.clearPosition();
-        return this;
-      }
-
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public java.util.List<String>
-          getRecipientsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getRecipientsList());
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public int getRecipientsCount() {
-        return instance.getRecipientsCount();
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public String getRecipients(int index) {
-        return instance.getRecipients(index);
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRecipientsBytes(int index) {
-        return instance.getRecipientsBytes(index);
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public Builder setRecipients(
-          int index, String value) {
-        copyOnWrite();
-        instance.setRecipients(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public Builder addRecipients(
-          String value) {
-        copyOnWrite();
-        instance.addRecipients(value);
-        return this;
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public Builder addAllRecipients(
-          Iterable<String> values) {
-        copyOnWrite();
-        instance.addAllRecipients(values);
-        return this;
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public Builder clearRecipients() {
-        copyOnWrite();
-        instance.clearRecipients();
-        return this;
-      }
-      /**
-       * <code>repeated string recipients = 10;</code>
-       */
-      public Builder addRecipientsBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addRecipientsBytes(value);
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ScreenDrawRequest)
-    }
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new ScreenDrawRequest();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          recipients_.makeImmutable();
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          ScreenDrawRequest other = (ScreenDrawRequest) arg1;
-          drawingMode_ = visitor.visitInt(drawingMode_ != 0, drawingMode_,    other.drawingMode_ != 0, other.drawingMode_);
-          brushWidth_ = visitor.visitDouble(brushWidth_ != 0D, brushWidth_,
-              other.brushWidth_ != 0D, other.brushWidth_);
-          brushOpacity_ = visitor.visitDouble(brushOpacity_ != 0D, brushOpacity_,
-              other.brushOpacity_ != 0D, other.brushOpacity_);
-          brushColor_ = visitor.visitInt(brushColor_ != 0, brushColor_,
-              other.brushColor_ != 0, other.brushColor_);
-          text_ = visitor.visitString(!text_.isEmpty(), text_,
-              !other.text_.isEmpty(), other.text_);
-          senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
-              !other.senderAccountId_.isEmpty(), other.senderAccountId_);
-          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
-              !other.clientId_.isEmpty(), other.clientId_);
-          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
-              !other.refId_.isEmpty(), other.refId_);
-          position_ = visitor.visitMessage(position_, other.position_);
-          recipients_= visitor.visitList(recipients_, other.recipients_);
-          if (visitor == MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
-                  int rawValue = input.readEnum();
-
-                  drawingMode_ = rawValue;
-                  break;
-                }
-                case 17: {
-
-                  brushWidth_ = input.readDouble();
-                  break;
-                }
-                case 25: {
-
-                  brushOpacity_ = input.readDouble();
-                  break;
-                }
-                case 32: {
-
-                  brushColor_ = input.readInt32();
-                  break;
-                }
-                case 42: {
-                  String s = input.readStringRequireUtf8();
-
-                  text_ = s;
-                  break;
-                }
-                case 50: {
-                  String s = input.readStringRequireUtf8();
-
-                  senderAccountId_ = s;
-                  break;
-                }
-                case 58: {
-                  String s = input.readStringRequireUtf8();
-
-                  clientId_ = s;
-                  break;
-                }
-                case 66: {
-                  String s = input.readStringRequireUtf8();
-
-                  refId_ = s;
-                  break;
-                }
-                case 74: {
-                  Position.Builder subBuilder = null;
-                  if (position_ != null) {
-                    subBuilder = position_.toBuilder();
-                  }
-                  position_ = input.readMessage(Position.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(position_);
-                    position_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 82: {
-                  String s = input.readStringRequireUtf8();
-                  if (!recipients_.isModifiable()) {
-                    recipients_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
-                  }
-                  recipients_.add(s);
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ScreenDrawRequest.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
-      throw new UnsupportedOperationException();
-    }
-
-
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ScreenDrawRequest)
-    private static final ScreenDrawRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new ScreenDrawRequest();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static ScreenDrawRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<ScreenDrawRequest> PARSER;
-
-    public static com.google.protobuf.Parser<ScreenDrawRequest> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
   public interface StartDrawOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.StartDraw)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    int getBitmapWidth();
+    int getCanvasWidth();
 
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    int getBitmapHeight();
+    int getCanvasHeight();
 
     /**
      * <code>optional int64 capturedTime = 3;</code>
@@ -11605,6 +10250,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.StartDraw}
@@ -11620,52 +10275,53 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
-    public static final int BITMAPWIDTH_FIELD_NUMBER = 1;
-    private int bitmapWidth_;
+    public static final int CANVASWIDTH_FIELD_NUMBER = 1;
+    private int canvasWidth_;
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    public int getBitmapWidth() {
-      return bitmapWidth_;
+    public int getCanvasWidth() {
+      return canvasWidth_;
     }
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    private void setBitmapWidth(int value) {
+    private void setCanvasWidth(int value) {
       
-      bitmapWidth_ = value;
+      canvasWidth_ = value;
     }
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    private void clearBitmapWidth() {
+    private void clearCanvasWidth() {
       
-      bitmapWidth_ = 0;
+      canvasWidth_ = 0;
     }
 
-    public static final int BITMAPHEIGHT_FIELD_NUMBER = 2;
-    private int bitmapHeight_;
+    public static final int CANVASHEIGHT_FIELD_NUMBER = 2;
+    private int canvasHeight_;
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    public int getBitmapHeight() {
-      return bitmapHeight_;
+    public int getCanvasHeight() {
+      return canvasHeight_;
     }
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    private void setBitmapHeight(int value) {
+    private void setCanvasHeight(int value) {
       
-      bitmapHeight_ = value;
+      canvasHeight_ = value;
     }
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    private void clearBitmapHeight() {
+    private void clearCanvasHeight() {
       
-      bitmapHeight_ = 0;
+      canvasHeight_ = 0;
     }
 
     public static final int CAPTUREDTIME_FIELD_NUMBER = 3;
@@ -11991,13 +10647,59 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 10;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (bitmapWidth_ != 0) {
-        output.writeInt32(1, bitmapWidth_);
+      if (canvasWidth_ != 0) {
+        output.writeInt32(1, canvasWidth_);
       }
-      if (bitmapHeight_ != 0) {
-        output.writeInt32(2, bitmapHeight_);
+      if (canvasHeight_ != 0) {
+        output.writeInt32(2, canvasHeight_);
       }
       if (capturedTime_ != 0L) {
         output.writeInt64(3, capturedTime_);
@@ -12020,6 +10722,9 @@ public final class SignalingProto {
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(9, recipients_.get(i));
       }
+      if (!imageId_.isEmpty()) {
+        output.writeString(10, getImageId());
+      }
     }
 
     public int getSerializedSize() {
@@ -12027,13 +10732,13 @@ public final class SignalingProto {
       if (size != -1) return size;
 
       size = 0;
-      if (bitmapWidth_ != 0) {
+      if (canvasWidth_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, bitmapWidth_);
+          .computeInt32Size(1, canvasWidth_);
       }
-      if (bitmapHeight_ != 0) {
+      if (canvasHeight_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, bitmapHeight_);
+          .computeInt32Size(2, canvasHeight_);
       }
       if (capturedTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -12067,6 +10772,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -12155,48 +10864,48 @@ public final class SignalingProto {
 
 
       /**
-       * <code>optional int32 bitmapWidth = 1;</code>
+       * <code>optional int32 canvasWidth = 1;</code>
        */
-      public int getBitmapWidth() {
-        return instance.getBitmapWidth();
+      public int getCanvasWidth() {
+        return instance.getCanvasWidth();
       }
       /**
-       * <code>optional int32 bitmapWidth = 1;</code>
+       * <code>optional int32 canvasWidth = 1;</code>
        */
-      public Builder setBitmapWidth(int value) {
+      public Builder setCanvasWidth(int value) {
         copyOnWrite();
-        instance.setBitmapWidth(value);
+        instance.setCanvasWidth(value);
         return this;
       }
       /**
-       * <code>optional int32 bitmapWidth = 1;</code>
+       * <code>optional int32 canvasWidth = 1;</code>
        */
-      public Builder clearBitmapWidth() {
+      public Builder clearCanvasWidth() {
         copyOnWrite();
-        instance.clearBitmapWidth();
+        instance.clearCanvasWidth();
         return this;
       }
 
       /**
-       * <code>optional int32 bitmapHeight = 2;</code>
+       * <code>optional int32 canvasHeight = 2;</code>
        */
-      public int getBitmapHeight() {
-        return instance.getBitmapHeight();
+      public int getCanvasHeight() {
+        return instance.getCanvasHeight();
       }
       /**
-       * <code>optional int32 bitmapHeight = 2;</code>
+       * <code>optional int32 canvasHeight = 2;</code>
        */
-      public Builder setBitmapHeight(int value) {
+      public Builder setCanvasHeight(int value) {
         copyOnWrite();
-        instance.setBitmapHeight(value);
+        instance.setCanvasHeight(value);
         return this;
       }
       /**
-       * <code>optional int32 bitmapHeight = 2;</code>
+       * <code>optional int32 canvasHeight = 2;</code>
        */
-      public Builder clearBitmapHeight() {
+      public Builder clearCanvasHeight() {
         copyOnWrite();
-        instance.clearBitmapHeight();
+        instance.clearCanvasHeight();
         return this;
       }
 
@@ -12483,6 +11192,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.StartDraw)
     }
     protected final Object dynamicMethod(
@@ -12505,10 +11254,10 @@ public final class SignalingProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           StartDraw other = (StartDraw) arg1;
-          bitmapWidth_ = visitor.visitInt(bitmapWidth_ != 0, bitmapWidth_,
-              other.bitmapWidth_ != 0, other.bitmapWidth_);
-          bitmapHeight_ = visitor.visitInt(bitmapHeight_ != 0, bitmapHeight_,
-              other.bitmapHeight_ != 0, other.bitmapHeight_);
+          canvasWidth_ = visitor.visitInt(canvasWidth_ != 0, canvasWidth_,
+              other.canvasWidth_ != 0, other.canvasWidth_);
+          canvasHeight_ = visitor.visitInt(canvasHeight_ != 0, canvasHeight_,
+              other.canvasHeight_ != 0, other.canvasHeight_);
           capturedTime_ = visitor.visitLong(capturedTime_ != 0L, capturedTime_,
               other.capturedTime_ != 0L, other.capturedTime_);
           capturedImage_ = visitor.visitByteString(capturedImage_ != com.google.protobuf.ByteString.EMPTY, capturedImage_,
@@ -12521,6 +11270,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -12548,12 +11299,12 @@ public final class SignalingProto {
                 }
                 case 8: {
 
-                  bitmapWidth_ = input.readInt32();
+                  canvasWidth_ = input.readInt32();
                   break;
                 }
                 case 16: {
 
-                  bitmapHeight_ = input.readInt32();
+                  canvasHeight_ = input.readInt32();
                   break;
                 }
                 case 24: {
@@ -12604,6 +11355,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -12657,14 +11414,14 @@ public final class SignalingProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    int getBitmapWidth();
+    int getCanvasWidth();
 
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    int getBitmapHeight();
+    int getCanvasHeight();
 
     /**
      * <code>optional int64 capturedTime = 3;</code>
@@ -12728,6 +11485,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.StartDrawAcknowledgement}
@@ -12742,52 +11509,53 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
-    public static final int BITMAPWIDTH_FIELD_NUMBER = 1;
-    private int bitmapWidth_;
+    public static final int CANVASWIDTH_FIELD_NUMBER = 1;
+    private int canvasWidth_;
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    public int getBitmapWidth() {
-      return bitmapWidth_;
+    public int getCanvasWidth() {
+      return canvasWidth_;
     }
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    private void setBitmapWidth(int value) {
+    private void setCanvasWidth(int value) {
       
-      bitmapWidth_ = value;
+      canvasWidth_ = value;
     }
     /**
-     * <code>optional int32 bitmapWidth = 1;</code>
+     * <code>optional int32 canvasWidth = 1;</code>
      */
-    private void clearBitmapWidth() {
+    private void clearCanvasWidth() {
       
-      bitmapWidth_ = 0;
+      canvasWidth_ = 0;
     }
 
-    public static final int BITMAPHEIGHT_FIELD_NUMBER = 2;
-    private int bitmapHeight_;
+    public static final int CANVASHEIGHT_FIELD_NUMBER = 2;
+    private int canvasHeight_;
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    public int getBitmapHeight() {
-      return bitmapHeight_;
+    public int getCanvasHeight() {
+      return canvasHeight_;
     }
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    private void setBitmapHeight(int value) {
+    private void setCanvasHeight(int value) {
       
-      bitmapHeight_ = value;
+      canvasHeight_ = value;
     }
     /**
-     * <code>optional int32 bitmapHeight = 2;</code>
+     * <code>optional int32 canvasHeight = 2;</code>
      */
-    private void clearBitmapHeight() {
+    private void clearCanvasHeight() {
       
-      bitmapHeight_ = 0;
+      canvasHeight_ = 0;
     }
 
     public static final int CAPTUREDTIME_FIELD_NUMBER = 3;
@@ -13087,13 +11855,59 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 9;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (bitmapWidth_ != 0) {
-        output.writeInt32(1, bitmapWidth_);
+      if (canvasWidth_ != 0) {
+        output.writeInt32(1, canvasWidth_);
       }
-      if (bitmapHeight_ != 0) {
-        output.writeInt32(2, bitmapHeight_);
+      if (canvasHeight_ != 0) {
+        output.writeInt32(2, canvasHeight_);
       }
       if (capturedTime_ != 0L) {
         output.writeInt64(3, capturedTime_);
@@ -13113,6 +11927,9 @@ public final class SignalingProto {
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(8, recipients_.get(i));
       }
+      if (!imageId_.isEmpty()) {
+        output.writeString(9, getImageId());
+      }
     }
 
     public int getSerializedSize() {
@@ -13120,13 +11937,13 @@ public final class SignalingProto {
       if (size != -1) return size;
 
       size = 0;
-      if (bitmapWidth_ != 0) {
+      if (canvasWidth_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, bitmapWidth_);
+          .computeInt32Size(1, canvasWidth_);
       }
-      if (bitmapHeight_ != 0) {
+      if (canvasHeight_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, bitmapHeight_);
+          .computeInt32Size(2, canvasHeight_);
       }
       if (capturedTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -13156,6 +11973,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(9, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -13244,48 +12065,48 @@ public final class SignalingProto {
 
 
       /**
-       * <code>optional int32 bitmapWidth = 1;</code>
+       * <code>optional int32 canvasWidth = 1;</code>
        */
-      public int getBitmapWidth() {
-        return instance.getBitmapWidth();
+      public int getCanvasWidth() {
+        return instance.getCanvasWidth();
       }
       /**
-       * <code>optional int32 bitmapWidth = 1;</code>
+       * <code>optional int32 canvasWidth = 1;</code>
        */
-      public Builder setBitmapWidth(int value) {
+      public Builder setCanvasWidth(int value) {
         copyOnWrite();
-        instance.setBitmapWidth(value);
+        instance.setCanvasWidth(value);
         return this;
       }
       /**
-       * <code>optional int32 bitmapWidth = 1;</code>
+       * <code>optional int32 canvasWidth = 1;</code>
        */
-      public Builder clearBitmapWidth() {
+      public Builder clearCanvasWidth() {
         copyOnWrite();
-        instance.clearBitmapWidth();
+        instance.clearCanvasWidth();
         return this;
       }
 
       /**
-       * <code>optional int32 bitmapHeight = 2;</code>
+       * <code>optional int32 canvasHeight = 2;</code>
        */
-      public int getBitmapHeight() {
-        return instance.getBitmapHeight();
+      public int getCanvasHeight() {
+        return instance.getCanvasHeight();
       }
       /**
-       * <code>optional int32 bitmapHeight = 2;</code>
+       * <code>optional int32 canvasHeight = 2;</code>
        */
-      public Builder setBitmapHeight(int value) {
+      public Builder setCanvasHeight(int value) {
         copyOnWrite();
-        instance.setBitmapHeight(value);
+        instance.setCanvasHeight(value);
         return this;
       }
       /**
-       * <code>optional int32 bitmapHeight = 2;</code>
+       * <code>optional int32 canvasHeight = 2;</code>
        */
-      public Builder clearBitmapHeight() {
+      public Builder clearCanvasHeight() {
         copyOnWrite();
-        instance.clearBitmapHeight();
+        instance.clearCanvasHeight();
         return this;
       }
 
@@ -13549,6 +12370,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.StartDrawAcknowledgement)
     }
     protected final Object dynamicMethod(
@@ -13571,10 +12432,10 @@ public final class SignalingProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           StartDrawAcknowledgement other = (StartDrawAcknowledgement) arg1;
-          bitmapWidth_ = visitor.visitInt(bitmapWidth_ != 0, bitmapWidth_,
-              other.bitmapWidth_ != 0, other.bitmapWidth_);
-          bitmapHeight_ = visitor.visitInt(bitmapHeight_ != 0, bitmapHeight_,
-              other.bitmapHeight_ != 0, other.bitmapHeight_);
+          canvasWidth_ = visitor.visitInt(canvasWidth_ != 0, canvasWidth_,
+              other.canvasWidth_ != 0, other.canvasWidth_);
+          canvasHeight_ = visitor.visitInt(canvasHeight_ != 0, canvasHeight_,
+              other.canvasHeight_ != 0, other.canvasHeight_);
           capturedTime_ = visitor.visitLong(capturedTime_ != 0L, capturedTime_,
               other.capturedTime_ != 0L, other.capturedTime_);
           participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
@@ -13585,6 +12446,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -13612,12 +12475,12 @@ public final class SignalingProto {
                 }
                 case 8: {
 
-                  bitmapWidth_ = input.readInt32();
+                  canvasWidth_ = input.readInt32();
                   break;
                 }
                 case 16: {
 
-                  bitmapHeight_ = input.readInt32();
+                  canvasHeight_ = input.readInt32();
                   break;
                 }
                 case 24: {
@@ -13663,6 +12526,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -13777,6 +12646,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.CancelDrawing}
@@ -13791,6 +12670,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int CANCELLATIONTIME_FIELD_NUMBER = 1;
@@ -14090,6 +12970,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 7;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (cancellationTime_ != 0L) {
@@ -14109,6 +13035,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(6, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(7, getImageId());
       }
     }
 
@@ -14145,6 +13074,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -14492,6 +13425,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CancelDrawing)
     }
     protected final Object dynamicMethod(
@@ -14524,6 +13497,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -14592,6 +13567,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -14726,6 +13707,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ReceiveNewTextField}
@@ -14741,6 +13732,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
@@ -15132,6 +14124,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 10;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0F) {
@@ -15160,6 +14198,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(9, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(10, getImageId());
       }
     }
 
@@ -15208,6 +14249,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -15641,6 +14686,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ReceiveNewTextField)
     }
     protected final Object dynamicMethod(
@@ -15679,6 +14764,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -15763,6 +14850,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -15897,6 +14990,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TextFieldChange}
@@ -15913,6 +15016,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int TEXT_FIELD_NUMBER = 1;
@@ -16304,6 +15408,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 10;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!text_.isEmpty()) {
@@ -16329,6 +15479,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(9, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(10, getImageId());
       }
     }
 
@@ -16373,6 +15526,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -16800,6 +15957,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TextFieldChange)
     }
     protected final Object dynamicMethod(
@@ -16836,6 +16033,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -16916,6 +16115,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -17040,6 +16245,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TextFieldRemove}
@@ -17055,6 +16270,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int TEXTID_FIELD_NUMBER = 1;
@@ -17400,6 +16616,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 8;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!textId_.isEmpty()) {
@@ -17422,6 +16684,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(7, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(8, getImageId());
       }
     }
 
@@ -17462,6 +16727,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -17849,6 +17118,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TextFieldRemove)
     }
     protected final Object dynamicMethod(
@@ -17883,6 +17192,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -17957,6 +17268,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -18081,6 +17398,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawTouchDown}
@@ -18095,6 +17422,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
@@ -18440,6 +17768,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 9;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 9;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0F) {
@@ -18465,6 +17839,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(8, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(9, getImageId());
       }
     }
 
@@ -18509,6 +17886,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(9, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -18902,6 +18283,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 9;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawTouchDown)
     }
     protected final Object dynamicMethod(
@@ -18938,6 +18359,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -19016,6 +18439,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -19140,6 +18569,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawTouchMove}
@@ -19154,6 +18593,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
@@ -19499,6 +18939,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 11;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0F) {
@@ -19524,6 +19010,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(8, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(11, getImageId());
       }
     }
 
@@ -19568,6 +19057,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19961,6 +19454,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawTouchMove)
     }
     protected final Object dynamicMethod(
@@ -19997,6 +19530,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -20075,6 +19610,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -20189,6 +19730,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawTouchUp}
@@ -20203,6 +19754,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int EVENTTIME_FIELD_NUMBER = 1;
@@ -20502,6 +20054,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 7;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eventTime_ != 0L) {
@@ -20521,6 +20119,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(6, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(7, getImageId());
       }
     }
 
@@ -20557,6 +20158,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -20904,6 +20509,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawTouchUp)
     }
     protected final Object dynamicMethod(
@@ -20936,6 +20581,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -21004,6 +20651,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -21118,6 +20771,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawCanvasClear}
@@ -21132,6 +20795,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int EVENTTIME_FIELD_NUMBER = 1;
@@ -21431,6 +21095,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 7;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 7;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eventTime_ != 0L) {
@@ -21450,6 +21160,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(6, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(7, getImageId());
       }
     }
 
@@ -21486,6 +21199,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -21833,6 +21550,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 7;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawCanvasClear)
     }
     protected final Object dynamicMethod(
@@ -21865,6 +21622,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -21933,6 +21692,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -22077,6 +21842,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 13;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 13;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawMetaDataChange}
@@ -22091,6 +21866,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
@@ -22528,6 +22304,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 13;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 13;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 13;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 13;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 13;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0F) {
@@ -22565,6 +22387,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(12, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(13, getImageId());
       }
     }
 
@@ -22625,6 +22450,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(13, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -23110,6 +22939,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 13;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 13;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 13;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 13;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 13;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawMetaDataChange)
     }
     protected final Object dynamicMethod(
@@ -23154,6 +23023,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -23252,6 +23123,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 106: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -23376,6 +23253,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawMinize}
@@ -23391,6 +23278,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int EVENTTIME_FIELD_NUMBER = 1;
@@ -23736,6 +23624,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 8;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eventTime_ != 0L) {
@@ -23758,6 +23692,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(7, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(8, getImageId());
       }
     }
 
@@ -23798,6 +23735,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -24185,6 +24126,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawMinize)
     }
     protected final Object dynamicMethod(
@@ -24219,6 +24200,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -24293,6 +24276,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -24417,6 +24406,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawMaximize}
@@ -24432,6 +24431,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int EVENTTIME_FIELD_NUMBER = 1;
@@ -24777,6 +24777,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 8;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eventTime_ != 0L) {
@@ -24799,6 +24845,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(7, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(8, getImageId());
       }
     }
 
@@ -24839,6 +24888,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -25226,6 +25279,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawMaximize)
     }
     protected final Object dynamicMethod(
@@ -25260,6 +25353,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -25334,6 +25429,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -25458,6 +25559,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawClose}
@@ -25473,6 +25584,7 @@ public final class SignalingProto {
       clientId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
     }
     private int bitField0_;
     public static final int EVENTTIME_FIELD_NUMBER = 1;
@@ -25818,6 +25930,52 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 8;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 8;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eventTime_ != 0L) {
@@ -25840,6 +25998,9 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(7, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(8, getImageId());
       }
     }
 
@@ -25880,6 +26041,10 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getImageId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -26267,6 +26432,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 8;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawClose)
     }
     protected final Object dynamicMethod(
@@ -26301,6 +26506,8 @@ public final class SignalingProto {
               !other.refId_.isEmpty(), other.refId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -26375,6 +26582,12 @@ public final class SignalingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(s);
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
                   break;
                 }
               }
@@ -26519,6 +26732,31 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
+
+    /**
+     * <code>optional int32 canvasWidth = 11;</code>
+     */
+    int getCanvasWidth();
+
+    /**
+     * <code>optional int32 canvasHeight = 12;</code>
+     */
+    int getCanvasHeight();
+
+    /**
+     * <code>optional bytes capturedImage = 13;</code>
+     */
+    com.google.protobuf.ByteString getCapturedImage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawCollab}
@@ -26536,6 +26774,8 @@ public final class SignalingProto {
       fromAccountId_ = "";
       toAccountId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
+      capturedImage_ = com.google.protobuf.ByteString.EMPTY;
     }
     private int bitField0_;
     public static final int EVENTTIME_FIELD_NUMBER = 1;
@@ -26973,6 +27213,124 @@ public final class SignalingProto {
       recipients_.add(value.toStringUtf8());
     }
 
+    public static final int IMAGEID_FIELD_NUMBER = 10;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 10;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
+    public static final int CANVASWIDTH_FIELD_NUMBER = 11;
+    private int canvasWidth_;
+    /**
+     * <code>optional int32 canvasWidth = 11;</code>
+     */
+    public int getCanvasWidth() {
+      return canvasWidth_;
+    }
+    /**
+     * <code>optional int32 canvasWidth = 11;</code>
+     */
+    private void setCanvasWidth(int value) {
+      
+      canvasWidth_ = value;
+    }
+    /**
+     * <code>optional int32 canvasWidth = 11;</code>
+     */
+    private void clearCanvasWidth() {
+      
+      canvasWidth_ = 0;
+    }
+
+    public static final int CANVASHEIGHT_FIELD_NUMBER = 12;
+    private int canvasHeight_;
+    /**
+     * <code>optional int32 canvasHeight = 12;</code>
+     */
+    public int getCanvasHeight() {
+      return canvasHeight_;
+    }
+    /**
+     * <code>optional int32 canvasHeight = 12;</code>
+     */
+    private void setCanvasHeight(int value) {
+      
+      canvasHeight_ = value;
+    }
+    /**
+     * <code>optional int32 canvasHeight = 12;</code>
+     */
+    private void clearCanvasHeight() {
+      
+      canvasHeight_ = 0;
+    }
+
+    public static final int CAPTUREDIMAGE_FIELD_NUMBER = 13;
+    private com.google.protobuf.ByteString capturedImage_;
+    /**
+     * <code>optional bytes capturedImage = 13;</code>
+     */
+    public com.google.protobuf.ByteString getCapturedImage() {
+      return capturedImage_;
+    }
+    /**
+     * <code>optional bytes capturedImage = 13;</code>
+     */
+    private void setCapturedImage(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      capturedImage_ = value;
+    }
+    /**
+     * <code>optional bytes capturedImage = 13;</code>
+     */
+    private void clearCapturedImage() {
+      
+      capturedImage_ = getDefaultInstance().getCapturedImage();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eventTime_ != 0L) {
@@ -27001,6 +27359,18 @@ public final class SignalingProto {
       }
       for (int i = 0; i < recipients_.size(); i++) {
         output.writeString(9, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(10, getImageId());
+      }
+      if (canvasWidth_ != 0) {
+        output.writeInt32(11, canvasWidth_);
+      }
+      if (canvasHeight_ != 0) {
+        output.writeInt32(12, canvasHeight_);
+      }
+      if (!capturedImage_.isEmpty()) {
+        output.writeBytes(13, capturedImage_);
       }
     }
 
@@ -27049,6 +27419,22 @@ public final class SignalingProto {
         }
         size += dataSize;
         size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getImageId());
+      }
+      if (canvasWidth_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(11, canvasWidth_);
+      }
+      if (canvasHeight_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(12, canvasHeight_);
+      }
+      if (!capturedImage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(13, capturedImage_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -27516,6 +27902,115 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 10;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int32 canvasWidth = 11;</code>
+       */
+      public int getCanvasWidth() {
+        return instance.getCanvasWidth();
+      }
+      /**
+       * <code>optional int32 canvasWidth = 11;</code>
+       */
+      public Builder setCanvasWidth(int value) {
+        copyOnWrite();
+        instance.setCanvasWidth(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 canvasWidth = 11;</code>
+       */
+      public Builder clearCanvasWidth() {
+        copyOnWrite();
+        instance.clearCanvasWidth();
+        return this;
+      }
+
+      /**
+       * <code>optional int32 canvasHeight = 12;</code>
+       */
+      public int getCanvasHeight() {
+        return instance.getCanvasHeight();
+      }
+      /**
+       * <code>optional int32 canvasHeight = 12;</code>
+       */
+      public Builder setCanvasHeight(int value) {
+        copyOnWrite();
+        instance.setCanvasHeight(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 canvasHeight = 12;</code>
+       */
+      public Builder clearCanvasHeight() {
+        copyOnWrite();
+        instance.clearCanvasHeight();
+        return this;
+      }
+
+      /**
+       * <code>optional bytes capturedImage = 13;</code>
+       */
+      public com.google.protobuf.ByteString getCapturedImage() {
+        return instance.getCapturedImage();
+      }
+      /**
+       * <code>optional bytes capturedImage = 13;</code>
+       */
+      public Builder setCapturedImage(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCapturedImage(value);
+        return this;
+      }
+      /**
+       * <code>optional bytes capturedImage = 13;</code>
+       */
+      public Builder clearCapturedImage() {
+        copyOnWrite();
+        instance.clearCapturedImage();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawCollab)
     }
     protected final Object dynamicMethod(
@@ -27554,6 +28049,14 @@ public final class SignalingProto {
               !other.toAccountId_.isEmpty(), other.toAccountId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
+          canvasWidth_ = visitor.visitInt(canvasWidth_ != 0, canvasWidth_,
+              other.canvasWidth_ != 0, other.canvasWidth_);
+          canvasHeight_ = visitor.visitInt(canvasHeight_ != 0, canvasHeight_,
+              other.canvasHeight_ != 0, other.canvasHeight_);
+          capturedImage_ = visitor.visitByteString(capturedImage_ != com.google.protobuf.ByteString.EMPTY, capturedImage_,
+              other.capturedImage_ != com.google.protobuf.ByteString.EMPTY, other.capturedImage_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -27642,6 +28145,27 @@ public final class SignalingProto {
                   recipients_.add(s);
                   break;
                 }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
+                  break;
+                }
+                case 88: {
+
+                  canvasWidth_ = input.readInt32();
+                  break;
+                }
+                case 96: {
+
+                  canvasHeight_ = input.readInt32();
+                  break;
+                }
+                case 106: {
+
+                  capturedImage_ = input.readBytes();
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -27684,6 +28208,1401 @@ public final class SignalingProto {
     private static volatile com.google.protobuf.Parser<DrawCollab> PARSER;
 
     public static com.google.protobuf.Parser<DrawCollab> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface DrawCollabAcknowledgementOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.DrawCollabAcknowledgement)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional int32 canvasWidth = 1;</code>
+     */
+    int getCanvasWidth();
+
+    /**
+     * <code>optional int32 canvasHeight = 2;</code>
+     */
+    int getCanvasHeight();
+
+    /**
+     * <code>optional int64 capturedTime = 3;</code>
+     */
+    long getCapturedTime();
+
+    /**
+     * <code>optional string participantId = 4;</code>
+     */
+    String getParticipantId();
+    /**
+     * <code>optional string participantId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getParticipantIdBytes();
+
+    /**
+     * <code>optional string clientId = 5;</code>
+     */
+    String getClientId();
+    /**
+     * <code>optional string clientId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <code>optional string refId = 6;</code>
+     */
+    String getRefId();
+    /**
+     * <code>optional string refId = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <code>optional string fromAccountId = 7;</code>
+     */
+    String getFromAccountId();
+    /**
+     * <code>optional string fromAccountId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getFromAccountIdBytes();
+
+    /**
+     * <code>optional string toAccountId = 8;</code>
+     */
+    String getToAccountId();
+    /**
+     * <code>optional string toAccountId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getToAccountIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    boolean hasSenderAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    UserProto.Account getSenderAccount();
+
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    java.util.List<String>
+        getRecipientsList();
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    int getRecipientsCount();
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    String getRecipients(int index);
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientsBytes(int index);
+
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    String getImageId();
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.DrawCollabAcknowledgement}
+   */
+  public  static final class DrawCollabAcknowledgement extends
+      com.google.protobuf.GeneratedMessageLite<
+          DrawCollabAcknowledgement, DrawCollabAcknowledgement.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.DrawCollabAcknowledgement)
+      DrawCollabAcknowledgementOrBuilder {
+    private DrawCollabAcknowledgement() {
+      participantId_ = "";
+      clientId_ = "";
+      refId_ = "";
+      fromAccountId_ = "";
+      toAccountId_ = "";
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      imageId_ = "";
+    }
+    private int bitField0_;
+    public static final int CANVASWIDTH_FIELD_NUMBER = 1;
+    private int canvasWidth_;
+    /**
+     * <code>optional int32 canvasWidth = 1;</code>
+     */
+    public int getCanvasWidth() {
+      return canvasWidth_;
+    }
+    /**
+     * <code>optional int32 canvasWidth = 1;</code>
+     */
+    private void setCanvasWidth(int value) {
+      
+      canvasWidth_ = value;
+    }
+    /**
+     * <code>optional int32 canvasWidth = 1;</code>
+     */
+    private void clearCanvasWidth() {
+      
+      canvasWidth_ = 0;
+    }
+
+    public static final int CANVASHEIGHT_FIELD_NUMBER = 2;
+    private int canvasHeight_;
+    /**
+     * <code>optional int32 canvasHeight = 2;</code>
+     */
+    public int getCanvasHeight() {
+      return canvasHeight_;
+    }
+    /**
+     * <code>optional int32 canvasHeight = 2;</code>
+     */
+    private void setCanvasHeight(int value) {
+      
+      canvasHeight_ = value;
+    }
+    /**
+     * <code>optional int32 canvasHeight = 2;</code>
+     */
+    private void clearCanvasHeight() {
+      
+      canvasHeight_ = 0;
+    }
+
+    public static final int CAPTUREDTIME_FIELD_NUMBER = 3;
+    private long capturedTime_;
+    /**
+     * <code>optional int64 capturedTime = 3;</code>
+     */
+    public long getCapturedTime() {
+      return capturedTime_;
+    }
+    /**
+     * <code>optional int64 capturedTime = 3;</code>
+     */
+    private void setCapturedTime(long value) {
+      
+      capturedTime_ = value;
+    }
+    /**
+     * <code>optional int64 capturedTime = 3;</code>
+     */
+    private void clearCapturedTime() {
+      
+      capturedTime_ = 0L;
+    }
+
+    public static final int PARTICIPANTID_FIELD_NUMBER = 4;
+    private String participantId_;
+    /**
+     * <code>optional string participantId = 4;</code>
+     */
+    public String getParticipantId() {
+      return participantId_;
+    }
+    /**
+     * <code>optional string participantId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParticipantIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
+    }
+    /**
+     * <code>optional string participantId = 4;</code>
+     */
+    private void setParticipantId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      participantId_ = value;
+    }
+    /**
+     * <code>optional string participantId = 4;</code>
+     */
+    private void clearParticipantId() {
+      
+      participantId_ = getDefaultInstance().getParticipantId();
+    }
+    /**
+     * <code>optional string participantId = 4;</code>
+     */
+    private void setParticipantIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      participantId_ = value.toStringUtf8();
+    }
+
+    public static final int CLIENTID_FIELD_NUMBER = 5;
+    private String clientId_;
+    /**
+     * <code>optional string clientId = 5;</code>
+     */
+    public String getClientId() {
+      return clientId_;
+    }
+    /**
+     * <code>optional string clientId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
+    }
+    /**
+     * <code>optional string clientId = 5;</code>
+     */
+    private void setClientId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clientId_ = value;
+    }
+    /**
+     * <code>optional string clientId = 5;</code>
+     */
+    private void clearClientId() {
+      
+      clientId_ = getDefaultInstance().getClientId();
+    }
+    /**
+     * <code>optional string clientId = 5;</code>
+     */
+    private void setClientIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clientId_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 6;
+    private String refId_;
+    /**
+     * <code>optional string refId = 6;</code>
+     */
+    public String getRefId() {
+      return refId_;
+    }
+    /**
+     * <code>optional string refId = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+    }
+    /**
+     * <code>optional string refId = 6;</code>
+     */
+    private void setRefId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refId_ = value;
+    }
+    /**
+     * <code>optional string refId = 6;</code>
+     */
+    private void clearRefId() {
+      
+      refId_ = getDefaultInstance().getRefId();
+    }
+    /**
+     * <code>optional string refId = 6;</code>
+     */
+    private void setRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refId_ = value.toStringUtf8();
+    }
+
+    public static final int FROMACCOUNTID_FIELD_NUMBER = 7;
+    private String fromAccountId_;
+    /**
+     * <code>optional string fromAccountId = 7;</code>
+     */
+    public String getFromAccountId() {
+      return fromAccountId_;
+    }
+    /**
+     * <code>optional string fromAccountId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFromAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fromAccountId_);
+    }
+    /**
+     * <code>optional string fromAccountId = 7;</code>
+     */
+    private void setFromAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fromAccountId_ = value;
+    }
+    /**
+     * <code>optional string fromAccountId = 7;</code>
+     */
+    private void clearFromAccountId() {
+      
+      fromAccountId_ = getDefaultInstance().getFromAccountId();
+    }
+    /**
+     * <code>optional string fromAccountId = 7;</code>
+     */
+    private void setFromAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fromAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int TOACCOUNTID_FIELD_NUMBER = 8;
+    private String toAccountId_;
+    /**
+     * <code>optional string toAccountId = 8;</code>
+     */
+    public String getToAccountId() {
+      return toAccountId_;
+    }
+    /**
+     * <code>optional string toAccountId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getToAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(toAccountId_);
+    }
+    /**
+     * <code>optional string toAccountId = 8;</code>
+     */
+    private void setToAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      toAccountId_ = value;
+    }
+    /**
+     * <code>optional string toAccountId = 8;</code>
+     */
+    private void clearToAccountId() {
+      
+      toAccountId_ = getDefaultInstance().getToAccountId();
+    }
+    /**
+     * <code>optional string toAccountId = 8;</code>
+     */
+    private void setToAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      toAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int SENDERACCOUNT_FIELD_NUMBER = 9;
+    private UserProto.Account senderAccount_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    public boolean hasSenderAccount() {
+      return senderAccount_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    public UserProto.Account getSenderAccount() {
+      return senderAccount_ == null ? UserProto.Account.getDefaultInstance() : senderAccount_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    private void setSenderAccount(UserProto.Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      senderAccount_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    private void setSenderAccount(
+        UserProto.Account.Builder builderForValue) {
+      senderAccount_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    private void mergeSenderAccount(UserProto.Account value) {
+      if (senderAccount_ != null &&
+          senderAccount_ != UserProto.Account.getDefaultInstance()) {
+        senderAccount_ =
+          UserProto.Account.newBuilder(senderAccount_).mergeFrom(value).buildPartial();
+      } else {
+        senderAccount_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+     */
+    private void clearSenderAccount() {  senderAccount_ = null;
+      
+    }
+
+    public static final int RECIPIENTS_FIELD_NUMBER = 10;
+    private com.google.protobuf.Internal.ProtobufList<String> recipients_;
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    public java.util.List<String> getRecipientsList() {
+      return recipients_;
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    public int getRecipientsCount() {
+      return recipients_.size();
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    public String getRecipients(int index) {
+      return recipients_.get(index);
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          recipients_.get(index));
+    }
+    private void ensureRecipientsIsMutable() {
+      if (!recipients_.isModifiable()) {
+        recipients_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+       }
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    private void setRecipients(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.set(index, value);
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    private void addRecipients(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecipientsIsMutable();
+      recipients_.add(value);
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    private void addAllRecipients(
+        Iterable<String> values) {
+      ensureRecipientsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, recipients_);
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    private void clearRecipients() {
+      recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string recipients = 10;</code>
+     */
+    private void addRecipientsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureRecipientsIsMutable();
+      recipients_.add(value.toStringUtf8());
+    }
+
+    public static final int IMAGEID_FIELD_NUMBER = 11;
+    private String imageId_;
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    public String getImageId() {
+      return imageId_;
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(imageId_);
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    private void setImageId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      imageId_ = value;
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    private void clearImageId() {
+      
+      imageId_ = getDefaultInstance().getImageId();
+    }
+    /**
+     * <code>optional string imageId = 11;</code>
+     */
+    private void setImageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      imageId_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (canvasWidth_ != 0) {
+        output.writeInt32(1, canvasWidth_);
+      }
+      if (canvasHeight_ != 0) {
+        output.writeInt32(2, canvasHeight_);
+      }
+      if (capturedTime_ != 0L) {
+        output.writeInt64(3, capturedTime_);
+      }
+      if (!participantId_.isEmpty()) {
+        output.writeString(4, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        output.writeString(5, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        output.writeString(6, getRefId());
+      }
+      if (!fromAccountId_.isEmpty()) {
+        output.writeString(7, getFromAccountId());
+      }
+      if (!toAccountId_.isEmpty()) {
+        output.writeString(8, getToAccountId());
+      }
+      if (senderAccount_ != null) {
+        output.writeMessage(9, getSenderAccount());
+      }
+      for (int i = 0; i < recipients_.size(); i++) {
+        output.writeString(10, recipients_.get(i));
+      }
+      if (!imageId_.isEmpty()) {
+        output.writeString(11, getImageId());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (canvasWidth_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, canvasWidth_);
+      }
+      if (canvasHeight_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, canvasHeight_);
+      }
+      if (capturedTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, capturedTime_);
+      }
+      if (!participantId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getParticipantId());
+      }
+      if (!clientId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getClientId());
+      }
+      if (!refId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getRefId());
+      }
+      if (!fromAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getFromAccountId());
+      }
+      if (!toAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getToAccountId());
+      }
+      if (senderAccount_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getSenderAccount());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < recipients_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(recipients_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getRecipientsList().size();
+      }
+      if (!imageId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getImageId());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static DrawCollabAcknowledgement parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawCollabAcknowledgement parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawCollabAcknowledgement parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static DrawCollabAcknowledgement parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static DrawCollabAcknowledgement parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawCollabAcknowledgement parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawCollabAcknowledgement parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static DrawCollabAcknowledgement parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static DrawCollabAcknowledgement parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static DrawCollabAcknowledgement parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(DrawCollabAcknowledgement prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.DrawCollabAcknowledgement}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          DrawCollabAcknowledgement, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DrawCollabAcknowledgement)
+        DrawCollabAcknowledgementOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.DrawCollabAcknowledgement.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional int32 canvasWidth = 1;</code>
+       */
+      public int getCanvasWidth() {
+        return instance.getCanvasWidth();
+      }
+      /**
+       * <code>optional int32 canvasWidth = 1;</code>
+       */
+      public Builder setCanvasWidth(int value) {
+        copyOnWrite();
+        instance.setCanvasWidth(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 canvasWidth = 1;</code>
+       */
+      public Builder clearCanvasWidth() {
+        copyOnWrite();
+        instance.clearCanvasWidth();
+        return this;
+      }
+
+      /**
+       * <code>optional int32 canvasHeight = 2;</code>
+       */
+      public int getCanvasHeight() {
+        return instance.getCanvasHeight();
+      }
+      /**
+       * <code>optional int32 canvasHeight = 2;</code>
+       */
+      public Builder setCanvasHeight(int value) {
+        copyOnWrite();
+        instance.setCanvasHeight(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 canvasHeight = 2;</code>
+       */
+      public Builder clearCanvasHeight() {
+        copyOnWrite();
+        instance.clearCanvasHeight();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 capturedTime = 3;</code>
+       */
+      public long getCapturedTime() {
+        return instance.getCapturedTime();
+      }
+      /**
+       * <code>optional int64 capturedTime = 3;</code>
+       */
+      public Builder setCapturedTime(long value) {
+        copyOnWrite();
+        instance.setCapturedTime(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 capturedTime = 3;</code>
+       */
+      public Builder clearCapturedTime() {
+        copyOnWrite();
+        instance.clearCapturedTime();
+        return this;
+      }
+
+      /**
+       * <code>optional string participantId = 4;</code>
+       */
+      public String getParticipantId() {
+        return instance.getParticipantId();
+      }
+      /**
+       * <code>optional string participantId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParticipantIdBytes() {
+        return instance.getParticipantIdBytes();
+      }
+      /**
+       * <code>optional string participantId = 4;</code>
+       */
+      public Builder setParticipantId(
+          String value) {
+        copyOnWrite();
+        instance.setParticipantId(value);
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 4;</code>
+       */
+      public Builder clearParticipantId() {
+        copyOnWrite();
+        instance.clearParticipantId();
+        return this;
+      }
+      /**
+       * <code>optional string participantId = 4;</code>
+       */
+      public Builder setParticipantIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setParticipantIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string clientId = 5;</code>
+       */
+      public String getClientId() {
+        return instance.getClientId();
+      }
+      /**
+       * <code>optional string clientId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        return instance.getClientIdBytes();
+      }
+      /**
+       * <code>optional string clientId = 5;</code>
+       */
+      public Builder setClientId(
+          String value) {
+        copyOnWrite();
+        instance.setClientId(value);
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 5;</code>
+       */
+      public Builder clearClientId() {
+        copyOnWrite();
+        instance.clearClientId();
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 5;</code>
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClientIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string refId = 6;</code>
+       */
+      public String getRefId() {
+        return instance.getRefId();
+      }
+      /**
+       * <code>optional string refId = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <code>optional string refId = 6;</code>
+       */
+      public Builder setRefId(
+          String value) {
+        copyOnWrite();
+        instance.setRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string refId = 6;</code>
+       */
+      public Builder clearRefId() {
+        copyOnWrite();
+        instance.clearRefId();
+        return this;
+      }
+      /**
+       * <code>optional string refId = 6;</code>
+       */
+      public Builder setRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string fromAccountId = 7;</code>
+       */
+      public String getFromAccountId() {
+        return instance.getFromAccountId();
+      }
+      /**
+       * <code>optional string fromAccountId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFromAccountIdBytes() {
+        return instance.getFromAccountIdBytes();
+      }
+      /**
+       * <code>optional string fromAccountId = 7;</code>
+       */
+      public Builder setFromAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setFromAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string fromAccountId = 7;</code>
+       */
+      public Builder clearFromAccountId() {
+        copyOnWrite();
+        instance.clearFromAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string fromAccountId = 7;</code>
+       */
+      public Builder setFromAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFromAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string toAccountId = 8;</code>
+       */
+      public String getToAccountId() {
+        return instance.getToAccountId();
+      }
+      /**
+       * <code>optional string toAccountId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getToAccountIdBytes() {
+        return instance.getToAccountIdBytes();
+      }
+      /**
+       * <code>optional string toAccountId = 8;</code>
+       */
+      public Builder setToAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setToAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string toAccountId = 8;</code>
+       */
+      public Builder clearToAccountId() {
+        copyOnWrite();
+        instance.clearToAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string toAccountId = 8;</code>
+       */
+      public Builder setToAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setToAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+       */
+      public boolean hasSenderAccount() {
+        return instance.hasSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+       */
+      public UserProto.Account getSenderAccount() {
+        return instance.getSenderAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+       */
+      public Builder setSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.setSenderAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+       */
+      public Builder setSenderAccount(
+          UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSenderAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+       */
+      public Builder mergeSenderAccount(UserProto.Account value) {
+        copyOnWrite();
+        instance.mergeSenderAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account senderAccount = 9;</code>
+       */
+      public Builder clearSenderAccount() {  copyOnWrite();
+        instance.clearSenderAccount();
+        return this;
+      }
+
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public java.util.List<String>
+          getRecipientsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRecipientsList());
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public int getRecipientsCount() {
+        return instance.getRecipientsCount();
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public String getRecipients(int index) {
+        return instance.getRecipients(index);
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientsBytes(int index) {
+        return instance.getRecipientsBytes(index);
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public Builder setRecipients(
+          int index, String value) {
+        copyOnWrite();
+        instance.setRecipients(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public Builder addRecipients(
+          String value) {
+        copyOnWrite();
+        instance.addRecipients(value);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public Builder addAllRecipients(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllRecipients(values);
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public Builder clearRecipients() {
+        copyOnWrite();
+        instance.clearRecipients();
+        return this;
+      }
+      /**
+       * <code>repeated string recipients = 10;</code>
+       */
+      public Builder addRecipientsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addRecipientsBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public String getImageId() {
+        return instance.getImageId();
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        return instance.getImageIdBytes();
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public Builder setImageId(
+          String value) {
+        copyOnWrite();
+        instance.setImageId(value);
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public Builder clearImageId() {
+        copyOnWrite();
+        instance.clearImageId();
+        return this;
+      }
+      /**
+       * <code>optional string imageId = 11;</code>
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageIdBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawCollabAcknowledgement)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new DrawCollabAcknowledgement();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          recipients_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          DrawCollabAcknowledgement other = (DrawCollabAcknowledgement) arg1;
+          canvasWidth_ = visitor.visitInt(canvasWidth_ != 0, canvasWidth_,
+              other.canvasWidth_ != 0, other.canvasWidth_);
+          canvasHeight_ = visitor.visitInt(canvasHeight_ != 0, canvasHeight_,
+              other.canvasHeight_ != 0, other.canvasHeight_);
+          capturedTime_ = visitor.visitLong(capturedTime_ != 0L, capturedTime_,
+              other.capturedTime_ != 0L, other.capturedTime_);
+          participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
+              !other.participantId_.isEmpty(), other.participantId_);
+          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
+              !other.clientId_.isEmpty(), other.clientId_);
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
+          fromAccountId_ = visitor.visitString(!fromAccountId_.isEmpty(), fromAccountId_,
+              !other.fromAccountId_.isEmpty(), other.fromAccountId_);
+          toAccountId_ = visitor.visitString(!toAccountId_.isEmpty(), toAccountId_,
+              !other.toAccountId_.isEmpty(), other.toAccountId_);
+          senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
+          recipients_= visitor.visitList(recipients_, other.recipients_);
+          imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
+              !other.imageId_.isEmpty(), other.imageId_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  canvasWidth_ = input.readInt32();
+                  break;
+                }
+                case 16: {
+
+                  canvasHeight_ = input.readInt32();
+                  break;
+                }
+                case 24: {
+
+                  capturedTime_ = input.readInt64();
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  participantId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  clientId_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  fromAccountId_ = s;
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  toAccountId_ = s;
+                  break;
+                }
+                case 74: {
+                  UserProto.Account.Builder subBuilder = null;
+                  if (senderAccount_ != null) {
+                    subBuilder = senderAccount_.toBuilder();
+                  }
+                  senderAccount_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(senderAccount_);
+                    senderAccount_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+                  if (!recipients_.isModifiable()) {
+                    recipients_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
+                  }
+                  recipients_.add(s);
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+
+                  imageId_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (DrawCollabAcknowledgement.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DrawCollabAcknowledgement)
+    private static final DrawCollabAcknowledgement DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new DrawCollabAcknowledgement();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static DrawCollabAcknowledgement getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<DrawCollabAcknowledgement> PARSER;
+
+    public static com.google.protobuf.Parser<DrawCollabAcknowledgement> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

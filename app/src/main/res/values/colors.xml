@@ -10,6 +10,7 @@
     <color name="colorPrimaryDark">#0040c1</color>
     <!--    <color name="colorAccent">#3A5090</color>-->
     <color name="colorAccent">#376AF5</color>
+    <color name="colorSecondary">#FF4A4A</color>
 
 
     <color name="bluePurple">#05376C</color>
@@ -72,6 +73,9 @@
     <color name="ticket_closed_text">#DE4132</color>
     <color name="ticket_pending_text">#FFBB24</color>
     <color name="ticket_started_text">#2F80ED</color>
+
+
+    <color name="text_editor_bg">#DDDDDD</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
         #0076FF

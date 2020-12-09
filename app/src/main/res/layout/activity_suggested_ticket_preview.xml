@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -35,13 +36,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dimens_2x">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/civ_customer"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="@dimen/dimen_10x1"
+                    <FrameLayout
+                        android:id="@+id/fl_user_icon"
+                        android:layout_width="wrap_content"
                         android:layout_toEndOf="@+id/iv_back"
-                        android:src="@drawable/ic_empty_profile_holder_icon" />
+                        android:layout_height="wrap_content">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/civ_customer"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="@dimen/dimen_10x1"
+                            android:layout_toEndOf="@+id/iv_back"
+                            android:src="@drawable/ic_empty_profile_holder_icon" />
+
+                        <ImageView
+                            android:id="@+id/iv_source"
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="bottom|right"
+                            android:elevation="4dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="@dimen/dimen_5x1"
+                            android:src="@drawable/ic_edit_camera_icon" />
+
+                    </FrameLayout>
 
 
                     <TextView
@@ -50,8 +69,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:layout_toEndOf="@+id/civ_customer"
+                        android:layout_toEndOf="@+id/fl_user_icon"
                         android:gravity="start"
+                        android:textStyle="bold"
                         android:text="Suggested Tickets"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -62,8 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x2"
-                        android:src="@drawable/ic_back"
-                        android:tint="@color/black" />
+                        android:src="@drawable/ic_back" />
 
 
                 </RelativeLayout>

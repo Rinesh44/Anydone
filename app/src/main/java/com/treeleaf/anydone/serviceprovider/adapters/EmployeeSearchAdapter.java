@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
     private List<AssignEmployee> assignEmployeeListFiltered;
     private Context mContext;
     private OnItemClickListener listener;
+    private String selectedEmployeeId = "";
 
     public EmployeeSearchAdapter(List<AssignEmployee> assignEmployeeList, Context mContext) {
         this.assignEmployeeList = assignEmployeeList;
@@ -44,6 +45,25 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
         this.assignEmployeeList = assignEmployeeList;
     }
 
+    public void setChecked(String employeeId) {
+        if (assignEmployeeListFiltered != null && !assignEmployeeListFiltered.isEmpty()) {
+            for (AssignEmployee employee : assignEmployeeListFiltered
+            ) {
+                if (employeeId.equalsIgnoreCase(employee.getEmployeeId())) {
+                    selectedEmployeeId = employeeId;
+                    break;
+                }
+            }
+            notifyDataSetChanged();
+        }
+    }
+
+    public void removeCheckMark() {
+        selectedEmployeeId = "";
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public EmployeeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -54,7 +74,7 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
 
     @Override
     public void onBindViewHolder(@NonNull EmployeeHolder holder, int position) {
-        AssignEmployee assignEmployee = assignEmployeeList.get(position);
+        AssignEmployee assignEmployee = assignEmployeeListFiltered.get(position);
 
         holder.tvEmployee.setText(assignEmployee.getName());
 
@@ -69,6 +89,13 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
             Glide.with(mContext).load(employeePic).apply(options).into(holder.ivEmployee);
         }
 
+        if (assignEmployee.getEmployeeId().equalsIgnoreCase(selectedEmployeeId)) {
+            holder.ivTick.setVisibility(View.VISIBLE);
+            holder.llEmployeeHolder.setClickable(false);
+        } else {
+            holder.ivTick.setVisibility(View.GONE);
+            holder.llEmployeeHolder.setClickable(true);
+        }
     }
 
     @Override
@@ -95,8 +122,7 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
                 } else {
                     String filterPattern = constraint.toString().toLowerCase().trim();
                     for (AssignEmployee item : assignEmployeeList) {
-                        if (item.getName().toLowerCase().contains(filterPattern) ||
-                                item.getPhone().contains(filterPattern)) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
                             suggestions.add(item);
                         }
                     }
@@ -124,21 +150,22 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
         private TextView tvEmployee;
         private CircleImageView ivEmployee;
         private RelativeLayout llEmployeeHolder;
+        private ImageView ivTick;
 
         EmployeeHolder(@NonNull View itemView) {
             super(itemView);
             tvEmployee = itemView.findViewById(R.id.tv_employee);
             ivEmployee = itemView.findViewById(R.id.civ_employee);
             llEmployeeHolder = itemView.findViewById(R.id.ll_employee_holder);
+            ivTick = itemView.findViewById(R.id.iv_tick);
 
             llEmployeeHolder.setOnClickListener(view -> {
                 int position = getAdapterPosition();
 
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(assignEmployeeList.get(position));
+                    listener.onItemClick(assignEmployeeListFiltered.get(position));
                 }
-
             });
         }
     }

@@ -136,6 +136,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
                     Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                     i.putExtra("selected_ticket_id", ticket.getTicketId());
                     i.putExtra("selected_ticket_type", Constants.CLOSED_RESOLVED);
+                    i.putExtra("selected_ticket_index", ticket.getTicketIndex());
                     i.putExtra("ticket_desc", ticket.getTitle());
                     startActivity(i);
                 } else {
@@ -284,9 +285,22 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void onReopenSuccess(long ticketId) {
         adapter.deleteItem(reopenTicketPos, ticketId);
+        TicketRepo.getInstance().changeTicketStatusToReopened(ticketId);
+        closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+        GlobalUtils.showLog(TAG, "closed ticket seize: " + closedTickets.size());
+        if (closedTickets.isEmpty()) {
+            ivDataNotFound.setVisibility(View.VISIBLE);
+            rvClosedTickets.setVisibility(View.GONE);
+        } else {
+            rvClosedTickets.setVisibility(View.VISIBLE);
+            ivDataNotFound.setVisibility(View.GONE);
+        }
+        Hawk.put(Constants.REFETCH_TICKET, true);
+        Hawk.put(Constants.TICKET_PENDING, true);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
+        Hawk.put(Constants.REFETCH_TICKET_STAT, true);
       /*  if (listener != null)
             listener.ticketReopened();*/
-        Hawk.put(Constants.FETCH_PENDING_LIST, true);
     }
 
     @Override

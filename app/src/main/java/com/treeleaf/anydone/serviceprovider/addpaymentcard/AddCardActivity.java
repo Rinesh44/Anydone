@@ -271,6 +271,7 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
         etCvv.requestFocus();
         ilCvv.setErrorEnabled(true);
         ilCvv.setError("Invalid CVV");
+        ilCvv.setErrorIconDrawable(null);
 
         onInvalidCVV();
     }

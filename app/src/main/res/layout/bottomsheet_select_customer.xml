@@ -8,7 +8,7 @@
 
     <View
         android:layout_width="120dp"
-        android:layout_height="6dp"
+        android:layout_height="5dp"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimens_2x"
         android:background="@drawable/bottomsheet_drawer" />
@@ -41,7 +41,7 @@
         android:layout_marginTop="@dimen/dimens_2x"
         android:layout_marginBottom="@dimen/dimen_6x1"
         android:text="Suggestions"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/tv_customer_self"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dimen_10x1"
@@ -71,6 +71,15 @@
             android:text="My name (Me)"
             android:textColor="@color/black"
             android:textSize="@dimen/material_text_body2" />
+
+        <ImageView
+            android:id="@+id/iv_tick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/tv_customer_self"
+            android:src="@drawable/ic_tick"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -81,7 +90,7 @@
         android:paddingTop="@dimen/dimen_10x1"
         android:paddingBottom="@dimen/dimen_6x1"
         android:text="Customers"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
     <RelativeLayout

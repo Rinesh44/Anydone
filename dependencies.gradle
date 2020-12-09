@@ -45,6 +45,7 @@ ext {
     keyboardObserverVersion = '1.0.1'
     textFormatterVersion = '2.0.0'
     dexterVersion = '6.2.2'
+    wysiwygEditorVersion = '0.2.0'
 
     projectDependencies = [appcompat                : "androidx.appcompat:appcompat:$appCompatVersion",
                            googleMaterial           : "com.google.android.material:material:$googleMaterialVersion",
@@ -95,5 +96,6 @@ ext {
                            scalarConverter          : "com.squareup.retrofit2:converter-scalars:$scalarConverterVersion",
                            keyboardObserver         : "gun0912.ted:tedkeyboardobserver:$keyboardObserverVersion",
                            textFormatter            : "jp.wasabeef:richeditor-android:$textFormatterVersion",
-                           dexter                   : "com.karumi:dexter:$dexterVersion"]
+                           dexter                   : "com.karumi:dexter:$dexterVersion",
+                           wysiwygEditor            : "com.github.chinalwb:are:$wysiwygEditorVersion"]
 }

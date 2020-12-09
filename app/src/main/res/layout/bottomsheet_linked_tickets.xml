@@ -237,7 +237,7 @@
                             android:id="@+id/civ_ticket_created_by"
                             android:layout_width="22dp"
                             android:layout_height="22dp"
-                            android:src="@drawable/ic_user_placeholder" />
+                            android:src="@drawable/ic_empty_profile_holder_icon" />
 
                         <TextView
                             android:id="@+id/tv_ticket_created_by"
@@ -268,7 +268,7 @@
                             android:id="@+id/civ_assigned_employee"
                             android:layout_width="22dp"
                             android:layout_height="22dp"
-                            android:src="@drawable/ic_user_placeholder" />
+                            android:src="@drawable/ic_empty_profile_holder_icon" />
 
                         <TextView
                             android:id="@+id/tv_assigned_employee"
@@ -301,14 +301,14 @@
                             android:id="@+id/civ_ticket_created_date"
                             android:layout_width="22dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/ic_calendar_blue" />
+                            android:src="@drawable/ic_calendar" />
 
                         <TextView
                             android:id="@+id/tv_ticket_created_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="@dimen/dimen_10x1"
+                            android:layout_marginStart="@dimen/dimen_2x2"
                             android:text="Nov 12, 2020"
                             android:textColor="@color/black" />
 
@@ -317,7 +317,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="@dimen/dimen_10x1"
+                            android:layout_marginStart="@dimen/dimen_6x1"
                             android:text="4:00 PM"
                             android:textColor="@color/black" />
 
@@ -412,13 +412,13 @@
                         android:textSize="@dimen/material_text_subhead"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/iv_dropdown_customer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_dropup" />
+                    <!--           <ImageView
+                                   android:id="@+id/iv_dropdown_customer"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:layout_alignParentEnd="true"
+                                   android:layout_centerInParent="true"
+                                   android:src="@drawable/ic_dropup" />-->
 
                 </RelativeLayout>
 
@@ -450,7 +450,7 @@
                                 android:id="@+id/civ_customer"
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
-                                android:src="@drawable/ic_user_placeholder" />
+                                android:src="@drawable/ic_empty_profile_holder_icon" />
 
                             <TextView
                                 android:id="@+id/tv_customer_name"
@@ -476,7 +476,7 @@
                                 android:id="@+id/iv_customer_phone"
                                 android:layout_width="22dp"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_customer_phone" />
+                                android:src="@drawable/ic_phone_share" />
 
                             <TextView
                                 android:id="@+id/tv_customer_phone"
@@ -504,7 +504,7 @@
                                 android:layout_width="22dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_customer_mail" />
+                                android:src="@drawable/ic_user" />
 
                             <TextView
                                 android:id="@+id/tv_customer_email"
@@ -551,13 +551,13 @@
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold" />
 
-                        <ImageView
-                            android:id="@+id/iv_dropdown_contributor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_dropup" />
+                        <!--    <ImageView
+                                android:id="@+id/iv_dropdown_contributor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_dropup" />-->
 
                     </RelativeLayout>
 

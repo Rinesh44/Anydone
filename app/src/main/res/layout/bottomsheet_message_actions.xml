@@ -29,8 +29,9 @@
         <ImageView
             android:id="@+id/iv_copy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_copy" />
+            android:layout_height="25dp"
+            android:src="@drawable/ic_copy"
+            app:tint="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
             android:layout_below="@+id/iv_copy"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dimen_10x1"
-            android:text="@string/copy" />
+            android:text="@string/copy"
+            android:textColor="@color/charcoal_text" />
 
     </RelativeLayout>
 
@@ -55,8 +57,9 @@
         <ImageView
             android:id="@+id/iv_delete"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_bin" />
+            android:layout_height="25dp"
+            android:src="@drawable/ic_bin"
+            app:tint="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,6 +67,7 @@
             android:layout_below="@+id/iv_delete"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dimen_10x1"
-            android:text="@string/remove" />
+            android:text="@string/remove"
+            android:textColor="@color/charcoal_text" />
     </RelativeLayout>
 </LinearLayout>

@@ -56,7 +56,8 @@
             android:theme="@style/FormTheme" />
         <activity
             android:name=".paymentmethod.PaymentMethodActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".billing.BillingActivity"
             android:screenOrientation="portrait" />
@@ -113,7 +114,8 @@
             android:theme="@style/FormTheme" />
         <activity
             android:name=".setting.location.showLocation.ShowLocationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".setting.currency.SelectCurrencyActivity"
             android:screenOrientation="portrait" />

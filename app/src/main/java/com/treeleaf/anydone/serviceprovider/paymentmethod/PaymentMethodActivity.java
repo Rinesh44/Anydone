@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,8 +40,6 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
     public static final int ACTIVITY_CODE = 7896;
     @BindView(R.id.rv_payment_methods)
     RecyclerView rvPaymentMethod;
-    @BindView(R.id.tv_add_credit_debit_card)
-    TextView tvAddCard;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     @BindView(R.id.ll_card_available_view)
@@ -51,6 +48,10 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
     ImageView ivNoCardView;
     @BindView(R.id.btn_add_card)
     MaterialButton btnAddCard;
+    @BindView(R.id.btn_card)
+    MaterialButton btnCard;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
 
     private List<Card> cardList;
     private CardAdapter adapter;
@@ -59,13 +60,15 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setToolbar();
+//        setToolbar();
         cardList = CardRepo.getInstance().getAllCards();
         if (CollectionUtils.isEmpty(cardList)) {
             presenter.getPaymentCards();
         } else {
             setUpCardRecyclerView();
         }
+
+        ivBack.setOnClickListener(v -> onBackPressed());
     }
 
     private void setUpCardRecyclerView() {
@@ -73,16 +76,18 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
         rvPaymentMethod.setLayoutManager(mLayoutManager);
 
         cardList = CardRepo.getInstance().getAllCards();
+        adapter = new CardAdapter(cardList, getContext());
         if (!CollectionUtils.isEmpty(cardList)) {
             llCardAvailableView.setVisibility(View.VISIBLE);
             ivNoCardView.setVisibility(View.GONE);
             btnAddCard.setVisibility(View.GONE);
-            adapter = new CardAdapter(cardList, getContext());
+            btnCard.setVisibility(View.VISIBLE);
             rvPaymentMethod.setAdapter(adapter);
         } else {
             llCardAvailableView.setVisibility(View.GONE);
             ivNoCardView.setVisibility(View.VISIBLE);
             btnAddCard.setVisibility(View.VISIBLE);
+            btnCard.setVisibility(View.GONE);
         }
 
         if (adapter != null) {
@@ -144,8 +149,14 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
     }
 
 
-    @OnClick(R.id.tv_add_credit_debit_card)
+    @OnClick(R.id.btn_card)
     public void onAddCardClick() {
+        startActivityForResult(new Intent(PaymentMethodActivity.this,
+                AddCardActivity.class), ACTIVITY_CODE);
+    }
+
+    @OnClick(R.id.btn_add_card)
+    public void onAddCardButtonClick() {
         startActivityForResult(new Intent(PaymentMethodActivity.this,
                 AddCardActivity.class), ACTIVITY_CODE);
     }
@@ -185,8 +196,8 @@ public class PaymentMethodActivity extends MvpBaseActivity<PaymentMethodPresente
             onAuthorizationFailed(this);
             return;
         }
-        Banner.make(getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
+     /*   Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();*/
     }
 
     @Override

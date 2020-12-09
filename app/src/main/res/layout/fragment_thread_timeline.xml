@@ -173,7 +173,7 @@
                             android:layout_height="wrap_content"
                             android:text="Created Date"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -186,25 +186,25 @@
                                 android:id="@+id/civ_conversation_created_date"
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
-                                android:src="@drawable/ic_calendar_blue" />
+                                android:src="@drawable/ic_calendar" />
 
                             <TextView
                                 android:id="@+id/tv_conversation_created_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="@dimen/dimen_10x1"
+                                android:layout_marginStart="@dimen/dimen_6x1"
                                 android:text="Nov 12, 2020"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                             <TextView
                                 android:id="@+id/tv_conversation_created_time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="@dimen/dimen_10x1"
+                                android:layout_marginStart="@dimen/dimen_6x1"
                                 android:text="4:00 PM"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                         </LinearLayout>
 
@@ -214,7 +214,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Source"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -235,8 +235,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/dimen_10x1"
-                                android:text="Messenger"
-                                android:textColor="@color/black" />
+                                android:text="Source"
+                                android:textColor="@color/service_info_text_color" />
 
                         </LinearLayout>
 
@@ -281,7 +281,8 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="@dimen/dimens_2x"
-                                android:src="@drawable/ic_switch_employee" />
+                                android:src="@drawable/ic_switch_employee"
+                                app:tint="@color/colorPrimary" />
 
                         </RelativeLayout>
 
@@ -292,7 +293,7 @@
                             android:layout_marginBottom="@dimen/dimen_2x1"
                             android:text="Team"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <TextView
@@ -306,8 +307,7 @@
                             android:paddingEnd="@dimen/dimen_2x4"
                             android:paddingBottom="@dimen/dimen_2x1"
                             android:text="Billing"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:textColor="@color/service_info_text_color" />
 
                         <TextView
                             android:id="@+id/tv_assign_employee"
@@ -352,7 +352,7 @@
                             android:layout_height="wrap_content"
                             android:text="Customer Details"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <ImageView
@@ -362,7 +362,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerInParent="true"
                             android:layout_marginEnd="@dimen/dimen_10x1"
-                            android:src="@drawable/ic_dropup" />
+                            android:src="@drawable/ic_dropup"
+                            app:tint="@color/colorPrimary" />
 
                     </RelativeLayout>
 
@@ -403,7 +404,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/dimen_10x1"
                                     android:text="Ram prasad"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/service_info_text_color" />
 
                             </LinearLayout>
 
@@ -420,7 +421,8 @@
                                     android:id="@+id/iv_customer_phone"
                                     android:layout_width="22dp"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_customer_phone" />
+                                    android:src="@drawable/ic_customer_phone"
+                                    app:tint="@color/colorPrimary" />
 
                                 <TextView
                                     android:id="@+id/tv_customer_phone"
@@ -429,7 +431,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/dimen_10x1"
                                     android:text="9849948119"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/service_info_text_color" />
 
                             </LinearLayout>
 
@@ -448,7 +450,8 @@
                                     android:layout_width="22dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/ic_customer_mail" />
+                                    android:src="@drawable/ic_customer_mail"
+                                    app:tint="@color/colorPrimary" />
 
                                 <TextView
                                     android:id="@+id/tv_customer_email"
@@ -457,7 +460,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/dimen_10x1"
                                     android:text="bluescfc44@gmail.com"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/service_info_text_color" />
 
                             </LinearLayout>
 
@@ -494,7 +497,7 @@
                             android:layout_height="wrap_content"
                             android:text="Linked Tickets"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <ImageView
@@ -504,7 +507,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerInParent="true"
                             android:layout_marginEnd="@dimen/dimen_10x1"
-                            android:src="@drawable/ic_dropup" />
+                            android:src="@drawable/ic_dropup"
+                            app:tint="@color/colorPrimary" />
 
                     </RelativeLayout>
 

@@ -175,7 +175,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
 
     @Override
     public void assignEmployee(String threadId, String employeeId) {
-        getView().showProgressEmployee();
+        getView().showProgressBar("");
         Observable<ConversationRpcProto.ConversationBaseResponse> getThreadObservable;
         String token = Hawk.get(Constants.TOKEN);
 
@@ -211,7 +211,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                                 GlobalUtils.showLog(TAG, "assign emp response: "
                                         + getThreadBaseResponse);
 
-                                getView().hideProgressEmployee();
+                                getView().hideProgressBar();
                                 if (getThreadBaseResponse == null) {
                                     getView().assignFail("assign emp failed");
                                     return;
@@ -227,7 +227,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                                             @Override
                                             public void success(Object o) {
                                                 GlobalUtils.showLog(TAG, "assigned employee on thread");
-                                                getView().assignSuccess();
+                                                getView().assignSuccess(employeeId);
                                             }
 
                                             @Override

@@ -17,8 +17,9 @@ public class InProgressTicketRepositoryImpl implements InProgressTicketRepositor
                                                                                      String serviceId,
                                                                                      long from,
                                                                                      long to,
-                                                                                     int page) {
-        return anyDoneService.getSubscribedTickets(token, serviceId, from, to, page);
+                                                                                     int page,
+                                                                                     String sortOrder) {
+        return anyDoneService.getSubscribedTickets(token, serviceId, from, to, page, sortOrder);
     }
 
     @Override

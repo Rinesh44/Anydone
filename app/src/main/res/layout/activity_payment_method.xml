@@ -1,85 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f7fbfd"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#f7fbfd"
+        android:fillViewport="true">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:elevation="4dp"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/iv_no_cards_view"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_centerInParent="true"
-            android:paddingBottom="@dimen/dimen_10x6"
-            android:src="@drawable/ic_no_card_payment"
-            android:visibility="gone" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add_card"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_10x6"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/dimens_2x"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Add Card"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/ll_card_available_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_2x2"
-            android:layout_marginTop="@dimen/dimen_2x4"
-            android:layout_marginEnd="@dimen/dimen_2x2"
-            android:orientation="vertical"
-            android:visibility="gone">
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:elevation="4dp"
+                android:visibility="gone" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_payment_methods"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:itemCount="2"
-                tools:listitem="@layout/card_row" />
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <View
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/white"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/AppTheme.NoActionBar">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/dimen_10x1"
+                        android:paddingEnd="@dimen/dimen_10x1"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:id="@+id/iv_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_back" />
+
+                        <TextView
+                            android:id="@+id/toolbar_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="35dp"
+                            android:layout_toEndOf="@+id/iv_back"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="Payment Method"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_10x4"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/dimens_2x"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:text="Add Card"
+                            android:textAllCaps="false"
+                            android:textSize="10sp"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_no_cards_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:paddingBottom="@dimen/dimen_10x6"
+                android:src="@drawable/ic_no_card_payment"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_card"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="@dimen/dimen_10x2"
-                android:layout_marginEnd="12dp"
-                android:background="@color/grey_light" />
+                android:layout_height="@dimen/dimen_10x6"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/dimens_2x"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Add Card"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-
-            <TextView
-                android:id="@+id/tv_add_credit_debit_card"
+            <LinearLayout
+                android:id="@+id/ll_card_available_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10x1"
-                android:layout_marginTop="@dimen/dimen_10x1"
-                android:drawableStart="@drawable/ic_add_black"
-                android:drawablePadding="@dimen/dimen_6x1"
-                android:gravity="center_vertical"
-                android:text="@string/add_card"
-                android:textColor="@color/black"
-                android:textSize="@dimen/material_text_subhead"
-                android:textStyle="bold" />
+                android:layout_below="@+id/app_bar"
+                android:layout_marginStart="@dimen/dimen_2x2"
+                android:layout_marginTop="@dimen/dimen_2x4"
+                android:layout_marginEnd="@dimen/dimen_2x2"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_payment_methods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/card_row" />
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </RelativeLayout>
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

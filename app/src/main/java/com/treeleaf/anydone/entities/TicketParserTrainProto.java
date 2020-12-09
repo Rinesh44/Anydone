@@ -60,6 +60,16 @@ public final class TicketParserTrainProto {
      */
     com.google.protobuf.ByteString
         getPossibleTicketTextsBytes(int index);
+
+    /**
+     * <code>optional string accountId = 5;</code>
+     */
+    String getAccountId();
+    /**
+     * <code>optional string accountId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TicketTrainRequest}
@@ -74,6 +84,7 @@ public final class TicketParserTrainProto {
       language_ = "";
       baseModelCategory_ = "";
       possibleTicketTexts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      accountId_ = "";
     }
     private int bitField0_;
     public static final int SERVICEID_FIELD_NUMBER = 1;
@@ -298,6 +309,52 @@ public final class TicketParserTrainProto {
       possibleTicketTexts_.add(value.toStringUtf8());
     }
 
+    public static final int ACCOUNTID_FIELD_NUMBER = 5;
+    private String accountId_;
+    /**
+     * <code>optional string accountId = 5;</code>
+     */
+    public String getAccountId() {
+      return accountId_;
+    }
+    /**
+     * <code>optional string accountId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
+    }
+    /**
+     * <code>optional string accountId = 5;</code>
+     */
+    private void setAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      accountId_ = value;
+    }
+    /**
+     * <code>optional string accountId = 5;</code>
+     */
+    private void clearAccountId() {
+      
+      accountId_ = getDefaultInstance().getAccountId();
+    }
+    /**
+     * <code>optional string accountId = 5;</code>
+     */
+    private void setAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      accountId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -311,6 +368,9 @@ public final class TicketParserTrainProto {
       }
       for (int i = 0; i < possibleTicketTexts_.size(); i++) {
         output.writeString(4, possibleTicketTexts_.get(i));
+      }
+      if (!accountId_.isEmpty()) {
+        output.writeString(5, getAccountId());
       }
     }
 
@@ -339,6 +399,10 @@ public final class TicketParserTrainProto {
         }
         size += dataSize;
         size += 1 * getPossibleTicketTextsList().size();
+      }
+      if (!accountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getAccountId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -618,6 +682,46 @@ public final class TicketParserTrainProto {
         return this;
       }
 
+      /**
+       * <code>optional string accountId = 5;</code>
+       */
+      public String getAccountId() {
+        return instance.getAccountId();
+      }
+      /**
+       * <code>optional string accountId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountIdBytes() {
+        return instance.getAccountIdBytes();
+      }
+      /**
+       * <code>optional string accountId = 5;</code>
+       */
+      public Builder setAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 5;</code>
+       */
+      public Builder clearAccountId() {
+        copyOnWrite();
+        instance.clearAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 5;</code>
+       */
+      public Builder setAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAccountIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketTrainRequest)
     }
     protected final Object dynamicMethod(
@@ -647,6 +751,8 @@ public final class TicketParserTrainProto {
           baseModelCategory_ = visitor.visitString(!baseModelCategory_.isEmpty(), baseModelCategory_,
               !other.baseModelCategory_.isEmpty(), other.baseModelCategory_);
           possibleTicketTexts_= visitor.visitList(possibleTicketTexts_, other.possibleTicketTexts_);
+          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
+              !other.accountId_.isEmpty(), other.accountId_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -699,6 +805,12 @@ public final class TicketParserTrainProto {
                   possibleTicketTexts_.add(s);
                   break;
                 }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  accountId_ = s;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -741,6 +853,1185 @@ public final class TicketParserTrainProto {
     private static volatile com.google.protobuf.Parser<TicketTrainRequest> PARSER;
 
     public static com.google.protobuf.Parser<TicketTrainRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface TicketParserTrainingCompleteEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string baseModelCategory = 2;</code>
+     */
+    String getBaseModelCategory();
+    /**
+     * <code>optional string baseModelCategory = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getBaseModelCategoryBytes();
+
+    /**
+     * <code>optional int64 completedAt = 4;</code>
+     */
+    long getCompletedAt();
+
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    String getLanguage();
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
+
+    /**
+     * <code>optional string bucketName = 6;</code>
+     */
+    String getBucketName();
+    /**
+     * <code>optional string bucketName = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getBucketNameBytes();
+
+    /**
+     * <code>optional string trainedModelName = 7;</code>
+     */
+    String getTrainedModelName();
+    /**
+     * <code>optional string trainedModelName = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getTrainedModelNameBytes();
+
+    /**
+     * <code>optional string downloadPath = 8;</code>
+     */
+    String getDownloadPath();
+    /**
+     * <code>optional string downloadPath = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getDownloadPathBytes();
+
+    /**
+     * <code>optional int64 lastTrained = 9;</code>
+     */
+    long getLastTrained();
+
+    /**
+     * <code>optional int64 timeTakenToTrain = 10;</code>
+     */
+    long getTimeTakenToTrain();
+
+    /**
+     * <code>optional string accountId = 11;</code>
+     */
+    String getAccountId();
+    /**
+     * <code>optional string accountId = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountIdBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.TicketParserTrainingCompleteEvent}
+   */
+  public  static final class TicketParserTrainingCompleteEvent extends
+      com.google.protobuf.GeneratedMessageLite<
+          TicketParserTrainingCompleteEvent, TicketParserTrainingCompleteEvent.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
+      TicketParserTrainingCompleteEventOrBuilder {
+    private TicketParserTrainingCompleteEvent() {
+      serviceId_ = "";
+      baseModelCategory_ = "";
+      language_ = "";
+      bucketName_ = "";
+      trainedModelName_ = "";
+      downloadPath_ = "";
+      accountId_ = "";
+    }
+    public static final int SERVICEID_FIELD_NUMBER = 1;
+    private String serviceId_;
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void setServiceId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int BASEMODELCATEGORY_FIELD_NUMBER = 2;
+    private String baseModelCategory_;
+    /**
+     * <code>optional string baseModelCategory = 2;</code>
+     */
+    public String getBaseModelCategory() {
+      return baseModelCategory_;
+    }
+    /**
+     * <code>optional string baseModelCategory = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBaseModelCategoryBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(baseModelCategory_);
+    }
+    /**
+     * <code>optional string baseModelCategory = 2;</code>
+     */
+    private void setBaseModelCategory(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      baseModelCategory_ = value;
+    }
+    /**
+     * <code>optional string baseModelCategory = 2;</code>
+     */
+    private void clearBaseModelCategory() {
+      
+      baseModelCategory_ = getDefaultInstance().getBaseModelCategory();
+    }
+    /**
+     * <code>optional string baseModelCategory = 2;</code>
+     */
+    private void setBaseModelCategoryBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      baseModelCategory_ = value.toStringUtf8();
+    }
+
+    public static final int COMPLETEDAT_FIELD_NUMBER = 4;
+    private long completedAt_;
+    /**
+     * <code>optional int64 completedAt = 4;</code>
+     */
+    public long getCompletedAt() {
+      return completedAt_;
+    }
+    /**
+     * <code>optional int64 completedAt = 4;</code>
+     */
+    private void setCompletedAt(long value) {
+      
+      completedAt_ = value;
+    }
+    /**
+     * <code>optional int64 completedAt = 4;</code>
+     */
+    private void clearCompletedAt() {
+      
+      completedAt_ = 0L;
+    }
+
+    public static final int LANGUAGE_FIELD_NUMBER = 5;
+    private String language_;
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    public String getLanguage() {
+      return language_;
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(language_);
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void setLanguage(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      language_ = value;
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void clearLanguage() {
+      
+      language_ = getDefaultInstance().getLanguage();
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void setLanguageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      language_ = value.toStringUtf8();
+    }
+
+    public static final int BUCKETNAME_FIELD_NUMBER = 6;
+    private String bucketName_;
+    /**
+     * <code>optional string bucketName = 6;</code>
+     */
+    public String getBucketName() {
+      return bucketName_;
+    }
+    /**
+     * <code>optional string bucketName = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBucketNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(bucketName_);
+    }
+    /**
+     * <code>optional string bucketName = 6;</code>
+     */
+    private void setBucketName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      bucketName_ = value;
+    }
+    /**
+     * <code>optional string bucketName = 6;</code>
+     */
+    private void clearBucketName() {
+      
+      bucketName_ = getDefaultInstance().getBucketName();
+    }
+    /**
+     * <code>optional string bucketName = 6;</code>
+     */
+    private void setBucketNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      bucketName_ = value.toStringUtf8();
+    }
+
+    public static final int TRAINEDMODELNAME_FIELD_NUMBER = 7;
+    private String trainedModelName_;
+    /**
+     * <code>optional string trainedModelName = 7;</code>
+     */
+    public String getTrainedModelName() {
+      return trainedModelName_;
+    }
+    /**
+     * <code>optional string trainedModelName = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTrainedModelNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(trainedModelName_);
+    }
+    /**
+     * <code>optional string trainedModelName = 7;</code>
+     */
+    private void setTrainedModelName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      trainedModelName_ = value;
+    }
+    /**
+     * <code>optional string trainedModelName = 7;</code>
+     */
+    private void clearTrainedModelName() {
+      
+      trainedModelName_ = getDefaultInstance().getTrainedModelName();
+    }
+    /**
+     * <code>optional string trainedModelName = 7;</code>
+     */
+    private void setTrainedModelNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      trainedModelName_ = value.toStringUtf8();
+    }
+
+    public static final int DOWNLOADPATH_FIELD_NUMBER = 8;
+    private String downloadPath_;
+    /**
+     * <code>optional string downloadPath = 8;</code>
+     */
+    public String getDownloadPath() {
+      return downloadPath_;
+    }
+    /**
+     * <code>optional string downloadPath = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDownloadPathBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(downloadPath_);
+    }
+    /**
+     * <code>optional string downloadPath = 8;</code>
+     */
+    private void setDownloadPath(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      downloadPath_ = value;
+    }
+    /**
+     * <code>optional string downloadPath = 8;</code>
+     */
+    private void clearDownloadPath() {
+      
+      downloadPath_ = getDefaultInstance().getDownloadPath();
+    }
+    /**
+     * <code>optional string downloadPath = 8;</code>
+     */
+    private void setDownloadPathBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      downloadPath_ = value.toStringUtf8();
+    }
+
+    public static final int LASTTRAINED_FIELD_NUMBER = 9;
+    private long lastTrained_;
+    /**
+     * <code>optional int64 lastTrained = 9;</code>
+     */
+    public long getLastTrained() {
+      return lastTrained_;
+    }
+    /**
+     * <code>optional int64 lastTrained = 9;</code>
+     */
+    private void setLastTrained(long value) {
+      
+      lastTrained_ = value;
+    }
+    /**
+     * <code>optional int64 lastTrained = 9;</code>
+     */
+    private void clearLastTrained() {
+      
+      lastTrained_ = 0L;
+    }
+
+    public static final int TIMETAKENTOTRAIN_FIELD_NUMBER = 10;
+    private long timeTakenToTrain_;
+    /**
+     * <code>optional int64 timeTakenToTrain = 10;</code>
+     */
+    public long getTimeTakenToTrain() {
+      return timeTakenToTrain_;
+    }
+    /**
+     * <code>optional int64 timeTakenToTrain = 10;</code>
+     */
+    private void setTimeTakenToTrain(long value) {
+      
+      timeTakenToTrain_ = value;
+    }
+    /**
+     * <code>optional int64 timeTakenToTrain = 10;</code>
+     */
+    private void clearTimeTakenToTrain() {
+      
+      timeTakenToTrain_ = 0L;
+    }
+
+    public static final int ACCOUNTID_FIELD_NUMBER = 11;
+    private String accountId_;
+    /**
+     * <code>optional string accountId = 11;</code>
+     */
+    public String getAccountId() {
+      return accountId_;
+    }
+    /**
+     * <code>optional string accountId = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
+    }
+    /**
+     * <code>optional string accountId = 11;</code>
+     */
+    private void setAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      accountId_ = value;
+    }
+    /**
+     * <code>optional string accountId = 11;</code>
+     */
+    private void clearAccountId() {
+      
+      accountId_ = getDefaultInstance().getAccountId();
+    }
+    /**
+     * <code>optional string accountId = 11;</code>
+     */
+    private void setAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      accountId_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!serviceId_.isEmpty()) {
+        output.writeString(1, getServiceId());
+      }
+      if (!baseModelCategory_.isEmpty()) {
+        output.writeString(2, getBaseModelCategory());
+      }
+      if (completedAt_ != 0L) {
+        output.writeInt64(4, completedAt_);
+      }
+      if (!language_.isEmpty()) {
+        output.writeString(5, getLanguage());
+      }
+      if (!bucketName_.isEmpty()) {
+        output.writeString(6, getBucketName());
+      }
+      if (!trainedModelName_.isEmpty()) {
+        output.writeString(7, getTrainedModelName());
+      }
+      if (!downloadPath_.isEmpty()) {
+        output.writeString(8, getDownloadPath());
+      }
+      if (lastTrained_ != 0L) {
+        output.writeInt64(9, lastTrained_);
+      }
+      if (timeTakenToTrain_ != 0L) {
+        output.writeInt64(10, timeTakenToTrain_);
+      }
+      if (!accountId_.isEmpty()) {
+        output.writeString(11, getAccountId());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getServiceId());
+      }
+      if (!baseModelCategory_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getBaseModelCategory());
+      }
+      if (completedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, completedAt_);
+      }
+      if (!language_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getLanguage());
+      }
+      if (!bucketName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getBucketName());
+      }
+      if (!trainedModelName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getTrainedModelName());
+      }
+      if (!downloadPath_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getDownloadPath());
+      }
+      if (lastTrained_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(9, lastTrained_);
+      }
+      if (timeTakenToTrain_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(10, timeTakenToTrain_);
+      }
+      if (!accountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getAccountId());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static TicketParserTrainingCompleteEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static TicketParserTrainingCompleteEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static TicketParserTrainingCompleteEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static TicketParserTrainingCompleteEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static TicketParserTrainingCompleteEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static TicketParserTrainingCompleteEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static TicketParserTrainingCompleteEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static TicketParserTrainingCompleteEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static TicketParserTrainingCompleteEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static TicketParserTrainingCompleteEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(TicketParserTrainingCompleteEvent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.TicketParserTrainingCompleteEvent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          TicketParserTrainingCompleteEvent, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
+        TicketParserTrainingCompleteEventOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string baseModelCategory = 2;</code>
+       */
+      public String getBaseModelCategory() {
+        return instance.getBaseModelCategory();
+      }
+      /**
+       * <code>optional string baseModelCategory = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBaseModelCategoryBytes() {
+        return instance.getBaseModelCategoryBytes();
+      }
+      /**
+       * <code>optional string baseModelCategory = 2;</code>
+       */
+      public Builder setBaseModelCategory(
+          String value) {
+        copyOnWrite();
+        instance.setBaseModelCategory(value);
+        return this;
+      }
+      /**
+       * <code>optional string baseModelCategory = 2;</code>
+       */
+      public Builder clearBaseModelCategory() {
+        copyOnWrite();
+        instance.clearBaseModelCategory();
+        return this;
+      }
+      /**
+       * <code>optional string baseModelCategory = 2;</code>
+       */
+      public Builder setBaseModelCategoryBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBaseModelCategoryBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 completedAt = 4;</code>
+       */
+      public long getCompletedAt() {
+        return instance.getCompletedAt();
+      }
+      /**
+       * <code>optional int64 completedAt = 4;</code>
+       */
+      public Builder setCompletedAt(long value) {
+        copyOnWrite();
+        instance.setCompletedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 completedAt = 4;</code>
+       */
+      public Builder clearCompletedAt() {
+        copyOnWrite();
+        instance.clearCompletedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public String getLanguage() {
+        return instance.getLanguage();
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        return instance.getLanguageBytes();
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder setLanguage(
+          String value) {
+        copyOnWrite();
+        instance.setLanguage(value);
+        return this;
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder clearLanguage() {
+        copyOnWrite();
+        instance.clearLanguage();
+        return this;
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLanguageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string bucketName = 6;</code>
+       */
+      public String getBucketName() {
+        return instance.getBucketName();
+      }
+      /**
+       * <code>optional string bucketName = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBucketNameBytes() {
+        return instance.getBucketNameBytes();
+      }
+      /**
+       * <code>optional string bucketName = 6;</code>
+       */
+      public Builder setBucketName(
+          String value) {
+        copyOnWrite();
+        instance.setBucketName(value);
+        return this;
+      }
+      /**
+       * <code>optional string bucketName = 6;</code>
+       */
+      public Builder clearBucketName() {
+        copyOnWrite();
+        instance.clearBucketName();
+        return this;
+      }
+      /**
+       * <code>optional string bucketName = 6;</code>
+       */
+      public Builder setBucketNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBucketNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string trainedModelName = 7;</code>
+       */
+      public String getTrainedModelName() {
+        return instance.getTrainedModelName();
+      }
+      /**
+       * <code>optional string trainedModelName = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTrainedModelNameBytes() {
+        return instance.getTrainedModelNameBytes();
+      }
+      /**
+       * <code>optional string trainedModelName = 7;</code>
+       */
+      public Builder setTrainedModelName(
+          String value) {
+        copyOnWrite();
+        instance.setTrainedModelName(value);
+        return this;
+      }
+      /**
+       * <code>optional string trainedModelName = 7;</code>
+       */
+      public Builder clearTrainedModelName() {
+        copyOnWrite();
+        instance.clearTrainedModelName();
+        return this;
+      }
+      /**
+       * <code>optional string trainedModelName = 7;</code>
+       */
+      public Builder setTrainedModelNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTrainedModelNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string downloadPath = 8;</code>
+       */
+      public String getDownloadPath() {
+        return instance.getDownloadPath();
+      }
+      /**
+       * <code>optional string downloadPath = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDownloadPathBytes() {
+        return instance.getDownloadPathBytes();
+      }
+      /**
+       * <code>optional string downloadPath = 8;</code>
+       */
+      public Builder setDownloadPath(
+          String value) {
+        copyOnWrite();
+        instance.setDownloadPath(value);
+        return this;
+      }
+      /**
+       * <code>optional string downloadPath = 8;</code>
+       */
+      public Builder clearDownloadPath() {
+        copyOnWrite();
+        instance.clearDownloadPath();
+        return this;
+      }
+      /**
+       * <code>optional string downloadPath = 8;</code>
+       */
+      public Builder setDownloadPathBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDownloadPathBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 lastTrained = 9;</code>
+       */
+      public long getLastTrained() {
+        return instance.getLastTrained();
+      }
+      /**
+       * <code>optional int64 lastTrained = 9;</code>
+       */
+      public Builder setLastTrained(long value) {
+        copyOnWrite();
+        instance.setLastTrained(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 lastTrained = 9;</code>
+       */
+      public Builder clearLastTrained() {
+        copyOnWrite();
+        instance.clearLastTrained();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 timeTakenToTrain = 10;</code>
+       */
+      public long getTimeTakenToTrain() {
+        return instance.getTimeTakenToTrain();
+      }
+      /**
+       * <code>optional int64 timeTakenToTrain = 10;</code>
+       */
+      public Builder setTimeTakenToTrain(long value) {
+        copyOnWrite();
+        instance.setTimeTakenToTrain(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 timeTakenToTrain = 10;</code>
+       */
+      public Builder clearTimeTakenToTrain() {
+        copyOnWrite();
+        instance.clearTimeTakenToTrain();
+        return this;
+      }
+
+      /**
+       * <code>optional string accountId = 11;</code>
+       */
+      public String getAccountId() {
+        return instance.getAccountId();
+      }
+      /**
+       * <code>optional string accountId = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountIdBytes() {
+        return instance.getAccountIdBytes();
+      }
+      /**
+       * <code>optional string accountId = 11;</code>
+       */
+      public Builder setAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 11;</code>
+       */
+      public Builder clearAccountId() {
+        copyOnWrite();
+        instance.clearAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 11;</code>
+       */
+      public Builder setAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAccountIdBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new TicketParserTrainingCompleteEvent();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          TicketParserTrainingCompleteEvent other = (TicketParserTrainingCompleteEvent) arg1;
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          baseModelCategory_ = visitor.visitString(!baseModelCategory_.isEmpty(), baseModelCategory_,
+              !other.baseModelCategory_.isEmpty(), other.baseModelCategory_);
+          completedAt_ = visitor.visitLong(completedAt_ != 0L, completedAt_,
+              other.completedAt_ != 0L, other.completedAt_);
+          language_ = visitor.visitString(!language_.isEmpty(), language_,
+              !other.language_.isEmpty(), other.language_);
+          bucketName_ = visitor.visitString(!bucketName_.isEmpty(), bucketName_,
+              !other.bucketName_.isEmpty(), other.bucketName_);
+          trainedModelName_ = visitor.visitString(!trainedModelName_.isEmpty(), trainedModelName_,
+              !other.trainedModelName_.isEmpty(), other.trainedModelName_);
+          downloadPath_ = visitor.visitString(!downloadPath_.isEmpty(), downloadPath_,
+              !other.downloadPath_.isEmpty(), other.downloadPath_);
+          lastTrained_ = visitor.visitLong(lastTrained_ != 0L, lastTrained_,
+              other.lastTrained_ != 0L, other.lastTrained_);
+          timeTakenToTrain_ = visitor.visitLong(timeTakenToTrain_ != 0L, timeTakenToTrain_,
+              other.timeTakenToTrain_ != 0L, other.timeTakenToTrain_);
+          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
+              !other.accountId_.isEmpty(), other.accountId_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  baseModelCategory_ = s;
+                  break;
+                }
+                case 32: {
+
+                  completedAt_ = input.readInt64();
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  language_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  bucketName_ = s;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  trainedModelName_ = s;
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  downloadPath_ = s;
+                  break;
+                }
+                case 72: {
+
+                  lastTrained_ = input.readInt64();
+                  break;
+                }
+                case 80: {
+
+                  timeTakenToTrain_ = input.readInt64();
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+
+                  accountId_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (TicketParserTrainingCompleteEvent.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
+    private static final TicketParserTrainingCompleteEvent DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TicketParserTrainingCompleteEvent();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static TicketParserTrainingCompleteEvent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<TicketParserTrainingCompleteEvent> PARSER;
+
+    public static com.google.protobuf.Parser<TicketParserTrainingCompleteEvent> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

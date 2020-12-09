@@ -70,6 +70,16 @@ public final class TicketParserProto {
      */
     com.google.protobuf.ByteString
         getConversationIdBytes();
+
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    String getCategory();
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getCategoryBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TicketParserRequest}
@@ -85,6 +95,7 @@ public final class TicketParserProto {
       language_ = "";
       previousMsgs_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       conversationId_ = "";
+      category_ = "";
     }
     private int bitField0_;
     public static final int CONVERSATIONTEXT_FIELD_NUMBER = 1;
@@ -355,6 +366,52 @@ public final class TicketParserProto {
       conversationId_ = value.toStringUtf8();
     }
 
+    public static final int CATEGORY_FIELD_NUMBER = 6;
+    private String category_;
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    public String getCategory() {
+      return category_;
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCategoryBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(category_);
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    private void setCategory(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      category_ = value;
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    private void clearCategory() {
+      
+      category_ = getDefaultInstance().getCategory();
+    }
+    /**
+     * <code>optional string category = 6;</code>
+     */
+    private void setCategoryBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      category_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!conversationText_.isEmpty()) {
@@ -371,6 +428,9 @@ public final class TicketParserProto {
       }
       if (!conversationId_.isEmpty()) {
         output.writeString(5, getConversationId());
+      }
+      if (!category_.isEmpty()) {
+        output.writeString(6, getCategory());
       }
     }
 
@@ -403,6 +463,10 @@ public final class TicketParserProto {
       if (!conversationId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getConversationId());
+      }
+      if (!category_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getCategory());
       }
       memoizedSerializedSize = size;
       return size;
@@ -722,6 +786,46 @@ public final class TicketParserProto {
         return this;
       }
 
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public String getCategory() {
+        return instance.getCategory();
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCategoryBytes() {
+        return instance.getCategoryBytes();
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public Builder setCategory(
+          String value) {
+        copyOnWrite();
+        instance.setCategory(value);
+        return this;
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public Builder clearCategory() {
+        copyOnWrite();
+        instance.clearCategory();
+        return this;
+      }
+      /**
+       * <code>optional string category = 6;</code>
+       */
+      public Builder setCategoryBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCategoryBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketParserRequest)
     }
     protected final Object dynamicMethod(
@@ -753,6 +857,8 @@ public final class TicketParserProto {
           previousMsgs_= visitor.visitList(previousMsgs_, other.previousMsgs_);
           conversationId_ = visitor.visitString(!conversationId_.isEmpty(), conversationId_,
               !other.conversationId_.isEmpty(), other.conversationId_);
+          category_ = visitor.visitString(!category_.isEmpty(), category_,
+              !other.category_.isEmpty(), other.category_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -809,6 +915,12 @@ public final class TicketParserProto {
                   String s = input.readStringRequireUtf8();
 
                   conversationId_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  category_ = s;
                   break;
                 }
               }

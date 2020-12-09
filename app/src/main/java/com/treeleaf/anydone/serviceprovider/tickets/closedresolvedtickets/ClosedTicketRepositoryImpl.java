@@ -17,8 +17,9 @@ public class ClosedTicketRepositoryImpl implements ClosedTicketRepository {
                                                                                          String serviceId,
                                                                                          long from,
                                                                                          long to,
-                                                                                         int page) {
-        return anyDoneService.getClosedResolvedTickets(token, serviceId, from, to, page);
+                                                                                         int page,
+                                                                                         String sortOrder) {
+        return anyDoneService.getClosedResolvedTickets(token, serviceId, from, to, page, sortOrder);
     }
 
     @Override

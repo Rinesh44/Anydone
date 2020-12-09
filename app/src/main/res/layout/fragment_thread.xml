@@ -68,8 +68,9 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:elevation="4dp"
-            android:padding="@dimen/dimen_10x1"
-            android:visibility="gone">
+            android:paddingStart="@dimen/dimen_10x1"
+            android:paddingEnd="@dimen/dimen_10x1"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/tv_suggested_ticket_title"
@@ -99,8 +100,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dimen_10x1"
                 android:src="@drawable/ic_close_blue"
-                android:tint="@color/white" />
+                app:tint="@color/white" />
 
 
         </RelativeLayout>
@@ -118,7 +120,7 @@
             android:inputType="textVisiblePassword"
             android:padding="@dimen/dimen_2x4"
             android:textSize="15sp"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -155,8 +157,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_10x6">
 
         <ImageView
             android:id="@+id/iv_thread_not_found"

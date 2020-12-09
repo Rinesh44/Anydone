@@ -229,12 +229,12 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
     private boolean validateCredentials(String emailPhone, String password) {
 
         if (ValidationUtils.isEmpty(emailPhone)) {
-            getView().showEmptyPhoneOrEmailFieldError("Empty field!");
+            getView().showInvalidEmailPhoneError();
             return false;
         }
 
         if (ValidationUtils.isEmpty(password)) {
-            getView().showEmptyPasswordFieldError("Empty field!");
+            getView().showInvalidPasswordError();
             return false;
         }
 

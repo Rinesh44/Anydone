@@ -461,7 +461,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                             return;
                         }
 
-                        RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
+                  /*      RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
                                 .getKgraphResponse().getAnswersList());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
@@ -489,7 +489,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                                     public void fail() {
                                         GlobalUtils.showLog(TAG, "failed to save k-graph conversation");
                                     }
-                                });
+                                });*/
 
                     }
 
@@ -540,7 +540,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                     }
                 });
     }
-
+/*
     private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
         RealmList<KGraph> kGraphList = new RealmList<>();
         for (KGraphProto.Answer answer : answersList
@@ -555,7 +555,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         }
 
         return kGraphList;
-    }
+    }*/
 
 
     public void publishImage(String imageUrl, String threadId, String clientId, String imageCaption) {

@@ -107,6 +107,18 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_task"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_2x4"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Start Task"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/rl_selected_status"
@@ -139,7 +151,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="@dimen/dimen_10x3"
                 android:backgroundTint="@color/colorPrimary"
-                android:src="@drawable/ic_drop_up_blue" />
+                android:src="@drawable/ic_drop_up_blue"
+                app:tint="@color/colorPrimary" />
 
         </RelativeLayout>
 
@@ -177,7 +190,7 @@
                         android:paddingBottom="@dimen/dimen_10x1"
                         android:text="Enable Bot Reply"
                         android:textColor="@color/charcoal_text"
-                        android:textSize="@dimen/material_text_subhead"
+                        android:textSize="@dimen/material_text_normal"
                         android:textStyle="bold" />
 
                     <Switch
@@ -220,7 +233,7 @@
                                 android:layout_marginTop="@dimen/dimen_6x1"
                                 android:text="Ticket Id"
                                 android:textColor="@color/charcoal_text"
-                                android:textSize="@dimen/material_text_subhead"
+                                android:textSize="@dimen/material_text_normal"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -229,24 +242,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/tv_ticket_id_title"
                                 android:text="1234"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
-
-                            <TextView
-                                android:id="@+id/tv_ticket_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="@dimen/dimen_2x4"
-                                android:background="@drawable/started_bg"
-                                android:paddingStart="@dimen/dimen_10x1"
-                                android:paddingTop="@dimen/dimen_6x1"
-                                android:paddingEnd="@dimen/dimen_10x1"
-                                android:paddingBottom="@dimen/dimen_6x1"
-                                android:text="Started"
-                                android:textAllCaps="true"
-                                android:textColor="#2F80ED"
-                                android:textSize="10sp" />
 
                         </RelativeLayout>
 
@@ -257,7 +254,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Ticket Type"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <TextView
@@ -266,7 +263,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_ticket_id_title"
                             android:text="Software"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/service_info_text_color" />
 
 
                         <TextView
@@ -276,7 +273,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Summary"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <TextView
@@ -284,7 +281,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Broken tv fallen from stand"
-                            android:textColor="@color/charcoal_text" />
+                            android:textColor="@color/service_info_text_color" />
 
 
                         <TextView
@@ -294,7 +291,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Description"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <TextView
@@ -302,7 +299,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_description"
-                            android:textColor="@color/black"
+                            android:textColor="@color/service_info_text_color"
                             android:visibility="visible" />
 
                         <TextView
@@ -322,7 +319,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Estimated Time"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <TextView
@@ -330,7 +327,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_estimated_time"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/service_info_text_color" />
 
                         <TextView
                             android:id="@+id/tv_add_est_time"
@@ -349,7 +346,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Priority"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -374,7 +371,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/dimen_10x1"
                                 android:text="Medium"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                         </LinearLayout>
 
@@ -385,7 +382,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Service"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -406,7 +403,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/dimen_10x1"
                                 android:text="Vianet"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                         </LinearLayout>
 
@@ -416,7 +413,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Created By"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -438,7 +435,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/dimen_10x1"
                                 android:text="John Legend"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                         </LinearLayout>
 
@@ -448,7 +445,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Assigned Employee"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <RelativeLayout
@@ -470,7 +467,7 @@
                                 android:layout_marginStart="@dimen/dimen_10x1"
                                 android:layout_toEndOf="@+id/civ_assigned_employee"
                                 android:text="Unassigned"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                             <ImageView
                                 android:id="@+id/iv_assign_employee"
@@ -488,7 +485,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Created Date"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -510,7 +507,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/dimen_10x1"
                                 android:text="Nov 12, 2020"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                             <TextView
                                 android:id="@+id/tv_ticket_created_time"
@@ -519,7 +516,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/dimen_6x1"
                                 android:text="4:00 PM"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/service_info_text_color" />
 
                         </LinearLayout>
 
@@ -530,7 +527,7 @@
                             android:layout_marginTop="@dimen/dimen_10x2"
                             android:text="Team"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <TextView
@@ -541,6 +538,7 @@
                             android:text="Add Team"
                             android:textColor="@color/colorPrimary"
                             android:visibility="gone" />
+
 
                         <HorizontalScrollView
                             android:layout_width="match_parent"
@@ -569,7 +567,7 @@
                                 android:layout_marginTop="@dimen/dimen_10x2"
                                 android:text="Label"
                                 android:textColor="@color/charcoal_text"
-                                android:textSize="@dimen/material_text_subhead"
+                                android:textSize="@dimen/material_text_normal"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -627,7 +625,7 @@
                             android:layout_height="wrap_content"
                             android:text="Customer Details"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
 
                         <ImageView
@@ -636,7 +634,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/ic_dropup" />
+                            android:src="@drawable/ic_dropup"
+                            app:tint="@color/colorPrimary" />
 
                     </RelativeLayout>
 
@@ -677,7 +676,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/dimen_10x1"
                                     android:text="Ram prasad"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/service_info_text_color" />
 
                             </LinearLayout>
 
@@ -694,7 +693,7 @@
                                     android:id="@+id/iv_customer_phone"
                                     android:layout_width="22dp"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_customer_phone" />
+                                    android:src="@drawable/ic_phone_share" />
 
                                 <TextView
                                     android:id="@+id/tv_customer_phone"
@@ -703,7 +702,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/dimen_10x1"
                                     android:text="9849948119"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/service_info_text_color" />
 
                             </LinearLayout>
 
@@ -722,7 +721,7 @@
                                     android:layout_width="22dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/ic_customer_mail" />
+                                    android:src="@drawable/ic_user" />
 
                                 <TextView
                                     android:id="@+id/tv_customer_email"
@@ -731,7 +730,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/dimen_10x1"
                                     android:text="bluescfc44@gmail.com"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/service_info_text_color" />
 
                             </LinearLayout>
 
@@ -766,7 +765,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Contributors"
                                 android:textColor="@color/charcoal_text"
-                                android:textSize="@dimen/material_text_subhead"
+                                android:textSize="@dimen/material_text_normal"
                                 android:textStyle="bold" />
 
                             <ImageView
@@ -775,7 +774,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/ic_dropup" />
+                                android:src="@drawable/ic_dropup"
+                                app:tint="@color/colorPrimary" />
 
                         </RelativeLayout>
 

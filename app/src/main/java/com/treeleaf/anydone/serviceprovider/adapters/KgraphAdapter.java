@@ -1,15 +1,12 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 
@@ -43,11 +40,11 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
             holder.separator.setVisibility(View.GONE);
         }
 
-        if (kGraph.getAnswerType() != null &&
+     /*   if (kGraph.getAnswerType() != null &&
                 kGraph.getAnswerType().equalsIgnoreCase(KGraphProto.AnswerType.ANSWER_TYPE.name())) {
             holder.tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.black));
             holder.tvSuggestion.setTypeface(Typeface.DEFAULT);
-        }
+        }*/
 
     }
 
@@ -69,7 +66,7 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
             tvSuggestion.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 KGraph selectedKGraph = kGraphList.get(position);
-                if ((selectedKGraph.getAnswerType() != null &&
+             /*   if ((selectedKGraph.getAnswerType() != null &&
                         selectedKGraph.getAnswerType()
                                 .equalsIgnoreCase(KGraphProto.AnswerType.OPTION_TYPE.name()))
                         || (selectedKGraph.isTraverse())) {
@@ -79,7 +76,7 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(kGraphList.get(position));
                     }
-                }
+                }*/
             });
         }
     }

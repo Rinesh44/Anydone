@@ -6,7 +6,9 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
+
 import java.util.List;
+
 import io.realm.Realm;
 import io.realm.RealmList;
 
@@ -266,7 +268,8 @@ public class AccountRepo extends Repo {
         RealmList<Location> locationRealmList = new RealmList<>();
         for (UserProto.Location locationPb : locationsList
         ) {
-            Location location = new Location();
+//            Location location = new Location();
+            Location location = Realm.getDefaultInstance().createObject(Location.class, locationPb.getLocationId());
             location.setLat(locationPb.getLatitude());
             location.setLng(locationPb.getLongitude());
             location.setLocationType(locationPb.getLocationType().name());

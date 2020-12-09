@@ -1,5 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -21,6 +24,23 @@ public class TicketSuggestion extends RealmObject {
     private long updatedAt;
 
     public TicketSuggestion() {
+    }
+
+    protected TicketSuggestion(Parcel in) {
+        suggestionId = in.readString();
+        estimatedTime = in.readLong();
+        conversationId = in.readString();
+        createdAt = in.readLong();
+        customerId = in.readString();
+        customerName = in.readString();
+        customerImageUrl = in.readString();
+        messageId = in.readString();
+        messageText = in.readString();
+        messageSentAt = in.readLong();
+        serviceId = in.readString();
+        source = in.readString();
+        status = in.readString();
+        updatedAt = in.readLong();
     }
 
     public long getEstimatedTime() {

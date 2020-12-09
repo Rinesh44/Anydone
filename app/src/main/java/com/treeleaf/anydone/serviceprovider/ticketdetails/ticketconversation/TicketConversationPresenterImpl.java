@@ -13,6 +13,8 @@ import android.webkit.MimeTypeMap;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chinalwb.are.AREditText;
+import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -340,7 +342,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
                 .setUrl((links[0]))
-                .setTitle("Link")
+                .setTitle(message)
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
@@ -461,7 +463,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             return;
                         }
 
-                        RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
+                     /*   RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
                                 .getKgraphResponse().getAnswersList());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
@@ -476,9 +478,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (!backClicked)
                             conversation.setkGraphTitle(Hawk.get(Constants.KGRAPH_TITLE));
                         else
-                            conversation.setkGraphTitle("");
+                            conversation.setkGraphTitle("");*/
 
-                        ConversationRepo.getInstance().saveConversation(conversation,
+                  /*      ConversationRepo.getInstance().saveConversation(conversation,
                                 new Repo.Callback() {
                                     @Override
                                     public void success(Object o) {
@@ -489,7 +491,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     public void fail() {
                                         GlobalUtils.showLog(TAG, "failed to save k-graph conversation");
                                     }
-                                });
+                                });*/
 
                     }
 
@@ -515,7 +517,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @SuppressLint("CheckResult")
     @Override
-    public void enterMessage(RecyclerView conversation, RichEditor etMessage) {
+    public void enterMessage(RecyclerView conversation, AREditText etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
             conversation.smoothScrollToPosition(0);
@@ -591,7 +593,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
 
-    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
+/*    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
         RealmList<KGraph> kGraphList = new RealmList<>();
         for (KGraphProto.Answer answer : answersList
         ) {
@@ -605,7 +607,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         }
 
         return kGraphList;
-    }
+    }*/
 
 
     public void publishImage(String imageUrl, long orderId, String clientId, String imageCaption) {
@@ -762,8 +764,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 } else {
                                     //sent and received id is different
                                     ByteString imageByteString = startDraw.getCapturedImage();
-                                    int width = startDraw.getBitmapWidth();
-                                    int height = startDraw.getBitmapHeight();
+                                    int width = startDraw.getCanvasWidth();
+                                    int height = startDraw.getCanvasHeight();
                                     long captureTime = startDraw.getCapturedTime();
                                     byte[] convertedBytes = imageByteString.toByteArray();
                                     getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);

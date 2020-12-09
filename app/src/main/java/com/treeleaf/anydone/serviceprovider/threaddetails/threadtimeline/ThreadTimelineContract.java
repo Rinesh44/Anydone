@@ -24,7 +24,7 @@ public class ThreadTimelineContract {
 
         void hideProgressEmployee();
 
-        void assignSuccess();
+        void assignSuccess(String empId);
 
         void assignFail(String msg);
 

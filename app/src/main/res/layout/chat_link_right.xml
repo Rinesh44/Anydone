@@ -68,7 +68,7 @@
                     android:layout_marginTop="@dimen/dimen_2x2"
                     android:layout_marginBottom="@dimen/dimen_2x2"
                     android:text="Title"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -77,6 +77,7 @@
                     android:layout_height="match_parent"
                     android:ellipsize="end"
                     android:text="Description"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/material_text_caption" />
             </LinearLayout>
 

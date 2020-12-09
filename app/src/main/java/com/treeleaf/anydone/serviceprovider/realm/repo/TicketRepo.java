@@ -280,6 +280,24 @@ public class TicketRepo extends Repo {
         });
     }
 
+    public void changeTicketTypeToSubscribed(long ticketId) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("ticketType", Constants.SUBSCRIBED);
+        });
+    }
+
+    public void changeTicketTypeToSubscribable(long ticketId) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("ticketType", Constants.SUBSCRIBEABLE);
+        });
+    }
+
 
     public void changeTicketStatusToClosed(long ticketId) {
         final Realm realm = Realm.getDefaultInstance();
@@ -303,7 +321,7 @@ public class TicketRepo extends Repo {
             String status = TicketProto.TicketState.TICKET_REOPENED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.PENDING);
-
+            GlobalUtils.showLog(TAG, "status chnaged to reopen");
         });
     }
 
@@ -410,6 +428,7 @@ public class TicketRepo extends Repo {
             Tickets tickets = new Tickets();
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
+            tickets.setTicketIndex(ticketPb.getTicketIndex());
             tickets.setTitle(ticketPb.getTitle());
             tickets.setTicketCategory(ticketPb.getType().getName());
             GlobalUtils.showLog(TAG, "est time back end: " + ticketPb.getEstimatedTimeDesc());
@@ -455,6 +474,7 @@ public class TicketRepo extends Repo {
             Tickets tickets = new Tickets();
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
+            tickets.setTicketIndex(ticketPb.getTicketIndex());
             tickets.setThreadId(threadId);
             tickets.setTitle(ticketPb.getTitle());
             tickets.setTicketCategory(ticketPb.getType().getName());
@@ -495,6 +515,7 @@ public class TicketRepo extends Repo {
         Tickets tickets = new Tickets();
         tickets.setId(UUID.randomUUID().toString().replace("-", ""));
         tickets.setTicketId(ticketPb.getTicketId());
+        tickets.setTicketIndex(ticketPb.getTicketIndex());
         tickets.setTitle(ticketPb.getTitle());
         tickets.setTicketCategory(ticketPb.getType().getName());
         tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());

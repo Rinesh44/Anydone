@@ -9,7 +9,8 @@ public interface ClosedTicketRepository {
                                                                                   String serviceId,
                                                                                   long from,
                                                                                   long to,
-                                                                                  int page);
+                                                                                  int page,
+                                                                                  String sortOrder);
 
     Observable<TicketServiceRpcProto.TicketBaseResponse> reopenTicket(String token,
                                                                       long ticketId);
