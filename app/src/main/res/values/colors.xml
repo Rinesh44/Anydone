@@ -10,6 +10,7 @@
     <color name="colorPrimaryDark">#0040c1</color>
     <!--    <color name="colorAccent">#3A5090</color>-->
     <color name="colorAccent">#376AF5</color>
+    <color name="colorSecondary">#FF4A4A</color>
 
 
     <color name="bluePurple">#05376C</color>

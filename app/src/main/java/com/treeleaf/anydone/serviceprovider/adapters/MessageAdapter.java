@@ -373,7 +373,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void showTime(long sentAt, TextView tvSentAt) {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormatter =
-                new SimpleDateFormat("HH:mm a");
+                new SimpleDateFormat("hh:mm aa");
         String timeString = timeFormatter.format(new Date(sentAt));
 
         tvSentAt.setText(timeString);

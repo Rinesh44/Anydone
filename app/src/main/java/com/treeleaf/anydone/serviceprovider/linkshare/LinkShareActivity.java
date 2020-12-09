@@ -9,6 +9,7 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -35,6 +36,8 @@ public class LinkShareActivity extends MvpBaseActivity<LinkSharePresenterImpl> i
     EditText etEmailPhone;
     @BindView(R.id.btn_send)
     MaterialButton btnSend;
+    @BindView(R.id.tv_link)
+    TextView tvLink;
 
     boolean isEmail;
 
@@ -45,6 +48,9 @@ public class LinkShareActivity extends MvpBaseActivity<LinkSharePresenterImpl> i
         Intent i = getIntent();
         long ticketId = i.getLongExtra("ticket_id", -1);
         isEmail = i.getBooleanExtra("is_email", false);
+        String link = i.getStringExtra("link");
+
+        tvLink.setText(link);
 
         setUpEmailPhone(isEmail);
         setCustomerData(ticketId, isEmail);
@@ -77,10 +83,12 @@ public class LinkShareActivity extends MvpBaseActivity<LinkSharePresenterImpl> i
             setToolbar("Email");
             etEmailPhone.setHint("Enter Email");
             etEmailPhone.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            etEmailPhone.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_user, 0, 0, 0);
         } else {
             setToolbar("SMS");
             etEmailPhone.setHint("Enter Number");
             etEmailPhone.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
+            etEmailPhone.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_phone_share, 0, 0, 0);
         }
     }
 

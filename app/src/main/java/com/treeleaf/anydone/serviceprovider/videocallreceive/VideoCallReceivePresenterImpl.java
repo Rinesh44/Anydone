@@ -235,8 +235,8 @@ public class VideoCallReceivePresenterImpl extends
                 .build();
 
         SignalingProto.StartDraw startDraw = SignalingProto.StartDraw.newBuilder()
-                .setBitmapWidth(bitmapWidth)
-                .setBitmapHeight(bitmapHeight)
+                .setCanvasWidth(bitmapWidth)
+                .setCanvasHeight(bitmapHeight)
                 .setCapturedTime(capturedTime)
                 .setCapturedImage(capturedImage)
                 .setClientId(clientId)
@@ -271,8 +271,8 @@ public class VideoCallReceivePresenterImpl extends
                 .build();
 
         SignalingProto.StartDrawAcknowledgement startDrawAcknowledgement = SignalingProto.StartDrawAcknowledgement.newBuilder()
-                .setBitmapWidth(bitmapWidth)
-                .setBitmapHeight(bitmapHeight)
+                .setCanvasWidth(bitmapWidth)
+                .setCanvasHeight(bitmapHeight)
                 .setCapturedTime(capturedTime)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))

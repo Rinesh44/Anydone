@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_toEndOf="@+id/cb_ticket"
+                android:paddingBottom="@dimen/dimens_2x"
                 android:text="asdfasdg asdg asdgf sdf asdf"
                 android:textColor="@color/black" />
 

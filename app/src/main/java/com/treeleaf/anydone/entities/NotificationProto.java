@@ -41,6 +41,22 @@ public final class NotificationProto {
      * <code>SHARE_LINK = 6;</code>
      */
     SHARE_LINK(6),
+    /**
+     * <code>TICKET_COMMENTED = 7;</code>
+     */
+    TICKET_COMMENTED(7),
+    /**
+     * <code>TICKET_STATUS_UPDATED = 8;</code>
+     */
+    TICKET_STATUS_UPDATED(8),
+    /**
+     * <code>TICKET_CONTRIBUTOR_ADDED = 9;</code>
+     */
+    TICKET_CONTRIBUTOR_ADDED(9),
+    /**
+     * <code>TICKET_ASSIGNED = 10;</code>
+     */
+    TICKET_ASSIGNED(10),
     UNRECOGNIZED(-1),
     ;
 
@@ -72,6 +88,22 @@ public final class NotificationProto {
      * <code>SHARE_LINK = 6;</code>
      */
     public static final int SHARE_LINK_VALUE = 6;
+    /**
+     * <code>TICKET_COMMENTED = 7;</code>
+     */
+    public static final int TICKET_COMMENTED_VALUE = 7;
+    /**
+     * <code>TICKET_STATUS_UPDATED = 8;</code>
+     */
+    public static final int TICKET_STATUS_UPDATED_VALUE = 8;
+    /**
+     * <code>TICKET_CONTRIBUTOR_ADDED = 9;</code>
+     */
+    public static final int TICKET_CONTRIBUTOR_ADDED_VALUE = 9;
+    /**
+     * <code>TICKET_ASSIGNED = 10;</code>
+     */
+    public static final int TICKET_ASSIGNED_VALUE = 10;
 
 
     public final int getNumber() {
@@ -95,6 +127,10 @@ public final class NotificationProto {
         case 4: return RESET_PASSWORD_CONFIRMATION;
         case 5: return PHONE_VERIFICATION;
         case 6: return SHARE_LINK;
+        case 7: return TICKET_COMMENTED;
+        case 8: return TICKET_STATUS_UPDATED;
+        case 9: return TICKET_CONTRIBUTOR_ADDED;
+        case 10: return TICKET_ASSIGNED;
         default: return null;
       }
     }
@@ -5810,6 +5846,10 @@ public final class NotificationProto {
        * <code>TICKET_STATUS_UPDATED_TYPE = 5;</code>
        */
       TICKET_STATUS_UPDATED_TYPE(5),
+      /**
+       * <code>TICKET_PARSER_TRAIN_COMPLETED = 6;</code>
+       */
+      TICKET_PARSER_TRAIN_COMPLETED(6),
       UNRECOGNIZED(-1),
       ;
 
@@ -5837,6 +5877,10 @@ public final class NotificationProto {
        * <code>TICKET_STATUS_UPDATED_TYPE = 5;</code>
        */
       public static final int TICKET_STATUS_UPDATED_TYPE_VALUE = 5;
+      /**
+       * <code>TICKET_PARSER_TRAIN_COMPLETED = 6;</code>
+       */
+      public static final int TICKET_PARSER_TRAIN_COMPLETED_VALUE = 6;
 
 
       public final int getNumber() {
@@ -5859,6 +5903,7 @@ public final class NotificationProto {
           case 3: return TICKET_UPDATED_TYPE;
           case 4: return TICKET_DELETED_TYPE;
           case 5: return TICKET_STATUS_UPDATED_TYPE;
+          case 6: return TICKET_PARSER_TRAIN_COMPLETED;
           default: return null;
         }
       }

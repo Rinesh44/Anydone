@@ -47,7 +47,7 @@ public class InProgressTicketPresenterImpl extends BasePresenter<InProgressTicke
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = service.getInProgressTickets(token, serviceId, from, to, page);
+        getTicketsObservable = service.getInProgressTickets(token, serviceId, from, to, page, "ASC");
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

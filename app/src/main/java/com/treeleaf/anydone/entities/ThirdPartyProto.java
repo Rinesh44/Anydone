@@ -18285,6 +18285,1141 @@ public final class ThirdPartyProto {
     }
   }
 
+  public interface IncomingMailMessageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.IncomingMailMessage)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string mailSubject = 1;</code>
+     */
+    String getMailSubject();
+    /**
+     * <code>optional string mailSubject = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getMailSubjectBytes();
+
+    /**
+     * <code>optional string messageContent = 2;</code>
+     */
+    String getMessageContent();
+    /**
+     * <code>optional string messageContent = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageContentBytes();
+
+    /**
+     * <code>optional string sentDate = 3;</code>
+     */
+    String getSentDate();
+    /**
+     * <code>optional string sentDate = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getSentDateBytes();
+
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    java.util.List<String>
+        getToListList();
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    int getToListCount();
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    String getToList(int index);
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getToListBytes(int index);
+
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    java.util.List<String>
+        getFromListList();
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    int getFromListCount();
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    String getFromList(int index);
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getFromListBytes(int index);
+
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    java.util.List<String>
+        getCcListList();
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    int getCcListCount();
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    String getCcList(int index);
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getCcListBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.IncomingMailMessage}
+   */
+  public  static final class IncomingMailMessage extends
+      com.google.protobuf.GeneratedMessageLite<
+          IncomingMailMessage, IncomingMailMessage.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.IncomingMailMessage)
+      IncomingMailMessageOrBuilder {
+    private IncomingMailMessage() {
+      mailSubject_ = "";
+      messageContent_ = "";
+      sentDate_ = "";
+      toList_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      fromList_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      ccList_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int MAILSUBJECT_FIELD_NUMBER = 1;
+    private String mailSubject_;
+    /**
+     * <code>optional string mailSubject = 1;</code>
+     */
+    public String getMailSubject() {
+      return mailSubject_;
+    }
+    /**
+     * <code>optional string mailSubject = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMailSubjectBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(mailSubject_);
+    }
+    /**
+     * <code>optional string mailSubject = 1;</code>
+     */
+    private void setMailSubject(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      mailSubject_ = value;
+    }
+    /**
+     * <code>optional string mailSubject = 1;</code>
+     */
+    private void clearMailSubject() {
+      
+      mailSubject_ = getDefaultInstance().getMailSubject();
+    }
+    /**
+     * <code>optional string mailSubject = 1;</code>
+     */
+    private void setMailSubjectBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      mailSubject_ = value.toStringUtf8();
+    }
+
+    public static final int MESSAGECONTENT_FIELD_NUMBER = 2;
+    private String messageContent_;
+    /**
+     * <code>optional string messageContent = 2;</code>
+     */
+    public String getMessageContent() {
+      return messageContent_;
+    }
+    /**
+     * <code>optional string messageContent = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageContentBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(messageContent_);
+    }
+    /**
+     * <code>optional string messageContent = 2;</code>
+     */
+    private void setMessageContent(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      messageContent_ = value;
+    }
+    /**
+     * <code>optional string messageContent = 2;</code>
+     */
+    private void clearMessageContent() {
+      
+      messageContent_ = getDefaultInstance().getMessageContent();
+    }
+    /**
+     * <code>optional string messageContent = 2;</code>
+     */
+    private void setMessageContentBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      messageContent_ = value.toStringUtf8();
+    }
+
+    public static final int SENTDATE_FIELD_NUMBER = 3;
+    private String sentDate_;
+    /**
+     * <code>optional string sentDate = 3;</code>
+     */
+    public String getSentDate() {
+      return sentDate_;
+    }
+    /**
+     * <code>optional string sentDate = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSentDateBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(sentDate_);
+    }
+    /**
+     * <code>optional string sentDate = 3;</code>
+     */
+    private void setSentDate(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sentDate_ = value;
+    }
+    /**
+     * <code>optional string sentDate = 3;</code>
+     */
+    private void clearSentDate() {
+      
+      sentDate_ = getDefaultInstance().getSentDate();
+    }
+    /**
+     * <code>optional string sentDate = 3;</code>
+     */
+    private void setSentDateBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      sentDate_ = value.toStringUtf8();
+    }
+
+    public static final int TOLIST_FIELD_NUMBER = 4;
+    private com.google.protobuf.Internal.ProtobufList<String> toList_;
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    public java.util.List<String> getToListList() {
+      return toList_;
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    public int getToListCount() {
+      return toList_.size();
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    public String getToList(int index) {
+      return toList_.get(index);
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getToListBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          toList_.get(index));
+    }
+    private void ensureToListIsMutable() {
+      if (!toList_.isModifiable()) {
+        toList_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(toList_);
+       }
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    private void setToList(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureToListIsMutable();
+      toList_.set(index, value);
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    private void addToList(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureToListIsMutable();
+      toList_.add(value);
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    private void addAllToList(
+        Iterable<String> values) {
+      ensureToListIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, toList_);
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    private void clearToList() {
+      toList_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string toList = 4;</code>
+     */
+    private void addToListBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureToListIsMutable();
+      toList_.add(value.toStringUtf8());
+    }
+
+    public static final int FROMLIST_FIELD_NUMBER = 5;
+    private com.google.protobuf.Internal.ProtobufList<String> fromList_;
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    public java.util.List<String> getFromListList() {
+      return fromList_;
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    public int getFromListCount() {
+      return fromList_.size();
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    public String getFromList(int index) {
+      return fromList_.get(index);
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFromListBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          fromList_.get(index));
+    }
+    private void ensureFromListIsMutable() {
+      if (!fromList_.isModifiable()) {
+        fromList_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(fromList_);
+       }
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    private void setFromList(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFromListIsMutable();
+      fromList_.set(index, value);
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    private void addFromList(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFromListIsMutable();
+      fromList_.add(value);
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    private void addAllFromList(
+        Iterable<String> values) {
+      ensureFromListIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, fromList_);
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    private void clearFromList() {
+      fromList_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string fromList = 5;</code>
+     */
+    private void addFromListBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureFromListIsMutable();
+      fromList_.add(value.toStringUtf8());
+    }
+
+    public static final int CCLIST_FIELD_NUMBER = 6;
+    private com.google.protobuf.Internal.ProtobufList<String> ccList_;
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    public java.util.List<String> getCcListList() {
+      return ccList_;
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    public int getCcListCount() {
+      return ccList_.size();
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    public String getCcList(int index) {
+      return ccList_.get(index);
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCcListBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          ccList_.get(index));
+    }
+    private void ensureCcListIsMutable() {
+      if (!ccList_.isModifiable()) {
+        ccList_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(ccList_);
+       }
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    private void setCcList(
+        int index, String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureCcListIsMutable();
+      ccList_.set(index, value);
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    private void addCcList(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureCcListIsMutable();
+      ccList_.add(value);
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    private void addAllCcList(
+        Iterable<String> values) {
+      ensureCcListIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, ccList_);
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    private void clearCcList() {
+      ccList_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string ccList = 6;</code>
+     */
+    private void addCcListBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureCcListIsMutable();
+      ccList_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!mailSubject_.isEmpty()) {
+        output.writeString(1, getMailSubject());
+      }
+      if (!messageContent_.isEmpty()) {
+        output.writeString(2, getMessageContent());
+      }
+      if (!sentDate_.isEmpty()) {
+        output.writeString(3, getSentDate());
+      }
+      for (int i = 0; i < toList_.size(); i++) {
+        output.writeString(4, toList_.get(i));
+      }
+      for (int i = 0; i < fromList_.size(); i++) {
+        output.writeString(5, fromList_.get(i));
+      }
+      for (int i = 0; i < ccList_.size(); i++) {
+        output.writeString(6, ccList_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!mailSubject_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getMailSubject());
+      }
+      if (!messageContent_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getMessageContent());
+      }
+      if (!sentDate_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getSentDate());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < toList_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(toList_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getToListList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < fromList_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(fromList_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getFromListList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < ccList_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(ccList_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getCcListList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static IncomingMailMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static IncomingMailMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static IncomingMailMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static IncomingMailMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static IncomingMailMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static IncomingMailMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static IncomingMailMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static IncomingMailMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static IncomingMailMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static IncomingMailMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(IncomingMailMessage prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.IncomingMailMessage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          IncomingMailMessage, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IncomingMailMessage)
+        IncomingMailMessageOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string mailSubject = 1;</code>
+       */
+      public String getMailSubject() {
+        return instance.getMailSubject();
+      }
+      /**
+       * <code>optional string mailSubject = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMailSubjectBytes() {
+        return instance.getMailSubjectBytes();
+      }
+      /**
+       * <code>optional string mailSubject = 1;</code>
+       */
+      public Builder setMailSubject(
+          String value) {
+        copyOnWrite();
+        instance.setMailSubject(value);
+        return this;
+      }
+      /**
+       * <code>optional string mailSubject = 1;</code>
+       */
+      public Builder clearMailSubject() {
+        copyOnWrite();
+        instance.clearMailSubject();
+        return this;
+      }
+      /**
+       * <code>optional string mailSubject = 1;</code>
+       */
+      public Builder setMailSubjectBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMailSubjectBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string messageContent = 2;</code>
+       */
+      public String getMessageContent() {
+        return instance.getMessageContent();
+      }
+      /**
+       * <code>optional string messageContent = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageContentBytes() {
+        return instance.getMessageContentBytes();
+      }
+      /**
+       * <code>optional string messageContent = 2;</code>
+       */
+      public Builder setMessageContent(
+          String value) {
+        copyOnWrite();
+        instance.setMessageContent(value);
+        return this;
+      }
+      /**
+       * <code>optional string messageContent = 2;</code>
+       */
+      public Builder clearMessageContent() {
+        copyOnWrite();
+        instance.clearMessageContent();
+        return this;
+      }
+      /**
+       * <code>optional string messageContent = 2;</code>
+       */
+      public Builder setMessageContentBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMessageContentBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string sentDate = 3;</code>
+       */
+      public String getSentDate() {
+        return instance.getSentDate();
+      }
+      /**
+       * <code>optional string sentDate = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSentDateBytes() {
+        return instance.getSentDateBytes();
+      }
+      /**
+       * <code>optional string sentDate = 3;</code>
+       */
+      public Builder setSentDate(
+          String value) {
+        copyOnWrite();
+        instance.setSentDate(value);
+        return this;
+      }
+      /**
+       * <code>optional string sentDate = 3;</code>
+       */
+      public Builder clearSentDate() {
+        copyOnWrite();
+        instance.clearSentDate();
+        return this;
+      }
+      /**
+       * <code>optional string sentDate = 3;</code>
+       */
+      public Builder setSentDateBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSentDateBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public java.util.List<String>
+          getToListList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getToListList());
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public int getToListCount() {
+        return instance.getToListCount();
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public String getToList(int index) {
+        return instance.getToList(index);
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getToListBytes(int index) {
+        return instance.getToListBytes(index);
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public Builder setToList(
+          int index, String value) {
+        copyOnWrite();
+        instance.setToList(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public Builder addToList(
+          String value) {
+        copyOnWrite();
+        instance.addToList(value);
+        return this;
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public Builder addAllToList(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllToList(values);
+        return this;
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public Builder clearToList() {
+        copyOnWrite();
+        instance.clearToList();
+        return this;
+      }
+      /**
+       * <code>repeated string toList = 4;</code>
+       */
+      public Builder addToListBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addToListBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public java.util.List<String>
+          getFromListList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getFromListList());
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public int getFromListCount() {
+        return instance.getFromListCount();
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public String getFromList(int index) {
+        return instance.getFromList(index);
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFromListBytes(int index) {
+        return instance.getFromListBytes(index);
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public Builder setFromList(
+          int index, String value) {
+        copyOnWrite();
+        instance.setFromList(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public Builder addFromList(
+          String value) {
+        copyOnWrite();
+        instance.addFromList(value);
+        return this;
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public Builder addAllFromList(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllFromList(values);
+        return this;
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public Builder clearFromList() {
+        copyOnWrite();
+        instance.clearFromList();
+        return this;
+      }
+      /**
+       * <code>repeated string fromList = 5;</code>
+       */
+      public Builder addFromListBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addFromListBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public java.util.List<String>
+          getCcListList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getCcListList());
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public int getCcListCount() {
+        return instance.getCcListCount();
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public String getCcList(int index) {
+        return instance.getCcList(index);
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCcListBytes(int index) {
+        return instance.getCcListBytes(index);
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public Builder setCcList(
+          int index, String value) {
+        copyOnWrite();
+        instance.setCcList(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public Builder addCcList(
+          String value) {
+        copyOnWrite();
+        instance.addCcList(value);
+        return this;
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public Builder addAllCcList(
+          Iterable<String> values) {
+        copyOnWrite();
+        instance.addAllCcList(values);
+        return this;
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public Builder clearCcList() {
+        copyOnWrite();
+        instance.clearCcList();
+        return this;
+      }
+      /**
+       * <code>repeated string ccList = 6;</code>
+       */
+      public Builder addCcListBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addCcListBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IncomingMailMessage)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new IncomingMailMessage();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          toList_.makeImmutable();
+          fromList_.makeImmutable();
+          ccList_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          IncomingMailMessage other = (IncomingMailMessage) arg1;
+          mailSubject_ = visitor.visitString(!mailSubject_.isEmpty(), mailSubject_,
+              !other.mailSubject_.isEmpty(), other.mailSubject_);
+          messageContent_ = visitor.visitString(!messageContent_.isEmpty(), messageContent_,
+              !other.messageContent_.isEmpty(), other.messageContent_);
+          sentDate_ = visitor.visitString(!sentDate_.isEmpty(), sentDate_,
+              !other.sentDate_.isEmpty(), other.sentDate_);
+          toList_= visitor.visitList(toList_, other.toList_);
+          fromList_= visitor.visitList(fromList_, other.fromList_);
+          ccList_= visitor.visitList(ccList_, other.ccList_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  mailSubject_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  messageContent_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  sentDate_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+                  if (!toList_.isModifiable()) {
+                    toList_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(toList_);
+                  }
+                  toList_.add(s);
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+                  if (!fromList_.isModifiable()) {
+                    fromList_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(fromList_);
+                  }
+                  fromList_.add(s);
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+                  if (!ccList_.isModifiable()) {
+                    ccList_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(ccList_);
+                  }
+                  ccList_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (IncomingMailMessage.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IncomingMailMessage)
+    private static final IncomingMailMessage DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new IncomingMailMessage();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static IncomingMailMessage getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<IncomingMailMessage> PARSER;
+
+    public static com.google.protobuf.Parser<IncomingMailMessage> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

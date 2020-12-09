@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,10 +50,12 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
     RelativeLayout rlLocationView;
     @BindView(R.id.rl_empty_view)
     RelativeLayout rlEmptyView;
-    @BindView(R.id.tv_add_location)
-    TextView tvAddLocation;
     @BindView(R.id.pb_progress)
     ProgressBar progressBar;
+    @BindView(R.id.btn_location)
+    MaterialButton btnMenuAddLocation;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
 
     private LocationAdapter adapter;
 
@@ -65,9 +68,13 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setToolbar();
+//        setToolbar();
         List<Location> locationList = LocationRepo.getInstance().getAllLocation();
         setUpRecyclerView(locationList);
+
+        ivBack.setOnClickListener(v -> onBackPressed());
+        btnMenuAddLocation.setOnClickListener(v -> startActivity(new Intent(
+                ShowLocationActivity.this, AddLocationActivity.class)));
 
         btnAddLocation.setOnClickListener(v -> Dexter.withContext(getContext())
                 .withPermissions(
@@ -121,6 +128,7 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
         if (!CollectionUtils.isEmpty(locationList)) {
             rlLocationView.setVisibility(View.VISIBLE);
             btnAddLocation.setVisibility(View.GONE);
+            btnMenuAddLocation.setVisibility(View.VISIBLE);
             rlEmptyView.setVisibility(View.GONE);
             adapter = new LocationAdapter(locationList);
             rvLocations.setAdapter(adapter);
@@ -128,6 +136,7 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
             rlLocationView.setVisibility(View.GONE);
             rlEmptyView.setVisibility(View.VISIBLE);
             btnAddLocation.setVisibility(View.VISIBLE);
+            btnMenuAddLocation.setVisibility(View.GONE);
         }
 
 

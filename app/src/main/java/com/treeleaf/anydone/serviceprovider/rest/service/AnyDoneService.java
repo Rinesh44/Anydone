@@ -232,7 +232,8 @@ public interface AnyDoneService {
                                String serviceId,
                        @Query("from") long from,
                        @Query("to") long to,
-                       @Query("page") int page);
+                       @Query("page") int page,
+                       @Query("sort") String order);
 
     @GET("ticket/pending/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -242,7 +243,8 @@ public interface AnyDoneService {
                               String serviceId,
                       @Query("from") long from,
                       @Query("to") long to,
-                      @Query("page") int page);
+                      @Query("page") int page,
+                      @Query("sort") String order);
 
     @GET("ticket/inprogress/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -252,7 +254,8 @@ public interface AnyDoneService {
                                  String serviceId,
                          @Query("from") long from,
                          @Query("to") long to,
-                         @Query("page") int page);
+                         @Query("page") int page,
+                         @Query("sort") String order);
 
 
     @GET("ticket/contributed/{serviceId}")
@@ -263,7 +266,8 @@ public interface AnyDoneService {
                                   String serviceId,
                           @Query("from") long from,
                           @Query("to") long to,
-                          @Query("page") int page);
+                          @Query("page") int page,
+                          @Query("sort") String order);
 
 
     @GET("ticket/subscribed/{serviceId}")
@@ -274,7 +278,8 @@ public interface AnyDoneService {
                                  String serviceId,
                          @Query("from") long from,
                          @Query("to") long to,
-                         @Query("page") int page);
+                         @Query("page") int page,
+                         @Query("sort") String order);
 
     @GET("ticket/inactive/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -284,7 +289,8 @@ public interface AnyDoneService {
                                      String serviceId,
                              @Query("from") long from,
                              @Query("to") long to,
-                             @Query("page") int page);
+                             @Query("page") int page,
+                             @Query("sort") String order);
 
     @GET("ticket/backlog/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -294,7 +300,8 @@ public interface AnyDoneService {
                               String serviceId,
                       @Query("from") long from,
                       @Query("to") long to,
-                      @Query("page") int page);
+                      @Query("page") int page,
+                      @Query("sort") String order);
 
     @GET("ticket/subscribable/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -304,7 +311,8 @@ public interface AnyDoneService {
                                     String serviceId,
                             @Query("from") long from,
                             @Query("to") long to,
-                            @Query("page") int page);
+                            @Query("page") int page,
+                            @Query("sort") String order);
 
     @PATCH("ticket/unsubscribe/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> unsubscribe(@Header(AUTHORIZATION)

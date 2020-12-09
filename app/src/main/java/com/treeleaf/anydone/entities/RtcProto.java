@@ -12205,15 +12205,6 @@ public final class RtcProto {
     SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    boolean hasScreenDrawRequest();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    SignalingProto.ScreenDrawRequest getScreenDrawRequest();
-
-    /**
      * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 7;</code>
      */
     boolean hasVideoCallJoinRequest();
@@ -12383,6 +12374,15 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabReq = 25;</code>
      */
     SignalingProto.DrawCollab getDrawCollabReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    boolean hasDrawCollabAcknowledgement();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayRequest}
@@ -12419,10 +12419,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST = 5;</code>
        */
       VIDEO_CALL_BROADCAST(5),
-      /**
-       * <code>DRAW_REQUEST = 6;</code>
-       */
-      DRAW_REQUEST(6),
       /**
        * <code>VIDEO_CALL_JOIN_REQUEST = 7;</code>
        */
@@ -12492,9 +12488,13 @@ public final class RtcProto {
        */
       DRAW_CLOSE_REQUEST(23),
       /**
-       * <code>DRAW_COLlAB_REQUEST = 24;</code>
+       * <code>DRAW_COLLAB_REQUEST = 24;</code>
        */
-      DRAW_COLlAB_REQUEST(24),
+      DRAW_COLLAB_REQUEST(24),
+      /**
+       * <code>DRAW_COLLAB_ACKNOWLEDGEMENT_REQUEST = 25;</code>
+       */
+      DRAW_COLLAB_ACKNOWLEDGEMENT_REQUEST(25),
       UNRECOGNIZED(-1),
       ;
 
@@ -12518,10 +12518,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST = 5;</code>
        */
       public static final int VIDEO_CALL_BROADCAST_VALUE = 5;
-      /**
-       * <code>DRAW_REQUEST = 6;</code>
-       */
-      public static final int DRAW_REQUEST_VALUE = 6;
       /**
        * <code>VIDEO_CALL_JOIN_REQUEST = 7;</code>
        */
@@ -12591,9 +12587,13 @@ public final class RtcProto {
        */
       public static final int DRAW_CLOSE_REQUEST_VALUE = 23;
       /**
-       * <code>DRAW_COLlAB_REQUEST = 24;</code>
+       * <code>DRAW_COLLAB_REQUEST = 24;</code>
        */
-      public static final int DRAW_COLlAB_REQUEST_VALUE = 24;
+      public static final int DRAW_COLLAB_REQUEST_VALUE = 24;
+      /**
+       * <code>DRAW_COLLAB_ACKNOWLEDGEMENT_REQUEST = 25;</code>
+       */
+      public static final int DRAW_COLLAB_ACKNOWLEDGEMENT_REQUEST_VALUE = 25;
 
 
       public final int getNumber() {
@@ -12615,7 +12615,6 @@ public final class RtcProto {
           case 2: return DELIVERED_MSG_RELAY;
           case 4: return RTC_MESSAGE_DELETE;
           case 5: return VIDEO_CALL_BROADCAST;
-          case 6: return DRAW_REQUEST;
           case 7: return VIDEO_CALL_JOIN_REQUEST;
           case 8: return VIDEO_ROOM_HOST_LEFT_REQUEST;
           case 9: return PARTICIPANT_LEFT_REQUEST;
@@ -12633,7 +12632,8 @@ public final class RtcProto {
           case 21: return DRAW_MINIMIZE_REQUEST;
           case 22: return DRAW_MAXIMIZE_REQUEST;
           case 23: return DRAW_CLOSE_REQUEST;
-          case 24: return DRAW_COLlAB_REQUEST;
+          case 24: return DRAW_COLLAB_REQUEST;
+          case 25: return DRAW_COLLAB_ACKNOWLEDGEMENT_REQUEST;
           default: return null;
         }
       }
@@ -12903,58 +12903,6 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 5;</code>
      */
     private void clearBroadcastVideoCall() {  broadcastVideoCall_ = null;
-      
-    }
-
-    public static final int SCREENDRAWREQUEST_FIELD_NUMBER = 6;
-    private SignalingProto.ScreenDrawRequest screenDrawRequest_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    public boolean hasScreenDrawRequest() {
-      return screenDrawRequest_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    public SignalingProto.ScreenDrawRequest getScreenDrawRequest() {
-      return screenDrawRequest_ == null ? SignalingProto.ScreenDrawRequest.getDefaultInstance() : screenDrawRequest_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void setScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      screenDrawRequest_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void setScreenDrawRequest(
-        SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-      screenDrawRequest_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void mergeScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-      if (screenDrawRequest_ != null &&
-          screenDrawRequest_ != SignalingProto.ScreenDrawRequest.getDefaultInstance()) {
-        screenDrawRequest_ =
-          SignalingProto.ScreenDrawRequest.newBuilder(screenDrawRequest_).mergeFrom(value).buildPartial();
-      } else {
-        screenDrawRequest_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-     */
-    private void clearScreenDrawRequest() {  screenDrawRequest_ = null;
       
     }
 
@@ -13933,6 +13881,58 @@ public final class RtcProto {
       
     }
 
+    public static final int DRAWCOLLABACKNOWLEDGEMENT_FIELD_NUMBER = 26;
+    private SignalingProto.DrawCollabAcknowledgement drawCollabAcknowledgement_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    public boolean hasDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    public SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ == null ? SignalingProto.DrawCollabAcknowledgement.getDefaultInstance() : drawCollabAcknowledgement_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void setDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabAcknowledgement_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void setDrawCollabAcknowledgement(
+        SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+      drawCollabAcknowledgement_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void mergeDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+      if (drawCollabAcknowledgement_ != null &&
+          drawCollabAcknowledgement_ != SignalingProto.DrawCollabAcknowledgement.getDefaultInstance()) {
+        drawCollabAcknowledgement_ =
+          SignalingProto.DrawCollabAcknowledgement.newBuilder(drawCollabAcknowledgement_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabAcknowledgement_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+     */
+    private void clearDrawCollabAcknowledgement() {  drawCollabAcknowledgement_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (relayType_ != RelayRequestType.NO_RELAY.getNumber()) {
@@ -13949,9 +13949,6 @@ public final class RtcProto {
       }
       if (broadcastVideoCall_ != null) {
         output.writeMessage(5, getBroadcastVideoCall());
-      }
-      if (screenDrawRequest_ != null) {
-        output.writeMessage(6, getScreenDrawRequest());
       }
       if (videoCallJoinRequest_ != null) {
         output.writeMessage(7, getVideoCallJoinRequest());
@@ -14010,6 +14007,9 @@ public final class RtcProto {
       if (drawCollabReq_ != null) {
         output.writeMessage(25, getDrawCollabReq());
       }
+      if (drawCollabAcknowledgement_ != null) {
+        output.writeMessage(26, getDrawCollabAcknowledgement());
+      }
     }
 
     public int getSerializedSize() {
@@ -14036,10 +14036,6 @@ public final class RtcProto {
       if (broadcastVideoCall_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getBroadcastVideoCall());
-      }
-      if (screenDrawRequest_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getScreenDrawRequest());
       }
       if (videoCallJoinRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -14116,6 +14112,10 @@ public final class RtcProto {
       if (drawCollabReq_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(25, getDrawCollabReq());
+      }
+      if (drawCollabAcknowledgement_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, getDrawCollabAcknowledgement());
       }
       memoizedSerializedSize = size;
       return size;
@@ -14417,51 +14417,6 @@ public final class RtcProto {
        */
       public Builder clearBroadcastVideoCall() {  copyOnWrite();
         instance.clearBroadcastVideoCall();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public boolean hasScreenDrawRequest() {
-        return instance.hasScreenDrawRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public SignalingProto.ScreenDrawRequest getScreenDrawRequest() {
-        return instance.getScreenDrawRequest();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder setScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.setScreenDrawRequest(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder setScreenDrawRequest(
-          SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-        copyOnWrite();
-        instance.setScreenDrawRequest(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder mergeScreenDrawRequest(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.mergeScreenDrawRequest(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawRequest = 6;</code>
-       */
-      public Builder clearScreenDrawRequest() {  copyOnWrite();
-        instance.clearScreenDrawRequest();
         return this;
       }
 
@@ -15312,6 +15267,51 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public boolean hasDrawCollabAcknowledgement() {
+        return instance.hasDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+        return instance.getDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(
+          SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder mergeDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.mergeDrawCollabAcknowledgement(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 26;</code>
+       */
+      public Builder clearDrawCollabAcknowledgement() {  copyOnWrite();
+        instance.clearDrawCollabAcknowledgement();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayRequest)
     }
     protected final Object dynamicMethod(
@@ -15338,7 +15338,6 @@ public final class RtcProto {
           messageDeliveredRequest_ = visitor.visitMessage(messageDeliveredRequest_, other.messageDeliveredRequest_);
           deleteMessageReq_ = visitor.visitMessage(deleteMessageReq_, other.deleteMessageReq_);
           broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
-          screenDrawRequest_ = visitor.visitMessage(screenDrawRequest_, other.screenDrawRequest_);
           videoCallJoinRequest_ = visitor.visitMessage(videoCallJoinRequest_, other.videoCallJoinRequest_);
           videoRoomHostLeftRequest_ = visitor.visitMessage(videoRoomHostLeftRequest_, other.videoRoomHostLeftRequest_);
           participantLeftRequest_ = visitor.visitMessage(participantLeftRequest_, other.participantLeftRequest_);
@@ -15358,6 +15357,7 @@ public final class RtcProto {
           drawMaximizeReq_ = visitor.visitMessage(drawMaximizeReq_, other.drawMaximizeReq_);
           drawCloseReq_ = visitor.visitMessage(drawCloseReq_, other.drawCloseReq_);
           drawCollabReq_ = visitor.visitMessage(drawCollabReq_, other.drawCollabReq_);
+          drawCollabAcknowledgement_ = visitor.visitMessage(drawCollabAcknowledgement_, other.drawCollabAcknowledgement_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -15436,19 +15436,6 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(broadcastVideoCall_);
                     broadcastVideoCall_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 50: {
-                  SignalingProto.ScreenDrawRequest.Builder subBuilder = null;
-                  if (screenDrawRequest_ != null) {
-                    subBuilder = screenDrawRequest_.toBuilder();
-                  }
-                  screenDrawRequest_ = input.readMessage(SignalingProto.ScreenDrawRequest.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(screenDrawRequest_);
-                    screenDrawRequest_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -15689,6 +15676,19 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawCollabReq_);
                     drawCollabReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 210: {
+                  SignalingProto.DrawCollabAcknowledgement.Builder subBuilder = null;
+                  if (drawCollabAcknowledgement_ != null) {
+                    subBuilder = drawCollabAcknowledgement_.toBuilder();
+                  }
+                  drawCollabAcknowledgement_ = input.readMessage(SignalingProto.DrawCollabAcknowledgement.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabAcknowledgement_);
+                    drawCollabAcknowledgement_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -17011,15 +17011,6 @@ public final class RtcProto {
     SignalingProto.ParticipantLeft getParticipantLeftResponse();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    boolean hasScreenDrawResponse();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    SignalingProto.ScreenDrawRequest getScreenDrawResponse();
-
-    /**
      * <code>optional .treeleaf.anydone.entities.StartDraw startDrawResponse = 13;</code>
      */
     boolean hasStartDrawResponse();
@@ -17162,6 +17153,15 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.DrawCollab drawCollabResponse = 28;</code>
      */
     SignalingProto.DrawCollab getDrawCollabResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    boolean hasDrawCollabAcknowledgement();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayResponse}
@@ -17203,10 +17203,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST_RESPONSE = 5;</code>
        */
       VIDEO_CALL_BROADCAST_RESPONSE(5),
-      /**
-       * <code>DRAW_RESPONSE = 6;</code>
-       */
-      DRAW_RESPONSE(6),
       /**
        * <code>VIDEO_CALL_JOIN_RESPONSE = 7;</code>
        */
@@ -17276,9 +17272,13 @@ public final class RtcProto {
        */
       DRAW_CLOSE_RESPONSE(23),
       /**
-       * <code>DRAW_COLlAB_RESPONSE = 24;</code>
+       * <code>DRAW_COLLAB_RESPONSE = 24;</code>
        */
-      DRAW_COLlAB_RESPONSE(24),
+      DRAW_COLLAB_RESPONSE(24),
+      /**
+       * <code>DRAW_COLLAB_ACKNOWLEDGEMENT_RESPONSE = 25;</code>
+       */
+      DRAW_COLLAB_ACKNOWLEDGEMENT_RESPONSE(25),
       UNRECOGNIZED(-1),
       ;
 
@@ -17306,10 +17306,6 @@ public final class RtcProto {
        * <code>VIDEO_CALL_BROADCAST_RESPONSE = 5;</code>
        */
       public static final int VIDEO_CALL_BROADCAST_RESPONSE_VALUE = 5;
-      /**
-       * <code>DRAW_RESPONSE = 6;</code>
-       */
-      public static final int DRAW_RESPONSE_VALUE = 6;
       /**
        * <code>VIDEO_CALL_JOIN_RESPONSE = 7;</code>
        */
@@ -17379,9 +17375,13 @@ public final class RtcProto {
        */
       public static final int DRAW_CLOSE_RESPONSE_VALUE = 23;
       /**
-       * <code>DRAW_COLlAB_RESPONSE = 24;</code>
+       * <code>DRAW_COLLAB_RESPONSE = 24;</code>
        */
-      public static final int DRAW_COLlAB_RESPONSE_VALUE = 24;
+      public static final int DRAW_COLLAB_RESPONSE_VALUE = 24;
+      /**
+       * <code>DRAW_COLLAB_ACKNOWLEDGEMENT_RESPONSE = 25;</code>
+       */
+      public static final int DRAW_COLLAB_ACKNOWLEDGEMENT_RESPONSE_VALUE = 25;
 
 
       public final int getNumber() {
@@ -17404,7 +17404,6 @@ public final class RtcProto {
           case 3: return RELAY_ERROR_RESPONSE;
           case 4: return RTC_MESSAGE_DELETE;
           case 5: return VIDEO_CALL_BROADCAST_RESPONSE;
-          case 6: return DRAW_RESPONSE;
           case 7: return VIDEO_CALL_JOIN_RESPONSE;
           case 8: return VIDEO_ROOM_HOST_LEFT_RESPONSE;
           case 9: return PARTICIPANT_LEFT_RESPONSE;
@@ -17422,7 +17421,8 @@ public final class RtcProto {
           case 21: return DRAW_MINIMIZE_RESPONSE;
           case 22: return DRAW_MAXIMIZE_RESPONSE;
           case 23: return DRAW_CLOSE_RESPONSE;
-          case 24: return DRAW_COLlAB_RESPONSE;
+          case 24: return DRAW_COLLAB_RESPONSE;
+          case 25: return DRAW_COLLAB_ACKNOWLEDGEMENT_RESPONSE;
           default: return null;
         }
       }
@@ -17969,58 +17969,6 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.ParticipantLeft participantLeftResponse = 11;</code>
      */
     private void clearParticipantLeftResponse() {  participantLeftResponse_ = null;
-      
-    }
-
-    public static final int SCREENDRAWRESPONSE_FIELD_NUMBER = 12;
-    private SignalingProto.ScreenDrawRequest screenDrawResponse_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    public boolean hasScreenDrawResponse() {
-      return screenDrawResponse_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    public SignalingProto.ScreenDrawRequest getScreenDrawResponse() {
-      return screenDrawResponse_ == null ? SignalingProto.ScreenDrawRequest.getDefaultInstance() : screenDrawResponse_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void setScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      screenDrawResponse_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void setScreenDrawResponse(
-        SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-      screenDrawResponse_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void mergeScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-      if (screenDrawResponse_ != null &&
-          screenDrawResponse_ != SignalingProto.ScreenDrawRequest.getDefaultInstance()) {
-        screenDrawResponse_ =
-          SignalingProto.ScreenDrawRequest.newBuilder(screenDrawResponse_).mergeFrom(value).buildPartial();
-      } else {
-        screenDrawResponse_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-     */
-    private void clearScreenDrawResponse() {  screenDrawResponse_ = null;
       
     }
 
@@ -18843,6 +18791,58 @@ public final class RtcProto {
       
     }
 
+    public static final int DRAWCOLLABACKNOWLEDGEMENT_FIELD_NUMBER = 29;
+    private SignalingProto.DrawCollabAcknowledgement drawCollabAcknowledgement_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    public boolean hasDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    public SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+      return drawCollabAcknowledgement_ == null ? SignalingProto.DrawCollabAcknowledgement.getDefaultInstance() : drawCollabAcknowledgement_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void setDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawCollabAcknowledgement_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void setDrawCollabAcknowledgement(
+        SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+      drawCollabAcknowledgement_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void mergeDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+      if (drawCollabAcknowledgement_ != null &&
+          drawCollabAcknowledgement_ != SignalingProto.DrawCollabAcknowledgement.getDefaultInstance()) {
+        drawCollabAcknowledgement_ =
+          SignalingProto.DrawCollabAcknowledgement.newBuilder(drawCollabAcknowledgement_).mergeFrom(value).buildPartial();
+      } else {
+        drawCollabAcknowledgement_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+     */
+    private void clearDrawCollabAcknowledgement() {  drawCollabAcknowledgement_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (responseType_ != RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
@@ -18877,9 +18877,6 @@ public final class RtcProto {
       }
       if (participantLeftResponse_ != null) {
         output.writeMessage(11, getParticipantLeftResponse());
-      }
-      if (screenDrawResponse_ != null) {
-        output.writeMessage(12, getScreenDrawResponse());
       }
       if (startDrawResponse_ != null) {
         output.writeMessage(13, getStartDrawResponse());
@@ -18928,6 +18925,9 @@ public final class RtcProto {
       }
       if (drawCollabResponse_ != null) {
         output.writeMessage(28, getDrawCollabResponse());
+      }
+      if (drawCollabAcknowledgement_ != null) {
+        output.writeMessage(29, getDrawCollabAcknowledgement());
       }
     }
 
@@ -18979,10 +18979,6 @@ public final class RtcProto {
       if (participantLeftResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getParticipantLeftResponse());
-      }
-      if (screenDrawResponse_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, getScreenDrawResponse());
       }
       if (startDrawResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -19047,6 +19043,10 @@ public final class RtcProto {
       if (drawCollabResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(28, getDrawCollabResponse());
+      }
+      if (drawCollabAcknowledgement_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(29, getDrawCollabAcknowledgement());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19591,51 +19591,6 @@ public final class RtcProto {
        */
       public Builder clearParticipantLeftResponse() {  copyOnWrite();
         instance.clearParticipantLeftResponse();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public boolean hasScreenDrawResponse() {
-        return instance.hasScreenDrawResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public SignalingProto.ScreenDrawRequest getScreenDrawResponse() {
-        return instance.getScreenDrawResponse();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder setScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.setScreenDrawResponse(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder setScreenDrawResponse(
-          SignalingProto.ScreenDrawRequest.Builder builderForValue) {
-        copyOnWrite();
-        instance.setScreenDrawResponse(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder mergeScreenDrawResponse(SignalingProto.ScreenDrawRequest value) {
-        copyOnWrite();
-        instance.mergeScreenDrawResponse(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ScreenDrawRequest screenDrawResponse = 12;</code>
-       */
-      public Builder clearScreenDrawResponse() {  copyOnWrite();
-        instance.clearScreenDrawResponse();
         return this;
       }
 
@@ -20351,6 +20306,51 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public boolean hasDrawCollabAcknowledgement() {
+        return instance.hasDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public SignalingProto.DrawCollabAcknowledgement getDrawCollabAcknowledgement() {
+        return instance.getDrawCollabAcknowledgement();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder setDrawCollabAcknowledgement(
+          SignalingProto.DrawCollabAcknowledgement.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawCollabAcknowledgement(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder mergeDrawCollabAcknowledgement(SignalingProto.DrawCollabAcknowledgement value) {
+        copyOnWrite();
+        instance.mergeDrawCollabAcknowledgement(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawCollabAcknowledgement drawCollabAcknowledgement = 29;</code>
+       */
+      public Builder clearDrawCollabAcknowledgement() {  copyOnWrite();
+        instance.clearDrawCollabAcknowledgement();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayResponse)
     }
     protected final Object dynamicMethod(
@@ -20385,7 +20385,6 @@ public final class RtcProto {
           broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
           videoRoomHostLeftResponse_ = visitor.visitMessage(videoRoomHostLeftResponse_, other.videoRoomHostLeftResponse_);
           participantLeftResponse_ = visitor.visitMessage(participantLeftResponse_, other.participantLeftResponse_);
-          screenDrawResponse_ = visitor.visitMessage(screenDrawResponse_, other.screenDrawResponse_);
           startDrawResponse_ = visitor.visitMessage(startDrawResponse_, other.startDrawResponse_);
           startDrawAckResponse_ = visitor.visitMessage(startDrawAckResponse_, other.startDrawAckResponse_);
           cancelDrawResponse_ = visitor.visitMessage(cancelDrawResponse_, other.cancelDrawResponse_);
@@ -20402,6 +20401,7 @@ public final class RtcProto {
           drawMaximizeResponse_ = visitor.visitMessage(drawMaximizeResponse_, other.drawMaximizeResponse_);
           drawCloseResponse_ = visitor.visitMessage(drawCloseResponse_, other.drawCloseResponse_);
           drawCollabResponse_ = visitor.visitMessage(drawCollabResponse_, other.drawCollabResponse_);
+          drawCollabAcknowledgement_ = visitor.visitMessage(drawCollabAcknowledgement_, other.drawCollabAcknowledgement_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -20543,19 +20543,6 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(participantLeftResponse_);
                     participantLeftResponse_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 98: {
-                  SignalingProto.ScreenDrawRequest.Builder subBuilder = null;
-                  if (screenDrawResponse_ != null) {
-                    subBuilder = screenDrawResponse_.toBuilder();
-                  }
-                  screenDrawResponse_ = input.readMessage(SignalingProto.ScreenDrawRequest.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(screenDrawResponse_);
-                    screenDrawResponse_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -20757,6 +20744,19 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(drawCollabResponse_);
                     drawCollabResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 234: {
+                  SignalingProto.DrawCollabAcknowledgement.Builder subBuilder = null;
+                  if (drawCollabAcknowledgement_ != null) {
+                    subBuilder = drawCollabAcknowledgement_.toBuilder();
+                  }
+                  drawCollabAcknowledgement_ = input.readMessage(SignalingProto.DrawCollabAcknowledgement.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawCollabAcknowledgement_);
+                    drawCollabAcknowledgement_ = subBuilder.buildPartial();
                   }
 
                   break;

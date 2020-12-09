@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.TicketProto;
+import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketHistoryAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
@@ -50,6 +51,8 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
     TextView tvAccept;
     @BindView(R.id.tv_reject)
     TextView tvReject;
+    @BindView(R.id.iv_source)
+    ImageView ivSource;
 
     private String ticketSuggestionId;
     private String msgId;
@@ -58,6 +61,7 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
     private String messageText;
     private long messageSentAt;
     private TicketHistoryAdapter adapter;
+    private String ticketSource;
 
     @Override
     protected int getLayout() {
@@ -75,6 +79,7 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
         customerName = i.getStringExtra("customer_name");
         messageText = i.getStringExtra("msg_text");
         messageSentAt = i.getLongExtra("sent_at", 0);
+        ticketSource = i.getStringExtra("source");
 
         presenter.getTicketHistory(ticketSuggestionId);
         tvToolbarTitle.setText(customerName);
@@ -89,6 +94,7 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
                 .apply(options)
                 .into(civCustomer);
 
+        setSourceImg(ivSource, ticketSource);
         tvAccept.setOnClickListener(v -> showAcceptDialog(ticketSuggestionId));
         tvReject.setOnClickListener(v -> showRejectDialog(ticketSuggestionId));
         ivBack.setOnClickListener(v -> onBackPressed());
@@ -106,6 +112,19 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
 
         TicketSuggestionRepo.getInstance().deleteTicketSuggestionById(ticketSuggestionId);
         finish();
+    }
+
+    private void setSourceImg(ImageView ivSource, String source) {
+        if (source.equalsIgnoreCase(UserProto.ThirdPartySource
+                .FACEBOOK_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_messenger));
+        } else if (source.equalsIgnoreCase(UserProto.ThirdPartySource.VIBER_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_viber));
+        } else if (source.equalsIgnoreCase(UserProto.ThirdPartySource.SLACK_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_slack));
+        } else if (source.equalsIgnoreCase(UserProto.ThirdPartySource.SLACK_THIRD_PARTY_SOURCE.name())) {
+            ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_link_email));
+        }
     }
 
     @Override
@@ -158,7 +177,8 @@ public class SuggestedTicketPreviewActivity extends MvpBaseActivity<SuggestedTic
         setUpRecyclerView(messageList);
     }
 
-    private List<Message> transformMessages(List<TicketProto.TicketSuggestion.Message> msgListPb) {
+    private List<Message> transformMessages
+            (List<TicketProto.TicketSuggestion.Message> msgListPb) {
         List<Message> messageList = new ArrayList<>();
         for (TicketProto.TicketSuggestion.Message message : msgListPb
         ) {

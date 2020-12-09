@@ -176,7 +176,8 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
 
             @Override
             public void showHistory(String ticketSuggestionId, String msgId, String customerName,
-                                    String customerImage, String messageText, long sentAt) {
+                                    String customerImage, String messageText, long sentAt,
+                                    String source) {
                 Intent i = new Intent(TicketSuggestionActivity.this, SuggestedTicketPreviewActivity.class);
                 i.putExtra("suggestion_id", ticketSuggestionId);
                 i.putExtra("msg_id", msgId);
@@ -184,6 +185,7 @@ public class TicketSuggestionActivity extends MvpBaseActivity<TicketSuggestionPr
                 i.putExtra("customer_image", customerImage);
                 i.putExtra("msg_text", messageText);
                 i.putExtra("sent_at", sentAt);
+                i.putExtra("source", source);
                 startActivity(i);
             }
         });

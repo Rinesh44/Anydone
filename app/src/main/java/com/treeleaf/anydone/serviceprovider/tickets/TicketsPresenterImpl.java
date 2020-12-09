@@ -322,6 +322,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             filterUrlBuilder.append("&priority=");
             filterUrlBuilder.append(priority);
         }
+
+        filterUrlBuilder.append("&sort=ASC");
         return filterUrlBuilder.toString();
     }
 
@@ -356,6 +358,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             filterUrlBuilder.append("&priority=");
             filterUrlBuilder.append(priority);
         }
+
+        filterUrlBuilder.append("&sort=ASC");
         return filterUrlBuilder.toString();
     }
 
@@ -389,6 +393,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             filterUrlBuilder.append("&priority=");
             filterUrlBuilder.append(priority);
         }
+
+        filterUrlBuilder.append("&sort=ASC");
         return filterUrlBuilder.toString();
     }
 

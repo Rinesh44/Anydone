@@ -41,7 +41,7 @@
         android:layout_marginBottom="@dimen/dimen_6x1"
         android:paddingStart="@dimen/dimens_2x"
         android:text="Suggestions"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
 
@@ -94,7 +94,7 @@
         android:paddingTop="@dimen/dimen_10x1"
         android:paddingBottom="@dimen/dimen_6x1"
         android:text="Employee"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -14,7 +14,8 @@ public class ContributedTicketRepositoryImpl implements ContributedTicketReposit
 
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse>
-    getContributedTickets(String token, String serviceId, long from, long to, int page) {
-        return anyDoneService.getContributedTickets(token, serviceId, from, to, page);
+    getContributedTickets(String token, String serviceId, long from, long to, int page,
+                          String sortOrder) {
+        return anyDoneService.getContributedTickets(token, serviceId, from, to, page, sortOrder);
     }
 }

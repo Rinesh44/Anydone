@@ -5,6 +5,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
@@ -328,6 +329,15 @@ public class ThreadRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
+
+
+    public void deleteAllThreads() {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Thread> result = realm1.where(Thread.class).findAll();
+            result.deleteAllFromRealm();
+        });
     }
 
 

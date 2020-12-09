@@ -13,10 +13,6 @@ public class LoginContract {
 
         void showInvalidPasswordError();
 
-        void showEmptyPhoneOrEmailFieldError(String message);
-
-        void showEmptyPasswordFieldError(String message);
-
         void onAccountNotVerified();
 
         void onLoginSuccess();

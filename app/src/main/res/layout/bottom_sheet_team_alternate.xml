@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dimen_10x2"
             android:src="@drawable/ic_back"
-            app:tint="@color/black" />
+            app:tint="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/tv_add_team"

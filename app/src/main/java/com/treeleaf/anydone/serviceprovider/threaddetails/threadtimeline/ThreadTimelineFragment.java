@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -230,6 +231,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
 
         tvCustomerDropdown.setOnClickListener(v -> {
+            ivDropdownCustomer.setImageTintList(AppCompatResources.getColorStateList
+                    (Objects.requireNonNull(getContext()), R.color.colorPrimary));
             expandCustomer = !expandCustomer;
             ivDropdownCustomer.startAnimation(rotation);
             if (expandCustomer) {
@@ -243,6 +246,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         });
 
         tvLinkedTicketDropdown.setOnClickListener(v -> {
+            ivDropdownCustomer.setImageTintList(AppCompatResources.getColorStateList
+                    (Objects.requireNonNull(getContext()), R.color.colorPrimary));
             expandLinkedTickets = !expandLinkedTickets;
             ivLinkedTicketDropdown.startAnimation(rotation);
             if (expandLinkedTickets) {
@@ -941,7 +946,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 break;
         }
 
-        tvTicketId.setText(String.valueOf(tickets.getTicketId()));
+        tvTicketId.setText(String.valueOf(tickets.getTicketIndex()));
         tvTicketCreatedDate.setText(GlobalUtils.getDateAlternate(tickets.getCreatedAt()));
         tvTicketCreatedTime.setText(GlobalUtils.getTime(tickets.getCreatedAt()));
         tvTicketType.setText(tickets.getTicketCategory());

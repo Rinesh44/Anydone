@@ -9,7 +9,8 @@ public interface UnsubscribedTicketRepository {
                                                                                  String serviceId,
                                                                                  long from,
                                                                                  long to,
-                                                                                 int page);
+                                                                                 int page,
+                                                                                 String sortOrder);
 
     Observable<TicketServiceRpcProto.TicketBaseResponse> subscribe(String token,
                                                                    long ticketId);

@@ -68,7 +68,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int MSG_BOT_SUGGESTIONS = 10;
     public static final int INITIAL_SERVICE_DETAIL = 11;
     public static final int MSG_CALL_OUTGOING = 12;
-    public static final int INITIAL_TICKET_DETAIL = 13;
+//    public static final int INITIAL_TICKET_DETAIL = 13;
 
     private List<Conversation> conversationList;
     private Context mContext;
@@ -176,15 +176,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .inflate(R.layout.chat_bot_suggestions, parent, false);
                 return new BotSuggestionsHolder(suggestionsView);
 
-            case INITIAL_SERVICE_DETAIL:
-                View serviceDetailView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.initial_service_detail, parent, false);
-                return new InitialServiceDetailHolder(serviceDetailView);
 
-            case INITIAL_TICKET_DETAIL:
+      /*      case INITIAL_TICKET_DETAIL:
                 View ticketDetailView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_initial_ticket_detail, parent, false);
-                return new InitialTicketDetailHolder(ticketDetailView);
+                return new InitialTicketDetailHolder(ticketDetailView);*/
 
             case MSG_CALL_OUTGOING:
                 View callView = LayoutInflater.from(parent.getContext())
@@ -254,13 +250,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((BotSuggestionsHolder) holder).bind(conversation, false);
                 break;
 
-            case INITIAL_SERVICE_DETAIL:
-                ((InitialServiceDetailHolder) holder).bind(conversation);
-                break;
-
-            case INITIAL_TICKET_DETAIL:
+         /*   case INITIAL_TICKET_DETAIL:
                 ((InitialTicketDetailHolder) holder).bind(conversation);
-                break;
+                break;*/
 
             case MSG_CALL_OUTGOING:
                 ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, false);
@@ -328,8 +320,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case "INITIAL_SERVICE_DETAIL":
                 return INITIAL_SERVICE_DETAIL;
 
-            case "INITIAL_TICKET_DETAIL":
-                return INITIAL_TICKET_DETAIL;
+/*            case "INITIAL_TICKET_DETAIL":
+                return INITIAL_TICKET_DETAIL;*/
 
             case "VIDEO_CALL_RTC_MESSAGE":
                 return MSG_CALL_OUTGOING;
@@ -965,9 +957,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    private class InitialServiceDetailHolder extends RecyclerView.ViewHolder {
+/*    private class InitialServiceDetailHolder extends RecyclerView.ViewHolder {
         TextView serviceName, problemStat, location, date;
         ImageView serviceIcon;
+        CircleImageView civSender;
+
 
         InitialServiceDetailHolder(@NonNull View itemView) {
             super(itemView);
@@ -975,9 +969,10 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             serviceName = itemView.findViewById(R.id.tv_service_name);
             problemStat = itemView.findViewById(R.id.tv_problem_stat);
             location = itemView.findViewById(R.id.tv_location);
-            date = itemView.findViewById(R.id.tv_date);
             serviceIcon = itemView.findViewById(R.id.iv_service_icon);
+            civSender = itemView.findViewById(R.id.civ_sender);
         }
+
 
         void bind(final Conversation conversation) {
             serviceName.setText(conversation.getServiceName());
@@ -1000,7 +995,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
 
         }
-    }
+    }*/
 
 
     private class InitialTicketDetailHolder extends RecyclerView.ViewHolder {
@@ -1053,8 +1048,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     private class CallViewHolder extends RecyclerView.ViewHolder {
-        TextView callDuration, callTime, sentAt;
+        TextView callDuration, callTime, sentAt, tvTitle, tvTime;
         View spacing;
+        CircleImageView civSender;
 
         public CallViewHolder(View itemView) {
             super(itemView);
@@ -1063,6 +1059,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             spacing = itemView.findViewById(R.id.spacing);
             callDuration = itemView.findViewById(R.id.tv_call_elapsed_time);
             callTime = itemView.findViewById(R.id.tv_call_time);
+            civSender = itemView.findViewById(R.id.civ_sender);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -1090,12 +1089,24 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 sentAt.setVisibility(View.GONE);
             }
 
-            callTime.setText(conversation.getCallInitiateTime());
+            callTime.setText("Call ended at " + conversation.getCallInitiateTime());
             StringBuilder durationBuilder = new StringBuilder();
             durationBuilder.append(" (");
             durationBuilder.append(conversation.getCallDuration());
             durationBuilder.append(")");
             callDuration.setText(durationBuilder);
+
+            displayBotOrUserMessage(tvTitle, civSender, conversation);
+
+            if (civSender != null) {
+                civSender.setOnClickListener(v -> {
+                    if (senderImageClickListener != null && getAdapterPosition() !=
+                            RecyclerView.NO_POSITION) {
+                        senderImageClickListener.onSenderImageClick(
+                                conversationList.get(getAdapterPosition()));
+                    }
+                });
+            }
         }
     }
 

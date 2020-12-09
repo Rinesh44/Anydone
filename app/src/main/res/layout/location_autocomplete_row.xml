@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dimens_2x"
-        android:src="@drawable/ic_location_circle" />
+        android:src="@drawable/ic_location_blue"
+        android:tint="@color/colorPrimary" />
 
     <RelativeLayout
         android:id="@+id/rl_loation_holder"

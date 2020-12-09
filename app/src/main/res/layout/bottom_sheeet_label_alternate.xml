@@ -9,8 +9,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dimen_4x1"
         android:layout_marginTop="@dimen/dimen_6x1"
+        android:paddingTop="@dimen/dimen_4x1"
         android:paddingBottom="@dimen/dimen_4x1">
 
         <ImageView
@@ -20,7 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dimen_10x2"
             android:src="@drawable/ic_back"
-            app:tint="@color/black" />
+            app:tint="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/tv_add_label"
@@ -50,11 +50,11 @@
             android:textStyle="bold" />
 
     </RelativeLayout>
-<!--
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#F0EDF1" />-->
+    <!--
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#F0EDF1" />-->
 
     <EditText
         android:id="@+id/et_search_label"

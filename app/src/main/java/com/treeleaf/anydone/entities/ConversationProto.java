@@ -1833,6 +1833,557 @@ public final class ConversationProto {
     }
   }
 
+  public interface ConversationFilterOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationFilter)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    boolean hasDataQuery();
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    TreeleafProto.DataQuery getDataQuery();
+
+    /**
+     * <code>optional string query = 2;</code>
+     */
+    String getQuery();
+    /**
+     * <code>optional string query = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getQueryBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationFilter}
+   */
+  public  static final class ConversationFilter extends
+      com.google.protobuf.GeneratedMessageLite<
+          ConversationFilter, ConversationFilter.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationFilter)
+      ConversationFilterOrBuilder {
+    private ConversationFilter() {
+      query_ = "";
+      serviceId_ = "";
+    }
+    public static final int DATAQUERY_FIELD_NUMBER = 1;
+    private TreeleafProto.DataQuery dataQuery_;
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    public boolean hasDataQuery() {
+      return dataQuery_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    public TreeleafProto.DataQuery getDataQuery() {
+      return dataQuery_ == null ? TreeleafProto.DataQuery.getDefaultInstance() : dataQuery_;
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void setDataQuery(TreeleafProto.DataQuery value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      dataQuery_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void setDataQuery(
+        TreeleafProto.DataQuery.Builder builderForValue) {
+      dataQuery_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void mergeDataQuery(TreeleafProto.DataQuery value) {
+      if (dataQuery_ != null &&
+          dataQuery_ != TreeleafProto.DataQuery.getDefaultInstance()) {
+        dataQuery_ =
+          TreeleafProto.DataQuery.newBuilder(dataQuery_).mergeFrom(value).buildPartial();
+      } else {
+        dataQuery_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void clearDataQuery() {  dataQuery_ = null;
+      
+    }
+
+    public static final int QUERY_FIELD_NUMBER = 2;
+    private String query_;
+    /**
+     * <code>optional string query = 2;</code>
+     */
+    public String getQuery() {
+      return query_;
+    }
+    /**
+     * <code>optional string query = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getQueryBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(query_);
+    }
+    /**
+     * <code>optional string query = 2;</code>
+     */
+    private void setQuery(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      query_ = value;
+    }
+    /**
+     * <code>optional string query = 2;</code>
+     */
+    private void clearQuery() {
+      
+      query_ = getDefaultInstance().getQuery();
+    }
+    /**
+     * <code>optional string query = 2;</code>
+     */
+    private void setQueryBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      query_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (dataQuery_ != null) {
+        output.writeMessage(1, getDataQuery());
+      }
+      if (!query_.isEmpty()) {
+        output.writeString(2, getQuery());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (dataQuery_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getDataQuery());
+      }
+      if (!query_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getQuery());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static ConversationFilter parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static ConversationFilter parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static ConversationFilter parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static ConversationFilter parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static ConversationFilter parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static ConversationFilter parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static ConversationFilter parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static ConversationFilter parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static ConversationFilter parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static ConversationFilter parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ConversationFilter prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationFilter}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          ConversationFilter, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationFilter)
+        ConversationFilterOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public boolean hasDataQuery() {
+        return instance.hasDataQuery();
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public TreeleafProto.DataQuery getDataQuery() {
+        return instance.getDataQuery();
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder setDataQuery(TreeleafProto.DataQuery value) {
+        copyOnWrite();
+        instance.setDataQuery(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder setDataQuery(
+          TreeleafProto.DataQuery.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDataQuery(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder mergeDataQuery(TreeleafProto.DataQuery value) {
+        copyOnWrite();
+        instance.mergeDataQuery(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder clearDataQuery() {  copyOnWrite();
+        instance.clearDataQuery();
+        return this;
+      }
+
+      /**
+       * <code>optional string query = 2;</code>
+       */
+      public String getQuery() {
+        return instance.getQuery();
+      }
+      /**
+       * <code>optional string query = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getQueryBytes() {
+        return instance.getQueryBytes();
+      }
+      /**
+       * <code>optional string query = 2;</code>
+       */
+      public Builder setQuery(
+          String value) {
+        copyOnWrite();
+        instance.setQuery(value);
+        return this;
+      }
+      /**
+       * <code>optional string query = 2;</code>
+       */
+      public Builder clearQuery() {
+        copyOnWrite();
+        instance.clearQuery();
+        return this;
+      }
+      /**
+       * <code>optional string query = 2;</code>
+       */
+      public Builder setQueryBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setQueryBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationFilter)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new ConversationFilter();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          ConversationFilter other = (ConversationFilter) arg1;
+          dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
+          query_ = visitor.visitString(!query_.isEmpty(), query_,
+              !other.query_.isEmpty(), other.query_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  TreeleafProto.DataQuery.Builder subBuilder = null;
+                  if (dataQuery_ != null) {
+                    subBuilder = dataQuery_.toBuilder();
+                  }
+                  dataQuery_ = input.readMessage(TreeleafProto.DataQuery.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(dataQuery_);
+                    dataQuery_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  query_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (ConversationFilter.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationFilter)
+    private static final ConversationFilter DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ConversationFilter();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static ConversationFilter getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ConversationFilter> PARSER;
+
+    public static com.google.protobuf.Parser<ConversationFilter> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

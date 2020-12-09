@@ -19,15 +19,19 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.Display;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -39,9 +43,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,22 +53,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chinalwb.are.AREditText;
-import com.chinalwb.are.styles.toolbar.ARE_Toolbar;
 import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
-import com.chinalwb.are.styles.toolbar.IARE_Toolbar;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Bold;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Italic;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_ListBullet;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_ListNumber;
-import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Quote;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Strikethrough;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Underline;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_UpdaterDefault;
 import com.chinalwb.are.styles.toolitems.IARE_ToolItem;
-import com.chinalwb.are.styles.toolitems.IARE_ToolItem_Updater;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.button.MaterialButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -82,6 +81,7 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -183,6 +183,17 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     ARE_ToolbarDefault llTextModifier;
     @BindView(R.id.view)
     View view;
+    @BindView(R.id.tv_ticket_id)
+    TextView tvTicketId;
+    @BindView(R.id.tv_ticket_title)
+    TextView tvTicketTitle;
+    @BindView(R.id.tv_ticket_desc)
+    TextView tvTicketDesc;
+    @BindView(R.id.ll_label_holder)
+    LinearLayout llLabels;
+    @BindView(R.id.scv_label)
+    HorizontalScrollView hsvTags;
+
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -210,7 +221,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private boolean boldFlag = false, italicFlag = false, underlineFlag, strikeThroughFlag = false,
             bulletsFlag = false, numberFlag = false;
     private boolean keyboardShown = false;
-    private OnTaskStartListener listener;
+    private OnStatusChangeListener listener;
     private Account userAccount;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -229,6 +240,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         UiUtils.hideKeyboardForced(getActivity());
         initTextModifier();
+        ivSend.setEnabled(false);
 
      /*   etMessage.setContentTypeface(getContentFace());
         etMessage.setHeadingTypeface(getContentFace());*/
@@ -247,6 +259,31 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 tvAddCommentHint.setVisibility(View.VISIBLE);
             }
         });*/
+
+        etMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                GlobalUtils.showLog(TAG, "on text changed()");
+                if (s.length() > 0) {
+                    ivSend.setImageTintList(AppCompatResources.getColorStateList
+                            (Objects.requireNonNull(getContext()), R.color.colorPrimary));
+                    ivSend.setEnabled(true);
+                } else {
+                    ivSend.setImageTintList(AppCompatResources.getColorStateList
+                            (Objects.requireNonNull(getContext()), R.color.selector_disabled));
+                    ivSend.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         new TedRxKeyboardObserver(getActivity())
                 .listen()
@@ -270,7 +307,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         subscribed = i.getBooleanExtra("subscribed", false);
 
         Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
-
+        setTicketInitialDetail(ticket);
         setChatVisibility(ticket);
 
         if (ticketId != -1) {
@@ -309,6 +346,33 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         assert mActivity != null;
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
+
+    }
+
+    private void setTicketInitialDetail(Tickets ticket) {
+        tvTicketId.setText("#" + ticket.getTicketIndex());
+        tvTicketTitle.setText(ticket.getTitle());
+        if (ticket.getDescription() != null && !ticket.getDescription().isEmpty()) {
+            tvTicketDesc.setText(ticket.getDescription());
+        } else {
+            tvTicketDesc.setVisibility(View.GONE);
+        }
+
+        if (!CollectionUtils.isEmpty(ticket.getLabelRealmList())) {
+            llLabels.removeAllViews();
+            for (Label tag : ticket.getLabelRealmList()
+            ) {
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                @SuppressLint("InflateParams") TextView tvTag = (TextView) inflater
+                        .inflate(R.layout.layout_blue_tag_bg, null);
+                tvTag.setText(tag.getName());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMarginEnd(20);
+                tvTag.setLayoutParams(params);
+                llLabels.addView(tvTag);
+            }
+        }
 
     }
 
@@ -648,7 +712,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Hawk.put(Constants.SERVICE_PROVIDER_NAME, tickets.getServiceProvider()
                 .getFullName());
 
-        setInitialTicketDetail(tickets);
+//        setInitialTicketDetail(tickets);
         setStatusViews(tickets);
 
    /*     if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.)) {
@@ -1678,7 +1742,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         startActivity(intent);
     }
 
-    public void setOnTicketStartListener(OnTaskStartListener listener) {
+    public void setOnTicketStartListener(OnStatusChangeListener listener) {
         this.listener = listener;
     }
 

@@ -31,10 +31,13 @@ public class TicketsContract {
     public interface TicketsPresenter extends Presenter<TicketsView> {
         void getServices();
 
-        void filterPendingTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
+        void filterPendingTickets(String searchQuery, long from, long to, int ticketState,
+                                  Priority priority);
 
-        void filterInProgressTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
+        void filterInProgressTickets(String searchQuery, long from, long to, int ticketState,
+                                     Priority priority);
 
-        void filterClosedTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
+        void filterClosedTickets(String searchQuery, long from, long to, int ticketState,
+                                 Priority priority);
     }
 }

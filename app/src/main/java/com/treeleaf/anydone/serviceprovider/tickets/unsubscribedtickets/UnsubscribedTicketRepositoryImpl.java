@@ -17,8 +17,9 @@ public class UnsubscribedTicketRepositoryImpl implements UnsubscribedTicketRepos
                                                                                         String serviceId,
                                                                                         long from,
                                                                                         long to,
-                                                                                        int page) {
-        return anyDoneService.getSubscribeableTickets(token, serviceId, from, to, page);
+                                                                                        int page,
+                                                                                        String sortOrder) {
+        return anyDoneService.getSubscribeableTickets(token, serviceId, from, to, page, sortOrder);
     }
 
     @Override

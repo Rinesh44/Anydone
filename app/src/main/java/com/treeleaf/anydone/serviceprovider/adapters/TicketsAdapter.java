@@ -135,7 +135,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
         String date = GlobalUtils.getDateDigits(tickets.getCreatedAt());
         holder.tvDate.setText(date);
-        holder.ticketId.setText("#" + tickets.getTicketId());
+        holder.ticketId.setText("#" + tickets.getTicketIndex());
         holder.summary.setText(tickets.getTitle());
         holder.customer.setText(tickets.getCustomer().getFullName());
 

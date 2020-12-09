@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dimen_10x4"
             android:text="Privacy Policy"
-            android:textColor="#3A5090"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/material_text_body2"
             android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dimen_10x1"
             android:text="Terms and Conditions"
-            android:textColor="#3A5090"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/material_text_body2"
             android:textStyle="bold" />
 
@@ -87,7 +87,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dimen_10x1"
             android:text="Open source libraries"
-            android:textColor="#3A5090"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/material_text_body2"
             android:textStyle="bold" />
 

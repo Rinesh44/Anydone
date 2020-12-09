@@ -428,6 +428,7 @@ public class TicketRepo extends Repo {
             Tickets tickets = new Tickets();
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
+            tickets.setTicketIndex(ticketPb.getTicketIndex());
             tickets.setTitle(ticketPb.getTitle());
             tickets.setTicketCategory(ticketPb.getType().getName());
             GlobalUtils.showLog(TAG, "est time back end: " + ticketPb.getEstimatedTimeDesc());
@@ -473,6 +474,7 @@ public class TicketRepo extends Repo {
             Tickets tickets = new Tickets();
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
+            tickets.setTicketIndex(ticketPb.getTicketIndex());
             tickets.setThreadId(threadId);
             tickets.setTitle(ticketPb.getTitle());
             tickets.setTicketCategory(ticketPb.getType().getName());
@@ -513,6 +515,7 @@ public class TicketRepo extends Repo {
         Tickets tickets = new Tickets();
         tickets.setId(UUID.randomUUID().toString().replace("-", ""));
         tickets.setTicketId(ticketPb.getTicketId());
+        tickets.setTicketIndex(ticketPb.getTicketIndex());
         tickets.setTitle(ticketPb.getTitle());
         tickets.setTicketCategory(ticketPb.getType().getName());
         tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());

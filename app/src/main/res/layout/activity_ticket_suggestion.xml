@@ -59,7 +59,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x2"
                         android:src="@drawable/ic_back"
-                        app:tint="@color/black" />
+                        app:tint="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/tv_reject_all"

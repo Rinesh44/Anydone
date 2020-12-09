@@ -11,7 +11,7 @@
         android:id="@+id/ll_swipe_unsubscribe"
         android:layout_width="70dp"
         android:layout_height="match_parent"
-        android:background="#FF8B7B"
+        android:background="#FF4A4A"
         android:gravity="center"
         android:orientation="vertical">
 

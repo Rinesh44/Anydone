@@ -9,7 +9,8 @@ public interface InProgressTicketRepository {
                                                                               String serviceId,
                                                                               long from,
                                                                               long to,
-                                                                              int page);
+                                                                              int page,
+                                                                              String sortOrder);
 
     Observable<TicketServiceRpcProto.TicketBaseResponse> unsubscribe(String token, long ticketId);
 }

@@ -13,7 +13,8 @@ public interface TicketsRepository {
                                                                             String serviceId,
                                                                             long from,
                                                                             long to,
-                                                                            int page);
+                                                                            int page,
+                                                                            String sortOrder);
 
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
     filterServiceRequests(String token,

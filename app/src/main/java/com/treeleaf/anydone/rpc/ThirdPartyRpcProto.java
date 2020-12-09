@@ -116,6 +116,15 @@ public final class ThirdPartyRpcProto {
      * <code>optional .treeleaf.anydone.entities.SlackWebhook slackWebhook = 10;</code>
      */
     com.treeleaf.anydone.entities.ThirdPartyProto.SlackWebhook getSlackWebhook();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    boolean hasMailMessage();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage getMailMessage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ThirdPartyBaseRequest}
@@ -656,6 +665,58 @@ public final class ThirdPartyRpcProto {
       
     }
 
+    public static final int MAILMESSAGE_FIELD_NUMBER = 11;
+    private com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage mailMessage_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    public boolean hasMailMessage() {
+      return mailMessage_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage getMailMessage() {
+      return mailMessage_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.getDefaultInstance() : mailMessage_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    private void setMailMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      mailMessage_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    private void setMailMessage(
+        com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.Builder builderForValue) {
+      mailMessage_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    private void mergeMailMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage value) {
+      if (mailMessage_ != null &&
+          mailMessage_ != com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.getDefaultInstance()) {
+        mailMessage_ =
+          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.newBuilder(mailMessage_).mergeFrom(value).buildPartial();
+      } else {
+        mailMessage_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+     */
+    private void clearMailMessage() {  mailMessage_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -687,6 +748,9 @@ public final class ThirdPartyRpcProto {
       }
       if (slackWebhook_ != null) {
         output.writeMessage(10, getSlackWebhook());
+      }
+      if (mailMessage_ != null) {
+        output.writeMessage(11, getMailMessage());
       }
     }
 
@@ -739,6 +803,10 @@ public final class ThirdPartyRpcProto {
       if (slackWebhook_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getSlackWebhook());
+      }
+      if (mailMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getMailMessage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1278,6 +1346,51 @@ public final class ThirdPartyRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+       */
+      public boolean hasMailMessage() {
+        return instance.hasMailMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+       */
+      public com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage getMailMessage() {
+        return instance.getMailMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+       */
+      public Builder setMailMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage value) {
+        copyOnWrite();
+        instance.setMailMessage(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+       */
+      public Builder setMailMessage(
+          com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMailMessage(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+       */
+      public Builder mergeMailMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage value) {
+        copyOnWrite();
+        instance.mergeMailMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
+       */
+      public Builder clearMailMessage() {  copyOnWrite();
+        instance.clearMailMessage();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ThirdPartyBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1315,6 +1428,7 @@ public final class ThirdPartyRpcProto {
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           slackWebhook_ = visitor.visitMessage(slackWebhook_, other.slackWebhook_);
+          mailMessage_ = visitor.visitMessage(mailMessage_, other.mailMessage_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1427,6 +1541,19 @@ public final class ThirdPartyRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(slackWebhook_);
                     slackWebhook_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 90: {
+                  com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.Builder subBuilder = null;
+                  if (mailMessage_ != null) {
+                    subBuilder = mailMessage_.toBuilder();
+                  }
+                  mailMessage_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(mailMessage_);
+                    mailMessage_ = subBuilder.buildPartial();
                   }
 
                   break;

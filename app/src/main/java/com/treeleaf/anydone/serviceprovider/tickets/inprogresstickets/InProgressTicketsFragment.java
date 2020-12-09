@@ -162,6 +162,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
                     i.putExtra("selected_ticket_id", ticket.getTicketId());
                     i.putExtra("ticket_desc", ticket.getTitle());
                     i.putExtra("selected_ticket_type", Constants.IN_PROGRESS);
+                    i.putExtra("selected_ticket_index", ticket.getTicketIndex());
                     i.putExtra("selected_ticket_name", callees);
                     i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                     i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);

@@ -144,6 +144,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             rvThreads.setVisibility(View.VISIBLE);
             ivThreadNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
+            etSearch.setVisibility(View.VISIBLE);
         } else presenter.getConversationThreads(true);
 
         createServiceBottomSheet();
@@ -531,6 +532,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             return;
         }
 
+        ThreadRepo.getInstance().deleteAllThreads();
+
      /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);*/
@@ -584,8 +587,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             int suggestionCount = ticketSuggestionList.size();
             StringBuilder suggestedTicketCount = new StringBuilder(String.valueOf(suggestionCount));
             if (suggestionCount > 1)
-                suggestedTicketCount.append(" new tickets");
-            else suggestedTicketCount.append(" new ticket");
+                suggestedTicketCount.append(" New Tickets");
+            else suggestedTicketCount.append(" New Ticket");
             tvSuggestedTicket.setText(suggestedTicketCount);
             rlTicketSuggestion.setVisibility(View.VISIBLE);
         }

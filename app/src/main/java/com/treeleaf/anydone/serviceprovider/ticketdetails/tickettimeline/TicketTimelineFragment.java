@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -28,6 +31,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,7 +72,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnTaskStartListener;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnStatusChangeListener;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -112,8 +116,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     TextView tvCustomerPhone;
     @BindView(R.id.civ_customer)
     CircleImageView civCustomer;
-    @BindView(R.id.tv_ticket_status)
-    TextView tvTicketStatus;
     @BindView(R.id.tv_team)
     TextView tvTeam;
     @BindView(R.id.tv_ticket_id)
@@ -252,7 +254,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private String userType;
     private BottomSheetDialog employeeBottomSheet;
     private RecyclerView rvEmployee;
-    private OnTaskStartListener listener;
+    private OnStatusChangeListener listener;
     private ImageView ivTick;
     private LinearLayout llEmployeeAsSelf;
 
@@ -305,6 +307,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         btnStartTask.setOnClickListener(v -> presenter.startTask(ticketId));
 
         tvCustomerDropdown.setOnClickListener(v -> {
+            ivDropdownCustomer.setImageTintList(AppCompatResources.getColorStateList
+                    (Objects.requireNonNull(getContext()), R.color.colorPrimary));
             expandCustomer = !expandCustomer;
             ivDropdownCustomer.startAnimation(rotation);
             if (expandCustomer) {
@@ -318,6 +322,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         });
 
         tvContributorDropDown.setOnClickListener(v -> {
+            ivContributorDropDown.setImageTintList(AppCompatResources.getColorStateList
+                    (Objects.requireNonNull(getContext()), R.color.colorPrimary));
             expandEmployee = !expandEmployee;
             ivContributorDropDown.startAnimation(rotation);
             if (expandEmployee) {
@@ -474,6 +480,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @OnClick(R.id.rl_selected_status)
     public void toggleStatusOptions() {
+        ivDropDownStatus.setImageTintList(AppCompatResources.getColorStateList
+                (Objects.requireNonNull(getContext()), R.color.colorPrimary));
         if (llStatusOptions.getVisibility() == View.VISIBLE) {
             llStatusOptions.setVisibility(View.GONE);
 
@@ -526,11 +534,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
-                tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity())
-                        .getResources().getColor(R.color.ticket_created_text));
-                tvTicketStatus.setBackground(getActivity().getResources()
-                        .getDrawable(R.drawable.created_bg));
-                tvTicketStatus.setText("TODO");
 
                 rlSelectedStatus.setVisibility(View.GONE);
 //                removeScrollviewMargin();
@@ -553,11 +556,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 break;
 
             case "TICKET_RESOLVED":
-                tvTicketStatus.setTextColor(Objects.requireNonNull
-                        (getActivity()).getResources().getColor(R.color.ticket_resolved_text));
-                tvTicketStatus.setBackground(getActivity()
-                        .getResources().getDrawable(R.drawable.resolved_bg));
-                tvTicketStatus.setText("RESOLVED");
 
                 tvStatusSelected.setText("RESOLVED");
                 tvResolve.setVisibility(View.GONE);
@@ -575,11 +573,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 break;
 
             case "TICKET_CLOSED":
-                tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity())
-                        .getResources().getColor(R.color.ticket_closed_text));
-                tvTicketStatus.setBackground(getActivity().getResources()
-                        .getDrawable(R.drawable.closed_bg));
-                tvTicketStatus.setText("CLOSED");
 
                 addScrollviewMargin();
                 btnReopen.setVisibility(View.VISIBLE);
@@ -589,11 +582,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
             case "TICKET_REOPENED":
                 btnReopen.setVisibility(View.GONE);
-                tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity())
-                        .getResources().getColor(R.color.ticket_reopened_text));
-                tvTicketStatus.setBackground(getActivity().getResources()
-                        .getDrawable(R.drawable.reopened_bg));
-                tvTicketStatus.setText("REOPENED");
 
                 rlSelectedStatus.setVisibility(View.GONE);
 //                removeScrollviewMargin();
@@ -607,7 +595,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
      /*   if (tickets.isBotEnabled()) {
             botReply.setChecked(true);
         }*/
-        tvTicketId.setText(String.valueOf(tickets.getTicketId()));
+        tvTicketId.setText(String.valueOf(tickets.getTicketIndex()));
         tvTicketCreatedDate.setText(GlobalUtils.getDateLong(tickets.getCreatedAt()));
         tvTicketCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(tickets.getCreatedAt()));
         tvTicketTitle.setText(tickets.getTitle());
@@ -852,7 +840,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                         ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.setMarginEnd(20);
                 tvLabel.setLayoutParams(params);
-                tvLabel.setTextSize(14);
+                tvLabel.setTextSize(13);
                 llLabels.addView(tvLabel);
             }
         } else {
@@ -1144,11 +1132,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     public void onTicketStarted() {
-        tvTicketStatus.setTextColor(Objects.requireNonNull(getActivity()).getResources()
-                .getColor(R.color.ticket_started_text));
-        tvTicketStatus.setBackground(getActivity().getResources()
-                .getDrawable(R.drawable.started_bg));
-        tvTicketStatus.setText("STARTED");
 
         tvReopen.setVisibility(View.GONE);
         vSeparator1.setVisibility(View.GONE);
@@ -1278,18 +1261,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             }
 
             parent.addView(viewAssignedEmployee);
- /*      employeeName.setOnClickListener(v -> {
-                setUpProfileBottomSheet(contributor.getName(),
-                        contributor.getEmployeeImageUrl(), contributor.get());
-                toggleBottomSheet();
-            });
-
-
-      employeePic.setOnClickListener(v -> {
-                setUpProfileBottomSheet(contributor.getFullName(),
-                        contributor.getProfilePic(), contributor.getAvgRating());
-                toggleBottomSheet();
-            });*/
         }
     }
 
@@ -1419,7 +1390,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                         ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.setMarginEnd(20);
                 tvTag.setLayoutParams(params);
-                tvTag.setTextSize(14);
+                tvTag.setTextSize(13);
                 llTags.addView(tvTag);
                 llTags.setVisibility(View.VISIBLE);
             }
@@ -1471,6 +1442,39 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     private void showStatusChangeConfirmation(String title, String type) {
+  /*      int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);
+        int height = (int) (getResources().getDisplayMetrics().heightPixels);
+
+        final Dialog dialog = new Dialog(Objects.requireNonNull(getActivity()));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.layout_dialog);
+
+        TextView text = dialog.findViewById(R.id.tv_message);
+        text.setText(title);
+
+        RelativeLayout holder = dialog.findViewById(R.id.rl_dialog_holder);
+        Objects.requireNonNull(dialog.getWindow()).setLayout
+                (width, holder.getMeasuredHeight());
+
+        Button cancel = dialog.findViewById(R.id.btn_cancel);
+        Button ok = dialog.findViewById(R.id.btn_ok);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();*/
+
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage(title);
         builder1.setCancelable(true);
@@ -1775,6 +1779,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onTicketCloseSuccess() {
+        listener.onTaskClosed();
         TicketRepo.getInstance().changeTicketStatusToClosed(ticketId);
         setTicketDetails();
         Hawk.put(Constants.REFETCH_TICKET, true);
@@ -1798,6 +1803,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onTicketReopenSuccess() {
+        listener.onTaskReopened();
         TicketRepo.getInstance().changeTicketStatusToReopened(ticketId);
         setTicketDetails();
         Hawk.put(Constants.REFETCH_TICKET, true);
@@ -1821,6 +1827,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onTicketResolveSuccess() {
+        listener.onTaskResolved();
         TicketRepo.getInstance().changeTicketStatusToResolved(ticketId);
         setTicketDetails();
         Hawk.put(Constants.REFETCH_TICKET, true);
@@ -2216,7 +2223,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
     }
 
-    public void setOnTicketStartListener(OnTaskStartListener listener) {
+    public void setOnTicketStartListener(OnStatusChangeListener listener) {
         this.listener = listener;
     }
 

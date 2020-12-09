@@ -59,8 +59,6 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
     AutoCompleteTextView etSearchLocation;
     @BindView(R.id.sp_location_type)
     AppCompatSpinner spLocationType;
-    @BindView(R.id.et_location)
-    TextInputEditText etLocation;
     @BindView(R.id.btn_add_location)
     MaterialButton btnAddLocation;
     @BindView(R.id.progress_bar)
@@ -81,20 +79,8 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastKnownLocation();
         setToolbar();
-        etLocation.setShowSoftInputOnFocus(false);
 
-        spLocationType.setOnTouchListener((v, event) -> {
-            etLocation.requestFocus();
-            setUpLocationTypeDropdown();
-            return false;
-        });
-
-        etLocation.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                etLocation.setText("a");
-                etLocation.setTextColor(getResources().getColor(R.color.transparent));
-            }
-        });
+        setUpLocationTypeDropdown();
 
         etSearchLocation.addTextChangedListener(new TextWatcher() {
             @Override

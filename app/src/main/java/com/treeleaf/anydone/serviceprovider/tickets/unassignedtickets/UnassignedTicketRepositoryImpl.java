@@ -19,8 +19,9 @@ public class UnassignedTicketRepositoryImpl implements UnassignedTicketRepositor
                                                                                      String serviceId,
                                                                                      long from,
                                                                                      long to,
-                                                                                     int page) {
-        return anyDoneService.getBacklogTickets(token, serviceId, from, to, page);
+                                                                                     int page,
+                                                                                     String sortOrder) {
+        return anyDoneService.getBacklogTickets(token, serviceId, from, to, page, sortOrder);
     }
 
     @Override

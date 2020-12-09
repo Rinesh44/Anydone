@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -24,13 +25,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
                 android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
-                android:hint="@string/cardholder_name">
+                android:hint="@string/cardholder_name"
+                android:paddingStart="-10dp"
+                android:paddingEnd="-10dp"
+                app:boxBackgroundColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_name"
@@ -38,7 +41,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textVisiblePassword"
                     android:maxLength="30"
+                    android:paddingBottom="6dp"
                     android:singleLine="true"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -46,13 +51,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_card_number"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
                 android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
-                android:hint="@string/card_number">
+                android:hint="@string/card_number"
+                android:paddingStart="-10dp"
+                android:paddingEnd="-10dp"
+                app:boxBackgroundColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_card_number"
@@ -60,7 +67,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:maxLength="19"
+                    android:paddingBottom="6dp"
                     android:singleLine="true"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -74,13 +83,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/il_month"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimens_2x"
                     android:layout_marginRight="@dimen/dimens_2x"
                     android:layout_weight="4"
-                    android:hint="@string/month">
+                    android:hint="@string/month"
+                    android:paddingStart="-10dp"
+                    android:paddingEnd="-10dp"
+                    app:boxBackgroundColor="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_month"
@@ -88,18 +99,22 @@
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:maxLength="2"
+                        android:paddingBottom="6dp"
                         android:singleLine="true"
+                        android:textColor="@color/service_info_text_color"
                         android:textSize="@dimen/material_text_subhead" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/il_year"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="@string/year">
+                    android:hint="@string/year"
+                    android:paddingStart="-10dp"
+                    android:paddingEnd="-10dp"
+                    app:boxBackgroundColor="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_year"
@@ -107,7 +122,9 @@
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:maxLength="4"
+                        android:paddingBottom="6dp"
                         android:singleLine="true"
+                        android:textColor="@color/service_info_text_color"
                         android:textSize="@dimen/material_text_subhead" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -121,10 +138,12 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/il_cvv"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/cvv">
+                        android:hint="@string/cvv"
+                        android:paddingStart="-10dp"
+                        android:paddingEnd="-10dp"
+                        app:boxBackgroundColor="@color/white">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_cvv"
@@ -132,7 +151,9 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:maxLength="3"
+                            android:paddingBottom="6dp"
                             android:singleLine="true"
+                            android:textColor="@color/service_info_text_color"
                             android:textSize="@dimen/material_text_subhead" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -153,13 +174,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_street_address"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
                 android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
-                android:hint="@string/street_address">
+                android:hint="@string/street_address"
+                android:paddingStart="-10dp"
+                android:paddingEnd="-10dp"
+                app:boxBackgroundColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_street_address"
@@ -167,20 +190,24 @@
                     android:layout_height="wrap_content"
                     android:inputType="textVisiblePassword"
                     android:maxLength="30"
+                    android:paddingBottom="6dp"
                     android:singleLine="true"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_city"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
                 android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
-                android:hint="@string/city">
+                android:hint="@string/city"
+                android:paddingStart="-10dp"
+                android:paddingEnd="-10dp"
+                app:boxBackgroundColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_city"
@@ -188,20 +215,24 @@
                     android:layout_height="wrap_content"
                     android:inputType="textVisiblePassword"
                     android:maxLength="30"
+                    android:paddingBottom="6dp"
                     android:singleLine="true"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_state"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
                 android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
-                android:hint="@string/state">
+                android:hint="@string/state"
+                android:paddingStart="-10dp"
+                android:paddingEnd="-10dp"
+                app:boxBackgroundColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_state"
@@ -209,20 +240,24 @@
                     android:layout_height="wrap_content"
                     android:inputType="textVisiblePassword"
                     android:maxLength="30"
+                    android:paddingBottom="6dp"
                     android:singleLine="true"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/il_zip_code"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimens_2x"
                 android:layout_marginTop="@dimen/dimens_2x"
                 android:layout_marginRight="@dimen/dimens_2x"
-                android:hint="@string/zip_code">
+                android:hint="@string/zip_code"
+                android:paddingStart="-10dp"
+                android:paddingEnd="-10dp"
+                app:boxBackgroundColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_zip_code"
@@ -230,7 +265,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="5"
+                    android:paddingBottom="6dp"
                     android:singleLine="true"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_subhead" />
 
             </com.google.android.material.textfield.TextInputLayout>

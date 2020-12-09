@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_tag"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/blue_tag_bg"
+    android:paddingStart="@dimen/dimen_6x1"
+    android:paddingTop="@dimen/dimen_2x2"
+    android:paddingEnd="@dimen/dimen_6x1"
+    android:paddingBottom="@dimen/dimen_2x2"
+    android:text="Billing"
+    android:textColor="@color/white"
+    android:textSize="10sp" />

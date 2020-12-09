@@ -35,6 +35,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentTransaction;
@@ -222,6 +223,32 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
             presenter.getThread(String.valueOf(threadId));
         }
+
+        ivSend.setEnabled(false);
+        etMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                GlobalUtils.showLog(TAG, "on text changed()");
+                if (s.length() > 0) {
+                    ivSend.setImageTintList(AppCompatResources.getColorStateList
+                            (Objects.requireNonNull(getContext()), R.color.colorPrimary));
+                    ivSend.setEnabled(true);
+                } else {
+                    ivSend.setImageTintList(AppCompatResources.getColorStateList
+                            (Objects.requireNonNull(getContext()), R.color.selector_disabled));
+                    ivSend.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         clCaptureView = view.findViewById(R.id.cl_capture_view);
         messageSheetBehavior = BottomSheetBehavior.from(llBottomSheetMessage);

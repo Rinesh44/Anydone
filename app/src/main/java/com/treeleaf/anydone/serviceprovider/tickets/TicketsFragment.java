@@ -553,6 +553,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         statusValue = null;
         int fragmentIndex = mViewpager.getCurrentItem();
         if (fragmentIndex == 0) {
+            tvStatus.setVisibility(View.VISIBLE);
             pendingTicketList = TicketRepo.getInstance().getPendingTickets();
             GlobalUtils.showLog(TAG, "pending list check: " + pendingTicketList);
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -585,6 +586,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             tvStatus.setVisibility(View.GONE);
             toggleBottomSheet();
         } else {
+            tvStatus.setVisibility(View.VISIBLE);
             closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
             GlobalUtils.showLog(TAG, "closed list check: " + closedTicketList);
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()

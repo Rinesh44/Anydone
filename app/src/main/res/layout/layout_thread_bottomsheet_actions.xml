@@ -31,7 +31,8 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_copy" />
+            android:src="@drawable/ic_copy"
+            app:tint="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,34 +40,9 @@
             android:layout_below="@+id/iv_copy"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dimen_10x1"
-            android:text="@string/copy" />
+            android:text="@string/copy"
+            android:textColor="@color/charcoal_text" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_delete_holder"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:padding="@dimen/dimen_10x2">
-
-        <ImageView
-            android:id="@+id/iv_delete"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_bin" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_delete"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen_10x1"
-            android:text="@string/remove" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -84,8 +60,9 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dimen_2x1"
             android:src="@drawable/ic_ticket"
-            app:tint="@color/ticket_created_text" />
+            app:tint="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,6 +70,37 @@
             android:layout_below="@+id/iv_create_ticket"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dimen_10x1"
-            android:text="Create ticket" />
+            android:text="Create ticket"
+            android:textColor="@color/charcoal_text" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_delete_holder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="@dimen/dimen_10x2">
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dimen_2x1"
+            android:src="@drawable/ic_bin"
+            app:tint="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_delete"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:text="Delete"
+            android:textColor="@color/charcoal_text" />
     </RelativeLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA">
@@ -76,7 +77,8 @@
                         android:layout_marginEnd="@dimen/dimen_10x2"
                         android:layout_marginBottom="@dimen/dimen_2x6"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_profile_username" />
+                        android:src="@drawable/ic_profile_username"
+                        app:tint="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/tv_name_head"
@@ -84,7 +86,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/iv_profile_icon"
-                        android:text="@string/name" />
+                        android:text="@string/name"
+                        android:textColor="@color/service_info_text_color"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_name"
@@ -96,7 +100,7 @@
                         android:layout_toEndOf="@+id/tv_name_head"
                         android:gravity="end"
                         android:text="@string/set_name"
-                        android:textColor="@color/grey_dark"
+                        android:textColor="@color/charcoal_text"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -122,7 +126,8 @@
                         android:layout_marginEnd="@dimen/dimen_10x2"
                         android:layout_marginBottom="@dimen/dimen_2x6"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_profile_email" />
+                        android:src="@drawable/ic_profile_email"
+                        app:tint="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/tv_email_head"
@@ -130,7 +135,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/iv_profile_email"
-                        android:text="@string/email" />
+                        android:text="@string/email"
+                        android:textColor="@color/service_info_text_color"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_email"
@@ -139,10 +146,10 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/dimens_2x"
-                        android:singleLine="true"
                         android:ellipsize="end"
+                        android:singleLine="true"
                         android:text="@string/set_email"
-                        android:textColor="@color/grey_dark"
+                        android:textColor="@color/charcoal_text"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -169,14 +176,17 @@
                         android:layout_marginEnd="@dimen/dimen_10x2"
                         android:layout_marginBottom="@dimen/dimen_2x6"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_profile_phone" />
+                        android:src="@drawable/ic_profile_phone"
+                        app:tint="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/iv_profile_phone"
-                        android:text="@string/phone" />
+                        android:text="@string/phone"
+                        android:textColor="@color/service_info_text_color"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_phone"
@@ -186,7 +196,7 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/dimens_2x"
                         android:text="@string/set_phone"
-                        android:textColor="@color/grey_dark"
+                        android:textColor="@color/charcoal_text"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -259,14 +269,17 @@
                         android:layout_marginEnd="@dimen/dimen_10x2"
                         android:layout_marginBottom="@dimen/dimen_2x6"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_profile_gender" />
+                        android:src="@drawable/ic_profile_gender"
+                        app:tint="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/iv_profile_gender"
-                        android:text="@string/gender" />
+                        android:text="@string/gender"
+                        android:textColor="@color/service_info_text_color"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_gender"
@@ -276,7 +289,7 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/dimens_2x"
                         android:text="@string/set_gender"
-                        android:textColor="@color/grey_dark"
+                        android:textColor="@color/charcoal_text"
                         android:textStyle="bold" />
 
                 </RelativeLayout>

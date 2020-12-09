@@ -1341,13 +1341,13 @@ public final class BotConversationRpcProto {
     com.treeleaf.anydone.entities.BotConversationProto.ConversationResponse getConversationResponse();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    boolean hasAnswer();
+    boolean hasLink();
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.Answer getAnswer();
+    com.treeleaf.anydone.entities.KGraphProto.Link getLink();
 
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphResponse kgraphResponse = 12;</code>
@@ -1674,55 +1674,55 @@ public final class BotConversationRpcProto {
       
     }
 
-    public static final int ANSWER_FIELD_NUMBER = 11;
-    private com.treeleaf.anydone.entities.KGraphProto.Answer answer_;
+    public static final int LINK_FIELD_NUMBER = 11;
+    private com.treeleaf.anydone.entities.KGraphProto.Link link_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    public boolean hasAnswer() {
-      return answer_ != null;
+    public boolean hasLink() {
+      return link_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.Answer getAnswer() {
-      return answer_ == null ? com.treeleaf.anydone.entities.KGraphProto.Answer.getDefaultInstance() : answer_;
+    public com.treeleaf.anydone.entities.KGraphProto.Link getLink() {
+      return link_ == null ? com.treeleaf.anydone.entities.KGraphProto.Link.getDefaultInstance() : link_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    private void setAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+    private void setLink(com.treeleaf.anydone.entities.KGraphProto.Link value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      answer_ = value;
+      link_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    private void setAnswer(
-        com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
-      answer_ = builderForValue.build();
+    private void setLink(
+        com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
+      link_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    private void mergeAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
-      if (answer_ != null &&
-          answer_ != com.treeleaf.anydone.entities.KGraphProto.Answer.getDefaultInstance()) {
-        answer_ =
-          com.treeleaf.anydone.entities.KGraphProto.Answer.newBuilder(answer_).mergeFrom(value).buildPartial();
+    private void mergeLink(com.treeleaf.anydone.entities.KGraphProto.Link value) {
+      if (link_ != null &&
+          link_ != com.treeleaf.anydone.entities.KGraphProto.Link.getDefaultInstance()) {
+        link_ =
+          com.treeleaf.anydone.entities.KGraphProto.Link.newBuilder(link_).mergeFrom(value).buildPartial();
       } else {
-        answer_ = value;
+        link_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
      */
-    private void clearAnswer() {  answer_ = null;
+    private void clearLink() {  link_ = null;
       
     }
 
@@ -1804,8 +1804,8 @@ public final class BotConversationRpcProto {
       if (conversationResponse_ != null) {
         output.writeMessage(10, getConversationResponse());
       }
-      if (answer_ != null) {
-        output.writeMessage(11, getAnswer());
+      if (link_ != null) {
+        output.writeMessage(11, getLink());
       }
       if (kgraphResponse_ != null) {
         output.writeMessage(12, getKgraphResponse());
@@ -1849,9 +1849,9 @@ public final class BotConversationRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getConversationResponse());
       }
-      if (answer_ != null) {
+      if (link_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, getAnswer());
+          .computeMessageSize(11, getLink());
       }
       if (kgraphResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -2220,47 +2220,47 @@ public final class BotConversationRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
        */
-      public boolean hasAnswer() {
-        return instance.hasAnswer();
+      public boolean hasLink() {
+        return instance.hasLink();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.Answer getAnswer() {
-        return instance.getAnswer();
+      public com.treeleaf.anydone.entities.KGraphProto.Link getLink() {
+        return instance.getLink();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
        */
-      public Builder setAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+      public Builder setLink(com.treeleaf.anydone.entities.KGraphProto.Link value) {
         copyOnWrite();
-        instance.setAnswer(value);
+        instance.setLink(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
        */
-      public Builder setAnswer(
-          com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
+      public Builder setLink(
+          com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
         copyOnWrite();
-        instance.setAnswer(builderForValue);
+        instance.setLink(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
        */
-      public Builder mergeAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+      public Builder mergeLink(com.treeleaf.anydone.entities.KGraphProto.Link value) {
         copyOnWrite();
-        instance.mergeAnswer(value);
+        instance.mergeLink(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 11;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 11;</code>
        */
-      public Builder clearAnswer() {  copyOnWrite();
-        instance.clearAnswer();
+      public Builder clearLink() {  copyOnWrite();
+        instance.clearLink();
         return this;
       }
 
@@ -2343,7 +2343,7 @@ public final class BotConversationRpcProto {
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           conversationResponse_ = visitor.visitMessage(conversationResponse_, other.conversationResponse_);
-          answer_ = visitor.visitMessage(answer_, other.answer_);
+          link_ = visitor.visitMessage(link_, other.link_);
           kgraphResponse_ = visitor.visitMessage(kgraphResponse_, other.kgraphResponse_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
@@ -2429,14 +2429,14 @@ public final class BotConversationRpcProto {
                   break;
                 }
                 case 90: {
-                  com.treeleaf.anydone.entities.KGraphProto.Answer.Builder subBuilder = null;
-                  if (answer_ != null) {
-                    subBuilder = answer_.toBuilder();
+                  com.treeleaf.anydone.entities.KGraphProto.Link.Builder subBuilder = null;
+                  if (link_ != null) {
+                    subBuilder = link_.toBuilder();
                   }
-                  answer_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Answer.parser(), extensionRegistry);
+                  link_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Link.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(answer_);
-                    answer_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(link_);
+                    link_ = subBuilder.buildPartial();
                   }
 
                   break;

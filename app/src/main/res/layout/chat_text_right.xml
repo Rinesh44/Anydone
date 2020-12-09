@@ -55,7 +55,7 @@
                     android:autoLink="web"
                     android:linksClickable="true"
                     android:text="helloo there"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <ImageView

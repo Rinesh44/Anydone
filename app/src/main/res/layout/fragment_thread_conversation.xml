@@ -94,6 +94,7 @@
             android:fillViewport="false"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:paddingBottom="@dimen/dimen_10x1"
             android:scrollbars="none" />
 
         <TextView
@@ -117,6 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/ll_search_container"
             android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_6x1"
             android:elevation="@dimen/dimen_2x2"
             android:orientation="horizontal"
             android:visibility="gone"
@@ -125,9 +128,10 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_10x1"
-                android:layout_weight="8"
-                android:background="@drawable/et_rounded_blue">
+                android:layout_marginEnd="@dimen/dimen_2x4"
+                android:layout_weight="9"
+                android:background="@drawable/thread_attachment_options"
+                android:padding="@dimen/dimen_10x1">
 
                 <TextView
                     android:id="@+id/tv_files"
@@ -139,6 +143,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dimen_4x1"
                     android:text="@string/files"
+                    android:textColor="@color/charcoal_text"
                     android:textSize="@dimen/material_text_caption" />
 
                 <TextView
@@ -151,6 +156,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dimen_2x2"
                     android:text="@string/camera"
+                    android:textColor="@color/charcoal_text"
                     android:textSize="@dimen/material_text_caption" />
 
                 <TextView
@@ -163,6 +169,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dimen_2x2"
                     android:text="@string/recorder"
+                    android:textColor="@color/charcoal_text"
                     android:textSize="@dimen/material_text_caption"
                     android:visibility="gone" />
 
@@ -176,6 +183,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dimen_2x2"
                     android:text="@string/gallery"
+                    android:textColor="@color/charcoal_text"
                     android:textSize="@dimen/material_text_caption" />
 
             </LinearLayout>
@@ -246,92 +254,83 @@
             android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginEnd="@dimen/dimens_2x"
             android:layout_marginBottom="@dimen/dimens_1x"
-            android:paddingTop="@dimen/dimens_1x"
+            android:background="@drawable/thread_chat_bg"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dimen_2x2"
+            android:paddingEnd="@dimen/dimen_6x1"
+            android:paddingBottom="@dimen/dimen_2x2"
             android:visibility="visible"
             android:weightSum="10">
 
-
-            <RelativeLayout
+            <ImageView
+                android:id="@+id/iv_attachment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="9.3"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:gravity="bottom">
+                android:layout_marginStart="@dimen/dimen_2x2"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/dimen_10x1"
+                android:paddingTop="@dimen/dimen_10x1"
+                android:paddingEnd="@dimen/dimen_10x1"
+                android:paddingBottom="@dimen/dimen_6x1"
+                android:src="@drawable/ic_attachment"
+                tools:ignore="UnusedAttribute"
+                tools:targetApi="m" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/et_rounded_blue"
-                    android:drawablePadding="@dimen/dimen_10x1"
-                    android:hint="@string/type_a_message"
-                    android:imeOptions="actionNone"
-                    android:inputType="textVisiblePassword|textMultiLine"
-                    android:maxLines="5"
-                    android:paddingStart="@dimen/dimen_10x4"
-                    android:paddingEnd="@dimen/dimen_10x1"
-                    android:scrollbars="vertical"
-                    android:textSize="14sp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="8"
+                android:background="@color/transparent"
+                android:gravity="start"
+                android:hint="@string/type_a_message"
+                android:imeOptions="actionNone"
+                android:inputType="textVisiblePassword|textMultiLine"
+                android:maxLines="5"
+                android:paddingEnd="@dimen/dimen_10x1"
+                android:scrollbars="vertical"
+                android:textColor="@color/charcoal_text"
+                android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/iv_attachment"
+            <ImageView
+                android:id="@+id/iv_send"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_2x4"
+                android:paddingBottom="@dimen/dimen_2x4"
+                android:src="@drawable/ic_send_blue"
+                android:visibility="visible"
+                app:tint="@color/selector_disabled" />
+
+
+            <!--    <ImageView
+                    android:id="@+id/iv_speech"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_2x2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/dimen_10x1"
-                    android:paddingStart="@dimen/dimen_10x1"
-                    android:paddingTop="@dimen/dimen_10x1"
-                    android:paddingEnd="@dimen/dimen_10x1"
-                    android:paddingBottom="@dimen/dimen_6x1"
-                    android:src="@drawable/ic_attachment"
+                    android:foreground="?android:selectableItemBackground"
+                    android:src="@drawable/ic_mic_icon"
                     tools:ignore="UnusedAttribute"
-                    tools:targetApi="m" />
+                    tools:targetApi="m" />-->
 
+            <!--     <ImageView
+                     android:id="@+id/iv_clear"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentEnd="true"
+                     android:layout_centerVertical="true"
+                     android:layout_marginEnd="@dimen/dimen_10x1"
+                     android:src="@drawable/ic_close_blue"
+                     android:visibility="gone" />-->
 
-                <!--    <ImageView
-                        android:id="@+id/iv_speech"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:foreground="?android:selectableItemBackground"
-                        android:src="@drawable/ic_mic_icon"
-                        tools:ignore="UnusedAttribute"
-                        tools:targetApi="m" />-->
-
-                <!--     <ImageView
-                         android:id="@+id/iv_clear"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentEnd="true"
-                         android:layout_centerVertical="true"
-                         android:layout_marginEnd="@dimen/dimen_10x1"
-                         android:src="@drawable/ic_close_blue"
-                         android:visibility="gone" />-->
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="@dimen/dimen_10x1"
-                android:layout_weight=".7">
-
-                <ImageView
-                    android:id="@+id/iv_send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:paddingTop="@dimen/dimen_2x4"
-                    android:paddingBottom="@dimen/dimen_2x4"
-                    android:src="@drawable/ic_send_blue"
-                    android:visibility="visible" />
-
-            </RelativeLayout>
 
         </LinearLayout>
 

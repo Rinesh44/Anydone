@@ -194,6 +194,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
                     i.putExtra("ticket_desc", ticket.getTitle());
                     i.putExtra("selected_ticket_type", Constants.SUBSCRIBED);
                     i.putExtra("selected_ticket_name", callees);
+                    i.putExtra("selected_ticket_index", ticket.getTicketIndex());
                     i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                     i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                     startActivity(i);
@@ -228,7 +229,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && fabSubscribe != null)
                     fabSubscribe.show();
                 super.onScrollStateChanged(recyclerView, newState);
             }
