@@ -86,6 +86,7 @@ import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponse
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_COLLAB_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MAXIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_START_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 
@@ -833,17 +834,16 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             }
                         }
 
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_TOUCH_DOWN_RESPONSE)) {
-                            SignalingProto.DrawTouchDown drawTouchDown = relayResponse
-                                    .getDrawTouchDownResponse();
-                            if (drawTouchDown != null &&
-                                    !drawTouchDown.getSenderAccount().getAccountId().equals(userAccountId)) {
+                        if (relayResponse.getResponseType().equals(DRAW_START_RESPONSE)) {
+                            SignalingProto.DrawStart drawStartResponse = relayResponse
+                                    .getDrawStartResponse();
+                            if (drawStartResponse != null &&
+                                    !drawStartResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                                captureDrawParam.setXCoordinate(drawTouchDown.getX());
-                                captureDrawParam.setYCoordinate(drawTouchDown.getY());
-                                getView().onDrawTouchDown(captureDrawParam, drawTouchDown.getSenderAccount().getAccountId(),
-                                        drawTouchDown.getImageId());
+                                captureDrawParam.setXCoordinate(drawStartResponse.getX());
+                                captureDrawParam.setYCoordinate(drawStartResponse.getY());
+                                getView().onDrawTouchDown(captureDrawParam, drawStartResponse.getSenderAccount().getAccountId(),
+                                        drawStartResponse.getImageId());
                             }
                         }
 
@@ -862,12 +862,12 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         }
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_TOUCH_UP_RESPONSE)) {
-                            SignalingProto.DrawTouchUp drawTouchUp = relayResponse
-                                    .getDrawTouchUpResponse();
-                            if (drawTouchUp != null &&
-                                    !drawTouchUp.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawTouchUp(drawTouchUp.getSenderAccount().getAccountId(), drawTouchUp.getImageId());
+                                .DRAW_END_RESPONSE)) {
+                            SignalingProto.DrawEnd drawEndResponse = relayResponse
+                                    .getDrawEndResponse();
+                            if (drawEndResponse != null &&
+                                    !drawEndResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawTouchUp(drawEndResponse.getSenderAccount().getAccountId(), drawEndResponse.getImageId());
                             }
                         }
 
