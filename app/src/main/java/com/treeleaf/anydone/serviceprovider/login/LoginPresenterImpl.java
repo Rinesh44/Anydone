@@ -53,6 +53,8 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                 .setPassword(password)
                 .build();
 
+
+        GlobalUtils.showLog(TAG, "login info: " + loginRequest);
         loginObservable = service.login(loginRequest);
 
         addSubscription(loginObservable

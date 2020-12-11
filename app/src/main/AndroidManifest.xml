@@ -28,6 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".invoicedetail.InvoiceDetailActivity" />
+        <activity
+            android:name=".invoice.InvoiceActivity"
+            android:theme="@style/FormTheme" />
+        <activity android:name=".plans.PaymentPlans" />
         <activity
             android:name=".suggestedTicketPreview.SuggestedTicketPreviewActivity"
             android:screenOrientation="portrait"
@@ -57,7 +62,7 @@
         <activity
             android:name=".paymentmethod.PaymentMethodActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".billing.BillingActivity"
             android:screenOrientation="portrait" />

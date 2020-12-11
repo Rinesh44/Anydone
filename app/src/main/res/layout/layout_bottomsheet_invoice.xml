@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/top_round_corners"
+    android:clickable="true"
+    android:elevation="@dimen/dimens_2x"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bottomsheet_drawer" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dimen_2x2"
+            android:text="@string/reset"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:tint="@color/black" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10x2"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_4x1"
+                android:text="From:"
+                android:textColor="@color/charcoal_text" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_from_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="From date"
+                    android:textColor="@color/service_info_text_color"
+                    android:textSize="@dimen/material_text_body1" />
+
+                <ImageView
+                    android:id="@+id/iv_from_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:paddingStart="@dimen/dimen_10x1"
+                    android:paddingTop="@dimen/dimen_10x1"
+                    android:paddingEnd="@dimen/dimen_4x1"
+                    android:paddingBottom="@dimen/dimen_10x1"
+                    android:src="@drawable/ic_calendar" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x2"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_4x1"
+                android:text="To:"
+                android:textColor="@color/charcoal_text" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_till_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="To date"
+                    android:textColor="@color/service_info_text_color"
+                    android:textSize="@dimen/material_text_body1" />
+
+
+                <ImageView
+                    android:id="@+id/iv_till_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:paddingStart="@dimen/dimen_10x1"
+                    android:paddingTop="@dimen/dimen_10x1"
+                    android:paddingEnd="@dimen/dimen_4x1"
+                    android:paddingBottom="@dimen/dimen_10x1"
+                    android:src="@drawable/ic_calendar" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10x6"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/filter"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+
+</LinearLayout>
+

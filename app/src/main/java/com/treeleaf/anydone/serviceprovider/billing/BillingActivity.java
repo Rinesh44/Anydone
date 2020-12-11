@@ -1,16 +1,17 @@
 package com.treeleaf.anydone.serviceprovider.billing;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.invoice.InvoiceActivity;
+import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodActivity;
+import com.treeleaf.anydone.serviceprovider.plans.PaymentPlans;
 
 import java.util.Objects;
 
@@ -22,8 +23,10 @@ public class BillingActivity extends AppCompatActivity {
 
     @BindView(R.id.rl_payment_method)
     RelativeLayout rlPaymentMethod;
-    @BindView(R.id.rl_transactions)
-    RelativeLayout rlTransactions;
+    @BindView(R.id.rl_plans)
+    RelativeLayout rlPlans;
+    @BindView(R.id.rl_invoice)
+    RelativeLayout rlInvoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,8 @@ public class BillingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SpannableStringBuilder str = new SpannableStringBuilder("Billing");
-        str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
+                0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(str);
     }
 
@@ -50,11 +54,16 @@ public class BillingActivity extends AppCompatActivity {
     }
 
 
-    @OnClick(R.id.rl_transactions)
+    @OnClick(R.id.rl_plans)
     public void onClickTransactions() {
-        Toast.makeText(this, "go to transaction activity", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(BillingActivity.this, PaymentPlans.class));
     }
 
+
+    @OnClick(R.id.rl_invoice)
+    public void onClickInvoice() {
+        startActivity(new Intent(BillingActivity.this, InvoiceActivity.class));
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
