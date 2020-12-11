@@ -135,6 +135,15 @@ public final class ConversationRpcProto {
      * <code>optional .treeleaf.anydone.entities.EmployeeAssigned employeeAssigned = 14;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.EmployeeAssigned getEmployeeAssigned();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    boolean hasConversationFilter();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationFilter getConversationFilter();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ConversationBaseRequest}
@@ -759,6 +768,58 @@ public final class ConversationRpcProto {
       
     }
 
+    public static final int CONVERSATIONFILTER_FIELD_NUMBER = 15;
+    private com.treeleaf.anydone.entities.ConversationProto.ConversationFilter conversationFilter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    public boolean hasConversationFilter() {
+      return conversationFilter_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationFilter getConversationFilter() {
+      return conversationFilter_ == null ? com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.getDefaultInstance() : conversationFilter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    private void setConversationFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      conversationFilter_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    private void setConversationFilter(
+        com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.Builder builderForValue) {
+      conversationFilter_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    private void mergeConversationFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter value) {
+      if (conversationFilter_ != null &&
+          conversationFilter_ != com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.getDefaultInstance()) {
+        conversationFilter_ =
+          com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.newBuilder(conversationFilter_).mergeFrom(value).buildPartial();
+      } else {
+        conversationFilter_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+     */
+    private void clearConversationFilter() {  conversationFilter_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -802,6 +863,9 @@ public final class ConversationRpcProto {
       }
       if (employeeAssigned_ != null) {
         output.writeMessage(14, getEmployeeAssigned());
+      }
+      if (conversationFilter_ != null) {
+        output.writeMessage(15, getConversationFilter());
       }
     }
 
@@ -870,6 +934,10 @@ public final class ConversationRpcProto {
       if (employeeAssigned_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getEmployeeAssigned());
+      }
+      if (conversationFilter_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getConversationFilter());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1498,6 +1566,51 @@ public final class ConversationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+       */
+      public boolean hasConversationFilter() {
+        return instance.hasConversationFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationFilter getConversationFilter() {
+        return instance.getConversationFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+       */
+      public Builder setConversationFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter value) {
+        copyOnWrite();
+        instance.setConversationFilter(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+       */
+      public Builder setConversationFilter(
+          com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.Builder builderForValue) {
+        copyOnWrite();
+        instance.setConversationFilter(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+       */
+      public Builder mergeConversationFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter value) {
+        copyOnWrite();
+        instance.mergeConversationFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
+       */
+      public Builder clearConversationFilter() {  copyOnWrite();
+        instance.clearConversationFilter();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ConversationBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1542,6 +1655,7 @@ public final class ConversationRpcProto {
               !other.customerId_.isEmpty(), other.customerId_);
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
           employeeAssigned_ = visitor.visitMessage(employeeAssigned_, other.employeeAssigned_);
+          conversationFilter_ = visitor.visitMessage(conversationFilter_, other.conversationFilter_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1674,6 +1788,19 @@ public final class ConversationRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(employeeAssigned_);
                     employeeAssigned_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 122: {
+                  com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.Builder subBuilder = null;
+                  if (conversationFilter_ != null) {
+                    subBuilder = conversationFilter_.toBuilder();
+                  }
+                  conversationFilter_ = input.readMessage(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(conversationFilter_);
+                    conversationFilter_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -1823,6 +1950,11 @@ public final class ConversationRpcProto {
      */
     com.google.protobuf.ByteString
         getLinkBytes();
+
+    /**
+     * <code>optional int64 count = 15;</code>
+     */
+    long getCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ConversationBaseResponse}
@@ -2356,6 +2488,29 @@ public final class ConversationRpcProto {
       link_ = value.toStringUtf8();
     }
 
+    public static final int COUNT_FIELD_NUMBER = 15;
+    private long count_;
+    /**
+     * <code>optional int64 count = 15;</code>
+     */
+    public long getCount() {
+      return count_;
+    }
+    /**
+     * <code>optional int64 count = 15;</code>
+     */
+    private void setCount(long value) {
+      
+      count_ = value;
+    }
+    /**
+     * <code>optional int64 count = 15;</code>
+     */
+    private void clearCount() {
+      
+      count_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2390,6 +2545,9 @@ public final class ConversationRpcProto {
       }
       if (!link_.isEmpty()) {
         output.writeString(14, getLink());
+      }
+      if (count_ != 0L) {
+        output.writeInt64(15, count_);
       }
     }
 
@@ -2441,6 +2599,10 @@ public final class ConversationRpcProto {
       if (!link_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(14, getLink());
+      }
+      if (count_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(15, count_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2981,6 +3143,29 @@ public final class ConversationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 count = 15;</code>
+       */
+      public long getCount() {
+        return instance.getCount();
+      }
+      /**
+       * <code>optional int64 count = 15;</code>
+       */
+      public Builder setCount(long value) {
+        copyOnWrite();
+        instance.setCount(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 count = 15;</code>
+       */
+      public Builder clearCount() {
+        copyOnWrite();
+        instance.clearCount();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ConversationBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -3021,6 +3206,8 @@ public final class ConversationRpcProto {
           conversations_= visitor.visitList(conversations_, other.conversations_);
           link_ = visitor.visitString(!link_.isEmpty(), link_,
               !other.link_.isEmpty(), other.link_);
+          count_ = visitor.visitLong(count_ != 0L, count_,
+              other.count_ != 0L, other.count_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3124,6 +3311,11 @@ public final class ConversationRpcProto {
                   String s = input.readStringRequireUtf8();
 
                   link_ = s;
+                  break;
+                }
+                case 120: {
+
+                  count_ = input.readInt64();
                   break;
                 }
               }

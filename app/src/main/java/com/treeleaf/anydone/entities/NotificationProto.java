@@ -3356,6 +3356,16 @@ public final class NotificationProto {
      */
     com.google.protobuf.ByteString
         getSenderPushTokenBytes();
+
+    /**
+     * <code>optional string payload = 11;</code>
+     */
+    java.lang.String getPayload();
+    /**
+     * <code>optional string payload = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getPayloadBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PushNotificationRequest}
@@ -3373,6 +3383,7 @@ public final class NotificationProto {
       fromUserId_ = "";
       notificationId_ = "";
       senderPushToken_ = "";
+      payload_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType}
@@ -3970,6 +3981,52 @@ public final class NotificationProto {
       senderPushToken_ = value.toStringUtf8();
     }
 
+    public static final int PAYLOAD_FIELD_NUMBER = 11;
+    private java.lang.String payload_;
+    /**
+     * <code>optional string payload = 11;</code>
+     */
+    public java.lang.String getPayload() {
+      return payload_;
+    }
+    /**
+     * <code>optional string payload = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPayloadBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(payload_);
+    }
+    /**
+     * <code>optional string payload = 11;</code>
+     */
+    private void setPayload(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      payload_ = value;
+    }
+    /**
+     * <code>optional string payload = 11;</code>
+     */
+    private void clearPayload() {
+      
+      payload_ = getDefaultInstance().getPayload();
+    }
+    /**
+     * <code>optional string payload = 11;</code>
+     */
+    private void setPayloadBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      payload_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < recipients_.size(); i++) {
@@ -4001,6 +4058,9 @@ public final class NotificationProto {
       }
       if (!senderPushToken_.isEmpty()) {
         output.writeString(10, getSenderPushToken());
+      }
+      if (!payload_.isEmpty()) {
+        output.writeString(11, getPayload());
       }
     }
 
@@ -4053,6 +4113,10 @@ public final class NotificationProto {
       if (!senderPushToken_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(10, getSenderPushToken());
+      }
+      if (!payload_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getPayload());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4592,6 +4656,46 @@ public final class NotificationProto {
         return this;
       }
 
+      /**
+       * <code>optional string payload = 11;</code>
+       */
+      public java.lang.String getPayload() {
+        return instance.getPayload();
+      }
+      /**
+       * <code>optional string payload = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPayloadBytes() {
+        return instance.getPayloadBytes();
+      }
+      /**
+       * <code>optional string payload = 11;</code>
+       */
+      public Builder setPayload(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setPayload(value);
+        return this;
+      }
+      /**
+       * <code>optional string payload = 11;</code>
+       */
+      public Builder clearPayload() {
+        copyOnWrite();
+        instance.clearPayload();
+        return this;
+      }
+      /**
+       * <code>optional string payload = 11;</code>
+       */
+      public Builder setPayloadBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPayloadBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PushNotificationRequest)
     }
     protected final Object dynamicMethod(
@@ -4632,6 +4736,8 @@ public final class NotificationProto {
               !other.notificationId_.isEmpty(), other.notificationId_);
           senderPushToken_ = visitor.visitString(!senderPushToken_.isEmpty(), senderPushToken_,
               !other.senderPushToken_.isEmpty(), other.senderPushToken_);
+          payload_ = visitor.visitString(!payload_.isEmpty(), payload_,
+              !other.payload_.isEmpty(), other.payload_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4719,6 +4825,12 @@ public final class NotificationProto {
                   String s = input.readStringRequireUtf8();
 
                   senderPushToken_ = s;
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+
+                  payload_ = s;
                   break;
                 }
               }

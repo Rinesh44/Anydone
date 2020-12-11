@@ -156,6 +156,15 @@ public final class BotHousekeepingRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotSettings botSettings = 16;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings getBotSettings();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    boolean hasFilter();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter getFilter();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseRequest}
@@ -976,6 +985,58 @@ public final class BotHousekeepingRpcProto {
       
     }
 
+    public static final int FILTER_FIELD_NUMBER = 17;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter filter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    public boolean hasFilter() {
+      return filter_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter getFilter() {
+      return filter_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter.getDefaultInstance() : filter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    private void setFilter(com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      filter_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    private void setFilter(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter.Builder builderForValue) {
+      filter_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    private void mergeFilter(com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter value) {
+      if (filter_ != null &&
+          filter_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter.getDefaultInstance()) {
+        filter_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter.newBuilder(filter_).mergeFrom(value).buildPartial();
+      } else {
+        filter_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+     */
+    private void clearFilter() {  filter_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1025,6 +1086,9 @@ public final class BotHousekeepingRpcProto {
       }
       if (botSettings_ != null) {
         output.writeMessage(16, getBotSettings());
+      }
+      if (filter_ != null) {
+        output.writeMessage(17, getFilter());
       }
     }
 
@@ -1101,6 +1165,10 @@ public final class BotHousekeepingRpcProto {
       if (botSettings_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getBotSettings());
+      }
+      if (filter_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, getFilter());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1889,6 +1957,51 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+       */
+      public boolean hasFilter() {
+        return instance.hasFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter getFilter() {
+        return instance.getFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+       */
+      public Builder setFilter(com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter value) {
+        copyOnWrite();
+        instance.setFilter(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+       */
+      public Builder setFilter(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter.Builder builderForValue) {
+        copyOnWrite();
+        instance.setFilter(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+       */
+      public Builder mergeFilter(com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter value) {
+        copyOnWrite();
+        instance.mergeFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
+       */
+      public Builder clearFilter() {  copyOnWrite();
+        instance.clearFilter();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1934,6 +2047,7 @@ public final class BotHousekeepingRpcProto {
           intentResponse_ = visitor.visitMessage(intentResponse_, other.intentResponse_);
           trainRequest_ = visitor.visitMessage(trainRequest_, other.trainRequest_);
           botSettings_ = visitor.visitMessage(botSettings_, other.botSettings_);
+          filter_ = visitor.visitMessage(filter_, other.filter_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2113,6 +2227,19 @@ public final class BotHousekeepingRpcProto {
 
                   break;
                 }
+                case 138: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter.Builder subBuilder = null;
+                  if (filter_ != null) {
+                    subBuilder = filter_.toBuilder();
+                  }
+                  filter_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(filter_);
+                    filter_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2288,6 +2415,11 @@ public final class BotHousekeepingRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotSettings botSettings = 16;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings getBotSettings();
+
+    /**
+     * <code>optional int64 count = 17;</code>
+     */
+    long getCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseResponse}
@@ -3056,6 +3188,29 @@ public final class BotHousekeepingRpcProto {
       
     }
 
+    public static final int COUNT_FIELD_NUMBER = 17;
+    private long count_;
+    /**
+     * <code>optional int64 count = 17;</code>
+     */
+    public long getCount() {
+      return count_;
+    }
+    /**
+     * <code>optional int64 count = 17;</code>
+     */
+    private void setCount(long value) {
+      
+      count_ = value;
+    }
+    /**
+     * <code>optional int64 count = 17;</code>
+     */
+    private void clearCount() {
+      
+      count_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3099,6 +3254,9 @@ public final class BotHousekeepingRpcProto {
       }
       if (botSettings_ != null) {
         output.writeMessage(16, getBotSettings());
+      }
+      if (count_ != 0L) {
+        output.writeInt64(17, count_);
       }
     }
 
@@ -3162,6 +3320,10 @@ public final class BotHousekeepingRpcProto {
       if (botSettings_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getBotSettings());
+      }
+      if (count_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(17, count_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3899,6 +4061,29 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 count = 17;</code>
+       */
+      public long getCount() {
+        return instance.getCount();
+      }
+      /**
+       * <code>optional int64 count = 17;</code>
+       */
+      public Builder setCount(long value) {
+        copyOnWrite();
+        instance.setCount(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 count = 17;</code>
+       */
+      public Builder clearCount() {
+        copyOnWrite();
+        instance.clearCount();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -3941,6 +4126,8 @@ public final class BotHousekeepingRpcProto {
           trainingPhrase_ = visitor.visitMessage(trainingPhrase_, other.trainingPhrase_);
           intentResponse_ = visitor.visitMessage(intentResponse_, other.intentResponse_);
           botSettings_ = visitor.visitMessage(botSettings_, other.botSettings_);
+          count_ = visitor.visitLong(count_ != 0L, count_,
+              other.count_ != 0L, other.count_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4093,6 +4280,11 @@ public final class BotHousekeepingRpcProto {
                     botSettings_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 136: {
+
+                  count_ = input.readInt64();
                   break;
                 }
               }

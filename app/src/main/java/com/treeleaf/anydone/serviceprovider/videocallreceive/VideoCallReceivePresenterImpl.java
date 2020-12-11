@@ -635,7 +635,7 @@ public class VideoCallReceivePresenterImpl extends
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_COLlAB_REQUEST)
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_COLLAB_REQUEST)
                 .setDrawCollabReq(drawCollab)
                 .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();

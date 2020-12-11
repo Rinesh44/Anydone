@@ -1772,18 +1772,18 @@ public final class BotConversationProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.KGraphProto.Answer> 
-        getAnswersList();
+    java.util.List<com.treeleaf.anydone.entities.KGraphProto.Link> 
+        getLinksList();
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.Answer getAnswers(int index);
+    com.treeleaf.anydone.entities.KGraphProto.Link getLinks(int index);
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    int getAnswersCount();
+    int getLinksCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.KGraphResponse}
@@ -1794,132 +1794,132 @@ public final class BotConversationProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.KGraphResponse)
       KGraphResponseOrBuilder {
     private KGraphResponse() {
-      answers_ = emptyProtobufList();
+      links_ = emptyProtobufList();
     }
-    public static final int ANSWERS_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.Answer> answers_;
+    public static final int LINKS_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.Link> links_;
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Answer> getAnswersList() {
-      return answers_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.AnswerOrBuilder> 
-        getAnswersOrBuilderList() {
-      return answers_;
+    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Link> getLinksList() {
+      return links_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    public int getAnswersCount() {
-      return answers_.size();
+    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.LinkOrBuilder> 
+        getLinksOrBuilderList() {
+      return links_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.Answer getAnswers(int index) {
-      return answers_.get(index);
+    public int getLinksCount() {
+      return links_.size();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.AnswerOrBuilder getAnswersOrBuilder(
+    public com.treeleaf.anydone.entities.KGraphProto.Link getLinks(int index) {
+      return links_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.LinkOrBuilder getLinksOrBuilder(
         int index) {
-      return answers_.get(index);
+      return links_.get(index);
     }
-    private void ensureAnswersIsMutable() {
-      if (!answers_.isModifiable()) {
-        answers_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(answers_);
+    private void ensureLinksIsMutable() {
+      if (!links_.isModifiable()) {
+        links_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(links_);
        }
     }
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void setAnswers(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+    private void setLinks(
+        int index, com.treeleaf.anydone.entities.KGraphProto.Link value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureAnswersIsMutable();
-      answers_.set(index, value);
+      ensureLinksIsMutable();
+      links_.set(index, value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void setAnswers(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
-      ensureAnswersIsMutable();
-      answers_.set(index, builderForValue.build());
+    private void setLinks(
+        int index, com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
+      ensureLinksIsMutable();
+      links_.set(index, builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void addAnswers(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+    private void addLinks(com.treeleaf.anydone.entities.KGraphProto.Link value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureAnswersIsMutable();
-      answers_.add(value);
+      ensureLinksIsMutable();
+      links_.add(value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void addAnswers(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+    private void addLinks(
+        int index, com.treeleaf.anydone.entities.KGraphProto.Link value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      ensureAnswersIsMutable();
-      answers_.add(index, value);
+      ensureLinksIsMutable();
+      links_.add(index, value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void addAnswers(
-        com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
-      ensureAnswersIsMutable();
-      answers_.add(builderForValue.build());
+    private void addLinks(
+        com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
+      ensureLinksIsMutable();
+      links_.add(builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void addAnswers(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
-      ensureAnswersIsMutable();
-      answers_.add(index, builderForValue.build());
+    private void addLinks(
+        int index, com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
+      ensureLinksIsMutable();
+      links_.add(index, builderForValue.build());
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void addAllAnswers(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Answer> values) {
-      ensureAnswersIsMutable();
+    private void addAllLinks(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
+      ensureLinksIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
-          values, answers_);
+          values, links_);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void clearAnswers() {
-      answers_ = emptyProtobufList();
+    private void clearLinks() {
+      links_ = emptyProtobufList();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+     * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
      */
-    private void removeAnswers(int index) {
-      ensureAnswersIsMutable();
-      answers_.remove(index);
+    private void removeLinks(int index) {
+      ensureLinksIsMutable();
+      links_.remove(index);
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < answers_.size(); i++) {
-        output.writeMessage(1, answers_.get(i));
+      for (int i = 0; i < links_.size(); i++) {
+        output.writeMessage(1, links_.get(i));
       }
     }
 
@@ -1928,9 +1928,9 @@ public final class BotConversationProto {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < answers_.size(); i++) {
+      for (int i = 0; i < links_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, answers_.get(i));
+          .computeMessageSize(1, links_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -2019,99 +2019,99 @@ public final class BotConversationProto {
 
 
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Answer> getAnswersList() {
+      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Link> getLinksList() {
         return java.util.Collections.unmodifiableList(
-            instance.getAnswersList());
+            instance.getLinksList());
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public int getAnswersCount() {
-        return instance.getAnswersCount();
+      public int getLinksCount() {
+        return instance.getLinksCount();
       }/**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.Answer getAnswers(int index) {
-        return instance.getAnswers(index);
+      public com.treeleaf.anydone.entities.KGraphProto.Link getLinks(int index) {
+        return instance.getLinks(index);
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder setAnswers(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+      public Builder setLinks(
+          int index, com.treeleaf.anydone.entities.KGraphProto.Link value) {
         copyOnWrite();
-        instance.setAnswers(index, value);
+        instance.setLinks(index, value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder setAnswers(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
+      public Builder setLinks(
+          int index, com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
         copyOnWrite();
-        instance.setAnswers(index, builderForValue);
+        instance.setLinks(index, builderForValue);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder addAnswers(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+      public Builder addLinks(com.treeleaf.anydone.entities.KGraphProto.Link value) {
         copyOnWrite();
-        instance.addAnswers(value);
+        instance.addLinks(value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder addAnswers(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+      public Builder addLinks(
+          int index, com.treeleaf.anydone.entities.KGraphProto.Link value) {
         copyOnWrite();
-        instance.addAnswers(index, value);
+        instance.addLinks(index, value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder addAnswers(
-          com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
+      public Builder addLinks(
+          com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
         copyOnWrite();
-        instance.addAnswers(builderForValue);
+        instance.addLinks(builderForValue);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder addAnswers(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
+      public Builder addLinks(
+          int index, com.treeleaf.anydone.entities.KGraphProto.Link.Builder builderForValue) {
         copyOnWrite();
-        instance.addAnswers(index, builderForValue);
+        instance.addLinks(index, builderForValue);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder addAllAnswers(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Answer> values) {
+      public Builder addAllLinks(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
         copyOnWrite();
-        instance.addAllAnswers(values);
+        instance.addAllLinks(values);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder clearAnswers() {
+      public Builder clearLinks() {
         copyOnWrite();
-        instance.clearAnswers();
+        instance.clearLinks();
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.Answer answers = 1;</code>
+       * <code>repeated .treeleaf.anydone.entities.Link links = 1;</code>
        */
-      public Builder removeAnswers(int index) {
+      public Builder removeLinks(int index) {
         copyOnWrite();
-        instance.removeAnswers(index);
+        instance.removeLinks(index);
         return this;
       }
 
@@ -2128,7 +2128,7 @@ public final class BotConversationProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
-          answers_.makeImmutable();
+          links_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2137,7 +2137,7 @@ public final class BotConversationProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse other = (com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse) arg1;
-          answers_= visitor.visitList(answers_, other.answers_);
+          links_= visitor.visitList(links_, other.links_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2163,12 +2163,12 @@ public final class BotConversationProto {
                   break;
                 }
                 case 10: {
-                  if (!answers_.isModifiable()) {
-                    answers_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(answers_);
+                  if (!links_.isModifiable()) {
+                    links_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(links_);
                   }
-                  answers_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Answer.parser(), extensionRegistry));
+                  links_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Link.parser(), extensionRegistry));
                   break;
                 }
               }

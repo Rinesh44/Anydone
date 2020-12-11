@@ -247,6 +247,15 @@ public final class UserRpcProto {
      * <code>optional .treeleaf.anydone.entities.AnydoneUser anydoneUser = 30;</code>
      */
     com.treeleaf.anydone.entities.UserProto.AnydoneUser getAnydoneUser();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    boolean hasFilter();
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.UserFilter getFilter();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.UserBaseRequest}
@@ -1527,6 +1536,58 @@ public final class UserRpcProto {
       
     }
 
+    public static final int FILTER_FIELD_NUMBER = 31;
+    private com.treeleaf.anydone.entities.UserProto.UserFilter filter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    public boolean hasFilter() {
+      return filter_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.UserFilter getFilter() {
+      return filter_ == null ? com.treeleaf.anydone.entities.UserProto.UserFilter.getDefaultInstance() : filter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    private void setFilter(com.treeleaf.anydone.entities.UserProto.UserFilter value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      filter_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    private void setFilter(
+        com.treeleaf.anydone.entities.UserProto.UserFilter.Builder builderForValue) {
+      filter_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    private void mergeFilter(com.treeleaf.anydone.entities.UserProto.UserFilter value) {
+      if (filter_ != null &&
+          filter_ != com.treeleaf.anydone.entities.UserProto.UserFilter.getDefaultInstance()) {
+        filter_ =
+          com.treeleaf.anydone.entities.UserProto.UserFilter.newBuilder(filter_).mergeFrom(value).buildPartial();
+      } else {
+        filter_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+     */
+    private void clearFilter() {  filter_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1609,6 +1670,9 @@ public final class UserRpcProto {
       }
       if (anydoneUser_ != null) {
         output.writeMessage(30, getAnydoneUser());
+      }
+      if (filter_ != null) {
+        output.writeMessage(31, getFilter());
       }
     }
 
@@ -1729,6 +1793,10 @@ public final class UserRpcProto {
       if (anydoneUser_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(30, getAnydoneUser());
+      }
+      if (filter_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(31, getFilter());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2925,6 +2993,51 @@ public final class UserRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+       */
+      public boolean hasFilter() {
+        return instance.hasFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.UserFilter getFilter() {
+        return instance.getFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+       */
+      public Builder setFilter(com.treeleaf.anydone.entities.UserProto.UserFilter value) {
+        copyOnWrite();
+        instance.setFilter(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+       */
+      public Builder setFilter(
+          com.treeleaf.anydone.entities.UserProto.UserFilter.Builder builderForValue) {
+        copyOnWrite();
+        instance.setFilter(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+       */
+      public Builder mergeFilter(com.treeleaf.anydone.entities.UserProto.UserFilter value) {
+        copyOnWrite();
+        instance.mergeFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UserFilter filter = 31;</code>
+       */
+      public Builder clearFilter() {  copyOnWrite();
+        instance.clearFilter();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2982,6 +3095,7 @@ public final class UserRpcProto {
           customer_ = visitor.visitMessage(customer_, other.customer_);
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
           anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
+          filter_ = visitor.visitMessage(filter_, other.filter_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3282,6 +3396,19 @@ public final class UserRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(anydoneUser_);
                     anydoneUser_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 250: {
+                  com.treeleaf.anydone.entities.UserProto.UserFilter.Builder subBuilder = null;
+                  if (filter_ != null) {
+                    subBuilder = filter_.toBuilder();
+                  }
+                  filter_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.UserFilter.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(filter_);
+                    filter_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -3605,6 +3732,11 @@ public final class UserRpcProto {
      * <code>repeated .treeleaf.anydone.entities.AnydoneUser anydoneUsers = 25;</code>
      */
     int getAnydoneUsersCount();
+
+    /**
+     * <code>optional int64 count = 26;</code>
+     */
+    long getCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.UserBaseResponse}
@@ -5400,6 +5532,29 @@ public final class UserRpcProto {
       anydoneUsers_.remove(index);
     }
 
+    public static final int COUNT_FIELD_NUMBER = 26;
+    private long count_;
+    /**
+     * <code>optional int64 count = 26;</code>
+     */
+    public long getCount() {
+      return count_;
+    }
+    /**
+     * <code>optional int64 count = 26;</code>
+     */
+    private void setCount(long value) {
+      
+      count_ = value;
+    }
+    /**
+     * <code>optional int64 count = 26;</code>
+     */
+    private void clearCount() {
+      
+      count_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -5476,6 +5631,9 @@ public final class UserRpcProto {
       }
       for (int i = 0; i < anydoneUsers_.size(); i++) {
         output.writeMessage(25, anydoneUsers_.get(i));
+      }
+      if (count_ != 0L) {
+        output.writeInt64(26, count_);
       }
     }
 
@@ -5583,6 +5741,10 @@ public final class UserRpcProto {
       for (int i = 0; i < anydoneUsers_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(25, anydoneUsers_.get(i));
+      }
+      if (count_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(26, count_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -7160,6 +7322,29 @@ public final class UserRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 count = 26;</code>
+       */
+      public long getCount() {
+        return instance.getCount();
+      }
+      /**
+       * <code>optional int64 count = 26;</code>
+       */
+      public Builder setCount(long value) {
+        copyOnWrite();
+        instance.setCount(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 count = 26;</code>
+       */
+      public Builder clearCount() {
+        copyOnWrite();
+        instance.clearCount();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.UserBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -7222,6 +7407,8 @@ public final class UserRpcProto {
           customers_= visitor.visitList(customers_, other.customers_);
           anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           anydoneUsers_= visitor.visitList(anydoneUsers_, other.anydoneUsers_);
+          count_ = visitor.visitLong(count_ != 0L, count_,
+              other.count_ != 0L, other.count_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -7472,6 +7659,11 @@ public final class UserRpcProto {
                   }
                   anydoneUsers_.add(
                       input.readMessage(com.treeleaf.anydone.entities.UserProto.AnydoneUser.parser(), extensionRegistry));
+                  break;
+                }
+                case 208: {
+
+                  count_ = input.readInt64();
                   break;
                 }
               }
