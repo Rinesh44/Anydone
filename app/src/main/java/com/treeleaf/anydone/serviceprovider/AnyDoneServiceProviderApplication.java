@@ -10,12 +10,15 @@ import com.treeleaf.anydone.serviceprovider.injection.component.DaggerApplicatio
 import com.treeleaf.anydone.serviceprovider.injection.module.ApplicationModule;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.AnydoneRealmMigration;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.LocaleHelper;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class AnyDoneServiceProviderApplication extends Application {
     private static final String TAG = "AnyDoneConsumerApplicat";
@@ -103,7 +106,13 @@ public class AnyDoneServiceProviderApplication extends Application {
 
 
     private void initializeRealm() {
-        RealmUtils.init(this);
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(2) // Must be bumped when the schema changes
+                .migration(new AnydoneRealmMigration()) // Migration to run
+                .build();
+
+        Realm.setDefaultConfiguration(config);
     }
 
 }

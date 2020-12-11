@@ -6,6 +6,8 @@ import android.net.Uri;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chinalwb.are.AREditText;
+import com.chinalwb.are.AREditor;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -175,7 +177,7 @@ public class TicketConversationContract {
 
         void getServiceProviderInfo(Tickets tickets);
 
-        void enterMessage(RecyclerView conversation, RichEditor etMessage);
+        void enterMessage(RecyclerView conversation, AREditText etMessage);
 
         void startTask(long ticketId);
 

@@ -12,6 +12,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -25,6 +26,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -40,8 +42,115 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
     }
 
     @Override
+    public void getTicketTypes() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getTicketTypes(token, serviceId);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "get ticket types response:"
+                                + response);
+
+                        if (response.getError()) {
+                            getView().getTypeFail(response.getMsg());
+                            return;
+                        }
+
+                        saveTicketTypes(response.getTicketTypesList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+
+    }
+
+    private void saveTicketTypes(List<TicketProto.TicketType> ticketTypeList) {
+        TicketCategoryRepo.getInstance().saveTicketTypeList(ticketTypeList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved ticket types");
+                getView().getTypeSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save ticket types");
+            }
+        });
+    }
+
+    @Override
+    public void startTask(long ticketId) {
+        getView().showProgressBar("Please wait...");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        ticketObservable = service.startTicket(token,
+                String.valueOf(ticketId));
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                               startTicketResponse) {
+                        GlobalUtils.showLog(TAG, "start ticket response: " +
+                                startTicketResponse);
+
+                        getView().hideProgressBar();
+                        if (startTicketResponse == null) {
+                            getView().onTaskStartFail("Failed to start ticket");
+                            return;
+                        }
+
+                        if (startTicketResponse.getError()) {
+                            getView().onTaskStartFail(startTicketResponse.getMsg());
+                            return;
+                        }
+
+                        getView().onTaskStartSuccess(startTicketResponse.getEstimatedTime());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
+
+    @Override
     public void assignTicket(long ticketId, String employeeId) {
-        getView().showProgressEmployee();
+        getView().showProgressBar("");
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
         String token = Hawk.get(Constants.TOKEN);
 
@@ -76,7 +185,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                                 GlobalUtils.showLog(TAG, "assign tickets response: "
                                         + getTicketsBaseResponse);
 
-                                getView().hideProgressEmployee();
+                                getView().hideProgressBar();
                                 if (getTicketsBaseResponse == null) {
                                     getView().assignFail("assign ticket failed");
                                     return;
@@ -87,7 +196,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                                     return;
                                 }
 
-                                getView().assignSuccess();
+                                getView().assignSuccess(employeeId);
                             }
 
                             @Override

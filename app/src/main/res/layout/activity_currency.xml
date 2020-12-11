@@ -3,6 +3,7 @@
     android:id="@+id/rl_currency"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_10x1"
     android:padding="@dimen/dimens_2x">
 
     <ImageView
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_swipe_arrow" />
+        android:src="@drawable/ic_right_arrow" />
 
 
 </RelativeLayout>

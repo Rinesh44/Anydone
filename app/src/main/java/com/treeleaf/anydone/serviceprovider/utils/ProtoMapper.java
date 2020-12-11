@@ -21,10 +21,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
-import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
-import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,6 +122,7 @@ public final class ProtoMapper {
         ) {
             Tags tags = new Tags();
             tags.setTagId(ticketTagPb.getTeamId());
+            tags.setServiceId(ticketTagPb.getServiceId());
             tags.setCreatedBy(ticketTagPb.getCreatedBy().getAccount().getAccountId());
             tags.setDescription(ticketTagPb.getDescription());
             tags.setLabel(ticketTagPb.getLabel());
@@ -152,7 +149,7 @@ public final class ProtoMapper {
     }
 
     public static List<Label> transformLabelsManaged(List<TicketProto.Label> labelListPb) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         GlobalUtils.showLog(TAG, "label list count: " + labelListPb.size());
         List<Label> labelRealmList = new ArrayList<>();
         for (TicketProto.Label ticketLabelPb : labelListPb
@@ -234,7 +231,7 @@ public final class ProtoMapper {
 
             case "VIDEO_CALL_RTC_MESSAGE":
                 conversation.setCallDuration(GlobalUtils.getFormattedDuration(message.getCall().getDuration()));
-                conversation.setCallInitiateTime(GlobalUtils.getTime(message.getSentAt()));
+                conversation.setCallInitiateTime(GlobalUtils.getTimeExcludeMillis(message.getSentAt()));
                 break;
 
             case "AUDIO_CALL_RTC_MESSAGE":

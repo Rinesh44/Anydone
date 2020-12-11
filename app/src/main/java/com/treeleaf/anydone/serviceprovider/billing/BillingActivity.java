@@ -38,7 +38,7 @@ public class BillingActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SpannableStringBuilder str = new SpannableStringBuilder("Billings");
+        SpannableStringBuilder str = new SpannableStringBuilder("Billing");
         str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(str);
     }

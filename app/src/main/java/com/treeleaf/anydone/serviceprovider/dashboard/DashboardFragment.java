@@ -254,7 +254,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             }
         }
 
-        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+        tvToolbarTitle.setOnClickListener(v -> {
+            serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+            toggleServiceBottomSheet();
+        });
 
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
@@ -296,7 +299,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
     }
 
-
     private void createServiceBottomSheet() {
         serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
@@ -304,13 +306,14 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 .inflate(R.layout.bottomsheet_select_service, null);
 
         serviceBottomSheet.setContentView(llBottomSheet);
+        serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
 
         serviceBottomSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
 
             FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+         /*   if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
             setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
@@ -324,7 +327,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             }
         });
 
-        serviceBottomSheet.setOnDismissListener(dialog -> searchService.clearFocus());
+        serviceBottomSheet.setOnDismissListener(dialog -> {
+            searchService.clearFocus();
+            UiUtils.hideKeyboardForced(getActivity());
+        });
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         if (CollectionUtils.isEmpty(serviceList)) {

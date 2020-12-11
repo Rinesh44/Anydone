@@ -41,7 +41,7 @@
         android:layout_marginBottom="@dimen/dimen_6x1"
         android:paddingStart="@dimen/dimens_2x"
         android:text="Suggestions"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
 
@@ -59,17 +59,25 @@
             android:id="@+id/civ_image_self"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:src="@drawable/ic_assigned_emp_placeholder" />
+            android:src="@drawable/ic_user_placeholder" />
 
         <TextView
             android:id="@+id/tv_name_self"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/dimen_10x1"
             android:text="RInesh shakya"
+            android:textColor="@color/black"
             android:textSize="@dimen/material_text_body2" />
 
+        <ImageView
+            android:id="@+id/iv_tick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:src="@drawable/ic_tick"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -86,13 +94,14 @@
         android:paddingTop="@dimen/dimen_10x1"
         android:paddingBottom="@dimen/dimen_6x1"
         android:text="Employee"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_users"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dimen_10x3" />
 
 </LinearLayout>
 

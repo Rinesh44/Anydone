@@ -17,6 +17,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.EstimatedTimeHelper;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -103,7 +104,14 @@ public class EditTicketActivity extends MvpBaseActivity<EditTicketPresenterImpl>
                     break;
 
                 case "estimated_time":
-                    presenter.editTicketEstimatedTime(ticketId, UiUtils.getString(etEditor));
+                    boolean isEstTimeValid = EstimatedTimeHelper.validateEstimatedTime(UiUtils.getString(etEditor));
+                    if (isEstTimeValid) {
+                        presenter.editTicketEstimatedTime(ticketId, UiUtils.getString(etEditor));
+                    } else {
+                        UiUtils.showSnackBar(this, getWindow()
+                                .getDecorView().getRootView(), "Invalid estimated time");
+                    }
+
                     break;
             }
 

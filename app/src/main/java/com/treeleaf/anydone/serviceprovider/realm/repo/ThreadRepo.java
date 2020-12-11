@@ -4,7 +4,6 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -15,6 +14,7 @@ import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -35,7 +35,7 @@ public class ThreadRepo extends Repo {
 
     public void saveThread(final ConversationProto.ConversationThread threadPb,
                            final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 Thread thread =
@@ -54,7 +54,7 @@ public class ThreadRepo extends Repo {
 
     public void saveThreads(final List<ConversationProto.ConversationThread> threadListPb,
                             final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmList<Thread> threadList =
@@ -74,7 +74,7 @@ public class ThreadRepo extends Repo {
     }
 
     public void setAssignedEmployee(String threadId, String employeeId, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 AssignEmployee employee = AssignEmployeeRepo.getInstance().getAssignedEmployeeById(employeeId);
@@ -109,7 +109,7 @@ public class ThreadRepo extends Repo {
 
 
     public void enableBotReply(String threadId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Thread> result = realm1.where(Thread.class)
                     .equalTo("threadId", threadId).findAll();
@@ -118,7 +118,7 @@ public class ThreadRepo extends Repo {
     }
 
     public void disableBotReply(String threadId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Thread> result = realm1.where(Thread.class)
                     .equalTo("threadId", threadId).findAll();
@@ -189,7 +189,7 @@ public class ThreadRepo extends Repo {
     }
 
     public void setSeenStatus(Thread thread) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             GlobalUtils.showLog(TAG, "updateSeenStatus()");
             realm.executeTransaction(realm1 -> {
@@ -205,7 +205,7 @@ public class ThreadRepo extends Repo {
     }
 
     public void setAssignedEmployee(String threadId, AssignEmployee employee, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Thread> result = realm1.where(Thread.class)
@@ -254,7 +254,7 @@ public class ThreadRepo extends Repo {
                              String lastMessage,
                              boolean seen,
                              final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             GlobalUtils.showLog(TAG, "updateThread()");
             realm.executeTransaction(realm1 -> {
@@ -275,7 +275,7 @@ public class ThreadRepo extends Repo {
     }
 
     public Thread getThreadById(String threadId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Thread.class)
                     .equalTo("threadId", threadId).findFirst();
@@ -288,7 +288,7 @@ public class ThreadRepo extends Repo {
     }
 
     public RealmResults<Thread> getThreadsByServiceId(String serviceId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Thread.class)
                     .equalTo("serviceId", serviceId)
@@ -304,7 +304,7 @@ public class ThreadRepo extends Repo {
 
 
     public List<Thread> getAllThreads() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(Thread.class).findAll());
         } catch (Throwable throwable) {
@@ -314,5 +314,31 @@ public class ThreadRepo extends Repo {
             close(realm);
         }
     }
+
+    public List<Thread> searchThread(String query) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            GlobalUtils.showLog(TAG, "search query: " + query);
+            return new ArrayList<>(realm.where(Thread.class)
+                    .contains("customerName", query, Case.INSENSITIVE)
+                    .sort("lastMessageDate", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+
+    public void deleteAllThreads() {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Thread> result = realm1.where(Thread.class).findAll();
+            result.deleteAllFromRealm();
+        });
+    }
+
 
 }

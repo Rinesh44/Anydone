@@ -50,10 +50,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dimen_10x2"
+                android:fontFamily="@font/bold"
                 android:text="Anydone Bot"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/material_text_caption"
-                android:textStyle="bold"
                 android:visibility="visible" />
 
             <TextView

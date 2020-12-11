@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_message_holder"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_2x4"
+    android:clickable="true"
+    android:elevation="@dimen/dimen_10x1"
+    android:focusable="true"
+    android:paddingTop="@dimen/dimen_2x1">
 
     <View
         android:id="@+id/spacing"
@@ -20,42 +27,107 @@
         android:visibility="gone" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/rl_message_holder_aligned"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_sent_at"
-        android:layout_gravity="end"
-        android:background="@drawable/chat_bg_incoming"
-        android:layout_marginStart="@dimen/dimen_10x1"
-        android:layout_marginTop="@dimen/dimen_2x1"
-        android:layout_marginEnd="@dimen/dimen_10x1"
-        android:padding="@dimen/dimen_10x1">
+        android:layout_below="@+id/tv_sent_at"
+        android:clickable="true"
+        android:descendantFocusability="blocksDescendants"
+        android:focusable="true">
 
-        <TextView
-            android:id="@+id/tv_call_title"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_sender"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="@dimen/dimen_2x2"
+            android:src="@drawable/ic_bot_icon"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="1dp" />
+
+
+        <RelativeLayout
+            android:id="@+id/ll_text_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_6x1"
+            android:layout_toEndOf="@id/civ_sender"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dimen_2x1">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:fontFamily="@font/bold"
+                android:text="Anydone Bot"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/material_text_body2"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_title"
+                android:layout_toEndOf="@+id/tv_title"
+                android:text="11:00 PM"
+                android:textSize="12sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_video_call_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:text="Video Call"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_call_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_video_call_text"
+                android:text="Call ended at 12:33 PM"
+                android:textColor="@color/charcoal_text" />
+
+            <TextView
+                android:id="@+id/tv_call_elapsed_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_video_call_text"
+                android:layout_marginStart="@dimen/dimen_2x1"
+                android:layout_toEndOf="@+id/tv_call_time"
+                android:text="(0:44)"
+                android:textColor="@color/charcoal_text" />
+
+
+            <!--  <jp.wasabeef.richeditor.RichEditor
+                  android:id="@+id/tv_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/tv_title"
+                  android:layout_marginEnd="@dimen/dimens_2x"
+                  android:autoLink="web"
+                  android:background="#f7fbfd"
+                  android:linksClickable="true"
+                  android:text="hello user sdffsd"
+                  android:textColor="@color/black"
+                  app:render_type="Editor" />-->
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_create_ticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Video call"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/tv_call_elapsed_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/tv_call_title"
-            android:text=" (0:34)"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/tv_call_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_call_elapsed_time"
             android:layout_centerVertical="true"
-            android:drawablePadding="@dimen/dimen_10x1"
-            android:gravity="center"
-            android:padding="@dimen/dimen_2x1"
-            android:text="6:45 PM"
-            android:textColor="@color/black" />
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/ll_text_holder"
+            android:src="@drawable/ic_create_ticket"
+            android:visibility="gone" />
 
     </RelativeLayout>
 </RelativeLayout>

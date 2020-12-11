@@ -6,7 +6,9 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
+
 import java.util.List;
+
 import io.realm.Realm;
 import io.realm.RealmList;
 
@@ -23,7 +25,7 @@ public class AccountRepo extends Repo {
 
     public void saveAccount(final AuthProto.LoginResponse loginResponse, boolean employee,
                             final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -64,7 +66,7 @@ public class AccountRepo extends Repo {
 
     public void editEmployeeAccount(String accountId, UserProto.EmployeeProfile accountPb,
                                     final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -88,7 +90,7 @@ public class AccountRepo extends Repo {
 
     public void editServiceProviderAccount(String accountId, UserProto.ServiceProviderProfile accountPb,
                                            final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -111,7 +113,7 @@ public class AccountRepo extends Repo {
     }
 
     public void addProfilePicUrl(String profilePicUrl, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -132,7 +134,7 @@ public class AccountRepo extends Repo {
     }
 
     public void addEmail(String email, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
 
@@ -152,7 +154,7 @@ public class AccountRepo extends Repo {
     }
 
     public void addPhone(String phone, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -174,7 +176,7 @@ public class AccountRepo extends Repo {
     }
 
     public void setEmailVerified(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -195,7 +197,7 @@ public class AccountRepo extends Repo {
     }
 
     public void setPhoneVerified(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -266,7 +268,8 @@ public class AccountRepo extends Repo {
         RealmList<Location> locationRealmList = new RealmList<>();
         for (UserProto.Location locationPb : locationsList
         ) {
-            Location location = new Location();
+//            Location location = new Location();
+            Location location = Realm.getDefaultInstance().createObject(Location.class, locationPb.getLocationId());
             location.setLat(locationPb.getLatitude());
             location.setLng(locationPb.getLongitude());
             location.setLocationType(locationPb.getLocationType().name());
@@ -302,7 +305,7 @@ public class AccountRepo extends Repo {
     }
 
     public Account getAccount() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Account.class).findFirst();
         } catch (Throwable throwable) {

@@ -13,11 +13,32 @@
         android:visibility="gone" />
 
     <TextView
+        android:id="@+id/tv_link_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Link"
+        android:textColor="@color/charcoal_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_link_title"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:autoLink="all"
+        android:textColor="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary" />
+
+    <TextView
         android:id="@+id/tv_send_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_link"
+        android:layout_marginTop="@dimen/dimen_10x2"
         android:text="Send to"
-        android:textColor="@color/charcoal_text" />
+        android:textColor="@color/charcoal_text"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/et_email_phone"
@@ -25,11 +46,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_send_to"
         android:layout_marginTop="@dimen/dimen_2x4"
-        android:background="@drawable/pinentry_bg"
+        android:backgroundTint="@color/edit_text_color"
         android:cursorVisible="true"
-        android:maxLength="45"
+        android:drawableStart="@drawable/ic_phone_share"
+        android:drawablePadding="@dimen/dimen_10x1"
+        android:drawableTint="@color/colorPrimary"
         android:imeOptions="actionDone"
-        android:padding="@dimen/dimens_2x"
+        android:maxLength="45"
+        android:textColor="@color/service_info_text_color"
         android:textSize="15sp" />
 
     <com.google.android.material.button.MaterialButton

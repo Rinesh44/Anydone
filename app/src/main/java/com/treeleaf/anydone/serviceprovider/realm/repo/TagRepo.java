@@ -4,8 +4,8 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class TagRepo extends Repo {
 
     public void saveTags(final List<TicketProto.Team> tagListPb,
                          final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 List<Tags> tagList =
@@ -48,7 +48,7 @@ public class TagRepo extends Repo {
     }
 
     public Tags getTagById(String tagId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Tags.class)
                     .equalTo("tagId", tagId).findFirst();
@@ -82,9 +82,11 @@ public class TagRepo extends Repo {
     }
 
     public List<Tags> getAllTags() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
+            GlobalUtils.showLog(TAG, "get all tags()");
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            GlobalUtils.showLog(TAG, "service id: " + serviceId);
             return new ArrayList<>(realm.where(Tags.class)
                     .equalTo("serviceId", serviceId)
                     .findAll());
@@ -97,7 +99,7 @@ public class TagRepo extends Repo {
     }
 
     public List<Tags> searchTags(String query) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             RealmQuery<Tags> result = performSearch(query, realm);
             return result.findAll();

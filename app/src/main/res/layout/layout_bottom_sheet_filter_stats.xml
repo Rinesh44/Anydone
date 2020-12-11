@@ -12,7 +12,7 @@
 
     <View
         android:layout_width="120dp"
-        android:layout_height="7dp"
+        android:layout_height="5dp"
         android:layout_gravity="center"
         android:background="@drawable/bottomsheet_drawer" />
 
@@ -50,8 +50,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_4x1"
                 android:text="From:"
-                android:textColor="@color/black" />
+                android:textColor="@color/charcoal_text" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -61,12 +62,12 @@
                     android:id="@+id/et_from_date"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_10x4"
-                    android:layout_marginTop="@dimen/dimen_10x1"
-                    android:background="@drawable/pinentry_bg"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:backgroundTint="@color/edit_text_color"
                     android:editable="false"
                     android:focusable="false"
                     android:hint="From date"
-                    android:paddingStart="@dimen/dimen_10x1"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_body1" />
 
                 <ImageView
@@ -77,15 +78,9 @@
                     android:layout_centerInParent="true"
                     android:paddingStart="@dimen/dimen_10x1"
                     android:paddingTop="@dimen/dimen_10x1"
-                    android:paddingEnd="@dimen/dimen_10x1"
+                    android:paddingEnd="@dimen/dimen_4x1"
+                    android:paddingBottom="@dimen/dimen_10x1"
                     android:src="@drawable/ic_calendar" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="@dimen/dimen_10x4"
-                    android:layout_marginTop="@dimen/dimen_10x1"
-                    android:layout_toStartOf="@+id/iv_from_date"
-                    android:background="@color/grey" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -100,8 +95,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_4x1"
                 android:text="To:"
-                android:textColor="@color/black" />
+                android:textColor="@color/charcoal_text" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -111,12 +107,12 @@
                     android:id="@+id/et_till_date"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_10x4"
-                    android:layout_marginTop="@dimen/dimen_10x1"
-                    android:background="@drawable/pinentry_bg"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:backgroundTint="@color/edit_text_color"
                     android:editable="false"
                     android:focusable="false"
                     android:hint="To date"
-                    android:paddingStart="@dimen/dimen_10x1"
+                    android:textColor="@color/service_info_text_color"
                     android:textSize="@dimen/material_text_body1" />
 
 
@@ -128,15 +124,10 @@
                     android:layout_centerInParent="true"
                     android:paddingStart="@dimen/dimen_10x1"
                     android:paddingTop="@dimen/dimen_10x1"
-                    android:paddingEnd="@dimen/dimen_10x1"
+                    android:paddingEnd="@dimen/dimen_4x1"
+                    android:paddingBottom="@dimen/dimen_10x1"
                     android:src="@drawable/ic_calendar" />
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="@dimen/dimen_10x4"
-                    android:layout_marginTop="@dimen/dimen_10x1"
-                    android:layout_toStartOf="@+id/iv_till_date"
-                    android:background="@color/grey" />
 
             </RelativeLayout>
 
@@ -147,22 +138,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_4x1"
         android:layout_marginTop="@dimen/dimen_10x2"
         android:text="Commonly use"
-        android:textColor="@color/black" />
+        android:textColor="@color/charcoal_text" />
 
     <RelativeLayout
         android:id="@+id/rl_priority_holder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_4x1">
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/sp_time"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_10x4"
             android:layout_centerVertical="true"
+            android:layout_marginStart="-10dp"
             android:layout_marginTop="@dimen/dimen_10x2"
-            android:background="@drawable/pinentry_bg"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-20dp"
             android:elevation="@dimen/dimen_2x1" />
 
         <!--   <TextView
@@ -174,13 +169,12 @@
                android:text="Select"
                android:textColor="?android:textColorHint" />-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="@dimen/dimens_2x"
-            android:src="@drawable/ic_dropdown" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/sp_time"
+            android:background="@color/edit_text_color" />
     </RelativeLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -190,6 +184,7 @@
         android:layout_marginTop="@dimen/dimens_2x"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/filter"
+        android:textAllCaps="false"
         android:textStyle="bold" />
 
 </LinearLayout>

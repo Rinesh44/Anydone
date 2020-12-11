@@ -34,8 +34,8 @@
 
                     <ImageView
                         android:id="@+id/iv_service"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:src="@drawable/ic_service_ph" />
@@ -523,7 +523,6 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
-                                        android:paddingEnd="@dimen/dimen_10x1"
                                         android:text="N/A"
                                         android:textColor="@color/charcoal_text"
                                         android:textSize="11sp"

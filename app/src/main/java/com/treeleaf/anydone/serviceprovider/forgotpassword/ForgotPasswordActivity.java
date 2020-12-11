@@ -31,7 +31,7 @@ public class ForgotPasswordActivity extends MvpBaseActivity<ForgotPasswordPresen
     ImageView ivBack;
     @BindView(R.id.il_phone)
     TextInputLayout ilPhone;
-    @BindView(R.id.et_phone)
+    @BindView(R.id.et_email)
     TextInputEditText etPhone;
     @BindView(R.id.btnSendResetCode)
     MaterialButton btnSendCode;

@@ -21,7 +21,7 @@ public class EmployeeRepo extends Repo {
     }
 
     public void saveEmployee(final AuthProto.LoginResponse loginResponse, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -59,21 +59,21 @@ public class EmployeeRepo extends Repo {
     }
 
     public Employee getEmployeeByAccountId(String accountId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         return realm.where(Employee.class)
                 .equalTo("accountId", accountId)
                 .findFirst();
     }
 
     public Employee getEmployeeById(String employeeId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         return realm.where(Employee.class)
                 .equalTo("employeeId", employeeId)
                 .findFirst();
     }
 
     public Employee getEmployee() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Employee.class).findFirst();
         } catch (Throwable throwable) {

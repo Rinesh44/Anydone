@@ -1,10 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 import com.treeleaf.anydone.entities.UserProto;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class CustomerRepo extends Repo {
     }
 
     public void saveCustomerList(final List<UserProto.Customer> customerList, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformCustomers(customerList));
@@ -58,7 +56,7 @@ public class CustomerRepo extends Repo {
 
 
     public List<Customer> getAllCustomers() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             Employee self = EmployeeRepo.getInstance().getEmployee();
             if (self != null) {
@@ -76,7 +74,7 @@ public class CustomerRepo extends Repo {
     }
 
     public Customer getCustomerById(String customerId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Customer.class)
                     .equalTo("customerId", customerId)
@@ -90,7 +88,7 @@ public class CustomerRepo extends Repo {
     }
 
     public List<Customer> searchCustomers(String query) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             RealmQuery<Customer> result = performSearch(query, realm);
             return result.findAll();

@@ -6,11 +6,9 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
-import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
@@ -177,7 +175,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
 
     @Override
     public void assignEmployee(String threadId, String employeeId) {
-        getView().showProgressEmployee();
+        getView().showProgressBar("");
         Observable<ConversationRpcProto.ConversationBaseResponse> getThreadObservable;
         String token = Hawk.get(Constants.TOKEN);
 
@@ -213,7 +211,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                                 GlobalUtils.showLog(TAG, "assign emp response: "
                                         + getThreadBaseResponse);
 
-                                getView().hideProgressEmployee();
+                                getView().hideProgressBar();
                                 if (getThreadBaseResponse == null) {
                                     getView().assignFail("assign emp failed");
                                     return;
@@ -229,7 +227,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                                             @Override
                                             public void success(Object o) {
                                                 GlobalUtils.showLog(TAG, "assigned employee on thread");
-                                                getView().assignSuccess();
+                                                getView().assignSuccess(employeeId);
                                             }
 
                                             @Override

@@ -1,10 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
-
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 
 public class LabelRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
@@ -28,7 +25,7 @@ public class LabelRepo extends Repo {
     }
 
     public void saveLabelList(final List<TicketProto.Label> labelList, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformLabelList(labelList));
@@ -65,7 +62,7 @@ public class LabelRepo extends Repo {
     }
 
     public List<Label> getAllLabels() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Label.class)
@@ -80,7 +77,7 @@ public class LabelRepo extends Repo {
     }
 
     public Label getLabelById(String labelId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Label.class)
                     .equalTo("labelId", labelId).findFirst();

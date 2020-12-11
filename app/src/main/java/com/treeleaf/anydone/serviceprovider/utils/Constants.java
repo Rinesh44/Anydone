@@ -30,6 +30,7 @@ Constants {
     public static final String TLS_VERSION = "TLSv1.2";
     public static final String SERVICE_PROVIDER_NAME = "service_provider_name";
     public static final String SERVICE_PROVIDER_IMG = "service_provider_img";
+    public static final String SERVICE_PROVIDER = "SERVICE_PROVIDER";
     public static final String CURRENT_SERVICE_ORDER_ID = "current_service_order_id";
     public static final String CURRENCY = "currency";
     public static final String CURRENCY_NAME = "currency_name";
@@ -88,5 +89,7 @@ Constants {
     public static final String MQTT_CONNECTED = "MQTT_CONNECTED";
     public static final String SERVER_ERROR = "Error connecting to server";
     public static final String MQTT_LOG = "MQTT_LOG";
+    public static final String SUGGESTION_ACCEPTED = "SUGGESTION_ACCEPTED";
+    public static final String SUGGESTION_REJECTED = "SUGGESTION_REJECTED";
 
 }

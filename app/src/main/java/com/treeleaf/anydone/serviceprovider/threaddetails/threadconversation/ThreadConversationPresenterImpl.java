@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 
@@ -120,7 +121,9 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         Observable<UserRpcProto.UserBaseResponse> imageUploadObservable;
 
         try {
-            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, activity);
+            Bitmap decodedBitmap = MediaStore.Images.Media.getBitmap(
+                    Objects.requireNonNull(getContext()).getContentResolver(), uri);
+            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, decodedBitmap, activity);
             byte[] byteArray = getByteArrayFromBitmap(bitmap);
             String mimeType = getMimeType(uri);
 
@@ -421,7 +424,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
     @Override
     public void getSuggestions(String nextMessageId, String refId, boolean backClicked) {
-        Preconditions.checkNotNull(nextMessageId, "Message id cannot be null");
+        Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
         Observable<BotConversationRpcProto.BotConversationBaseResponse> getBotConversationObservable;
@@ -458,7 +461,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                             return;
                         }
 
-                        RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
+                  /*      RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
                                 .getKgraphResponse().getAnswersList());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
@@ -486,7 +489,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                                     public void fail() {
                                         GlobalUtils.showLog(TAG, "failed to save k-graph conversation");
                                     }
-                                });
+                                });*/
 
                     }
 
@@ -537,7 +540,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                     }
                 });
     }
-
+/*
     private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
         RealmList<KGraph> kGraphList = new RealmList<>();
         for (KGraphProto.Answer answer : answersList
@@ -552,7 +555,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         }
 
         return kGraphList;
-    }
+    }*/
 
 
     public void publishImage(String imageUrl, String threadId, String clientId, String imageCaption) {
@@ -1095,6 +1098,8 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                                 rtcThreadBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(rtcThreadBaseResponse.getRtcMessagesList())) {
                             saveConversations(rtcThreadBaseResponse.getRtcMessagesList());
+                        } else {
+                            getView().getMessageFail("stop progress");
                         }
                     }
 

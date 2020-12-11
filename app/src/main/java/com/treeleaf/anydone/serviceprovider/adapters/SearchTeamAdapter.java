@@ -88,10 +88,12 @@ public class SearchTeamAdapter extends RecyclerView.Adapter<SearchTeamAdapter.Te
                         tagsListFiltered = tagsList;
                     } else {
                         List<Tags> filteredList = new ArrayList<>();
-                        for (Tags row : tagsList) {
-                            if (row.getLabel().toLowerCase()
-                                    .contains(charString.toLowerCase())) {
-                                filteredList.add(row);
+                        if (!tagsList.isEmpty()) {
+                            for (Tags row : tagsList) {
+                                if (row.getLabel().toLowerCase()
+                                        .contains(charString.toLowerCase())) {
+                                    filteredList.add(row);
+                                }
                             }
                         }
                         tagsListFiltered = filteredList;

@@ -22,11 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimens_2x"
-            android:background="@drawable/et_rounded"
+            android:backgroundTint="@color/edit_text_color"
             android:ellipsize="end"
             android:hint="Search currency"
             android:inputType="textVisiblePassword"
-            android:padding="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimens_2x"
+            android:paddingBottom="@dimen/dimens_2x"
+            android:textColorHint="@color/service_info_text_color"
             android:textSize="@dimen/material_text_body1" />
 
 

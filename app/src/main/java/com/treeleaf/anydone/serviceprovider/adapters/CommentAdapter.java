@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -25,6 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.chinalwb.are.AREditText;
+import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.card.MaterialCardView;
 import com.orhanobut.hawk.Hawk;
@@ -67,7 +68,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int MSG_BOT_SUGGESTIONS = 10;
     public static final int INITIAL_SERVICE_DETAIL = 11;
     public static final int MSG_CALL_OUTGOING = 12;
-    public static final int INITIAL_TICKET_DETAIL = 13;
+//    public static final int INITIAL_TICKET_DETAIL = 13;
 
     private List<Conversation> conversationList;
     private Context mContext;
@@ -154,10 +155,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
-            case MSG_TEXT_LEFT:
-                View leftTextView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.comment_text, parent, false);
-                return new LeftTextHolder(leftTextView);
 
             case MSG_IMG_LEFT:
                 View leftImageView = LayoutInflater.from(parent.getContext())
@@ -179,15 +176,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .inflate(R.layout.chat_bot_suggestions, parent, false);
                 return new BotSuggestionsHolder(suggestionsView);
 
-            case INITIAL_SERVICE_DETAIL:
-                View serviceDetailView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.initial_service_detail, parent, false);
-                return new InitialServiceDetailHolder(serviceDetailView);
 
-            case INITIAL_TICKET_DETAIL:
+      /*      case INITIAL_TICKET_DETAIL:
                 View ticketDetailView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_initial_ticket_detail, parent, false);
-                return new InitialTicketDetailHolder(ticketDetailView);
+                return new InitialTicketDetailHolder(ticketDetailView);*/
 
             case MSG_CALL_OUTGOING:
                 View callView = LayoutInflater.from(parent.getContext())
@@ -234,8 +227,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT:
-                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
-                        false);
+                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime
+                );
                 break;
 
             case MSG_IMG_LEFT:
@@ -257,13 +250,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((BotSuggestionsHolder) holder).bind(conversation, false);
                 break;
 
-            case INITIAL_SERVICE_DETAIL:
-                ((InitialServiceDetailHolder) holder).bind(conversation);
-                break;
-
-            case INITIAL_TICKET_DETAIL:
+         /*   case INITIAL_TICKET_DETAIL:
                 ((InitialTicketDetailHolder) holder).bind(conversation);
-                break;
+                break;*/
 
             case MSG_CALL_OUTGOING:
                 ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, false);
@@ -331,8 +320,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case "INITIAL_SERVICE_DETAIL":
                 return INITIAL_SERVICE_DETAIL;
 
-            case "INITIAL_TICKET_DETAIL":
-                return INITIAL_TICKET_DETAIL;
+/*            case "INITIAL_TICKET_DETAIL":
+                return INITIAL_TICKET_DETAIL;*/
 
             case "VIDEO_CALL_RTC_MESSAGE":
                 return MSG_CALL_OUTGOING;
@@ -411,7 +400,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private class LeftTextHolder extends RecyclerView.ViewHolder {
         TextView sentAt, senderTitle, time;
-        TextView messageText;
+        AREditor messageText;
         RelativeLayout textHolder;
         ImageView resend;
         CircleImageView civSender;
@@ -429,23 +418,33 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             time = itemView.findViewById(R.id.tv_time);
         }
 
-        void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
-                  boolean isContinuous) {
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime) {
             //show additional padding if not continuous
-            if (!isContinuous) {
-                spacing.setVisibility(View.VISIBLE);
-            } else {
-                spacing.setVisibility(View.GONE);
-                GlobalUtils.showLog(TAG, "spacing deleted");
-            }
+            spacing.setVisibility(View.VISIBLE);
             // Show the date if the message was sent on a different date than the previous message.
 
          /*   messageText.setHtml(conversation.getMessage());
             messageText.setEditorFontSize(15);*/
 
+            messageText.setHideToolbar(true);
+            messageText.getARE().setTextSize(14);
+            messageText.getARE().setLongClickable(false);
             GlobalUtils.showLog(TAG, "html msgs: " + conversation.getMessage());
+            if (conversation.getMessage().toLowerCase().contains("<ol>") ||
+                    conversation.getMessage().toLowerCase().contains("<ul>")) {
+                messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -18),
+                        GlobalUtils.convertDpToPixel(mContext, -10),
+                        0,
+                        GlobalUtils.convertDpToPixel(mContext, -45));
+            } else messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -8),
+                    GlobalUtils.convertDpToPixel(mContext, -10),
+                    0,
+                    GlobalUtils.convertDpToPixel(mContext, -25));
 
-            messageText.setText(Html.fromHtml(conversation.getMessage()));
+            messageText.fromHtml(conversation.getMessage());
+
+            textHolder.setClickable(true);
+            textHolder.setFocusable(true);
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
                 showDateAndTime(conversation.getSentAt(), sentAt);
@@ -464,13 +463,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
             // Hide profile image and name if the previous message was also sent by current sender.
-            if (isContinuous && !showTime && !isNewDay) {
-                civSender.setVisibility(View.INVISIBLE);
-                senderTitle.setVisibility(View.GONE);
-            } else {
-                //check for bot name and image
-                displayBotOrUserMessage(senderTitle, civSender, conversation);
-            }
+            //check for bot name and image
+            displayBotOrUserMessage(senderTitle, civSender, conversation);
 
             if (civSender != null) {
                 civSender.setOnClickListener(v -> {
@@ -552,8 +546,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     urlDesc.setText(metaData.getDescription());
 
                     urlHolder.setOnClickListener(v -> {
+                        String url = metaData.getUrl();
+                        if (!url.startsWith("http://") && !url.startsWith("https://"))
+                            url = "http://" + url;
                         Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(metaData.getUrl()));
+                                Intent.ACTION_VIEW, Uri.parse(url));
                         mContext.startActivity(browserIntent);
                     });
                 }
@@ -960,9 +957,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    private class InitialServiceDetailHolder extends RecyclerView.ViewHolder {
+/*    private class InitialServiceDetailHolder extends RecyclerView.ViewHolder {
         TextView serviceName, problemStat, location, date;
         ImageView serviceIcon;
+        CircleImageView civSender;
+
 
         InitialServiceDetailHolder(@NonNull View itemView) {
             super(itemView);
@@ -970,9 +969,10 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             serviceName = itemView.findViewById(R.id.tv_service_name);
             problemStat = itemView.findViewById(R.id.tv_problem_stat);
             location = itemView.findViewById(R.id.tv_location);
-            date = itemView.findViewById(R.id.tv_date);
             serviceIcon = itemView.findViewById(R.id.iv_service_icon);
+            civSender = itemView.findViewById(R.id.civ_sender);
         }
+
 
         void bind(final Conversation conversation) {
             serviceName.setText(conversation.getServiceName());
@@ -995,7 +995,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
 
         }
-    }
+    }*/
 
 
     private class InitialTicketDetailHolder extends RecyclerView.ViewHolder {
@@ -1048,8 +1048,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     private class CallViewHolder extends RecyclerView.ViewHolder {
-        TextView callDuration, callTime, sentAt;
+        TextView callDuration, callTime, sentAt, tvTitle, tvTime;
         View spacing;
+        CircleImageView civSender;
 
         public CallViewHolder(View itemView) {
             super(itemView);
@@ -1058,6 +1059,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             spacing = itemView.findViewById(R.id.spacing);
             callDuration = itemView.findViewById(R.id.tv_call_elapsed_time);
             callTime = itemView.findViewById(R.id.tv_call_time);
+            civSender = itemView.findViewById(R.id.civ_sender);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -1085,12 +1089,24 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 sentAt.setVisibility(View.GONE);
             }
 
-            callTime.setText(conversation.getCallInitiateTime());
+            callTime.setText("Call ended at " + conversation.getCallInitiateTime());
             StringBuilder durationBuilder = new StringBuilder();
             durationBuilder.append(" (");
             durationBuilder.append(conversation.getCallDuration());
             durationBuilder.append(")");
             callDuration.setText(durationBuilder);
+
+            displayBotOrUserMessage(tvTitle, civSender, conversation);
+
+            if (civSender != null) {
+                civSender.setOnClickListener(v -> {
+                    if (senderImageClickListener != null && getAdapterPosition() !=
+                            RecyclerView.NO_POSITION) {
+                        senderImageClickListener.onSenderImageClick(
+                                conversationList.get(getAdapterPosition()));
+                    }
+                });
+            }
         }
     }
 

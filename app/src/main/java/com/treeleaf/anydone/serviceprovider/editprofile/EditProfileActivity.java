@@ -42,10 +42,6 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
     MaterialButton btnSave;
     @BindView(R.id.sp_gender)
     Spinner spnGender;
-    @BindView(R.id.il_gender)
-    TextInputLayout ilGender;
-    @BindView(R.id.et_gender)
-    TextInputEditText etGender;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
 
@@ -64,20 +60,11 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
         super.onCreate(savedInstanceState);
         setToolbar();
         userAccount = AccountRepo.getInstance().getAccount();
-        etGender.setShowSoftInputOnFocus(false);
         setDataToFields();
 
         spnGender.setOnTouchListener((v, event) -> {
-            etGender.requestFocus();
             setUpGenderDropDown();
             return false;
-        });
-
-        etGender.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                etGender.setText("a");
-                etGender.setTextColor(getResources().getColor(R.color.transparent));
-            }
         });
 
         btnSave.setOnClickListener(v -> {
@@ -110,8 +97,6 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
                 .equals(AnydoneProto.Gender.UNKNOWN_GENDER.name())) {
             setUpGenderDropDown();
             GlobalUtils.showLog(TAG, "check gender: " + userAccount.getGender());
-            etGender.setText("a");
-            etGender.setTextColor(getResources().getColor(R.color.white));
             switch (userAccount.getGender()) {
                 case "MALE":
                     GlobalUtils.showLog(TAG, "gender male");
@@ -148,8 +133,7 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
     private void setUpGenderDropDown() {
         //Creating the ArrayAdapter instance having the country list
         ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, gender);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.layout_dropdown_item, gender);
         //Setting the ArrayAdapter data on the Spinner
         spnGender.setAdapter(adapter);
     }
@@ -165,7 +149,7 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
         etFullName.requestFocus();
         ilFullName.setErrorEnabled(true);
         ilFullName.setError("Invalid Full Name");
-
+        ilFullName.setErrorIconDrawable(0);
         onInvalidFullName();
     }
 
@@ -194,7 +178,7 @@ public class EditProfileActivity extends MvpBaseActivity<EditProfilePresenterImp
 
     @Override
     public void onInvalidFullName() {
-        ilGender.setErrorEnabled(false);
+
     }
 
     @Override

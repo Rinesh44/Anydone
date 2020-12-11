@@ -11,7 +11,8 @@ public interface UnassignedTicketRepository {
                                                                               String serviceId,
                                                                               long from,
                                                                               long to,
-                                                                              int page);
+                                                                              int page,
+                                                                              String order);
 
     Observable<TicketServiceRpcProto.TicketBaseResponse> assignTicket(String token,
                                                                       long ticketId,

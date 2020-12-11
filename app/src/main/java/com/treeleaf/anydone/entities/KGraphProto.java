@@ -9,9 +9,9 @@ public final class KGraphProto {
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
   /**
-   * Protobuf enum {@code treeleaf.anydone.entities.AnswerType}
+   * Protobuf enum {@code treeleaf.anydone.entities.LinkType}
    */
-  public enum AnswerType
+  public enum LinkType
       implements com.google.protobuf.Internal.EnumLite {
     /**
      * <code>UNKNOWN_ANSWER_TYPE = 0;</code>
@@ -49,12 +49,12 @@ public final class KGraphProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
-    public static AnswerType valueOf(int value) {
+    @Deprecated
+    public static LinkType valueOf(int value) {
       return forNumber(value);
     }
 
-    public static AnswerType forNumber(int value) {
+    public static LinkType forNumber(int value) {
       switch (value) {
         case 0: return UNKNOWN_ANSWER_TYPE;
         case 1: return ANSWER_TYPE;
@@ -63,25 +63,25 @@ public final class KGraphProto {
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<AnswerType>
+    public static com.google.protobuf.Internal.EnumLiteMap<LinkType>
         internalGetValueMap() {
       return internalValueMap;
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
-        AnswerType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<AnswerType>() {
-            public AnswerType findValueByNumber(int number) {
-              return AnswerType.forNumber(number);
+        LinkType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<LinkType>() {
+            public LinkType findValueByNumber(int number) {
+              return LinkType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private AnswerType(int value) {
+    private LinkType(int value) {
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AnswerType)
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.LinkType)
   }
 
   /**
@@ -109,6 +109,10 @@ public final class KGraphProto {
      * <code>LINK_TYPE = 4;</code>
      */
     LINK_TYPE(4),
+    /**
+     * <code>DOC_TYPE = 5;</code>
+     */
+    DOC_TYPE(5),
     UNRECOGNIZED(-1),
     ;
 
@@ -132,6 +136,10 @@ public final class KGraphProto {
      * <code>LINK_TYPE = 4;</code>
      */
     public static final int LINK_TYPE_VALUE = 4;
+    /**
+     * <code>DOC_TYPE = 5;</code>
+     */
+    public static final int DOC_TYPE_VALUE = 5;
 
 
     public final int getNumber() {
@@ -141,7 +149,7 @@ public final class KGraphProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static AttributeType valueOf(int value) {
       return forNumber(value);
     }
@@ -153,6 +161,7 @@ public final class KGraphProto {
         case 2: return VEDIO_TYPE;
         case 3: return AUDIO_TYPE;
         case 4: return LINK_TYPE;
+        case 5: return DOC_TYPE;
         default: return null;
       }
     }
@@ -185,7 +194,7 @@ public final class KGraphProto {
     /**
      * <code>optional string text = 1;</code>
      */
-    java.lang.String getText();
+    String getText();
     /**
      * <code>optional string text = 1;</code>
      */
@@ -195,7 +204,7 @@ public final class KGraphProto {
     /**
      * <code>optional string language = 3;</code>
      */
-    java.lang.String getLanguage();
+    String getLanguage();
     /**
      * <code>optional string language = 3;</code>
      */
@@ -205,7 +214,7 @@ public final class KGraphProto {
     /**
      * <code>optional string requestId = 4;</code>
      */
-    java.lang.String getRequestId();
+    String getRequestId();
     /**
      * <code>optional string requestId = 4;</code>
      */
@@ -226,11 +235,11 @@ public final class KGraphProto {
       requestId_ = "";
     }
     public static final int TEXT_FIELD_NUMBER = 1;
-    private java.lang.String text_;
+    private String text_;
     /**
      * <code>optional string text = 1;</code>
      */
-    public java.lang.String getText() {
+    public String getText() {
       return text_;
     }
     /**
@@ -244,7 +253,7 @@ public final class KGraphProto {
      * <code>optional string text = 1;</code>
      */
     private void setText(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -272,11 +281,11 @@ public final class KGraphProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 3;
-    private java.lang.String language_;
+    private String language_;
     /**
      * <code>optional string language = 3;</code>
      */
-    public java.lang.String getLanguage() {
+    public String getLanguage() {
       return language_;
     }
     /**
@@ -290,7 +299,7 @@ public final class KGraphProto {
      * <code>optional string language = 3;</code>
      */
     private void setLanguage(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -318,11 +327,11 @@ public final class KGraphProto {
     }
 
     public static final int REQUESTID_FIELD_NUMBER = 4;
-    private java.lang.String requestId_;
+    private String requestId_;
     /**
      * <code>optional string requestId = 4;</code>
      */
-    public java.lang.String getRequestId() {
+    public String getRequestId() {
       return requestId_;
     }
     /**
@@ -336,7 +345,7 @@ public final class KGraphProto {
      * <code>optional string requestId = 4;</code>
      */
     private void setRequestId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -397,60 +406,60 @@ public final class KGraphProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(
+    public static KGraphQuery parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(
+    public static KGraphQuery parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(byte[] data)
+    public static KGraphQuery parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(
+    public static KGraphQuery parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(java.io.InputStream input)
+    public static KGraphQuery parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(
+    public static KGraphQuery parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseDelimitedFrom(java.io.InputStream input)
+    public static KGraphQuery parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseDelimitedFrom(
+    public static KGraphQuery parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(
+    public static KGraphQuery parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery parseFrom(
+    public static KGraphQuery parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -461,7 +470,7 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.KGraphQuery prototype) {
+    public static Builder newBuilder(KGraphQuery prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -470,9 +479,9 @@ public final class KGraphProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.KGraphQuery, Builder> implements
+          KGraphQuery, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KGraphQuery)
-        com.treeleaf.anydone.entities.KGraphProto.KGraphQueryOrBuilder {
+        KGraphQueryOrBuilder {
       // Construct using com.treeleaf.anydone.entities.KGraphProto.KGraphQuery.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -482,7 +491,7 @@ public final class KGraphProto {
       /**
        * <code>optional string text = 1;</code>
        */
-      public java.lang.String getText() {
+      public String getText() {
         return instance.getText();
       }
       /**
@@ -496,7 +505,7 @@ public final class KGraphProto {
        * <code>optional string text = 1;</code>
        */
       public Builder setText(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -522,7 +531,7 @@ public final class KGraphProto {
       /**
        * <code>optional string language = 3;</code>
        */
-      public java.lang.String getLanguage() {
+      public String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -536,7 +545,7 @@ public final class KGraphProto {
        * <code>optional string language = 3;</code>
        */
       public Builder setLanguage(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -562,7 +571,7 @@ public final class KGraphProto {
       /**
        * <code>optional string requestId = 4;</code>
        */
-      public java.lang.String getRequestId() {
+      public String getRequestId() {
         return instance.getRequestId();
       }
       /**
@@ -576,7 +585,7 @@ public final class KGraphProto {
        * <code>optional string requestId = 4;</code>
        */
       public Builder setRequestId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRequestId(value);
         return this;
@@ -602,11 +611,11 @@ public final class KGraphProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KGraphQuery)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.KGraphQuery();
+          return new KGraphQuery();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -619,14 +628,14 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.KGraphQuery other = (com.treeleaf.anydone.entities.KGraphProto.KGraphQuery) arg1;
+          KGraphQuery other = (KGraphQuery) arg1;
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           language_ = visitor.visitString(!language_.isEmpty(), language_,
               !other.language_.isEmpty(), other.language_);
           requestId_ = visitor.visitString(!requestId_.isEmpty(), requestId_,
               !other.requestId_.isEmpty(), other.requestId_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -683,7 +692,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.KGraphQuery.class) {
+          if (PARSER == null) {    synchronized (KGraphQuery.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -697,13 +706,13 @@ public final class KGraphProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KGraphQuery)
-    private static final com.treeleaf.anydone.entities.KGraphProto.KGraphQuery DEFAULT_INSTANCE;
+    private static final KGraphQuery DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new KGraphQuery();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.KGraphQuery getDefaultInstance() {
+    public static KGraphQuery getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -721,7 +730,7 @@ public final class KGraphProto {
     /**
      * <code>optional string attributeId = 1;</code>
      */
-    java.lang.String getAttributeId();
+    String getAttributeId();
     /**
      * <code>optional string attributeId = 1;</code>
      */
@@ -731,7 +740,7 @@ public final class KGraphProto {
     /**
      * <code>optional string name = 2;</code>
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>optional string name = 2;</code>
      */
@@ -741,7 +750,7 @@ public final class KGraphProto {
     /**
      * <code>optional string value = 3;</code>
      */
-    java.lang.String getValue();
+    String getValue();
     /**
      * <code>optional string value = 3;</code>
      */
@@ -755,7 +764,7 @@ public final class KGraphProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AttributeType attributeType = 4;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.AttributeType getAttributeType();
+    AttributeType getAttributeType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Attribute}
@@ -771,11 +780,11 @@ public final class KGraphProto {
       value_ = "";
     }
     public static final int ATTRIBUTEID_FIELD_NUMBER = 1;
-    private java.lang.String attributeId_;
+    private String attributeId_;
     /**
      * <code>optional string attributeId = 1;</code>
      */
-    public java.lang.String getAttributeId() {
+    public String getAttributeId() {
       return attributeId_;
     }
     /**
@@ -789,7 +798,7 @@ public final class KGraphProto {
      * <code>optional string attributeId = 1;</code>
      */
     private void setAttributeId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -817,11 +826,11 @@ public final class KGraphProto {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private java.lang.String name_;
+    private String name_;
     /**
      * <code>optional string name = 2;</code>
      */
-    public java.lang.String getName() {
+    public String getName() {
       return name_;
     }
     /**
@@ -835,7 +844,7 @@ public final class KGraphProto {
      * <code>optional string name = 2;</code>
      */
     private void setName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -863,11 +872,11 @@ public final class KGraphProto {
     }
 
     public static final int VALUE_FIELD_NUMBER = 3;
-    private java.lang.String value_;
+    private String value_;
     /**
      * <code>optional string value = 3;</code>
      */
-    public java.lang.String getValue() {
+    public String getValue() {
       return value_;
     }
     /**
@@ -881,7 +890,7 @@ public final class KGraphProto {
      * <code>optional string value = 3;</code>
      */
     private void setValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -919,9 +928,9 @@ public final class KGraphProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AttributeType attributeType = 4;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.AttributeType getAttributeType() {
-      com.treeleaf.anydone.entities.KGraphProto.AttributeType result = com.treeleaf.anydone.entities.KGraphProto.AttributeType.forNumber(attributeType_);
-      return result == null ? com.treeleaf.anydone.entities.KGraphProto.AttributeType.UNRECOGNIZED : result;
+    public AttributeType getAttributeType() {
+      AttributeType result = AttributeType.forNumber(attributeType_);
+      return result == null ? AttributeType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.AttributeType attributeType = 4;</code>
@@ -932,7 +941,7 @@ public final class KGraphProto {
     /**
      * <code>optional .treeleaf.anydone.entities.AttributeType attributeType = 4;</code>
      */
-    private void setAttributeType(com.treeleaf.anydone.entities.KGraphProto.AttributeType value) {
+    private void setAttributeType(AttributeType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -958,7 +967,7 @@ public final class KGraphProto {
       if (!value_.isEmpty()) {
         output.writeString(3, getValue());
       }
-      if (attributeType_ != com.treeleaf.anydone.entities.KGraphProto.AttributeType.UNKNOWN_ATRRIBUTE_TYPE.getNumber()) {
+      if (attributeType_ != AttributeType.UNKNOWN_ATRRIBUTE_TYPE.getNumber()) {
         output.writeEnum(4, attributeType_);
       }
     }
@@ -980,7 +989,7 @@ public final class KGraphProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(3, getValue());
       }
-      if (attributeType_ != com.treeleaf.anydone.entities.KGraphProto.AttributeType.UNKNOWN_ATRRIBUTE_TYPE.getNumber()) {
+      if (attributeType_ != AttributeType.UNKNOWN_ATRRIBUTE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, attributeType_);
       }
@@ -988,60 +997,60 @@ public final class KGraphProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(
+    public static Attribute parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(
+    public static Attribute parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(byte[] data)
+    public static Attribute parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(
+    public static Attribute parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(java.io.InputStream input)
+    public static Attribute parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(
+    public static Attribute parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseDelimitedFrom(java.io.InputStream input)
+    public static Attribute parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseDelimitedFrom(
+    public static Attribute parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(
+    public static Attribute parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute parseFrom(
+    public static Attribute parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1052,7 +1061,7 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.Attribute prototype) {
+    public static Builder newBuilder(Attribute prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1061,9 +1070,9 @@ public final class KGraphProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.Attribute, Builder> implements
+          Attribute, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Attribute)
-        com.treeleaf.anydone.entities.KGraphProto.AttributeOrBuilder {
+        AttributeOrBuilder {
       // Construct using com.treeleaf.anydone.entities.KGraphProto.Attribute.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1073,7 +1082,7 @@ public final class KGraphProto {
       /**
        * <code>optional string attributeId = 1;</code>
        */
-      public java.lang.String getAttributeId() {
+      public String getAttributeId() {
         return instance.getAttributeId();
       }
       /**
@@ -1087,7 +1096,7 @@ public final class KGraphProto {
        * <code>optional string attributeId = 1;</code>
        */
       public Builder setAttributeId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAttributeId(value);
         return this;
@@ -1113,7 +1122,7 @@ public final class KGraphProto {
       /**
        * <code>optional string name = 2;</code>
        */
-      public java.lang.String getName() {
+      public String getName() {
         return instance.getName();
       }
       /**
@@ -1127,7 +1136,7 @@ public final class KGraphProto {
        * <code>optional string name = 2;</code>
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setName(value);
         return this;
@@ -1153,7 +1162,7 @@ public final class KGraphProto {
       /**
        * <code>optional string value = 3;</code>
        */
-      public java.lang.String getValue() {
+      public String getValue() {
         return instance.getValue();
       }
       /**
@@ -1167,7 +1176,7 @@ public final class KGraphProto {
        * <code>optional string value = 3;</code>
        */
       public Builder setValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setValue(value);
         return this;
@@ -1207,13 +1216,13 @@ public final class KGraphProto {
       /**
        * <code>optional .treeleaf.anydone.entities.AttributeType attributeType = 4;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.AttributeType getAttributeType() {
+      public AttributeType getAttributeType() {
         return instance.getAttributeType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.AttributeType attributeType = 4;</code>
        */
-      public Builder setAttributeType(com.treeleaf.anydone.entities.KGraphProto.AttributeType value) {
+      public Builder setAttributeType(AttributeType value) {
         copyOnWrite();
         instance.setAttributeType(value);
         return this;
@@ -1230,11 +1239,11 @@ public final class KGraphProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Attribute)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.Attribute();
+          return new Attribute();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1247,7 +1256,7 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.Attribute other = (com.treeleaf.anydone.entities.KGraphProto.Attribute) arg1;
+          Attribute other = (Attribute) arg1;
           attributeId_ = visitor.visitString(!attributeId_.isEmpty(), attributeId_,
               !other.attributeId_.isEmpty(), other.attributeId_);
           name_ = visitor.visitString(!name_.isEmpty(), name_,
@@ -1255,7 +1264,7 @@ public final class KGraphProto {
           value_ = visitor.visitString(!value_.isEmpty(), value_,
               !other.value_.isEmpty(), other.value_);
           attributeType_ = visitor.visitInt(attributeType_ != 0, attributeType_,    other.attributeType_ != 0, other.attributeType_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1318,7 +1327,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.Attribute.class) {
+          if (PARSER == null) {    synchronized (Attribute.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1332,13 +1341,13 @@ public final class KGraphProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Attribute)
-    private static final com.treeleaf.anydone.entities.KGraphProto.Attribute DEFAULT_INSTANCE;
+    private static final Attribute DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Attribute();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Attribute getDefaultInstance() {
+    public static Attribute getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1349,34 +1358,34 @@ public final class KGraphProto {
     }
   }
 
-  public interface QuestionOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Question)
+  public interface KnowledgeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Knowledge)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string questionKey = 1;</code>
+     * <code>optional string knowledgeKey = 1;</code>
      */
-    java.lang.String getQuestionKey();
+    String getKnowledgeKey();
     /**
-     * <code>optional string questionKey = 1;</code>
+     * <code>optional string knowledgeKey = 1;</code>
      */
     com.google.protobuf.ByteString
-        getQuestionKeyBytes();
+        getKnowledgeKeyBytes();
 
     /**
-     * <code>optional string questionId = 2;</code>
+     * <code>optional string knowledgeId = 2;</code>
      */
-    java.lang.String getQuestionId();
+    String getKnowledgeId();
     /**
-     * <code>optional string questionId = 2;</code>
+     * <code>optional string knowledgeId = 2;</code>
      */
     com.google.protobuf.ByteString
-        getQuestionIdBytes();
+        getKnowledgeIdBytes();
 
     /**
      * <code>optional string title = 3;</code>
      */
-    java.lang.String getTitle();
+    String getTitle();
     /**
      * <code>optional string title = 3;</code>
      */
@@ -1386,130 +1395,152 @@ public final class KGraphProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> 
+    java.util.List<Attribute>
         getAttributeList();
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index);
+    Attribute getAttribute(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
     int getAttributeCount();
+
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string accountId = 7;</code>
+     */
+    String getAccountId();
+    /**
+     * <code>optional string accountId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountIdBytes();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.Question}
+   * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
    */
-  public  static final class Question extends
+  public  static final class Knowledge extends
       com.google.protobuf.GeneratedMessageLite<
-          Question, Question.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Question)
-      QuestionOrBuilder {
-    private Question() {
-      questionKey_ = "";
-      questionId_ = "";
+          Knowledge, Knowledge.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Knowledge)
+      KnowledgeOrBuilder {
+    private Knowledge() {
+      knowledgeKey_ = "";
+      knowledgeId_ = "";
       title_ = "";
       attribute_ = emptyProtobufList();
+      serviceId_ = "";
+      accountId_ = "";
     }
     private int bitField0_;
-    public static final int QUESTIONKEY_FIELD_NUMBER = 1;
-    private java.lang.String questionKey_;
+    public static final int KNOWLEDGEKEY_FIELD_NUMBER = 1;
+    private String knowledgeKey_;
     /**
-     * <code>optional string questionKey = 1;</code>
+     * <code>optional string knowledgeKey = 1;</code>
      */
-    public java.lang.String getQuestionKey() {
-      return questionKey_;
+    public String getKnowledgeKey() {
+      return knowledgeKey_;
     }
     /**
-     * <code>optional string questionKey = 1;</code>
+     * <code>optional string knowledgeKey = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getQuestionKeyBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(questionKey_);
+        getKnowledgeKeyBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(knowledgeKey_);
     }
     /**
-     * <code>optional string questionKey = 1;</code>
+     * <code>optional string knowledgeKey = 1;</code>
      */
-    private void setQuestionKey(
-        java.lang.String value) {
+    private void setKnowledgeKey(
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      questionKey_ = value;
+      knowledgeKey_ = value;
     }
     /**
-     * <code>optional string questionKey = 1;</code>
+     * <code>optional string knowledgeKey = 1;</code>
      */
-    private void clearQuestionKey() {
+    private void clearKnowledgeKey() {
       
-      questionKey_ = getDefaultInstance().getQuestionKey();
+      knowledgeKey_ = getDefaultInstance().getKnowledgeKey();
     }
     /**
-     * <code>optional string questionKey = 1;</code>
+     * <code>optional string knowledgeKey = 1;</code>
      */
-    private void setQuestionKeyBytes(
+    private void setKnowledgeKeyBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      questionKey_ = value.toStringUtf8();
+      knowledgeKey_ = value.toStringUtf8();
     }
 
-    public static final int QUESTIONID_FIELD_NUMBER = 2;
-    private java.lang.String questionId_;
+    public static final int KNOWLEDGEID_FIELD_NUMBER = 2;
+    private String knowledgeId_;
     /**
-     * <code>optional string questionId = 2;</code>
+     * <code>optional string knowledgeId = 2;</code>
      */
-    public java.lang.String getQuestionId() {
-      return questionId_;
+    public String getKnowledgeId() {
+      return knowledgeId_;
     }
     /**
-     * <code>optional string questionId = 2;</code>
+     * <code>optional string knowledgeId = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getQuestionIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(questionId_);
+        getKnowledgeIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(knowledgeId_);
     }
     /**
-     * <code>optional string questionId = 2;</code>
+     * <code>optional string knowledgeId = 2;</code>
      */
-    private void setQuestionId(
-        java.lang.String value) {
+    private void setKnowledgeId(
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      questionId_ = value;
+      knowledgeId_ = value;
     }
     /**
-     * <code>optional string questionId = 2;</code>
+     * <code>optional string knowledgeId = 2;</code>
      */
-    private void clearQuestionId() {
+    private void clearKnowledgeId() {
       
-      questionId_ = getDefaultInstance().getQuestionId();
+      knowledgeId_ = getDefaultInstance().getKnowledgeId();
     }
     /**
-     * <code>optional string questionId = 2;</code>
+     * <code>optional string knowledgeId = 2;</code>
      */
-    private void setQuestionIdBytes(
+    private void setKnowledgeIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      questionId_ = value.toStringUtf8();
+      knowledgeId_ = value.toStringUtf8();
     }
 
     public static final int TITLE_FIELD_NUMBER = 3;
-    private java.lang.String title_;
+    private String title_;
     /**
      * <code>optional string title = 3;</code>
      */
-    public java.lang.String getTitle() {
+    public String getTitle() {
       return title_;
     }
     /**
@@ -1523,7 +1554,7 @@ public final class KGraphProto {
      * <code>optional string title = 3;</code>
      */
     private void setTitle(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1551,17 +1582,17 @@ public final class KGraphProto {
     }
 
     public static final int ATTRIBUTE_FIELD_NUMBER = 5;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.Attribute> attribute_;
+    private com.google.protobuf.Internal.ProtobufList<Attribute> attribute_;
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> getAttributeList() {
+    public java.util.List<Attribute> getAttributeList() {
       return attribute_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.AttributeOrBuilder> 
+    public java.util.List<? extends AttributeOrBuilder>
         getAttributeOrBuilderList() {
       return attribute_;
     }
@@ -1574,13 +1605,13 @@ public final class KGraphProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index) {
+    public Attribute getAttribute(int index) {
       return attribute_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.AttributeOrBuilder getAttributeOrBuilder(
+    public AttributeOrBuilder getAttributeOrBuilder(
         int index) {
       return attribute_.get(index);
     }
@@ -1595,7 +1626,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
     private void setAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+        int index, Attribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1606,14 +1637,14 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
     private void setAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
+        int index, Attribute.Builder builderForValue) {
       ensureAttributeIsMutable();
       attribute_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
-    private void addAttribute(com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+    private void addAttribute(Attribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1624,7 +1655,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
     private void addAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+        int index, Attribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1635,7 +1666,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
     private void addAttribute(
-        com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
+        Attribute.Builder builderForValue) {
       ensureAttributeIsMutable();
       attribute_.add(builderForValue.build());
     }
@@ -1643,7 +1674,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
     private void addAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
+        int index, Attribute.Builder builderForValue) {
       ensureAttributeIsMutable();
       attribute_.add(index, builderForValue.build());
     }
@@ -1651,7 +1682,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
      */
     private void addAllAttribute(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Attribute> values) {
+        Iterable<? extends Attribute> values) {
       ensureAttributeIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, attribute_);
@@ -1670,19 +1701,117 @@ public final class KGraphProto {
       attribute_.remove(index);
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 6;
+    private String serviceId_;
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void setServiceId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int ACCOUNTID_FIELD_NUMBER = 7;
+    private String accountId_;
+    /**
+     * <code>optional string accountId = 7;</code>
+     */
+    public String getAccountId() {
+      return accountId_;
+    }
+    /**
+     * <code>optional string accountId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
+    }
+    /**
+     * <code>optional string accountId = 7;</code>
+     */
+    private void setAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      accountId_ = value;
+    }
+    /**
+     * <code>optional string accountId = 7;</code>
+     */
+    private void clearAccountId() {
+      
+      accountId_ = getDefaultInstance().getAccountId();
+    }
+    /**
+     * <code>optional string accountId = 7;</code>
+     */
+    private void setAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      accountId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!questionKey_.isEmpty()) {
-        output.writeString(1, getQuestionKey());
+      if (!knowledgeKey_.isEmpty()) {
+        output.writeString(1, getKnowledgeKey());
       }
-      if (!questionId_.isEmpty()) {
-        output.writeString(2, getQuestionId());
+      if (!knowledgeId_.isEmpty()) {
+        output.writeString(2, getKnowledgeId());
       }
       if (!title_.isEmpty()) {
         output.writeString(3, getTitle());
       }
       for (int i = 0; i < attribute_.size(); i++) {
         output.writeMessage(5, attribute_.get(i));
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(6, getServiceId());
+      }
+      if (!accountId_.isEmpty()) {
+        output.writeString(7, getAccountId());
       }
     }
 
@@ -1691,13 +1820,13 @@ public final class KGraphProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!questionKey_.isEmpty()) {
+      if (!knowledgeKey_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getQuestionKey());
+          .computeStringSize(1, getKnowledgeKey());
       }
-      if (!questionId_.isEmpty()) {
+      if (!knowledgeId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getQuestionId());
+          .computeStringSize(2, getKnowledgeId());
       }
       if (!title_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -1707,64 +1836,72 @@ public final class KGraphProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, attribute_.get(i));
       }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getServiceId());
+      }
+      if (!accountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getAccountId());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(
+    public static Knowledge parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(
+    public static Knowledge parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(byte[] data)
+    public static Knowledge parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(
+    public static Knowledge parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(java.io.InputStream input)
+    public static Knowledge parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(
+    public static Knowledge parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseDelimitedFrom(java.io.InputStream input)
+    public static Knowledge parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseDelimitedFrom(
+    public static Knowledge parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(
+    public static Knowledge parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Question parseFrom(
+    public static Knowledge parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1775,108 +1912,108 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.Question prototype) {
+    public static Builder newBuilder(Knowledge prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.Question}
+     * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.Question, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Question)
-        com.treeleaf.anydone.entities.KGraphProto.QuestionOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.KGraphProto.Question.newBuilder()
+          Knowledge, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Knowledge)
+        KnowledgeOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.Knowledge.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional string questionKey = 1;</code>
+       * <code>optional string knowledgeKey = 1;</code>
        */
-      public java.lang.String getQuestionKey() {
-        return instance.getQuestionKey();
+      public String getKnowledgeKey() {
+        return instance.getKnowledgeKey();
       }
       /**
-       * <code>optional string questionKey = 1;</code>
+       * <code>optional string knowledgeKey = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getQuestionKeyBytes() {
-        return instance.getQuestionKeyBytes();
+          getKnowledgeKeyBytes() {
+        return instance.getKnowledgeKeyBytes();
       }
       /**
-       * <code>optional string questionKey = 1;</code>
+       * <code>optional string knowledgeKey = 1;</code>
        */
-      public Builder setQuestionKey(
-          java.lang.String value) {
+      public Builder setKnowledgeKey(
+          String value) {
         copyOnWrite();
-        instance.setQuestionKey(value);
+        instance.setKnowledgeKey(value);
         return this;
       }
       /**
-       * <code>optional string questionKey = 1;</code>
+       * <code>optional string knowledgeKey = 1;</code>
        */
-      public Builder clearQuestionKey() {
+      public Builder clearKnowledgeKey() {
         copyOnWrite();
-        instance.clearQuestionKey();
+        instance.clearKnowledgeKey();
         return this;
       }
       /**
-       * <code>optional string questionKey = 1;</code>
+       * <code>optional string knowledgeKey = 1;</code>
        */
-      public Builder setQuestionKeyBytes(
+      public Builder setKnowledgeKeyBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setQuestionKeyBytes(value);
+        instance.setKnowledgeKeyBytes(value);
         return this;
       }
 
       /**
-       * <code>optional string questionId = 2;</code>
+       * <code>optional string knowledgeId = 2;</code>
        */
-      public java.lang.String getQuestionId() {
-        return instance.getQuestionId();
+      public String getKnowledgeId() {
+        return instance.getKnowledgeId();
       }
       /**
-       * <code>optional string questionId = 2;</code>
+       * <code>optional string knowledgeId = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getQuestionIdBytes() {
-        return instance.getQuestionIdBytes();
+          getKnowledgeIdBytes() {
+        return instance.getKnowledgeIdBytes();
       }
       /**
-       * <code>optional string questionId = 2;</code>
+       * <code>optional string knowledgeId = 2;</code>
        */
-      public Builder setQuestionId(
-          java.lang.String value) {
+      public Builder setKnowledgeId(
+          String value) {
         copyOnWrite();
-        instance.setQuestionId(value);
+        instance.setKnowledgeId(value);
         return this;
       }
       /**
-       * <code>optional string questionId = 2;</code>
+       * <code>optional string knowledgeId = 2;</code>
        */
-      public Builder clearQuestionId() {
+      public Builder clearKnowledgeId() {
         copyOnWrite();
-        instance.clearQuestionId();
+        instance.clearKnowledgeId();
         return this;
       }
       /**
-       * <code>optional string questionId = 2;</code>
+       * <code>optional string knowledgeId = 2;</code>
        */
-      public Builder setQuestionIdBytes(
+      public Builder setKnowledgeIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setQuestionIdBytes(value);
+        instance.setKnowledgeIdBytes(value);
         return this;
       }
 
       /**
        * <code>optional string title = 3;</code>
        */
-      public java.lang.String getTitle() {
+      public String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -1890,7 +2027,7 @@ public final class KGraphProto {
        * <code>optional string title = 3;</code>
        */
       public Builder setTitle(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -1916,7 +2053,7 @@ public final class KGraphProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> getAttributeList() {
+      public java.util.List<Attribute> getAttributeList() {
         return java.util.Collections.unmodifiableList(
             instance.getAttributeList());
       }
@@ -1928,14 +2065,14 @@ public final class KGraphProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index) {
+      public Attribute getAttribute(int index) {
         return instance.getAttribute(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
       public Builder setAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+          int index, Attribute value) {
         copyOnWrite();
         instance.setAttribute(index, value);
         return this;
@@ -1944,7 +2081,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
       public Builder setAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
+          int index, Attribute.Builder builderForValue) {
         copyOnWrite();
         instance.setAttribute(index, builderForValue);
         return this;
@@ -1952,7 +2089,7 @@ public final class KGraphProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
-      public Builder addAttribute(com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+      public Builder addAttribute(Attribute value) {
         copyOnWrite();
         instance.addAttribute(value);
         return this;
@@ -1961,7 +2098,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
       public Builder addAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+          int index, Attribute value) {
         copyOnWrite();
         instance.addAttribute(index, value);
         return this;
@@ -1970,7 +2107,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
       public Builder addAttribute(
-          com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
+          Attribute.Builder builderForValue) {
         copyOnWrite();
         instance.addAttribute(builderForValue);
         return this;
@@ -1979,7 +2116,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
       public Builder addAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
+          int index, Attribute.Builder builderForValue) {
         copyOnWrite();
         instance.addAttribute(index, builderForValue);
         return this;
@@ -1988,7 +2125,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 5;</code>
        */
       public Builder addAllAttribute(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Attribute> values) {
+          Iterable<? extends Attribute> values) {
         copyOnWrite();
         instance.addAllAttribute(values);
         return this;
@@ -2010,14 +2147,94 @@ public final class KGraphProto {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Question)
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string accountId = 7;</code>
+       */
+      public String getAccountId() {
+        return instance.getAccountId();
+      }
+      /**
+       * <code>optional string accountId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountIdBytes() {
+        return instance.getAccountIdBytes();
+      }
+      /**
+       * <code>optional string accountId = 7;</code>
+       */
+      public Builder setAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 7;</code>
+       */
+      public Builder clearAccountId() {
+        copyOnWrite();
+        instance.clearAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 7;</code>
+       */
+      public Builder setAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAccountIdBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Knowledge)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.Question();
+          return new Knowledge();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2031,15 +2248,19 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.Question other = (com.treeleaf.anydone.entities.KGraphProto.Question) arg1;
-          questionKey_ = visitor.visitString(!questionKey_.isEmpty(), questionKey_,
-              !other.questionKey_.isEmpty(), other.questionKey_);
-          questionId_ = visitor.visitString(!questionId_.isEmpty(), questionId_,
-              !other.questionId_.isEmpty(), other.questionId_);
+          Knowledge other = (Knowledge) arg1;
+          knowledgeKey_ = visitor.visitString(!knowledgeKey_.isEmpty(), knowledgeKey_,
+              !other.knowledgeKey_.isEmpty(), other.knowledgeKey_);
+          knowledgeId_ = visitor.visitString(!knowledgeId_.isEmpty(), knowledgeId_,
+              !other.knowledgeId_.isEmpty(), other.knowledgeId_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
               !other.title_.isEmpty(), other.title_);
           attribute_= visitor.visitList(attribute_, other.attribute_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
+              !other.accountId_.isEmpty(), other.accountId_);
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2067,13 +2288,13 @@ public final class KGraphProto {
                 case 10: {
                   String s = input.readStringRequireUtf8();
 
-                  questionKey_ = s;
+                  knowledgeKey_ = s;
                   break;
                 }
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  questionId_ = s;
+                  knowledgeId_ = s;
                   break;
                 }
                 case 26: {
@@ -2088,7 +2309,19 @@ public final class KGraphProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(attribute_);
                   }
                   attribute_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Attribute.parser(), extensionRegistry));
+                      input.readMessage(Attribute.parser(), extensionRegistry));
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  accountId_ = s;
                   break;
                 }
               }
@@ -2106,7 +2339,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.Question.class) {
+          if (PARSER == null) {    synchronized (Knowledge.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2119,70 +2352,70 @@ public final class KGraphProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Question)
-    private static final com.treeleaf.anydone.entities.KGraphProto.Question DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Knowledge)
+    private static final Knowledge DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Question();
+      DEFAULT_INSTANCE = new Knowledge();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Question getDefaultInstance() {
+    public static Knowledge getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<Question> PARSER;
+    private static volatile com.google.protobuf.Parser<Knowledge> PARSER;
 
-    public static com.google.protobuf.Parser<Question> parser() {
+    public static com.google.protobuf.Parser<Knowledge> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
 
-  public interface AnswerOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Answer)
+  public interface LinkOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Link)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string answerKey = 1;</code>
+     * <code>optional string linkKey = 1;</code>
      */
-    java.lang.String getAnswerKey();
+    String getLinkKey();
     /**
-     * <code>optional string answerKey = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getAnswerKeyBytes();
-
-    /**
-     * <code>optional string answerId = 2;</code>
-     */
-    java.lang.String getAnswerId();
-    /**
-     * <code>optional string answerId = 2;</code>
+     * <code>optional string linkKey = 1;</code>
      */
     com.google.protobuf.ByteString
-        getAnswerIdBytes();
+        getLinkKeyBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional string linkId = 2;</code>
+     */
+    String getLinkId();
+    /**
+     * <code>optional string linkId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getLinkIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
     boolean hasIncoming();
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.Question getIncoming();
+    Knowledge getIncoming();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
     boolean hasOutgoing();
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.Question getOutgoing();
+    Knowledge getOutgoing();
 
     /**
      * <code>optional string title = 5;</code>
      */
-    java.lang.String getTitle();
+    String getTitle();
     /**
      * <code>optional string title = 5;</code>
      */
@@ -2190,158 +2423,164 @@ public final class KGraphProto {
         getTitleBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
      */
-    int getAnswerTypeValue();
+    int getLinkTypeValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.AnswerType getAnswerType();
+    LinkType getLinkType();
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
+     * <code>optional int32 linkHeight = 8;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> 
-        getAttributeList();
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    int getAttributeCount();
+    int getLinkHeight();
 
     /**
-     * <code>optional int32 answerHeight = 8;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    int getAnswerHeight();
+    String getServiceId();
+    /**
+     * <code>optional string serviceId = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string accountId = 10;</code>
+     */
+    String getAccountId();
+    /**
+     * <code>optional string accountId = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountIdBytes();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.Answer}
+   * Protobuf type {@code treeleaf.anydone.entities.Link}
    */
-  public  static final class Answer extends
+  public  static final class Link extends
       com.google.protobuf.GeneratedMessageLite<
-          Answer, Answer.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Answer)
-      AnswerOrBuilder {
-    private Answer() {
-      answerKey_ = "";
-      answerId_ = "";
+          Link, Link.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Link)
+      LinkOrBuilder {
+    private Link() {
+      linkKey_ = "";
+      linkId_ = "";
       title_ = "";
-      attribute_ = emptyProtobufList();
+      serviceId_ = "";
+      accountId_ = "";
     }
-    private int bitField0_;
-    public static final int ANSWERKEY_FIELD_NUMBER = 1;
-    private java.lang.String answerKey_;
+    public static final int LINKKEY_FIELD_NUMBER = 1;
+    private String linkKey_;
     /**
-     * <code>optional string answerKey = 1;</code>
+     * <code>optional string linkKey = 1;</code>
      */
-    public java.lang.String getAnswerKey() {
-      return answerKey_;
+    public String getLinkKey() {
+      return linkKey_;
     }
     /**
-     * <code>optional string answerKey = 1;</code>
+     * <code>optional string linkKey = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getAnswerKeyBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(answerKey_);
+        getLinkKeyBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(linkKey_);
     }
     /**
-     * <code>optional string answerKey = 1;</code>
+     * <code>optional string linkKey = 1;</code>
      */
-    private void setAnswerKey(
-        java.lang.String value) {
+    private void setLinkKey(
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      answerKey_ = value;
+      linkKey_ = value;
     }
     /**
-     * <code>optional string answerKey = 1;</code>
+     * <code>optional string linkKey = 1;</code>
      */
-    private void clearAnswerKey() {
+    private void clearLinkKey() {
       
-      answerKey_ = getDefaultInstance().getAnswerKey();
+      linkKey_ = getDefaultInstance().getLinkKey();
     }
     /**
-     * <code>optional string answerKey = 1;</code>
+     * <code>optional string linkKey = 1;</code>
      */
-    private void setAnswerKeyBytes(
+    private void setLinkKeyBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      answerKey_ = value.toStringUtf8();
+      linkKey_ = value.toStringUtf8();
     }
 
-    public static final int ANSWERID_FIELD_NUMBER = 2;
-    private java.lang.String answerId_;
+    public static final int LINKID_FIELD_NUMBER = 2;
+    private String linkId_;
     /**
-     * <code>optional string answerId = 2;</code>
+     * <code>optional string linkId = 2;</code>
      */
-    public java.lang.String getAnswerId() {
-      return answerId_;
+    public String getLinkId() {
+      return linkId_;
     }
     /**
-     * <code>optional string answerId = 2;</code>
+     * <code>optional string linkId = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getAnswerIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(answerId_);
+        getLinkIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(linkId_);
     }
     /**
-     * <code>optional string answerId = 2;</code>
+     * <code>optional string linkId = 2;</code>
      */
-    private void setAnswerId(
-        java.lang.String value) {
+    private void setLinkId(
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      answerId_ = value;
+      linkId_ = value;
     }
     /**
-     * <code>optional string answerId = 2;</code>
+     * <code>optional string linkId = 2;</code>
      */
-    private void clearAnswerId() {
+    private void clearLinkId() {
       
-      answerId_ = getDefaultInstance().getAnswerId();
+      linkId_ = getDefaultInstance().getLinkId();
     }
     /**
-     * <code>optional string answerId = 2;</code>
+     * <code>optional string linkId = 2;</code>
      */
-    private void setAnswerIdBytes(
+    private void setLinkIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      answerId_ = value.toStringUtf8();
+      linkId_ = value.toStringUtf8();
     }
 
     public static final int INCOMING_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.KGraphProto.Question incoming_;
+    private Knowledge incoming_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
     public boolean hasIncoming() {
       return incoming_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.Question getIncoming() {
-      return incoming_ == null ? com.treeleaf.anydone.entities.KGraphProto.Question.getDefaultInstance() : incoming_;
+    public Knowledge getIncoming() {
+      return incoming_ == null ? Knowledge.getDefaultInstance() : incoming_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
-    private void setIncoming(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+    private void setIncoming(Knowledge value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2349,51 +2588,51 @@ public final class KGraphProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
     private void setIncoming(
-        com.treeleaf.anydone.entities.KGraphProto.Question.Builder builderForValue) {
+        Knowledge.Builder builderForValue) {
       incoming_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
-    private void mergeIncoming(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+    private void mergeIncoming(Knowledge value) {
       if (incoming_ != null &&
-          incoming_ != com.treeleaf.anydone.entities.KGraphProto.Question.getDefaultInstance()) {
+          incoming_ != Knowledge.getDefaultInstance()) {
         incoming_ =
-          com.treeleaf.anydone.entities.KGraphProto.Question.newBuilder(incoming_).mergeFrom(value).buildPartial();
+          Knowledge.newBuilder(incoming_).mergeFrom(value).buildPartial();
       } else {
         incoming_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
      */
     private void clearIncoming() {  incoming_ = null;
       
     }
 
     public static final int OUTGOING_FIELD_NUMBER = 4;
-    private com.treeleaf.anydone.entities.KGraphProto.Question outgoing_;
+    private Knowledge outgoing_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
     public boolean hasOutgoing() {
       return outgoing_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.Question getOutgoing() {
-      return outgoing_ == null ? com.treeleaf.anydone.entities.KGraphProto.Question.getDefaultInstance() : outgoing_;
+    public Knowledge getOutgoing() {
+      return outgoing_ == null ? Knowledge.getDefaultInstance() : outgoing_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
-    private void setOutgoing(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+    private void setOutgoing(Knowledge value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2401,39 +2640,39 @@ public final class KGraphProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
     private void setOutgoing(
-        com.treeleaf.anydone.entities.KGraphProto.Question.Builder builderForValue) {
+        Knowledge.Builder builderForValue) {
       outgoing_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
-    private void mergeOutgoing(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+    private void mergeOutgoing(Knowledge value) {
       if (outgoing_ != null &&
-          outgoing_ != com.treeleaf.anydone.entities.KGraphProto.Question.getDefaultInstance()) {
+          outgoing_ != Knowledge.getDefaultInstance()) {
         outgoing_ =
-          com.treeleaf.anydone.entities.KGraphProto.Question.newBuilder(outgoing_).mergeFrom(value).buildPartial();
+          Knowledge.newBuilder(outgoing_).mergeFrom(value).buildPartial();
       } else {
         outgoing_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
      */
     private void clearOutgoing() {  outgoing_ = null;
       
     }
 
     public static final int TITLE_FIELD_NUMBER = 5;
-    private java.lang.String title_;
+    private String title_;
     /**
      * <code>optional string title = 5;</code>
      */
-    public java.lang.String getTitle() {
+    public String getTitle() {
       return title_;
     }
     /**
@@ -2447,7 +2686,7 @@ public final class KGraphProto {
      * <code>optional string title = 5;</code>
      */
     private void setTitle(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2474,195 +2713,167 @@ public final class KGraphProto {
       title_ = value.toStringUtf8();
     }
 
-    public static final int ANSWERTYPE_FIELD_NUMBER = 6;
-    private int answerType_;
+    public static final int LINKTYPE_FIELD_NUMBER = 6;
+    private int linkType_;
     /**
-     * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
      */
-    public int getAnswerTypeValue() {
-      return answerType_;
+    public int getLinkTypeValue() {
+      return linkType_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.AnswerType getAnswerType() {
-      com.treeleaf.anydone.entities.KGraphProto.AnswerType result = com.treeleaf.anydone.entities.KGraphProto.AnswerType.forNumber(answerType_);
-      return result == null ? com.treeleaf.anydone.entities.KGraphProto.AnswerType.UNRECOGNIZED : result;
+    public LinkType getLinkType() {
+      LinkType result = LinkType.forNumber(linkType_);
+      return result == null ? LinkType.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
      */
-    private void setAnswerTypeValue(int value) {
-        answerType_ = value;
+    private void setLinkTypeValue(int value) {
+        linkType_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
      */
-    private void setAnswerType(com.treeleaf.anydone.entities.KGraphProto.AnswerType value) {
+    private void setLinkType(LinkType value) {
       if (value == null) {
         throw new NullPointerException();
       }
       
-      answerType_ = value.getNumber();
+      linkType_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
      */
-    private void clearAnswerType() {
+    private void clearLinkType() {
       
-      answerType_ = 0;
+      linkType_ = 0;
     }
 
-    public static final int ATTRIBUTE_FIELD_NUMBER = 7;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.Attribute> attribute_;
+    public static final int LINKHEIGHT_FIELD_NUMBER = 8;
+    private int linkHeight_;
     /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
+     * <code>optional int32 linkHeight = 8;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> getAttributeList() {
-      return attribute_;
+    public int getLinkHeight() {
+      return linkHeight_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
+     * <code>optional int32 linkHeight = 8;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.AttributeOrBuilder> 
-        getAttributeOrBuilderList() {
-      return attribute_;
+    private void setLinkHeight(int value) {
+      
+      linkHeight_ = value;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
+     * <code>optional int32 linkHeight = 8;</code>
      */
-    public int getAttributeCount() {
-      return attribute_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    public com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index) {
-      return attribute_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    public com.treeleaf.anydone.entities.KGraphProto.AttributeOrBuilder getAttributeOrBuilder(
-        int index) {
-      return attribute_.get(index);
-    }
-    private void ensureAttributeIsMutable() {
-      if (!attribute_.isModifiable()) {
-        attribute_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(attribute_);
-       }
+    private void clearLinkHeight() {
+      
+      linkHeight_ = 0;
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 9;
+    private String serviceId_;
     /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    private void setAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+    public String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 9;</code>
+     */
+    private void setServiceId(
+        String value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureAttributeIsMutable();
-      attribute_.set(index, value);
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    private void setAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
-      ensureAttributeIsMutable();
-      attribute_.set(index, builderForValue.build());
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
+     * <code>optional string serviceId = 9;</code>
      */
-    private void addAttribute(com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureAttributeIsMutable();
-      attribute_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    private void addAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureAttributeIsMutable();
-      attribute_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    private void addAttribute(
-        com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
-      ensureAttributeIsMutable();
-      attribute_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    private void addAttribute(
-        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
-      ensureAttributeIsMutable();
-      attribute_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    private void addAllAttribute(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Attribute> values) {
-      ensureAttributeIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, attribute_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    private void clearAttribute() {
-      attribute_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-     */
-    private void removeAttribute(int index) {
-      ensureAttributeIsMutable();
-      attribute_.remove(index);
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
     }
 
-    public static final int ANSWERHEIGHT_FIELD_NUMBER = 8;
-    private int answerHeight_;
+    public static final int ACCOUNTID_FIELD_NUMBER = 10;
+    private String accountId_;
     /**
-     * <code>optional int32 answerHeight = 8;</code>
+     * <code>optional string accountId = 10;</code>
      */
-    public int getAnswerHeight() {
-      return answerHeight_;
+    public String getAccountId() {
+      return accountId_;
     }
     /**
-     * <code>optional int32 answerHeight = 8;</code>
+     * <code>optional string accountId = 10;</code>
      */
-    private void setAnswerHeight(int value) {
-      
-      answerHeight_ = value;
+    public com.google.protobuf.ByteString
+        getAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
     }
     /**
-     * <code>optional int32 answerHeight = 8;</code>
+     * <code>optional string accountId = 10;</code>
      */
-    private void clearAnswerHeight() {
+    private void setAccountId(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      accountId_ = value;
+    }
+    /**
+     * <code>optional string accountId = 10;</code>
+     */
+    private void clearAccountId() {
       
-      answerHeight_ = 0;
+      accountId_ = getDefaultInstance().getAccountId();
+    }
+    /**
+     * <code>optional string accountId = 10;</code>
+     */
+    private void setAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      accountId_ = value.toStringUtf8();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!answerKey_.isEmpty()) {
-        output.writeString(1, getAnswerKey());
+      if (!linkKey_.isEmpty()) {
+        output.writeString(1, getLinkKey());
       }
-      if (!answerId_.isEmpty()) {
-        output.writeString(2, getAnswerId());
+      if (!linkId_.isEmpty()) {
+        output.writeString(2, getLinkId());
       }
       if (incoming_ != null) {
         output.writeMessage(3, getIncoming());
@@ -2673,14 +2884,17 @@ public final class KGraphProto {
       if (!title_.isEmpty()) {
         output.writeString(5, getTitle());
       }
-      if (answerType_ != com.treeleaf.anydone.entities.KGraphProto.AnswerType.UNKNOWN_ANSWER_TYPE.getNumber()) {
-        output.writeEnum(6, answerType_);
+      if (linkType_ != LinkType.UNKNOWN_ANSWER_TYPE.getNumber()) {
+        output.writeEnum(6, linkType_);
       }
-      for (int i = 0; i < attribute_.size(); i++) {
-        output.writeMessage(7, attribute_.get(i));
+      if (linkHeight_ != 0) {
+        output.writeInt32(8, linkHeight_);
       }
-      if (answerHeight_ != 0) {
-        output.writeInt32(8, answerHeight_);
+      if (!serviceId_.isEmpty()) {
+        output.writeString(9, getServiceId());
+      }
+      if (!accountId_.isEmpty()) {
+        output.writeString(10, getAccountId());
       }
     }
 
@@ -2689,13 +2903,13 @@ public final class KGraphProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!answerKey_.isEmpty()) {
+      if (!linkKey_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getAnswerKey());
+          .computeStringSize(1, getLinkKey());
       }
-      if (!answerId_.isEmpty()) {
+      if (!linkId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getAnswerId());
+          .computeStringSize(2, getLinkId());
       }
       if (incoming_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -2709,76 +2923,80 @@ public final class KGraphProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getTitle());
       }
-      if (answerType_ != com.treeleaf.anydone.entities.KGraphProto.AnswerType.UNKNOWN_ANSWER_TYPE.getNumber()) {
+      if (linkType_ != LinkType.UNKNOWN_ANSWER_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, answerType_);
+          .computeEnumSize(6, linkType_);
       }
-      for (int i = 0; i < attribute_.size(); i++) {
+      if (linkHeight_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, attribute_.get(i));
+          .computeInt32Size(8, linkHeight_);
       }
-      if (answerHeight_ != 0) {
+      if (!serviceId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, answerHeight_);
+          .computeStringSize(9, getServiceId());
+      }
+      if (!accountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getAccountId());
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(
+    public static Link parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(
+    public static Link parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(byte[] data)
+    public static Link parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(
+    public static Link parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(java.io.InputStream input)
+    public static Link parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(
+    public static Link parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseDelimitedFrom(java.io.InputStream input)
+    public static Link parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseDelimitedFrom(
+    public static Link parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(
+    public static Link parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer parseFrom(
+    public static Link parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2789,143 +3007,143 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.Answer prototype) {
+    public static Builder newBuilder(Link prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.Answer}
+     * Protobuf type {@code treeleaf.anydone.entities.Link}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.Answer, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Answer)
-        com.treeleaf.anydone.entities.KGraphProto.AnswerOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.KGraphProto.Answer.newBuilder()
+          Link, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Link)
+        LinkOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.Link.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional string answerKey = 1;</code>
+       * <code>optional string linkKey = 1;</code>
        */
-      public java.lang.String getAnswerKey() {
-        return instance.getAnswerKey();
+      public String getLinkKey() {
+        return instance.getLinkKey();
       }
       /**
-       * <code>optional string answerKey = 1;</code>
+       * <code>optional string linkKey = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getAnswerKeyBytes() {
-        return instance.getAnswerKeyBytes();
+          getLinkKeyBytes() {
+        return instance.getLinkKeyBytes();
       }
       /**
-       * <code>optional string answerKey = 1;</code>
+       * <code>optional string linkKey = 1;</code>
        */
-      public Builder setAnswerKey(
-          java.lang.String value) {
+      public Builder setLinkKey(
+          String value) {
         copyOnWrite();
-        instance.setAnswerKey(value);
+        instance.setLinkKey(value);
         return this;
       }
       /**
-       * <code>optional string answerKey = 1;</code>
+       * <code>optional string linkKey = 1;</code>
        */
-      public Builder clearAnswerKey() {
+      public Builder clearLinkKey() {
         copyOnWrite();
-        instance.clearAnswerKey();
+        instance.clearLinkKey();
         return this;
       }
       /**
-       * <code>optional string answerKey = 1;</code>
+       * <code>optional string linkKey = 1;</code>
        */
-      public Builder setAnswerKeyBytes(
+      public Builder setLinkKeyBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setAnswerKeyBytes(value);
+        instance.setLinkKeyBytes(value);
         return this;
       }
 
       /**
-       * <code>optional string answerId = 2;</code>
+       * <code>optional string linkId = 2;</code>
        */
-      public java.lang.String getAnswerId() {
-        return instance.getAnswerId();
+      public String getLinkId() {
+        return instance.getLinkId();
       }
       /**
-       * <code>optional string answerId = 2;</code>
+       * <code>optional string linkId = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getAnswerIdBytes() {
-        return instance.getAnswerIdBytes();
+          getLinkIdBytes() {
+        return instance.getLinkIdBytes();
       }
       /**
-       * <code>optional string answerId = 2;</code>
+       * <code>optional string linkId = 2;</code>
        */
-      public Builder setAnswerId(
-          java.lang.String value) {
+      public Builder setLinkId(
+          String value) {
         copyOnWrite();
-        instance.setAnswerId(value);
+        instance.setLinkId(value);
         return this;
       }
       /**
-       * <code>optional string answerId = 2;</code>
+       * <code>optional string linkId = 2;</code>
        */
-      public Builder clearAnswerId() {
+      public Builder clearLinkId() {
         copyOnWrite();
-        instance.clearAnswerId();
+        instance.clearLinkId();
         return this;
       }
       /**
-       * <code>optional string answerId = 2;</code>
+       * <code>optional string linkId = 2;</code>
        */
-      public Builder setAnswerIdBytes(
+      public Builder setLinkIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setAnswerIdBytes(value);
+        instance.setLinkIdBytes(value);
         return this;
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
        */
       public boolean hasIncoming() {
         return instance.hasIncoming();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.Question getIncoming() {
+      public Knowledge getIncoming() {
         return instance.getIncoming();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
        */
-      public Builder setIncoming(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+      public Builder setIncoming(Knowledge value) {
         copyOnWrite();
         instance.setIncoming(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
        */
       public Builder setIncoming(
-          com.treeleaf.anydone.entities.KGraphProto.Question.Builder builderForValue) {
+          Knowledge.Builder builderForValue) {
         copyOnWrite();
         instance.setIncoming(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
        */
-      public Builder mergeIncoming(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+      public Builder mergeIncoming(Knowledge value) {
         copyOnWrite();
         instance.mergeIncoming(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question incoming = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge incoming = 3;</code>
        */
       public Builder clearIncoming() {  copyOnWrite();
         instance.clearIncoming();
@@ -2933,44 +3151,44 @@ public final class KGraphProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
        */
       public boolean hasOutgoing() {
         return instance.hasOutgoing();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.Question getOutgoing() {
+      public Knowledge getOutgoing() {
         return instance.getOutgoing();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
        */
-      public Builder setOutgoing(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+      public Builder setOutgoing(Knowledge value) {
         copyOnWrite();
         instance.setOutgoing(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
        */
       public Builder setOutgoing(
-          com.treeleaf.anydone.entities.KGraphProto.Question.Builder builderForValue) {
+          Knowledge.Builder builderForValue) {
         copyOnWrite();
         instance.setOutgoing(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
        */
-      public Builder mergeOutgoing(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+      public Builder mergeOutgoing(Knowledge value) {
         copyOnWrite();
         instance.mergeOutgoing(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question outgoing = 4;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge outgoing = 4;</code>
        */
       public Builder clearOutgoing() {  copyOnWrite();
         instance.clearOutgoing();
@@ -2980,7 +3198,7 @@ public final class KGraphProto {
       /**
        * <code>optional string title = 5;</code>
        */
-      public java.lang.String getTitle() {
+      public String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -2994,7 +3212,7 @@ public final class KGraphProto {
        * <code>optional string title = 5;</code>
        */
       public Builder setTitle(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -3018,176 +3236,158 @@ public final class KGraphProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
        */
-      public int getAnswerTypeValue() {
-        return instance.getAnswerTypeValue();
+      public int getLinkTypeValue() {
+        return instance.getLinkTypeValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
        */
-      public Builder setAnswerTypeValue(int value) {
+      public Builder setLinkTypeValue(int value) {
         copyOnWrite();
-        instance.setAnswerTypeValue(value);
+        instance.setLinkTypeValue(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.AnswerType getAnswerType() {
-        return instance.getAnswerType();
+      public LinkType getLinkType() {
+        return instance.getLinkType();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
        */
-      public Builder setAnswerType(com.treeleaf.anydone.entities.KGraphProto.AnswerType value) {
+      public Builder setLinkType(LinkType value) {
         copyOnWrite();
-        instance.setAnswerType(value);
+        instance.setLinkType(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.AnswerType answerType = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.LinkType linkType = 6;</code>
        */
-      public Builder clearAnswerType() {
+      public Builder clearLinkType() {
         copyOnWrite();
-        instance.clearAnswerType();
-        return this;
-      }
-
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> getAttributeList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getAttributeList());
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public int getAttributeCount() {
-        return instance.getAttributeCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index) {
-        return instance.getAttribute(index);
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder setAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
-        copyOnWrite();
-        instance.setAttribute(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder setAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
-        copyOnWrite();
-        instance.setAttribute(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder addAttribute(com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
-        copyOnWrite();
-        instance.addAttribute(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder addAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
-        copyOnWrite();
-        instance.addAttribute(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder addAttribute(
-          com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
-        copyOnWrite();
-        instance.addAttribute(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder addAttribute(
-          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
-        copyOnWrite();
-        instance.addAttribute(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder addAllAttribute(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Attribute> values) {
-        copyOnWrite();
-        instance.addAllAttribute(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder clearAttribute() {
-        copyOnWrite();
-        instance.clearAttribute();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
-       */
-      public Builder removeAttribute(int index) {
-        copyOnWrite();
-        instance.removeAttribute(index);
+        instance.clearLinkType();
         return this;
       }
 
       /**
-       * <code>optional int32 answerHeight = 8;</code>
+       * <code>optional int32 linkHeight = 8;</code>
        */
-      public int getAnswerHeight() {
-        return instance.getAnswerHeight();
+      public int getLinkHeight() {
+        return instance.getLinkHeight();
       }
       /**
-       * <code>optional int32 answerHeight = 8;</code>
+       * <code>optional int32 linkHeight = 8;</code>
        */
-      public Builder setAnswerHeight(int value) {
+      public Builder setLinkHeight(int value) {
         copyOnWrite();
-        instance.setAnswerHeight(value);
+        instance.setLinkHeight(value);
         return this;
       }
       /**
-       * <code>optional int32 answerHeight = 8;</code>
+       * <code>optional int32 linkHeight = 8;</code>
        */
-      public Builder clearAnswerHeight() {
+      public Builder clearLinkHeight() {
         copyOnWrite();
-        instance.clearAnswerHeight();
+        instance.clearLinkHeight();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Answer)
+      /**
+       * <code>optional string serviceId = 9;</code>
+       */
+      public String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 9;</code>
+       */
+      public Builder setServiceId(
+          String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 9;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 9;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string accountId = 10;</code>
+       */
+      public String getAccountId() {
+        return instance.getAccountId();
+      }
+      /**
+       * <code>optional string accountId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountIdBytes() {
+        return instance.getAccountIdBytes();
+      }
+      /**
+       * <code>optional string accountId = 10;</code>
+       */
+      public Builder setAccountId(
+          String value) {
+        copyOnWrite();
+        instance.setAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 10;</code>
+       */
+      public Builder clearAccountId() {
+        copyOnWrite();
+        instance.clearAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 10;</code>
+       */
+      public Builder setAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAccountIdBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Link)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.Answer();
+          return new Link();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
-          attribute_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3195,22 +3395,24 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.Answer other = (com.treeleaf.anydone.entities.KGraphProto.Answer) arg1;
-          answerKey_ = visitor.visitString(!answerKey_.isEmpty(), answerKey_,
-              !other.answerKey_.isEmpty(), other.answerKey_);
-          answerId_ = visitor.visitString(!answerId_.isEmpty(), answerId_,
-              !other.answerId_.isEmpty(), other.answerId_);
+          Link other = (Link) arg1;
+          linkKey_ = visitor.visitString(!linkKey_.isEmpty(), linkKey_,
+              !other.linkKey_.isEmpty(), other.linkKey_);
+          linkId_ = visitor.visitString(!linkId_.isEmpty(), linkId_,
+              !other.linkId_.isEmpty(), other.linkId_);
           incoming_ = visitor.visitMessage(incoming_, other.incoming_);
           outgoing_ = visitor.visitMessage(outgoing_, other.outgoing_);
           title_ = visitor.visitString(!title_.isEmpty(), title_,
               !other.title_.isEmpty(), other.title_);
-          answerType_ = visitor.visitInt(answerType_ != 0, answerType_,    other.answerType_ != 0, other.answerType_);
-          attribute_= visitor.visitList(attribute_, other.attribute_);
-          answerHeight_ = visitor.visitInt(answerHeight_ != 0, answerHeight_,
-              other.answerHeight_ != 0, other.answerHeight_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          linkType_ = visitor.visitInt(linkType_ != 0, linkType_,    other.linkType_ != 0, other.linkType_);
+          linkHeight_ = visitor.visitInt(linkHeight_ != 0, linkHeight_,
+              other.linkHeight_ != 0, other.linkHeight_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
+              !other.accountId_.isEmpty(), other.accountId_);
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
-            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -3236,21 +3438,21 @@ public final class KGraphProto {
                 case 10: {
                   String s = input.readStringRequireUtf8();
 
-                  answerKey_ = s;
+                  linkKey_ = s;
                   break;
                 }
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  answerId_ = s;
+                  linkId_ = s;
                   break;
                 }
                 case 26: {
-                  com.treeleaf.anydone.entities.KGraphProto.Question.Builder subBuilder = null;
+                  Knowledge.Builder subBuilder = null;
                   if (incoming_ != null) {
                     subBuilder = incoming_.toBuilder();
                   }
-                  incoming_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Question.parser(), extensionRegistry);
+                  incoming_ = input.readMessage(Knowledge.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(incoming_);
                     incoming_ = subBuilder.buildPartial();
@@ -3259,11 +3461,11 @@ public final class KGraphProto {
                   break;
                 }
                 case 34: {
-                  com.treeleaf.anydone.entities.KGraphProto.Question.Builder subBuilder = null;
+                  Knowledge.Builder subBuilder = null;
                   if (outgoing_ != null) {
                     subBuilder = outgoing_.toBuilder();
                   }
-                  outgoing_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Question.parser(), extensionRegistry);
+                  outgoing_ = input.readMessage(Knowledge.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(outgoing_);
                     outgoing_ = subBuilder.buildPartial();
@@ -3280,21 +3482,24 @@ public final class KGraphProto {
                 case 48: {
                   int rawValue = input.readEnum();
 
-                  answerType_ = rawValue;
-                  break;
-                }
-                case 58: {
-                  if (!attribute_.isModifiable()) {
-                    attribute_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(attribute_);
-                  }
-                  attribute_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Attribute.parser(), extensionRegistry));
+                  linkType_ = rawValue;
                   break;
                 }
                 case 64: {
 
-                  answerHeight_ = input.readInt32();
+                  linkHeight_ = input.readInt32();
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  accountId_ = s;
                   break;
                 }
               }
@@ -3312,7 +3517,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.Answer.class) {
+          if (PARSER == null) {    synchronized (Link.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3325,20 +3530,1038 @@ public final class KGraphProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Answer)
-    private static final com.treeleaf.anydone.entities.KGraphProto.Answer DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Link)
+    private static final Link DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Answer();
+      DEFAULT_INSTANCE = new Link();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Answer getDefaultInstance() {
+    public static Link getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<Answer> PARSER;
+    private static volatile com.google.protobuf.Parser<Link> PARSER;
 
-    public static com.google.protobuf.Parser<Answer> parser() {
+    public static com.google.protobuf.Parser<Link> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface CreateAndLinkKnowledgeRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.CreateAndLinkKnowledgeRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    boolean hasKnowledge();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    Knowledge getKnowledge();
+
+    /**
+     * <code>optional string knowledgeFromKey = 2;</code>
+     */
+    String getKnowledgeFromKey();
+    /**
+     * <code>optional string knowledgeFromKey = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getKnowledgeFromKeyBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.CreateAndLinkKnowledgeRequest}
+   */
+  public  static final class CreateAndLinkKnowledgeRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          CreateAndLinkKnowledgeRequest, CreateAndLinkKnowledgeRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.CreateAndLinkKnowledgeRequest)
+      CreateAndLinkKnowledgeRequestOrBuilder {
+    private CreateAndLinkKnowledgeRequest() {
+      knowledgeFromKey_ = "";
+    }
+    public static final int KNOWLEDGE_FIELD_NUMBER = 1;
+    private Knowledge knowledge_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    public boolean hasKnowledge() {
+      return knowledge_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    public Knowledge getKnowledge() {
+      return knowledge_ == null ? Knowledge.getDefaultInstance() : knowledge_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    private void setKnowledge(Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      knowledge_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    private void setKnowledge(
+        Knowledge.Builder builderForValue) {
+      knowledge_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    private void mergeKnowledge(Knowledge value) {
+      if (knowledge_ != null &&
+          knowledge_ != Knowledge.getDefaultInstance()) {
+        knowledge_ =
+          Knowledge.newBuilder(knowledge_).mergeFrom(value).buildPartial();
+      } else {
+        knowledge_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+     */
+    private void clearKnowledge() {  knowledge_ = null;
+      
+    }
+
+    public static final int KNOWLEDGEFROMKEY_FIELD_NUMBER = 2;
+    private String knowledgeFromKey_;
+    /**
+     * <code>optional string knowledgeFromKey = 2;</code>
+     */
+    public String getKnowledgeFromKey() {
+      return knowledgeFromKey_;
+    }
+    /**
+     * <code>optional string knowledgeFromKey = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getKnowledgeFromKeyBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(knowledgeFromKey_);
+    }
+    /**
+     * <code>optional string knowledgeFromKey = 2;</code>
+     */
+    private void setKnowledgeFromKey(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      knowledgeFromKey_ = value;
+    }
+    /**
+     * <code>optional string knowledgeFromKey = 2;</code>
+     */
+    private void clearKnowledgeFromKey() {
+      
+      knowledgeFromKey_ = getDefaultInstance().getKnowledgeFromKey();
+    }
+    /**
+     * <code>optional string knowledgeFromKey = 2;</code>
+     */
+    private void setKnowledgeFromKeyBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      knowledgeFromKey_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (knowledge_ != null) {
+        output.writeMessage(1, getKnowledge());
+      }
+      if (!knowledgeFromKey_.isEmpty()) {
+        output.writeString(2, getKnowledgeFromKey());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (knowledge_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getKnowledge());
+      }
+      if (!knowledgeFromKey_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getKnowledgeFromKey());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static CreateAndLinkKnowledgeRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static CreateAndLinkKnowledgeRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static CreateAndLinkKnowledgeRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static CreateAndLinkKnowledgeRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static CreateAndLinkKnowledgeRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static CreateAndLinkKnowledgeRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static CreateAndLinkKnowledgeRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static CreateAndLinkKnowledgeRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static CreateAndLinkKnowledgeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static CreateAndLinkKnowledgeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(CreateAndLinkKnowledgeRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.CreateAndLinkKnowledgeRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          CreateAndLinkKnowledgeRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CreateAndLinkKnowledgeRequest)
+        CreateAndLinkKnowledgeRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.CreateAndLinkKnowledgeRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+       */
+      public boolean hasKnowledge() {
+        return instance.hasKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+       */
+      public Knowledge getKnowledge() {
+        return instance.getKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+       */
+      public Builder setKnowledge(Knowledge value) {
+        copyOnWrite();
+        instance.setKnowledge(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+       */
+      public Builder setKnowledge(
+          Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.setKnowledge(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+       */
+      public Builder mergeKnowledge(Knowledge value) {
+        copyOnWrite();
+        instance.mergeKnowledge(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
+       */
+      public Builder clearKnowledge() {  copyOnWrite();
+        instance.clearKnowledge();
+        return this;
+      }
+
+      /**
+       * <code>optional string knowledgeFromKey = 2;</code>
+       */
+      public String getKnowledgeFromKey() {
+        return instance.getKnowledgeFromKey();
+      }
+      /**
+       * <code>optional string knowledgeFromKey = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getKnowledgeFromKeyBytes() {
+        return instance.getKnowledgeFromKeyBytes();
+      }
+      /**
+       * <code>optional string knowledgeFromKey = 2;</code>
+       */
+      public Builder setKnowledgeFromKey(
+          String value) {
+        copyOnWrite();
+        instance.setKnowledgeFromKey(value);
+        return this;
+      }
+      /**
+       * <code>optional string knowledgeFromKey = 2;</code>
+       */
+      public Builder clearKnowledgeFromKey() {
+        copyOnWrite();
+        instance.clearKnowledgeFromKey();
+        return this;
+      }
+      /**
+       * <code>optional string knowledgeFromKey = 2;</code>
+       */
+      public Builder setKnowledgeFromKeyBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setKnowledgeFromKeyBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CreateAndLinkKnowledgeRequest)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new CreateAndLinkKnowledgeRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          CreateAndLinkKnowledgeRequest other = (CreateAndLinkKnowledgeRequest) arg1;
+          knowledge_ = visitor.visitMessage(knowledge_, other.knowledge_);
+          knowledgeFromKey_ = visitor.visitString(!knowledgeFromKey_.isEmpty(), knowledgeFromKey_,
+              !other.knowledgeFromKey_.isEmpty(), other.knowledgeFromKey_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  Knowledge.Builder subBuilder = null;
+                  if (knowledge_ != null) {
+                    subBuilder = knowledge_.toBuilder();
+                  }
+                  knowledge_ = input.readMessage(Knowledge.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(knowledge_);
+                    knowledge_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  knowledgeFromKey_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (CreateAndLinkKnowledgeRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CreateAndLinkKnowledgeRequest)
+    private static final CreateAndLinkKnowledgeRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CreateAndLinkKnowledgeRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static CreateAndLinkKnowledgeRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<CreateAndLinkKnowledgeRequest> PARSER;
+
+    public static com.google.protobuf.Parser<CreateAndLinkKnowledgeRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface FetchKnowledgeResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.FetchKnowledgeResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    boolean hasRoot();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    Knowledge getRoot();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    java.util.List<Knowledge>
+        getLeavesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    Knowledge getLeaves(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    int getLeavesCount();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.FetchKnowledgeResponse}
+   */
+  public  static final class FetchKnowledgeResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          FetchKnowledgeResponse, FetchKnowledgeResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.FetchKnowledgeResponse)
+      FetchKnowledgeResponseOrBuilder {
+    private FetchKnowledgeResponse() {
+      leaves_ = emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int ROOT_FIELD_NUMBER = 1;
+    private Knowledge root_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    public boolean hasRoot() {
+      return root_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    public Knowledge getRoot() {
+      return root_ == null ? Knowledge.getDefaultInstance() : root_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    private void setRoot(Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      root_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    private void setRoot(
+        Knowledge.Builder builderForValue) {
+      root_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    private void mergeRoot(Knowledge value) {
+      if (root_ != null &&
+          root_ != Knowledge.getDefaultInstance()) {
+        root_ =
+          Knowledge.newBuilder(root_).mergeFrom(value).buildPartial();
+      } else {
+        root_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+     */
+    private void clearRoot() {  root_ = null;
+      
+    }
+
+    public static final int LEAVES_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.ProtobufList<Knowledge> leaves_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    public java.util.List<Knowledge> getLeavesList() {
+      return leaves_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    public java.util.List<? extends KnowledgeOrBuilder>
+        getLeavesOrBuilderList() {
+      return leaves_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    public int getLeavesCount() {
+      return leaves_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    public Knowledge getLeaves(int index) {
+      return leaves_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    public KnowledgeOrBuilder getLeavesOrBuilder(
+        int index) {
+      return leaves_.get(index);
+    }
+    private void ensureLeavesIsMutable() {
+      if (!leaves_.isModifiable()) {
+        leaves_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(leaves_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void setLeaves(
+        int index, Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLeavesIsMutable();
+      leaves_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void setLeaves(
+        int index, Knowledge.Builder builderForValue) {
+      ensureLeavesIsMutable();
+      leaves_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void addLeaves(Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLeavesIsMutable();
+      leaves_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void addLeaves(
+        int index, Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLeavesIsMutable();
+      leaves_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void addLeaves(
+        Knowledge.Builder builderForValue) {
+      ensureLeavesIsMutable();
+      leaves_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void addLeaves(
+        int index, Knowledge.Builder builderForValue) {
+      ensureLeavesIsMutable();
+      leaves_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void addAllLeaves(
+        Iterable<? extends Knowledge> values) {
+      ensureLeavesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, leaves_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void clearLeaves() {
+      leaves_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+     */
+    private void removeLeaves(int index) {
+      ensureLeavesIsMutable();
+      leaves_.remove(index);
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (root_ != null) {
+        output.writeMessage(1, getRoot());
+      }
+      for (int i = 0; i < leaves_.size(); i++) {
+        output.writeMessage(2, leaves_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (root_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getRoot());
+      }
+      for (int i = 0; i < leaves_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, leaves_.get(i));
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static FetchKnowledgeResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static FetchKnowledgeResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static FetchKnowledgeResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static FetchKnowledgeResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static FetchKnowledgeResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static FetchKnowledgeResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static FetchKnowledgeResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static FetchKnowledgeResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static FetchKnowledgeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static FetchKnowledgeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(FetchKnowledgeResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.FetchKnowledgeResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          FetchKnowledgeResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.FetchKnowledgeResponse)
+        FetchKnowledgeResponseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.FetchKnowledgeResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+       */
+      public boolean hasRoot() {
+        return instance.hasRoot();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+       */
+      public Knowledge getRoot() {
+        return instance.getRoot();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+       */
+      public Builder setRoot(Knowledge value) {
+        copyOnWrite();
+        instance.setRoot(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+       */
+      public Builder setRoot(
+          Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.setRoot(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+       */
+      public Builder mergeRoot(Knowledge value) {
+        copyOnWrite();
+        instance.mergeRoot(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge root = 1;</code>
+       */
+      public Builder clearRoot() {  copyOnWrite();
+        instance.clearRoot();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public java.util.List<Knowledge> getLeavesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getLeavesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public int getLeavesCount() {
+        return instance.getLeavesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Knowledge getLeaves(int index) {
+        return instance.getLeaves(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder setLeaves(
+          int index, Knowledge value) {
+        copyOnWrite();
+        instance.setLeaves(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder setLeaves(
+          int index, Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLeaves(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder addLeaves(Knowledge value) {
+        copyOnWrite();
+        instance.addLeaves(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder addLeaves(
+          int index, Knowledge value) {
+        copyOnWrite();
+        instance.addLeaves(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder addLeaves(
+          Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLeaves(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder addLeaves(
+          int index, Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLeaves(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder addAllLeaves(
+          Iterable<? extends Knowledge> values) {
+        copyOnWrite();
+        instance.addAllLeaves(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder clearLeaves() {
+        copyOnWrite();
+        instance.clearLeaves();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
+       */
+      public Builder removeLeaves(int index) {
+        copyOnWrite();
+        instance.removeLeaves(index);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.FetchKnowledgeResponse)
+    }
+    protected final Object dynamicMethod(
+        MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new FetchKnowledgeResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          leaves_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          FetchKnowledgeResponse other = (FetchKnowledgeResponse) arg1;
+          root_ = visitor.visitMessage(root_, other.root_);
+          leaves_= visitor.visitList(leaves_, other.leaves_);
+          if (visitor == MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  Knowledge.Builder subBuilder = null;
+                  if (root_ != null) {
+                    subBuilder = root_.toBuilder();
+                  }
+                  root_ = input.readMessage(Knowledge.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(root_);
+                    root_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 18: {
+                  if (!leaves_.isModifiable()) {
+                    leaves_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(leaves_);
+                  }
+                  leaves_.add(
+                      input.readMessage(Knowledge.parser(), extensionRegistry));
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (FetchKnowledgeResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.FetchKnowledgeResponse)
+    private static final FetchKnowledgeResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new FetchKnowledgeResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static FetchKnowledgeResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<FetchKnowledgeResponse> PARSER;
+
+    public static com.google.protobuf.Parser<FetchKnowledgeResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -3350,7 +4573,7 @@ public final class KGraphProto {
     /**
      * <code>optional string text = 1;</code>
      */
-    java.lang.String getText();
+    String getText();
     /**
      * <code>optional string text = 1;</code>
      */
@@ -3360,7 +4583,7 @@ public final class KGraphProto {
     /**
      * <code>optional string url = 2;</code>
      */
-    java.lang.String getUrl();
+    String getUrl();
     /**
      * <code>optional string url = 2;</code>
      */
@@ -3379,7 +4602,7 @@ public final class KGraphProto {
     /**
      * <code>repeated string urls = 3;</code>
      */
-    java.lang.String getUrls(int index);
+    String getUrls(int index);
     /**
      * <code>repeated string urls = 3;</code>
      */
@@ -3389,7 +4612,7 @@ public final class KGraphProto {
     /**
      * <code>optional string filePath = 4;</code>
      */
-    java.lang.String getFilePath();
+    String getFilePath();
     /**
      * <code>optional string filePath = 4;</code>
      */
@@ -3399,7 +4622,7 @@ public final class KGraphProto {
     /**
      * <code>optional string filePaths = 5;</code>
      */
-    java.lang.String getFilePaths();
+    String getFilePaths();
     /**
      * <code>optional string filePaths = 5;</code>
      */
@@ -3423,11 +4646,11 @@ public final class KGraphProto {
     }
     private int bitField0_;
     public static final int TEXT_FIELD_NUMBER = 1;
-    private java.lang.String text_;
+    private String text_;
     /**
      * <code>optional string text = 1;</code>
      */
-    public java.lang.String getText() {
+    public String getText() {
       return text_;
     }
     /**
@@ -3441,7 +4664,7 @@ public final class KGraphProto {
      * <code>optional string text = 1;</code>
      */
     private void setText(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3469,11 +4692,11 @@ public final class KGraphProto {
     }
 
     public static final int URL_FIELD_NUMBER = 2;
-    private java.lang.String url_;
+    private String url_;
     /**
      * <code>optional string url = 2;</code>
      */
-    public java.lang.String getUrl() {
+    public String getUrl() {
       return url_;
     }
     /**
@@ -3487,7 +4710,7 @@ public final class KGraphProto {
      * <code>optional string url = 2;</code>
      */
     private void setUrl(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3531,7 +4754,7 @@ public final class KGraphProto {
     /**
      * <code>repeated string urls = 3;</code>
      */
-    public java.lang.String getUrls(int index) {
+    public String getUrls(int index) {
       return urls_.get(index);
     }
     /**
@@ -3552,7 +4775,7 @@ public final class KGraphProto {
      * <code>repeated string urls = 3;</code>
      */
     private void setUrls(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3563,7 +4786,7 @@ public final class KGraphProto {
      * <code>repeated string urls = 3;</code>
      */
     private void addUrls(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3574,7 +4797,7 @@ public final class KGraphProto {
      * <code>repeated string urls = 3;</code>
      */
     private void addAllUrls(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureUrlsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, urls_);
@@ -3599,11 +4822,11 @@ public final class KGraphProto {
     }
 
     public static final int FILEPATH_FIELD_NUMBER = 4;
-    private java.lang.String filePath_;
+    private String filePath_;
     /**
      * <code>optional string filePath = 4;</code>
      */
-    public java.lang.String getFilePath() {
+    public String getFilePath() {
       return filePath_;
     }
     /**
@@ -3617,7 +4840,7 @@ public final class KGraphProto {
      * <code>optional string filePath = 4;</code>
      */
     private void setFilePath(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3645,11 +4868,11 @@ public final class KGraphProto {
     }
 
     public static final int FILEPATHS_FIELD_NUMBER = 5;
-    private java.lang.String filePaths_;
+    private String filePaths_;
     /**
      * <code>optional string filePaths = 5;</code>
      */
-    public java.lang.String getFilePaths() {
+    public String getFilePaths() {
       return filePaths_;
     }
     /**
@@ -3663,7 +4886,7 @@ public final class KGraphProto {
      * <code>optional string filePaths = 5;</code>
      */
     private void setFilePaths(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3743,60 +4966,60 @@ public final class KGraphProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(
+    public static KnowledgeBuilderRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(
+    public static KnowledgeBuilderRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(byte[] data)
+    public static KnowledgeBuilderRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(
+    public static KnowledgeBuilderRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(java.io.InputStream input)
+    public static KnowledgeBuilderRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(
+    public static KnowledgeBuilderRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseDelimitedFrom(java.io.InputStream input)
+    public static KnowledgeBuilderRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseDelimitedFrom(
+    public static KnowledgeBuilderRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(
+    public static KnowledgeBuilderRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest parseFrom(
+    public static KnowledgeBuilderRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3807,7 +5030,7 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest prototype) {
+    public static Builder newBuilder(KnowledgeBuilderRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3816,9 +5039,9 @@ public final class KGraphProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest, Builder> implements
+          KnowledgeBuilderRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KnowledgeBuilderRequest)
-        com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequestOrBuilder {
+        KnowledgeBuilderRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3828,7 +5051,7 @@ public final class KGraphProto {
       /**
        * <code>optional string text = 1;</code>
        */
-      public java.lang.String getText() {
+      public String getText() {
         return instance.getText();
       }
       /**
@@ -3842,7 +5065,7 @@ public final class KGraphProto {
        * <code>optional string text = 1;</code>
        */
       public Builder setText(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -3868,7 +5091,7 @@ public final class KGraphProto {
       /**
        * <code>optional string url = 2;</code>
        */
-      public java.lang.String getUrl() {
+      public String getUrl() {
         return instance.getUrl();
       }
       /**
@@ -3882,7 +5105,7 @@ public final class KGraphProto {
        * <code>optional string url = 2;</code>
        */
       public Builder setUrl(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setUrl(value);
         return this;
@@ -3922,7 +5145,7 @@ public final class KGraphProto {
       /**
        * <code>repeated string urls = 3;</code>
        */
-      public java.lang.String getUrls(int index) {
+      public String getUrls(int index) {
         return instance.getUrls(index);
       }
       /**
@@ -3936,7 +5159,7 @@ public final class KGraphProto {
        * <code>repeated string urls = 3;</code>
        */
       public Builder setUrls(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setUrls(index, value);
         return this;
@@ -3945,7 +5168,7 @@ public final class KGraphProto {
        * <code>repeated string urls = 3;</code>
        */
       public Builder addUrls(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addUrls(value);
         return this;
@@ -3954,7 +5177,7 @@ public final class KGraphProto {
        * <code>repeated string urls = 3;</code>
        */
       public Builder addAllUrls(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllUrls(values);
         return this;
@@ -3980,7 +5203,7 @@ public final class KGraphProto {
       /**
        * <code>optional string filePath = 4;</code>
        */
-      public java.lang.String getFilePath() {
+      public String getFilePath() {
         return instance.getFilePath();
       }
       /**
@@ -3994,7 +5217,7 @@ public final class KGraphProto {
        * <code>optional string filePath = 4;</code>
        */
       public Builder setFilePath(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setFilePath(value);
         return this;
@@ -4020,7 +5243,7 @@ public final class KGraphProto {
       /**
        * <code>optional string filePaths = 5;</code>
        */
-      public java.lang.String getFilePaths() {
+      public String getFilePaths() {
         return instance.getFilePaths();
       }
       /**
@@ -4034,7 +5257,7 @@ public final class KGraphProto {
        * <code>optional string filePaths = 5;</code>
        */
       public Builder setFilePaths(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setFilePaths(value);
         return this;
@@ -4060,11 +5283,11 @@ public final class KGraphProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KnowledgeBuilderRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest();
+          return new KnowledgeBuilderRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4078,7 +5301,7 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest other = (com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest) arg1;
+          KnowledgeBuilderRequest other = (KnowledgeBuilderRequest) arg1;
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           url_ = visitor.visitString(!url_.isEmpty(), url_,
@@ -4088,7 +5311,7 @@ public final class KGraphProto {
               !other.filePath_.isEmpty(), other.filePath_);
           filePaths_ = visitor.visitString(!filePaths_.isEmpty(), filePaths_,
               !other.filePaths_.isEmpty(), other.filePaths_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -4161,7 +5384,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest.class) {
+          if (PARSER == null) {    synchronized (KnowledgeBuilderRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4175,13 +5398,13 @@ public final class KGraphProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KnowledgeBuilderRequest)
-    private static final com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest DEFAULT_INSTANCE;
+    private static final KnowledgeBuilderRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new KnowledgeBuilderRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeBuilderRequest getDefaultInstance() {
+    public static KnowledgeBuilderRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4199,7 +5422,7 @@ public final class KGraphProto {
     /**
      * <code>optional string entity1 = 1;</code>
      */
-    java.lang.String getEntity1();
+    String getEntity1();
     /**
      * <code>optional string entity1 = 1;</code>
      */
@@ -4209,7 +5432,7 @@ public final class KGraphProto {
     /**
      * <code>optional string entity2 = 2;</code>
      */
-    java.lang.String getEntity2();
+    String getEntity2();
     /**
      * <code>optional string entity2 = 2;</code>
      */
@@ -4219,7 +5442,7 @@ public final class KGraphProto {
     /**
      * <code>optional string relation = 3;</code>
      */
-    java.lang.String getRelation();
+    String getRelation();
     /**
      * <code>optional string relation = 3;</code>
      */
@@ -4245,11 +5468,11 @@ public final class KGraphProto {
       relation_ = "";
     }
     public static final int ENTITY1_FIELD_NUMBER = 1;
-    private java.lang.String entity1_;
+    private String entity1_;
     /**
      * <code>optional string entity1 = 1;</code>
      */
-    public java.lang.String getEntity1() {
+    public String getEntity1() {
       return entity1_;
     }
     /**
@@ -4263,7 +5486,7 @@ public final class KGraphProto {
      * <code>optional string entity1 = 1;</code>
      */
     private void setEntity1(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4291,11 +5514,11 @@ public final class KGraphProto {
     }
 
     public static final int ENTITY2_FIELD_NUMBER = 2;
-    private java.lang.String entity2_;
+    private String entity2_;
     /**
      * <code>optional string entity2 = 2;</code>
      */
-    public java.lang.String getEntity2() {
+    public String getEntity2() {
       return entity2_;
     }
     /**
@@ -4309,7 +5532,7 @@ public final class KGraphProto {
      * <code>optional string entity2 = 2;</code>
      */
     private void setEntity2(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4337,11 +5560,11 @@ public final class KGraphProto {
     }
 
     public static final int RELATION_FIELD_NUMBER = 3;
-    private java.lang.String relation_;
+    private String relation_;
     /**
      * <code>optional string relation = 3;</code>
      */
-    public java.lang.String getRelation() {
+    public String getRelation() {
       return relation_;
     }
     /**
@@ -4355,7 +5578,7 @@ public final class KGraphProto {
      * <code>optional string relation = 3;</code>
      */
     private void setRelation(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4446,60 +5669,60 @@ public final class KGraphProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(
+    public static KnowledgeTuple parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(
+    public static KnowledgeTuple parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(byte[] data)
+    public static KnowledgeTuple parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(
+    public static KnowledgeTuple parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(java.io.InputStream input)
+    public static KnowledgeTuple parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(
+    public static KnowledgeTuple parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseDelimitedFrom(java.io.InputStream input)
+    public static KnowledgeTuple parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseDelimitedFrom(
+    public static KnowledgeTuple parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(
+    public static KnowledgeTuple parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple parseFrom(
+    public static KnowledgeTuple parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4510,7 +5733,7 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple prototype) {
+    public static Builder newBuilder(KnowledgeTuple prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4519,9 +5742,9 @@ public final class KGraphProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple, Builder> implements
+          KnowledgeTuple, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KnowledgeTuple)
-        com.treeleaf.anydone.entities.KGraphProto.KnowledgeTupleOrBuilder {
+        KnowledgeTupleOrBuilder {
       // Construct using com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4531,7 +5754,7 @@ public final class KGraphProto {
       /**
        * <code>optional string entity1 = 1;</code>
        */
-      public java.lang.String getEntity1() {
+      public String getEntity1() {
         return instance.getEntity1();
       }
       /**
@@ -4545,7 +5768,7 @@ public final class KGraphProto {
        * <code>optional string entity1 = 1;</code>
        */
       public Builder setEntity1(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setEntity1(value);
         return this;
@@ -4571,7 +5794,7 @@ public final class KGraphProto {
       /**
        * <code>optional string entity2 = 2;</code>
        */
-      public java.lang.String getEntity2() {
+      public String getEntity2() {
         return instance.getEntity2();
       }
       /**
@@ -4585,7 +5808,7 @@ public final class KGraphProto {
        * <code>optional string entity2 = 2;</code>
        */
       public Builder setEntity2(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setEntity2(value);
         return this;
@@ -4611,7 +5834,7 @@ public final class KGraphProto {
       /**
        * <code>optional string relation = 3;</code>
        */
-      public java.lang.String getRelation() {
+      public String getRelation() {
         return instance.getRelation();
       }
       /**
@@ -4625,7 +5848,7 @@ public final class KGraphProto {
        * <code>optional string relation = 3;</code>
        */
       public Builder setRelation(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRelation(value);
         return this;
@@ -4674,11 +5897,11 @@ public final class KGraphProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KnowledgeTuple)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple();
+          return new KnowledgeTuple();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4691,7 +5914,7 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple other = (com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple) arg1;
+          KnowledgeTuple other = (KnowledgeTuple) arg1;
           entity1_ = visitor.visitString(!entity1_.isEmpty(), entity1_,
               !other.entity1_.isEmpty(), other.entity1_);
           entity2_ = visitor.visitString(!entity2_.isEmpty(), entity2_,
@@ -4700,7 +5923,7 @@ public final class KGraphProto {
               !other.relation_.isEmpty(), other.relation_);
           directed_ = visitor.visitBoolean(directed_ != false, directed_,
               other.directed_ != false, other.directed_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4762,7 +5985,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.class) {
+          if (PARSER == null) {    synchronized (KnowledgeTuple.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4776,13 +5999,13 @@ public final class KGraphProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KnowledgeTuple)
-    private static final com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple DEFAULT_INSTANCE;
+    private static final KnowledgeTuple DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new KnowledgeTuple();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple getDefaultInstance() {
+    public static KnowledgeTuple getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4798,22 +6021,22 @@ public final class KGraphProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    boolean hasQuestion();
+    boolean hasKnowledge();
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.Question getQuestion();
+    Knowledge getKnowledge();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    boolean hasAnswer();
+    boolean hasLink();
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.Answer getAnswer();
+    Link getLink();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.QATuple}
@@ -4825,117 +6048,117 @@ public final class KGraphProto {
       QATupleOrBuilder {
     private QATuple() {
     }
-    public static final int QUESTION_FIELD_NUMBER = 1;
-    private com.treeleaf.anydone.entities.KGraphProto.Question question_;
+    public static final int KNOWLEDGE_FIELD_NUMBER = 1;
+    private Knowledge knowledge_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    public boolean hasQuestion() {
-      return question_ != null;
+    public boolean hasKnowledge() {
+      return knowledge_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.Question getQuestion() {
-      return question_ == null ? com.treeleaf.anydone.entities.KGraphProto.Question.getDefaultInstance() : question_;
+    public Knowledge getKnowledge() {
+      return knowledge_ == null ? Knowledge.getDefaultInstance() : knowledge_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    private void setQuestion(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+    private void setKnowledge(Knowledge value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      question_ = value;
+      knowledge_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    private void setQuestion(
-        com.treeleaf.anydone.entities.KGraphProto.Question.Builder builderForValue) {
-      question_ = builderForValue.build();
+    private void setKnowledge(
+        Knowledge.Builder builderForValue) {
+      knowledge_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    private void mergeQuestion(com.treeleaf.anydone.entities.KGraphProto.Question value) {
-      if (question_ != null &&
-          question_ != com.treeleaf.anydone.entities.KGraphProto.Question.getDefaultInstance()) {
-        question_ =
-          com.treeleaf.anydone.entities.KGraphProto.Question.newBuilder(question_).mergeFrom(value).buildPartial();
+    private void mergeKnowledge(Knowledge value) {
+      if (knowledge_ != null &&
+          knowledge_ != Knowledge.getDefaultInstance()) {
+        knowledge_ =
+          Knowledge.newBuilder(knowledge_).mergeFrom(value).buildPartial();
       } else {
-        question_ = value;
+        knowledge_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
      */
-    private void clearQuestion() {  question_ = null;
+    private void clearKnowledge() {  knowledge_ = null;
       
     }
 
-    public static final int ANSWER_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.KGraphProto.Answer answer_;
+    public static final int LINK_FIELD_NUMBER = 2;
+    private Link link_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    public boolean hasAnswer() {
-      return answer_ != null;
+    public boolean hasLink() {
+      return link_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.Answer getAnswer() {
-      return answer_ == null ? com.treeleaf.anydone.entities.KGraphProto.Answer.getDefaultInstance() : answer_;
+    public Link getLink() {
+      return link_ == null ? Link.getDefaultInstance() : link_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    private void setAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+    private void setLink(Link value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      answer_ = value;
+      link_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    private void setAnswer(
-        com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
-      answer_ = builderForValue.build();
+    private void setLink(
+        Link.Builder builderForValue) {
+      link_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    private void mergeAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
-      if (answer_ != null &&
-          answer_ != com.treeleaf.anydone.entities.KGraphProto.Answer.getDefaultInstance()) {
-        answer_ =
-          com.treeleaf.anydone.entities.KGraphProto.Answer.newBuilder(answer_).mergeFrom(value).buildPartial();
+    private void mergeLink(Link value) {
+      if (link_ != null &&
+          link_ != Link.getDefaultInstance()) {
+        link_ =
+          Link.newBuilder(link_).mergeFrom(value).buildPartial();
       } else {
-        answer_ = value;
+        link_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
      */
-    private void clearAnswer() {  answer_ = null;
+    private void clearLink() {  link_ = null;
       
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (question_ != null) {
-        output.writeMessage(1, getQuestion());
+      if (knowledge_ != null) {
+        output.writeMessage(1, getKnowledge());
       }
-      if (answer_ != null) {
-        output.writeMessage(2, getAnswer());
+      if (link_ != null) {
+        output.writeMessage(2, getLink());
       }
     }
 
@@ -4944,72 +6167,72 @@ public final class KGraphProto {
       if (size != -1) return size;
 
       size = 0;
-      if (question_ != null) {
+      if (knowledge_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getQuestion());
+          .computeMessageSize(1, getKnowledge());
       }
-      if (answer_ != null) {
+      if (link_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getAnswer());
+          .computeMessageSize(2, getLink());
       }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(
+    public static QATuple parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(
+    public static QATuple parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(byte[] data)
+    public static QATuple parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(
+    public static QATuple parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(java.io.InputStream input)
+    public static QATuple parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(
+    public static QATuple parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseDelimitedFrom(java.io.InputStream input)
+    public static QATuple parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseDelimitedFrom(
+    public static QATuple parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(
+    public static QATuple parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple parseFrom(
+    public static QATuple parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5020,7 +6243,7 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.QATuple prototype) {
+    public static Builder newBuilder(QATuple prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5029,9 +6252,9 @@ public final class KGraphProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.QATuple, Builder> implements
+          QATuple, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.QATuple)
-        com.treeleaf.anydone.entities.KGraphProto.QATupleOrBuilder {
+        QATupleOrBuilder {
       // Construct using com.treeleaf.anydone.entities.KGraphProto.QATuple.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5039,103 +6262,103 @@ public final class KGraphProto {
 
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
        */
-      public boolean hasQuestion() {
-        return instance.hasQuestion();
+      public boolean hasKnowledge() {
+        return instance.hasKnowledge();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.Question getQuestion() {
-        return instance.getQuestion();
+      public Knowledge getKnowledge() {
+        return instance.getKnowledge();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
        */
-      public Builder setQuestion(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+      public Builder setKnowledge(Knowledge value) {
         copyOnWrite();
-        instance.setQuestion(value);
+        instance.setKnowledge(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
        */
-      public Builder setQuestion(
-          com.treeleaf.anydone.entities.KGraphProto.Question.Builder builderForValue) {
+      public Builder setKnowledge(
+          Knowledge.Builder builderForValue) {
         copyOnWrite();
-        instance.setQuestion(builderForValue);
+        instance.setKnowledge(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
        */
-      public Builder mergeQuestion(com.treeleaf.anydone.entities.KGraphProto.Question value) {
+      public Builder mergeKnowledge(Knowledge value) {
         copyOnWrite();
-        instance.mergeQuestion(value);
+        instance.mergeKnowledge(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Question question = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.Knowledge knowledge = 1;</code>
        */
-      public Builder clearQuestion() {  copyOnWrite();
-        instance.clearQuestion();
+      public Builder clearKnowledge() {  copyOnWrite();
+        instance.clearKnowledge();
         return this;
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
        */
-      public boolean hasAnswer() {
-        return instance.hasAnswer();
+      public boolean hasLink() {
+        return instance.hasLink();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.Answer getAnswer() {
-        return instance.getAnswer();
+      public Link getLink() {
+        return instance.getLink();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
        */
-      public Builder setAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+      public Builder setLink(Link value) {
         copyOnWrite();
-        instance.setAnswer(value);
+        instance.setLink(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
        */
-      public Builder setAnswer(
-          com.treeleaf.anydone.entities.KGraphProto.Answer.Builder builderForValue) {
+      public Builder setLink(
+          Link.Builder builderForValue) {
         copyOnWrite();
-        instance.setAnswer(builderForValue);
+        instance.setLink(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
        */
-      public Builder mergeAnswer(com.treeleaf.anydone.entities.KGraphProto.Answer value) {
+      public Builder mergeLink(Link value) {
         copyOnWrite();
-        instance.mergeAnswer(value);
+        instance.mergeLink(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Answer answer = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Link link = 2;</code>
        */
-      public Builder clearAnswer() {  copyOnWrite();
-        instance.clearAnswer();
+      public Builder clearLink() {  copyOnWrite();
+        instance.clearLink();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.QATuple)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.QATuple();
+          return new QATuple();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5148,10 +6371,10 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.QATuple other = (com.treeleaf.anydone.entities.KGraphProto.QATuple) arg1;
-          question_ = visitor.visitMessage(question_, other.question_);
-          answer_ = visitor.visitMessage(answer_, other.answer_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          QATuple other = (QATuple) arg1;
+          knowledge_ = visitor.visitMessage(knowledge_, other.knowledge_);
+          link_ = visitor.visitMessage(link_, other.link_);
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5176,27 +6399,27 @@ public final class KGraphProto {
                   break;
                 }
                 case 10: {
-                  com.treeleaf.anydone.entities.KGraphProto.Question.Builder subBuilder = null;
-                  if (question_ != null) {
-                    subBuilder = question_.toBuilder();
+                  Knowledge.Builder subBuilder = null;
+                  if (knowledge_ != null) {
+                    subBuilder = knowledge_.toBuilder();
                   }
-                  question_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Question.parser(), extensionRegistry);
+                  knowledge_ = input.readMessage(Knowledge.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(question_);
-                    question_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(knowledge_);
+                    knowledge_ = subBuilder.buildPartial();
                   }
 
                   break;
                 }
                 case 18: {
-                  com.treeleaf.anydone.entities.KGraphProto.Answer.Builder subBuilder = null;
-                  if (answer_ != null) {
-                    subBuilder = answer_.toBuilder();
+                  Link.Builder subBuilder = null;
+                  if (link_ != null) {
+                    subBuilder = link_.toBuilder();
                   }
-                  answer_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Answer.parser(), extensionRegistry);
+                  link_ = input.readMessage(Link.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(answer_);
-                    answer_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(link_);
+                    link_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -5216,7 +6439,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.QATuple.class) {
+          if (PARSER == null) {    synchronized (QATuple.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5230,13 +6453,13 @@ public final class KGraphProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.QATuple)
-    private static final com.treeleaf.anydone.entities.KGraphProto.QATuple DEFAULT_INSTANCE;
+    private static final QATuple DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new QATuple();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.QATuple getDefaultInstance() {
+    public static QATuple getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5247,19 +6470,19 @@ public final class KGraphProto {
     }
   }
 
-  public interface KnowledgeOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Knowledge)
+  public interface KnowledgeRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.KnowledgeRequest)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple> 
+    java.util.List<KnowledgeTuple>
         getKTuplesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple getKTuples(int index);
+    KnowledgeTuple getKTuples(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
@@ -5268,41 +6491,41 @@ public final class KGraphProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.KGraphProto.QATuple> 
+    java.util.List<QATuple>
         getQaTuplesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
-    com.treeleaf.anydone.entities.KGraphProto.QATuple getQaTuples(int index);
+    QATuple getQaTuples(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
     int getQaTuplesCount();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
+   * Protobuf type {@code treeleaf.anydone.entities.KnowledgeRequest}
    */
-  public  static final class Knowledge extends
+  public  static final class KnowledgeRequest extends
       com.google.protobuf.GeneratedMessageLite<
-          Knowledge, Knowledge.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Knowledge)
-      KnowledgeOrBuilder {
-    private Knowledge() {
+          KnowledgeRequest, KnowledgeRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.KnowledgeRequest)
+      KnowledgeRequestOrBuilder {
+    private KnowledgeRequest() {
       kTuples_ = emptyProtobufList();
       qaTuples_ = emptyProtobufList();
     }
     public static final int KTUPLES_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple> kTuples_;
+    private com.google.protobuf.Internal.ProtobufList<KnowledgeTuple> kTuples_;
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple> getKTuplesList() {
+    public java.util.List<KnowledgeTuple> getKTuplesList() {
       return kTuples_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.KnowledgeTupleOrBuilder> 
+    public java.util.List<? extends KnowledgeTupleOrBuilder>
         getKTuplesOrBuilderList() {
       return kTuples_;
     }
@@ -5315,13 +6538,13 @@ public final class KGraphProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple getKTuples(int index) {
+    public KnowledgeTuple getKTuples(int index) {
       return kTuples_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.KnowledgeTupleOrBuilder getKTuplesOrBuilder(
+    public KnowledgeTupleOrBuilder getKTuplesOrBuilder(
         int index) {
       return kTuples_.get(index);
     }
@@ -5336,7 +6559,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
     private void setKTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple value) {
+        int index, KnowledgeTuple value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5347,14 +6570,14 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
     private void setKTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.Builder builderForValue) {
+        int index, KnowledgeTuple.Builder builderForValue) {
       ensureKTuplesIsMutable();
       kTuples_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
-    private void addKTuples(com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple value) {
+    private void addKTuples(KnowledgeTuple value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5365,7 +6588,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
     private void addKTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple value) {
+        int index, KnowledgeTuple value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5376,7 +6599,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
     private void addKTuples(
-        com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.Builder builderForValue) {
+        KnowledgeTuple.Builder builderForValue) {
       ensureKTuplesIsMutable();
       kTuples_.add(builderForValue.build());
     }
@@ -5384,7 +6607,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
     private void addKTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.Builder builderForValue) {
+        int index, KnowledgeTuple.Builder builderForValue) {
       ensureKTuplesIsMutable();
       kTuples_.add(index, builderForValue.build());
     }
@@ -5392,7 +6615,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
      */
     private void addAllKTuples(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple> values) {
+        Iterable<? extends KnowledgeTuple> values) {
       ensureKTuplesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, kTuples_);
@@ -5412,17 +6635,17 @@ public final class KGraphProto {
     }
 
     public static final int QATUPLES_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.QATuple> qaTuples_;
+    private com.google.protobuf.Internal.ProtobufList<QATuple> qaTuples_;
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.QATuple> getQaTuplesList() {
+    public java.util.List<QATuple> getQaTuplesList() {
       return qaTuples_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.QATupleOrBuilder> 
+    public java.util.List<? extends QATupleOrBuilder>
         getQaTuplesOrBuilderList() {
       return qaTuples_;
     }
@@ -5435,13 +6658,13 @@ public final class KGraphProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.QATuple getQaTuples(int index) {
+    public QATuple getQaTuples(int index) {
       return qaTuples_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
-    public com.treeleaf.anydone.entities.KGraphProto.QATupleOrBuilder getQaTuplesOrBuilder(
+    public QATupleOrBuilder getQaTuplesOrBuilder(
         int index) {
       return qaTuples_.get(index);
     }
@@ -5456,7 +6679,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
     private void setQaTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+        int index, QATuple value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5467,14 +6690,14 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
     private void setQaTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+        int index, QATuple.Builder builderForValue) {
       ensureQaTuplesIsMutable();
       qaTuples_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
-    private void addQaTuples(com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+    private void addQaTuples(QATuple value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5485,7 +6708,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
     private void addQaTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+        int index, QATuple value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5496,7 +6719,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
     private void addQaTuples(
-        com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+        QATuple.Builder builderForValue) {
       ensureQaTuplesIsMutable();
       qaTuples_.add(builderForValue.build());
     }
@@ -5504,7 +6727,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
     private void addQaTuples(
-        int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+        int index, QATuple.Builder builderForValue) {
       ensureQaTuplesIsMutable();
       qaTuples_.add(index, builderForValue.build());
     }
@@ -5512,7 +6735,7 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
      */
     private void addAllQaTuples(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
+        Iterable<? extends QATuple> values) {
       ensureQaTuplesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, qaTuples_);
@@ -5558,60 +6781,60 @@ public final class KGraphProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(
+    public static KnowledgeRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(
+    public static KnowledgeRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(byte[] data)
+    public static KnowledgeRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(
+    public static KnowledgeRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(java.io.InputStream input)
+    public static KnowledgeRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(
+    public static KnowledgeRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseDelimitedFrom(java.io.InputStream input)
+    public static KnowledgeRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseDelimitedFrom(
+    public static KnowledgeRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(
+    public static KnowledgeRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge parseFrom(
+    public static KnowledgeRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5622,19 +6845,19 @@ public final class KGraphProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.Knowledge prototype) {
+    public static Builder newBuilder(KnowledgeRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
+     * Protobuf type {@code treeleaf.anydone.entities.KnowledgeRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.Knowledge, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Knowledge)
-        com.treeleaf.anydone.entities.KGraphProto.KnowledgeOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.KGraphProto.Knowledge.newBuilder()
+          KnowledgeRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KnowledgeRequest)
+        KnowledgeRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.KGraphProto.KnowledgeRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
@@ -5643,7 +6866,7 @@ public final class KGraphProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple> getKTuplesList() {
+      public java.util.List<KnowledgeTuple> getKTuplesList() {
         return java.util.Collections.unmodifiableList(
             instance.getKTuplesList());
       }
@@ -5655,14 +6878,14 @@ public final class KGraphProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple getKTuples(int index) {
+      public KnowledgeTuple getKTuples(int index) {
         return instance.getKTuples(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
       public Builder setKTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple value) {
+          int index, KnowledgeTuple value) {
         copyOnWrite();
         instance.setKTuples(index, value);
         return this;
@@ -5671,7 +6894,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
       public Builder setKTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.Builder builderForValue) {
+          int index, KnowledgeTuple.Builder builderForValue) {
         copyOnWrite();
         instance.setKTuples(index, builderForValue);
         return this;
@@ -5679,7 +6902,7 @@ public final class KGraphProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
-      public Builder addKTuples(com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple value) {
+      public Builder addKTuples(KnowledgeTuple value) {
         copyOnWrite();
         instance.addKTuples(value);
         return this;
@@ -5688,7 +6911,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
       public Builder addKTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple value) {
+          int index, KnowledgeTuple value) {
         copyOnWrite();
         instance.addKTuples(index, value);
         return this;
@@ -5697,7 +6920,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
       public Builder addKTuples(
-          com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.Builder builderForValue) {
+          KnowledgeTuple.Builder builderForValue) {
         copyOnWrite();
         instance.addKTuples(builderForValue);
         return this;
@@ -5706,7 +6929,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
       public Builder addKTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.Builder builderForValue) {
+          int index, KnowledgeTuple.Builder builderForValue) {
         copyOnWrite();
         instance.addKTuples(index, builderForValue);
         return this;
@@ -5715,7 +6938,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.KnowledgeTuple kTuples = 1;</code>
        */
       public Builder addAllKTuples(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple> values) {
+          Iterable<? extends KnowledgeTuple> values) {
         copyOnWrite();
         instance.addAllKTuples(values);
         return this;
@@ -5740,7 +6963,7 @@ public final class KGraphProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.QATuple> getQaTuplesList() {
+      public java.util.List<QATuple> getQaTuplesList() {
         return java.util.Collections.unmodifiableList(
             instance.getQaTuplesList());
       }
@@ -5752,14 +6975,14 @@ public final class KGraphProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
-      public com.treeleaf.anydone.entities.KGraphProto.QATuple getQaTuples(int index) {
+      public QATuple getQaTuples(int index) {
         return instance.getQaTuples(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
       public Builder setQaTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+          int index, QATuple value) {
         copyOnWrite();
         instance.setQaTuples(index, value);
         return this;
@@ -5768,7 +6991,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
       public Builder setQaTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+          int index, QATuple.Builder builderForValue) {
         copyOnWrite();
         instance.setQaTuples(index, builderForValue);
         return this;
@@ -5776,7 +6999,7 @@ public final class KGraphProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
-      public Builder addQaTuples(com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+      public Builder addQaTuples(QATuple value) {
         copyOnWrite();
         instance.addQaTuples(value);
         return this;
@@ -5785,7 +7008,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
       public Builder addQaTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple value) {
+          int index, QATuple value) {
         copyOnWrite();
         instance.addQaTuples(index, value);
         return this;
@@ -5794,7 +7017,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
       public Builder addQaTuples(
-          com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+          QATuple.Builder builderForValue) {
         copyOnWrite();
         instance.addQaTuples(builderForValue);
         return this;
@@ -5803,7 +7026,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
       public Builder addQaTuples(
-          int index, com.treeleaf.anydone.entities.KGraphProto.QATuple.Builder builderForValue) {
+          int index, QATuple.Builder builderForValue) {
         copyOnWrite();
         instance.addQaTuples(index, builderForValue);
         return this;
@@ -5812,7 +7035,7 @@ public final class KGraphProto {
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 2;</code>
        */
       public Builder addAllQaTuples(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
+          Iterable<? extends QATuple> values) {
         copyOnWrite();
         instance.addAllQaTuples(values);
         return this;
@@ -5834,14 +7057,14 @@ public final class KGraphProto {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Knowledge)
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KnowledgeRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.Knowledge();
+          return new KnowledgeRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5856,10 +7079,10 @@ public final class KGraphProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.Knowledge other = (com.treeleaf.anydone.entities.KGraphProto.Knowledge) arg1;
+          KnowledgeRequest other = (KnowledgeRequest) arg1;
           kTuples_= visitor.visitList(kTuples_, other.kTuples_);
           qaTuples_= visitor.visitList(qaTuples_, other.qaTuples_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5889,7 +7112,7 @@ public final class KGraphProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(kTuples_);
                   }
                   kTuples_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.KnowledgeTuple.parser(), extensionRegistry));
+                      input.readMessage(KnowledgeTuple.parser(), extensionRegistry));
                   break;
                 }
                 case 18: {
@@ -5898,7 +7121,7 @@ public final class KGraphProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(qaTuples_);
                   }
                   qaTuples_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.QATuple.parser(), extensionRegistry));
+                      input.readMessage(QATuple.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -5916,7 +7139,7 @@ public final class KGraphProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.Knowledge.class) {
+          if (PARSER == null) {    synchronized (KnowledgeRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5929,20 +7152,20 @@ public final class KGraphProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Knowledge)
-    private static final com.treeleaf.anydone.entities.KGraphProto.Knowledge DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KnowledgeRequest)
+    private static final KnowledgeRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Knowledge();
+      DEFAULT_INSTANCE = new KnowledgeRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.KGraphProto.Knowledge getDefaultInstance() {
+    public static KnowledgeRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<Knowledge> PARSER;
+    private static volatile com.google.protobuf.Parser<KnowledgeRequest> PARSER;
 
-    public static com.google.protobuf.Parser<Knowledge> parser() {
+    public static com.google.protobuf.Parser<KnowledgeRequest> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

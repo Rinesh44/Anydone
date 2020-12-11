@@ -14,7 +14,8 @@ public class PendingTicketRepositoryImpl implements PendingTicketRepository {
 
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse> getAssignedTickets(String token, String serviceId,
-                                                                                   long from, long to, int page) {
-        return anyDoneService.getAssignedTickets(token, serviceId, from, to, page);
+                                                                                   long from, long to, int page,
+                                                                                   String sortOrder) {
+        return anyDoneService.getAssignedTickets(token, serviceId, from, to, page, sortOrder);
     }
 }

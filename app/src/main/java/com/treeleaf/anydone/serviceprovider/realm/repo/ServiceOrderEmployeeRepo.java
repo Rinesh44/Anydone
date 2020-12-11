@@ -24,7 +24,7 @@ public class ServiceOrderEmployeeRepo extends Repo {
 
     public void saveServiceOrderEmployee(final OrderServiceProto.ServiceOrder serviceOrder,
                                          final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -86,7 +86,7 @@ public class ServiceOrderEmployeeRepo extends Repo {
     }
 
     public ServiceOrderEmployee getServiceOrderEmployeeById(long orderId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(ServiceOrderEmployee.class)
                     .equalTo("orderId", orderId).findFirst();

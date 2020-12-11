@@ -26,7 +26,7 @@ public class TicketCategoryRepo extends Repo {
 
     public void saveTicketTypeList(final List<TicketProto.TicketType> ticketTypeList,
                                    final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformTicketTypeList(ticketTypeList));
@@ -63,7 +63,7 @@ public class TicketCategoryRepo extends Repo {
     }
 
     public List<TicketCategory> getAllTicketCategories() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(TicketCategory.class)
                     .findAll());

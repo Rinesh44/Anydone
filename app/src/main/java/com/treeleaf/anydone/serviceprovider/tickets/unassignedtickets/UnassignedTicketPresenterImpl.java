@@ -55,7 +55,8 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = service.getAssignableTickets(token, serviceId, from, to, pageSize);
+        getTicketsObservable = service.getBacklogTickets(token, serviceId, from, to, pageSize,
+                "ASC");
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -161,7 +162,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
                 .setEmployeeAssigned(employeeAssigned)
                 .build();
 
-        GlobalUtils.showLog(TAG, "employee assinged check:" + employeeAssigned);
+        GlobalUtils.showLog(TAG, "employee assigned check:" + ticket);
 
         getTicketsObservable = service.assignEmployee(token, ticketId, ticket);
         addSubscription(getTicketsObservable

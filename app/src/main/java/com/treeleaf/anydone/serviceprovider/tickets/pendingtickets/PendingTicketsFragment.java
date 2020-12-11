@@ -54,7 +54,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_assign)
+    @BindView(R.id.fab_backlog)
     FloatingActionButton fabAssign;
     @BindView(R.id.pb_search)
     ProgressBar progressBar;
@@ -79,6 +79,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         mFragment.setPendingListListener(this);
         userAccount = AccountRepo.getInstance().getAccount();
         localAccountId = userAccount.getAccountId();
+
     }
 
     @Override
@@ -160,6 +161,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                     i.putExtra("selected_ticket_type", Constants.PENDING);
                     i.putExtra("ticket_desc", ticket.getTitle());
                     i.putExtra("selected_ticket_name", callees);
+                    i.putExtra("selected_ticket_index", ticket.getTicketIndex());
                     i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                     i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
                     startActivity(i);
@@ -205,19 +207,22 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     @Override
     public void onResume() {
         super.onResume();
-
+        GlobalUtils.showLog(TAG, "onreume called");
         boolean fetchChanges = Hawk.get(Constants.FETCH_PENDING_LIST, false);
         boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
         boolean ticketPending = Hawk.get(Constants.TICKET_PENDING, false);
         if (fetchChanges) {
+            GlobalUtils.showLog(TAG, "first");
             btnReload.setVisibility(View.GONE);
             presenter.getPendingTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else if (ticketAssigned) {
+            GlobalUtils.showLog(TAG, "second");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_ASSIGNED, false);
         } else if (ticketPending) {
+            GlobalUtils.showLog(TAG, "third");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_PENDING, false);
@@ -310,8 +315,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                 Constants.SERVER_ERROR);
     }
 
-    @OnClick(R.id.fab_assign)
-    void gotoAssignableTicketList() {
+    @OnClick(R.id.fab_backlog)
+    void getBackLogTickets() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
     }
@@ -339,7 +344,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 
     @Override
     public void fetchList() {
-        btnReload.setVisibility(View.GONE);
+        if (btnReload != null) btnReload.setVisibility(View.GONE);
         GlobalUtils.showLog(TAG, "fetch list called");
         presenter.getPendingTickets(true, 0,
                 System.currentTimeMillis(), 100);

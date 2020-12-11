@@ -18,7 +18,6 @@ import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,7 +42,7 @@ public class TicketRepo extends Repo {
     public void saveTicketList(final List<TicketProto.Ticket> ticketListPb,
                                String type,
                                final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -65,7 +64,7 @@ public class TicketRepo extends Repo {
                                      String type,
                                      String threadId,
                                      final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -87,7 +86,7 @@ public class TicketRepo extends Repo {
     public void saveTicket(final TicketProto.Ticket ticketPb,
                            String type,
                            final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -107,7 +106,7 @@ public class TicketRepo extends Repo {
 
 
     public Tickets getTicketById(long ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findFirst();
@@ -120,7 +119,7 @@ public class TicketRepo extends Repo {
     }
 
     public List<Tickets> getTicketByThreadId(String threadId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Tickets.class)
                     .equalTo("threadId", threadId).findAll();
@@ -133,7 +132,7 @@ public class TicketRepo extends Repo {
     }
 
     public void setAssignedEmployee(long ticketId, Employee employee, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> result = realm1.where(Tickets.class)
@@ -151,7 +150,7 @@ public class TicketRepo extends Repo {
 
     public void setContributors(long ticketId, RealmList<AssignEmployee> contributors,
                                 final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> result = realm1.where(Tickets.class)
@@ -169,7 +168,7 @@ public class TicketRepo extends Repo {
     }
 
     public void editTeams(long ticketId, RealmList<Tags> teamRealmList, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -188,7 +187,7 @@ public class TicketRepo extends Repo {
 
     public void editLabels(long ticketId, RealmList<Label> labelList, final Callback
             callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> result = realm1.where(Tickets.class)
@@ -205,7 +204,7 @@ public class TicketRepo extends Repo {
     }
 
     public void editTicketPriority(long ticketId, int priority) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -214,7 +213,7 @@ public class TicketRepo extends Repo {
     }
 
     public void setTicketEstTime(long ticketId, long estTime) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -223,7 +222,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteLabels(long ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -234,7 +233,7 @@ public class TicketRepo extends Repo {
 
 
     public void editTicketType(long ticketId, String ticketType) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -243,7 +242,7 @@ public class TicketRepo extends Repo {
     }
 
     public void editTicketTitle(long ticketId, String editedText) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -252,7 +251,7 @@ public class TicketRepo extends Repo {
     }
 
     public void editTicketDescription(long ticketId, String editedText) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -261,7 +260,7 @@ public class TicketRepo extends Repo {
     }
 
     public void editTicketEstimatedTime(long ticketId, String editedText, long estTime) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -271,7 +270,7 @@ public class TicketRepo extends Repo {
     }
 
     public void changeTicketStatusToStart(long ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -281,9 +280,27 @@ public class TicketRepo extends Repo {
         });
     }
 
+    public void changeTicketTypeToSubscribed(long ticketId) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("ticketType", Constants.SUBSCRIBED);
+        });
+    }
+
+    public void changeTicketTypeToSubscribable(long ticketId) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setString("ticketType", Constants.SUBSCRIBEABLE);
+        });
+    }
+
 
     public void changeTicketStatusToClosed(long ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -297,19 +314,19 @@ public class TicketRepo extends Repo {
     }
 
     public void changeTicketStatusToReopened(long ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_REOPENED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.PENDING);
-
+            GlobalUtils.showLog(TAG, "status chnaged to reopen");
         });
     }
 
     public void changeTicketStatusToResolved(long ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
@@ -323,7 +340,7 @@ public class TicketRepo extends Repo {
     }
 
     public void unAssignContributor(long ticketId, String empId, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             try {
                 Tickets tickets = getTicketById(ticketId);
@@ -345,7 +362,7 @@ public class TicketRepo extends Repo {
 
 
     public void replaceAssignedEmployees(long ticketId, AssignEmployee employee, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             try {
                 Tickets tickets = getTicketById(ticketId);
@@ -359,7 +376,7 @@ public class TicketRepo extends Repo {
     }
 
     public void removeContributor(long ticketId, String contributorId, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             try {
                 RealmResults<Tickets> result = realm1.where(Tickets.class)
@@ -389,7 +406,7 @@ public class TicketRepo extends Repo {
     }
 
     public void closeServiceRequest(long id) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<ServiceRequest> result = realm1.where(ServiceRequest.class)
@@ -411,6 +428,7 @@ public class TicketRepo extends Repo {
             Tickets tickets = new Tickets();
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
+            tickets.setTicketIndex(ticketPb.getTicketIndex());
             tickets.setTitle(ticketPb.getTitle());
             tickets.setTicketCategory(ticketPb.getType().getName());
             GlobalUtils.showLog(TAG, "est time back end: " + ticketPb.getEstimatedTimeDesc());
@@ -456,6 +474,7 @@ public class TicketRepo extends Repo {
             Tickets tickets = new Tickets();
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
+            tickets.setTicketIndex(ticketPb.getTicketIndex());
             tickets.setThreadId(threadId);
             tickets.setTitle(ticketPb.getTitle());
             tickets.setTicketCategory(ticketPb.getType().getName());
@@ -496,6 +515,7 @@ public class TicketRepo extends Repo {
         Tickets tickets = new Tickets();
         tickets.setId(UUID.randomUUID().toString().replace("-", ""));
         tickets.setTicketId(ticketPb.getTicketId());
+        tickets.setTicketIndex(ticketPb.getTicketIndex());
         tickets.setTitle(ticketPb.getTitle());
         tickets.setTicketCategory(ticketPb.getType().getName());
         tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
@@ -527,7 +547,7 @@ public class TicketRepo extends Repo {
 
 
     public List<Tickets> getAllTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(Tickets.class).findAll());
         } catch (Throwable throwable) {
@@ -539,7 +559,7 @@ public class TicketRepo extends Repo {
     }
 
     public List<Tickets> getPendingTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
@@ -556,7 +576,7 @@ public class TicketRepo extends Repo {
     }
 
     public List<Tickets> getInProgressTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
@@ -574,7 +594,7 @@ public class TicketRepo extends Repo {
 
 
     public List<Tickets> getSubscribedTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
@@ -591,7 +611,7 @@ public class TicketRepo extends Repo {
     }
 
     public List<Tickets> getClosedResolvedTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
@@ -608,7 +628,7 @@ public class TicketRepo extends Repo {
     }
 
     public List<Tickets> getContributedTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
@@ -626,7 +646,7 @@ public class TicketRepo extends Repo {
 
 
     public List<Tickets> getAssignableTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
@@ -643,7 +663,7 @@ public class TicketRepo extends Repo {
     }
 
     public List<Tickets> getSubscribeableTickets() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(Tickets.class)
@@ -660,7 +680,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteTicket(long ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class).equalTo("ticketId", ticketId).findAll();
             result.deleteAllFromRealm();
@@ -668,7 +688,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deletePendingTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
@@ -686,7 +706,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteLinkedTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
@@ -704,7 +724,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteInProgressTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
@@ -722,7 +742,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteAssignableTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
@@ -740,7 +760,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteSubscribedTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -759,7 +779,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteSubscribableTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
@@ -776,7 +796,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteClosedResolvedTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
@@ -793,7 +813,7 @@ public class TicketRepo extends Repo {
     }
 
     public void deleteContributedTickets(final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
@@ -810,7 +830,7 @@ public class TicketRepo extends Repo {
     }
 
     public void enableBotReply(String ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", Long.parseLong(ticketId)).findAll();
@@ -819,7 +839,7 @@ public class TicketRepo extends Repo {
     }
 
     public void disableBotReply(String ticketId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", Long.parseLong(ticketId)).findAll();

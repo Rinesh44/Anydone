@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
@@ -33,8 +35,10 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
     private static final String TAG = "CustomerSearchAdapter";
     private List<Customer> customerList;
     private List<Customer> customerListFiltered;
+    private OnFilterListEmptyListener filterListEmptyListener;
     private Context mContext;
     private OnItemClickListener listener;
+    private String selectedCustomerId = "";
 
     public CustomerSearchAdapter(@NonNull Context context,
                                  @NonNull List<Customer> customerList) {
@@ -47,6 +51,21 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
         this.customerList = customerList;
     }
 
+    public void setChecked(String customerId) {
+        for (Customer customer : customerListFiltered
+        ) {
+            if (customerId.equalsIgnoreCase(customer.getCustomerId())) {
+                selectedCustomerId = customerId;
+                break;
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void removeCheckMark() {
+        selectedCustomerId = "";
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -67,8 +86,8 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
         } else {
             ServiceProvider serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
             userId = serviceProvider.getAccountId();
-
         }
+
         if (userId != null && !customer.getCustomerId().equalsIgnoreCase(userId)) {
             GlobalUtils.showLog(TAG, "customer phone: " + customer.getPhone());
             if (customer.getPhone() != null && !customer.getPhone().isEmpty()) {
@@ -88,6 +107,10 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
 
             }
         }
+
+        if (customer.getCustomerId().equalsIgnoreCase(selectedCustomerId)) {
+            holder.ivTick.setVisibility(View.VISIBLE);
+        } else holder.ivTick.setVisibility(View.GONE);
     }
 
     @Override
@@ -131,6 +154,16 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
         protected void publishResults(CharSequence constraint, FilterResults results) {
             customerListFiltered = (List<Customer>) results.values;
             notifyDataSetChanged();
+            if (customerListFiltered.isEmpty()) {
+                if (filterListEmptyListener != null) {
+                    filterListEmptyListener.showNewCustomer();
+                }
+            } else {
+                if (filterListEmptyListener != null) {
+                    filterListEmptyListener.hideNewCustomer();
+                }
+            }
+
         }
 
         @Override
@@ -142,23 +175,24 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
     class CustomerHolder extends RecyclerView.ViewHolder {
         private TextView tvCustomer;
         private CircleImageView ivCustomer;
+        private ImageView ivTick;
 
         CustomerHolder(@NonNull View itemView) {
             super(itemView);
             LinearLayout llCustomerHolder = itemView.findViewById(R.id.ll_customer_container);
             tvCustomer = itemView.findViewById(R.id.tv_customer);
             ivCustomer = itemView.findViewById(R.id.civ_customer);
+            ivTick = itemView.findViewById(R.id.iv_tick);
 
             llCustomerHolder.setOnClickListener(view -> {
-
                 int position = getAdapterPosition();
-
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onCustomerClick(customerListFiltered.get(position));
                 }
-
             });
+
+
         }
     }
 
@@ -169,4 +203,15 @@ public class CustomerSearchAdapter extends RecyclerView.Adapter<CustomerSearchAd
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+    public interface OnFilterListEmptyListener {
+        void showNewCustomer();
+
+        void hideNewCustomer();
+    }
+
+    public void setOnFilterListEmptyListener(OnFilterListEmptyListener listener) {
+        this.filterListEmptyListener = listener;
+    }
+
 }
