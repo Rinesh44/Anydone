@@ -92,5 +92,4 @@ Constants {
     public static final String SUGGESTION_ACCEPTED = "SUGGESTION_ACCEPTED";
     public static final String SUGGESTION_REJECTED = "SUGGESTION_REJECTED";
 
-
 }
