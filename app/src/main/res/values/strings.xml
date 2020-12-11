@@ -348,4 +348,5 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="contributed_by_me">Contributed By Me</string>
     <string name="today">Today</string>
     <string name="add_comment">Add Comment</string>
+    <string name="plans">Plans</string>
 </resources>

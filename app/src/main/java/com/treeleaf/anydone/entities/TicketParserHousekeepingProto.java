@@ -15,7 +15,7 @@ public final class TicketParserHousekeepingProto {
     /**
      * <code>optional string ticketSettingId = 1;</code>
      */
-    java.lang.String getTicketSettingId();
+    String getTicketSettingId();
     /**
      * <code>optional string ticketSettingId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class TicketParserHousekeepingProto {
     /**
      * <code>optional string serviceId = 2;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 2;</code>
      */
@@ -60,11 +60,11 @@ public final class TicketParserHousekeepingProto {
       serviceId_ = "";
     }
     public static final int TICKETSETTINGID_FIELD_NUMBER = 1;
-    private java.lang.String ticketSettingId_;
+    private String ticketSettingId_;
     /**
      * <code>optional string ticketSettingId = 1;</code>
      */
-    public java.lang.String getTicketSettingId() {
+    public String getTicketSettingId() {
       return ticketSettingId_;
     }
     /**
@@ -78,7 +78,7 @@ public final class TicketParserHousekeepingProto {
      * <code>optional string ticketSettingId = 1;</code>
      */
     private void setTicketSettingId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -106,11 +106,11 @@ public final class TicketParserHousekeepingProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 2;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 2;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -124,7 +124,7 @@ public final class TicketParserHousekeepingProto {
      * <code>optional string serviceId = 2;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -268,60 +268,60 @@ public final class TicketParserHousekeepingProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(
+    public static TicketSettings parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(
+    public static TicketSettings parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(byte[] data)
+    public static TicketSettings parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(
+    public static TicketSettings parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(java.io.InputStream input)
+    public static TicketSettings parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(
+    public static TicketSettings parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseDelimitedFrom(java.io.InputStream input)
+    public static TicketSettings parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseDelimitedFrom(
+    public static TicketSettings parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(
+    public static TicketSettings parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings parseFrom(
+    public static TicketSettings parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -332,7 +332,7 @@ public final class TicketParserHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings prototype) {
+    public static Builder newBuilder(TicketSettings prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -341,9 +341,9 @@ public final class TicketParserHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings, Builder> implements
+          TicketSettings, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketSettings)
-        com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettingsOrBuilder {
+        TicketSettingsOrBuilder {
       // Construct using com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -353,7 +353,7 @@ public final class TicketParserHousekeepingProto {
       /**
        * <code>optional string ticketSettingId = 1;</code>
        */
-      public java.lang.String getTicketSettingId() {
+      public String getTicketSettingId() {
         return instance.getTicketSettingId();
       }
       /**
@@ -367,7 +367,7 @@ public final class TicketParserHousekeepingProto {
        * <code>optional string ticketSettingId = 1;</code>
        */
       public Builder setTicketSettingId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTicketSettingId(value);
         return this;
@@ -393,7 +393,7 @@ public final class TicketParserHousekeepingProto {
       /**
        * <code>optional string serviceId = 2;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -407,7 +407,7 @@ public final class TicketParserHousekeepingProto {
        * <code>optional string serviceId = 2;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -502,11 +502,11 @@ public final class TicketParserHousekeepingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketSettings)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings();
+          return new TicketSettings();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -519,7 +519,7 @@ public final class TicketParserHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings other = (com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings) arg1;
+          TicketSettings other = (TicketSettings) arg1;
           ticketSettingId_ = visitor.visitString(!ticketSettingId_.isEmpty(), ticketSettingId_,
               !other.ticketSettingId_.isEmpty(), other.ticketSettingId_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
@@ -530,7 +530,7 @@ public final class TicketParserHousekeepingProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -596,7 +596,7 @@ public final class TicketParserHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings.class) {
+          if (PARSER == null) {    synchronized (TicketSettings.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -610,13 +610,13 @@ public final class TicketParserHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketSettings)
-    private static final com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings DEFAULT_INSTANCE;
+    private static final TicketSettings DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketSettings();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketSettings getDefaultInstance() {
+    public static TicketSettings getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -634,7 +634,7 @@ public final class TicketParserHousekeepingProto {
     /**
      * <code>optional string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -644,7 +644,7 @@ public final class TicketParserHousekeepingProto {
     /**
      * <code>optional string texts = 2;</code>
      */
-    java.lang.String getTexts();
+    String getTexts();
     /**
      * <code>optional string texts = 2;</code>
      */
@@ -654,7 +654,7 @@ public final class TicketParserHousekeepingProto {
     /**
      * <code>optional string serviceId = 3;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 3;</code>
      */
@@ -685,11 +685,11 @@ public final class TicketParserHousekeepingProto {
       serviceId_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.String id_;
+    private String id_;
     /**
      * <code>optional string id = 1;</code>
      */
-    public java.lang.String getId() {
+    public String getId() {
       return id_;
     }
     /**
@@ -703,7 +703,7 @@ public final class TicketParserHousekeepingProto {
      * <code>optional string id = 1;</code>
      */
     private void setId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -731,11 +731,11 @@ public final class TicketParserHousekeepingProto {
     }
 
     public static final int TEXTS_FIELD_NUMBER = 2;
-    private java.lang.String texts_;
+    private String texts_;
     /**
      * <code>optional string texts = 2;</code>
      */
-    public java.lang.String getTexts() {
+    public String getTexts() {
       return texts_;
     }
     /**
@@ -749,7 +749,7 @@ public final class TicketParserHousekeepingProto {
      * <code>optional string texts = 2;</code>
      */
     private void setTexts(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -777,11 +777,11 @@ public final class TicketParserHousekeepingProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 3;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 3;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -795,7 +795,7 @@ public final class TicketParserHousekeepingProto {
      * <code>optional string serviceId = 3;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -916,60 +916,60 @@ public final class TicketParserHousekeepingProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(
+    public static TicketCreateRule parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(
+    public static TicketCreateRule parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(byte[] data)
+    public static TicketCreateRule parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(
+    public static TicketCreateRule parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(java.io.InputStream input)
+    public static TicketCreateRule parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(
+    public static TicketCreateRule parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseDelimitedFrom(java.io.InputStream input)
+    public static TicketCreateRule parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseDelimitedFrom(
+    public static TicketCreateRule parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(
+    public static TicketCreateRule parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule parseFrom(
+    public static TicketCreateRule parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -980,7 +980,7 @@ public final class TicketParserHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule prototype) {
+    public static Builder newBuilder(TicketCreateRule prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -989,9 +989,9 @@ public final class TicketParserHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule, Builder> implements
+          TicketCreateRule, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketCreateRule)
-        com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleOrBuilder {
+        TicketCreateRuleOrBuilder {
       // Construct using com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1001,7 +1001,7 @@ public final class TicketParserHousekeepingProto {
       /**
        * <code>optional string id = 1;</code>
        */
-      public java.lang.String getId() {
+      public String getId() {
         return instance.getId();
       }
       /**
@@ -1015,7 +1015,7 @@ public final class TicketParserHousekeepingProto {
        * <code>optional string id = 1;</code>
        */
       public Builder setId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setId(value);
         return this;
@@ -1041,7 +1041,7 @@ public final class TicketParserHousekeepingProto {
       /**
        * <code>optional string texts = 2;</code>
        */
-      public java.lang.String getTexts() {
+      public String getTexts() {
         return instance.getTexts();
       }
       /**
@@ -1055,7 +1055,7 @@ public final class TicketParserHousekeepingProto {
        * <code>optional string texts = 2;</code>
        */
       public Builder setTexts(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTexts(value);
         return this;
@@ -1081,7 +1081,7 @@ public final class TicketParserHousekeepingProto {
       /**
        * <code>optional string serviceId = 3;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -1095,7 +1095,7 @@ public final class TicketParserHousekeepingProto {
        * <code>optional string serviceId = 3;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -1167,11 +1167,11 @@ public final class TicketParserHousekeepingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketCreateRule)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule();
+          return new TicketCreateRule();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1184,7 +1184,7 @@ public final class TicketParserHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule other = (com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule) arg1;
+          TicketCreateRule other = (TicketCreateRule) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
           texts_ = visitor.visitString(!texts_.isEmpty(), texts_,
@@ -1195,7 +1195,7 @@ public final class TicketParserHousekeepingProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1262,7 +1262,7 @@ public final class TicketParserHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.class) {
+          if (PARSER == null) {    synchronized (TicketCreateRule.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1276,13 +1276,13 @@ public final class TicketParserHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketCreateRule)
-    private static final com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule DEFAULT_INSTANCE;
+    private static final TicketCreateRule DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketCreateRule();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule getDefaultInstance() {
+    public static TicketCreateRule getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1300,12 +1300,12 @@ public final class TicketParserHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> 
+    java.util.List<TicketCreateRule>
         getTicketCreateRulesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
-    com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule getTicketCreateRules(int index);
+    TicketCreateRule getTicketCreateRules(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
@@ -1323,17 +1323,17 @@ public final class TicketParserHousekeepingProto {
       ticketCreateRules_ = emptyProtobufList();
     }
     public static final int TICKETCREATERULES_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> ticketCreateRules_;
+    private com.google.protobuf.Internal.ProtobufList<TicketCreateRule> ticketCreateRules_;
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> getTicketCreateRulesList() {
+    public java.util.List<TicketCreateRule> getTicketCreateRulesList() {
       return ticketCreateRules_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleOrBuilder> 
+    public java.util.List<? extends TicketCreateRuleOrBuilder>
         getTicketCreateRulesOrBuilderList() {
       return ticketCreateRules_;
     }
@@ -1346,13 +1346,13 @@ public final class TicketParserHousekeepingProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
-    public com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule getTicketCreateRules(int index) {
+    public TicketCreateRule getTicketCreateRules(int index) {
       return ticketCreateRules_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
-    public com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleOrBuilder getTicketCreateRulesOrBuilder(
+    public TicketCreateRuleOrBuilder getTicketCreateRulesOrBuilder(
         int index) {
       return ticketCreateRules_.get(index);
     }
@@ -1367,7 +1367,7 @@ public final class TicketParserHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
     private void setTicketCreateRules(
-        int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule value) {
+        int index, TicketCreateRule value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1378,14 +1378,14 @@ public final class TicketParserHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
     private void setTicketCreateRules(
-        int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.Builder builderForValue) {
+        int index, TicketCreateRule.Builder builderForValue) {
       ensureTicketCreateRulesIsMutable();
       ticketCreateRules_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
-    private void addTicketCreateRules(com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule value) {
+    private void addTicketCreateRules(TicketCreateRule value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1396,7 +1396,7 @@ public final class TicketParserHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
     private void addTicketCreateRules(
-        int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule value) {
+        int index, TicketCreateRule value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1407,7 +1407,7 @@ public final class TicketParserHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
     private void addTicketCreateRules(
-        com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.Builder builderForValue) {
+        TicketCreateRule.Builder builderForValue) {
       ensureTicketCreateRulesIsMutable();
       ticketCreateRules_.add(builderForValue.build());
     }
@@ -1415,7 +1415,7 @@ public final class TicketParserHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
     private void addTicketCreateRules(
-        int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.Builder builderForValue) {
+        int index, TicketCreateRule.Builder builderForValue) {
       ensureTicketCreateRulesIsMutable();
       ticketCreateRules_.add(index, builderForValue.build());
     }
@@ -1423,7 +1423,7 @@ public final class TicketParserHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
      */
     private void addAllTicketCreateRules(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
+        Iterable<? extends TicketCreateRule> values) {
       ensureTicketCreateRulesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, ticketCreateRules_);
@@ -1462,60 +1462,60 @@ public final class TicketParserHousekeepingProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(
+    public static TicketCreateRuleReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(
+    public static TicketCreateRuleReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(byte[] data)
+    public static TicketCreateRuleReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(
+    public static TicketCreateRuleReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(java.io.InputStream input)
+    public static TicketCreateRuleReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(
+    public static TicketCreateRuleReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseDelimitedFrom(java.io.InputStream input)
+    public static TicketCreateRuleReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseDelimitedFrom(
+    public static TicketCreateRuleReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(
+    public static TicketCreateRuleReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq parseFrom(
+    public static TicketCreateRuleReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1526,7 +1526,7 @@ public final class TicketParserHousekeepingProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq prototype) {
+    public static Builder newBuilder(TicketCreateRuleReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1535,9 +1535,9 @@ public final class TicketParserHousekeepingProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq, Builder> implements
+          TicketCreateRuleReq, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketCreateRuleReq)
-        com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReqOrBuilder {
+        TicketCreateRuleReqOrBuilder {
       // Construct using com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1547,7 +1547,7 @@ public final class TicketParserHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> getTicketCreateRulesList() {
+      public java.util.List<TicketCreateRule> getTicketCreateRulesList() {
         return java.util.Collections.unmodifiableList(
             instance.getTicketCreateRulesList());
       }
@@ -1559,14 +1559,14 @@ public final class TicketParserHousekeepingProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
-      public com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule getTicketCreateRules(int index) {
+      public TicketCreateRule getTicketCreateRules(int index) {
         return instance.getTicketCreateRules(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
       public Builder setTicketCreateRules(
-          int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule value) {
+          int index, TicketCreateRule value) {
         copyOnWrite();
         instance.setTicketCreateRules(index, value);
         return this;
@@ -1575,7 +1575,7 @@ public final class TicketParserHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
       public Builder setTicketCreateRules(
-          int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.Builder builderForValue) {
+          int index, TicketCreateRule.Builder builderForValue) {
         copyOnWrite();
         instance.setTicketCreateRules(index, builderForValue);
         return this;
@@ -1583,7 +1583,7 @@ public final class TicketParserHousekeepingProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
-      public Builder addTicketCreateRules(com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule value) {
+      public Builder addTicketCreateRules(TicketCreateRule value) {
         copyOnWrite();
         instance.addTicketCreateRules(value);
         return this;
@@ -1592,7 +1592,7 @@ public final class TicketParserHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
       public Builder addTicketCreateRules(
-          int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule value) {
+          int index, TicketCreateRule value) {
         copyOnWrite();
         instance.addTicketCreateRules(index, value);
         return this;
@@ -1601,7 +1601,7 @@ public final class TicketParserHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
       public Builder addTicketCreateRules(
-          com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.Builder builderForValue) {
+          TicketCreateRule.Builder builderForValue) {
         copyOnWrite();
         instance.addTicketCreateRules(builderForValue);
         return this;
@@ -1610,7 +1610,7 @@ public final class TicketParserHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
       public Builder addTicketCreateRules(
-          int index, com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.Builder builderForValue) {
+          int index, TicketCreateRule.Builder builderForValue) {
         copyOnWrite();
         instance.addTicketCreateRules(index, builderForValue);
         return this;
@@ -1619,7 +1619,7 @@ public final class TicketParserHousekeepingProto {
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 2;</code>
        */
       public Builder addAllTicketCreateRules(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
+          Iterable<? extends TicketCreateRule> values) {
         copyOnWrite();
         instance.addAllTicketCreateRules(values);
         return this;
@@ -1644,11 +1644,11 @@ public final class TicketParserHousekeepingProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketCreateRuleReq)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq();
+          return new TicketCreateRuleReq();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1662,9 +1662,9 @@ public final class TicketParserHousekeepingProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq other = (com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq) arg1;
+          TicketCreateRuleReq other = (TicketCreateRuleReq) arg1;
           ticketCreateRules_= visitor.visitList(ticketCreateRules_, other.ticketCreateRules_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1694,7 +1694,7 @@ public final class TicketParserHousekeepingProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(ticketCreateRules_);
                   }
                   ticketCreateRules_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule.parser(), extensionRegistry));
+                      input.readMessage(TicketCreateRule.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -1712,7 +1712,7 @@ public final class TicketParserHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq.class) {
+          if (PARSER == null) {    synchronized (TicketCreateRuleReq.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1726,13 +1726,13 @@ public final class TicketParserHousekeepingProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketCreateRuleReq)
-    private static final com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq DEFAULT_INSTANCE;
+    private static final TicketCreateRuleReq DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketCreateRuleReq();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRuleReq getDefaultInstance() {
+    public static TicketCreateRuleReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

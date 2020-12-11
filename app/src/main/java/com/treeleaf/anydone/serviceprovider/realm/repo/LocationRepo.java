@@ -24,7 +24,7 @@ public class LocationRepo extends Repo {
     }
 
     public void saveLocation(final Location location, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 List<Location> allLocationList = getAllLocation();
@@ -44,7 +44,7 @@ public class LocationRepo extends Repo {
     }
 
     public void saveLocationList(final List<Location> locationList, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(locationList);
@@ -61,7 +61,7 @@ public class LocationRepo extends Repo {
 
 
     public List<Location> getAllLocation() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(Location.class).findAll());
         } catch (Throwable throwable) {
@@ -73,7 +73,7 @@ public class LocationRepo extends Repo {
     }
 
     public void deleteLocationById(String id) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Location> result = realm1.where(Location.class)
@@ -83,7 +83,7 @@ public class LocationRepo extends Repo {
     }
 
     public void setLocationAsPrimary(String id) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Location> result = realm1.where(Location.class)
@@ -93,7 +93,7 @@ public class LocationRepo extends Repo {
     }
 
     public void removeLocationAsPrimary() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Location> result = realm1.where(Location.class)
@@ -103,7 +103,7 @@ public class LocationRepo extends Repo {
     }
 
     public Location getDefaultLocation() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         return realm.where(Location.class)
                 .equalTo("isDefault", true)
                 .findFirst();

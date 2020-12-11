@@ -8,13 +8,10 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
-import com.treeleaf.januswebrtc.Const;
 
 import java.util.ArrayList;
 import java.util.List;

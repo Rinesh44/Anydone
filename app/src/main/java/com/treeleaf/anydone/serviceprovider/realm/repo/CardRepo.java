@@ -26,7 +26,7 @@ public class CardRepo extends Repo {
     }
 
     public void saveCard(final PaymentProto.Card card, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformCard(card));
@@ -42,7 +42,7 @@ public class CardRepo extends Repo {
     }
 
     public void saveCardList(final List<PaymentProto.Card> cardList, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 realm1.copyToRealmOrUpdate(transformCardList(cardList));
@@ -68,7 +68,7 @@ public class CardRepo extends Repo {
     }
 
     public void deleteCardById(String id) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Card> result = realm1.where(Card.class)
@@ -78,7 +78,7 @@ public class CardRepo extends Repo {
     }
 
     public void setCardAsPrimary(String id) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Card> result = realm1.where(Card.class)
@@ -88,7 +88,7 @@ public class CardRepo extends Repo {
     }
 
     public void removeCardAsPrimary() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<Card> result = realm1.where(Card.class)
@@ -118,7 +118,7 @@ public class CardRepo extends Repo {
     }
 
     public List<Card> getAllCards() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(Card.class)
                     .sort("createdAt", Sort.DESCENDING)

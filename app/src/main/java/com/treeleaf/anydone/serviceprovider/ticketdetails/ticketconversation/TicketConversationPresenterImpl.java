@@ -7,18 +7,19 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chinalwb.are.AREditText;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
-import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.entities.NLUProto;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -66,10 +67,10 @@ import dagger.internal.Preconditions;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.RealmList;
-import jp.wasabeef.richeditor.RichEditor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -120,7 +121,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         Observable<UserRpcProto.UserBaseResponse> imageUploadObservable;
 
         try {
-            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, activity);
+            Bitmap decodedBitmap = MediaStore.Images.Media
+                    .getBitmap(Objects.requireNonNull(getContext()).getContentResolver(), uri);
+
+            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, decodedBitmap, activity);
             byte[] byteArray = getByteArrayFromBitmap(bitmap);
             String mimeType = getMimeType(uri);
 
@@ -161,7 +165,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         }
 
                         @Override
-                        public void onError(Throwable e) {
+                        public void onError(@NonNull Throwable e) {
                             getView().hideProgressBar();
                             setUpFailedConversation(clientId);
                         }
@@ -269,7 +273,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         GlobalUtils.showLog(TAG, "doc upload fail 2");
                         GlobalUtils.showLog(TAG, e.getLocalizedMessage());
                         getView().hideProgressBar();
@@ -340,7 +344,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
                 .setUrl((links[0]))
-                .setTitle("Link")
+                .setTitle(message)
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
@@ -424,7 +428,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void getSuggestions(String nextMessageId, long refId, boolean backClicked) {
-        Preconditions.checkNotNull(nextMessageId, "Message id cannot be null");
+        Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
         Observable<BotConversationRpcProto.BotConversationBaseResponse> getBotConversationObservable;
@@ -445,7 +449,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .subscribeWith(new DisposableObserver
                         <BotConversationRpcProto.BotConversationBaseResponse>() {
                     @Override
-                    public void onNext(BotConversationRpcProto.BotConversationBaseResponse
+                    public void onNext(@NonNull BotConversationRpcProto.BotConversationBaseResponse
                                                botConversationBaseResponse) {
                         GlobalUtils.showLog(TAG, "bot conversation response: " +
                                 botConversationBaseResponse);
@@ -461,7 +465,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             return;
                         }
 
-                        RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
+                     /*   RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
                                 .getKgraphResponse().getAnswersList());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
@@ -476,9 +480,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (!backClicked)
                             conversation.setkGraphTitle(Hawk.get(Constants.KGRAPH_TITLE));
                         else
-                            conversation.setkGraphTitle("");
+                            conversation.setkGraphTitle("");*/
 
-                        ConversationRepo.getInstance().saveConversation(conversation,
+                  /*      ConversationRepo.getInstance().saveConversation(conversation,
                                 new Repo.Callback() {
                                     @Override
                                     public void success(Object o) {
@@ -489,12 +493,12 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     public void fail() {
                                         GlobalUtils.showLog(TAG, "failed to save k-graph conversation");
                                     }
-                                });
+                                });*/
 
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getSuggestionFail(e.getLocalizedMessage());
                     }
@@ -515,7 +519,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @SuppressLint("CheckResult")
     @Override
-    public void enterMessage(RecyclerView conversation, RichEditor etMessage) {
+    public void enterMessage(RecyclerView conversation, AREditText etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
             conversation.smoothScrollToPosition(0);
@@ -591,7 +595,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
 
-    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
+/*    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
         RealmList<KGraph> kGraphList = new RealmList<>();
         for (KGraphProto.Answer answer : answersList
         ) {
@@ -605,7 +609,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         }
 
         return kGraphList;
-    }
+    }*/
 
 
     public void publishImage(String imageUrl, long orderId, String clientId, String imageCaption) {
@@ -931,7 +935,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             }
                         }
 
-                        if (relayResponse.getResponseType().equals(DRAW_COLlAB_RESPONSE)) {
+                        if (relayResponse.getResponseType().equals(DRAW_COLLAB_RESPONSE)) {
                             SignalingProto.DrawCollab drawCollabResponse = relayResponse.getDrawCollabResponse();
                             String accountId = drawCollabResponse.getSenderAccount().getAccountId();
                             if (drawCollabResponse != null) {
@@ -1391,6 +1395,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 rtcServiceBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(rtcServiceBaseResponse.getRtcMessagesList())) {
                             saveConversations(rtcServiceBaseResponse.getRtcMessagesList());
+                        } else {
+                            getView().getMessageFail("hide progress");
                         }
                     }
 

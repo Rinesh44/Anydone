@@ -29,7 +29,7 @@ public class ConversationRepo extends Repo {
     }
 
     public void saveConversation(final Conversation conversation, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransactionAsync(realm1 -> {
@@ -46,7 +46,7 @@ public class ConversationRepo extends Repo {
 
     public void saveConversationList(final List<Conversation> conversationList,
                                      final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -64,7 +64,7 @@ public class ConversationRepo extends Repo {
     public void updateConversation(final Conversation conversation, String messageId,
                                    long sentAt, long savedAt, RealmList<Receiver> receiverLIst,
                                    String message, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             GlobalUtils.showLog(TAG, "updateConversation()");
             realm.executeTransaction(realm1 -> {
@@ -87,7 +87,7 @@ public class ConversationRepo extends Repo {
     }
 
     public void updateSeenStatus(final Conversation conversation, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 conversation.setMessageStatus("Seen");
@@ -103,7 +103,7 @@ public class ConversationRepo extends Repo {
     }
 
     public void onConversationSendFailed(final Conversation conversation, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 conversation.setSendFail(true);
@@ -129,7 +129,7 @@ public class ConversationRepo extends Repo {
     }
 
     public List<Conversation> getConversationList() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(Conversation.class).findAllAsync());
         } catch (Throwable throwable) {
@@ -141,7 +141,7 @@ public class ConversationRepo extends Repo {
     }
 
     public List<Conversation> getConversationByOrderId(String refId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(Conversation.class)
                     .equalTo("refId", refId)
@@ -157,7 +157,7 @@ public class ConversationRepo extends Repo {
     }
 
     public void deleteConversationById(String clientId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Conversation> result = realm1.where(Conversation.class)
@@ -173,7 +173,7 @@ public class ConversationRepo extends Repo {
     }
 
     public Conversation getConversationByClientId(String clientId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Conversation.class)
                     .equalTo("clientId", clientId)

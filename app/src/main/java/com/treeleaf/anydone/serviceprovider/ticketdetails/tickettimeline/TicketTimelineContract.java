@@ -40,7 +40,7 @@ public class TicketTimelineContract {
 
         void getEmployeeFail(String msg);
 
-        void assignSuccess();
+        void assignSuccess(String empId);
 
         void assignFail(String msg);
 
@@ -72,9 +72,18 @@ public class TicketTimelineContract {
 
         void onTicketTypeEditFail(String msg);
 
+        void getTypeSuccess();
+
+        void getTypeFail(String msg);
+
+        void onTaskStartSuccess(long estTime);
+
+        void onTaskStartFail(String msg);
+
     }
 
     public interface TicketTimelinePresenter extends Presenter<TicketTimelineView> {
+        void getTicketTypes();
 
         void getTicketTimeline(long ticketId);
 
@@ -105,6 +114,8 @@ public class TicketTimelineContract {
         void editLabel(String ticketId, List<Label> labels);
 
         void editTicketType(String ticketId, String ticketTypeId, String ticketType);
+
+        void startTask(long ticketId);
 
     }
 }

@@ -9,5 +9,6 @@ public interface PendingTicketRepository {
                                                                             String serviceId,
                                                                             long from,
                                                                             long to,
-                                                                            int page);
+                                                                            int page,
+                                                                            String sortOrder);
 }

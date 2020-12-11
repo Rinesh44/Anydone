@@ -59,8 +59,6 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
     AutoCompleteTextView etSearchLocation;
     @BindView(R.id.sp_location_type)
     AppCompatSpinner spLocationType;
-    @BindView(R.id.et_location)
-    TextInputEditText etLocation;
     @BindView(R.id.btn_add_location)
     MaterialButton btnAddLocation;
     @BindView(R.id.progress_bar)
@@ -81,20 +79,8 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastKnownLocation();
         setToolbar();
-        etLocation.setShowSoftInputOnFocus(false);
 
-        spLocationType.setOnTouchListener((v, event) -> {
-            etLocation.requestFocus();
-            setUpLocationTypeDropdown();
-            return false;
-        });
-
-        etLocation.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                etLocation.setText("a");
-                etLocation.setTextColor(getResources().getColor(R.color.transparent));
-            }
-        });
+        setUpLocationTypeDropdown();
 
         etSearchLocation.addTextChangedListener(new TextWatcher() {
             @Override
@@ -131,7 +117,6 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
 
         btnAddLocation.setOnClickListener(v ->
         {
-
             if (selectedLocation == null) {
                 Banner.make(getWindow().getDecorView().getRootView(),
                         this, Banner.INFO, "Please enter location",
@@ -191,13 +176,8 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
                 ActivityCompat.checkSelfPermission(this,
                         Manifest.permission.ACCESS_COARSE_LOCATION) !=
                         PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
+
             return;
         }
         fusedLocationClient.getLastLocation()

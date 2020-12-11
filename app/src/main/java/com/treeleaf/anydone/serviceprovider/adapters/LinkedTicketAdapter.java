@@ -41,11 +41,10 @@ public class LinkedTicketAdapter extends RecyclerView.Adapter<LinkedTicketAdapte
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
         Tickets tickets = ticketsList.get(position);
 
-        String date = GlobalUtils.getDateNormal(tickets.getCreatedAt());
-        String[] dateSeparated = date.split("\\s+");
-        holder.tvDate1.setText(dateSeparated[0]);
-        holder.tvDate2.setText(dateSeparated[1] + " " + dateSeparated[2]);
-        holder.ticketId.setText("#" + tickets.getTicketId());
+        String date = GlobalUtils.getDateDigits(tickets.getCreatedAt());
+        holder.tvDate.setText(date);
+
+        holder.ticketId.setText("#" + tickets.getTicketIndex());
         holder.summary.setText(tickets.getTitle());
 
         setStatus(tickets, holder);
@@ -107,8 +106,7 @@ public class LinkedTicketAdapter extends RecyclerView.Adapter<LinkedTicketAdapte
     }
 
     class TicketHolder extends RecyclerView.ViewHolder {
-        private TextView tvDate1;
-        private TextView tvDate2;
+        private TextView tvDate;
         private RelativeLayout rlTicketHolder;
         private TextView ticketId;
         private TextView summary;
@@ -117,8 +115,7 @@ public class LinkedTicketAdapter extends RecyclerView.Adapter<LinkedTicketAdapte
         TicketHolder(@NonNull View itemView) {
             super(itemView);
             rlTicketHolder = itemView.findViewById(R.id.rl_ticket_holder);
-            tvDate1 = itemView.findViewById(R.id.date1);
-            tvDate2 = itemView.findViewById(R.id.date2);
+            tvDate = itemView.findViewById(R.id.tv_date);
             ticketId = itemView.findViewById(R.id.tv_ticket_id_value);
             summary = itemView.findViewById(R.id.tv_summary);
             ticketStatus = itemView.findViewById(R.id.tv_ticket_status);

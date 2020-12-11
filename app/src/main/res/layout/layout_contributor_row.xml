@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_filed"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,7 +25,7 @@
         android:layout_toEndOf="@+id/civ_field"
         android:gravity="center"
         android:text="ram prasad"
-        android:textColor="@color/black" />
+        android:textColor="@color/service_info_text_color" />
 
     <ImageView
         android:id="@+id/iv_delete"
@@ -34,5 +35,5 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/dimen_6x1"
         android:src="@drawable/ic_bin"
-        android:tint="@color/red" />
+        app:tint="@color/red" />
 </RelativeLayout>

@@ -1,11 +1,9 @@
 package com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets;
 
-import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
-import com.treeleaf.anydone.serviceprovider.utils.Constants;
 
 import io.reactivex.Observable;
 
@@ -21,8 +19,9 @@ public class UnassignedTicketRepositoryImpl implements UnassignedTicketRepositor
                                                                                      String serviceId,
                                                                                      long from,
                                                                                      long to,
-                                                                                     int page) {
-        return anyDoneService.getAssignableTickets(token, serviceId, from, to, page);
+                                                                                     int page,
+                                                                                     String sortOrder) {
+        return anyDoneService.getBacklogTickets(token, serviceId, from, to, page, sortOrder);
     }
 
     @Override

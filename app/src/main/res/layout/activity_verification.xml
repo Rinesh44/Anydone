@@ -7,15 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ProgressBar
-            android:id="@+id/pb_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="@dimen/dimens_14x"
-            android:visibility="gone" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,6 +31,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_2x4"
                 android:text="@string/verification_code"
+                android:textColor="@color/charcoal_text"
                 android:textStyle="bold" />
 
             <TextView
@@ -48,7 +40,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_2x4"
                 android:gravity="center_horizontal"
-                android:text="@string/verification_msg" />
+                android:text="@string/verification_msg"
+                android:textColor="#666666" />
 
             <TextView
                 android:id="@+id/tv_user_email_phone"
@@ -56,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/dimen_2x4"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textColor="#666666" />
 
             <include
                 layout="@layout/layout_vefication_digits"
@@ -87,7 +81,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_2x2"
                     android:text="@string/resend_code"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -110,9 +105,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_2x2"
                     android:text="@string/resend_otp_in_time"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/colorSecondary"
+                    android:textStyle="bold" />
 
             </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/pb_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:paddingBottom="@dimen/dimens_14x"
+                android:visibility="gone" />
 
         </LinearLayout>
 

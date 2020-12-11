@@ -10,11 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -23,8 +19,6 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceRequestRepo;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.ServiceRequestDetailFragment;
-import com.treeleaf.anydone.serviceprovider.servicerequestdetail.activityFragment.ActivityFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -34,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
-
 
 public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         <ServiceRequestDetailActivityPresenterImpl> implements
@@ -113,7 +106,6 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         setValuesFromIntent();
 
@@ -180,30 +172,6 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         return this;
     }
 
-    private class ViewPagerAdapter extends FragmentStateAdapter {
-        public ViewPagerAdapter(@NonNull FragmentManager fragmentManager,
-                                @NonNull Lifecycle lifecycle) {
-            super(fragmentManager, lifecycle);
-        }
-
-        @NonNull
-        @Override
-        public Fragment createFragment(int position) {
-            switch (position) {
-                case 0:
-                    return new ServiceRequestDetailFragment();
-
-                case 1:
-                    return new ActivityFragment();
-            }
-            return null;
-        }
-
-        @Override
-        public int getItemCount() {
-            return NUM_PAGES;
-        }
-    }
 
     @Override
     public void onBackPressed() {

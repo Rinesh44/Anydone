@@ -17,13 +17,13 @@
 
         <ImageView
             android:id="@+id/iv_payment_method"
-            android:layout_width="@dimen/dimens_5x"
-            android:layout_height="@dimen/dimens_5x"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimen_2x6"
-            android:layout_marginEnd="@dimen/dimen_10x3"
-            android:layout_marginBottom="@dimen/dimen_2x6"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
             android:background="@drawable/circle_yellow"
             android:padding="@dimen/dimen_10x1"
             android:scaleType="fitCenter"
@@ -37,19 +37,18 @@
             android:layout_toEndOf="@+id/iv_payment_method"
             android:text="@string/payment_method"
             android:textColor="@color/black"
-            android:textSize="@dimen/material_text_subhead"
             android:textStyle="bold"
             tools:ignore="RelativeOverlap" />
 
         <ImageView
             android:id="@+id/iv_arrow1"
-            android:layout_width="@dimen/dimen_10x2"
-            android:layout_height="@dimen/dimen_10x2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/dimens_2x"
             android:scaleType="fitCenter"
-            android:src="@drawable/arrow_right" />
+            android:src="@drawable/ic_right_arrow" />
 
     </RelativeLayout>
 
@@ -64,13 +63,60 @@
 
         <ImageView
             android:id="@+id/iv_transactions"
-            android:layout_width="@dimen/dimens_5x"
-            android:layout_height="@dimen/dimens_5x"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dimens_2x"
-            android:layout_marginTop="@dimen/dimen_2x6"
-            android:layout_marginEnd="@dimen/dimen_10x3"
-            android:layout_marginBottom="@dimen/dimen_2x6"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/circle_blue"
+            android:padding="@dimen/dimen_10x1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_plans" />
+
+        <TextView
+            android:id="@+id/tv_plans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/iv_transactions"
+            android:text="@string/plans"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageView
+            android:id="@+id/iv_arrow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimens_2x"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_right_arrow" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_invoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/iv_invoice"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
             android:background="@drawable/circle_light_purple"
             android:padding="@dimen/dimen_10x1"
             android:scaleType="fitCenter"
@@ -81,22 +127,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/iv_transactions"
-            android:text="@string/transactions"
+            android:layout_toEndOf="@+id/iv_invoice"
+            android:text="Invoice"
             android:textColor="@color/black"
-            android:textSize="@dimen/material_text_subhead"
             android:textStyle="bold"
             tools:ignore="RelativeOverlap" />
 
         <ImageView
-            android:id="@+id/iv_arrow2"
-            android:layout_width="@dimen/dimen_10x2"
-            android:layout_height="@dimen/dimen_10x2"
+            android:id="@+id/iv_arrow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/dimens_2x"
             android:scaleType="fitCenter"
-            android:src="@drawable/arrow_right" />
+            android:src="@drawable/ic_right_arrow" />
 
 
     </RelativeLayout>

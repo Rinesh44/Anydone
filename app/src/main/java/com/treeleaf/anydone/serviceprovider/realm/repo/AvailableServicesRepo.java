@@ -31,7 +31,7 @@ public class AvailableServicesRepo extends Repo {
 
     public void saveAvailableServices(final List<ServiceProto.Service> serviceListPb,
                                       final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -75,7 +75,7 @@ public class AvailableServicesRepo extends Repo {
     }
 
     public List<Service> getAvailableServices() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(Service.class).findAll());
         } catch (Throwable throwable) {
@@ -87,7 +87,7 @@ public class AvailableServicesRepo extends Repo {
     }
 
     public Service getAvailableServiceById(String serviceId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(Service.class)
                     .equalTo("serviceId", serviceId).findFirst();
@@ -109,7 +109,7 @@ public class AvailableServicesRepo extends Repo {
     public List<Service> searchService(String searchTerm) {
         String[] separated = searchTerm.split(" ");
         List<String> wordList = new ArrayList<>(Arrays.asList(separated));
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             RealmQuery<Service> result = performSearch(searchTerm, realm);
             RealmResults<Service> services = result.findAll();

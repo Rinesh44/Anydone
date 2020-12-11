@@ -29,7 +29,7 @@ public class ServiceRequestRepo extends Repo {
 
     public void saveServiceRequest(final List<OrderServiceProto.ServiceOrder> serviceOrderListPb,
                                    final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -48,7 +48,7 @@ public class ServiceRequestRepo extends Repo {
     }
 
     public ServiceRequest getServiceRequestById(long orderId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(ServiceRequest.class)
                     .equalTo("serviceOrderId", orderId).findFirst();
@@ -61,7 +61,7 @@ public class ServiceRequestRepo extends Repo {
     }
 
     public void closeServiceRequest(long id) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(realm1 -> {
             RealmResults<ServiceRequest> result = realm1.where(ServiceRequest.class)
@@ -106,7 +106,7 @@ public class ServiceRequestRepo extends Repo {
 
 
     public List<ServiceRequest> getAllServiceRequests() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(ServiceRequest.class)
                     .sort("createdAt", Sort.DESCENDING).findAll());
@@ -119,7 +119,7 @@ public class ServiceRequestRepo extends Repo {
     }
 
     public List<ServiceRequest> getOpenServiceRequests() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(ServiceRequest.class)
                     .equalTo("status",
@@ -134,7 +134,7 @@ public class ServiceRequestRepo extends Repo {
     }
 
     public List<ServiceRequest> getAcceptedServiceRequests() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return new ArrayList<>(realm.where(ServiceRequest.class)
                     .notEqualTo("status",

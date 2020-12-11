@@ -56,9 +56,9 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     @BindView(R.id.rl_billing)
     RelativeLayout rlBilling;
     @BindView(R.id.rl_contributed)
-    RelativeLayout rl_contributed;
+    RelativeLayout rlContributed;
     @BindView(R.id.rl_subscribed)
-    RelativeLayout rl_subscribed;
+    RelativeLayout rlSubscribed;
 
 
     public static AccountFragment newInstance(String param1, String param2) {
@@ -77,8 +77,10 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
         Account account = AccountRepo.getInstance().getAccount();
         if (account.getAccountType().equalsIgnoreCase("SERVICE_PROVIDER")) {
             rlBilling.setVisibility(View.VISIBLE);
+            rlContributed.setVisibility(View.GONE);
         } else {
             rlBilling.setVisibility(View.GONE);
+            rlContributed.setVisibility(View.VISIBLE);
         }
     }
 
@@ -217,7 +219,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
         //clear all databases
         Hawk.deleteAll();
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> realm1.deleteAll());
 
         Intent i = new Intent(getActivity(), LoginActivity.class);

@@ -46,7 +46,8 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
         String token = Hawk.get(Constants.TOKEN);
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
-        getTicketsObservable = service.getClosedResolvedTickets(token, serviceId, from, to, page);
+        getTicketsObservable = service.getClosedResolvedTickets(token, serviceId, from, to, page,
+                "ASC");
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

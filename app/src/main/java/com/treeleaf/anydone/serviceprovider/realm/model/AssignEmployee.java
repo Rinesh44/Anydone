@@ -3,7 +3,8 @@ package com.treeleaf.anydone.serviceprovider.realm.model;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class AssignEmployee extends RealmObject {
+public class
+AssignEmployee extends RealmObject {
     public static final String ASSIGN_EMPLOYEE_ID = "assignEmployeeId";
     @PrimaryKey
     private String assignEmployeeId;

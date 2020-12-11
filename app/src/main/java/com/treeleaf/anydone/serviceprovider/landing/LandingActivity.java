@@ -1,7 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.landing;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,11 +15,8 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
-import com.treeleaf.anydone.serviceprovider.servicerequests.ServiceRequestFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
-
-import java.util.Objects;
 
 import butterknife.BindView;
 

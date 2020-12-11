@@ -20,12 +20,15 @@
             android:id="@+id/et_search_timezone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimens_2x"
-            android:background="@drawable/et_rounded"
+            android:layout_marginStart="@dimen/dimen_10x2"
+            android:layout_marginEnd="@dimen/dimen_10x2"
+            android:backgroundTint="@color/edit_text_color"
             android:ellipsize="end"
-            android:hint="Search time zone"
+            android:hint="Search timezone"
             android:inputType="textVisiblePassword"
-            android:padding="@dimen/dimens_2x"
+            android:paddingTop="@dimen/dimens_2x"
+            android:paddingBottom="@dimen/dimens_2x"
+            android:textColorHint="@color/service_info_text_color"
             android:textSize="@dimen/material_text_body1" />
 
 
@@ -33,6 +36,8 @@
             android:id="@+id/rv_timezone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
             android:clipToPadding="false"
             tools:listitem="@layout/layout_timezone_row" />
 

@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -28,9 +30,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnStatusChangeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
@@ -43,7 +51,7 @@ import butterknife.OnClick;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TICKET_STARTED;
 
 public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
-        TicketDetailsContract.TicketDetailsView {
+        TicketDetailsContract.TicketDetailsView, OnStatusChangeListener {
     private static final String TAG = "TicketDetailsActivity";
     private static final int NUM_PAGES = 2;
     private static final String MQTT = "MQTT_EVENT_CHECK";
@@ -53,8 +61,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
     TextView tvToolbarTitle;
-    @BindView(R.id.toolbar_problem_stat)
-    TextView tvToolbarProblemStat;
+    @BindView(R.id.tv_ticket_status)
+    TextView tvTicketStatus;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
     @BindView(R.id.iv_share)
@@ -75,6 +83,11 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     String shareLink = "";
     private long ticketId;
     private String ticketStatus;
+    private Account userAccount;
+    private boolean contributed = false;
+    private Tickets ticket;
+    private boolean isServiceProvider = false;
+    private long ticketIndex;
 
     @Override
     protected int getLayout() {
@@ -94,25 +107,93 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         ticketType = i.getStringExtra("selected_ticket_type");
         ticketStatus = i.getStringExtra("selected_ticket_status");
         ticketId = i.getLongExtra("selected_ticket_id", 0);
-        String ticketTitle = i.getStringExtra("ticket_desc");
+        ticketIndex = i.getLongExtra("selected_ticket_index", 0);
+        contributed = i.getBooleanExtra("contributed", false);
+//        String ticketTitle = i.getStringExtra("ticket_desc");
         String serviceName = i.getStringExtra("selected_ticket_name");
         ArrayList<String> serviceProfileUri = i.getStringArrayListExtra("selected_ticket_icon_uri");
-        setUpToolbar(ticketId, ticketTitle);
+
+        ticket = TicketRepo.getInstance().getTicketById(ticketId);
+        setUpToolbar(ticketIndex, ticket.getTicketStatus());
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
 
         createLinkShareBottomSheet();
 
+        userAccount = AccountRepo.getInstance().getAccount();
+
+        isServiceProvider = ticket.getTicketType().equalsIgnoreCase(Constants.SERVICE_PROVIDER);
+        //enable video call condition
         if (ticketStatus != null && ticketStatus.equalsIgnoreCase(TICKET_STARTED)) {
             ivVideoCall.setVisibility(View.VISIBLE);
+            ivShare.setVisibility(View.VISIBLE);
+        }
+
+        setVideoCallVisibility();
+
+        //disable video call condition
+        GlobalUtils.showLog(TAG, "ticket status: " + ticketStatus);
+        if (ticketStatus != null && ticketStatus.equalsIgnoreCase("TICKET_CREATED")) {
+            GlobalUtils.showLog(TAG, "disable menu options called()");
+            disableVideoCall();
+        }
+
+
+        //set link share visibility
+        if (!ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
+                && !ticket.getCreatedById().equalsIgnoreCase(userAccount.getAccountId())
+                && !contributed && !isServiceProvider) {
+            disableLinkShare();
+        } else {
+            enableLinkShare();
         }
 
         super.setReferenceId(ticketId);
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
+    }
 
+    private void disableVideoCall() {
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.selector_disabled)
+        );
+
+        ivVideoCall.setEnabled(false);
+    }
+
+    private void setVideoCallVisibility() {
+        if (ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
+                || contributed) {
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                    ContextCompat.getColor(getContext(), R.color.colorPrimary)
+            );
+
+            ivVideoCall.setEnabled(true);
+        } else {
+            disableVideoCall();
+        }
+    }
+
+    private void enableLinkShare() {
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivShare.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.colorPrimary)
+        );
+
+        ivShare.setEnabled(true);
+    }
+
+    private void disableLinkShare() {
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivShare.getDrawable()),
+                ContextCompat.getColor(getContext(), R.color.selector_disabled)
+        );
+
+        ivShare.setEnabled(false);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -157,6 +238,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             Intent i = new Intent(this, LinkShareActivity.class);
             i.putExtra("ticket_id", ticketId);
             i.putExtra("is_email", false);
+            i.putExtra("link", shareLink);
             startActivity(i);
         });
 
@@ -165,6 +247,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             Intent i = new Intent(this, LinkShareActivity.class);
             i.putExtra("ticket_id", ticketId);
             i.putExtra("is_email", true);
+            i.putExtra("link", shareLink);
             startActivity(i);
         });
     }
@@ -234,12 +317,52 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         return this;
     }
 
-    private void setUpToolbar(long ticketId, String problemStat) {
+    private void setUpToolbar(long ticketIndex, String ticketStatus) {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
-        tvToolbarTitle.setText("#" + ticketId);
-        tvToolbarProblemStat.setText(problemStat);
+        tvToolbarTitle.setText("#" + ticketIndex);
+        setTicketStatus(ticketStatus);
+    }
+
+    private void setTicketStatus(String ticketStatus) {
+        switch (ticketStatus) {
+            case "TICKET_CREATED":
+                tvTicketStatus.setTextColor(getResources().getColor(R.color.ticket_created_text));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.created_bg));
+                tvTicketStatus.setText("TODO");
+                break;
+
+            case "TICKET_STARTED":
+                tvTicketStatus.setTextColor(getResources().getColor(R.color.ticket_started_text));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.started_bg));
+                tvTicketStatus.setText("STARTED");
+                break;
+
+            case "TICKET_RESOLVED":
+                tvTicketStatus.setTextColor(getResources().getColor(R.color.ticket_resolved_text));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.resolved_bg));
+                tvTicketStatus.setText("RESOLVED");
+
+                break;
+
+            case "TICKET_CLOSED":
+                tvTicketStatus.setTextColor(getResources().getColor(R.color.ticket_closed_text));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.closed_bg));
+                tvTicketStatus.setText("CLOSED");
+                break;
+
+            case "TICKET_REOPENED":
+                tvTicketStatus.setTextColor(getResources().getColor(R.color.ticket_reopened_text));
+                tvTicketStatus.setBackground(getResources()
+                        .getDrawable(R.drawable.reopened_bg));
+                tvTicketStatus.setText("REOPENED");
+                break;
+        }
     }
 
     @Override
@@ -270,6 +393,28 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         Banner.make(getWindow().getDecorView().getRootView(),
                 this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
+
+    @Override
+    public void onTaskStarted() {
+        setTicketStatus("TICKET_STARTED");
+        setVideoCallVisibility();
+    }
+
+    @Override
+    public void onTaskResolved() {
+        setTicketStatus("TICKET_RESOLVED");
+    }
+
+    @Override
+    public void onTaskClosed() {
+        setTicketStatus("TICKET_CLOSED");
+    }
+
+    @Override
+    public void onTaskReopened() {
+        setTicketStatus("TICKET_REOPENED");
+    }
+
 
     public interface OnOutsideClickListener {
         void onOutsideClick(MotionEvent event);
@@ -304,4 +449,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         }
     }
 
+    @Override
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        if (fragment instanceof TicketTimelineFragment) {
+            ((TicketTimelineFragment) fragment).setOnTicketStartListener(this);
+        }
+    }
 }

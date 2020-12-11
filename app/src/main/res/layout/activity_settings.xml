@@ -26,13 +26,13 @@
 
                 <ImageView
                     android:id="@+id/iv_change_password_icon"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
+                    android:layout_marginTop="@dimen/dimen_2x4"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:layout_marginBottom="@dimen/dimen_2x4"
                     android:background="@drawable/circle_red"
                     android:padding="@dimen/dimen_10x1"
                     android:scaleType="fitCenter"
@@ -58,68 +58,69 @@
                     android:layout_toEndOf="@+id/iv_change_password_icon"
                     android:text="@string/change_password"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_subhead"
+                    android:textSize="@dimen/material_text_normal"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/iv_arrow1"
-                    android:layout_width="@dimen/dimen_10x2"
-                    android:layout_height="@dimen/dimen_10x2"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/dimens_2x"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_right" />
-
-            </RelativeLayout>
-
-           <!-- <RelativeLayout
-                android:id="@+id/rl_notification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:weightSum="1">
-
-                <ImageView
-                    android:id="@+id/iv_notification_icon"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
-                    android:background="@drawable/circle_purple"
-                    android:padding="@dimen/dimen_10x1"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/notification" />
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/iv_notification_icon"
-                    android:text="@string/notification"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_subhead"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_arrow2"
-                    android:layout_width="@dimen/dimen_10x2"
-                    android:layout_height="@dimen/dimen_10x2"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dimens_2x"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_right" />
-
+                    android:src="@drawable/ic_right_arrow" />
 
             </RelativeLayout>
 
--->            <RelativeLayout
+            <!-- <RelativeLayout
+                 android:id="@+id/rl_notification"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:background="?android:attr/selectableItemBackground"
+                 android:clickable="true"
+                 android:focusable="true"
+                 android:weightSum="1">
+
+                 <ImageView
+                     android:id="@+id/iv_notification_icon"
+                     android:layout_width="@dimen/dimens_5x"
+                     android:layout_height="@dimen/dimens_5x"
+                     android:layout_centerVertical="true"
+                     android:layout_marginStart="@dimen/dimens_2x"
+                     android:layout_marginTop="@dimen/dimen_2x6"
+                     android:layout_marginEnd="@dimen/dimen_10x3"
+                     android:layout_marginBottom="@dimen/dimen_2x6"
+                     android:background="@drawable/circle_purple"
+                     android:padding="@dimen/dimen_10x1"
+                     android:scaleType="fitCenter"
+                     android:src="@drawable/notification" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerVertical="true"
+                     android:layout_toEndOf="@+id/iv_notification_icon"
+                     android:text="@string/notification"
+                     android:textColor="@color/black"
+                     android:textSize="@dimen/material_text_subhead"
+                     android:textStyle="bold" />
+
+                 <ImageView
+                     android:id="@+id/iv_arrow2"
+                     android:layout_width="@dimen/dimen_10x2"
+                     android:layout_height="@dimen/dimen_10x2"
+                     android:layout_alignParentEnd="true"
+                     android:layout_centerVertical="true"
+                     android:layout_margin="@dimen/dimens_2x"
+                     android:scaleType="fitCenter"
+                     android:src="@drawable/arrow_right" />
+
+
+             </RelativeLayout>
+
+ -->
+            <RelativeLayout
                 android:id="@+id/rl_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,13 +131,13 @@
 
                 <ImageView
                     android:id="@+id/iv_language"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
+                    android:layout_marginTop="@dimen/dimen_2x4"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:layout_marginBottom="@dimen/dimen_2x4"
                     android:background="@drawable/circle_brown"
                     android:padding="@dimen/dimen_10x1"
                     android:scaleType="fitCenter"
@@ -149,68 +150,68 @@
                     android:layout_toEndOf="@+id/iv_language"
                     android:text="@string/language"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_subhead"
+                    android:textSize="@dimen/material_text_normal"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/iv_arrow3"
-                    android:layout_width="@dimen/dimen_10x2"
-                    android:layout_height="@dimen/dimen_10x2"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/dimens_2x"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_right" />
-
-
-            </RelativeLayout>
-
-        <!--    <RelativeLayout
-                android:id="@+id/rl_video_settings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:weightSum="1">
-
-                <ImageView
-                    android:id="@+id/iv_video_settings"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
-                    android:background="@drawable/circle_yellow"
-                    android:padding="@dimen/dimen_10x1"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_video_setting" />
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/iv_video_settings"
-                    android:text="@string/video_settings"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_subhead"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_arrow6"
-                    android:layout_width="@dimen/dimen_10x2"
-                    android:layout_height="@dimen/dimen_10x2"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dimens_2x"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_right" />
+                    android:src="@drawable/ic_right_arrow" />
 
 
             </RelativeLayout>
--->
+
+            <!--    <RelativeLayout
+                    android:id="@+id/rl_video_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:id="@+id/iv_video_settings"
+                        android:layout_width="@dimen/dimens_5x"
+                        android:layout_height="@dimen/dimens_5x"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dimens_2x"
+                        android:layout_marginTop="@dimen/dimen_2x6"
+                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:layout_marginBottom="@dimen/dimen_2x6"
+                        android:background="@drawable/circle_yellow"
+                        android:padding="@dimen/dimen_10x1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_video_setting" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/iv_video_settings"
+                        android:text="@string/video_settings"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/material_text_subhead"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow6"
+                        android:layout_width="@dimen/dimen_10x2"
+                        android:layout_height="@dimen/dimen_10x2"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/dimens_2x"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/arrow_right" />
+
+
+                </RelativeLayout>
+    -->
             <RelativeLayout
                 android:id="@+id/rl_currency"
                 android:layout_width="match_parent"
@@ -222,13 +223,13 @@
 
                 <ImageView
                     android:id="@+id/iv_currency_icon"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
+                    android:layout_marginTop="@dimen/dimen_2x4"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:layout_marginBottom="@dimen/dimen_2x4"
                     android:background="@drawable/circle_green"
                     android:padding="@dimen/dimen_10x1"
                     android:scaleType="fitCenter"
@@ -241,18 +242,18 @@
                     android:layout_toEndOf="@+id/iv_currency_icon"
                     android:text="@string/currency"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_subhead"
+                    android:textSize="@dimen/material_text_normal"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/iv_arrow5"
-                    android:layout_width="@dimen/dimen_10x2"
-                    android:layout_height="@dimen/dimen_10x2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dimens_2x"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_right" />
+                    android:src="@drawable/ic_right_arrow" />
 
             </RelativeLayout>
 
@@ -267,13 +268,13 @@
 
                 <ImageView
                     android:id="@+id/iv_location"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
+                    android:layout_marginTop="@dimen/dimen_2x4"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:layout_marginBottom="@dimen/dimen_2x4"
                     android:background="@drawable/circle_blue"
                     android:padding="@dimen/dimen_10x1"
                     android:scaleType="fitCenter"
@@ -286,18 +287,18 @@
                     android:layout_toEndOf="@+id/iv_location"
                     android:text="@string/location"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_subhead"
+                    android:textSize="@dimen/material_text_normal"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/iv_arrow7"
-                    android:layout_width="@dimen/dimen_10x2"
-                    android:layout_height="@dimen/dimen_10x2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dimens_2x"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_right" />
+                    android:src="@drawable/ic_right_arrow" />
 
             </RelativeLayout>
 
@@ -312,13 +313,13 @@
 
                 <ImageView
                     android:id="@+id/iv_timezone"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
+                    android:layout_marginTop="@dimen/dimen_2x4"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:layout_marginBottom="@dimen/dimen_2x4"
                     android:background="@drawable/circle_light_purple"
                     android:padding="@dimen/dimen_10x1"
                     android:scaleType="fitCenter"
@@ -331,18 +332,18 @@
                     android:layout_toEndOf="@+id/iv_timezone"
                     android:text="@string/timezone"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_subhead"
+                    android:textSize="@dimen/material_text_normal"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/iv_arrow8"
-                    android:layout_width="@dimen/dimen_10x2"
-                    android:layout_height="@dimen/dimen_10x2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dimens_2x"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_right" />
+                    android:src="@drawable/ic_right_arrow" />
             </RelativeLayout>
 
         </LinearLayout>

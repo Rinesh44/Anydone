@@ -8,6 +8,7 @@ public class Tickets extends RealmObject {
     @PrimaryKey
     String id;
     long ticketId;
+    long ticketIndex;
     String threadId;
     String title;
     String description;
@@ -34,6 +35,14 @@ public class Tickets extends RealmObject {
     boolean botEnabled;
 
     public Tickets() {
+    }
+
+    public long getTicketIndex() {
+        return ticketIndex;
+    }
+
+    public void setTicketIndex(long ticketIndex) {
+        this.ticketIndex = ticketIndex;
     }
 
     public String getId() {

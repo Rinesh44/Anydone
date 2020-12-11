@@ -22,7 +22,7 @@ public class ServiceProviderRepo extends Repo {
     }
 
     public void saveServiceProvider(final AuthProto.LoginResponse loginResponse, final Callback callback) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
 
         try {
             realm.executeTransaction(realm1 -> {
@@ -61,14 +61,14 @@ public class ServiceProviderRepo extends Repo {
     }
 
     public ServiceProvider getServiceProviderByAccountId(String accountId) {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         return realm.where(ServiceProvider.class)
                 .equalTo("accountId", accountId)
                 .findFirst();
     }
 
     public ServiceProvider getServiceProvider() {
-        final Realm realm = RealmUtils.getInstance().getRealm();
+        final Realm realm = Realm.getDefaultInstance();
         try {
             return realm.where(ServiceProvider.class).findFirst();
         } catch (Throwable throwable) {

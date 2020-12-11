@@ -1,7 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.login;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -37,7 +35,6 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.verification.VerificationActivity;
-import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -95,10 +92,9 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 //        btnGoogleSignIn.setOnClickListener(this);
         tvForgotPassword.setOnClickListener(this);
 
-        checkRequiredPermissions();
+//        checkRequiredPermissions();
         configureGoogleSignIn();
         addTextInputListeners();
-
         setupBranchSpinner();
     }
 
@@ -257,16 +253,6 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     }
 
     @Override
-    public void showEmptyPhoneOrEmailFieldError(String message) {
-        ilEmailPhone.setError(message);
-    }
-
-    @Override
-    public void showEmptyPasswordFieldError(String message) {
-        ilPassword.setError(message);
-    }
-
-    @Override
     public void onAccountNotVerified() {
         Intent i = new Intent(LoginActivity.this, VerificationActivity.class);
         Hawk.put(Constants.EMAIL_PHONE, UiUtils.getString(etEmail));
@@ -340,26 +326,25 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
         return this;
     }
 
-    @SuppressLint("InlinedApi")
+ /*   @SuppressLint("InlinedApi")
     private void checkRequiredPermissions() {
         if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 && hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 && hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 && hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 && hasPermission(Manifest.permission.ACCESS_MEDIA_LOCATION)
-                && hasPermission(Manifest.permission.CAMERA)
-                && hasPermission(Manifest.permission.RECORD_AUDIO)) {
+                && hasPermission(Manifest.permission.CAMERA)) {
             return;
         }
 
-        requestPermissionsSafely(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        requestPermissionsSafely(new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA,
                 Manifest.permission.ACCESS_MEDIA_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                Manifest.permission.RECORD_AUDIO}, PERMISSIONS_CODE);
-    }
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PERMISSIONS_CODE);
+    }*/
 
     public static Retrofit getClient(Context context) {
 

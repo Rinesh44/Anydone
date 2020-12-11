@@ -157,13 +157,36 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         setupViewPager(mViewpager);
         mTabs.setupWithViewPager(mViewpager);
 
-        tvToolbarTitle.setOnClickListener(v -> toggleServiceBottomSheet());
+        mTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                GlobalUtils.showLog(TAG, "tab position: " + tab.getPosition());
+                boolean ticketPending = Hawk.get(Constants.TICKET_PENDING, false);
+                if (tab.getPosition() == 0 && ticketPending) {
+                    if (pendingListListener != null) {
+                        GlobalUtils.showLog(TAG, "interface applied for pending");
+                        pendingTicketList = TicketRepo.getInstance().getPendingTickets();
+                        pendingListListener.updatePendingList(pendingTicketList);
+                    }
+                }
+            }
 
-        presenter.findCustomers();
-        presenter.findEmployees();
-        presenter.getTicketTypes();
-        presenter.getLabels();
-        presenter.findTags();
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        tvToolbarTitle.setOnClickListener(v -> {
+            serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+            toggleServiceBottomSheet();
+        });
+
     }
 
     private void createServiceBottomSheet() {
@@ -173,13 +196,14 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 .inflate(R.layout.bottomsheet_select_service, null);
 
         serviceBottomSheet.setContentView(llBottomSheet);
+        serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
 
         serviceBottomSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
 
             FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
+         /*   if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
             setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
@@ -257,18 +281,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
 
     public void toggleServiceBottomSheet() {
-     /*   if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
-            bottomSheetShadow.setVisibility(View.VISIBLE);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-        } else if (sheetBehavior.getState() == BottomSheetBehavior.STATE_HALF_EXPANDED) {
-            bottomSheetShadow.setVisibility(View.GONE);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        } else {
-            sheetBehavior.setPeekHeight(0);
-            bottomSheetShadow.setVisibility(View.GONE);
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        }*/
-
         if (serviceBottomSheet.isShowing()) {
             serviceBottomSheet.dismiss();
         } else {
@@ -317,11 +329,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
             closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
 
-//            presenter.findCustomers();
-            presenter.findEmployees();
+      /*      presenter.findCustomers();
+//            presenter.findEmployees();
             presenter.getTicketTypes();
             presenter.getLabels();
-            presenter.findTags();
+            presenter.findTags();*/
 
 //            Hawk.put(Constants.FETCH_CLOSED_LIST, true);
         });
@@ -541,6 +553,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         statusValue = null;
         int fragmentIndex = mViewpager.getCurrentItem();
         if (fragmentIndex == 0) {
+            tvStatus.setVisibility(View.VISIBLE);
             pendingTicketList = TicketRepo.getInstance().getPendingTickets();
             GlobalUtils.showLog(TAG, "pending list check: " + pendingTicketList);
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -573,6 +586,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             tvStatus.setVisibility(View.GONE);
             toggleBottomSheet();
         } else {
+            tvStatus.setVisibility(View.VISIBLE);
             closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
             GlobalUtils.showLog(TAG, "closed list check: " + closedTicketList);
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -861,86 +875,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 msg);
     }
 
-    @Override
-    public void findEmployeeSuccess() {
-
-    }
-
-    @Override
-    public void findEmployeeFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), msg);
-            onAuthorizationFailed(getActivity());
-            return;
-        }
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
-
-    }
-
-    @Override
-    public void findCustomerSuccess() {
-
-    }
-
-    @Override
-    public void findCustomerFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), msg);
-            onAuthorizationFailed(getActivity());
-            return;
-        }
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
-    }
-
-    @Override
-    public void findTagsSuccess() {
-
-    }
-
-    @Override
-    public void findTagsFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), msg);
-            onAuthorizationFailed(getActivity());
-            return;
-        }
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
-    }
-
-    @Override
-    public void getLabelSuccess() {
-
-    }
-
-    @Override
-    public void getLabelFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), msg);
-            onAuthorizationFailed(getActivity());
-            return;
-        }
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
-    }
-
-    @Override
-    public void getTypeSuccess() {
-
-    }
-
-    @Override
-    public void getTypeFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), msg);
-            onAuthorizationFailed(getActivity());
-            return;
-        }
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
-    }
 
     @Override
     public void ticketReopened() {

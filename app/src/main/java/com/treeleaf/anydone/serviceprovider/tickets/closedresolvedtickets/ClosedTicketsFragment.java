@@ -20,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -30,6 +31,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -60,6 +62,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     RelativeLayout rlRoot;
     @BindView(R.id.btn_reload)
     MaterialButton btnReload;
+    @BindView(R.id.fab_backlog)
+    FloatingActionButton fabBacklog;
 
     private Unbinder unbinder;
     private TicketsAdapter adapter;
@@ -132,6 +136,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
                     Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                     i.putExtra("selected_ticket_id", ticket.getTicketId());
                     i.putExtra("selected_ticket_type", Constants.CLOSED_RESOLVED);
+                    i.putExtra("selected_ticket_index", ticket.getTicketIndex());
                     i.putExtra("ticket_desc", ticket.getTitle());
                     startActivity(i);
                 } else {
@@ -280,9 +285,22 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void onReopenSuccess(long ticketId) {
         adapter.deleteItem(reopenTicketPos, ticketId);
+        TicketRepo.getInstance().changeTicketStatusToReopened(ticketId);
+        closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+        GlobalUtils.showLog(TAG, "closed ticket seize: " + closedTickets.size());
+        if (closedTickets.isEmpty()) {
+            ivDataNotFound.setVisibility(View.VISIBLE);
+            rvClosedTickets.setVisibility(View.GONE);
+        } else {
+            rvClosedTickets.setVisibility(View.VISIBLE);
+            ivDataNotFound.setVisibility(View.GONE);
+        }
+        Hawk.put(Constants.REFETCH_TICKET, true);
+        Hawk.put(Constants.TICKET_PENDING, true);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
+        Hawk.put(Constants.REFETCH_TICKET_STAT, true);
       /*  if (listener != null)
             listener.ticketReopened();*/
-        Hawk.put(Constants.FETCH_PENDING_LIST, true);
     }
 
     @Override
@@ -344,6 +362,12 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     public void showClosedTicketList(List<Tickets> closedTicketList) {
         setUpRecyclerView(closedTicketList);
     }*/
+
+    @OnClick(R.id.fab_backlog)
+    void getBackLogTickets() {
+        Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
+        startActivity(i);
+    }
 
 
     @Override
