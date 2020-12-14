@@ -21,7 +21,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
-import com.treeleaf.anydone.serviceprovider.realm.repo.CardRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -178,7 +177,24 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
                         0, 0, R.drawable.ic_mastercard_icon, 0);
                 break;
 
+            case Constants.AMERICAN_EXPRESS:
+                cardType = "AMERICAN EXPRESS";
+                break;
+
+            case Constants.DINERS_CLUB:
+                cardType = "DINERS CLUB";
+                break;
+
+            case Constants.DISCOVER:
+                cardType = "DISCOVER";
+                break;
+
+            case Constants.JCB:
+                cardType = "JCB";
+                break;
+
             default:
+                cardType = "UNKNOWN";
                 break;
         }
     }

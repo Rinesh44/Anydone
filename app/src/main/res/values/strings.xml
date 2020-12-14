@@ -82,7 +82,7 @@
     <string name="year">Year</string>
     <string name="cvv">CVV</string>
     <string name="billing_address">Billing Address</string>
-    <string name="save_card_as_primary">Save Card as Primary</string>
+    <string name="save_card_as_primary">Save card as primary</string>
     <string name="add_credit_or_debit_card">Add credit or debit card</string>
     <string name="add_payment_method">Add Payment Method</string>
     <string name="street_address">Street Address</string>

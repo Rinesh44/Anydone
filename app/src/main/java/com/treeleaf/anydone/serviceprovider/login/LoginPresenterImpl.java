@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
+import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
@@ -47,12 +48,14 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         Observable<AuthRpcProto.AuthBaseResponse> loginObservable;
+        String pushToken = AnyDoneServiceProviderApplication.getFirebaseToken();
+        GlobalUtils.showLog(TAG, "firebase token: " + pushToken);
 
         AuthProto.LoginRequest loginRequest = AuthProto.LoginRequest.newBuilder()
                 .setEmailPhone(emailPhone)
                 .setPassword(password)
+                .setPushToken(pushToken)
                 .build();
-
 
         GlobalUtils.showLog(TAG, "login info: " + loginRequest);
         loginObservable = service.login(loginRequest);
