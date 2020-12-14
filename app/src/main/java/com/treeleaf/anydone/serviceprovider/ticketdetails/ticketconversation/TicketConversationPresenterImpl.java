@@ -844,7 +844,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 captureDrawParam.setXCoordinate(drawStartResponse.getX());
                                 captureDrawParam.setYCoordinate(drawStartResponse.getY());
                                 captureDrawParam.setBrushWidth(drawStartResponse.getDrawMetaData().getBrushWidth());
-                                captureDrawParam.setBrushOpacity((int) drawStartResponse.getDrawMetaData().getBrushOpacity());
+                                captureDrawParam.setBrushOpacity((int) (drawStartResponse.getDrawMetaData().getBrushOpacity() * 255));
                                 captureDrawParam.setBrushColor(Color.parseColor(drawStartResponse.getDrawMetaData().getBrushColor()));
                                 captureDrawParam.setTextColor(Color.parseColor(drawStartResponse.getDrawMetaData().getTextColor()));
                                 getView().onDrawTouchDown(captureDrawParam, drawStartResponse.getSenderAccount().getAccountId(),

@@ -346,7 +346,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setX(x)
                 .setY(y)
                 .setBrushWidth(captureDrawParam.getBrushWidth())
-                .setBrushOpacity(captureDrawParam.getBrushOpacity())
+                .setBrushOpacity((float) captureDrawParam.getBrushOpacity() / (float) 255)
                 .setBrushColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getBrushColor())))
                 .setTextColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getTextColor())))
                 .setEventTime(capturedTime)
