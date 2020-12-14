@@ -13,6 +13,7 @@ import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -331,13 +332,28 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId) {
+                                          long orderId, Float x, Float y, CaptureDrawParam captureDrawParam,
+                                          long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
                 .setAccountId(userAccountId)
                 .setFullName(accountName)
                 .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawMetaData drawMetaData = SignalingProto.DrawMetaData.newBuilder()
+                .setX(x)
+                .setY(y)
+                .setBrushWidth(captureDrawParam.getBrushWidth())
+                .setBrushOpacity(captureDrawParam.getBrushOpacity())
+                .setBrushColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getBrushColor())))
+                .setTextColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getTextColor())))
+                .setEventTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         SignalingProto.DrawStart drawStart = SignalingProto.DrawStart.newBuilder()
@@ -348,6 +364,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(imageId)
+                .setDrawMetaData(drawMetaData)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()

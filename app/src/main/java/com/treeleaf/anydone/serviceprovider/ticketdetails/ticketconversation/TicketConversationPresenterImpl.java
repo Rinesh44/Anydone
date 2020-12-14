@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -842,6 +843,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                                 captureDrawParam.setXCoordinate(drawStartResponse.getX());
                                 captureDrawParam.setYCoordinate(drawStartResponse.getY());
+                                captureDrawParam.setBrushWidth(drawStartResponse.getDrawMetaData().getBrushWidth());
+                                captureDrawParam.setBrushOpacity((int) drawStartResponse.getDrawMetaData().getBrushOpacity());
+                                captureDrawParam.setBrushColor(Color.parseColor(drawStartResponse.getDrawMetaData().getBrushColor()));
+                                captureDrawParam.setTextColor(Color.parseColor(drawStartResponse.getDrawMetaData().getTextColor()));
                                 getView().onDrawTouchDown(captureDrawParam, drawStartResponse.getSenderAccount().getAccountId(),
                                         drawStartResponse.getImageId());
                             }
