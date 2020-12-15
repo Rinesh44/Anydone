@@ -20,6 +20,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
 import com.treeleaf.januswebrtc.ClientActivity;
+import com.treeleaf.januswebrtc.Joinee;
 import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 import com.treeleaf.januswebrtc.VideoCallUtil;
@@ -32,11 +33,11 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+import static com.treeleaf.januswebrtc.Const.CONSUMER_APP;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
-import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_APP;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
@@ -203,59 +204,59 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onDiscardDraw() {
-                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext);
+            public void onDiscardDraw(String imageId) {
+                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onDrawCanvasCleared() {
-                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext);
+            public void onDrawCanvasCleared(String imageId) {
+                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
+            public void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId) {
                 presenter.publishDrawReceiveNewTextEvent(accountId, accountName, accountPicture, x, y,
-                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext);
+                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onReceiveNewTextChange(String text, String id) {
+            public void onReceiveNewTextChange(String text, String id, String imageId) {
                 presenter.publishTextFieldChangeEventEvent(accountId, accountName, accountPicture, text,
-                        id, refId, System.currentTimeMillis(), rtcContext);
+                        id, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onReceiveEdiTextRemove(String editTextId) {
+            public void onReceiveEdiTextRemove(String editTextId, String imageId) {
                 presenter.publishTextFieldRemoveEventEvent(accountId, accountName, accountPicture, editTextId,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onDrawParamChanged(CaptureDrawParam captureDrawParam) {
+            public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String imageId) {
                 presenter.publishDrawMetaChangeEvent(accountId, accountName, accountPicture, captureDrawParam.getXCoordinate(),
                         captureDrawParam.getYCoordinate(), captureDrawParam.getBrushWidth(),
                         Float.parseFloat(captureDrawParam.getBrushOpacity().toString()),
                         captureDrawParam.getBrushColor(), captureDrawParam.getTextColor(),
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onStartDraw(float x, float y) {
+            public void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId) {
                 presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
-                        refId, x, y, System.currentTimeMillis(), rtcContext);
+                        refId, x, y, captureDrawParam, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onClientTouchMove(CaptureDrawParam captureDrawParam) {
+            public void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId) {
                 presenter.publishDrawTouchMoveEvent(accountId, accountName, accountPicture,
                         refId, captureDrawParam.getXCoordinate(), captureDrawParam.getYCoordinate(),
-                        System.currentTimeMillis(), rtcContext);
+                        System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
-            public void onClientTouchUp() {
+            public void onClientTouchUp(String imageId) {
                 presenter.publishDrawTouchUpEvent(accountId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
@@ -263,7 +264,40 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 captureImageFrame(bitmap);
             }
 
+            @Override
+            public void onCollabInvite(Joinee joinee, String pictureId, Bitmap bitmap) {
+                prepareCollabInvite(joinee, pictureId, bitmap);
+            }
+
+            @Override
+            public void onMaximizeDrawing(String pictureId) {
+                presenter.publishDrawMaximize(accountId, pictureId, accountName, accountPicture,
+                        refId, System.currentTimeMillis(), rtcContext);
+            }
+
+            @Override
+            public void onMinimizeDrawing(String pictureId) {
+                presenter.publishDrawMinimize(accountId, pictureId, accountName, accountPicture,
+                        refId, System.currentTimeMillis(), rtcContext);
+            }
+
         };
+    }
+
+    private void prepareCollabInvite(Joinee joinee, String pictureId, Bitmap caputureBitmap) {
+//        Bitmap bitmap = caputureBitmap;
+        Bitmap bitmap = caputureBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Bitmap convertedBitmap;
+        try {
+            convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
+            byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
+            ByteString imageByteString = ByteString.copyFrom(bytes);
+            presenter.publishInviteToCollabRequest(accountId, joinee.getAccountId(), pictureId, accountName,
+                    accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void captureImageFrame(Bitmap caputureBitmap) {
@@ -371,13 +405,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     }
 
-    public void onImageDrawDiscardRemote(String accountId) {
+    public void onImageDrawDiscardRemote(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "onImageReceivedFromConsumer");
                 if (drawPadEventListener != null)
-                    drawPadEventListener.onDrawDiscard(accountId);
+                    drawPadEventListener.onDrawDiscard(accountId, imageId);
             }
         });
     }
@@ -455,85 +489,149 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(), accountId),
-                    adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId);
-            drawPadEventListener.onDrawTouchDown(accountId);
+            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                    localDeviceHeight), accountId, imageId);
+            drawPadEventListener.onDrawTouchDown(accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
-                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId);
-            drawPadEventListener.onDrawTouchMove(accountId);
+//            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
+//                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                    localDeviceHeight), accountId, imageId);
+            drawPadEventListener.onDrawTouchMove(accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawTouchUp(String accountId) {
+    public void onDrawTouchUp(String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawTouchUp(accountId);
+            drawPadEventListener.onDrawTouchUp(accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
-                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId);
+//                    drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
+//                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId, imageId);
+                    drawPadEventListener.onDrawReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePostPublish(x,
+                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
+                            localDeviceHeight), editTextFieldId, accountId, imageId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextChange(text, id, accountId);
+                    drawPadEventListener.onDrawReceiveNewTextChange(text, id, accountId, imageId);
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveEdiTextRemove(editTextId, accountId);
+                    drawPadEventListener.onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
                 }
             }
         });
     }
 
+    //onDrawParamChanged callback wont get called now
     @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId);
+            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
         }
     }
 
     @Override
-    public void onDrawCanvasCleared(String accountId) {
+    public void onDrawCanvasCleared(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawCanvasCleared(accountId);
+                    drawPadEventListener.onDrawCanvasCleared(accountId, imageId);
                 }
             }
         });
 
+    }
+
+    public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawCollabResponse.getFromAccountId();
+                    String toAccountId = drawCollabResponse.getToAccountId();
+                    String imageId = drawCollabResponse.getImageId();
+                    ByteString imageByteString = drawCollabResponse.getCapturedImage();
+                    byte[] convertedBytes = imageByteString.toByteArray();
+                    drawPadEventListener.onDrawCollabInvite(fromAccountId, toAccountId, imageId, convertedBytes);
+                }
+            }
+        });
+    }
+
+    public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawMaximize.getSenderAccountId();
+                    String imageId = drawMaximize.getImageId();
+                    drawPadEventListener.onDrawMaximize(fromAccountId, imageId);
+                }
+            }
+        });
+    }
+
+    public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawMinize.getSenderAccountId();
+                    String imageId = drawMinize.getImageId();
+                    drawPadEventListener.onDrawMinimize(fromAccountId, imageId);
+                }
+            }
+        });
+    }
+
+    public void onDrawClose(SignalingProto.DrawClose drawClose) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawClose.getSenderAccountId();
+                    String imageId = drawClose.getImageId();
+                    drawPadEventListener.onDrawClose(fromAccountId, imageId);
+                }
+            }
+        });
     }
 
 
@@ -567,7 +665,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onConnectionSuccess() {
         ClientActivity.launch(VideoCallHandleActivity.this,
                 false, hostActivityCallbackClient, drawCallBack,
-                serviceName, serviceProfileUri, SERVICE_PROVIDER_APP);
+                serviceName, serviceProfileUri, CONSUMER_APP);//TODO: change it to SERVICE_PROVIDER_APP later
     }
 
     @Override

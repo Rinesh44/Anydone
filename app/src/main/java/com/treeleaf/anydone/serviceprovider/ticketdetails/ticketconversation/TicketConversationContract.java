@@ -96,23 +96,31 @@ public class TicketConversationContract {
 
         void onImageDrawDiscardLocal();
 
-        void onImageDrawDiscardRemote(String accountId);
+        void onImageDrawDiscardRemote(String accountId, String imageId);
 
-        void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId);
+        void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
-        void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId);
+        void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
-        void onDrawTouchUp(String accountId);
+        void onDrawTouchUp(String accountId, String imageId);
 
-        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId);
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId);
 
-        void onDrawReceiveNewTextChange(String text, String id, String accountId);
+        void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId);
 
-        void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
+        void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId);
 
-        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId);
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
-        void onDrawCanvasCleared(String accountId);
+        void onDrawCanvasCleared(String accountId, String imageId);
+
+        void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse);
+
+        void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize);
+
+        void onDrawMinimize(SignalingProto.DrawMinize drawMinize);
+
+        void onDrawClose(SignalingProto.DrawClose drawClose);
 
         void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId);
 
