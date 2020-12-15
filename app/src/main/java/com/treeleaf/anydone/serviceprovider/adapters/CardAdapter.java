@@ -117,6 +117,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
                 cardImage.setImageDrawable(mContext.getResources()
                         .getDrawable(R.drawable.ic_mastercard_icon));
                 break;
+
+            default:
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_visacard_icon));
+                break;
         }
     }
 

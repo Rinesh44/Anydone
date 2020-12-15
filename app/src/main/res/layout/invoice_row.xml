@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_invoice_holder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/tv_invoice_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:fontFamily="@font/bold"
+        android:paddingStart="@dimen/dimens_2x"
+        android:text="345345"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_created_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_invoice_id"
+        android:layout_marginTop="@dimen/dimen_2x2"
+        android:paddingStart="@dimen/dimens_2x"
+        android:text="17, Nov 2020 4:00 PM"
+        android:textColor="@color/charcoal_text" />
+
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:paddingEnd="@dimen/dimens_2x"
+        android:text="$ 3000"
+        android:textColor="@color/charcoal_text"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_created_at"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:background="#E7E7E7" />
+
+</RelativeLayout>

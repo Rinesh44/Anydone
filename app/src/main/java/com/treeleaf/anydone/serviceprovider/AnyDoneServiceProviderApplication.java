@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.injection.component.DaggerApplicationComponent;
@@ -25,6 +26,7 @@ public class AnyDoneServiceProviderApplication extends Application {
     private static Context context;
 
     private ApplicationComponent applicationComponent;
+    public static String refreshedToken;
 
     public static AnyDoneServiceProviderApplication get(Context context) {
         return (AnyDoneServiceProviderApplication) context.getApplicationContext();
@@ -52,8 +54,9 @@ public class AnyDoneServiceProviderApplication extends Application {
         super.onCreate();
         context = this;
 
+        setFirebaseToken();
         Hawk.init(this).build();
-
+        initializeRealm();
     /*    RealmInspectorModulesProvider realmInspectorModulesProvider = RealmInspectorModulesProvider.builder(this)
                 .withDeleteIfMigrationNeeded(true)
                 .build();
@@ -67,7 +70,6 @@ public class AnyDoneServiceProviderApplication extends Application {
 
         boolean isMqttConnected = Hawk.get(Constants.MQTT_CONNECTED, false);
         if (isMqttConnected) setUpMQTT();
-        initializeRealm();
 
     }
 
@@ -113,6 +115,17 @@ public class AnyDoneServiceProviderApplication extends Application {
                 .build();
 
         Realm.setDefaultConfiguration(config);
+    }
+
+    public void setFirebaseToken() {
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(instanceIdResult -> {
+            refreshedToken = instanceIdResult.getToken();
+            GlobalUtils.showLog(TAG, "refreshed token : " + refreshedToken);
+        });
+    }
+
+    public static String getFirebaseToken() {
+        return refreshedToken;
     }
 
 }

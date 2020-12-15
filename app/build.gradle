@@ -48,6 +48,7 @@ configurations {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-messaging:20.1.0'
     def projectDependencies = rootProject.ext.projectDependencies
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":treeleaf-webrtc-library")
@@ -94,6 +95,7 @@ dependencies {
     implementation projectDependencies.keyboardObserver
     implementation projectDependencies.dexter
     implementation projectDependencies.wysiwygEditor
+    implementation projectDependencies.viewpager
 
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: 1.61
     implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: 1.61
