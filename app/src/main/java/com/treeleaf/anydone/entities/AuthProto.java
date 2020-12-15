@@ -7240,7 +7240,7 @@ public final class AuthProto {
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    String getSessionId();
+    java.lang.String getSessionId();
     /**
      * <code>optional string sessionId = 1;</code>
      */
@@ -7250,7 +7250,7 @@ public final class AuthProto {
     /**
      * <code>optional string accountId = 2;</code>
      */
-    String getAccountId();
+    java.lang.String getAccountId();
     /**
      * <code>optional string accountId = 2;</code>
      */
@@ -7270,11 +7270,11 @@ public final class AuthProto {
       accountId_ = "";
     }
     public static final int SESSIONID_FIELD_NUMBER = 1;
-    private String sessionId_;
+    private java.lang.String sessionId_;
     /**
      * <code>optional string sessionId = 1;</code>
      */
-    public String getSessionId() {
+    public java.lang.String getSessionId() {
       return sessionId_;
     }
     /**
@@ -7288,7 +7288,7 @@ public final class AuthProto {
      * <code>optional string sessionId = 1;</code>
      */
     private void setSessionId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7316,11 +7316,11 @@ public final class AuthProto {
     }
 
     public static final int ACCOUNTID_FIELD_NUMBER = 2;
-    private String accountId_;
+    private java.lang.String accountId_;
     /**
      * <code>optional string accountId = 2;</code>
      */
-    public String getAccountId() {
+    public java.lang.String getAccountId() {
       return accountId_;
     }
     /**
@@ -7334,7 +7334,7 @@ public final class AuthProto {
      * <code>optional string accountId = 2;</code>
      */
     private void setAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7388,60 +7388,60 @@ public final class AuthProto {
       return size;
     }
 
-    public static ConnectRequest parseFrom(
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ConnectRequest parseFrom(
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ConnectRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ConnectRequest parseFrom(
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ConnectRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ConnectRequest parseFrom(
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ConnectRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ConnectRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ConnectRequest parseFrom(
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ConnectRequest parseFrom(
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -7452,7 +7452,7 @@ public final class AuthProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ConnectRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.AuthProto.ConnectRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -7461,9 +7461,9 @@ public final class AuthProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ConnectRequest, Builder> implements
+          com.treeleaf.anydone.entities.AuthProto.ConnectRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConnectRequest)
-        ConnectRequestOrBuilder {
+        com.treeleaf.anydone.entities.AuthProto.ConnectRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.AuthProto.ConnectRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -7473,7 +7473,7 @@ public final class AuthProto {
       /**
        * <code>optional string sessionId = 1;</code>
        */
-      public String getSessionId() {
+      public java.lang.String getSessionId() {
         return instance.getSessionId();
       }
       /**
@@ -7487,7 +7487,7 @@ public final class AuthProto {
        * <code>optional string sessionId = 1;</code>
        */
       public Builder setSessionId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSessionId(value);
         return this;
@@ -7513,7 +7513,7 @@ public final class AuthProto {
       /**
        * <code>optional string accountId = 2;</code>
        */
-      public String getAccountId() {
+      public java.lang.String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -7527,7 +7527,7 @@ public final class AuthProto {
        * <code>optional string accountId = 2;</code>
        */
       public Builder setAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -7553,11 +7553,11 @@ public final class AuthProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConnectRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ConnectRequest();
+          return new com.treeleaf.anydone.entities.AuthProto.ConnectRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -7570,12 +7570,12 @@ public final class AuthProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ConnectRequest other = (ConnectRequest) arg1;
+          com.treeleaf.anydone.entities.AuthProto.ConnectRequest other = (com.treeleaf.anydone.entities.AuthProto.ConnectRequest) arg1;
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
               !other.accountId_.isEmpty(), other.accountId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -7626,7 +7626,7 @@ public final class AuthProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ConnectRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.AuthProto.ConnectRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -7640,13 +7640,13 @@ public final class AuthProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConnectRequest)
-    private static final ConnectRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.AuthProto.ConnectRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ConnectRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ConnectRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.AuthProto.ConnectRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

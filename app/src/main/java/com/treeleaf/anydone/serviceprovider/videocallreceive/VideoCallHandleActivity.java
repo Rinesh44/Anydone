@@ -241,9 +241,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onStartDraw(float x, float y, String imageId) {
+            public void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId) {
                 presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
-                        refId, x, y, System.currentTimeMillis(), rtcContext, imageId);
+                        refId, x, y, captureDrawParam, System.currentTimeMillis(), rtcContext, imageId);
             }
 
             @Override
@@ -286,7 +286,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     private void prepareCollabInvite(Joinee joinee, String pictureId, Bitmap caputureBitmap) {
 //        Bitmap bitmap = caputureBitmap;
-        Bitmap bitmap  = caputureBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Bitmap bitmap = caputureBitmap.copy(Bitmap.Config.ARGB_8888, true);
         Bitmap convertedBitmap;
         try {
             convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
@@ -491,8 +491,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-//            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(), accountId),
-//                    adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
+            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
             drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
                     localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
                     localDeviceHeight), accountId, imageId);
@@ -559,6 +558,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
+    //onDrawParamChanged callback wont get called now
     @Override
     public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {

@@ -19827,12 +19827,12 @@ public final class UserProto {
     /**
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
      */
-    TreeleafProto.DataQuery getDataQuery();
+    com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery();
 
     /**
      * <code>optional string query = 2;</code>
      */
-    String getQuery();
+    java.lang.String getQuery();
     /**
      * <code>optional string query = 2;</code>
      */
@@ -19851,7 +19851,7 @@ public final class UserProto {
       query_ = "";
     }
     public static final int DATAQUERY_FIELD_NUMBER = 1;
-    private TreeleafProto.DataQuery dataQuery_;
+    private com.treeleaf.anydone.entities.TreeleafProto.DataQuery dataQuery_;
     /**
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
      */
@@ -19861,13 +19861,13 @@ public final class UserProto {
     /**
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
      */
-    public TreeleafProto.DataQuery getDataQuery() {
-      return dataQuery_ == null ? TreeleafProto.DataQuery.getDefaultInstance() : dataQuery_;
+    public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
+      return dataQuery_ == null ? com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance() : dataQuery_;
     }
     /**
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
      */
-    private void setDataQuery(TreeleafProto.DataQuery value) {
+    private void setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -19878,18 +19878,18 @@ public final class UserProto {
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
      */
     private void setDataQuery(
-        TreeleafProto.DataQuery.Builder builderForValue) {
+        com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
       dataQuery_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
      */
-    private void mergeDataQuery(TreeleafProto.DataQuery value) {
+    private void mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
       if (dataQuery_ != null &&
-          dataQuery_ != TreeleafProto.DataQuery.getDefaultInstance()) {
+          dataQuery_ != com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance()) {
         dataQuery_ =
-          TreeleafProto.DataQuery.newBuilder(dataQuery_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.TreeleafProto.DataQuery.newBuilder(dataQuery_).mergeFrom(value).buildPartial();
       } else {
         dataQuery_ = value;
       }
@@ -19903,11 +19903,11 @@ public final class UserProto {
     }
 
     public static final int QUERY_FIELD_NUMBER = 2;
-    private String query_;
+    private java.lang.String query_;
     /**
      * <code>optional string query = 2;</code>
      */
-    public String getQuery() {
+    public java.lang.String getQuery() {
       return query_;
     }
     /**
@@ -19921,7 +19921,7 @@ public final class UserProto {
      * <code>optional string query = 2;</code>
      */
     private void setQuery(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -19975,60 +19975,60 @@ public final class UserProto {
       return size;
     }
 
-    public static UserFilter parseFrom(
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static UserFilter parseFrom(
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static UserFilter parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static UserFilter parseFrom(
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static UserFilter parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static UserFilter parseFrom(
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static UserFilter parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static UserFilter parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static UserFilter parseFrom(
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static UserFilter parseFrom(
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -20039,7 +20039,7 @@ public final class UserProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(UserFilter prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.UserProto.UserFilter prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -20048,9 +20048,9 @@ public final class UserProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          UserFilter, Builder> implements
+          com.treeleaf.anydone.entities.UserProto.UserFilter, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.UserFilter)
-        UserFilterOrBuilder {
+        com.treeleaf.anydone.entities.UserProto.UserFilterOrBuilder {
       // Construct using com.treeleaf.anydone.entities.UserProto.UserFilter.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -20066,13 +20066,13 @@ public final class UserProto {
       /**
        * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
        */
-      public TreeleafProto.DataQuery getDataQuery() {
+      public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
         return instance.getDataQuery();
       }
       /**
        * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
        */
-      public Builder setDataQuery(TreeleafProto.DataQuery value) {
+      public Builder setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
         copyOnWrite();
         instance.setDataQuery(value);
         return this;
@@ -20081,7 +20081,7 @@ public final class UserProto {
        * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
        */
       public Builder setDataQuery(
-          TreeleafProto.DataQuery.Builder builderForValue) {
+          com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
         copyOnWrite();
         instance.setDataQuery(builderForValue);
         return this;
@@ -20089,7 +20089,7 @@ public final class UserProto {
       /**
        * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
        */
-      public Builder mergeDataQuery(TreeleafProto.DataQuery value) {
+      public Builder mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
         copyOnWrite();
         instance.mergeDataQuery(value);
         return this;
@@ -20105,7 +20105,7 @@ public final class UserProto {
       /**
        * <code>optional string query = 2;</code>
        */
-      public String getQuery() {
+      public java.lang.String getQuery() {
         return instance.getQuery();
       }
       /**
@@ -20119,7 +20119,7 @@ public final class UserProto {
        * <code>optional string query = 2;</code>
        */
       public Builder setQuery(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setQuery(value);
         return this;
@@ -20145,11 +20145,11 @@ public final class UserProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.UserFilter)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new UserFilter();
+          return new com.treeleaf.anydone.entities.UserProto.UserFilter();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -20162,11 +20162,11 @@ public final class UserProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          UserFilter other = (UserFilter) arg1;
+          com.treeleaf.anydone.entities.UserProto.UserFilter other = (com.treeleaf.anydone.entities.UserProto.UserFilter) arg1;
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
           query_ = visitor.visitString(!query_.isEmpty(), query_,
               !other.query_.isEmpty(), other.query_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -20191,11 +20191,11 @@ public final class UserProto {
                   break;
                 }
                 case 10: {
-                  TreeleafProto.DataQuery.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder subBuilder = null;
                   if (dataQuery_ != null) {
                     subBuilder = dataQuery_.toBuilder();
                   }
-                  dataQuery_ = input.readMessage(TreeleafProto.DataQuery.parser(), extensionRegistry);
+                  dataQuery_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.DataQuery.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(dataQuery_);
                     dataQuery_ = subBuilder.buildPartial();
@@ -20224,7 +20224,7 @@ public final class UserProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (UserFilter.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.UserProto.UserFilter.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -20238,13 +20238,13 @@ public final class UserProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.UserFilter)
-    private static final UserFilter DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.UserProto.UserFilter DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new UserFilter();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static UserFilter getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.UserProto.UserFilter getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

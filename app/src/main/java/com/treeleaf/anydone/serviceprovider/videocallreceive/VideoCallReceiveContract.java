@@ -4,6 +4,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
 import com.google.protobuf.ByteString;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 
@@ -53,7 +54,7 @@ public class VideoCallReceiveContract {
                                     long orderId, long cancellationTime, String rtcContext, String imageId);
 
         void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId);
+                                       long orderId, Float x, Float y, CaptureDrawParam captureDrawParam, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
                                        long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId);

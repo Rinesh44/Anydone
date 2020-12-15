@@ -13,6 +13,7 @@ import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -331,7 +332,8 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId) {
+                                          long orderId, Float x, Float y, CaptureDrawParam captureDrawParam,
+                                          long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -340,9 +342,13 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
-        SignalingProto.DrawTouchDown drawTouchDown = SignalingProto.DrawTouchDown.newBuilder()
+        SignalingProto.DrawMetaData drawMetaData = SignalingProto.DrawMetaData.newBuilder()
                 .setX(x)
                 .setY(y)
+                .setBrushWidth(captureDrawParam.getBrushWidth())
+                .setBrushOpacity((float) captureDrawParam.getBrushOpacity() / (float) 255)
+                .setBrushColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getBrushColor())))
+                .setTextColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getTextColor())))
                 .setEventTime(capturedTime)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
@@ -350,9 +356,20 @@ public class VideoCallReceivePresenterImpl extends
                 .setImageId(imageId)
                 .build();
 
+        SignalingProto.DrawStart drawStart = SignalingProto.DrawStart.newBuilder()
+                .setX(x)
+                .setY(y)
+                .setEventTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(imageId)
+                .setDrawMetaData(drawMetaData)
+                .build();
+
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_TOUCH_DOWN_REQUEST)
-                .setDrawTouchDownRequest(drawTouchDown)
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_START_REQUEST)
+                .setDrawStartRequest(drawStart)
                 .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
@@ -410,7 +427,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
-        SignalingProto.DrawTouchUp drawTouchUp = SignalingProto.DrawTouchUp.newBuilder()
+        SignalingProto.DrawEnd drawEnd = SignalingProto.DrawEnd.newBuilder()
                 .setEventTime(capturedTime)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
@@ -419,8 +436,9 @@ public class VideoCallReceivePresenterImpl extends
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_TOUCH_UP_REQUEST)
-                .setDrawTouchUpRequest(drawTouchUp)
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_END_REQUEST)
+//                .setDrawTouchUpRequest(drawTouchUp)
+                .setDrawEndRequest(drawEnd)
                 .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
