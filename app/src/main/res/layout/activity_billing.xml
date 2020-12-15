@@ -53,7 +53,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_transactions"
+        android:id="@+id/rl_plans"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
@@ -62,7 +62,7 @@
         android:weightSum="1">
 
         <ImageView
-            android:id="@+id/iv_transactions"
+            android:id="@+id/iv_plans"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_centerVertical="true"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/iv_transactions"
+            android:layout_toEndOf="@+id/iv_plans"
             android:text="@string/plans"
             android:textColor="@color/black"
             android:textStyle="bold"

@@ -46,6 +46,7 @@ ext {
     textFormatterVersion = '2.0.0'
     dexterVersion = '6.2.2'
     wysiwygEditorVersion = '0.2.0'
+    viewpagerVersion = '1.0.0'
 
     projectDependencies = [appcompat                : "androidx.appcompat:appcompat:$appCompatVersion",
                            googleMaterial           : "com.google.android.material:material:$googleMaterialVersion",
@@ -97,5 +98,6 @@ ext {
                            keyboardObserver         : "gun0912.ted:tedkeyboardobserver:$keyboardObserverVersion",
                            textFormatter            : "jp.wasabeef:richeditor-android:$textFormatterVersion",
                            dexter                   : "com.karumi:dexter:$dexterVersion",
-                           wysiwygEditor            : "com.github.chinalwb:are:$wysiwygEditorVersion"]
+                           wysiwygEditor            : "com.github.chinalwb:are:$wysiwygEditorVersion",
+                           viewpager                : "androidx.viewpager2:viewpager2:$viewpagerVersion"]
 }

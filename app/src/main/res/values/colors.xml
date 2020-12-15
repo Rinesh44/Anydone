@@ -76,6 +76,7 @@
 
 
     <color name="text_editor_bg">#DDDDDD</color>
+    <color name="slider_inactive">#BABABA</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
         #0076FF

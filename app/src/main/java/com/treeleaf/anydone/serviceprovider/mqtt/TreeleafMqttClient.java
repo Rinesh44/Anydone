@@ -2,9 +2,13 @@ package com.treeleaf.anydone.serviceprovider.mqtt;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.Base64;
 
 import androidx.annotation.RequiresApi;
 
+import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.AuthProto;
+import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -15,10 +19,12 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
@@ -36,6 +42,8 @@ public class TreeleafMqttClient {
     public static MqttAndroidClient mqttClient;
     private static final int DEFAULT_QOS = 1;
     public static OnMQTTConnected mqttListener;
+    public static String[] separateResult;
+    public static String connectTopic = "anydone/mqtt/connect";
 //    private static Map<String, Processor> processors = new ConcurrentHashMap<>();
 
     public TreeleafMqttClient() {
@@ -98,6 +106,10 @@ public class TreeleafMqttClient {
                     GlobalUtils.showLog(TAG, "MQTT connected");
                     if (mqttListener != null)
                         mqttListener.mqttConnected();
+
+                    getValuesFromToken();
+                    subscribeConnectionAcknowledge();
+                    publishWillMessage();
                 }
 
                 @Override
@@ -114,6 +126,59 @@ public class TreeleafMqttClient {
             GlobalUtils.showLog(TAG, "Error while connecting mqtt client " + e);
             return false;
         }
+    }
+
+    private static void getValuesFromToken() {
+        String token = Hawk.get(Constants.TOKEN);
+        GlobalUtils.showLog(TAG, "token: " + token);
+        String[] separateToken = token.split("\\.");
+        String firstPart = separateToken[0];
+        byte[] resultByte = Base64.decode(firstPart, Base64.DEFAULT);
+        try {
+            String resultText = new String(resultByte, "UTF-8");
+            GlobalUtils.showLog(TAG, "result: " + resultText);
+
+            separateResult = resultText.split("\\.");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void subscribeConnectionAcknowledge() {
+        String ackTopic = "anydone/mqtt/ack/" + separateResult[0];
+        try {
+            GlobalUtils.showLog(TAG, "ack Topick Check:  " + ackTopic);
+            subscribe(ackTopic, new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    GlobalUtils.showLog(TAG, "subscribe ack success");
+                    GlobalUtils.showLog(TAG, "message: " + message);
+
+                    AuthRpcProto.AuthBaseResponse relayResponse = AuthRpcProto.AuthBaseResponse
+                            .parseFrom(message.getPayload());
+
+                    GlobalUtils.showLog(TAG, "ack check: " + relayResponse);
+                }
+            });
+        } catch (MqttException e) {
+            GlobalUtils.showLog(TAG, "exception on ack subscribe: " + e.toString());
+            e.printStackTrace();
+        }
+    }
+
+    private static void publishWillMessage() {
+        AuthProto.ConnectRequest connectRequest = AuthProto.ConnectRequest.newBuilder()
+                .setAccountId(separateResult[0])
+                .setSessionId(separateResult[1])
+                .build();
+
+        publish(connectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "connect success");
+            }
+        });
+
     }
 
     public static MqttAndroidClient getMqttClient() {
