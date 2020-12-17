@@ -330,30 +330,101 @@ Limit selectable Date range
 
     public static String getFormattedDuration(int duration) {
         if (duration != 0) {
-            String hours = String.valueOf(TimeUnit.MILLISECONDS
+            long hours = (TimeUnit.MILLISECONDS
                     .toHours(duration));
 
-            String minutes = String.valueOf(TimeUnit.MILLISECONDS
+            long minutes = (TimeUnit.MILLISECONDS
                     .toMinutes(duration));
 
-            if (minutes.length() > 2) minutes = minutes.substring(0, 2);
-
-            String seconds = String.valueOf(TimeUnit.MILLISECONDS
+            long seconds = (TimeUnit.MILLISECONDS
                     .toSeconds(duration));
 
-            if (seconds.length() > 2) seconds = seconds.substring(0, 2);
-
-            if (!hours.equals("0")) {
-                return hours + ":"
-                        + minutes
-                        + ":" + seconds;
-            } else {
-                return minutes
-                        + ":" + seconds;
+            StringBuilder durationBuilder = new StringBuilder();
+            if (hours != 0) {
+                if (hours > 1) {
+                    durationBuilder.append(hours);
+                    durationBuilder.append(" hrs ");
+                } else {
+                    durationBuilder.append(hours);
+                    durationBuilder.append(" hr ");
+                }
             }
+
+            if (minutes != 0) {
+                if (minutes > 1) {
+                    durationBuilder.append(minutes);
+                    durationBuilder.append(" mins ");
+                } else {
+                    durationBuilder.append(minutes);
+                    durationBuilder.append(" min ");
+                }
+            }
+
+            if (seconds != 0) {
+                if (seconds > 1 && seconds < 60) {
+                    durationBuilder.append(seconds);
+                    durationBuilder.append(" secs");
+                } else if (seconds > 60) {
+                    int mod = (int) seconds / 60;
+                    int converted = mod * 60;
+                    int remainder = (int) seconds - converted;
+                    GlobalUtils.showLog(TAG, "seconds che" + seconds);
+                    GlobalUtils.showLog(TAG, "mod" + mod);
+                    GlobalUtils.showLog(TAG, "converted" + converted);
+                    GlobalUtils.showLog(TAG, "remainder" + remainder);
+                    durationBuilder.append(remainder);
+                    durationBuilder.append(" secs");
+                } else {
+                    durationBuilder.append(seconds);
+                    durationBuilder.append(" sec");
+                }
+            }
+
+            return durationBuilder.toString();
         } else {
-            return "0:00";
+            return "missed";
         }
+    }
+
+    public static String getCallDuration(int duration) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(duration);
+        int hours = cal.get(Calendar.HOUR_OF_DAY);
+        int minutes = cal.get(Calendar.MINUTE);
+        int seconds = cal.get(Calendar.SECOND);
+
+        StringBuilder durationBuilder = new StringBuilder();
+        if (hours != 0) {
+            if (hours > 1) {
+                durationBuilder.append(hours);
+                durationBuilder.append("hours");
+            } else {
+                durationBuilder.append(hours);
+                durationBuilder.append("hour");
+            }
+        }
+
+        if (minutes != 0) {
+            if (minutes > 1) {
+                durationBuilder.append(minutes);
+                durationBuilder.append("minutes");
+            } else {
+                durationBuilder.append(minutes);
+                durationBuilder.append("minute");
+            }
+        }
+
+        if (seconds != 0) {
+            if (seconds > 1) {
+                durationBuilder.append(seconds);
+                durationBuilder.append("seconds");
+            } else {
+                durationBuilder.append(seconds);
+                durationBuilder.append("second");
+            }
+        }
+
+        return durationBuilder.toString();
     }
 
 

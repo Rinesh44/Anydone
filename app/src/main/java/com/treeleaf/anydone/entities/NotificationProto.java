@@ -5914,6 +5914,16 @@ public final class NotificationProto {
      * <code>optional int64 timestamp = 6;</code>
      */
     long getTimestamp();
+
+    /**
+     * <code>optional string payload = 7;</code>
+     */
+    String getPayload();
+    /**
+     * <code>optional string payload = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getPayloadBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Notification}
@@ -5928,6 +5938,7 @@ public final class NotificationProto {
       title_ = "";
       body_ = "";
       senderId_ = "";
+      payload_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.Notification.NotificationType}
@@ -5962,6 +5973,10 @@ public final class NotificationProto {
        * <code>TICKET_PARSER_TRAIN_COMPLETED = 6;</code>
        */
       TICKET_PARSER_TRAIN_COMPLETED(6),
+      /**
+       * <code>TICKET_COMMENTED = 7;</code>
+       */
+      TICKET_COMMENTED(7),
       UNRECOGNIZED(-1),
       ;
 
@@ -5993,6 +6008,10 @@ public final class NotificationProto {
        * <code>TICKET_PARSER_TRAIN_COMPLETED = 6;</code>
        */
       public static final int TICKET_PARSER_TRAIN_COMPLETED_VALUE = 6;
+      /**
+       * <code>TICKET_COMMENTED = 7;</code>
+       */
+      public static final int TICKET_COMMENTED_VALUE = 7;
 
 
       public final int getNumber() {
@@ -6016,6 +6035,7 @@ public final class NotificationProto {
           case 4: return TICKET_DELETED_TYPE;
           case 5: return TICKET_STATUS_UPDATED_TYPE;
           case 6: return TICKET_PARSER_TRAIN_COMPLETED;
+          case 7: return TICKET_COMMENTED;
           default: return null;
         }
       }
@@ -6287,6 +6307,52 @@ public final class NotificationProto {
       timestamp_ = 0L;
     }
 
+    public static final int PAYLOAD_FIELD_NUMBER = 7;
+    private String payload_;
+    /**
+     * <code>optional string payload = 7;</code>
+     */
+    public String getPayload() {
+      return payload_;
+    }
+    /**
+     * <code>optional string payload = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPayloadBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(payload_);
+    }
+    /**
+     * <code>optional string payload = 7;</code>
+     */
+    private void setPayload(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      payload_ = value;
+    }
+    /**
+     * <code>optional string payload = 7;</code>
+     */
+    private void clearPayload() {
+      
+      payload_ = getDefaultInstance().getPayload();
+    }
+    /**
+     * <code>optional string payload = 7;</code>
+     */
+    private void setPayloadBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      payload_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (type_ != NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
@@ -6306,6 +6372,9 @@ public final class NotificationProto {
       }
       if (timestamp_ != 0L) {
         output.writeInt64(6, timestamp_);
+      }
+      if (!payload_.isEmpty()) {
+        output.writeString(7, getPayload());
       }
     }
 
@@ -6337,6 +6406,10 @@ public final class NotificationProto {
       if (timestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(6, timestamp_);
+      }
+      if (!payload_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getPayload());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6644,6 +6717,46 @@ public final class NotificationProto {
         return this;
       }
 
+      /**
+       * <code>optional string payload = 7;</code>
+       */
+      public String getPayload() {
+        return instance.getPayload();
+      }
+      /**
+       * <code>optional string payload = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPayloadBytes() {
+        return instance.getPayloadBytes();
+      }
+      /**
+       * <code>optional string payload = 7;</code>
+       */
+      public Builder setPayload(
+          String value) {
+        copyOnWrite();
+        instance.setPayload(value);
+        return this;
+      }
+      /**
+       * <code>optional string payload = 7;</code>
+       */
+      public Builder clearPayload() {
+        copyOnWrite();
+        instance.clearPayload();
+        return this;
+      }
+      /**
+       * <code>optional string payload = 7;</code>
+       */
+      public Builder setPayloadBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPayloadBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Notification)
     }
     protected final Object dynamicMethod(
@@ -6676,6 +6789,8 @@ public final class NotificationProto {
               !other.senderId_.isEmpty(), other.senderId_);
           timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
               other.timestamp_ != 0L, other.timestamp_);
+          payload_ = visitor.visitString(!payload_.isEmpty(), payload_,
+              !other.payload_.isEmpty(), other.payload_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
@@ -6733,6 +6848,12 @@ public final class NotificationProto {
                 case 48: {
 
                   timestamp_ = input.readInt64();
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  payload_ = s;
                   break;
                 }
               }

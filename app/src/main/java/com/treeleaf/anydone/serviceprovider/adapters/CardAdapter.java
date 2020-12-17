@@ -118,6 +118,26 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
                         .getDrawable(R.drawable.ic_mastercard_icon));
                 break;
 
+            case "AMERICAN EXPRESS":
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_american_icon));
+                break;
+
+            case "DINERS CLUB":
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_diners_icon));
+                break;
+
+            case "DISCOVER":
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_discover_icon));
+                break;
+
+            case "JCB":
+                cardImage.setImageDrawable(mContext.getResources()
+                        .getDrawable(R.drawable.ic_jcb_icon));
+                break;
+
             default:
                 cardImage.setImageDrawable(mContext.getResources()
                         .getDrawable(R.drawable.ic_visacard_icon));

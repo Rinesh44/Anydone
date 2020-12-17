@@ -311,9 +311,9 @@ public class AccountRepo extends Repo {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
-        } finally {
+        } /*finally {
             close(realm);
-        }
+        }*/
     }
 }
 

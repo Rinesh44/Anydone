@@ -4177,6 +4177,15 @@ public final class TicketServiceRpcProto {
      * <code>optional int64 count = 29;</code>
      */
     long getCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    boolean hasAutofillSuggestionRes();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes getAutofillSuggestionRes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -5803,6 +5812,58 @@ public final class TicketServiceRpcProto {
       count_ = 0L;
     }
 
+    public static final int AUTOFILLSUGGESTIONRES_FIELD_NUMBER = 30;
+    private com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes autofillSuggestionRes_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    public boolean hasAutofillSuggestionRes() {
+      return autofillSuggestionRes_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes getAutofillSuggestionRes() {
+      return autofillSuggestionRes_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes.getDefaultInstance() : autofillSuggestionRes_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    private void setAutofillSuggestionRes(com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      autofillSuggestionRes_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    private void setAutofillSuggestionRes(
+        com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes.Builder builderForValue) {
+      autofillSuggestionRes_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    private void mergeAutofillSuggestionRes(com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes value) {
+      if (autofillSuggestionRes_ != null &&
+          autofillSuggestionRes_ != com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes.getDefaultInstance()) {
+        autofillSuggestionRes_ =
+          com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes.newBuilder(autofillSuggestionRes_).mergeFrom(value).buildPartial();
+      } else {
+        autofillSuggestionRes_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+     */
+    private void clearAutofillSuggestionRes() {  autofillSuggestionRes_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -5882,6 +5943,9 @@ public final class TicketServiceRpcProto {
       }
       if (count_ != 0L) {
         output.writeInt64(29, count_);
+      }
+      if (autofillSuggestionRes_ != null) {
+        output.writeMessage(30, getAutofillSuggestionRes());
       }
     }
 
@@ -5993,6 +6057,10 @@ public final class TicketServiceRpcProto {
       if (count_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(29, count_);
+      }
+      if (autofillSuggestionRes_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(30, getAutofillSuggestionRes());
       }
       memoizedSerializedSize = size;
       return size;
@@ -7448,6 +7516,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+       */
+      public boolean hasAutofillSuggestionRes() {
+        return instance.hasAutofillSuggestionRes();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes getAutofillSuggestionRes() {
+        return instance.getAutofillSuggestionRes();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+       */
+      public Builder setAutofillSuggestionRes(com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes value) {
+        copyOnWrite();
+        instance.setAutofillSuggestionRes(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+       */
+      public Builder setAutofillSuggestionRes(
+          com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAutofillSuggestionRes(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+       */
+      public Builder mergeAutofillSuggestionRes(com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes value) {
+        copyOnWrite();
+        instance.mergeAutofillSuggestionRes(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
+       */
+      public Builder clearAutofillSuggestionRes() {  copyOnWrite();
+        instance.clearAutofillSuggestionRes();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -7507,6 +7620,7 @@ public final class TicketServiceRpcProto {
           ticketSuggestion_ = visitor.visitMessage(ticketSuggestion_, other.ticketSuggestion_);
           count_ = visitor.visitLong(count_ != 0L, count_,
               other.count_ != 0L, other.count_);
+          autofillSuggestionRes_ = visitor.visitMessage(autofillSuggestionRes_, other.autofillSuggestionRes_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -7784,6 +7898,19 @@ public final class TicketServiceRpcProto {
                 case 232: {
 
                   count_ = input.readInt64();
+                  break;
+                }
+                case 242: {
+                  com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes.Builder subBuilder = null;
+                  if (autofillSuggestionRes_ != null) {
+                    subBuilder = autofillSuggestionRes_.toBuilder();
+                  }
+                  autofillSuggestionRes_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(autofillSuggestionRes_);
+                    autofillSuggestionRes_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

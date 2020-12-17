@@ -55,8 +55,8 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
         if (employee.getEmployeeImageUrl() != null) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(mContext).load(employee.getEmployeeImageUrl())
                     .apply(options).into(holder.civEmployee);

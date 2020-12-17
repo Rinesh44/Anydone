@@ -144,8 +144,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(mContext).load(customerPic).apply(options).into(holder.civCustomer);
         }
