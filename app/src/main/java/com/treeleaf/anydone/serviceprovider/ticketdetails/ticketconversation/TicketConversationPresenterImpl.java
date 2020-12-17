@@ -698,7 +698,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         .parseFrom(message.getPayload());
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
-                GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + relayResponse.getOwnerAccountId());
+                GlobalUtils.showLog(MQTT_LOG, " " + relayResponse.getResponseType());
 
                 if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
                     if (true) {//TODO: fix this later
@@ -747,6 +747,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .VIDEO_CALL_BROADCAST_RESPONSE)) {
                             SignalingProto.BroadcastVideoCall broadcastVideoCall =
                                     relayResponse.getBroadcastVideoCall();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + broadcastVideoCall.getSenderAccountId());
                             if (broadcastVideoCall != null) {
                                 if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
                                     getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
@@ -759,6 +760,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
                             SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
                             if (cancelDrawing != null) {
+                                GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + cancelDrawing.getSenderAccount().getAccountId());
                                 if (cancelDrawing.getSenderAccount().getAccountId().
                                         equals(userAccountId)) {
                                     getView().onImageDrawDiscardLocal();
@@ -781,6 +783,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .VIDEO_CALL_JOIN_RESPONSE)) {
                             SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
                                     relayResponse.getVideoCallJoinResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoCallJoinResponse.getSenderAccount().getAccountId());
                             if (videoCallJoinResponse != null) {
                                 if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
                                     getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
@@ -794,6 +797,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
                             SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
                                     .getVideoRoomHostLeftResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoRoomHostLeft.getSenderAccount().getAccountId());
                             if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
                                 getView().onHostHangUp(videoRoomHostLeft);
                             }
@@ -802,6 +806,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(DRAW_START_RESPONSE)) {
                             SignalingProto.DrawStart drawStartResponse = relayResponse
                                     .getDrawStartResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " +
+                                    drawStartResponse.getSenderAccount().getAccountId() + " " + drawStartResponse.getX() + ", " +
+                                    drawStartResponse.getY() + ", brushwidth: " + drawStartResponse.getDrawMetaData().getBrushWidth()
+                                    + ", brushopacity " + drawStartResponse.getDrawMetaData().getBrushOpacity()
+                                    + ", brushcolor: " + drawStartResponse.getDrawMetaData().getBrushColor()
+                                    + ", textcolor: " + drawStartResponse.getDrawMetaData().getTextColor()
+                            );
                             if (drawStartResponse != null &&
                                     !drawStartResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
@@ -820,6 +831,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .DRAW_TOUCH_MOVE_RESPONSE)) {
                             SignalingProto.DrawTouchMove drawTouchMove = relayResponse
                                     .getDrawTouchMoveResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " +
+                                    drawTouchMove.getSenderAccount().getAccountId() + " " + drawTouchMove.getX() + ", " +
+                                    drawTouchMove.getY());
                             if (drawTouchMove != null &&
                                     !drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
@@ -834,6 +848,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .DRAW_END_RESPONSE)) {
                             SignalingProto.DrawEnd drawEndResponse = relayResponse
                                     .getDrawEndResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + drawEndResponse.getSenderAccount().getAccountId());
                             if (drawEndResponse != null &&
                                     !drawEndResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawTouchUp(drawEndResponse.getSenderAccount().getAccountId(), drawEndResponse.getImageId());
@@ -844,6 +859,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .RECEIVE_NEW_TEXT_FIELD_RESPONSE)) {
                             SignalingProto.ReceiveNewTextField receiveNewTextField = relayResponse
                                     .getReceiveNewTextFieldResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + receiveNewTextField.getSenderAccount().getAccountId());
                             if (receiveNewTextField != null &&
                                     !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
@@ -856,6 +872,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .TEXT_FIELD_CHANGE_RESPONSE)) {
                             SignalingProto.TextFieldChange textFieldChange = relayResponse
                                     .getTextFieldChangeResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + textFieldChange.getSenderAccount().getAccountId());
                             if (textFieldChange != null &&
                                     !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
@@ -868,6 +885,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .TEXT_FIELD_REMOVE_RESPONSE)) {
                             SignalingProto.TextFieldRemove textFieldRemove = relayResponse
                                     .getTextFieldRemoveResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + textFieldRemove.getSenderAccount().getAccountId());
                             if (textFieldRemove != null &&
                                     !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId(),
@@ -897,6 +915,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .DRAW_CANVAS_CLEAR_RESPONSE)) {
                             SignalingProto.DrawCanvasClear drawCanvasClear = relayResponse
                                     .getDrawCanvasClearResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + drawCanvasClear.getSenderAccount().getAccountId());
                             if (drawCanvasClear != null &&
                                     !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId(),
@@ -907,6 +926,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(DRAW_COLLAB_RESPONSE)) {
                             SignalingProto.DrawCollab drawCollabResponse = relayResponse.getDrawCollabResponse();
                             String accountId = drawCollabResponse.getSenderAccount().getAccountId();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
                             if (drawCollabResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
@@ -924,6 +944,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(DRAW_MAXIMIZE_RESPONSE)) {
                             SignalingProto.DrawMaximize drawMaximizeResponse = relayResponse.getDrawMaximizeResponse();
                             String accountId = drawMaximizeResponse.getSenderAccount().getAccountId();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
                             if (drawMaximizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
@@ -937,6 +958,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(DRAW_MINIMIZE_RESPONSE)) {
                             SignalingProto.DrawMinize drawMinimizeResponse = relayResponse.getDrawMinimizeResponse();
                             String accountId = drawMinimizeResponse.getSenderAccount().getAccountId();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
                             if (drawMinimizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
@@ -950,6 +972,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(DRAW_CLOSE_RESPONSE)) {
                             SignalingProto.DrawClose drawClose = relayResponse.getDrawCloseResponse();
                             String accountId = drawClose.getSenderAccount().getAccountId();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
                             if (drawClose != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
