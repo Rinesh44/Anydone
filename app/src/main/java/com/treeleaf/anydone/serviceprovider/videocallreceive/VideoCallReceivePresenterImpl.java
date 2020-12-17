@@ -13,6 +13,7 @@ import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -25,6 +26,7 @@ import javax.inject.Inject;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 
 public class VideoCallReceivePresenterImpl extends
@@ -296,7 +298,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishCancelDrawEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, long cancellationTime, String rtcContext) {
+                                       long orderId, long cancellationTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -310,6 +312,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setCancellationTime(cancellationTime)
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -329,7 +332,8 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext) {
+                                          long orderId, Float x, Float y, CaptureDrawParam captureDrawParam,
+                                          long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -338,18 +342,34 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
-        SignalingProto.DrawTouchDown drawTouchDown = SignalingProto.DrawTouchDown.newBuilder()
+        SignalingProto.DrawMetaData drawMetaData = SignalingProto.DrawMetaData.newBuilder()
+                .setX(x)
+                .setY(y)
+                .setBrushWidth(captureDrawParam.getBrushWidth())
+                .setBrushOpacity((float) captureDrawParam.getBrushOpacity() / (float) 255)
+                .setBrushColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getBrushColor())))
+                .setTextColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getTextColor())))
+                .setEventTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(imageId)
+                .build();
+
+        SignalingProto.DrawStart drawStart = SignalingProto.DrawStart.newBuilder()
                 .setX(x)
                 .setY(y)
                 .setEventTime(capturedTime)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
+                .setDrawMetaData(drawMetaData)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_TOUCH_DOWN_REQUEST)
-                .setDrawTouchDownRequest(drawTouchDown)
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_START_REQUEST)
+                .setDrawStartRequest(drawStart)
                 .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
@@ -363,7 +383,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext) {
+                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -379,6 +399,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -397,7 +418,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
-                                        long orderId, long capturedTime, String rtcContext) {
+                                        long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -406,16 +427,18 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
-        SignalingProto.DrawTouchUp drawTouchUp = SignalingProto.DrawTouchUp.newBuilder()
+        SignalingProto.DrawEnd drawEnd = SignalingProto.DrawEnd.newBuilder()
                 .setEventTime(capturedTime)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_TOUCH_UP_REQUEST)
-                .setDrawTouchUpRequest(drawTouchUp)
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_END_REQUEST)
+//                .setDrawTouchUpRequest(drawTouchUp)
+                .setDrawEndRequest(drawEnd)
                 .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
@@ -430,7 +453,7 @@ public class VideoCallReceivePresenterImpl extends
     @Override
     public void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
                                            Float x, Float y, Float brushWidth, Float brushOpacity,
-                                           int brushColor, int textColor, long orderId, long capturedTime, String rtcContext) {
+                                           int brushColor, int textColor, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -450,6 +473,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -468,7 +492,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawCanvasClearEvent(String userAccountId, String accountName, String accountPicture,
-                                            long orderId, long capturedTime, String rtcContext) {
+                                            long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -482,6 +506,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -500,7 +525,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
-                                               Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext) {
+                                               Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -517,6 +542,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -535,7 +561,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishTextFieldChangeEventEvent(String userAccountId, String accountName, String accountPicture,
-                                                 String text, String textFieldId, long orderId, long capturedTime, String rtcContext) {
+                                                 String text, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -551,6 +577,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -569,7 +596,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
-                                                 String textFieldId, long orderId, long capturedTime, String rtcContext) {
+                                                 String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -584,6 +611,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -592,6 +620,119 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
                 .build();
 
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
+    public void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId,
+                                             String accountName, String accountPicture, long orderId,
+                                             ByteString capturedImage, long capturedTime, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(fromAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawCollab drawCollab = SignalingProto.DrawCollab.newBuilder()
+                .setEventTime(capturedTime)
+                .setSenderAccountId(fromAccountId)
+                .setCapturedImage(capturedImage)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setFromAccountId(fromAccountId)
+                .setToAccountId(toAccountId)
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_COLLAB_REQUEST)
+                .setDrawCollabReq(drawCollab)
+                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .build();
+
+        GlobalUtils.showLog(MQTT_LOG, "publish invite to collab");
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
+    public void publishDrawMaximize(String userAccountId, String pictureId, String accountName, String accountPicture,
+                                    long orderId, long eventTime, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawMaximize drawMaximize = SignalingProto.DrawMaximize.newBuilder()
+                .setEventTime(eventTime)
+                .setSenderAccountId(userAccountId)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MAXIMIZE_REQUEST)
+                .setDrawMaximizeReq(drawMaximize)
+                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ?
+                        AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT :
+                        AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .build();
+
+        GlobalUtils.showLog(MQTT_LOG, "publish draw maximize");
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
+    public void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
+                                    long orderId, long eventTime, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawMinize drawMinize = SignalingProto.DrawMinize.newBuilder()
+                .setEventTime(eventTime)
+                .setSenderAccountId(userAccountId)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MINIMIZE_REQUEST)
+                .setDrawMinimizeRequest(drawMinize)
+                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ?
+                        AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT :
+                        AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .build();
+
+        GlobalUtils.showLog(MQTT_LOG, "publish draw minimize");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {

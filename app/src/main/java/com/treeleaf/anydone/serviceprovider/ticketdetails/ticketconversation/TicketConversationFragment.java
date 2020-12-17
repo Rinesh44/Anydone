@@ -1048,8 +1048,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onImageDrawDiscardRemote(String accountId) {
-        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardRemote(accountId);
+    public void onImageDrawDiscardRemote(String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardRemote(accountId, imageId);
     }
 
     @Override
@@ -1697,43 +1697,63 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId);
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId, imageId);
     }
 
     @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId);
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId, imageId);
     }
 
     @Override
-    public void onDrawTouchUp(String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawTouchUp(accountId);
+    public void onDrawTouchUp(String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawTouchUp(accountId, imageId);
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId);
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId);
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id, String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId);
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId, imageId);
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId);
+    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
     }
 
     @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId);
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId, imageId);
     }
 
     @Override
-    public void onDrawCanvasCleared(String accountId) {
-        ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId);
+    public void onDrawCanvasCleared(String accountId, String imageId) {
+        ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId, imageId);
+    }
+
+    @Override
+    public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
+        ((TicketDetailsActivity) getActivity()).onDrawCollabInvite(drawCollabResponse);
+    }
+
+    @Override
+    public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
+        ((TicketDetailsActivity) getActivity()).onDrawMaximize(drawMaximize);
+    }
+
+    @Override
+    public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
+        ((TicketDetailsActivity) getActivity()).onDrawMinimize(drawMinize);
+    }
+
+    @Override
+    public void onDrawClose(SignalingProto.DrawClose drawClose) {
+        ((TicketDetailsActivity) getActivity()).onDrawClose(drawClose);
     }
 
     private void openAppSettings() {

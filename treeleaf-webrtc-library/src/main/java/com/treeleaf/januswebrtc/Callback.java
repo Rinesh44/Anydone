@@ -96,7 +96,7 @@ public class Callback {
 
     public interface DrawCallBack {
 
-        void onStartDraw(float x, float y);
+        void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId);
 
         void onNewImageFrameCaptured(Bitmap bitmap);
 
@@ -104,21 +104,27 @@ public class Callback {
 
         void onHoldDraw(String s);
 
-        void onDiscardDraw();
+        void onDiscardDraw(String imageId);
 
-        void onDrawParamChanged(CaptureDrawParam captureDrawParam);
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String imageId);
 
-        void onClientTouchMove(CaptureDrawParam captureDrawParam);
+        void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId);
 
-        void onClientTouchUp();
+        void onClientTouchUp(String imageId);
 
-        void onDrawCanvasCleared();
+        void onDrawCanvasCleared(String imageId);
 
-        void onReceiveNewTextField(float x, float y, String editTextFieldId);
+        void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId);
 
-        void onReceiveNewTextChange(String text, String id);
+        void onReceiveNewTextChange(String text, String id, String imageId);
 
-        void onReceiveEdiTextRemove(String editTextId);
+        void onReceiveEdiTextRemove(String editTextId, String imageId);
+
+        void onCollabInvite(Joinee joinee, String pictureId, Bitmap bitmap);
+
+        void onMaximizeDrawing(String pictureId);
+
+        void onMinimizeDrawing(String pictureId);
 
     }
 
@@ -144,51 +150,59 @@ public class Callback {
 
         void onDrawDisplayCapturedImage(String accountId);
 
-        void onDrawDiscard(String accountId);
+        void onDrawDiscard(String accountId, String imageId);
 
         void onDrawHideProgress();
 
         void onDrawShowProgress(String message);
 
-        void onDrawTouchDown(String accountId);
+        void onDrawTouchDown(String accountId, String imageId);
 
-        void onDrawTouchMove(String accountId);
+        void onDrawTouchMove(String accountId, String imageId);
 
-        void onDrawTouchUp(String accountId);
+        void onDrawTouchUp(String accountId, String imageId);
 
-        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId);
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId);
 
-        void onDrawReceiveNewTextChange(String text, String id, String accountId);
+        void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId);
 
-        void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
+        void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId);
 
-        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId);
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
-        void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId);
+        void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId, String imageId);
 
-        void onDrawCanvasCleared(String accountId);
+        void onDrawCanvasCleared(String accountId, String imageId);
 
         void onDrawRemoteDeviceConfigReceived(int width, int height, long timeStamp, String accountId);
+
+        void onDrawCollabInvite(String fromAccountId, String toAccountId, String imageId, byte[] convertedBytes);
+
+        void onDrawMaximize(String fromAccountId, String imageId);
+
+        void onDrawMinimize(String fromAccountId, String imageId);
+
+        void onDrawClose(String fromAccountId, String imageId);
 
     }
 
     public interface OnDrawEventListener {
 
-        void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId);
+        void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
-        void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId);
+        void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
-        void onDrawTouchUp(String accountId);
+        void onDrawTouchUp(String accountId, String imageId);
 
-        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId);
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId);
 
-        void onDrawReceiveNewTextChange(String text, String id, String accountId);
+        void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId);
 
-        void onDrawReceiveEdiTextRemove(String editTextId, String accountId);
+        void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId);
 
-        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId);
+        void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
-        void onDrawCanvasCleared(String accountId);
+        void onDrawCanvasCleared(String accountId, String imageId);
 
     }
 

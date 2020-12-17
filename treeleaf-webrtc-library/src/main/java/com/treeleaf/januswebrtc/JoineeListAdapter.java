@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.Picture;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +24,9 @@ import java.util.List;
 
 public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.ViewHolder> {
 
+    public static final String JOINEE_DRAW_STAT = "JOINEE_DRAW_STAT";
+    public static final String LOCAL_STATE = "LOCAL_STATE";
+    public static final String REMOTE_STATE = "REMOTE_STATE";
     private List<Joinee> joinees;
     private Context mContext;
     public static final Integer MAX_IN_A_ROW = 6;
@@ -32,6 +37,13 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     private OnItemClickListener onItemClickListener;
     private ModeListener mModeListener;
     private boolean isJoineeSoloDrawing = false;
+    private String joineeStateUpdateMode = REMOTE_STATE;
+    private HashMap<String, Integer> mapJoineePosition = new HashMap<>();
+
+    /**
+     * later add map for joinee id and position that only particular joinee position can be updated
+     * instead of updating entire list
+     */
 
     public JoineeListAdapter(Context context) {
         this.mContext = context;
@@ -57,15 +69,28 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         this.joineeListToggleUpdate = joineeListToggleUpdate;
     }
 
+    public ArrayList<Joinee> fetchAllJoinee() {
+        return new ArrayList<>(mapTotalJoinees.values());
+    }
+
     public void addNewJoinee(Joinee joinee, Boolean showFullList) {
         mapTotalJoinees.put(joinee.getAccountId(), joinee);
         if (showFullList) {
             joinees.clear();
+            mapJoineePosition.clear();
             joinees.addAll(mapTotalJoinees.values());
+            for (Joinee joinee1 : joinees) {
+                mapJoineePosition.put(joinee1.getAccountId(), joinees.indexOf(joinee1));
+            }
+
         } else {
             if (!joineesCountExceededMax()) {
                 joinees.clear();
+                mapJoineePosition.clear();
                 joinees.addAll(mapTotalJoinees.values());
+                for (Joinee joinee1 : joinees) {
+                    mapJoineePosition.put(joinee1.getAccountId(), joinees.indexOf(joinee1));
+                }
             } else {
                 mapRemainingJoinees.put(joinee.getAccountId(), joinee);
             }
@@ -78,15 +103,23 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     private void fillJoinees(Boolean showFullList) {
         if (showFullList) {
             joinees.clear();
+            mapJoineePosition.clear();
             joinees.addAll(mapTotalJoinees.values());
+            for (Joinee joinee1 : joinees) {
+                mapJoineePosition.put(joinee1.getAccountId(), joinees.indexOf(joinee1));
+            }
         } else {
             Iterator<String> iterator = mapTotalJoinees.keySet().iterator();
             int i = 0;
             joinees.clear();
+            mapJoineePosition.clear();
             if (mapTotalJoinees.size() > 0) {
                 while (iterator.hasNext() && i < MAX_IN_A_ROW) {
                     joinees.add(mapTotalJoinees.get(iterator.next()));
                     i++;
+                }
+                for (Joinee joinee1 : joinees) {
+                    mapJoineePosition.put(joinee1.getAccountId(), joinees.indexOf(joinee1));
                 }
             }
         }
@@ -154,20 +187,81 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
             } else {
                 holder.tvCountAdditionalJoinees.setVisibility(View.GONE);
                 //TODO: for highlighting profile during draw
-                /*if (joinee.isDrawing()) {
-                    GradientDrawable drawable = (GradientDrawable) holder.flDrawHighlight.getBackground();
-                    drawable.setStroke(7, joinee.getDrawColor());
-                    holder.flDrawHighlight.setVisibility(View.VISIBLE);
+                if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW) && joinee.isDrawing()) {
+                    holder.ivCurrentDrawer.setVisibility(View.VISIBLE);
                 } else {
-                    holder.flDrawHighlight.setVisibility(View.GONE);
-                }*/
+                    holder.ivCurrentDrawer.setVisibility(View.GONE);
+                }
 
-                if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW)) {
+                /*if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW)) {
                     GradientDrawable drawable = (GradientDrawable) holder.flDrawHighlight.getBackground();
                     drawable.setStroke(6, joinee.getDrawColor());
                     holder.flDrawHighlight.setVisibility(View.VISIBLE);
                 } else {
                     holder.flDrawHighlight.setVisibility(View.GONE);
+                }*/
+
+                /**
+                 * - show colored border for profiles only in image draw mode
+                 * - only green when its own picture
+                 * - 
+                 */
+
+                if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW)) {
+                    if (joinee.isSelfAccount()) {
+                        GradientDrawable drawable = (GradientDrawable) holder.flDrawMode.getBackground();
+                        drawable.setStroke(2, mContext.getResources().getColor(R.color.color_green));
+                        holder.flDrawMode.setVisibility(View.VISIBLE);
+                    } else {
+                        if (joineeStateUpdateMode.equals(REMOTE_STATE)) {
+                            if (joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.CLOSED)) {
+                                //means joinee has not received image yet or closed the image
+                                GradientDrawable drawable = (GradientDrawable) holder.flDrawMode.getBackground();
+                                drawable.setStroke(2, mContext.getResources().getColor(R.color.color_red));
+                                holder.flDrawMode.setVisibility(View.VISIBLE);
+                            } else if (joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.MINIMIZED)) {
+                                //means joinee has minimized the image
+                                GradientDrawable drawable = (GradientDrawable) holder.flDrawMode.getBackground();
+                                drawable.setStroke(2, mContext.getResources().getColor(R.color.color_yellow));
+                                holder.flDrawMode.setVisibility(View.VISIBLE);
+                            } else if (joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.MAXIMIZED)) {
+                                //means joinee is on the same image
+                                GradientDrawable drawable = (GradientDrawable) holder.flDrawMode.getBackground();
+                                drawable.setStroke(2, mContext.getResources().getColor(R.color.color_green));
+                                holder.flDrawMode.setVisibility(View.VISIBLE);
+                            } else {
+                                holder.flDrawMode.setVisibility(View.GONE);
+                            }
+                        } else {
+                            if (joinee.getJoineeDrawStateLocal().equals(Joinee.JoineeDrawState.CLOSED)) {
+                                //means joinee has not received image yet or closed the image
+                                GradientDrawable drawable = (GradientDrawable) holder.flDrawMode.getBackground();
+                                drawable.setStroke(2, mContext.getResources().getColor(R.color.color_red));
+                                holder.flDrawMode.setVisibility(View.VISIBLE);
+                            } else if (joinee.getJoineeDrawStateLocal().equals(Joinee.JoineeDrawState.MINIMIZED)) {
+                                //means joinee has minimized the image
+                                GradientDrawable drawable = (GradientDrawable) holder.flDrawMode.getBackground();
+                                drawable.setStroke(2, mContext.getResources().getColor(R.color.color_yellow));
+                                holder.flDrawMode.setVisibility(View.VISIBLE);
+                            } else if (joinee.getJoineeDrawStateLocal().equals(Joinee.JoineeDrawState.MAXIMIZED)) {
+                                //means joinee is on the same image
+                                GradientDrawable drawable = (GradientDrawable) holder.flDrawMode.getBackground();
+                                drawable.setStroke(2, mContext.getResources().getColor(R.color.color_green));
+                                holder.flDrawMode.setVisibility(View.VISIBLE);
+                            } else {
+                                holder.flDrawMode.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+                } else {
+                    holder.flDrawMode.setVisibility(View.GONE);
+                }
+
+                if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW)) {
+                    holder.viewCurrentColor.setBackgroundColor(joinee.getDrawColor());
+                    holder.viewCurrentColor.setVisibility(View.VISIBLE);
+                } else {
+                    holder.viewCurrentColor.setVisibility(View.GONE);
                 }
 
 
@@ -213,8 +307,102 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         if (currentDrawer != null) {
             currentDrawer.setDrawing(isCurrentDrawing);
             currentDrawer.setDrawColor(drawColor);
-            notifyDataSetChanged();
+            notifyItemChanged(mapJoineePosition.get(accountId));
         }
+    }
+
+    /*public void updateJoineeDrawStat(String accountId, Joinee.JoineeDrawState drawState,
+                                     String imageId, boolean notifyAdapter) {
+        Joinee joinee = mapTotalJoinees.get(accountId);
+        if (joinee != null) {
+            joinee.setJoineeDrawStateRemote(drawState);
+            joinee.setJoineeDrawStateLocal(drawState);
+            joinee.setCurrentImageId(imageId);
+            if (notifyAdapter) {
+                setJoineeStatusUpdateMode(REMOTE_STATE);
+                notifyItemChanged(mapJoineePosition.get(accountId));
+            }
+        }
+    }*/
+
+    public void updateJoineeDrawStat(String accountId, Joinee.JoineeDrawState drawState,
+                                     String imageId, boolean notifyAdapter) {
+        Joinee joinee = mapTotalJoinees.get(accountId);
+        //if maximize status comes, make this one maximize and other all minimize
+        if (joinee != null && joinee.getMapImageDrawState() != null) {
+            joinee.getMapImageDrawState().put(imageId, drawState);
+            joinee.setJoineeDrawStateLocal(drawState);
+            joinee.setJoineeDrawStateRemote(drawState);
+            if (notifyAdapter) {
+                setJoineeStatusUpdateMode(REMOTE_STATE);
+                notifyItemChanged(mapJoineePosition.get(accountId));
+            }
+            if (drawState.equals(Joinee.JoineeDrawState.MAXIMIZED)) {
+                /**
+                 * if state is maximized set state of all other images
+                 * other than this to minimized
+                 */
+                for (String imgId : joinee.getMapImageDrawState().keySet()) {
+                    if (!imgId.equals(imageId) &&
+                            !joinee.getMapImageDrawState().get(imgId).equals(Joinee.JoineeDrawState.CLOSED)) {
+                        joinee.getMapImageDrawState().put(imgId, Joinee.JoineeDrawState.MINIMIZED);
+                        joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MINIMIZED);
+                        joinee.setJoineeDrawStateRemote(Joinee.JoineeDrawState.MINIMIZED);
+                    }
+                }
+            }
+        }
+
+    }
+
+    public void checkIfAllJoineesOnSamePicture(Picture picture) {
+        for (Joinee joinee : new ArrayList<>(mapTotalJoinees.values())) {
+            if (!joinee.isSelfAccount()) {
+                if (joinee.getMapImageDrawState().get(picture.getPictureId()) == null) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.CLOSED);
+                } else if (joinee.getMapImageDrawState().get(picture.getPictureId())
+                        .equals(Joinee.JoineeDrawState.MAXIMIZED)) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MAXIMIZED);
+                } else if (joinee.getMapImageDrawState().get(picture.getPictureId())
+                        .equals(Joinee.JoineeDrawState.MINIMIZED)) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MINIMIZED);
+                } else if (joinee.getMapImageDrawState().get(picture.getPictureId())
+                        .equals(Joinee.JoineeDrawState.CLOSED)) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.CLOSED);
+                } else {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MINIMIZED);
+                }
+            }
+        }
+        setJoineeStatusUpdateMode(LOCAL_STATE);
+        notifyDataSetChanged();
+    }
+
+    /*public void checkIfAllJoineesOnSamePicture(Picture picture) {
+        for (Joinee joinee : new ArrayList<>(mapTotalJoinees.values())) {
+            if (!joinee.isSelfAccount()) {
+                if (joinee.getCurrentImageId() == null) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.CLOSED);
+                } else if (joinee.getCurrentImageId().equals(picture.getPictureId()) &&
+                        joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.MAXIMIZED)) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MAXIMIZED);
+                } else if (joinee.getCurrentImageId().equals(picture.getPictureId()) &&
+                        joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.MINIMIZED)) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MINIMIZED);
+                } else if (joinee.getCurrentImageId().equals(picture.getPictureId()) &&
+                        joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.CLOSED)) {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.CLOSED);
+                } else {
+                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MINIMIZED);
+                }
+            }
+        }
+        setJoineeStatusUpdateMode(LOCAL_STATE);
+        notifyDataSetChanged();
+    }*/
+
+    public void setJoineeStatusUpdateMode(String mode) {
+        this.joineeStateUpdateMode = mode;
     }
 
     @Override
@@ -225,15 +413,18 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         public View itemView;
-        public ImageView ivJoinee;
+        public ImageView ivJoinee, ivCurrentDrawer;
         public TextView tvCountAdditionalJoinees;
-        public FrameLayout flDrawHighlight;
+        public FrameLayout flDrawMode;
+        public View viewCurrentColor;
 
         ViewHolder(final View itemView) {
             super(itemView);
             this.itemView = itemView;
             ivJoinee = itemView.findViewById(R.id.iv_joinee);
-            flDrawHighlight = itemView.findViewById(R.id.fl_draw_highlight);
+            ivCurrentDrawer = itemView.findViewById(R.id.iv_current_drawer);
+            flDrawMode = itemView.findViewById(R.id.fl_draw_mode);
+            viewCurrentColor = itemView.findViewById(R.id.view_current_color);
             tvCountAdditionalJoinees = itemView.findViewById(R.id.tv_count_additional_joinees);
         }
     }

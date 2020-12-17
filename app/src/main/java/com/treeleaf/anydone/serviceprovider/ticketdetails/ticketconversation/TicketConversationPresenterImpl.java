@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,14 +15,12 @@ import android.webkit.MimeTypeMap;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
-import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
-import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.entities.NLUProto;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -73,7 +72,6 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.RealmList;
-import jp.wasabeef.richeditor.RichEditor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -85,7 +83,13 @@ import retrofit2.converter.protobuf.ProtoConverterFactory;
 
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CANCEL_DRAWING_MESSAGE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_CLOSE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_COLLAB_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MAXIMIZE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_START_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
         implements TicketConversationContract.TicketConversationPresenter {
@@ -697,6 +701,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         .parseFrom(message.getPayload());
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
+                GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + relayResponse.getOwnerAccountId());
 
                 if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
                     if (true) {//TODO: fix this later
@@ -794,7 +799,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         equals(userAccountId)) {
                                     getView().onImageDrawDiscardLocal();
                                 } else
-                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId());
+                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId(),
+                                            cancelDrawing.getImageId());
                             }
                         }
 
@@ -829,16 +835,20 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             }
                         }
 
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_TOUCH_DOWN_RESPONSE)) {
-                            SignalingProto.DrawTouchDown drawTouchDown = relayResponse
-                                    .getDrawTouchDownResponse();
-                            if (drawTouchDown != null &&
-                                    !drawTouchDown.getSenderAccount().getAccountId().equals(userAccountId)) {
+                        if (relayResponse.getResponseType().equals(DRAW_START_RESPONSE)) {
+                            SignalingProto.DrawStart drawStartResponse = relayResponse
+                                    .getDrawStartResponse();
+                            if (drawStartResponse != null &&
+                                    !drawStartResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                                captureDrawParam.setXCoordinate(drawTouchDown.getX());
-                                captureDrawParam.setYCoordinate(drawTouchDown.getY());
-                                getView().onDrawTouchDown(captureDrawParam, drawTouchDown.getSenderAccount().getAccountId());
+                                captureDrawParam.setXCoordinate(drawStartResponse.getX());
+                                captureDrawParam.setYCoordinate(drawStartResponse.getY());
+                                captureDrawParam.setBrushWidth(drawStartResponse.getDrawMetaData().getBrushWidth());
+                                captureDrawParam.setBrushOpacity((int) (drawStartResponse.getDrawMetaData().getBrushOpacity() * 255));
+                                captureDrawParam.setBrushColor(Color.parseColor(drawStartResponse.getDrawMetaData().getBrushColor()));
+                                captureDrawParam.setTextColor(Color.parseColor(drawStartResponse.getDrawMetaData().getTextColor()));
+                                getView().onDrawTouchDown(captureDrawParam, drawStartResponse.getSenderAccount().getAccountId(),
+                                        drawStartResponse.getImageId());
                             }
                         }
 
@@ -851,17 +861,18 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                                 captureDrawParam.setXCoordinate(drawTouchMove.getX());
                                 captureDrawParam.setYCoordinate(drawTouchMove.getY());
-                                getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId());
+                                getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId(),
+                                        drawTouchMove.getImageId());
                             }
                         }
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_TOUCH_UP_RESPONSE)) {
-                            SignalingProto.DrawTouchUp drawTouchUp = relayResponse
-                                    .getDrawTouchUpResponse();
-                            if (drawTouchUp != null &&
-                                    !drawTouchUp.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawTouchUp(drawTouchUp.getSenderAccount().getAccountId());
+                                .DRAW_END_RESPONSE)) {
+                            SignalingProto.DrawEnd drawEndResponse = relayResponse
+                                    .getDrawEndResponse();
+                            if (drawEndResponse != null &&
+                                    !drawEndResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawTouchUp(drawEndResponse.getSenderAccount().getAccountId(), drawEndResponse.getImageId());
                             }
                         }
 
@@ -873,7 +884,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
                                         receiveNewTextField.getY(), receiveNewTextField.getTextId(),
-                                        receiveNewTextField.getSenderAccount().getAccountId());
+                                        receiveNewTextField.getSenderAccount().getAccountId(), receiveNewTextField.getImageId());
                             }
                         }
 
@@ -884,7 +895,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (textFieldChange != null &&
                                     !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
-                                        textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId());
+                                        textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId(),
+                                        textFieldChange.getImageId());
                             }
                         }
 
@@ -895,7 +907,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (textFieldRemove != null &&
                                     !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId(),
-                                        textFieldRemove.getSenderAccount().getAccountId());
+                                        textFieldRemove.getSenderAccount().getAccountId(), textFieldRemove.getImageId());
                             }
                         }
 
@@ -912,7 +924,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
                                 captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
                                 captureDrawParam.setTextColor(drawMetaDataChange.getTextColor());
-                                getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId());
+                                getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId(),
+                                        drawMetaDataChange.getImageId());
                             }
                         }
 
@@ -922,7 +935,64 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     .getDrawCanvasClearResponse();
                             if (drawCanvasClear != null &&
                                     !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId());
+                                getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId(),
+                                        drawCanvasClear.getImageId());
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(DRAW_COLLAB_RESPONSE)) {
+                            SignalingProto.DrawCollab drawCollabResponse = relayResponse.getDrawCollabResponse();
+                            String accountId = drawCollabResponse.getSenderAccount().getAccountId();
+                            if (drawCollabResponse != null) {
+                                if (userAccountId.equals(accountId)) {
+                                    //sent and received id is same
+                                } else {
+                                    //sent and received id is different
+                                    if (drawCollabResponse.getToAccountId().equals(userAccountId)) {
+                                        //handle collab response only if it is sent to me
+                                        getView().onDrawCollabInvite(drawCollabResponse);
+                                    }
+
+                                }
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(DRAW_MAXIMIZE_RESPONSE)) {
+                            SignalingProto.DrawMaximize drawMaximizeResponse = relayResponse.getDrawMaximizeResponse();
+                            String accountId = drawMaximizeResponse.getSenderAccount().getAccountId();
+                            if (drawMaximizeResponse != null) {
+                                if (userAccountId.equals(accountId)) {
+                                    //sent and received id is same
+                                } else {
+                                    //sent and received id is different
+                                    getView().onDrawMaximize(drawMaximizeResponse);
+                                }
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(DRAW_MINIMIZE_RESPONSE)) {
+                            SignalingProto.DrawMinize drawMinimizeResponse = relayResponse.getDrawMinimizeResponse();
+                            String accountId = drawMinimizeResponse.getSenderAccount().getAccountId();
+                            if (drawMinimizeResponse != null) {
+                                if (userAccountId.equals(accountId)) {
+                                    //sent and received id is same
+                                } else {
+                                    //sent and received id is different
+                                    getView().onDrawMinimize(drawMinimizeResponse);
+                                }
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(DRAW_CLOSE_RESPONSE)) {
+                            SignalingProto.DrawClose drawClose = relayResponse.getDrawCloseResponse();
+                            String accountId = drawClose.getSenderAccount().getAccountId();
+                            if (drawClose != null) {
+                                if (userAccountId.equals(accountId)) {
+                                    //sent and received id is same
+                                } else {
+                                    //sent and received id is different
+                                    getView().onDrawClose(drawClose);
+                                }
                             }
                         }
 

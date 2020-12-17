@@ -12,10 +12,13 @@ import androidx.transition.TransitionManager;
 import com.google.android.material.transition.MaterialArcMotion;
 import com.google.android.material.transition.MaterialContainerTransform;
 import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.DrawMetadata;
+import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.Picture;
 import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.Position;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import java.util.Random;
+
+import static com.treeleaf.januswebrtc.Const.PICTURE_COUNT_MAX;
 
 public class VideoCallUtil {
 
@@ -63,6 +66,31 @@ public class VideoCallUtil {
         return alpha;
     }
 
+    public static Picture updatePictureContents(Picture newPicture) {
+        Picture oldPicture = new Picture(newPicture.getPictureIndex());
+        oldPicture.setPictureIndex(newPicture.getPictureIndex());
+        oldPicture.setPictureId(newPicture.getPictureId());
+        oldPicture.setBitmap(newPicture.getBitmap());
+        oldPicture.setPictureOwnerId(newPicture.getPictureOwnerId());
+        oldPicture.setAccountId(newPicture.getPictureOwnerId());
+        oldPicture.setRequestedForCollab(newPicture.isRequestedForCollab());//
+        oldPicture.setNewArrival(newPicture.isNewArrival());
+        oldPicture.setOnScreen(newPicture.isOnScreen());
+        return oldPicture;
+    }
+
+    public static Picture updatePictureContents(Picture oldPicture, Picture newPicture) {
+        oldPicture.setPictureIndex(newPicture.getPictureIndex());
+        oldPicture.setPictureId(newPicture.getPictureId());
+        oldPicture.setBitmap(newPicture.getBitmap());
+        oldPicture.setPictureOwnerId(newPicture.getPictureOwnerId());
+        oldPicture.setAccountId(newPicture.getPictureOwnerId());
+        oldPicture.setRequestedForCollab(newPicture.isRequestedForCollab());//
+        oldPicture.setNewArrival(newPicture.isNewArrival());
+        oldPicture.setOnScreen(newPicture.isOnScreen());
+        return oldPicture;
+    }
+
 
     public static float[] adjustPixelResolution(int localWidth, int localHeight,
                                                 int remoteWidth, int remoteHeight,
@@ -80,6 +108,26 @@ public class VideoCallUtil {
     public static float adjustYPixelResolutionInLocalDevice(int localHeight, int remoteHeight, float y) {
         float y_ = ((float) localHeight / (float) remoteHeight) * y;
         return y_;
+    }
+
+    public static float normalizeXCoordinatePrePublish(float localX, int localWidth) {
+        float x = localX / (float) localWidth;
+        return x;
+    }
+
+    public static float normalizeYCoordinatePrePublish(float localY, int localHeight) {
+        float y = localY / (float) localHeight;
+        return y;
+    }
+
+    public static float normalizeXCoordinatePostPublish(float remoteX, int localWidth) {
+        float x = remoteX * (float) localWidth;
+        return x;
+    }
+
+    public static float normalizeYCoordinatePostPublish(float remoteY, int localHeight) {
+        float y = remoteY * (float) localHeight;
+        return y;
     }
 
     public static int[] getDeviceResolution(Context context) {
@@ -104,6 +152,20 @@ public class VideoCallUtil {
         endView.setVisibility(View.VISIBLE);
     }
 
+    public static void materialContainerTransformVisibilityNoHide(View startView, View endView, ViewGroup rootView) {
+        MaterialContainerTransform materialContainerTransform = new MaterialContainerTransform();
+        materialContainerTransform.setStartView(startView);
+        materialContainerTransform.setEndView(endView);
+        materialContainerTransform.addTarget(endView);
+        materialContainerTransform.setPathMotion(new MaterialArcMotion());
+        materialContainerTransform.setDuration(650);
+        materialContainerTransform.setScrimColor(Color.TRANSPARENT);
+
+        TransitionManager.beginDelayedTransition(rootView, materialContainerTransform);
+//        startView.setVisibility(View.GONE);
+        endView.setVisibility(View.VISIBLE);
+    }
+
     /**
      * This method converts dp unit to equivalent pixels, depending on device density.
      *
@@ -124,6 +186,10 @@ public class VideoCallUtil {
      */
     public static float convertPixelsToDp(float px, Context context) {
         return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
+
+    public static boolean isPictureCountExceed(int currentCount) {
+        return currentCount > PICTURE_COUNT_MAX;
     }
 
 }

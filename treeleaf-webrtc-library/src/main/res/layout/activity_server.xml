@@ -148,23 +148,19 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/img_maximize_draw"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        android:foreground="?selectableItemBackground"
-        android:padding="6dp"
-        android:src="@drawable/ic_img_expand"
-        android:visibility="gone" />
-
     <include
         android:id="@+id/view_video_call_start"
         layout="@layout/video_call_accept"
-        android:visibility="gone" />
+        android:visibility="visible" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_picture_stack"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_reconnecting"

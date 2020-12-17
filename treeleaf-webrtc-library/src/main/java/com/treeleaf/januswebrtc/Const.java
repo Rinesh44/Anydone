@@ -27,6 +27,9 @@ public class Const {
     public static final String CONSUMER_APP = "CONSUMER_APP";
     public static final String SERVICE_PROVIDER_APP = "SERVICE_PROVIDER_APP";
 
+    public static final Integer PICTURE_COUNT_MAX = 4;
+    public static final String PICTURE_EXCEED_MSG = "Image draw is limited to 5!!!";
+
     public static void setRoomNumber(BigInteger roomNumber) {
         ROOM_NUMBER = roomNumber;
     }

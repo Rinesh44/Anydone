@@ -15,7 +15,7 @@ public final class NLPProto {
     /**
      * <code>optional string text = 1;</code>
      */
-    String getText();
+    java.lang.String getText();
     /**
      * <code>optional string text = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class NLPProto {
     /**
      * <code>optional string timezone = 2;</code>
      */
-    String getTimezone();
+    java.lang.String getTimezone();
     /**
      * <code>optional string timezone = 2;</code>
      */
@@ -35,7 +35,7 @@ public final class NLPProto {
     /**
      * <code>optional string language = 3;</code>
      */
-    String getLanguage();
+    java.lang.String getLanguage();
     /**
      * <code>optional string language = 3;</code>
      */
@@ -45,7 +45,7 @@ public final class NLPProto {
     /**
      * <code>optional string requestId = 4;</code>
      */
-    String getRequestId();
+    java.lang.String getRequestId();
     /**
      * <code>optional string requestId = 4;</code>
      */
@@ -67,11 +67,11 @@ public final class NLPProto {
       requestId_ = "";
     }
     public static final int TEXT_FIELD_NUMBER = 1;
-    private String text_;
+    private java.lang.String text_;
     /**
      * <code>optional string text = 1;</code>
      */
-    public String getText() {
+    public java.lang.String getText() {
       return text_;
     }
     /**
@@ -85,7 +85,7 @@ public final class NLPProto {
      * <code>optional string text = 1;</code>
      */
     private void setText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -113,11 +113,11 @@ public final class NLPProto {
     }
 
     public static final int TIMEZONE_FIELD_NUMBER = 2;
-    private String timezone_;
+    private java.lang.String timezone_;
     /**
      * <code>optional string timezone = 2;</code>
      */
-    public String getTimezone() {
+    public java.lang.String getTimezone() {
       return timezone_;
     }
     /**
@@ -131,7 +131,7 @@ public final class NLPProto {
      * <code>optional string timezone = 2;</code>
      */
     private void setTimezone(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -159,11 +159,11 @@ public final class NLPProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 3;
-    private String language_;
+    private java.lang.String language_;
     /**
      * <code>optional string language = 3;</code>
      */
-    public String getLanguage() {
+    public java.lang.String getLanguage() {
       return language_;
     }
     /**
@@ -177,7 +177,7 @@ public final class NLPProto {
      * <code>optional string language = 3;</code>
      */
     private void setLanguage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -205,11 +205,11 @@ public final class NLPProto {
     }
 
     public static final int REQUESTID_FIELD_NUMBER = 4;
-    private String requestId_;
+    private java.lang.String requestId_;
     /**
      * <code>optional string requestId = 4;</code>
      */
-    public String getRequestId() {
+    public java.lang.String getRequestId() {
       return requestId_;
     }
     /**
@@ -223,7 +223,7 @@ public final class NLPProto {
      * <code>optional string requestId = 4;</code>
      */
     private void setRequestId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -291,60 +291,60 @@ public final class NLPProto {
       return size;
     }
 
-    public static NLPInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NLPInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NLPInput parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NLPInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NLPInput parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NLPInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NLPInput parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static NLPInput parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NLPInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NLPInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -355,7 +355,7 @@ public final class NLPProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(NLPInput prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLPProto.NLPInput prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -364,9 +364,9 @@ public final class NLPProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          NLPInput, Builder> implements
+          com.treeleaf.anydone.entities.NLPProto.NLPInput, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.NLPInput)
-        NLPInputOrBuilder {
+        com.treeleaf.anydone.entities.NLPProto.NLPInputOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLPProto.NLPInput.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -376,7 +376,7 @@ public final class NLPProto {
       /**
        * <code>optional string text = 1;</code>
        */
-      public String getText() {
+      public java.lang.String getText() {
         return instance.getText();
       }
       /**
@@ -390,7 +390,7 @@ public final class NLPProto {
        * <code>optional string text = 1;</code>
        */
       public Builder setText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -416,7 +416,7 @@ public final class NLPProto {
       /**
        * <code>optional string timezone = 2;</code>
        */
-      public String getTimezone() {
+      public java.lang.String getTimezone() {
         return instance.getTimezone();
       }
       /**
@@ -430,7 +430,7 @@ public final class NLPProto {
        * <code>optional string timezone = 2;</code>
        */
       public Builder setTimezone(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTimezone(value);
         return this;
@@ -456,7 +456,7 @@ public final class NLPProto {
       /**
        * <code>optional string language = 3;</code>
        */
-      public String getLanguage() {
+      public java.lang.String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -470,7 +470,7 @@ public final class NLPProto {
        * <code>optional string language = 3;</code>
        */
       public Builder setLanguage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -496,7 +496,7 @@ public final class NLPProto {
       /**
        * <code>optional string requestId = 4;</code>
        */
-      public String getRequestId() {
+      public java.lang.String getRequestId() {
         return instance.getRequestId();
       }
       /**
@@ -510,7 +510,7 @@ public final class NLPProto {
        * <code>optional string requestId = 4;</code>
        */
       public Builder setRequestId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRequestId(value);
         return this;
@@ -536,11 +536,11 @@ public final class NLPProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.NLPInput)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new NLPInput();
+          return new com.treeleaf.anydone.entities.NLPProto.NLPInput();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -553,7 +553,7 @@ public final class NLPProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          NLPInput other = (NLPInput) arg1;
+          com.treeleaf.anydone.entities.NLPProto.NLPInput other = (com.treeleaf.anydone.entities.NLPProto.NLPInput) arg1;
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           timezone_ = visitor.visitString(!timezone_.isEmpty(), timezone_,
@@ -562,7 +562,7 @@ public final class NLPProto {
               !other.language_.isEmpty(), other.language_);
           requestId_ = visitor.visitString(!requestId_.isEmpty(), requestId_,
               !other.requestId_.isEmpty(), other.requestId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -625,7 +625,7 @@ public final class NLPProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (NLPInput.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLPProto.NLPInput.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -639,13 +639,13 @@ public final class NLPProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.NLPInput)
-    private static final NLPInput DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLPProto.NLPInput DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new NLPInput();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static NLPInput getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLPProto.NLPInput getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -663,7 +663,7 @@ public final class NLPProto {
     /**
      * <code>optional string name = 1;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>optional string name = 1;</code>
      */
@@ -683,7 +683,7 @@ public final class NLPProto {
     /**
      * <code>optional string extractor = 4;</code>
      */
-    String getExtractor();
+    java.lang.String getExtractor();
     /**
      * <code>optional string extractor = 4;</code>
      */
@@ -693,7 +693,7 @@ public final class NLPProto {
     /**
      * <code>optional string value = 5;</code>
      */
-    String getValue();
+    java.lang.String getValue();
     /**
      * <code>optional string value = 5;</code>
      */
@@ -703,7 +703,7 @@ public final class NLPProto {
     /**
      * <code>optional string absoluteTime = 6;</code>
      */
-    String getAbsoluteTime();
+    java.lang.String getAbsoluteTime();
     /**
      * <code>optional string absoluteTime = 6;</code>
      */
@@ -725,11 +725,11 @@ public final class NLPProto {
       absoluteTime_ = "";
     }
     public static final int NAME_FIELD_NUMBER = 1;
-    private String name_;
+    private java.lang.String name_;
     /**
      * <code>optional string name = 1;</code>
      */
-    public String getName() {
+    public java.lang.String getName() {
       return name_;
     }
     /**
@@ -743,7 +743,7 @@ public final class NLPProto {
      * <code>optional string name = 1;</code>
      */
     private void setName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -817,11 +817,11 @@ public final class NLPProto {
     }
 
     public static final int EXTRACTOR_FIELD_NUMBER = 4;
-    private String extractor_;
+    private java.lang.String extractor_;
     /**
      * <code>optional string extractor = 4;</code>
      */
-    public String getExtractor() {
+    public java.lang.String getExtractor() {
       return extractor_;
     }
     /**
@@ -835,7 +835,7 @@ public final class NLPProto {
      * <code>optional string extractor = 4;</code>
      */
     private void setExtractor(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -863,11 +863,11 @@ public final class NLPProto {
     }
 
     public static final int VALUE_FIELD_NUMBER = 5;
-    private String value_;
+    private java.lang.String value_;
     /**
      * <code>optional string value = 5;</code>
      */
-    public String getValue() {
+    public java.lang.String getValue() {
       return value_;
     }
     /**
@@ -881,7 +881,7 @@ public final class NLPProto {
      * <code>optional string value = 5;</code>
      */
     private void setValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -909,11 +909,11 @@ public final class NLPProto {
     }
 
     public static final int ABSOLUTETIME_FIELD_NUMBER = 6;
-    private String absoluteTime_;
+    private java.lang.String absoluteTime_;
     /**
      * <code>optional string absoluteTime = 6;</code>
      */
-    public String getAbsoluteTime() {
+    public java.lang.String getAbsoluteTime() {
       return absoluteTime_;
     }
     /**
@@ -927,7 +927,7 @@ public final class NLPProto {
      * <code>optional string absoluteTime = 6;</code>
      */
     private void setAbsoluteTime(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1009,60 +1009,60 @@ public final class NLPProto {
       return size;
     }
 
-    public static Entity parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Entity parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Entity parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Entity parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Entity parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Entity parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Entity parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Entity parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Entity parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Entity parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.Entity parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1073,7 +1073,7 @@ public final class NLPProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Entity prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLPProto.Entity prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1082,9 +1082,9 @@ public final class NLPProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Entity, Builder> implements
+          com.treeleaf.anydone.entities.NLPProto.Entity, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Entity)
-        EntityOrBuilder {
+        com.treeleaf.anydone.entities.NLPProto.EntityOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLPProto.Entity.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1094,7 +1094,7 @@ public final class NLPProto {
       /**
        * <code>optional string name = 1;</code>
        */
-      public String getName() {
+      public java.lang.String getName() {
         return instance.getName();
       }
       /**
@@ -1108,7 +1108,7 @@ public final class NLPProto {
        * <code>optional string name = 1;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setName(value);
         return this;
@@ -1180,7 +1180,7 @@ public final class NLPProto {
       /**
        * <code>optional string extractor = 4;</code>
        */
-      public String getExtractor() {
+      public java.lang.String getExtractor() {
         return instance.getExtractor();
       }
       /**
@@ -1194,7 +1194,7 @@ public final class NLPProto {
        * <code>optional string extractor = 4;</code>
        */
       public Builder setExtractor(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setExtractor(value);
         return this;
@@ -1220,7 +1220,7 @@ public final class NLPProto {
       /**
        * <code>optional string value = 5;</code>
        */
-      public String getValue() {
+      public java.lang.String getValue() {
         return instance.getValue();
       }
       /**
@@ -1234,7 +1234,7 @@ public final class NLPProto {
        * <code>optional string value = 5;</code>
        */
       public Builder setValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setValue(value);
         return this;
@@ -1260,7 +1260,7 @@ public final class NLPProto {
       /**
        * <code>optional string absoluteTime = 6;</code>
        */
-      public String getAbsoluteTime() {
+      public java.lang.String getAbsoluteTime() {
         return instance.getAbsoluteTime();
       }
       /**
@@ -1274,7 +1274,7 @@ public final class NLPProto {
        * <code>optional string absoluteTime = 6;</code>
        */
       public Builder setAbsoluteTime(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAbsoluteTime(value);
         return this;
@@ -1300,11 +1300,11 @@ public final class NLPProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Entity)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Entity();
+          return new com.treeleaf.anydone.entities.NLPProto.Entity();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1317,7 +1317,7 @@ public final class NLPProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Entity other = (Entity) arg1;
+          com.treeleaf.anydone.entities.NLPProto.Entity other = (com.treeleaf.anydone.entities.NLPProto.Entity) arg1;
           name_ = visitor.visitString(!name_.isEmpty(), name_,
               !other.name_.isEmpty(), other.name_);
           start_ = visitor.visitInt(start_ != 0, start_,
@@ -1330,7 +1330,7 @@ public final class NLPProto {
               !other.value_.isEmpty(), other.value_);
           absoluteTime_ = visitor.visitString(!absoluteTime_.isEmpty(), absoluteTime_,
               !other.absoluteTime_.isEmpty(), other.absoluteTime_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1403,7 +1403,7 @@ public final class NLPProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Entity.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLPProto.Entity.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1417,13 +1417,13 @@ public final class NLPProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Entity)
-    private static final Entity DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLPProto.Entity DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Entity();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Entity getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLPProto.Entity getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1441,12 +1441,12 @@ public final class NLPProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
-    java.util.List<Entity>
+    java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> 
         getEntitiesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
-    Entity getEntities(int index);
+    com.treeleaf.anydone.entities.NLPProto.Entity getEntities(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
@@ -1464,17 +1464,17 @@ public final class NLPProto {
       entities_ = emptyProtobufList();
     }
     public static final int ENTITIES_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<Entity> entities_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.NLPProto.Entity> entities_;
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
-    public java.util.List<Entity> getEntitiesList() {
+    public java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> getEntitiesList() {
       return entities_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
-    public java.util.List<? extends EntityOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.NLPProto.EntityOrBuilder> 
         getEntitiesOrBuilderList() {
       return entities_;
     }
@@ -1487,13 +1487,13 @@ public final class NLPProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
-    public Entity getEntities(int index) {
+    public com.treeleaf.anydone.entities.NLPProto.Entity getEntities(int index) {
       return entities_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
-    public EntityOrBuilder getEntitiesOrBuilder(
+    public com.treeleaf.anydone.entities.NLPProto.EntityOrBuilder getEntitiesOrBuilder(
         int index) {
       return entities_.get(index);
     }
@@ -1508,7 +1508,7 @@ public final class NLPProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
     private void setEntities(
-        int index, Entity value) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1519,14 +1519,14 @@ public final class NLPProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
     private void setEntities(
-        int index, Entity.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
       ensureEntitiesIsMutable();
       entities_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
-    private void addEntities(Entity value) {
+    private void addEntities(com.treeleaf.anydone.entities.NLPProto.Entity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1537,7 +1537,7 @@ public final class NLPProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
     private void addEntities(
-        int index, Entity value) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1548,7 +1548,7 @@ public final class NLPProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
     private void addEntities(
-        Entity.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
       ensureEntitiesIsMutable();
       entities_.add(builderForValue.build());
     }
@@ -1556,7 +1556,7 @@ public final class NLPProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
     private void addEntities(
-        int index, Entity.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
       ensureEntitiesIsMutable();
       entities_.add(index, builderForValue.build());
     }
@@ -1564,7 +1564,7 @@ public final class NLPProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
      */
     private void addAllEntities(
-        Iterable<? extends Entity> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLPProto.Entity> values) {
       ensureEntitiesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, entities_);
@@ -1603,60 +1603,60 @@ public final class NLPProto {
       return size;
     }
 
-    public static NERResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NERResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NERResult parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NERResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NERResult parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NERResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NERResult parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static NERResult parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NERResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NERResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1667,7 +1667,7 @@ public final class NLPProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(NERResult prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLPProto.NERResult prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1676,9 +1676,9 @@ public final class NLPProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          NERResult, Builder> implements
+          com.treeleaf.anydone.entities.NLPProto.NERResult, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.NERResult)
-        NERResultOrBuilder {
+        com.treeleaf.anydone.entities.NLPProto.NERResultOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLPProto.NERResult.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1688,7 +1688,7 @@ public final class NLPProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
-      public java.util.List<Entity> getEntitiesList() {
+      public java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> getEntitiesList() {
         return java.util.Collections.unmodifiableList(
             instance.getEntitiesList());
       }
@@ -1700,14 +1700,14 @@ public final class NLPProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
-      public Entity getEntities(int index) {
+      public com.treeleaf.anydone.entities.NLPProto.Entity getEntities(int index) {
         return instance.getEntities(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
       public Builder setEntities(
-          int index, Entity value) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
         copyOnWrite();
         instance.setEntities(index, value);
         return this;
@@ -1716,7 +1716,7 @@ public final class NLPProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
       public Builder setEntities(
-          int index, Entity.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
         copyOnWrite();
         instance.setEntities(index, builderForValue);
         return this;
@@ -1724,7 +1724,7 @@ public final class NLPProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
-      public Builder addEntities(Entity value) {
+      public Builder addEntities(com.treeleaf.anydone.entities.NLPProto.Entity value) {
         copyOnWrite();
         instance.addEntities(value);
         return this;
@@ -1733,7 +1733,7 @@ public final class NLPProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
       public Builder addEntities(
-          int index, Entity value) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
         copyOnWrite();
         instance.addEntities(index, value);
         return this;
@@ -1742,7 +1742,7 @@ public final class NLPProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
       public Builder addEntities(
-          Entity.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
         copyOnWrite();
         instance.addEntities(builderForValue);
         return this;
@@ -1751,7 +1751,7 @@ public final class NLPProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
       public Builder addEntities(
-          int index, Entity.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
         copyOnWrite();
         instance.addEntities(index, builderForValue);
         return this;
@@ -1760,7 +1760,7 @@ public final class NLPProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 1;</code>
        */
       public Builder addAllEntities(
-          Iterable<? extends Entity> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLPProto.Entity> values) {
         copyOnWrite();
         instance.addAllEntities(values);
         return this;
@@ -1785,11 +1785,11 @@ public final class NLPProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.NERResult)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new NERResult();
+          return new com.treeleaf.anydone.entities.NLPProto.NERResult();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1803,9 +1803,9 @@ public final class NLPProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          NERResult other = (NERResult) arg1;
+          com.treeleaf.anydone.entities.NLPProto.NERResult other = (com.treeleaf.anydone.entities.NLPProto.NERResult) arg1;
           entities_= visitor.visitList(entities_, other.entities_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1835,7 +1835,7 @@ public final class NLPProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(entities_);
                   }
                   entities_.add(
-                      input.readMessage(Entity.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.NLPProto.Entity.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -1853,7 +1853,7 @@ public final class NLPProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (NERResult.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLPProto.NERResult.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1867,13 +1867,13 @@ public final class NLPProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.NERResult)
-    private static final NERResult DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLPProto.NERResult DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new NERResult();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static NERResult getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLPProto.NERResult getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
