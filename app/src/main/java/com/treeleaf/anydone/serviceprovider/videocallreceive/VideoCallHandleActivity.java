@@ -285,7 +285,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     private void prepareCollabInvite(Joinee joinee, String pictureId, Bitmap caputureBitmap) {
-//        Bitmap bitmap = caputureBitmap;
         Bitmap bitmap = caputureBitmap.copy(Bitmap.Config.ARGB_8888, true);
         Bitmap convertedBitmap;
         try {
@@ -473,8 +472,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
         if (drawPadEventListener != null) {
-//            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
-//                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
             drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
                     localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
                     localDeviceHeight), accountId, imageId);
@@ -495,8 +492,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-//                    drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
-//                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId, imageId);
                     drawPadEventListener.onDrawReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePostPublish(x,
                             localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
                             localDeviceHeight), editTextFieldId, accountId, imageId);
@@ -679,26 +674,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void checkConnection() {
         videoCallInitiated = true;
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
-    }
-
-    private float adjustXPixelResolutions(float remoteX, String accountId) {
-        if (remoteDeviceResolutions.get(accountId) == null) {
-            return remoteX;
-        }
-        float adjustedWidth = VideoCallUtil.adjustXPixelResolutionInLocalDevice(localDeviceWidth,
-                remoteDeviceResolutions.get(accountId)[0],
-                remoteX) + VideoCallUtil.convertDpToPixel(0, VideoCallHandleActivity.this);
-        return adjustedWidth;
-    }
-
-    private float adjustYPixelResolutions(float remoteY, String accountId) {
-        if (remoteDeviceResolutions.get(accountId) == null) {
-            return remoteY;
-        }
-        float adjustedHeight = VideoCallUtil.adjustYPixelResolutionInLocalDevice(localDeviceHeight,
-                remoteDeviceResolutions.get(accountId)[1],
-                remoteY) + VideoCallUtil.convertDpToPixel(0, VideoCallHandleActivity.this);
-        return adjustedHeight;
     }
 
     public void onMqttConnectionStatusChange(String connection) {
