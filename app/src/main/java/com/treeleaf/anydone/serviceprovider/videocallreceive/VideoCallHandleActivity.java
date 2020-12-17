@@ -392,19 +392,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     }
 
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (drawPadEventListener != null) {
-                    remoteDeviceResolutions.put(accountId, new Integer[]{width, height});
-                    drawPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes, accountId);
-                }
-            }
-        });
-
-    }
-
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
@@ -424,22 +411,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     drawPadEventListener.onDrawHideProgress();
             }
         });
-    }
-
-    public void onImageAckSent(String accountId) {
-        if (drawPadEventListener != null)
-            drawPadEventListener.onDrawDisplayCapturedImage(accountId);
-    }
-
-    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
-        if (drawPadEventListener != null) {
-            int width = startDrawAckResponse.getCanvasWidth();
-            int height = startDrawAckResponse.getCanvasHeight();
-            remoteDeviceResolutions.put(accountId, new Integer[]{width, height});
-            long timeStamp = startDrawAckResponse.getCapturedTime();
-            drawPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp, accountId);
-            drawPadEventListener.onDrawHideProgress();
-        }
     }
 
     public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {

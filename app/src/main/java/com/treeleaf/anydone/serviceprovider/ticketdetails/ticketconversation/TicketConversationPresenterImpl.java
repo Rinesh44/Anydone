@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
 import com.google.android.gms.common.util.CollectionUtils;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
@@ -82,13 +81,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
 
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CANCEL_DRAWING_MESSAGE_RESPONSE;
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_CLOSE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_COLLAB_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MAXIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_START_RESPONSE;
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.IMAGE_CAPTURE_MESSAGE_RESPONSE;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
@@ -755,39 +752,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
                                 } else {
                                     getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
-                                }
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(IMAGE_CAPTURE_MESSAGE_RESPONSE)) {
-                            SignalingProto.StartDraw startDraw = relayResponse.getStartDrawResponse();
-                            String accountId = startDraw.getSenderAccount().getAccountId();
-                            if (startDraw != null) {
-                                if (userAccountId.equals(accountId)) {
-                                    //sent and received id is same
-//                            getView().onImageCaptured();
-                                } else {
-                                    //sent and received id is different
-                                    ByteString imageByteString = startDraw.getCapturedImage();
-                                    int width = startDraw.getCanvasWidth();
-                                    int height = startDraw.getCanvasHeight();
-                                    long captureTime = startDraw.getCapturedTime();
-                                    byte[] convertedBytes = imageByteString.toByteArray();
-                                    getView().onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
-                                }
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(CAPTURE_IMAGE_RECEIVED_RESPONSE_RESPONSE)) {
-                            SignalingProto.StartDrawAcknowledgement startDrawAckResponse = relayResponse.getStartDrawAckResponse();
-                            String accountId = startDrawAckResponse.getSenderAccount().getAccountId();
-                            if (startDrawAckResponse != null) {
-                                if (userAccountId.equals(accountId)) {
-                                    //sent and received id is same
-                                    getView().onImageAckSent(accountId);
-                                } else {
-                                    //sent and received id is different
-                                    getView().onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
                                 }
                             }
                         }
