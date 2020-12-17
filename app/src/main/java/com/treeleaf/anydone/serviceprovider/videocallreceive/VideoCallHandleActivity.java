@@ -460,30 +460,46 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
-        if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
-                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
-                    localDeviceHeight), accountId, imageId);
-            drawPadEventListener.onDrawTouchDown(accountId, imageId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
+                    drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                            localDeviceHeight), accountId, imageId);
+                    drawPadEventListener.onDrawTouchDown(accountId, imageId);
+                }
+            }
+        });
     }
 
     @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
-        if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
-                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
-                    localDeviceHeight), accountId, imageId);
-            drawPadEventListener.onDrawTouchMove(accountId, imageId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                            localDeviceHeight), accountId, imageId);
+                    drawPadEventListener.onDrawTouchMove(accountId, imageId);
+                }
+            }
+        });
     }
 
     @Override
     public void onDrawTouchUp(String accountId, String imageId) {
-        if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawTouchUp(accountId, imageId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    drawPadEventListener.onDrawTouchUp(accountId, imageId);
+                }
+            }
+        });
+
     }
 
     @Override
