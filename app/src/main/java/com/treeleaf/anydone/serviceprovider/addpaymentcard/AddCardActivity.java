@@ -179,18 +179,26 @@ public class AddCardActivity extends MvpBaseActivity<AddCardPresenterImpl> imple
 
             case Constants.AMERICAN_EXPRESS:
                 cardType = "AMERICAN EXPRESS";
+                etCardNumber.setCompoundDrawablesWithIntrinsicBounds(
+                        0, 0, R.drawable.ic_american_icon, 0);
                 break;
 
             case Constants.DINERS_CLUB:
                 cardType = "DINERS CLUB";
+                etCardNumber.setCompoundDrawablesWithIntrinsicBounds(
+                        0, 0, R.drawable.ic_diners_icon, 0);
                 break;
 
             case Constants.DISCOVER:
                 cardType = "DISCOVER";
+                etCardNumber.setCompoundDrawablesWithIntrinsicBounds(
+                        0, 0, R.drawable.ic_discover_icon, 0);
                 break;
 
             case Constants.JCB:
                 cardType = "JCB";
+                etCardNumber.setCompoundDrawablesWithIntrinsicBounds(
+                        0, 0, R.drawable.ic_jcb_icon, 0);
                 break;
 
             default:

@@ -426,7 +426,7 @@
                                 android:id="@+id/civ_ticket_created_by"
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
-                                android:src="@drawable/ic_user_placeholder" />
+                                android:src="@drawable/ic_empty_profile_holder_icon" />
 
                             <TextView
                                 android:id="@+id/tv_ticket_created_by"
@@ -457,7 +457,7 @@
                                 android:id="@+id/civ_assigned_employee"
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
-                                android:src="@drawable/ic_user_placeholder" />
+                                android:src="@drawable/ic_empty_profile_holder_icon" />
 
                             <TextView
                                 android:id="@+id/tv_assigned_employee"
@@ -498,7 +498,8 @@
                                 android:id="@+id/civ_ticket_created_date"
                                 android:layout_width="22dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/ic_calendar_blue" />
+                                android:src="@drawable/ic_calendar_blue"
+                                app:tint="@color/colorPrimary" />
 
                             <TextView
                                 android:id="@+id/tv_ticket_created_date"
@@ -667,7 +668,7 @@
                                     android:id="@+id/civ_customer"
                                     android:layout_width="22dp"
                                     android:layout_height="22dp"
-                                    android:src="@drawable/ic_user_placeholder" />
+                                    android:src="@drawable/ic_empty_profile_holder_icon" />
 
                                 <TextView
                                     android:id="@+id/tv_customer_name"

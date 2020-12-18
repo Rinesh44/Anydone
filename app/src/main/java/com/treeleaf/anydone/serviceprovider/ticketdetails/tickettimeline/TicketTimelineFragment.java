@@ -666,8 +666,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCreatedBy);
         }
@@ -1253,8 +1253,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                     !contributor.getEmployeeImageUrl().isEmpty()) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
                 Glide.with(this).load(contributor.getEmployeeImageUrl())
                         .apply(options).into(employeePic);
@@ -1583,8 +1583,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             String employeeImage = assignedEmployee.getEmployeeImageUrl();
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(this).load(employeeImage).apply(options).into(civAssignedEmployee);
 
@@ -1718,8 +1718,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(this).load(profilePicUrl).apply(options).into(civCustomer);
         }
@@ -1748,8 +1748,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (employeeImage != null && !employeeImage.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(Objects.requireNonNull(getActivity()))
                     .load(employeeImage)
@@ -1947,8 +1947,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         String employeeImage = selectedEmployee.getEmployeeImageUrl();
         RequestOptions options = new RequestOptions()
                 .fitCenter()
-                .placeholder(R.drawable.ic_profile_icon)
-                .error(R.drawable.ic_profile_icon);
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
 
         Glide.with(Objects.requireNonNull(getActivity()))
                 .load(employeeImage)
@@ -2212,8 +2212,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
                 Glide.with(this).load(profilePicUrl).apply(options).into(civEmployeeAsSelf);
             }
