@@ -72,6 +72,14 @@
                 android:paddingBottom="@dimen/dimen_10x1"
                 android:src="@drawable/ic_visacard_icon" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="@dimen/dimen_10x1"
+                android:src="@drawable/ic_right_arrow" />
+
             <LinearLayout
                 android:id="@+id/ll_text_holder"
                 android:layout_width="wrap_content"
@@ -103,9 +111,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:drawableEnd="@drawable/ic_right_arrow"
+                android:layout_marginEnd="@dimen/dimen_10x2"
                 android:drawablePadding="@dimen/dimen_10x1"
                 android:paddingBottom="@dimen/dimen_10x1"
+                android:textSize="@dimen/material_text_caption"
                 android:text="Primary"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"

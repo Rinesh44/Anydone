@@ -194,7 +194,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @BindView(R.id.scv_label)
     HorizontalScrollView hsvTags;
 
-
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
     private String currentPhotoPath = "";
@@ -349,6 +348,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        GlobalUtils.showLog(TAG, "onPause called()");
+        TreeleafMqttClient.disconnectMQTT();
+    }
+
     private void setTicketInitialDetail(Tickets ticket) {
         tvTicketId.setText("#" + ticket.getTicketIndex());
         tvTicketTitle.setText(ticket.getTitle());
@@ -373,7 +379,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 llLabels.addView(tvTag);
             }
         }
-
     }
 
     private void setChatVisibility(Tickets ticket) {
@@ -436,10 +441,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         display.getRealSize(size);
         int width = size.x;
         int unitWidth = width / 6;
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                unitWidth,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(unitWidth,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         bold.getView(getContext()).setLayoutParams(layoutParams);
         italic.getView(getContext()).setLayoutParams(layoutParams);
@@ -497,7 +500,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         showDeleteConfirmation();
         toggleMessageBottomSheet();
     }
-
 
     @OnClick(R.id.rl_copy_holder)
     void copyMessage() {
@@ -746,7 +748,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
 
         GlobalUtils.showLog(TAG, "ticket status checckkk: " + tickets.getTicketStatus());
-        GlobalUtils.showLog(TAG, "ticket type checkkkk: " + tickets.getTicketType());
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
                 || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
 //            llSearchContainer.setVisibility(View.GONE);

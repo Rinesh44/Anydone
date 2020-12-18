@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
-
 import android.content.Context;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -10,17 +9,14 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketSuggestion;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -77,8 +73,8 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
         if (suggestion.getCustomerImageUrl() != null) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(mContext).load(suggestion.getCustomerImageUrl())
                     .apply(options).into(holder.civCustomer);

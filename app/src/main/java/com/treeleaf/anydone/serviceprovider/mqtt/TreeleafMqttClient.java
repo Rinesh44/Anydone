@@ -44,6 +44,7 @@ public class TreeleafMqttClient {
     public static OnMQTTConnected mqttListener;
     public static String[] separateResult;
     public static String connectTopic = "anydone/mqtt/connect";
+    public static String disconnectTopic = "anydone/mqtt/disconnect";
 //    private static Map<String, Processor> processors = new ConcurrentHashMap<>();
 
     public TreeleafMqttClient() {
@@ -176,6 +177,22 @@ public class TreeleafMqttClient {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
                 GlobalUtils.showLog(TAG, "connect success");
+            }
+        });
+
+    }
+
+
+    public static void disconnectMQTT() {
+        AuthProto.ConnectRequest connectRequest = AuthProto.ConnectRequest.newBuilder()
+                .setAccountId(separateResult[0])
+                .setSessionId(separateResult[1])
+                .build();
+
+        publish(disconnectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "disconnect success");
             }
         });
 

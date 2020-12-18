@@ -13,7 +13,7 @@
         android:id="@+id/civ_field"
         android:layout_width="@dimen/dimens_3x"
         android:layout_height="@dimen/dimens_3x"
-        android:src="@drawable/ic_profile_icon" />
+        android:src="@drawable/ic_empty_profile_holder_icon" />
 
     <TextView
         android:id="@+id/tv_field"

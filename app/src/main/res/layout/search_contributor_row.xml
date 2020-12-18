@@ -12,7 +12,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_assigned_emp_placeholder" />
+        android:src="@drawable/ic_empty_profile_holder_icon" />
 
     <TextView
         android:id="@+id/tv_employee_name"
