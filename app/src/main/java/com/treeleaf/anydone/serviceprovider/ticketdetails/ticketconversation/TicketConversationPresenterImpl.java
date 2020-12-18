@@ -807,7 +807,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             SignalingProto.DrawStart drawStartResponse = relayResponse
                                     .getDrawStartResponse();
                             GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " +
-                                    drawStartResponse.getSenderAccount().getAccountId() + " " + drawStartResponse.getX() + ", " +
+                                    drawStartResponse.getSenderAccount().getAccountId() + " " + drawStartResponse.getImageId() + " " +
+                                    drawStartResponse.getX() + ", " +
                                     drawStartResponse.getY() + ", brushwidth: " + drawStartResponse.getDrawMetaData().getBrushWidth()
                                     + ", brushopacity " + drawStartResponse.getDrawMetaData().getBrushOpacity()
                                     + ", brushcolor: " + drawStartResponse.getDrawMetaData().getBrushColor()
@@ -832,8 +833,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             SignalingProto.DrawTouchMove drawTouchMove = relayResponse
                                     .getDrawTouchMoveResponse();
                             GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " +
-                                    drawTouchMove.getSenderAccount().getAccountId() + " " + drawTouchMove.getX() + ", " +
-                                    drawTouchMove.getY());
+                                    drawTouchMove.getSenderAccount().getAccountId() + " " + drawTouchMove.getImageId() + " " +
+                                    drawTouchMove.getX() + ", " + drawTouchMove.getY());
                             if (drawTouchMove != null &&
                                     !drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
