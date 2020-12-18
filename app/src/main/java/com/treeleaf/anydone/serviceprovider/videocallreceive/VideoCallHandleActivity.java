@@ -285,7 +285,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     private void prepareCollabInvite(Joinee joinee, String pictureId, Bitmap caputureBitmap) {
-//        Bitmap bitmap = caputureBitmap;
         Bitmap bitmap = caputureBitmap.copy(Bitmap.Config.ARGB_8888, true);
         Bitmap convertedBitmap;
         try {
@@ -392,19 +391,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     }
 
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (drawPadEventListener != null) {
-                    remoteDeviceResolutions.put(accountId, new Integer[]{width, height});
-                    drawPadEventListener.onDrawNewImageCaptured(width, height, captureTime, convertedBytes, accountId);
-                }
-            }
-        });
-
-    }
-
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
@@ -424,22 +410,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     drawPadEventListener.onDrawHideProgress();
             }
         });
-    }
-
-    public void onImageAckSent(String accountId) {
-        if (drawPadEventListener != null)
-            drawPadEventListener.onDrawDisplayCapturedImage(accountId);
-    }
-
-    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
-        if (drawPadEventListener != null) {
-            int width = startDrawAckResponse.getCanvasWidth();
-            int height = startDrawAckResponse.getCanvasHeight();
-            remoteDeviceResolutions.put(accountId, new Integer[]{width, height});
-            long timeStamp = startDrawAckResponse.getCapturedTime();
-            drawPadEventListener.onDrawRemoteDeviceConfigReceived(width, height, timeStamp, accountId);
-            drawPadEventListener.onDrawHideProgress();
-        }
     }
 
     public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
@@ -490,32 +460,46 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
-        if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
-                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
-                    localDeviceHeight), accountId, imageId);
-            drawPadEventListener.onDrawTouchDown(accountId, imageId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
+                    drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                            localDeviceHeight), accountId, imageId);
+                    drawPadEventListener.onDrawTouchDown(accountId, imageId);
+                }
+            }
+        });
     }
 
     @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
-        if (drawPadEventListener != null) {
-//            drawPadEventListener.onDrawNewDrawCoordinatesReceived(adjustXPixelResolutions(captureDrawParam.getXCoordinate(),
-//                    accountId), adjustYPixelResolutions(captureDrawParam.getYCoordinate(), accountId), accountId, imageId);
-            drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
-                    localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
-                    localDeviceHeight), accountId, imageId);
-            drawPadEventListener.onDrawTouchMove(accountId, imageId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                            localDeviceHeight), accountId, imageId);
+                    drawPadEventListener.onDrawTouchMove(accountId, imageId);
+                }
+            }
+        });
     }
 
     @Override
     public void onDrawTouchUp(String accountId, String imageId) {
-        if (drawPadEventListener != null) {
-            drawPadEventListener.onDrawTouchUp(accountId, imageId);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    drawPadEventListener.onDrawTouchUp(accountId, imageId);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -524,8 +508,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-//                    drawPadEventListener.onDrawReceiveNewTextField(adjustXPixelResolutions(x, accountId),
-//                            adjustYPixelResolutions(y, accountId), editTextFieldId, accountId, imageId);
                     drawPadEventListener.onDrawReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePostPublish(x,
                             localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
                             localDeviceHeight), editTextFieldId, accountId, imageId);
@@ -708,26 +690,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void checkConnection() {
         videoCallInitiated = true;
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
-    }
-
-    private float adjustXPixelResolutions(float remoteX, String accountId) {
-        if (remoteDeviceResolutions.get(accountId) == null) {
-            return remoteX;
-        }
-        float adjustedWidth = VideoCallUtil.adjustXPixelResolutionInLocalDevice(localDeviceWidth,
-                remoteDeviceResolutions.get(accountId)[0],
-                remoteX) + VideoCallUtil.convertDpToPixel(0, VideoCallHandleActivity.this);
-        return adjustedWidth;
-    }
-
-    private float adjustYPixelResolutions(float remoteY, String accountId) {
-        if (remoteDeviceResolutions.get(accountId) == null) {
-            return remoteY;
-        }
-        float adjustedHeight = VideoCallUtil.adjustYPixelResolutionInLocalDevice(localDeviceHeight,
-                remoteDeviceResolutions.get(accountId)[1],
-                remoteY) + VideoCallUtil.convertDpToPixel(0, VideoCallHandleActivity.this);
-        return adjustedHeight;
     }
 
     public void onMqttConnectionStatusChange(String connection) {
