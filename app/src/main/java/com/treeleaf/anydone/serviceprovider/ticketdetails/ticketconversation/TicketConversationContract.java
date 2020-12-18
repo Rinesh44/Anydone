@@ -7,7 +7,6 @@ import android.net.Uri;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
-import com.chinalwb.are.AREditor;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -21,8 +20,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.File;
 import java.util.List;
-
-import jp.wasabeef.richeditor.RichEditor;
 
 public class TicketConversationContract {
 
@@ -90,10 +87,6 @@ public class TicketConversationContract {
 
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
-        void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId);
-
-        void onImageAckSent(String accountId);
-
         void onImageDrawDiscardLocal();
 
         void onImageDrawDiscardRemote(String accountId, String imageId);
@@ -121,8 +114,6 @@ public class TicketConversationContract {
         void onDrawMinimize(SignalingProto.DrawMinize drawMinize);
 
         void onDrawClose(SignalingProto.DrawClose drawClose);
-
-        void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId);
 
         void onTaskStartSuccess(long estTime);
 

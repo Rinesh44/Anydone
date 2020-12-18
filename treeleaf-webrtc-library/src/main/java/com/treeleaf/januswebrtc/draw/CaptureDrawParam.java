@@ -16,6 +16,7 @@ public class CaptureDrawParam {
         this.brushWidth = 8.0F;
         this.brushOpacity = 255;
         this.brushColor = -16777216;
+        this.textColor = -16777216;
         this.clearCanvas = false;
     }
 

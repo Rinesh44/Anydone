@@ -248,6 +248,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                                 currentPicture.getBitmap());
                                     }
                                 }
+                                //used separate for loop because there has to be certain
+                                //time delay between collab invite and maximize request.
+                                for (Joinee joinee : joineeListAdapter.fetchAllJoinee()) {
+                                    if (!joinee.isSelfAccount()) {
+                                        mDrawCallback.onMaximizeDrawing(currentPicture.getPictureId());
+                                    }
+                                }
                             }
                         }
 
@@ -505,7 +512,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                     onCollabInviteOnOldImage(imageId);
                                     //no need to create drawview for old image, its already there
                                     joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED, imageId, false);
-                                    if (mDrawCallback != null) {
+                                    if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                                         mDrawCallback.onMinimizeDrawing(imageId);
                                     }
                                 } else if (!VideoCallUtil.isPictureCountExceed(localPicturesCount)) {
@@ -522,7 +529,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                     drawMetadataLocal.put(imageId, new DrawMetadata());
                                     treeleafDrawPadView.addNewRemoteDrawer(ServerActivity.this, fromAccountId, imageId, TreeleafDrawPadView.HIDE_THIS_VIEW);
                                     joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED, imageId, false);
-                                    if (mDrawCallback != null) {
+                                    if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                                         mDrawCallback.onMinimizeDrawing(imageId);
                                     }
                                 } else {
@@ -545,7 +552,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                 }
                                 onCollabInviteOnOldImage(imageId);
                                 joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED, imageId, false);
-                                if (mDrawCallback != null) {
+                                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                                     mDrawCallback.onMinimizeDrawing(imageId);
                                 }
                             } else if (!VideoCallUtil.isPictureCountExceed(localPicturesCount)) {
@@ -570,7 +577,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                 joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED,
                                         imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
 
-                                if (mDrawCallback != null) {
+                                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                                     mDrawCallback.onMaximizeDrawing(picture.getPictureId());
                                 }
 
@@ -831,6 +838,19 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                             pictureStackAdapter.updatePicture(position, currentPicture);
                             currentPicture = VideoCallUtil.updatePictureContents(picture);
                         }
+
+                        for (Joinee joinee : joineeListAdapter.fetchAllJoinee()) {
+                            if (!joinee.isSelfAccount()) {
+                                joineeListAdapter.highlightCurrentDrawer(joinee.getAccountId(), false,
+                                        treeleafDrawPadView.getRemoteDrawerFromAccountId(joinee.getAccountId(),
+                                                currentPicture.getPictureId())
+                                                .getDrawMetadata().getTextColor());
+                            } else {
+                                joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false,
+                                        drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
+                            }
+                        }
+
                         joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
                         currentPicture.setOnScreen(true);
                         currentPicture.setNewArrival(false);
@@ -841,7 +861,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         mode = Mode.IMAGE_DRAW;
                         switchDrawModeAndVideoMode(true);
                         joineeListAdapter.notifyDataSetChanged();
-                        if (mDrawCallback != null) {
+                        if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                             mDrawCallback.onMaximizeDrawing(currentPicture.getPictureId());
                         }
                     }
@@ -1229,6 +1249,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             public void onClick(View v) {
                 if (mDrawCallback != null) {
                     mDrawCallback.onCollabInvite(joinee, currentPicture.getPictureId(), currentPicture.getBitmap());
+                    mDrawCallback.onMaximizeDrawing(currentPicture.getPictureId());
+                    Toast.makeText(ServerActivity.this, "Collab invite sent.", Toast.LENGTH_SHORT).show();
                 }
                 popupWindow.dismiss();
             }
@@ -1470,7 +1492,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             treeleafDrawPadView.hideAllDrawings();
             treeleafDrawPadView.setOnScreenPicture(null);
             joineeListAdapter.notifyDataSetChanged();
-            if (mDrawCallback != null) {
+            if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                 mDrawCallback.onMinimizeDrawing(currentPicture.getPictureId());
             }
         }

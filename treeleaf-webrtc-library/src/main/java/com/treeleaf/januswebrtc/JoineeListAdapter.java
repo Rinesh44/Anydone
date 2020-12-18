@@ -311,20 +311,6 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         }
     }
 
-    /*public void updateJoineeDrawStat(String accountId, Joinee.JoineeDrawState drawState,
-                                     String imageId, boolean notifyAdapter) {
-        Joinee joinee = mapTotalJoinees.get(accountId);
-        if (joinee != null) {
-            joinee.setJoineeDrawStateRemote(drawState);
-            joinee.setJoineeDrawStateLocal(drawState);
-            joinee.setCurrentImageId(imageId);
-            if (notifyAdapter) {
-                setJoineeStatusUpdateMode(REMOTE_STATE);
-                notifyItemChanged(mapJoineePosition.get(accountId));
-            }
-        }
-    }*/
-
     public void updateJoineeDrawStat(String accountId, Joinee.JoineeDrawState drawState,
                                      String imageId, boolean notifyAdapter) {
         Joinee joinee = mapTotalJoinees.get(accountId);
@@ -377,29 +363,6 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
         setJoineeStatusUpdateMode(LOCAL_STATE);
         notifyDataSetChanged();
     }
-
-    /*public void checkIfAllJoineesOnSamePicture(Picture picture) {
-        for (Joinee joinee : new ArrayList<>(mapTotalJoinees.values())) {
-            if (!joinee.isSelfAccount()) {
-                if (joinee.getCurrentImageId() == null) {
-                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.CLOSED);
-                } else if (joinee.getCurrentImageId().equals(picture.getPictureId()) &&
-                        joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.MAXIMIZED)) {
-                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MAXIMIZED);
-                } else if (joinee.getCurrentImageId().equals(picture.getPictureId()) &&
-                        joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.MINIMIZED)) {
-                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MINIMIZED);
-                } else if (joinee.getCurrentImageId().equals(picture.getPictureId()) &&
-                        joinee.getJoineeDrawStateRemote().equals(Joinee.JoineeDrawState.CLOSED)) {
-                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.CLOSED);
-                } else {
-                    joinee.setJoineeDrawStateLocal(Joinee.JoineeDrawState.MINIMIZED);
-                }
-            }
-        }
-        setJoineeStatusUpdateMode(LOCAL_STATE);
-        notifyDataSetChanged();
-    }*/
 
     public void setJoineeStatusUpdateMode(String mode) {
         this.joineeStateUpdateMode = mode;

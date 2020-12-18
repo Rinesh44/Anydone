@@ -102,7 +102,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -1037,12 +1036,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onImageReceivedFromConsumer(int width, int height, long captureTime, byte[] convertedBytes, String accountId) {
-        ((TicketDetailsActivity) getActivity())
-                .onImageReceivedFromConsumer(width, height, captureTime, convertedBytes, accountId);
-    }
-
-    @Override
     public void onImageDrawDiscardLocal() {
         ((TicketDetailsActivity) getActivity()).onImageDrawDiscardLocal();
     }
@@ -1050,16 +1043,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         ((TicketDetailsActivity) getActivity()).onImageDrawDiscardRemote(accountId, imageId);
-    }
-
-    @Override
-    public void onImageAckSent(String accountId) {
-        ((TicketDetailsActivity) getActivity()).onImageAckSent(accountId);
-    }
-
-    @Override
-    public void onRemoteDeviceConfigReceived(SignalingProto.StartDrawAcknowledgement startDrawAckResponse, String accountId) {
-        ((TicketDetailsActivity) getActivity()).onRemoteDeviceConfigReceived(startDrawAckResponse, accountId);
     }
 
     @Override
