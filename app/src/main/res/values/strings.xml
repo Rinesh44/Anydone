@@ -349,4 +349,5 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="today">Today</string>
     <string name="add_comment">Add Comment</string>
     <string name="plans">Plans</string>
+    <string name="depends_on">Depends On</string>
 </resources>

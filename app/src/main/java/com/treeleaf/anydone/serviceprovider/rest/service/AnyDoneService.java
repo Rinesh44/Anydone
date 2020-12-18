@@ -655,6 +655,15 @@ public interface AnyDoneService {
                                                                                 @Body TicketProto.TicketSuggestionReq
                                                                                         ticketSuggestionReq);
 
+    @GET("ticket/auto/fill/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getSummarySuggestions(@Header(AUTHORIZATION)
+                                                                               String token,
+                                                                               @Path(value = "serviceId")
+                                                                               String serviceId,
+                                                                               @Query("summary") String summary,
+                                                                               @Query("id") String ticketId);
+
+
 }
 
 

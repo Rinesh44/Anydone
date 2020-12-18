@@ -48,6 +48,10 @@ public class AddTicketContract {
 
         void getTypeFail(String msg);
 
+        void getSummarySuggestionSuccess(TicketProto.TicketAutofillSuggestionRes autoFillResponse);
+
+        void getSummarySuggestionFail(String msg);
+
     }
 
     public interface AddTicketPresenter extends Presenter<AddTicketView> {
@@ -61,6 +65,8 @@ public class AddTicketContract {
         void findCustomers();
 
         void getTicketTypes();
+
+        void getSummarySuggestions(String summary);
 
         void createTicket(String ticketType, String title, String description, String customerId,
                           String customerEmail, String customerPhone, String customerName,
