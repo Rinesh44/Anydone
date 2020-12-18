@@ -14,7 +14,8 @@ public class AddTicketRepositoryImpl implements AddTicketRepository {
     }
 
     @Override
-    public Observable<TicketServiceRpcProto.TicketBaseResponse> createTicket(String token, TicketProto.Ticket ticket) {
+    public Observable<TicketServiceRpcProto.TicketBaseResponse>
+    createTicket(String token, TicketProto.Ticket ticket) {
         return anyDoneService.createTicket(token, ticket);
     }
 

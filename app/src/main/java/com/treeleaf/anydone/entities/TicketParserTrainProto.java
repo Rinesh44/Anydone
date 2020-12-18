@@ -15,7 +15,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string language = 2;</code>
      */
-    java.lang.String getLanguage();
+    String getLanguage();
     /**
      * <code>optional string language = 2;</code>
      */
@@ -35,7 +35,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string baseModelCategory = 3;</code>
      */
-    java.lang.String getBaseModelCategory();
+    String getBaseModelCategory();
     /**
      * <code>optional string baseModelCategory = 3;</code>
      */
@@ -54,7 +54,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>repeated string possibleTicketTexts = 4;</code>
      */
-    java.lang.String getPossibleTicketTexts(int index);
+    String getPossibleTicketTexts(int index);
     /**
      * <code>repeated string possibleTicketTexts = 4;</code>
      */
@@ -64,7 +64,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string accountId = 5;</code>
      */
-    java.lang.String getAccountId();
+    String getAccountId();
     /**
      * <code>optional string accountId = 5;</code>
      */
@@ -88,11 +88,11 @@ public final class TicketParserTrainProto {
     }
     private int bitField0_;
     public static final int SERVICEID_FIELD_NUMBER = 1;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -106,7 +106,7 @@ public final class TicketParserTrainProto {
      * <code>optional string serviceId = 1;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -134,11 +134,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 2;
-    private java.lang.String language_;
+    private String language_;
     /**
      * <code>optional string language = 2;</code>
      */
-    public java.lang.String getLanguage() {
+    public String getLanguage() {
       return language_;
     }
     /**
@@ -152,7 +152,7 @@ public final class TicketParserTrainProto {
      * <code>optional string language = 2;</code>
      */
     private void setLanguage(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -180,11 +180,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int BASEMODELCATEGORY_FIELD_NUMBER = 3;
-    private java.lang.String baseModelCategory_;
+    private String baseModelCategory_;
     /**
      * <code>optional string baseModelCategory = 3;</code>
      */
-    public java.lang.String getBaseModelCategory() {
+    public String getBaseModelCategory() {
       return baseModelCategory_;
     }
     /**
@@ -198,7 +198,7 @@ public final class TicketParserTrainProto {
      * <code>optional string baseModelCategory = 3;</code>
      */
     private void setBaseModelCategory(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -242,7 +242,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>repeated string possibleTicketTexts = 4;</code>
      */
-    public java.lang.String getPossibleTicketTexts(int index) {
+    public String getPossibleTicketTexts(int index) {
       return possibleTicketTexts_.get(index);
     }
     /**
@@ -263,7 +263,7 @@ public final class TicketParserTrainProto {
      * <code>repeated string possibleTicketTexts = 4;</code>
      */
     private void setPossibleTicketTexts(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -274,7 +274,7 @@ public final class TicketParserTrainProto {
      * <code>repeated string possibleTicketTexts = 4;</code>
      */
     private void addPossibleTicketTexts(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -285,7 +285,7 @@ public final class TicketParserTrainProto {
      * <code>repeated string possibleTicketTexts = 4;</code>
      */
     private void addAllPossibleTicketTexts(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensurePossibleTicketTextsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, possibleTicketTexts_);
@@ -310,11 +310,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int ACCOUNTID_FIELD_NUMBER = 5;
-    private java.lang.String accountId_;
+    private String accountId_;
     /**
      * <code>optional string accountId = 5;</code>
      */
-    public java.lang.String getAccountId() {
+    public String getAccountId() {
       return accountId_;
     }
     /**
@@ -328,7 +328,7 @@ public final class TicketParserTrainProto {
      * <code>optional string accountId = 5;</code>
      */
     private void setAccountId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -408,60 +408,60 @@ public final class TicketParserTrainProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(
+    public static TicketTrainRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(
+    public static TicketTrainRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(byte[] data)
+    public static TicketTrainRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(
+    public static TicketTrainRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(java.io.InputStream input)
+    public static TicketTrainRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(
+    public static TicketTrainRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseDelimitedFrom(java.io.InputStream input)
+    public static TicketTrainRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseDelimitedFrom(
+    public static TicketTrainRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(
+    public static TicketTrainRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest parseFrom(
+    public static TicketTrainRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -472,7 +472,7 @@ public final class TicketParserTrainProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest prototype) {
+    public static Builder newBuilder(TicketTrainRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -481,9 +481,9 @@ public final class TicketParserTrainProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest, Builder> implements
+          TicketTrainRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketTrainRequest)
-        com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequestOrBuilder {
+        TicketTrainRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -493,7 +493,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string serviceId = 1;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -507,7 +507,7 @@ public final class TicketParserTrainProto {
        * <code>optional string serviceId = 1;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -533,7 +533,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string language = 2;</code>
        */
-      public java.lang.String getLanguage() {
+      public String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -547,7 +547,7 @@ public final class TicketParserTrainProto {
        * <code>optional string language = 2;</code>
        */
       public Builder setLanguage(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -573,7 +573,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string baseModelCategory = 3;</code>
        */
-      public java.lang.String getBaseModelCategory() {
+      public String getBaseModelCategory() {
         return instance.getBaseModelCategory();
       }
       /**
@@ -587,7 +587,7 @@ public final class TicketParserTrainProto {
        * <code>optional string baseModelCategory = 3;</code>
        */
       public Builder setBaseModelCategory(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setBaseModelCategory(value);
         return this;
@@ -627,7 +627,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>repeated string possibleTicketTexts = 4;</code>
        */
-      public java.lang.String getPossibleTicketTexts(int index) {
+      public String getPossibleTicketTexts(int index) {
         return instance.getPossibleTicketTexts(index);
       }
       /**
@@ -641,7 +641,7 @@ public final class TicketParserTrainProto {
        * <code>repeated string possibleTicketTexts = 4;</code>
        */
       public Builder setPossibleTicketTexts(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setPossibleTicketTexts(index, value);
         return this;
@@ -650,7 +650,7 @@ public final class TicketParserTrainProto {
        * <code>repeated string possibleTicketTexts = 4;</code>
        */
       public Builder addPossibleTicketTexts(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addPossibleTicketTexts(value);
         return this;
@@ -659,7 +659,7 @@ public final class TicketParserTrainProto {
        * <code>repeated string possibleTicketTexts = 4;</code>
        */
       public Builder addAllPossibleTicketTexts(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllPossibleTicketTexts(values);
         return this;
@@ -685,7 +685,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string accountId = 5;</code>
        */
-      public java.lang.String getAccountId() {
+      public String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -699,7 +699,7 @@ public final class TicketParserTrainProto {
        * <code>optional string accountId = 5;</code>
        */
       public Builder setAccountId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -725,11 +725,11 @@ public final class TicketParserTrainProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketTrainRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest();
+          return new TicketTrainRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -743,7 +743,7 @@ public final class TicketParserTrainProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest other = (com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest) arg1;
+          TicketTrainRequest other = (TicketTrainRequest) arg1;
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           language_ = visitor.visitString(!language_.isEmpty(), language_,
@@ -753,7 +753,7 @@ public final class TicketParserTrainProto {
           possibleTicketTexts_= visitor.visitList(possibleTicketTexts_, other.possibleTicketTexts_);
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
               !other.accountId_.isEmpty(), other.accountId_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -826,7 +826,7 @@ public final class TicketParserTrainProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest.class) {
+          if (PARSER == null) {    synchronized (TicketTrainRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -840,13 +840,13 @@ public final class TicketParserTrainProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketTrainRequest)
-    private static final com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest DEFAULT_INSTANCE;
+    private static final TicketTrainRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketTrainRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketTrainRequest getDefaultInstance() {
+    public static TicketTrainRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -864,7 +864,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 1;</code>
      */
@@ -874,7 +874,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string baseModelCategory = 2;</code>
      */
-    java.lang.String getBaseModelCategory();
+    String getBaseModelCategory();
     /**
      * <code>optional string baseModelCategory = 2;</code>
      */
@@ -889,7 +889,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string language = 5;</code>
      */
-    java.lang.String getLanguage();
+    String getLanguage();
     /**
      * <code>optional string language = 5;</code>
      */
@@ -899,7 +899,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string bucketName = 6;</code>
      */
-    java.lang.String getBucketName();
+    String getBucketName();
     /**
      * <code>optional string bucketName = 6;</code>
      */
@@ -909,7 +909,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string trainedModelName = 7;</code>
      */
-    java.lang.String getTrainedModelName();
+    String getTrainedModelName();
     /**
      * <code>optional string trainedModelName = 7;</code>
      */
@@ -919,7 +919,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string downloadPath = 8;</code>
      */
-    java.lang.String getDownloadPath();
+    String getDownloadPath();
     /**
      * <code>optional string downloadPath = 8;</code>
      */
@@ -939,7 +939,7 @@ public final class TicketParserTrainProto {
     /**
      * <code>optional string accountId = 11;</code>
      */
-    java.lang.String getAccountId();
+    String getAccountId();
     /**
      * <code>optional string accountId = 11;</code>
      */
@@ -964,11 +964,11 @@ public final class TicketParserTrainProto {
       accountId_ = "";
     }
     public static final int SERVICEID_FIELD_NUMBER = 1;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -982,7 +982,7 @@ public final class TicketParserTrainProto {
      * <code>optional string serviceId = 1;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1010,11 +1010,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int BASEMODELCATEGORY_FIELD_NUMBER = 2;
-    private java.lang.String baseModelCategory_;
+    private String baseModelCategory_;
     /**
      * <code>optional string baseModelCategory = 2;</code>
      */
-    public java.lang.String getBaseModelCategory() {
+    public String getBaseModelCategory() {
       return baseModelCategory_;
     }
     /**
@@ -1028,7 +1028,7 @@ public final class TicketParserTrainProto {
      * <code>optional string baseModelCategory = 2;</code>
      */
     private void setBaseModelCategory(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1079,11 +1079,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 5;
-    private java.lang.String language_;
+    private String language_;
     /**
      * <code>optional string language = 5;</code>
      */
-    public java.lang.String getLanguage() {
+    public String getLanguage() {
       return language_;
     }
     /**
@@ -1097,7 +1097,7 @@ public final class TicketParserTrainProto {
      * <code>optional string language = 5;</code>
      */
     private void setLanguage(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1125,11 +1125,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int BUCKETNAME_FIELD_NUMBER = 6;
-    private java.lang.String bucketName_;
+    private String bucketName_;
     /**
      * <code>optional string bucketName = 6;</code>
      */
-    public java.lang.String getBucketName() {
+    public String getBucketName() {
       return bucketName_;
     }
     /**
@@ -1143,7 +1143,7 @@ public final class TicketParserTrainProto {
      * <code>optional string bucketName = 6;</code>
      */
     private void setBucketName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1171,11 +1171,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int TRAINEDMODELNAME_FIELD_NUMBER = 7;
-    private java.lang.String trainedModelName_;
+    private String trainedModelName_;
     /**
      * <code>optional string trainedModelName = 7;</code>
      */
-    public java.lang.String getTrainedModelName() {
+    public String getTrainedModelName() {
       return trainedModelName_;
     }
     /**
@@ -1189,7 +1189,7 @@ public final class TicketParserTrainProto {
      * <code>optional string trainedModelName = 7;</code>
      */
     private void setTrainedModelName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1217,11 +1217,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int DOWNLOADPATH_FIELD_NUMBER = 8;
-    private java.lang.String downloadPath_;
+    private String downloadPath_;
     /**
      * <code>optional string downloadPath = 8;</code>
      */
-    public java.lang.String getDownloadPath() {
+    public String getDownloadPath() {
       return downloadPath_;
     }
     /**
@@ -1235,7 +1235,7 @@ public final class TicketParserTrainProto {
      * <code>optional string downloadPath = 8;</code>
      */
     private void setDownloadPath(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1309,11 +1309,11 @@ public final class TicketParserTrainProto {
     }
 
     public static final int ACCOUNTID_FIELD_NUMBER = 11;
-    private java.lang.String accountId_;
+    private String accountId_;
     /**
      * <code>optional string accountId = 11;</code>
      */
-    public java.lang.String getAccountId() {
+    public String getAccountId() {
       return accountId_;
     }
     /**
@@ -1327,7 +1327,7 @@ public final class TicketParserTrainProto {
      * <code>optional string accountId = 11;</code>
      */
     private void setAccountId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1437,60 +1437,60 @@ public final class TicketParserTrainProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(
+    public static TicketParserTrainingCompleteEvent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(
+    public static TicketParserTrainingCompleteEvent parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(byte[] data)
+    public static TicketParserTrainingCompleteEvent parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(
+    public static TicketParserTrainingCompleteEvent parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(java.io.InputStream input)
+    public static TicketParserTrainingCompleteEvent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(
+    public static TicketParserTrainingCompleteEvent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseDelimitedFrom(java.io.InputStream input)
+    public static TicketParserTrainingCompleteEvent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseDelimitedFrom(
+    public static TicketParserTrainingCompleteEvent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(
+    public static TicketParserTrainingCompleteEvent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent parseFrom(
+    public static TicketParserTrainingCompleteEvent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1501,7 +1501,7 @@ public final class TicketParserTrainProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent prototype) {
+    public static Builder newBuilder(TicketParserTrainingCompleteEvent prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1510,9 +1510,9 @@ public final class TicketParserTrainProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent, Builder> implements
+          TicketParserTrainingCompleteEvent, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
-        com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEventOrBuilder {
+        TicketParserTrainingCompleteEventOrBuilder {
       // Construct using com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1522,7 +1522,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string serviceId = 1;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -1536,7 +1536,7 @@ public final class TicketParserTrainProto {
        * <code>optional string serviceId = 1;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -1562,7 +1562,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string baseModelCategory = 2;</code>
        */
-      public java.lang.String getBaseModelCategory() {
+      public String getBaseModelCategory() {
         return instance.getBaseModelCategory();
       }
       /**
@@ -1576,7 +1576,7 @@ public final class TicketParserTrainProto {
        * <code>optional string baseModelCategory = 2;</code>
        */
       public Builder setBaseModelCategory(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setBaseModelCategory(value);
         return this;
@@ -1625,7 +1625,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string language = 5;</code>
        */
-      public java.lang.String getLanguage() {
+      public String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -1639,7 +1639,7 @@ public final class TicketParserTrainProto {
        * <code>optional string language = 5;</code>
        */
       public Builder setLanguage(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -1665,7 +1665,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string bucketName = 6;</code>
        */
-      public java.lang.String getBucketName() {
+      public String getBucketName() {
         return instance.getBucketName();
       }
       /**
@@ -1679,7 +1679,7 @@ public final class TicketParserTrainProto {
        * <code>optional string bucketName = 6;</code>
        */
       public Builder setBucketName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setBucketName(value);
         return this;
@@ -1705,7 +1705,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string trainedModelName = 7;</code>
        */
-      public java.lang.String getTrainedModelName() {
+      public String getTrainedModelName() {
         return instance.getTrainedModelName();
       }
       /**
@@ -1719,7 +1719,7 @@ public final class TicketParserTrainProto {
        * <code>optional string trainedModelName = 7;</code>
        */
       public Builder setTrainedModelName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTrainedModelName(value);
         return this;
@@ -1745,7 +1745,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string downloadPath = 8;</code>
        */
-      public java.lang.String getDownloadPath() {
+      public String getDownloadPath() {
         return instance.getDownloadPath();
       }
       /**
@@ -1759,7 +1759,7 @@ public final class TicketParserTrainProto {
        * <code>optional string downloadPath = 8;</code>
        */
       public Builder setDownloadPath(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setDownloadPath(value);
         return this;
@@ -1831,7 +1831,7 @@ public final class TicketParserTrainProto {
       /**
        * <code>optional string accountId = 11;</code>
        */
-      public java.lang.String getAccountId() {
+      public String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -1845,7 +1845,7 @@ public final class TicketParserTrainProto {
        * <code>optional string accountId = 11;</code>
        */
       public Builder setAccountId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -1871,11 +1871,11 @@ public final class TicketParserTrainProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent();
+          return new TicketParserTrainingCompleteEvent();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1888,7 +1888,7 @@ public final class TicketParserTrainProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent other = (com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent) arg1;
+          TicketParserTrainingCompleteEvent other = (TicketParserTrainingCompleteEvent) arg1;
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           baseModelCategory_ = visitor.visitString(!baseModelCategory_.isEmpty(), baseModelCategory_,
@@ -1909,7 +1909,7 @@ public final class TicketParserTrainProto {
               other.timeTakenToTrain_ != 0L, other.timeTakenToTrain_);
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
               !other.accountId_.isEmpty(), other.accountId_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2005,7 +2005,7 @@ public final class TicketParserTrainProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent.class) {
+          if (PARSER == null) {    synchronized (TicketParserTrainingCompleteEvent.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2019,13 +2019,13 @@ public final class TicketParserTrainProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
-    private static final com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent DEFAULT_INSTANCE;
+    private static final TicketParserTrainingCompleteEvent DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketParserTrainingCompleteEvent();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.TicketParserTrainProto.TicketParserTrainingCompleteEvent getDefaultInstance() {
+    public static TicketParserTrainingCompleteEvent getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

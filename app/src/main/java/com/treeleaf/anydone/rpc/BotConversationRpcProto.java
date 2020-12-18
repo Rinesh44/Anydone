@@ -15,7 +15,7 @@ public final class BotConversationRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class BotConversationRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class BotConversationRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -113,11 +113,11 @@ public final class BotConversationRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -131,7 +131,7 @@ public final class BotConversationRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -159,11 +159,11 @@ public final class BotConversationRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -177,7 +177,7 @@ public final class BotConversationRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -221,7 +221,7 @@ public final class BotConversationRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -242,7 +242,7 @@ public final class BotConversationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -253,7 +253,7 @@ public final class BotConversationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -264,7 +264,7 @@ public final class BotConversationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -624,60 +624,60 @@ public final class BotConversationRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(
+    public static BotConversationBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(
+    public static BotConversationBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(byte[] data)
+    public static BotConversationBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(
+    public static BotConversationBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(java.io.InputStream input)
+    public static BotConversationBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(
+    public static BotConversationBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static BotConversationBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseDelimitedFrom(
+    public static BotConversationBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(
+    public static BotConversationBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest parseFrom(
+    public static BotConversationBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -688,7 +688,7 @@ public final class BotConversationRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest prototype) {
+    public static Builder newBuilder(BotConversationBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -697,9 +697,9 @@ public final class BotConversationRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest, Builder> implements
+          BotConversationBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.BotConversationBaseRequest)
-        com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequestOrBuilder {
+        BotConversationBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -709,7 +709,7 @@ public final class BotConversationRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -723,7 +723,7 @@ public final class BotConversationRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -749,7 +749,7 @@ public final class BotConversationRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -763,7 +763,7 @@ public final class BotConversationRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -803,7 +803,7 @@ public final class BotConversationRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -817,7 +817,7 @@ public final class BotConversationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -826,7 +826,7 @@ public final class BotConversationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -835,7 +835,7 @@ public final class BotConversationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1088,11 +1088,11 @@ public final class BotConversationRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotConversationBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest();
+          return new BotConversationBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1106,7 +1106,7 @@ public final class BotConversationRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest other = (com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest) arg1;
+          BotConversationBaseRequest other = (BotConversationBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1123,7 +1123,7 @@ public final class BotConversationRpcProto {
           authorization_ = visitor.visitMessage(authorization_, other.authorization_);
           debug_ = visitor.visitMessage(debug_, other.debug_);
           conversationRequest_ = visitor.visitMessage(conversationRequest_, other.conversationRequest_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1243,7 +1243,7 @@ public final class BotConversationRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest.class) {
+          if (PARSER == null) {    synchronized (BotConversationBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1257,13 +1257,13 @@ public final class BotConversationRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.BotConversationBaseRequest)
-    private static final com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest DEFAULT_INSTANCE;
+    private static final BotConversationBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotConversationBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseRequest getDefaultInstance() {
+    public static BotConversationBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1286,7 +1286,7 @@ public final class BotConversationRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1324,7 +1324,7 @@ public final class BotConversationRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -1394,11 +1394,11 @@ public final class BotConversationRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -1412,7 +1412,7 @@ public final class BotConversationRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1577,11 +1577,11 @@ public final class BotConversationRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -1595,7 +1595,7 @@ public final class BotConversationRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1861,60 +1861,60 @@ public final class BotConversationRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(
+    public static BotConversationBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(
+    public static BotConversationBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(byte[] data)
+    public static BotConversationBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(
+    public static BotConversationBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(java.io.InputStream input)
+    public static BotConversationBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(
+    public static BotConversationBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static BotConversationBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseDelimitedFrom(
+    public static BotConversationBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(
+    public static BotConversationBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse parseFrom(
+    public static BotConversationBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1925,7 +1925,7 @@ public final class BotConversationRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse prototype) {
+    public static Builder newBuilder(BotConversationBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1934,9 +1934,9 @@ public final class BotConversationRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse, Builder> implements
+          BotConversationBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.BotConversationBaseResponse)
-        com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponseOrBuilder {
+        BotConversationBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1969,7 +1969,7 @@ public final class BotConversationRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -1983,7 +1983,7 @@ public final class BotConversationRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -2137,7 +2137,7 @@ public final class BotConversationRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -2151,7 +2151,7 @@ public final class BotConversationRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -2312,11 +2312,11 @@ public final class BotConversationRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotConversationBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse();
+          return new BotConversationBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2329,7 +2329,7 @@ public final class BotConversationRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse other = (com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse) arg1;
+          BotConversationBaseResponse other = (BotConversationBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -2345,7 +2345,7 @@ public final class BotConversationRpcProto {
           conversationResponse_ = visitor.visitMessage(conversationResponse_, other.conversationResponse_);
           link_ = visitor.visitMessage(link_, other.link_);
           kgraphResponse_ = visitor.visitMessage(kgraphResponse_, other.kgraphResponse_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2469,7 +2469,7 @@ public final class BotConversationRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse.class) {
+          if (PARSER == null) {    synchronized (BotConversationBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2483,13 +2483,13 @@ public final class BotConversationRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.BotConversationBaseResponse)
-    private static final com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse DEFAULT_INSTANCE;
+    private static final BotConversationBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotConversationBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.BotConversationRpcProto.BotConversationBaseResponse getDefaultInstance() {
+    public static BotConversationBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

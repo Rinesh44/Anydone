@@ -15,7 +15,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -164,11 +164,11 @@ public final class OrderServiceRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -182,7 +182,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -210,11 +210,11 @@ public final class OrderServiceRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -228,7 +228,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -272,7 +272,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -293,7 +293,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -304,7 +304,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -315,7 +315,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -792,7 +792,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.EmployeeProfile serviceDoerAccounts = 13;</code>
      */
     private void addAllServiceDoerAccounts(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
       ensureServiceDoerAccountsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceDoerAccounts_);
@@ -1038,60 +1038,60 @@ public final class OrderServiceRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(byte[] data)
+    public static OrderServiceBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(java.io.InputStream input)
+    public static OrderServiceBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static OrderServiceBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseDelimitedFrom(
+    public static OrderServiceBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest parseFrom(
+    public static OrderServiceBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1102,7 +1102,7 @@ public final class OrderServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest prototype) {
+    public static Builder newBuilder(OrderServiceBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1111,9 +1111,9 @@ public final class OrderServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest, Builder> implements
+          OrderServiceBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.OrderServiceBaseRequest)
-        com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequestOrBuilder {
+        OrderServiceBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1123,7 +1123,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1137,7 +1137,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1163,7 +1163,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1177,7 +1177,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1217,7 +1217,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1231,7 +1231,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1240,7 +1240,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1249,7 +1249,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1664,7 +1664,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.EmployeeProfile serviceDoerAccounts = 13;</code>
        */
       public Builder addAllServiceDoerAccounts(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeProfile> values) {
         copyOnWrite();
         instance.addAllServiceDoerAccounts(values);
         return this;
@@ -1779,11 +1779,11 @@ public final class OrderServiceRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.OrderServiceBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest();
+          return new OrderServiceBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1798,7 +1798,7 @@ public final class OrderServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest other = (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest) arg1;
+          OrderServiceBaseRequest other = (OrderServiceBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1820,7 +1820,7 @@ public final class OrderServiceRpcProto {
           serviceDoerAccounts_= visitor.visitList(serviceDoerAccounts_, other.serviceDoerAccounts_);
           orderFilterRequest_ = visitor.visitMessage(orderFilterRequest_, other.orderFilterRequest_);
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2001,7 +2001,7 @@ public final class OrderServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest.class) {
+          if (PARSER == null) {    synchronized (OrderServiceBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2015,13 +2015,13 @@ public final class OrderServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.OrderServiceBaseRequest)
-    private static final com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest DEFAULT_INSTANCE;
+    private static final OrderServiceBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new OrderServiceBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseRequest getDefaultInstance() {
+    public static OrderServiceBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2044,7 +2044,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -2082,7 +2082,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -2134,7 +2134,7 @@ public final class OrderServiceRpcProto {
     /**
      * <code>optional string link = 12;</code>
      */
-    java.lang.String getLink();
+    String getLink();
     /**
      * <code>optional string link = 12;</code>
      */
@@ -2181,11 +2181,11 @@ public final class OrderServiceRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -2199,7 +2199,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2364,11 +2364,11 @@ public final class OrderServiceRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -2382,7 +2382,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2562,7 +2562,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceOrder serviceOrders = 9;</code>
      */
     private void addAllServiceOrders(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
       ensureServiceOrdersIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceOrders_);
@@ -2705,7 +2705,7 @@ public final class OrderServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentSummary paymentSummaries = 11;</code>
      */
     private void addAllPaymentSummaries(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
       ensurePaymentSummariesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, paymentSummaries_);
@@ -2725,11 +2725,11 @@ public final class OrderServiceRpcProto {
     }
 
     public static final int LINK_FIELD_NUMBER = 12;
-    private java.lang.String link_;
+    private String link_;
     /**
      * <code>optional string link = 12;</code>
      */
-    public java.lang.String getLink() {
+    public String getLink() {
       return link_;
     }
     /**
@@ -2743,7 +2743,7 @@ public final class OrderServiceRpcProto {
      * <code>optional string link = 12;</code>
      */
     private void setLink(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2867,60 +2867,60 @@ public final class OrderServiceRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(byte[] data)
+    public static OrderServiceBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(java.io.InputStream input)
+    public static OrderServiceBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static OrderServiceBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseDelimitedFrom(
+    public static OrderServiceBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse parseFrom(
+    public static OrderServiceBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2931,7 +2931,7 @@ public final class OrderServiceRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse prototype) {
+    public static Builder newBuilder(OrderServiceBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2940,9 +2940,9 @@ public final class OrderServiceRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse, Builder> implements
+          OrderServiceBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.OrderServiceBaseResponse)
-        com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponseOrBuilder {
+        OrderServiceBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2975,7 +2975,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2989,7 +2989,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -3143,7 +3143,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -3157,7 +3157,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -3300,7 +3300,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceOrder serviceOrders = 9;</code>
        */
       public Builder addAllServiceOrders(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.ServiceOrder> values) {
         copyOnWrite();
         instance.addAllServiceOrders(values);
         return this;
@@ -3420,7 +3420,7 @@ public final class OrderServiceRpcProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentSummary paymentSummaries = 11;</code>
        */
       public Builder addAllPaymentSummaries(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.OrderServiceProto.PaymentSummary> values) {
         copyOnWrite();
         instance.addAllPaymentSummaries(values);
         return this;
@@ -3445,7 +3445,7 @@ public final class OrderServiceRpcProto {
       /**
        * <code>optional string link = 12;</code>
        */
-      public java.lang.String getLink() {
+      public String getLink() {
         return instance.getLink();
       }
       /**
@@ -3459,7 +3459,7 @@ public final class OrderServiceRpcProto {
        * <code>optional string link = 12;</code>
        */
       public Builder setLink(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setLink(value);
         return this;
@@ -3485,11 +3485,11 @@ public final class OrderServiceRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.OrderServiceBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse();
+          return new OrderServiceBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3504,7 +3504,7 @@ public final class OrderServiceRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse other = (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse) arg1;
+          OrderServiceBaseResponse other = (OrderServiceBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -3524,7 +3524,7 @@ public final class OrderServiceRpcProto {
           paymentSummaries_= visitor.visitList(paymentSummaries_, other.paymentSummaries_);
           link_ = visitor.visitString(!link_.isEmpty(), link_,
               !other.link_.isEmpty(), other.link_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3652,7 +3652,7 @@ public final class OrderServiceRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse.class) {
+          if (PARSER == null) {    synchronized (OrderServiceBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3666,13 +3666,13 @@ public final class OrderServiceRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.OrderServiceBaseResponse)
-    private static final com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse DEFAULT_INSTANCE;
+    private static final OrderServiceBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new OrderServiceBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.OrderServiceRpcProto.OrderServiceBaseResponse getDefaultInstance() {
+    public static OrderServiceBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

@@ -15,7 +15,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class ConversationRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -101,7 +101,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string serviceProviderId = 11;</code>
      */
-    java.lang.String getServiceProviderId();
+    String getServiceProviderId();
     /**
      * <code>optional string serviceProviderId = 11;</code>
      */
@@ -111,7 +111,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string customerId = 12;</code>
      */
-    java.lang.String getCustomerId();
+    String getCustomerId();
     /**
      * <code>optional string customerId = 12;</code>
      */
@@ -162,11 +162,11 @@ public final class ConversationRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -180,7 +180,7 @@ public final class ConversationRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -208,11 +208,11 @@ public final class ConversationRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -226,7 +226,7 @@ public final class ConversationRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -270,7 +270,7 @@ public final class ConversationRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -291,7 +291,7 @@ public final class ConversationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -302,7 +302,7 @@ public final class ConversationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -313,7 +313,7 @@ public final class ConversationRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -586,11 +586,11 @@ public final class ConversationRpcProto {
     }
 
     public static final int SERVICEPROVIDERID_FIELD_NUMBER = 11;
-    private java.lang.String serviceProviderId_;
+    private String serviceProviderId_;
     /**
      * <code>optional string serviceProviderId = 11;</code>
      */
-    public java.lang.String getServiceProviderId() {
+    public String getServiceProviderId() {
       return serviceProviderId_;
     }
     /**
@@ -604,7 +604,7 @@ public final class ConversationRpcProto {
      * <code>optional string serviceProviderId = 11;</code>
      */
     private void setServiceProviderId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -632,11 +632,11 @@ public final class ConversationRpcProto {
     }
 
     public static final int CUSTOMERID_FIELD_NUMBER = 12;
-    private java.lang.String customerId_;
+    private String customerId_;
     /**
      * <code>optional string customerId = 12;</code>
      */
-    public java.lang.String getCustomerId() {
+    public String getCustomerId() {
       return customerId_;
     }
     /**
@@ -650,7 +650,7 @@ public final class ConversationRpcProto {
      * <code>optional string customerId = 12;</code>
      */
     private void setCustomerId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -943,60 +943,60 @@ public final class ConversationRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(
+    public static ConversationBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(
+    public static ConversationBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(byte[] data)
+    public static ConversationBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(
+    public static ConversationBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(java.io.InputStream input)
+    public static ConversationBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(
+    public static ConversationBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static ConversationBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseDelimitedFrom(
+    public static ConversationBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(
+    public static ConversationBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest parseFrom(
+    public static ConversationBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1007,7 +1007,7 @@ public final class ConversationRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest prototype) {
+    public static Builder newBuilder(ConversationBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1016,9 +1016,9 @@ public final class ConversationRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest, Builder> implements
+          ConversationBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.ConversationBaseRequest)
-        com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequestOrBuilder {
+        ConversationBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1028,7 +1028,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1042,7 +1042,7 @@ public final class ConversationRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1068,7 +1068,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1082,7 +1082,7 @@ public final class ConversationRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1122,7 +1122,7 @@ public final class ConversationRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1136,7 +1136,7 @@ public final class ConversationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1145,7 +1145,7 @@ public final class ConversationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1154,7 +1154,7 @@ public final class ConversationRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1407,7 +1407,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string serviceProviderId = 11;</code>
        */
-      public java.lang.String getServiceProviderId() {
+      public String getServiceProviderId() {
         return instance.getServiceProviderId();
       }
       /**
@@ -1421,7 +1421,7 @@ public final class ConversationRpcProto {
        * <code>optional string serviceProviderId = 11;</code>
        */
       public Builder setServiceProviderId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceProviderId(value);
         return this;
@@ -1447,7 +1447,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string customerId = 12;</code>
        */
-      public java.lang.String getCustomerId() {
+      public String getCustomerId() {
         return instance.getCustomerId();
       }
       /**
@@ -1461,7 +1461,7 @@ public final class ConversationRpcProto {
        * <code>optional string customerId = 12;</code>
        */
       public Builder setCustomerId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCustomerId(value);
         return this;
@@ -1614,11 +1614,11 @@ public final class ConversationRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ConversationBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest();
+          return new ConversationBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1632,7 +1632,7 @@ public final class ConversationRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest other = (com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest) arg1;
+          ConversationBaseRequest other = (ConversationBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1656,7 +1656,7 @@ public final class ConversationRpcProto {
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
           employeeAssigned_ = visitor.visitMessage(employeeAssigned_, other.employeeAssigned_);
           conversationFilter_ = visitor.visitMessage(conversationFilter_, other.conversationFilter_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1820,7 +1820,7 @@ public final class ConversationRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest.class) {
+          if (PARSER == null) {    synchronized (ConversationBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1834,13 +1834,13 @@ public final class ConversationRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.ConversationBaseRequest)
-    private static final com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest DEFAULT_INSTANCE;
+    private static final ConversationBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ConversationBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseRequest getDefaultInstance() {
+    public static ConversationBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1863,7 +1863,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1901,7 +1901,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -1911,7 +1911,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string stringValue = 8;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 8;</code>
      */
@@ -1944,7 +1944,7 @@ public final class ConversationRpcProto {
     /**
      * <code>optional string link = 14;</code>
      */
-    java.lang.String getLink();
+    String getLink();
     /**
      * <code>optional string link = 14;</code>
      */
@@ -1996,11 +1996,11 @@ public final class ConversationRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -2014,7 +2014,7 @@ public final class ConversationRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2179,11 +2179,11 @@ public final class ConversationRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -2197,7 +2197,7 @@ public final class ConversationRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2225,11 +2225,11 @@ public final class ConversationRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 8;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 8;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -2243,7 +2243,7 @@ public final class ConversationRpcProto {
      * <code>optional string stringValue = 8;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2423,7 +2423,7 @@ public final class ConversationRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 13;</code>
      */
     private void addAllConversations(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationThread> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationThread> values) {
       ensureConversationsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, conversations_);
@@ -2443,11 +2443,11 @@ public final class ConversationRpcProto {
     }
 
     public static final int LINK_FIELD_NUMBER = 14;
-    private java.lang.String link_;
+    private String link_;
     /**
      * <code>optional string link = 14;</code>
      */
-    public java.lang.String getLink() {
+    public String getLink() {
       return link_;
     }
     /**
@@ -2461,7 +2461,7 @@ public final class ConversationRpcProto {
      * <code>optional string link = 14;</code>
      */
     private void setLink(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2608,60 +2608,60 @@ public final class ConversationRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(
+    public static ConversationBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(
+    public static ConversationBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(byte[] data)
+    public static ConversationBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(
+    public static ConversationBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(java.io.InputStream input)
+    public static ConversationBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(
+    public static ConversationBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static ConversationBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseDelimitedFrom(
+    public static ConversationBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(
+    public static ConversationBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse parseFrom(
+    public static ConversationBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2672,7 +2672,7 @@ public final class ConversationRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse prototype) {
+    public static Builder newBuilder(ConversationBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2681,9 +2681,9 @@ public final class ConversationRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse, Builder> implements
+          ConversationBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.ConversationBaseResponse)
-        com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponseOrBuilder {
+        ConversationBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2716,7 +2716,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2730,7 +2730,7 @@ public final class ConversationRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -2884,7 +2884,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -2898,7 +2898,7 @@ public final class ConversationRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -2924,7 +2924,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string stringValue = 8;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -2938,7 +2938,7 @@ public final class ConversationRpcProto {
        * <code>optional string stringValue = 8;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -3081,7 +3081,7 @@ public final class ConversationRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ConversationThread conversations = 13;</code>
        */
       public Builder addAllConversations(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationThread> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationThread> values) {
         copyOnWrite();
         instance.addAllConversations(values);
         return this;
@@ -3106,7 +3106,7 @@ public final class ConversationRpcProto {
       /**
        * <code>optional string link = 14;</code>
        */
-      public java.lang.String getLink() {
+      public String getLink() {
         return instance.getLink();
       }
       /**
@@ -3120,7 +3120,7 @@ public final class ConversationRpcProto {
        * <code>optional string link = 14;</code>
        */
       public Builder setLink(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setLink(value);
         return this;
@@ -3169,11 +3169,11 @@ public final class ConversationRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ConversationBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse();
+          return new ConversationBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3187,7 +3187,7 @@ public final class ConversationRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse other = (com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse) arg1;
+          ConversationBaseResponse other = (ConversationBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -3208,7 +3208,7 @@ public final class ConversationRpcProto {
               !other.link_.isEmpty(), other.link_);
           count_ = visitor.visitLong(count_ != 0L, count_,
               other.count_ != 0L, other.count_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3333,7 +3333,7 @@ public final class ConversationRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse.class) {
+          if (PARSER == null) {    synchronized (ConversationBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3347,13 +3347,13 @@ public final class ConversationRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.ConversationBaseResponse)
-    private static final com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse DEFAULT_INSTANCE;
+    private static final ConversationBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ConversationBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.ConversationRpcProto.ConversationBaseResponse getDefaultInstance() {
+    public static ConversationBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

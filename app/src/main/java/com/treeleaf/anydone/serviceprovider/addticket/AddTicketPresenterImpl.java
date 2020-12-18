@@ -143,6 +143,48 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
 
     }
 
+    @Override
+    public void getSummarySuggestions(String summary) {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getSummarySuggestions(token, serviceId,
+                summary, "");
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse suggestionResponse) {
+                        GlobalUtils.showLog(TAG, "get suggestion response:"
+                                + suggestionResponse);
+
+                        if (suggestionResponse.getError()) {
+                            getView().getSummarySuggestionFail(suggestionResponse.getMsg());
+                            return;
+                        }
+
+
+                        getView().getSummarySuggestionSuccess(suggestionResponse.getAutofillSuggestionRes());
+//                        saveCustomers(suggestionResponse.getAutofillSuggestionRes());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
     private void saveTicketTypes(List<TicketProto.TicketType> ticketTypeList) {
         TicketCategoryRepo.getInstance().saveTicketTypeList(ticketTypeList, new Repo.Callback() {
             @Override

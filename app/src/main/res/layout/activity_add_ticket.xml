@@ -248,6 +248,49 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/tv_assign_to_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="Assign to me"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_emp_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Suggestion: "
+                        android:textColor="@color/charcoal_text"
+                        android:textSize="12sp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_suggested_emp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/dimen_2x2"
+                        android:src="@drawable/ic_empty_profile_holder_icon" />
+
+                    <TextView
+                        android:id="@+id/tv_emp_suggestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_2x2"
+                        android:gravity="center"
+                        android:text="Rinesh SHakya"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_5x1"
@@ -277,6 +320,33 @@
                         android:layout_marginTop="@dimen/dimen_6x1"
                         android:layout_marginEnd="@dimen/dimen_5x1"
                         android:background="@color/grey_shade" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_team_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Suggestion: "
+                        android:textColor="@color/charcoal_text"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_team_suggestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_2x2"
+                        android:gravity="center"
+                        android:text="Rinesh SHakya"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -313,6 +383,33 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/ll_label_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Suggestion: "
+                        android:textColor="@color/charcoal_text"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_label_suggestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_2x2"
+                        android:gravity="center"
+                        android:text="Rinesh SHakya"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -323,8 +420,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_10x2">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/iv_priority"
@@ -352,10 +448,46 @@
 
                 </RelativeLayout>
 
+                <LinearLayout
+                    android:id="@+id/ll_priority_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="-4dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Suggestion: "
+                        android:textColor="@color/charcoal_text"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_priority_suggestion"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/dimen_2x2"
+                        android:src="@drawable/ic_low_small" />
+
+                    <TextView
+                        android:id="@+id/tv_priority_suggestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_2x2"
+                        android:gravity="center"
+                        android:text="Rinesh SHakya"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
                     android:text="@string/estimated_time"
                     android:textSize="@dimen/material_text_body2" />
 
@@ -371,6 +503,57 @@
                     android:inputType="textVisiblePassword|textFilter"
                     android:maxLength="45"
                     android:paddingEnd="@dimen/dimens_2x"
+                    android:singleLine="true"
+                    android:textSize="@dimen/material_text_body1" />
+
+                <LinearLayout
+                    android:id="@+id/ll_est_time_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="-4dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Suggestion: "
+                        android:textColor="@color/charcoal_text"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_est_time_suggestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_2x2"
+                        android:gravity="center"
+                        android:text="Rinesh SHakya"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="@string/depends_on"
+                    android:textSize="@dimen/material_text_body2" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_depends_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_search"
+                    android:focusable="false"
+                    android:inputType="textVisiblePassword|textFilter"
+                    android:maxLength="45"
+                    android:paddingEnd="@dimen/dimen_5x1"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_body1" />
 

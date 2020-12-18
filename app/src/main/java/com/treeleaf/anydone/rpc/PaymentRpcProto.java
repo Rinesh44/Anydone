@@ -15,7 +15,7 @@ public final class PaymentRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class PaymentRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    java.lang.String getStringValue();
+    String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class PaymentRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    java.lang.String getStringValues(int index);
+    String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -158,11 +158,11 @@ public final class PaymentRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -176,7 +176,7 @@ public final class PaymentRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -204,11 +204,11 @@ public final class PaymentRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private java.lang.String stringValue_;
+    private String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public java.lang.String getStringValue() {
+    public String getStringValue() {
       return stringValue_;
     }
     /**
@@ -222,7 +222,7 @@ public final class PaymentRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -266,7 +266,7 @@ public final class PaymentRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public java.lang.String getStringValues(int index) {
+    public String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -287,7 +287,7 @@ public final class PaymentRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -298,7 +298,7 @@ public final class PaymentRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -309,7 +309,7 @@ public final class PaymentRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -964,60 +964,60 @@ public final class PaymentRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(
+    public static PaymentBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(
+    public static PaymentBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(byte[] data)
+    public static PaymentBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(
+    public static PaymentBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(java.io.InputStream input)
+    public static PaymentBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(
+    public static PaymentBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static PaymentBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseDelimitedFrom(
+    public static PaymentBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(
+    public static PaymentBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest parseFrom(
+    public static PaymentBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1028,7 +1028,7 @@ public final class PaymentRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest prototype) {
+    public static Builder newBuilder(PaymentBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1037,9 +1037,9 @@ public final class PaymentRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest, Builder> implements
+          PaymentBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.PaymentBaseRequest)
-        com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequestOrBuilder {
+        PaymentBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1049,7 +1049,7 @@ public final class PaymentRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1063,7 +1063,7 @@ public final class PaymentRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1089,7 +1089,7 @@ public final class PaymentRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public java.lang.String getStringValue() {
+      public String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1103,7 +1103,7 @@ public final class PaymentRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1143,7 +1143,7 @@ public final class PaymentRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public java.lang.String getStringValues(int index) {
+      public String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1157,7 +1157,7 @@ public final class PaymentRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1166,7 +1166,7 @@ public final class PaymentRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1175,7 +1175,7 @@ public final class PaymentRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1653,11 +1653,11 @@ public final class PaymentRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest();
+          return new PaymentBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1671,7 +1671,7 @@ public final class PaymentRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest other = (com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest) arg1;
+          PaymentBaseRequest other = (PaymentBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1693,7 +1693,7 @@ public final class PaymentRpcProto {
           accountPlan_ = visitor.visitMessage(accountPlan_, other.accountPlan_);
           invoice_ = visitor.visitMessage(invoice_, other.invoice_);
           transaction_ = visitor.visitMessage(transaction_, other.transaction_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1878,7 +1878,7 @@ public final class PaymentRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest.class) {
+          if (PARSER == null) {    synchronized (PaymentBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1892,13 +1892,13 @@ public final class PaymentRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.PaymentBaseRequest)
-    private static final com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest DEFAULT_INSTANCE;
+    private static final PaymentBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new PaymentBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseRequest getDefaultInstance() {
+    public static PaymentBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1921,7 +1921,7 @@ public final class PaymentRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    java.lang.String getMsg();
+    String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1959,7 +1959,7 @@ public final class PaymentRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -2147,11 +2147,11 @@ public final class PaymentRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private java.lang.String msg_;
+    private String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public java.lang.String getMsg() {
+    public String getMsg() {
       return msg_;
     }
     /**
@@ -2165,7 +2165,7 @@ public final class PaymentRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2330,11 +2330,11 @@ public final class PaymentRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -2348,7 +2348,7 @@ public final class PaymentRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2528,7 +2528,7 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Card cards = 9;</code>
      */
     private void addAllCards(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Card> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Card> values) {
       ensureCardsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, cards_);
@@ -2700,7 +2700,7 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Product products = 11;</code>
      */
     private void addAllProducts(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Product> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Product> values) {
       ensureProductsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, products_);
@@ -2872,7 +2872,7 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 13;</code>
      */
     private void addAllPaymentPlans(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
       ensurePaymentPlansIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, paymentPlans_);
@@ -3044,7 +3044,7 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.AccountPlan accountPlans = 15;</code>
      */
     private void addAllAccountPlans(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.AccountPlan> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.AccountPlan> values) {
       ensureAccountPlansIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, accountPlans_);
@@ -3216,7 +3216,7 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Invoice invoices = 17;</code>
      */
     private void addAllInvoices(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Invoice> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Invoice> values) {
       ensureInvoicesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, invoices_);
@@ -3388,7 +3388,7 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Transaction transactions = 19;</code>
      */
     private void addAllTransactions(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Transaction> values) {
+        Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Transaction> values) {
       ensureTransactionsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, transactions_);
@@ -3553,60 +3553,60 @@ public final class PaymentRpcProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(
+    public static PaymentBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(
+    public static PaymentBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(byte[] data)
+    public static PaymentBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(
+    public static PaymentBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(java.io.InputStream input)
+    public static PaymentBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(
+    public static PaymentBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static PaymentBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseDelimitedFrom(
+    public static PaymentBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(
+    public static PaymentBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse parseFrom(
+    public static PaymentBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3617,7 +3617,7 @@ public final class PaymentRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse prototype) {
+    public static Builder newBuilder(PaymentBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3626,9 +3626,9 @@ public final class PaymentRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse, Builder> implements
+          PaymentBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.PaymentBaseResponse)
-        com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponseOrBuilder {
+        PaymentBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3661,7 +3661,7 @@ public final class PaymentRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public java.lang.String getMsg() {
+      public String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -3675,7 +3675,7 @@ public final class PaymentRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -3829,7 +3829,7 @@ public final class PaymentRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -3843,7 +3843,7 @@ public final class PaymentRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -3986,7 +3986,7 @@ public final class PaymentRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Card cards = 9;</code>
        */
       public Builder addAllCards(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Card> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Card> values) {
         copyOnWrite();
         instance.addAllCards(values);
         return this;
@@ -4128,7 +4128,7 @@ public final class PaymentRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Product products = 11;</code>
        */
       public Builder addAllProducts(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Product> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Product> values) {
         copyOnWrite();
         instance.addAllProducts(values);
         return this;
@@ -4270,7 +4270,7 @@ public final class PaymentRpcProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 13;</code>
        */
       public Builder addAllPaymentPlans(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
         copyOnWrite();
         instance.addAllPaymentPlans(values);
         return this;
@@ -4412,7 +4412,7 @@ public final class PaymentRpcProto {
        * <code>repeated .treeleaf.anydone.entities.AccountPlan accountPlans = 15;</code>
        */
       public Builder addAllAccountPlans(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.AccountPlan> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.AccountPlan> values) {
         copyOnWrite();
         instance.addAllAccountPlans(values);
         return this;
@@ -4554,7 +4554,7 @@ public final class PaymentRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Invoice invoices = 17;</code>
        */
       public Builder addAllInvoices(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Invoice> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Invoice> values) {
         copyOnWrite();
         instance.addAllInvoices(values);
         return this;
@@ -4696,7 +4696,7 @@ public final class PaymentRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Transaction transactions = 19;</code>
        */
       public Builder addAllTransactions(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Transaction> values) {
+          Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.Transaction> values) {
         copyOnWrite();
         instance.addAllTransactions(values);
         return this;
@@ -4721,11 +4721,11 @@ public final class PaymentRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse();
+          return new PaymentBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4744,7 +4744,7 @@ public final class PaymentRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse other = (com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse) arg1;
+          PaymentBaseResponse other = (PaymentBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -4769,7 +4769,7 @@ public final class PaymentRpcProto {
           invoices_= visitor.visitList(invoices_, other.invoices_);
           transaction_ = visitor.visitMessage(transaction_, other.transaction_);
           transactions_= visitor.visitList(transactions_, other.transactions_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -4987,7 +4987,7 @@ public final class PaymentRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse.class) {
+          if (PARSER == null) {    synchronized (PaymentBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5001,13 +5001,13 @@ public final class PaymentRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.PaymentBaseResponse)
-    private static final com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse DEFAULT_INSTANCE;
+    private static final PaymentBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new PaymentBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.rpc.PaymentRpcProto.PaymentBaseResponse getDefaultInstance() {
+    public static PaymentBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
