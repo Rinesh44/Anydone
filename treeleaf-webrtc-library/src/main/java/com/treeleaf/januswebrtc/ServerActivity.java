@@ -841,10 +841,14 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
                         for (Joinee joinee : joineeListAdapter.fetchAllJoinee()) {
                             if (!joinee.isSelfAccount()) {
-                                joineeListAdapter.highlightCurrentDrawer(joinee.getAccountId(), false,
-                                        treeleafDrawPadView.getRemoteDrawerFromAccountId(joinee.getAccountId(),
-                                                currentPicture.getPictureId())
-                                                .getDrawMetadata().getTextColor());
+                                //TODO: use better way to check for null
+                                if (treeleafDrawPadView.getRemoteDrawerFromAccountId(joinee.getAccountId(),
+                                        currentPicture.getPictureId()) != null) {
+                                    joineeListAdapter.highlightCurrentDrawer(joinee.getAccountId(), false,
+                                            treeleafDrawPadView.getRemoteDrawerFromAccountId(joinee.getAccountId(),
+                                                    currentPicture.getPictureId())
+                                                    .getDrawMetadata().getTextColor());
+                                }
                             } else {
                                 joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false,
                                         drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
