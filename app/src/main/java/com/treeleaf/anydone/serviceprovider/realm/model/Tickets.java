@@ -33,6 +33,7 @@ public class Tickets extends RealmObject {
     AssignEmployee assignedEmployee;
     int priority;
     boolean botEnabled;
+    DependentTicket dependentTicket;
 
     public Tickets() {
     }
@@ -255,5 +256,13 @@ public class Tickets extends RealmObject {
 
     public void setThreadId(String threadId) {
         this.threadId = threadId;
+    }
+
+    public DependentTicket getDependentTicket() {
+        return dependentTicket;
+    }
+
+    public void setDependentTicket(DependentTicket dependentTicket) {
+        this.dependentTicket = dependentTicket;
     }
 }

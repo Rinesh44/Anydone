@@ -7,6 +7,7 @@ import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceRequest;
@@ -456,6 +457,16 @@ public class TicketRepo extends Repo {
             tickets.setBotEnabled(ticketPb.getIsBotEnabled());
             tickets.setContributorList(ProtoMapper.transformContributors
                     (ticketPb.getTicketContributorList()));
+
+            if (ticketPb.hasDependOnTicket()) {
+                DependentTicket dependentTicket = new DependentTicket();
+                dependentTicket.setId(ticketPb.getDependOnTicket().getTicketId());
+                dependentTicket.setIndex(ticketPb.getDependOnTicket().getTicketIndex());
+                dependentTicket.setSummary(ticketPb.getDependOnTicket().getTitle());
+                dependentTicket.setCreatedAt(ticketPb.getDependOnTicket().getCreatedAt());
+                dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
+                tickets.setDependentTicket(dependentTicket);
+            }
             ticketsList.add(tickets);
         }
 
@@ -503,6 +514,16 @@ public class TicketRepo extends Repo {
             tickets.setBotEnabled(ticketPb.getIsBotEnabled());
             tickets.setContributorList(ProtoMapper.transformContributors
                     (ticketPb.getTicketContributorList()));
+
+            if (ticketPb.hasDependOnTicket()) {
+                DependentTicket dependentTicket = new DependentTicket();
+                dependentTicket.setId(ticketPb.getDependOnTicket().getTicketId());
+                dependentTicket.setIndex(ticketPb.getDependOnTicket().getTicketIndex());
+                dependentTicket.setSummary(ticketPb.getDependOnTicket().getTitle());
+                dependentTicket.setCreatedAt(ticketPb.getDependOnTicket().getCreatedAt());
+                dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
+                tickets.setDependentTicket(dependentTicket);
+            }
             ticketsList.add(tickets);
         }
 
@@ -542,6 +563,17 @@ public class TicketRepo extends Repo {
         tickets.setBotEnabled(ticketPb.getIsBotEnabled());
         tickets.setContributorList(ProtoMapper.transformContributors
                 (ticketPb.getTicketContributorList()));
+
+        GlobalUtils.showLog(TAG, "has dependent ticket: " + ticketPb.hasDependOnTicket());
+        if (ticketPb.hasDependOnTicket()) {
+            DependentTicket dependentTicket = new DependentTicket();
+            dependentTicket.setId(ticketPb.getDependOnTicket().getTicketId());
+            dependentTicket.setIndex(ticketPb.getDependOnTicket().getTicketIndex());
+            dependentTicket.setSummary(ticketPb.getDependOnTicket().getTitle());
+            dependentTicket.setCreatedAt(ticketPb.getDependOnTicket().getCreatedAt());
+            dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
+            tickets.setDependentTicket(dependentTicket);
+        }
         return tickets;
     }
 

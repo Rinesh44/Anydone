@@ -4,7 +4,9 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
+import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import java.util.List;
 
@@ -80,6 +82,22 @@ public class TicketTimelineContract {
 
         void onTaskStartFail(String msg);
 
+        void getTicketByIdSuccess(Tickets ticket);
+
+        void getTicketByIdFail(String msg);
+
+        void getDependencyTicketsListSuccess();
+
+        void getDependencyTicketsListFail(String msg);
+
+        void searchDependentTicketSuccess(List<DependentTicket> ticketList);
+
+        void searchDependentTicketFail(String msg);
+
+        void updateTicketSuccess(DependentTicket ticket, boolean isDelete);
+
+        void updateTicketFail(String msg);
+
     }
 
     public interface TicketTimelinePresenter extends Presenter<TicketTimelineView> {
@@ -116,6 +134,14 @@ public class TicketTimelineContract {
         void editTicketType(String ticketId, String ticketTypeId, String ticketType);
 
         void startTask(long ticketId);
+
+        void getTicketDetailsById(long ticketId);
+
+        void getDependencyListTickets();
+
+        void searchTickets(String query);
+
+        void updateTicket(long ticketId, DependentTicket dependentTicket);
 
     }
 }

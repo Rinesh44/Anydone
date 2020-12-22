@@ -32,6 +32,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +47,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.DependentTicketSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchLabelAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchTeamAdapter;
@@ -57,6 +59,7 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
+import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
@@ -66,6 +69,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.DependentTicketRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.LabelRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -214,9 +218,30 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     LinearLayout llStatusHolder;
     @BindView(R.id.btn_start_task)
     MaterialButton btnStartTask;
+    @BindView(R.id.rl_depends_on)
+    RelativeLayout rlDependsOn;
+    @BindView(R.id.tv_dependent_ticket_id)
+    TextView tvDependentTicketId;
+    @BindView(R.id.tv_dependent_ticket_summary)
+    TextView tvDependentTicketSummary;
+    @BindView(R.id.iv_edit_depend_on)
+    ImageView ivEditDependsOn;
+    @BindView(R.id.iv_delete_depend_on)
+    ImageView ivDeleteDependsOn;
+    @BindView(R.id.rl_depends_on_title)
+    RelativeLayout rlDependsOnTitle;
+    @BindView(R.id.expandable_layout_depends_on)
+    ExpandableLayout elDependsOn;
+    @BindView(R.id.iv_depends_on_dropdown)
+    ImageView ivDependsOnDropDown;
+    @BindView(R.id.ll_depends_on_details)
+    LinearLayout llDependsOnDetails;
+    @BindView(R.id.tv_add_dependent_ticket)
+    TextView tvAddDependentTicket;
 
     private boolean expandEmployee = true;
     private boolean expandCustomer = true;
+    private boolean expandDependsOn = true;
     private long ticketId;
     private BottomSheetBehavior sheetBehavior;
     private String status;
@@ -257,6 +282,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private OnStatusChangeListener listener;
     private ImageView ivTick;
     private LinearLayout llEmployeeAsSelf;
+    private List<DependentTicket> dependentTicketList = new ArrayList<>();
+    private AppCompatEditText etSearchTicket;
+    private BottomSheetDialog ticketDependencySheet;
+    private RecyclerView rvTicket;
+    private DependentTicketSearchAdapter dependentTicketAdapter;
+    private DependentTicket dependentTicket;
 
 
     public TicketTimelineFragment() {
@@ -271,6 +302,9 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         ticketId = i.getLongExtra("selected_ticket_id", -1);
         contributed = i.getBooleanExtra("contributed", false);
         subscribed = i.getBooleanExtra("subscribed", false);
+        tickets = TicketRepo.getInstance().getTicketById(ticketId);
+        dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
+        createTicketDependencyBottomSheet();
 
         if (contributed) {
             setContributorPermissions();
@@ -288,6 +322,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             presenter.getAssignedEmployees(ticketId);
             presenter.getTicketTimeline(ticketId);
             presenter.getEmployees();
+            presenter.getTicketDetailsById(ticketId);
             setTicketDetails();
             setContributors();
             setUserType();
@@ -347,6 +382,42 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 
         setBotReplyChangeListener();
+
+        ivEditDependsOn.setOnClickListener(v -> ticketDependencySheet.show());
+
+        ivDeleteDependsOn.setOnClickListener(v -> showRemoveDependencyDialog());
+
+        tvAddDependentTicket.setOnClickListener(v -> ticketDependencySheet.show());
+    }
+
+    private void showRemoveDependencyDialog() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to remove this dependency?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                (dialog, id) -> presenter.updateTicket(ticketId, null));
+
+        builder1.setNegativeButton(
+                "No",
+                (dialog, id) -> dialog.cancel());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
     }
 
     private void setUserType() {
@@ -517,8 +588,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 "resolve");
     }
 
+    @SuppressLint("SetTextI18n")
     public void setTicketDetails() {
-        tickets = TicketRepo.getInstance().getTicketById(ticketId);
         Account userAccount = AccountRepo.getInstance().getAccount();
         if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById())
                 || userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())
@@ -531,6 +602,23 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             labels.addAll(tickets.getLabelRealmList());
             makeViewsEditable();
         }
+
+        showHideDependentTicket();
+        rlDependsOnTitle.setOnClickListener(v -> {
+            ivDependsOnDropDown.setImageTintList(AppCompatResources.getColorStateList
+                    (Objects.requireNonNull(getContext()), R.color.colorPrimary));
+            expandDependsOn = !expandDependsOn;
+            ivDependsOnDropDown.startAnimation(rotation);
+            if (expandDependsOn) {
+                ivDependsOnDropDown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropup));
+            } else {
+                ivDependsOnDropDown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropdown_toggle));
+            }
+            elDependsOn.toggle();
+        });
+
 
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
@@ -573,7 +661,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 break;
 
             case "TICKET_CLOSED":
-
                 addScrollviewMargin();
                 btnReopen.setVisibility(View.VISIBLE);
                 hideActions();
@@ -687,6 +774,36 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         handleSubscriberCase(tickets, userAccount);
 
         botReply.setChecked(tickets.isBotEnabled());
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showHideDependentTicket() {
+        if (tickets.getDependentTicket() != null) {
+            GlobalUtils.showLog(TAG, "dependent ticket not null");
+            rlDependsOn.setVisibility(View.VISIBLE);
+            tvDependentTicketId.setText("#" + tickets.getDependentTicket().getIndex());
+            tvDependentTicketSummary.setText(tickets.getDependentTicket().getSummary());
+            llDependsOnDetails.setVisibility(View.VISIBLE);
+            tvAddDependentTicket.setVisibility(View.GONE);
+            if (isEditable) {
+                ivEditDependsOn.setVisibility(View.VISIBLE);
+                ivDeleteDependsOn.setVisibility(View.VISIBLE);
+            } else {
+                ivEditDependsOn.setVisibility(View.GONE);
+                ivDeleteDependsOn.setVisibility(View.GONE);
+            }
+        } else {
+            ivEditDependsOn.setVisibility(View.GONE);
+            ivDeleteDependsOn.setVisibility(View.GONE);
+            if (isEditable) {
+                rlDependsOn.setVisibility(View.VISIBLE);
+                llDependsOnDetails.setVisibility(View.GONE);
+                tvAddDependentTicket.setVisibility(View.VISIBLE);
+            } else {
+                rlDependsOn.setVisibility(View.GONE);
+            }
+
+        }
     }
 
     private void setRemainingTime() {
@@ -2195,6 +2312,132 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
+    @Override
+    public void getTicketByIdSuccess(Tickets ticket) {
+        tickets = ticket;
+        GlobalUtils.showLog(TAG, "ticket dependency check: " + tickets.getDependentTicket());
+        setTicketDetails();
+    }
+
+    @Override
+    public void getTicketByIdFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+        }
+    }
+
+    @Override
+    public void getDependencyTicketsListSuccess() {
+        dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
+        createTicketDependencyBottomSheet();
+    }
+
+
+    private void createTicketDependencyBottomSheet() {
+        ticketDependencySheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.layout_bottom_sheet_ticket_dependency, null);
+
+        ticketDependencySheet.setContentView(view);
+        ticketDependencySheet.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        etSearchTicket = view.findViewById(R.id.et_search_ticket);
+        rvTicket = view.findViewById(R.id.rv_ticket);
+
+        setUpDependentTicketRecyclerView(dependentTicketList, rvTicket);
+
+        ticketDependencySheet.setOnShowListener(dialog -> {
+            etSearchTicket.requestFocus();
+            UiUtils.showKeyboardForced(getActivity());
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_EXPANDED);
+        });
+
+
+        etSearchTicket.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) presenter.searchTickets(s.toString());
+                else dependentTicketAdapter.setData(dependentTicketList);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        ticketDependencySheet.setOnDismissListener(dialog -> {
+            etSearchTicket.clearFocus();
+            etSearchTicket.getText().clear();
+            UiUtils.hideKeyboardForced(getActivity());
+        });
+    }
+
+
+    @Override
+    public void getDependencyTicketsListFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+        }
+    }
+
+    @Override
+    public void searchDependentTicketSuccess(List<DependentTicket> ticketList) {
+        dependentTicketAdapter.setData(ticketList);
+    }
+
+    @Override
+    public void searchDependentTicketFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void updateTicketSuccess(DependentTicket ticket, boolean isDelete) {
+        if (!isDelete) {
+            tvDependentTicketId.setText("#" + ticket.getIndex());
+            tvDependentTicketSummary.setText(ticket.getSummary());
+
+            llDependsOnDetails.setVisibility(View.VISIBLE);
+            tvAddDependentTicket.setVisibility(View.GONE);
+            ivEditDependsOn.setVisibility(View.VISIBLE);
+            ivDeleteDependsOn.setVisibility(View.VISIBLE);
+        } else {
+            llDependsOnDetails.setVisibility(View.GONE);
+            tvAddDependentTicket.setVisibility(View.VISIBLE);
+
+            ivEditDependsOn.setVisibility(View.GONE);
+            ivDeleteDependsOn.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void updateTicketFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+        }
+
+        Toast.makeText(getActivity(), "Failed to update ticket", Toast.LENGTH_SHORT).show();
+    }
+
 
     private void setSelfDetails(LinearLayout llEmployeeAsSelf, TextView tvEmployeeAsSelf,
                                 CircleImageView civEmployeeAsSelf, TextView tvSuggestions) {
@@ -2225,6 +2468,30 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     public void setOnTicketStartListener(OnStatusChangeListener listener) {
         this.listener = listener;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setUpDependentTicketRecyclerView(List<DependentTicket> ticketList,
+                                                  RecyclerView rvDependentTickets) {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        rvDependentTickets.setLayoutManager(mLayoutManager);
+
+        dependentTicketAdapter = new DependentTicketSearchAdapter(getActivity(), ticketList);
+        rvDependentTickets.setAdapter(dependentTicketAdapter);
+
+        rvDependentTickets.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
+        dependentTicketAdapter.setOnItemClickListener(ticket -> {
+            dependentTicket = ticket;
+            ticketDependencySheet.dismiss();
+            presenter.updateTicket(ticketId, dependentTicket);
+        });
+
     }
 
 

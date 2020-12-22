@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.addticket;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 
 import java.util.List;
@@ -52,6 +53,14 @@ public class AddTicketContract {
 
         void getSummarySuggestionFail(String msg);
 
+        void getDependencyTicketsListSuccess();
+
+        void getDependencyTicketsListFail(String msg);
+
+        void searchDependentTicketSuccess(List<DependentTicket> ticketList);
+
+        void searchDependentTicketFail(String msg);
+
     }
 
     public interface AddTicketPresenter extends Presenter<AddTicketView> {
@@ -74,6 +83,12 @@ public class AddTicketContract {
                           List<String> tags, List<Label> ticketLabels, String estimatedTime,
                           String assignedEmployeeId, int priority,
                           TicketProto.TicketSource ticketSource, boolean customerAsSelf,
-                          String refId);
+                          String refId, DependentTicket dependentTicket);
+
+        void getDependencyListTickets();
+
+        void searchTickets(String query);
     }
+
+
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/ll_dependent_ticket_holder"
+    android:padding="@dimen/dimen_10x1"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_ticket_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:text="#45233"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tv_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_5x1"
+        android:text="tv broken"
+        android:textColor="@color/charcoal_text" />
+
+</LinearLayout>
