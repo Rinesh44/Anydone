@@ -94,6 +94,7 @@ public class VideoCallReceivePresenterImpl extends
                 .build();
 
         UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
                 .setFullName(accountName)
                 .setProfilePic(accountPicture)
                 .build();
@@ -131,6 +132,7 @@ public class VideoCallReceivePresenterImpl extends
             String clientId = UUID.randomUUID().toString().replace("-", "");
 
             UserProto.Account account = UserProto.Account.newBuilder()
+                    .setAccountId(userAccountId)
                     .setFullName(accountName)
                     .setProfilePic(accountPicture)
                     .build();
@@ -166,6 +168,7 @@ public class VideoCallReceivePresenterImpl extends
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
                 .setFullName(accountName)
                 .setProfilePic(accountPicture)
                 .build();
@@ -198,6 +201,7 @@ public class VideoCallReceivePresenterImpl extends
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
                 .setFullName(accountName)
                 .setProfilePic(accountPicture)
                 .build();

@@ -33,11 +33,11 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
-import static com.treeleaf.januswebrtc.Const.CONSUMER_APP;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
+import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_APP;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
@@ -675,7 +675,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onConnectionSuccess() {
         ClientActivity.launch(VideoCallHandleActivity.this,
                 false, hostActivityCallbackClient, drawCallBack,
-                serviceName, serviceProfileUri, CONSUMER_APP);//TODO: change it to SERVICE_PROVIDER_APP later
+                serviceName, serviceProfileUri, SERVICE_PROVIDER_APP);//TODO: change it to SERVICE_PROVIDER_APP later
     }
 
     @Override
