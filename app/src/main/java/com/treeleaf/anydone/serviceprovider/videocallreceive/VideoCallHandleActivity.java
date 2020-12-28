@@ -37,7 +37,6 @@ import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
-import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_APP;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
@@ -66,6 +65,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private Map<String, Integer[]> remoteDeviceResolutions = new HashMap<>();
     private boolean videoCallInitiated = false;
     private boolean videoReceiveInitiated = false;
+    private String accountType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -675,7 +675,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onConnectionSuccess() {
         ClientActivity.launch(VideoCallHandleActivity.this,
                 false, hostActivityCallbackClient, drawCallBack,
-                serviceName, serviceProfileUri, SERVICE_PROVIDER_APP);//TODO: change it to SERVICE_PROVIDER_APP later
+                serviceName, serviceProfileUri, accountType);//TODO: change it to SERVICE_PROVIDER_APP later
     }
 
     @Override
@@ -715,7 +715,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         return this;
     }
 
-    public void checkConnection() {
+    public void checkConnection(String accountType) {
+        this.accountType = accountType;
         videoCallInitiated = true;
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
     }

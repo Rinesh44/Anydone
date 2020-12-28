@@ -31,6 +31,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -49,6 +50,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TICKET_STARTED;
+import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
+import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView, OnStatusChangeListener {
@@ -88,6 +91,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private Tickets ticket;
     private boolean isServiceProvider = false;
     private long ticketIndex;
+    private String localAccountId;
+    private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
 
     @Override
     protected int getLayout() {
@@ -122,6 +127,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         createLinkShareBottomSheet();
 
         userAccount = AccountRepo.getInstance().getAccount();
+        localAccountId = userAccount.getAccountId();
 
         isServiceProvider = ticket.getTicketType().equalsIgnoreCase(Constants.SERVICE_PROVIDER);
         //enable video call condition
@@ -148,6 +154,17 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         } else {
             enableLinkShare();
         }
+
+        //check if account type is customer or not.
+
+        Customer customer = ticket.getCustomer();
+        String customerName = customer.getFullName();
+
+        if (customer != null && localAccountId.equals(customer.getCustomerId())
+                && !customerName.isEmpty()) {
+            accountType = CONSUMER_TYPE;
+        } else
+            accountType = SERVICE_PROVIDER_TYPE;
 
         super.setReferenceId(ticketId);
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
@@ -264,7 +281,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @OnClick(R.id.ic_video_call)
     public void startVideoCall() {
-        checkConnection();
+        checkConnection(accountType);
     }
 
     @Override
