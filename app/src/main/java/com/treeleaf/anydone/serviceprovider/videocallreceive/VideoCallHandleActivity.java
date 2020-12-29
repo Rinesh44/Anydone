@@ -385,7 +385,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             videoReceiveInitiated = true;
             ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
+                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
+                    callerProfileUrl, accountType);
         }
 
 
