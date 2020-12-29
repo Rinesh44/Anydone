@@ -819,8 +819,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
                                 captureDrawParam.setXCoordinate(drawStartResponse.getX());
                                 captureDrawParam.setYCoordinate(drawStartResponse.getY());
-                                captureDrawParam.setBrushWidth(drawStartResponse.getDrawMetaData().getBrushWidth());
-                                captureDrawParam.setBrushOpacity((int) (drawStartResponse.getDrawMetaData().getBrushOpacity() * 255));
+                                float brushWidth = drawStartResponse.getDrawMetaData().getBrushWidth();
+                                captureDrawParam.setBrushWidth(brushWidth > 100.0 ? 100f : brushWidth);
+                                float opacity = drawStartResponse.getDrawMetaData().getBrushOpacity();
+                                captureDrawParam.setBrushOpacity(opacity > 1.0 ? ((int) (1.0 * 255)) : ((int) (opacity * 255)));
                                 captureDrawParam.setBrushColor(Color.parseColor(drawStartResponse.getDrawMetaData().getBrushColor()));
                                 captureDrawParam.setTextColor(Color.parseColor(drawStartResponse.getDrawMetaData().getTextColor()));
                                 getView().onDrawTouchDown(captureDrawParam, drawStartResponse.getSenderAccount().getAccountId(),
@@ -945,7 +947,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(DRAW_MAXIMIZE_RESPONSE)) {
                             SignalingProto.DrawMaximize drawMaximizeResponse = relayResponse.getDrawMaximizeResponse();
                             String accountId = drawMaximizeResponse.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId + " on image " + drawMaximizeResponse.getImageId());
                             if (drawMaximizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
@@ -959,7 +961,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(DRAW_MINIMIZE_RESPONSE)) {
                             SignalingProto.DrawMinize drawMinimizeResponse = relayResponse.getDrawMinimizeResponse();
                             String accountId = drawMinimizeResponse.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId + " on image " + drawMinimizeResponse.getImageId());
                             if (drawMinimizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same

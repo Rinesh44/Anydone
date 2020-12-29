@@ -464,11 +464,15 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
-                    drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
-                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
-                            localDeviceHeight), accountId, imageId);
-                    drawPadEventListener.onDrawTouchDown(accountId, imageId);
+                    if ((accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                        drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
+                        drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
+                                localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
+                                localDeviceHeight), accountId, imageId);
+                        drawPadEventListener.onDrawTouchDown(accountId, imageId);
+                    } else {
+                        Toast.makeText(VideoCallHandleActivity.this, "Draw start params missing", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -495,7 +499,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawTouchUp(accountId, imageId);
+                    if ((accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                        drawPadEventListener.onDrawTouchUp(accountId, imageId);
+                    } else {
+                        Toast.makeText(VideoCallHandleActivity.this, "Draw end params missing", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -508,33 +516,42 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePostPublish(x,
-                            localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
-                            localDeviceHeight), editTextFieldId, accountId, imageId);
+                    if ((editTextFieldId != null && !editTextFieldId.isEmpty()) && (accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                        drawPadEventListener.onDrawReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePostPublish(x,
+                                localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
+                                localDeviceHeight), editTextFieldId, accountId, imageId);
+                    } else
+                        Toast.makeText(VideoCallHandleActivity.this, "New textfield params missing", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId) {
+    public void onDrawReceiveNewTextChange(String text, String editTextFieldId, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveNewTextChange(text, id, accountId, imageId);
+                    if ((editTextFieldId != null && !editTextFieldId.isEmpty()) && (accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                        drawPadEventListener.onDrawReceiveNewTextChange(text, editTextFieldId, accountId, imageId);
+                    } else
+                        Toast.makeText(VideoCallHandleActivity.this, "Text change params missing", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
     @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId) {
+    public void onDrawReceiveEdiTextRemove(String editTextFieldId, String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
+                    if ((editTextFieldId != null && !editTextFieldId.isEmpty()) && (accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                        drawPadEventListener.onDrawReceiveEdiTextRemove(editTextFieldId, accountId, imageId);
+                    } else
+                        Toast.makeText(VideoCallHandleActivity.this, "Text remove params missing", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -554,7 +571,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    drawPadEventListener.onDrawCanvasCleared(accountId, imageId);
+                    if ((accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty()))
+                        drawPadEventListener.onDrawCanvasCleared(accountId, imageId);
+                    else
+                        Toast.makeText(VideoCallHandleActivity.this, "Canvas clear params missing", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -570,8 +590,16 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     String toAccountId = drawCollabResponse.getToAccountId();
                     String imageId = drawCollabResponse.getImageId();
                     ByteString imageByteString = drawCollabResponse.getCapturedImage();
-                    byte[] convertedBytes = imageByteString.toByteArray();
-                    drawPadEventListener.onDrawCollabInvite(fromAccountId, toAccountId, imageId, convertedBytes);
+                    if ((fromAccountId != null && !fromAccountId.isEmpty()) &&
+                            (toAccountId != null && !toAccountId.isEmpty()) &&
+                            (imageId != null && !imageId.isEmpty()) &&
+                            (imageByteString != null)) {
+                        byte[] convertedBytes = imageByteString.toByteArray();
+                        drawPadEventListener.onDrawCollabInvite(fromAccountId, toAccountId, imageId, convertedBytes);
+                    } else {
+                        Toast.makeText(VideoCallHandleActivity.this, "Draw collab params missing", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
