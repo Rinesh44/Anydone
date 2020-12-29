@@ -521,7 +521,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     public void enterMessage(RecyclerView conversation, AREditText etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
-            conversation.smoothScrollToPosition(0);
+//            conversation.smoothScrollToPosition(0);
             etMessage.setFocusableInTouchMode(true);
         })
                 .subscribeOn(AndroidSchedulers.mainThread())

@@ -100,8 +100,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_users"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/dimen_10x3" />
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/dimen_10x2" />
 
 </LinearLayout>
 

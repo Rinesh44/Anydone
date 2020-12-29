@@ -17,10 +17,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
-import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.List;
@@ -36,6 +38,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     public static final int ASSIGNABLE = 4;
     public static final int SUBSCRIBEABLE = 5;
     public static final int CONTRIBUTED = 6;
+    public static final int ALL = 7;
     private List<Tickets> ticketsList;
     private Context mContext;
     private OnItemClickListener listener;
@@ -86,6 +89,11 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                         .inflate(R.layout.layout_ticket_row_subscribable, parent, false);
                 return new TicketHolder(itemViewSubscribeable);
 
+            case ALL:
+                View itemViewAll = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_ticket_row_all, parent, false);
+                return new TicketHolder(itemViewAll);
+
             default:
                 View itemViewDefault = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_ticket_row_assigned, parent, false);
@@ -119,6 +127,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
             case "CONTRIBUTED":
                 return CONTRIBUTED;
+
+            case "ALL":
+                return ALL;
         }
 
         return -1;
@@ -153,6 +164,22 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         setPriority(tickets.getPriority(), holder);
         GlobalUtils.showLog(TAG, "ticket priority check: " + tickets.getPriority());
         GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
+
+
+        //show hide assign and subscribe swipe button according to conditions.
+
+        if (holder.tvAssign != null) {
+            Account userAccount = AccountRepo.getInstance().getAccount();
+            if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById())
+                    || userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())
+                    || userAccount.getAccountType().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
+                holder.tvAssign.setVisibility(View.VISIBLE);
+            } else {
+                holder.tvAssign.setVisibility(View.GONE);
+            }
+        }
+        //TODO: hide subscribe swipe action code
+
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
                 holder.ticketStatus.setTextColor
@@ -239,6 +266,23 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                 holder.llSubscribe.setOnClickListener(v -> {
                     if (subscribeListener != null) {
                         subscribeListener.onSubscribeClicked(String.valueOf(tickets.getTicketId()),
+                                ticketsList.indexOf(tickets));
+                    }
+                });
+
+                break;
+
+            case "ALL":
+                holder.tvSubscribe.setOnClickListener(v -> {
+                    if (subscribeListener != null) {
+                        subscribeListener.onSubscribeClicked(String.valueOf(tickets.getTicketId()),
+                                ticketsList.indexOf(tickets));
+                    }
+                });
+
+                holder.tvAssign.setOnClickListener(v -> {
+                    if (assignListener != null) {
+                        assignListener.onAssignClicked(String.valueOf(tickets.getTicketId()),
                                 ticketsList.indexOf(tickets));
                     }
                 });
@@ -333,6 +377,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         private TextView ticketPriority;
         private HorizontalScrollView hsvTags;
         private RelativeLayout rlMain;
+        private TextView tvSubscribe, tvAssign;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
@@ -352,6 +397,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             ticketPriority = itemView.findViewById(R.id.tv_priority);
             hsvTags = itemView.findViewById(R.id.hsv_tags);
             rlMain = itemView.findViewById(R.id.rl_main);
+            tvSubscribe = itemView.findViewById(R.id.tv_subscribe);
+            tvAssign = itemView.findViewById(R.id.tv_assign);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {

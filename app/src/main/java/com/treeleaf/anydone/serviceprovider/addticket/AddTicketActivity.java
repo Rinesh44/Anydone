@@ -69,6 +69,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -143,7 +144,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     TextView tvEstTimeSuggestion;
     @BindView(R.id.iv_priority_suggestion)
     ImageView ivPrioritySuggestion;
-
 
     private List<AssignEmployee> employeeList = new ArrayList<>();
     private List<Customer> customerList = new ArrayList<>();
@@ -393,25 +393,18 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etAssignEmployee.setText(suggestedEmployee.getName());
 
             selectedEmployeeId = suggestedEmployee.getEmployeeId();
+            employeeSearchAdapter.setChecked(suggestedEmployee.getEmployeeId());
             llEmpSuggestion.setVisibility(View.GONE);
         });
 
         llLabelSuggestion.setOnClickListener(v -> {
-       /*     boolean addLabelFlag = true;
-            for (Label existing : labels
-            ) {
-                if (!existing.getLabelId().equalsIgnoreCase(suggestedLabel.getLabelId())) {
-                    addLabelFlag = false;
-                    break;
-                }
+            boolean labelExists = checkIfLabelExists(suggestedLabel);
+
+            if (!labelExists) {
+                labels.add(suggestedLabel);
+                addLabelsToLayout();
             }
 
-            if (!addLabelFlag) {
-
-            }*/
-
-            labels.add(suggestedLabel);
-            addLabelsToLayout();
             llLabelSuggestion.setVisibility(View.GONE);
         });
 
@@ -463,6 +456,26 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etEstimatedTime.setText(suggestedEstTime);
             llEstTimeSuggestion.setVisibility(View.GONE);
         });
+    }
+
+    private boolean checkIfLabelExists(Label label) {
+        for (Label existing : labels
+        ) {
+            if (existing.getLabelId().equalsIgnoreCase(label.getLabelId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Label getExistingLabel(Label label) {
+        for (Label existing : labels
+        ) {
+            if (existing.getLabelId().equalsIgnoreCase(label.getLabelId())) {
+                return existing;
+            }
+        }
+        return null;
     }
 
     private void createTicketDependencyBottomSheet() {
@@ -1037,8 +1050,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             @Override
             public void onItemRemove(Label label) {
                 GlobalUtils.showLog(TAG, "item remove");
-                labels.remove(label);
-                GlobalUtils.showLog(TAG, "removed labels: " + label);
+                Label labelExists = getExistingLabel(label);
+                if (labelExists != null)
+                    labels.remove(labelExists);
+                GlobalUtils.showLog(TAG, "after removed labels: " + labels.size());
             }
         });
     }
@@ -1150,6 +1165,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
 
     private void addTeamsToLayout() {
+        fblTeam.removeAllViews();
         //add selected teams
         for (String tagId : tags
         ) {
@@ -1171,6 +1187,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     }
 
     private void addLabelsToLayout() {
+        fblLabel.removeAllViews();
         //add selected teams
         for (Label ticketLabel : labels
         ) {

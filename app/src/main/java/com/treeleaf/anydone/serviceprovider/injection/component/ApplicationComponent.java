@@ -54,5 +54,4 @@ public interface ApplicationComponent {
 
     void inject(ContributedTicketFragment contributedTicketFragment);
 
-
 }

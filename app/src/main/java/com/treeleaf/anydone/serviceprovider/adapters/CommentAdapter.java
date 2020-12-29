@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.chinalwb.are.AREditText;
 import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.card.MaterialCardView;
@@ -68,7 +67,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int MSG_BOT_SUGGESTIONS = 10;
     public static final int INITIAL_SERVICE_DETAIL = 11;
     public static final int MSG_CALL_OUTGOING = 12;
-//    public static final int INITIAL_TICKET_DETAIL = 13;
+    public static final int INITIAL_TICKET_DETAIL = 13;
 
     private List<Conversation> conversationList;
     private Context mContext;
@@ -93,8 +92,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 conversationList.set(index, conversation);
                 notifyItemChanged(index);
             } else {
-                conversationList.add(0, conversation);
-                notifyItemInserted(0);
+                conversationList.add(conversationList.size() - 1, conversation);
+//                notifyItemInserted(conversationList.size() - 1);
+                notifyDataSetChanged();
             }
 
             if (!conversation.getMessageType().equals("MSG_BOT_SUGGESTIONS")) {
@@ -135,9 +135,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (!CollectionUtils.isEmpty(newConversationList)) {
             GlobalUtils.showLog(TAG, "conversation list checkout: " +
                     newConversationList.size());
-            conversationList.addAll(0, newConversationList);
-            notifyItemRangeInserted(0, newConversationList.size());
+            conversationList.addAll(conversationList.size() - 1, newConversationList);
+            notifyItemRangeInserted(conversationList.size() - 1, newConversationList.size());
         }
+
+        GlobalUtils.showLog(TAG, "conversation list size check: " + conversationList.size());
     }
 
     private Conversation getConversationIfExists(Conversation conversation) {
@@ -155,7 +157,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
-
             case MSG_IMG_LEFT:
                 View leftImageView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.comment_image, parent, false);
@@ -176,11 +177,10 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .inflate(R.layout.chat_bot_suggestions, parent, false);
                 return new BotSuggestionsHolder(suggestionsView);
 
-
-      /*      case INITIAL_TICKET_DETAIL:
+            case INITIAL_TICKET_DETAIL:
                 View ticketDetailView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_initial_ticket_detail, parent, false);
-                return new InitialTicketDetailHolder(ticketDetailView);*/
+                return new InitialTicketDetailHolder(ticketDetailView);
 
             case MSG_CALL_OUTGOING:
                 View callView = LayoutInflater.from(parent.getContext())
@@ -203,10 +203,13 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         boolean isNewDay = false;
         boolean isShowTime = false;
 
+        GlobalUtils.showLog(TAG, "current pos: " + position);
+        GlobalUtils.showLog(TAG, "current msg: " + conversation.getMessage());
         // If there is at least one item preceding the current one, check the previous message.
         if (position < conversationList.size() - 1) {
             Conversation prevMessage = conversationList.get(position + 1);
 
+            GlobalUtils.showLog(TAG, "prev msg: " + prevMessage.getMessage());
             long timeDiff = conversation.getSentAt() - prevMessage.getSentAt();
             // If the date of the previous message is different, display the date before the message,
             // and also set isContinuous to false to show information such as the sender's name
@@ -227,8 +230,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT:
-                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime
-                );
+                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime);
                 break;
 
             case MSG_IMG_LEFT:
@@ -250,9 +252,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((BotSuggestionsHolder) holder).bind(conversation, false);
                 break;
 
-         /*   case INITIAL_TICKET_DETAIL:
+            case INITIAL_TICKET_DETAIL:
                 ((InitialTicketDetailHolder) holder).bind(conversation);
-                break;*/
+                break;
 
             case MSG_CALL_OUTGOING:
                 ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, false);
@@ -320,8 +322,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case "INITIAL_SERVICE_DETAIL":
                 return INITIAL_SERVICE_DETAIL;
 
-/*            case "INITIAL_TICKET_DETAIL":
-                return INITIAL_TICKET_DETAIL;*/
+            case "INITIAL_TICKET_DETAIL":
+                return INITIAL_TICKET_DETAIL;
 
             case "VIDEO_CALL_RTC_MESSAGE":
                 return MSG_CALL_OUTGOING;
@@ -518,7 +520,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
                   boolean isContinuous) {
-
             if (!isContinuous) {
                 spacing.setVisibility(View.VISIBLE);
             } else {
@@ -1002,6 +1003,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView ticketId, ticketTitle, ticketDesc;
         LinearLayout llLabels;
         HorizontalScrollView hsvTags;
+        RelativeLayout rlCommentHolder;
+        RecyclerView rvAttachments;
 
         InitialTicketDetailHolder(@NonNull View itemView) {
             super(itemView);
@@ -1011,15 +1014,23 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ticketDesc = itemView.findViewById(R.id.tv_ticket_desc);
             llLabels = itemView.findViewById(R.id.ll_label_holder);
             hsvTags = itemView.findViewById(R.id.scv_label);
+            rlCommentHolder = itemView.findViewById(R.id.rl_comments_title);
+            rvAttachments = itemView.findViewById(R.id.rv_attachments);
         }
 
         void bind(final Conversation conversation) {
-            ticketId.setText("#" + conversation.getRefId());
+//            ticketId.setText("#" + conversation.getRefId());
             ticketTitle.setText(conversation.getTicketTitle());
             if (conversation.getTicketDesc() != null && !conversation.getTicketDesc().isEmpty()) {
                 ticketDesc.setText(conversation.getTicketDesc());
             } else {
                 ticketDesc.setVisibility(View.GONE);
+            }
+
+            if (conversationList.isEmpty()) {
+                rlCommentHolder.setVisibility(View.GONE);
+            } else {
+                rlCommentHolder.setVisibility(View.VISIBLE);
             }
 
             if (!CollectionUtils.isEmpty(conversation.getTagsList())) {
@@ -1148,8 +1159,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 //            GlobalUtils.showLog(TAG, "sender image: " + );
             RequestOptions options = new RequestOptions()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon)
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon)
                     .fitCenter();
 
             Glide.with(AnyDoneServiceProviderApplication.getContext())

@@ -73,8 +73,8 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
         if (thread.getCustomerImageUrl() != null) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(mContext).load(thread.getCustomerImageUrl())
                     .apply(options).into(holder.civCustomer);

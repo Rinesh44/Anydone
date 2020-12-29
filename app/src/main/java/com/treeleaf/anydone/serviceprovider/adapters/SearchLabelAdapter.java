@@ -63,7 +63,6 @@ public class SearchLabelAdapter extends RecyclerView.Adapter<SearchLabelAdapter.
     @Override
     public void onBindViewHolder(@NonNull LabelHolder holder, int position) {
         Label label = labelListFiltered.get(position);
-
         holder.tvLabel.setText(label.getName());
 
         if (hasCheckedItems) {

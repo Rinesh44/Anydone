@@ -15,8 +15,7 @@
 
     <color name="bluePurple">#05376C</color>
     <color name="white">@android:color/white</color>
-    <color name="black">@android:color/black</color>
-    <color name="charcoal">#525252</color>
+    <color name="black">@android:color/black</color>    <color name="charcoal">#525252</color>
 
     <color name="primary_text">#525252</color>
     <color name="secondary_text">#181818</color>

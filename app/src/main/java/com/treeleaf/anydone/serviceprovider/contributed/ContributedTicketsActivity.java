@@ -474,7 +474,6 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         getActivityComponent().inject(this);
     }
 
-
     @Override
     public void getContributedTicketSuccess() {
         List<Tickets> contributedTickets = TicketRepo.getInstance().getContributedTickets();

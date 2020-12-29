@@ -25,13 +25,11 @@ import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.Display;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -81,7 +79,6 @@ import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationCompo
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -183,16 +180,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     ARE_ToolbarDefault llTextModifier;
     @BindView(R.id.view)
     View view;
-    @BindView(R.id.tv_ticket_id)
-    TextView tvTicketId;
-    @BindView(R.id.tv_ticket_title)
+  /*  @BindView(R.id.tv_ticket_id)
+    TextView tvTicketId;*/
+  /*  @BindView(R.id.tv_ticket_title)
     TextView tvTicketTitle;
     @BindView(R.id.tv_ticket_desc)
     TextView tvTicketDesc;
     @BindView(R.id.ll_label_holder)
     LinearLayout llLabels;
     @BindView(R.id.scv_label)
-    HorizontalScrollView hsvTags;
+    HorizontalScrollView hsvTags;*/
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -306,7 +303,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         subscribed = i.getBooleanExtra("subscribed", false);
 
         Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
-        setTicketInitialDetail(ticket);
+//        setTicketInitialDetail(ticket);
         setChatVisibility(ticket);
 
         if (ticketId != -1) {
@@ -326,7 +323,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         lastMessage.getSentAt() + 1, System.currentTimeMillis(), 100);
             }
 
+            setInitialTicketDetail(ticket);
             setUpConversationView();
+
             try {
                 presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
                 presenter.subscribeFailMessage();
@@ -355,7 +354,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         TreeleafMqttClient.disconnectMQTT();
     }
 
-    private void setTicketInitialDetail(Tickets ticket) {
+/*    private void setTicketInitialDetail(Tickets ticket) {
         tvTicketId.setText("#" + ticket.getTicketIndex());
         tvTicketTitle.setText(ticket.getTitle());
         if (ticket.getDescription() != null && !ticket.getDescription().isEmpty()) {
@@ -379,7 +378,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 llLabels.addView(tvTag);
             }
         }
-    }
+    }*/
 
     private void setChatVisibility(Tickets ticket) {
         if (subscribed && !ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccountId)
@@ -552,12 +551,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         rvConversation.setLayoutManager(layoutManager);
-        Collections.reverse(conversationList);
+//        Collections.reverse(conversationList);
         adapter = new CommentAdapter(conversationList, getContext());
         adapter.setOnItemLongClickListener(message -> {
             longClickedMessage = message;
             toggleMessageBottomSheet();
         });
+
 
         adapter.setOnMessageNotDeliveredListener(this::resendByMessageType);
         adapter.setOnSenderImageClickListener(conversation -> {
@@ -600,7 +600,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         });
 
         rvConversation.setAdapter(adapter);
-        rvConversation.scrollToPosition(0);
+//        rvConversation.scrollToPosition(conversationList.size() - 1);
+     /*   rvConversation.postDelayed(() -> {
+            if (rvConversation != null)
+                rvConversation.scrollToPosition(conversationList.size() - 1);
+        }, 100);*/
     }
 
     private void resendByMessageType(Conversation message) {
@@ -732,9 +736,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             view.setVisibility(View.GONE);
             tvClosed.setVisibility(View.VISIBLE);
             tvClosed.setText("Closed");
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+         /*   LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
                     rvConversation.getLayoutParams();
-            params.addRule(RelativeLayout.ABOVE, R.id.tv_closed);
+            params.gravity(RelativeLayout.ABOVE, R.id.tv_closed);*/
         }
 
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_RESOLVED.name())) {
@@ -782,7 +786,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setTicketDesc(tickets.getDescription());
         conversation.setTagsList(tickets.getLabelRealmList());
         conversation.setMessageType("INITIAL_TICKET_DETAIL");
-        adapter.setInitialData(conversation);
+//        adapter.setInitialData(conversation);
+        conversationList.add(conversationList.size(), conversation);
     }
 
     private RealmList<Conversation> getGroupedConversations(List<ServiceDoer> serviceDoerList) {
@@ -947,12 +952,15 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         GlobalUtils.showLog(TAG, "get messages success");
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
         Collections.sort(conversationList, (o1, o2) ->
-                Long.compare(o2.getSentAt(), o1.getSentAt()));
+                Long.compare(o1.getSentAt(), o2.getSentAt()));
         adapter.setData(conversationList);
-        if (rvConversation != null)
+        if (rvConversation != null) {
             rvConversation.postDelayed(() -> {
-                if (rvConversation != null) rvConversation.scrollToPosition(0);
+                if (rvConversation != null)
+                    rvConversation.scrollToPosition(conversationList.size());
             }, 100);
+        }
+
         if (fetchRemainingMessages) {
             presenter.sendDeliveredStatusForMessages(conversationList);
         }
@@ -972,7 +980,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         String imageFileClientId = conversation.getClientId();
         adapter.setData(conversation);
         rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                (0), 50);
+                (conversationList.size()), 50);
         presenter.uploadImage(uri, conversation, getActivity());
     }
 
@@ -981,7 +989,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() ->
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (0), 50));
+                        (conversationList.size()), 50));
         presenter.uploadDoc(selectedFileUri, conversation);
     }
 
@@ -991,7 +999,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
             rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                    (0), 100);
+                    (conversationList.size()), 100);
             etMessage.setText("");
         });
 //        etMessage.setText("");
@@ -1074,7 +1082,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             public void success(Object o) {
                 adapter.setData(conversation);
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (0), 50);
+                        (conversationList.size()), 50);
             }
 
             @Override
@@ -1109,8 +1117,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 llBotReplying.setVisibility(View.GONE));
 
         adapter.setData(conversation);
-        rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                (0), 50);
+        rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition(
+                conversationList.size()), 50);
         adapter.setOnSuggestionClickListener(kGraph -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
@@ -1128,7 +1136,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         public void success(Object o) {
                             adapter.setData(selectedSuggestion);
                             rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                                    (0), 50);
+                                    (conversationList.size()), 50);
                         }
 
                         @Override

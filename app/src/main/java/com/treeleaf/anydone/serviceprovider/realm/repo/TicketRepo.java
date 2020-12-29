@@ -581,7 +581,8 @@ public class TicketRepo extends Repo {
     public List<Tickets> getAllTickets() {
         final Realm realm = Realm.getDefaultInstance();
         try {
-            return new ArrayList<>(realm.where(Tickets.class).findAll());
+            return new ArrayList<>(realm.where(Tickets.class).
+                    equalTo("ticketType", Constants.ALL).findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;

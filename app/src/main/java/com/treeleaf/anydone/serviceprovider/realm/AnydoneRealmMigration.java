@@ -37,5 +37,16 @@ public class AnydoneRealmMigration implements RealmMigration {
                     .addRealmObjectField("dependentTicket", schema.get("DependentTicket"));
             oldVersion++;
         }
+
+        if (oldVersion == 4) {
+            schema.create("Attachment")
+                    .addField("id", String.class, FieldAttribute.PRIMARY_KEY)
+                    .addField("title", String.class)
+                    .addField("type", int.class)
+                    .addField("url", String.class)
+                    .addField("createdAt", long.class)
+                    .addField("updatedAt", long.class);
+            oldVersion++;
+        }
     }
 }

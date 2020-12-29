@@ -2,7 +2,6 @@ package com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +11,9 @@ import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -323,6 +320,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             presenter.getTicketTimeline(ticketId);
             presenter.getEmployees();
             presenter.getTicketDetailsById(ticketId);
+            presenter.getDependencyListTickets();
             setTicketDetails();
             setContributors();
             setUserType();
@@ -669,10 +667,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
             case "TICKET_REOPENED":
                 btnReopen.setVisibility(View.GONE);
-
                 rlSelectedStatus.setVisibility(View.GONE);
 //                removeScrollviewMargin();
-                if (tickets.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                if (tickets.getAssignedEmployee().getAccountId()
+                        .equalsIgnoreCase(userAccount.getAccountId())) {
                     btnStartTask.setVisibility(View.VISIBLE);
                     addScrollviewMargin();
                 }
@@ -1033,7 +1031,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             }
         });
 
-
         tvLabelDone.setOnClickListener(v -> {
             labelSheet.dismiss();
             presenter.editLabel(String.valueOf(ticketId), labels);
@@ -1062,7 +1059,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     private void handleAssignedCase(Tickets tickets, Account userAccount) {
         if (tickets.getTicketStatus().equalsIgnoreCase(
                 TicketProto.TicketState.TICKET_STARTED.name())) {
-
             if (userAccount.getAccountId().equalsIgnoreCase
                     (tickets.getAssignedEmployee().getAccountId())) {
                 rlSelectedStatus.setVisibility(View.VISIBLE);
@@ -2330,7 +2326,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     @Override
     public void getDependencyTicketsListSuccess() {
         dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
-        createTicketDependencyBottomSheet();
+        setUpDependentTicketRecyclerView(dependentTicketList, rvTicket);
     }
 
 
@@ -2476,11 +2472,13 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvDependentTickets.setLayoutManager(mLayoutManager);
 
-        dependentTicketAdapter = new DependentTicketSearchAdapter(getActivity(), ticketList);
+        dependentTicketAdapter = new DependentTicketSearchAdapter(
+                Objects.requireNonNull(getActivity()), ticketList);
         rvDependentTickets.setAdapter(dependentTicketAdapter);
 
         rvDependentTickets.setOnTouchListener((v, event) -> {
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getActivity()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
             assert imm != null;
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             return false;

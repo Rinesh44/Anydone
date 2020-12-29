@@ -34,13 +34,6 @@
             android:tint="@color/black" />
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10x2"
-        android:text="Search"
-        android:textColor="@color/charcoal_text" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -181,8 +174,8 @@
         android:layout_width="wrap_content"
         android:layout_height="17dp"
         android:layout_marginTop="@dimen/dimen_10x2"
-        android:text="Priority"
         android:layout_marginBottom="@dimen/dimen_6x1"
+        android:text="Priority"
         android:textColor="@color/charcoal_text" />
 
     <RelativeLayout
