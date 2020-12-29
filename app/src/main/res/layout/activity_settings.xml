@@ -15,63 +15,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/rl_change_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:weightSum="1">
-
-                <ImageView
-                    android:id="@+id/iv_change_password_icon"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x4"
-                    android:layout_marginEnd="@dimen/dimen_10x1"
-                    android:layout_marginBottom="@dimen/dimen_2x4"
-                    android:background="@drawable/circle_red"
-                    android:padding="@dimen/dimen_10x1"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/change_password" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_change_password"
-                    android:layout_width="@dimen/dimens_5x"
-                    android:layout_height="@dimen/dimens_5x"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dimens_2x"
-                    android:layout_marginTop="@dimen/dimen_2x6"
-                    android:layout_marginEnd="@dimen/dimen_10x3"
-                    android:layout_marginBottom="@dimen/dimen_2x6"
-                    android:elevation="@dimen/dimen_2x2"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tv_change_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/iv_change_password_icon"
-                    android:text="@string/change_password"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/material_text_normal"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_arrow1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/dimens_2x"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_right_arrow" />
-
-            </RelativeLayout>
 
             <!-- <RelativeLayout
                  android:id="@+id/rl_notification"
@@ -345,6 +288,65 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_right_arrow" />
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/iv_change_password_icon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimens_2x"
+                    android:layout_marginTop="@dimen/dimen_2x4"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:layout_marginBottom="@dimen/dimen_2x4"
+                    android:background="@drawable/circle_red"
+                    android:padding="@dimen/dimen_10x1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/change_password" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_change_password"
+                    android:layout_width="@dimen/dimens_5x"
+                    android:layout_height="@dimen/dimens_5x"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimens_2x"
+                    android:layout_marginTop="@dimen/dimen_2x6"
+                    android:layout_marginEnd="@dimen/dimen_10x3"
+                    android:layout_marginBottom="@dimen/dimen_2x6"
+                    android:elevation="@dimen/dimen_2x2"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_change_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/iv_change_password_icon"
+                    android:text="@string/change_password"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/material_text_normal"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_arrow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/dimens_2x"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_right_arrow" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>

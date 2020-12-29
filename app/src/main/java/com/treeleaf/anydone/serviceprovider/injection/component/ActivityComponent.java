@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.injection.component;
 import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorActivity;
 import com.treeleaf.anydone.serviceprovider.addpaymentcard.AddCardActivity;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
+import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
@@ -100,4 +101,6 @@ public interface ActivityComponent {
     void inject(TicketSuggestionActivity ticketSuggestionActivity);
 
     void inject(SuggestedTicketPreviewActivity suggestedTicketPreviewActivity);
+
+    void inject(AllTicketsActivity allTicketsActivity);
 }

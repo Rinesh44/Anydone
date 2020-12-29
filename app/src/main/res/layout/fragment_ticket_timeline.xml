@@ -549,7 +549,7 @@
 
                             <LinearLayout
                                 android:id="@+id/ll_tags"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dimen_2x1"
                                 android:orientation="horizontal" />
@@ -604,6 +604,149 @@
                     android:layout_height="2dp"
                     android:layout_marginTop="@dimen/dimens_2x"
                     android:background="#F0EDF1" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_depends_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_depends_on_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/dimen_10x2"
+                            android:text="Depends On"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_edit_depend_on"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/iv_delete_depend_on"
+                            android:paddingStart="@dimen/dimen_2x4"
+                            android:paddingEnd="@dimen/dimen_2x4"
+                            android:src="@drawable/ic_edit" />
+
+                        <ImageView
+                            android:id="@+id/iv_delete_depend_on"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/iv_depends_on_dropdown"
+                            android:paddingStart="@dimen/dimen_2x4"
+                            android:paddingEnd="@dimen/dimen_2x4"
+                            android:src="@drawable/ic_delete_black_24dp"
+                            app:tint="@color/red" />
+
+                        <ImageView
+                            android:id="@+id/iv_depends_on_dropdown"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/dimen_10x2"
+                            android:paddingStart="@dimen/dimen_2x4"
+                            android:src="@drawable/ic_dropup"
+                            app:tint="@color/colorPrimary" />
+
+                    </RelativeLayout>
+
+                    <net.cachapa.expandablelayout.ExpandableLayout
+                        android:id="@+id/expandable_layout_depends_on"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_depends_on_title"
+                        app:el_duration="500"
+                        app:el_expanded="true"
+                        app:el_parallax="0.5">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:id="@+id/ll_depends_on_details"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dimen_10x2"
+                                    android:layout_marginTop="@dimen/dimen_5x1"
+                                    android:text="Ticket Id"
+                                    android:textColor="@color/charcoal_text"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_dependent_ticket_id"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/dimen_10x2"
+                                    android:fontFamily="@font/bold"
+                                    android:gravity="center_vertical"
+                                    android:text="#23"
+                                    android:textColor="@color/colorPrimary" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dimen_10x2"
+                                    android:layout_marginTop="@dimen/dimens_2x"
+                                    android:text="Summary"
+                                    android:textColor="@color/charcoal_text"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_dependent_ticket_summary"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dimen_10x2"
+                                    android:layout_marginBottom="@dimen/dimen_5x1"
+                                    android:text="Net problem"
+                                    android:textColor="@color/service_info_text_color" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_add_dependent_ticket"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ll_depends_on_details"
+                                android:layout_marginStart="@dimen/dimen_10x2"
+                                android:layout_marginTop="@dimen/dimen_2x4"
+                                android:layout_marginBottom="@dimen/dimen_5x1"
+                                android:drawableStart="@drawable/ic_add_contributor"
+                                android:drawablePadding="@dimen/dimen_10x1"
+                                android:text="Add Dependent Ticket"
+                                android:textColor="@color/colorPrimary" />
+
+                        </RelativeLayout>
+
+                    </net.cachapa.expandablelayout.ExpandableLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@+id/expandable_layout_depends_on"
+                        android:layout_marginTop="@dimen/dimen_5x1"
+                        android:background="#F0EDF1" />
+
+                </RelativeLayout>
 
 
                 <LinearLayout

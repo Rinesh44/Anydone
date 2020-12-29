@@ -16,7 +16,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dimen_6x1"
         android:layout_marginEnd="@dimen/dimen_10x1"
-        android:src="@drawable/ic_profile_icon" />
+        android:src="@drawable/ic_empty_profile_holder_icon" />
 
     <TextView
         android:id="@+id/tv_employee"

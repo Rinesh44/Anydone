@@ -1,5 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
+import java.util.Objects;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -61,5 +63,18 @@ public class Label extends RealmObject {
 
     public void setUpdatedAt(long updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Label label = (Label) o;
+        return Objects.equals(labelId, label.labelId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(labelId, createdAt, name, serviceId, spAccountId, updatedAt);
     }
 }

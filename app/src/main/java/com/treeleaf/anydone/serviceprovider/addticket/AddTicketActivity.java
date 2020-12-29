@@ -39,6 +39,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.DependentTicketSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchLabelAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchTeamAdapter;
@@ -48,6 +49,7 @@ import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
+import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
@@ -56,6 +58,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.DependentTicketRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.LabelRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
@@ -66,6 +69,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -141,11 +145,11 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @BindView(R.id.iv_priority_suggestion)
     ImageView ivPrioritySuggestion;
 
-
     private List<AssignEmployee> employeeList = new ArrayList<>();
     private List<Customer> customerList = new ArrayList<>();
     private List<Tags> tagsList = new ArrayList<>();
     private List<Label> labelList = new ArrayList<>();
+    private List<DependentTicket> dependentTicketList = new ArrayList<>();
 
     private EmployeeSearchAdapter employeeSearchAdapter;
     private Customer selectedCustomer;
@@ -164,6 +168,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private AppCompatEditText etSearchTicket;
     private SearchLabelAdapter labelAdapter;
     private SearchTeamAdapter teamAdapter;
+    private DependentTicketSearchAdapter dependentTicketAdapter;
     List<String> tags = new ArrayList<>();
     List<Label> labels = new ArrayList<>();
     private RecyclerView rvTeams;
@@ -190,6 +195,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private Priority suggestedPriority;
     private String suggestedEstTime;
     private ImageView ivTick;
+    private DependentTicket dependentTicket;
 
 
     @Override
@@ -212,6 +218,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
         tagsList = TagRepo.getInstance().getAllTags();
         labelList = LabelRepo.getInstance().getAllLabels();
+        dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
 
         createCustomerBottomSheet();
         createEmployeeBottomSheet();
@@ -347,14 +354,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                         selectedCustomer.getFullName(), selectedCustomer.getProfilePic(), tags,
                         labels, UiUtils.getString(etEstimatedTime),
                         selectedEmployeeId, priorityNum, ticketSource, customerAsSelf,
-                        threadId);
+                        threadId, dependentTicket);
             } else {
                 presenter.createTicket(ticketCategoryId, UiUtils.getString(etSummary),
                         UiUtils.getString(etDesc), null, UiUtils.getString(etEmail),
                         UiUtils.getString(etPhone), UiUtils.getString(etCustomerName),
                         "", tags,
                         labels, UiUtils.getString(etEstimatedTime),
-                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf, threadId);
+                        selectedEmployeeId, priorityNum, ticketSource, customerAsSelf, threadId,
+                        dependentTicket);
             }
         });
 
@@ -385,30 +393,23 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             etAssignEmployee.setText(suggestedEmployee.getName());
 
             selectedEmployeeId = suggestedEmployee.getEmployeeId();
+            employeeSearchAdapter.setChecked(suggestedEmployee.getEmployeeId());
             llEmpSuggestion.setVisibility(View.GONE);
         });
 
         llLabelSuggestion.setOnClickListener(v -> {
-       /*     boolean addLabelFlag = true;
-            for (Label existing : labels
-            ) {
-                if (!existing.getLabelId().equalsIgnoreCase(suggestedLabel.getLabelId())) {
-                    addLabelFlag = false;
-                    break;
-                }
+            boolean labelExists = checkIfLabelExists(suggestedLabel);
+
+            if (!labelExists) {
+                labels.add(suggestedLabel);
+                addLabelsToLayout();
             }
 
-            if (!addLabelFlag) {
-
-            }*/
-
-            labels.add(suggestedLabel);
-            addLabelsToLayout();
             llLabelSuggestion.setVisibility(View.GONE);
         });
 
         llTeamSuggestion.setOnClickListener(v -> {
-            if(!tags.contains(suggestedTeam.getTagId())){
+            if (!tags.contains(suggestedTeam.getTagId())) {
                 tags.add(suggestedTeam.getTagId());
                 addTeamsToLayout();
             }
@@ -457,6 +458,26 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
     }
 
+    private boolean checkIfLabelExists(Label label) {
+        for (Label existing : labels
+        ) {
+            if (existing.getLabelId().equalsIgnoreCase(label.getLabelId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Label getExistingLabel(Label label) {
+        for (Label existing : labels
+        ) {
+            if (existing.getLabelId().equalsIgnoreCase(label.getLabelId())) {
+                return existing;
+            }
+        }
+        return null;
+    }
+
     private void createTicketDependencyBottomSheet() {
         ticketDependencySheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
@@ -469,9 +490,11 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         etSearchTicket = view.findViewById(R.id.et_search_ticket);
         rvTicket = view.findViewById(R.id.rv_ticket);
 
-//        setUpTeamRecyclerView(tagsList, rvTeams);
+        setUpDependentTicketRecyclerView(dependentTicketList, rvTicket);
 
         ticketDependencySheet.setOnShowListener(dialog -> {
+            etSearchTicket.requestFocus();
+            UiUtils.showKeyboardForced(this);
             BottomSheetDialog d = (BottomSheetDialog) dialog;
 
             FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
@@ -481,7 +504,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
 
 
-     /*   etSearchTeam.addTextChangedListener(new TextWatcher() {
+        etSearchTicket.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -489,14 +512,15 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                runOnUiThread(() -> teamAdapter.getFilter().filter(s));
+                if (s.length() > 0) presenter.searchTickets(s.toString());
+                else dependentTicketAdapter.setData(dependentTicketList);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
             }
-        });*/
+        });
 
 
         ticketDependencySheet.setOnDismissListener(dialog -> {
@@ -655,7 +679,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         employeeBottomSheet.setOnShowListener(dialog -> {
             Employee self = EmployeeRepo.getInstance().getEmployee();
-            if (selectedEmployeeId.equalsIgnoreCase(self.getEmployeeId())) {
+            if (selectedEmployeeId != null && selectedEmployeeId
+                    .equalsIgnoreCase(self.getEmployeeId())) {
                 ivTick.setVisibility(View.VISIBLE);
             }
         });
@@ -1025,8 +1050,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             @Override
             public void onItemRemove(Label label) {
                 GlobalUtils.showLog(TAG, "item remove");
-                labels.remove(label);
-                GlobalUtils.showLog(TAG, "removed labels: " + label);
+                Label labelExists = getExistingLabel(label);
+                if (labelExists != null)
+                    labels.remove(labelExists);
+                GlobalUtils.showLog(TAG, "after removed labels: " + labels.size());
             }
         });
     }
@@ -1138,6 +1165,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
 
     private void addTeamsToLayout() {
+        fblTeam.removeAllViews();
         //add selected teams
         for (String tagId : tags
         ) {
@@ -1159,6 +1187,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     }
 
     private void addLabelsToLayout() {
+        fblLabel.removeAllViews();
         //add selected teams
         for (Label ticketLabel : labels
         ) {
@@ -1254,6 +1283,33 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                 GlobalUtils.showLog(TAG, "tags: " + tags);
 
             }
+        });
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setUpDependentTicketRecyclerView(List<DependentTicket> ticketList,
+                                                  RecyclerView rvDependentTickets) {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvDependentTickets.setLayoutManager(mLayoutManager);
+
+        dependentTicketAdapter = new DependentTicketSearchAdapter(this, ticketList);
+        rvDependentTickets.setAdapter(dependentTicketAdapter);
+
+        rvDependentTickets.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
+        dependentTicketAdapter.setOnItemClickListener(ticket -> {
+            dependentTicket = ticket;
+            String dependentTicket = "#" +
+                    ticket.getIndex() +
+                    " " +
+                    ticket.getSummary();
+            etDependsOn.setText(dependentTicket);
+            ticketDependencySheet.dismiss();
         });
     }
 
@@ -1435,6 +1491,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         presenter.getTicketTypes();
         presenter.findTags();
         presenter.getLabels();
+        presenter.getDependencyListTickets();
     }
 
     @Override
@@ -1827,6 +1884,33 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         llLabelSuggestion.setVisibility(View.GONE);
         llEstTimeSuggestion.setVisibility(View.GONE);
         llEmpSuggestion.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void getDependencyTicketsListSuccess() {
+        dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
+        createTicketDependencyBottomSheet();
+    }
+
+    @Override
+    public void getDependencyTicketsListFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+        }
+    }
+
+    @Override
+    public void searchDependentTicketSuccess(List<DependentTicket> ticketList) {
+        dependentTicketAdapter.setData(ticketList);
+    }
+
+    @Override
+    public void searchDependentTicketFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(this, msg);
+            onAuthorizationFailed(this);
+        }
     }
 
 }

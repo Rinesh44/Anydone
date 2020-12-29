@@ -29,6 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".alltickets.AllTicketsActivity"></activity>
         <activity android:name=".invoicedetail.InvoiceDetailActivity" />
         <activity
             android:name=".invoice.InvoiceActivity"
@@ -218,15 +219,13 @@
         </provider>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
-
-
-        <service android:name=".notification.MessagingService"
+        <service
+            android:name=".notification.MessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

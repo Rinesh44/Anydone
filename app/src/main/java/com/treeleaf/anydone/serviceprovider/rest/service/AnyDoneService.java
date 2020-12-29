@@ -657,13 +657,39 @@ public interface AnyDoneService {
 
     @GET("ticket/auto/fill/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getSummarySuggestions(@Header(AUTHORIZATION)
-                                                                               String token,
+                                                                                       String token,
                                                                                @Path(value = "serviceId")
-                                                                               String serviceId,
+                                                                                       String serviceId,
                                                                                @Query("summary") String summary,
                                                                                @Query("id") String ticketId);
 
 
+    @GET("ticket/service/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getDependencyTickets(@Header(AUTHORIZATION)
+                                                                                      String token,
+                                                                              @Path(value = "serviceId")
+                                                                                      String serviceId);
+
+    @GET("ticket/search/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> searchDependentTickets(@Header(AUTHORIZATION)
+                                                                                        String token,
+                                                                                @Path(value = "serviceId")
+                                                                                        String serviceId,
+                                                                                @Query("query")
+                                                                                        String query);
+
+    @GET("ticket/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketById(@Header(AUTHORIZATION)
+                                                                               String token,
+                                                                       @Path(value = "ticketId")
+                                                                               long ticketId);
+
+    @PATCH("ticket/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> updateTicket(@Header(AUTHORIZATION)
+                                                                              String token,
+                                                                      @Path(value = "ticketId")
+                                                                              long ticketId,
+                                                                      @Body TicketProto.Ticket ticket);
 }
 
 

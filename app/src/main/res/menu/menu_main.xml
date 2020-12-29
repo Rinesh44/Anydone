@@ -5,12 +5,17 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard"
-        android:title="Dashboard" />
+        android:title="Reports" />
 
     <item
         android:id="@+id/navigation_tickets"
+        android:icon="@drawable/ic_unselected_board_icon"
+        android:title="Board" />
+
+    <item
+        android:id="@+id/navigation_tick"
         android:icon="@drawable/ic_ticket"
-        android:title="@string/tickets" />
+        android:title="Tickets" />
 
     <item
         android:id="@+id/navigation_threads"

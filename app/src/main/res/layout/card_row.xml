@@ -44,8 +44,6 @@
 
 
         </LinearLayout>
-
-
     </FrameLayout>
 
     <com.google.android.material.card.MaterialCardView

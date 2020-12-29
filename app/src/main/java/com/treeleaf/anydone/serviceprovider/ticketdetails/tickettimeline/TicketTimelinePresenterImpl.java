@@ -8,9 +8,11 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.DependentTicketRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -35,6 +37,8 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         implements TicketTimelineContract.TicketTimelinePresenter {
     private static final String TAG = "TicketTimelinePresenter";
     private TicketTimelineRepository ticketTimelineRepository;
+    private TicketProto.Ticket ticket;
+    boolean isDelete;
 
     @Inject
     public TicketTimelinePresenterImpl(TicketTimelineRepository ticketTimelineRepository) {
@@ -147,6 +151,217 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         );
     }
 
+    @Override
+    public void getTicketDetailsById(long ticketId) {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        ticketObservable = service.getTicketById(token,
+                ticketId);
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                               response) {
+                        GlobalUtils.showLog(TAG, "get ticket by id response: " +
+                                response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().getTicketByIdFail("Failed to get ticket by id");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().getTicketByIdFail(response.getMsg());
+                            return;
+                        }
+
+                        getView().getTicketByIdSuccess(TicketRepo.getInstance()
+                                .transformTicket(response.getTicket(), ""));
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
+    @Override
+    public void getDependencyListTickets() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getDependencyTickets(token, serviceId);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "get dependent ticket list response:"
+                                + response);
+
+                        if (response.getError()) {
+                            getView().getDependencyTicketsListFail(response.getMsg());
+                            return;
+                        }
+
+
+                        saveTickets(response.getTicketsList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+    }
+
+    @Override
+    public void searchTickets(String query) {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.searchDependentTickets(token, serviceId, query);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "search dependent ticket response:"
+                                + response);
+
+                        if (response.getError()) {
+                            getView().searchDependentTicketFail(response.getMsg());
+                            return;
+                        }
+
+                        List<DependentTicket> ticketList = transformTickets(response.getTicketsList());
+                        getView().searchDependentTicketSuccess(ticketList);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+    }
+
+    @Override
+    public void updateTicket(long ticketId, DependentTicket dependentTicket) {
+        getView().showProgressBar("");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        Tickets oldTicket = TicketRepo.getInstance().getTicketById(ticketId);
+
+        TicketProto.TicketType ticketType = TicketProto.TicketType.newBuilder()
+                .setTicketTypeId(oldTicket.getTicketCategoryId())
+                .build();
+
+        if (dependentTicket != null) {
+            isDelete = false;
+            TicketProto.Ticket dependentTicketPb = TicketProto.Ticket.newBuilder()
+                    .setTicketId(dependentTicket.getId())
+                    .setTicketIndex(dependentTicket.getIndex())
+                    .setTitle(dependentTicket.getSummary())
+                    .setCreatedAt(dependentTicket.getCreatedAt())
+                    .build();
+
+            ticket = TicketProto.Ticket.newBuilder()
+                    .setTicketId(ticketId)
+                    .setDependOnTicket(dependentTicketPb)
+                    .setTitle(oldTicket.getTitle())
+                    .setPriority(getTicketPriority(oldTicket.getPriority()))
+                    .setDescription(oldTicket.getDescription())
+                    .setType(ticketType)
+                    .build();
+
+        } else {
+            isDelete = true;
+
+            ticket = TicketProto.Ticket.newBuilder()
+                    .setTicketId(ticketId)
+                    .setTitle(oldTicket.getTitle())
+                    .setPriority(getTicketPriority(oldTicket.getPriority()))
+                    .setDescription(oldTicket.getDescription())
+                    .setType(ticketType)
+                    .build();
+        }
+
+        ticketObservable = service.updateTicket(token, ticketId, ticket);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "ticket update response:"
+                                + response);
+
+                        if (response.getError()) {
+                            getView().updateTicketFail(response.getMsg());
+                            return;
+                        }
+
+                        getView().updateTicketSuccess(dependentTicket, isDelete);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+    }
+
 
     @Override
     public void assignTicket(long ticketId, String employeeId) {
@@ -246,7 +461,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().enableBotFail(e.getLocalizedMessage());
                     }
@@ -772,7 +987,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().onFailure(e.getLocalizedMessage());
                     }
@@ -915,6 +1130,36 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
                 return TicketProto.TicketPriority.HIGHEST_TICKET_PRIORITY;
         }
         return TicketProto.TicketPriority.UNKNOWN_TICKET_PRIORITY;
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
+        DependentTicketRepo.getInstance().saveTicketList(ticketsList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                getView().getDependencyTicketsListSuccess();
+            }
+
+            @Override
+            public void fail() {
+                getView().getDependencyTicketsListFail("Failed to save tickets to db");
+            }
+        });
+    }
+
+
+    private List<DependentTicket> transformTickets(List<TicketProto.Ticket> ticketsList) {
+        List<DependentTicket> dependentTickets = new ArrayList<>();
+        for (TicketProto.Ticket ticketPb : ticketsList
+        ) {
+            DependentTicket ticket = new DependentTicket();
+            ticket.setServiceId(ticketPb.getService().getServiceId());
+            ticket.setCreatedAt(ticketPb.getCreatedAt());
+            ticket.setSummary(ticketPb.getTitle());
+            ticket.setIndex(ticketPb.getTicketIndex());
+            ticket.setId(ticketPb.getTicketId());
+            dependentTickets.add(ticket);
+        }
+        return dependentTickets;
     }
 
 }

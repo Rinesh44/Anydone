@@ -8,11 +8,13 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.DependentTicketRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.LabelRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
@@ -40,6 +42,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         implements AddTicketContract.AddTicketPresenter {
     private static final String TAG = "AddTicketPresenterImpl";
     private AddTicketRepository addTicketRepository;
+    private TicketProto.Ticket dependentTicketPb;
 
     @Inject
     public AddTicketPresenterImpl(AddTicketRepository addTicketRepository) {
@@ -259,8 +262,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                              String customerPic, List<String> tags, List<Label> ticketLabels,
                              String estimatedTime, String assignedEmployeeId, int priority,
                              TicketProto.TicketSource ticketSource, boolean customerAsSelf,
-                             String refId) {
-
+                             String refId, DependentTicket dependentTicket) {
         TicketProto.CustomerType customerType = TicketProto.CustomerType.EXTERNAL_CUSTOMER;
         if (!validateCredentials(title, customerName, ticketType, estimatedTime)) {
             return;
@@ -334,6 +336,15 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                 .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .build();
 
+        if (dependentTicket != null) {
+            dependentTicketPb = TicketProto.Ticket.newBuilder()
+                    .setTicketId(dependentTicket.getId())
+                    .setTicketIndex(dependentTicket.getIndex())
+                    .setTitle(dependentTicket.getSummary())
+                    .build();
+        }
+
+
         GlobalUtils.showLog(TAG, "Ticket title check: " + title);
         GlobalUtils.showLog(TAG, "ticket priority check: " + priority);
         GlobalUtils.showLog(TAG, "service check: " + service);
@@ -349,37 +360,76 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                     .setAssignedTo(employeeProfile)
                     .build();
 
-            ticket = TicketProto.Ticket.newBuilder()
-                    .setTitle(title)
-                    .setDescription(description)
-                    .setType(type)
-                    .setCustomer(customer)
-                    .setCustomerType(customerType)
-                    .setPriority(getTicketPriority(priority))
-                    .setService(service)
-                    .setEmployeeAssigned(employeeAssigned)
-                    .setTicketSource(ticketSource)
-                    .addAllTeams(tagList)
-                    .addAllLabel(labelList)
-                    .setRefId(refId)
-                    .setEstimatedTimeDesc(estimatedTime)
-                    .build();
+            if (dependentTicket != null) {
+                ticket = TicketProto.Ticket.newBuilder()
+                        .setTitle(title)
+                        .setDescription(description)
+                        .setType(type)
+                        .setCustomer(customer)
+                        .setCustomerType(customerType)
+                        .setPriority(getTicketPriority(priority))
+                        .setService(service)
+                        .setEmployeeAssigned(employeeAssigned)
+                        .setTicketSource(ticketSource)
+                        .addAllTeams(tagList)
+                        .addAllLabel(labelList)
+                        .setRefId(refId)
+                        .setEstimatedTimeDesc(estimatedTime)
+                        .setDependOnTicket(dependentTicketPb)
+                        .build();
+            } else {
+                ticket = TicketProto.Ticket.newBuilder()
+                        .setTitle(title)
+                        .setDescription(description)
+                        .setType(type)
+                        .setCustomer(customer)
+                        .setCustomerType(customerType)
+                        .setPriority(getTicketPriority(priority))
+                        .setService(service)
+                        .setEmployeeAssigned(employeeAssigned)
+                        .setTicketSource(ticketSource)
+                        .addAllTeams(tagList)
+                        .addAllLabel(labelList)
+                        .setRefId(refId)
+                        .setEstimatedTimeDesc(estimatedTime)
+                        .build();
+            }
+
         } else {
-            ticket = TicketProto.Ticket.newBuilder()
-                    .setTitle(title)
-                    .setDescription(description)
-                    .setCustomer(customer)
-                    .setType(type)
-                    .setCustomerType(customerType)
-                    .setPriority(getTicketPriority(priority))
-                    .setService(service)
-                    .setTicketSource(ticketSource)
-                    .addAllTeams(tagList)
-                    .addAllLabel(labelList)
-                    .setRefId(refId)
-                    .setEstimatedTimeDesc(estimatedTime)
-                    .build();
+            if (dependentTicket != null) {
+                ticket = TicketProto.Ticket.newBuilder()
+                        .setTitle(title)
+                        .setDescription(description)
+                        .setCustomer(customer)
+                        .setType(type)
+                        .setCustomerType(customerType)
+                        .setPriority(getTicketPriority(priority))
+                        .setService(service)
+                        .setTicketSource(ticketSource)
+                        .addAllTeams(tagList)
+                        .addAllLabel(labelList)
+                        .setRefId(refId)
+                        .setEstimatedTimeDesc(estimatedTime)
+                        .setDependOnTicket(dependentTicketPb)
+                        .build();
+            } else {
+                ticket = TicketProto.Ticket.newBuilder()
+                        .setTitle(title)
+                        .setDescription(description)
+                        .setCustomer(customer)
+                        .setType(type)
+                        .setCustomerType(customerType)
+                        .setPriority(getTicketPriority(priority))
+                        .setService(service)
+                        .setTicketSource(ticketSource)
+                        .addAllTeams(tagList)
+                        .addAllLabel(labelList)
+                        .setRefId(refId)
+                        .setEstimatedTimeDesc(estimatedTime)
+                        .build();
+            }
         }
+
 
         GlobalUtils.showLog(TAG, "sent ticket det: " + ticket);
         ticketObservable = anyDoneService.createTicket(token, ticket);
@@ -421,6 +471,119 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                 }));
 
 
+    }
+
+    @Override
+    public void getDependencyListTickets() {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.getDependencyTickets(token, serviceId);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "get dependent ticket list response:"
+                                + response);
+
+                        if (response.getError()) {
+                            getView().getDependencyTicketsListFail(response.getMsg());
+                            return;
+                        }
+
+
+                        saveTickets(response.getTicketsList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+    }
+
+    @Override
+    public void searchTickets(String query) {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        ticketObservable = service.searchDependentTickets(token, serviceId, query);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "search dependent ticket response:"
+                                + response);
+
+                        if (response.getError()) {
+                            getView().searchDependentTicketFail(response.getMsg());
+                            return;
+                        }
+
+                        List<DependentTicket> ticketList = transformTickets(response.getTicketsList());
+                        getView().searchDependentTicketSuccess(ticketList);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                }));
+    }
+
+    private List<DependentTicket> transformTickets(List<TicketProto.Ticket> ticketsList) {
+        List<DependentTicket> dependentTickets = new ArrayList<>();
+        for (TicketProto.Ticket ticketPb : ticketsList
+        ) {
+            DependentTicket ticket = new DependentTicket();
+            ticket.setServiceId(ticketPb.getService().getServiceId());
+            ticket.setCreatedAt(ticketPb.getCreatedAt());
+            ticket.setSummary(ticketPb.getTitle());
+            ticket.setIndex(ticketPb.getTicketIndex());
+            ticket.setId(ticketPb.getTicketId());
+            dependentTickets.add(ticket);
+        }
+        return dependentTickets;
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
+        DependentTicketRepo.getInstance().saveTicketList(ticketsList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                getView().getDependencyTicketsListSuccess();
+            }
+
+            @Override
+            public void fail() {
+                getView().getDependencyTicketsListFail("Failed to save tickets to db");
+            }
+        });
     }
 
     private TicketProto.TicketPriority getTicketPriority(int priority) {

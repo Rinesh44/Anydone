@@ -18,6 +18,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -54,7 +55,7 @@ public class PendingTicketPresenterImpl extends BasePresenter<PendingTicketContr
                 .subscribeWith(
                         new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                             @Override
-                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                            public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                        getTicketsBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get tickets response: "
                                         + getTicketsBaseResponse);
@@ -81,7 +82,7 @@ public class PendingTicketPresenterImpl extends BasePresenter<PendingTicketContr
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NonNull Throwable e) {
                                 getView().hideProgressBar();
                                 getView().getPendingTicketFail(e.getLocalizedMessage());
                             }

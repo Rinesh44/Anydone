@@ -42,6 +42,7 @@ public class EditTicketPresenterImpl extends BasePresenter<EditTicketContract.Ed
         TicketProto.TicketType ticketType = TicketProto.TicketType.newBuilder()
                 .setTicketTypeId(tickets.getTicketCategoryId())
                 .build();
+
         TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
                 .setTitle(title)
                 .setPriority(getTicketPriority(tickets.getPriority()))

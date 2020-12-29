@@ -62,6 +62,7 @@ Constants {
     public static final String CONTRIBUTED = "CONTRIBUTED";
     public static final String ASSIGNABLE = "ASSIGNABLE";
     public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
+    public static final String ALL = "ALL";
     public static final String LINKED = "LINKED";
     public static final String BOT_REPLY = "BOT_REPLY";
     public static final String RTC_CONTEXT_SERVICE_REQUEST = "RTC_CONTEXT_SERVICE_REQUEST";

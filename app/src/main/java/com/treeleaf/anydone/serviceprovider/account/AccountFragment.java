@@ -29,7 +29,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.setting.SettingsActivity;
 import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.util.Objects;
@@ -55,10 +54,10 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     ProgressBar progress;
     @BindView(R.id.rl_billing)
     RelativeLayout rlBilling;
-    @BindView(R.id.rl_contributed)
+  /*  @BindView(R.id.rl_contributed)
     RelativeLayout rlContributed;
     @BindView(R.id.rl_subscribed)
-    RelativeLayout rlSubscribed;
+    RelativeLayout rlSubscribed;*/
 
 
     public static AccountFragment newInstance(String param1, String param2) {
@@ -77,10 +76,8 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
         Account account = AccountRepo.getInstance().getAccount();
         if (account.getAccountType().equalsIgnoreCase("SERVICE_PROVIDER")) {
             rlBilling.setVisibility(View.VISIBLE);
-            rlContributed.setVisibility(View.GONE);
         } else {
             rlBilling.setVisibility(View.GONE);
-            rlContributed.setVisibility(View.VISIBLE);
         }
     }
 
@@ -161,7 +158,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
         startActivity(new Intent(getActivity(), BillingActivity.class));
     }
 
-    @OnClick(R.id.rl_contributed)
+/*    @OnClick(R.id.rl_contributed)
     void onClickContributed() {
         startActivity(new Intent(getActivity(), ContributedTicketsActivity.class));
     }
@@ -169,7 +166,7 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     @OnClick(R.id.rl_subscribed)
     void onClickSubscribed() {
         startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class));
-    }
+    }*/
 
     private void showLogoutDialog() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());

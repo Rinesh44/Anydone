@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_image"
+    android:layout_width="120dp"
+    android:layout_height="120dp">
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerInParent="true" />
+
+    <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_grey_700">
+
+        <TextView
+            android:id="@+id/tv_image_title"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_toStartOf="@+id/iv_close"
+            android:ellipsize="end"
+            android:paddingStart="@dimen/dimen_2x1"
+            android:paddingEnd="@dimen/dimen_2x1"
+            android:text="bitmap.jpg asdflkssdfdjfaslsdfdsdfsdfsfkdfsd"
+            android:textColor="@color/white"
+            android:textSize="11sp" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="3dp"
+            android:src="@drawable/ic_stat_close" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
