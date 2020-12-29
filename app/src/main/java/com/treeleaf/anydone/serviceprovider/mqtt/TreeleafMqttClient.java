@@ -132,17 +132,20 @@ public class TreeleafMqttClient {
     private static void getValuesFromToken() {
         String token = Hawk.get(Constants.TOKEN);
         GlobalUtils.showLog(TAG, "token: " + token);
-        String[] separateToken = token.split("\\.");
-        String firstPart = separateToken[0];
-        byte[] resultByte = Base64.decode(firstPart, Base64.DEFAULT);
-        try {
-            String resultText = new String(resultByte, "UTF-8");
-            GlobalUtils.showLog(TAG, "result: " + resultText);
+        if (token != null) {
+            String[] separateToken = token.split("\\.");
+            String firstPart = separateToken[0];
+            byte[] resultByte = Base64.decode(firstPart, Base64.DEFAULT);
+            try {
+                String resultText = new String(resultByte, "UTF-8");
+                GlobalUtils.showLog(TAG, "result: " + resultText);
 
-            separateResult = resultText.split("\\.");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+                separateResult = resultText.split("\\.");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     private static void subscribeConnectionAcknowledge() {
