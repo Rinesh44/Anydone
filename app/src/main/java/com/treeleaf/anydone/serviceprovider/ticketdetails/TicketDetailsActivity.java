@@ -472,5 +472,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         if (fragment instanceof TicketTimelineFragment) {
             ((TicketTimelineFragment) fragment).setOnTicketStartListener(this);
         }
+
+        if (fragment instanceof TicketConversationFragment) {
+            ((TicketConversationFragment) fragment).setOnVideoCallBackListener(this);
+        }
     }
+
 }
