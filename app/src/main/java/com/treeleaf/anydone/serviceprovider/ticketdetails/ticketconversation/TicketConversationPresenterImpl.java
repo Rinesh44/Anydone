@@ -439,6 +439,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .ConversationRequest.newBuilder()
                 .setMessageId(nextMessageId)
                 .build();
+
         getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
 
@@ -583,6 +584,132 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     public void onError(Throwable e) {
                         getView().hideProgressBar();
                         getView().getMessageFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
+    @Override
+    public void uploadImageAttachment(Uri uri, Activity activity, String title) {
+        getView().showProgressBar("");
+        Preconditions.checkNotNull(getView(), "View is not attached");
+        Preconditions.checkNotNull(uri, "Uri cannot be null");
+
+        Observable<UserRpcProto.UserBaseResponse> imageUploadObservable;
+
+        try {
+            Bitmap decodedBitmap = MediaStore.Images.Media
+                    .getBitmap(Objects.requireNonNull(getContext()).getContentResolver(), uri);
+
+            Bitmap bitmap = GlobalUtils.fixBitmapRotation(uri, decodedBitmap, activity);
+            byte[] byteArray = getByteArrayFromBitmap(bitmap);
+            String mimeType = getMimeType(uri);
+
+            RequestBody imageReqBody = RequestBody.create(MediaType.parse(mimeType), byteArray);
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("image",
+                            "image.jpg", imageReqBody);
+
+            Retrofit retrofit = getRetrofitInstance();
+
+            AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+            imageUploadObservable = service.imageUploadConversation(Hawk.get(Constants.TOKEN), body);
+
+            addSubscription(imageUploadObservable
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                        @Override
+                        public void onNext(UserRpcProto.UserBaseResponse uploadPicResponse) {
+                            GlobalUtils.showLog(TAG, "upload pic attachment response: "
+                                    + uploadPicResponse);
+
+                            getView().hideProgressBar();
+                            if (uploadPicResponse == null) {
+                                getView().onUploadImageAttachmentFail("Failed to upload file");
+                                return;
+                            }
+
+                            if (uploadPicResponse.getError()) {
+                                getView().onUploadImageAttachmentFail("Failed to upload file");
+                                return;
+                            }
+
+                            getView().onUploadImageAttachmentSuccess(uploadPicResponse.getRefId(), title);
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            getView().hideProgressBar();
+                            getView().onUploadImageAttachmentFail("Failed to upload file");
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            getView().hideProgressBar();
+                        }
+                    })
+            );
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void uploadFileAttachment(Uri uri, String title) {
+        getView().showProgressBar("");
+        Preconditions.checkNotNull(getView(), "View is not attached");
+        Preconditions.checkNotNull(uri, "Uri cannot be null");
+
+        Observable<UserRpcProto.UserBaseResponse> docUploadObservable;
+
+        File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
+        String mimeType = getMimeType(uri);
+
+        GlobalUtils.showLog(TAG, "file check: " + file.getName());
+        RequestBody docReqBody = RequestBody.create(MediaType.parse(mimeType), file);
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("doc", file.getName(), docReqBody);
+
+        Retrofit retrofit = getRetrofitInstance();
+
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        docUploadObservable = service.docUploadConversation(Hawk.get(Constants.TOKEN), body);
+
+        addSubscription(docUploadObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                    @Override
+                    public void onNext(UserRpcProto.UserBaseResponse uploadDocResponse) {
+                        GlobalUtils.showLog(TAG, "upload doc attachment response: " + uploadDocResponse);
+
+                        getView().hideProgressBar();
+                        if (uploadDocResponse == null) {
+                            getView().onUploadFileAttachmentFail("Failed to upload file");
+                            return;
+                        }
+
+                        if (uploadDocResponse.getError()) {
+                            getView().onUploadFileAttachmentFail("Failed to upload file");
+                            return;
+                        }
+
+                        getView().onUploadFileAttachmentSuccess(uploadDocResponse.getRefId(), title);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onUploadFileAttachmentFail("Failed to upload file");
                     }
 
                     @Override

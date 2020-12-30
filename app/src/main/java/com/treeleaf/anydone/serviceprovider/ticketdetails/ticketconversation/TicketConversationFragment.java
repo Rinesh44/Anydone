@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -125,6 +126,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 1212;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 2323;
     public static final int PICK_FILE_REQUEST_CODE = 3434;
+    public static final int ATTACH_FILE_REQUEST_CODE = 3730;
 
     @BindView(R.id.pb_progress)
     ProgressBar progress;
@@ -451,7 +453,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         listNumber.getView(getContext()).setLayoutParams(layoutParams);
     }
 
-
     private List<String> getImageList() {
         GlobalUtils.showLog(TAG, "conversation list size: " + conversationList.size());
         for (Conversation conversation : conversationList
@@ -598,6 +599,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 }
             }
         });
+
+        adapter.setOnAddAttachmentClickListener(this::accessExternalStoragePermissions);
 
         rvConversation.setAdapter(adapter);
 //        rvConversation.scrollToPosition(conversationList.size() - 1);
@@ -753,7 +756,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         GlobalUtils.showLog(TAG, "ticket status checckkk: " + tickets.getTicketStatus());
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CREATED.name())
-                || tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_REOPENED.name())) {
+                || tickets.getTicketStatus().equalsIgnoreCase
+                (TicketProto.TicketState.TICKET_REOPENED.name())) {
 //            llSearchContainer.setVisibility(View.GONE);
 //            btnStartTask.setVisibility(View.VISIBLE);
             tvClosed.setVisibility(View.GONE);
@@ -1211,6 +1215,38 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
+    public void onUploadImageAttachmentSuccess(String url, String title) {
+
+    }
+
+    @Override
+    public void onUploadImageAttachmentFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUploadFileAttachmentSuccess(String url, String title) {
+
+    }
+
+    @Override
+    public void onUploadFileAttachmentFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void setSeenStatus(Conversation conversation) {
         adapter.setData(conversation);
     }
@@ -1252,6 +1288,25 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == ATTACH_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri fileUri = data.getData();
+            ContentResolver cr = getActivity().getContentResolver();
+            String mime = cr.getType(fileUri);
+            Toast.makeText(getContext(), mime, Toast.LENGTH_SHORT).show();
+
+            File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
+            String fileName = file.getName();
+            if (mime.equalsIgnoreCase("image/jpeg") || mime.equalsIgnoreCase("image/png")
+                    || mime.equalsIgnoreCase("image/webp")) {
+
+                presenter.uploadImageAttachment(fileUri, getActivity(), fileName);
+
+            } else {
+                presenter.uploadFileAttachment(fileUri, fileName);
+            }
+
+        }
+
         if (requestCode == CAMERA_ACTION_PICK_REQUEST_CODE && resultCode == RESULT_OK) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -1287,7 +1342,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 }
             } else {
                 Objects.requireNonNull(getActivity()).getWindow()
@@ -1400,7 +1454,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     }
 
                     @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
                 }).check();
@@ -1424,7 +1479,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                    public void onPermissionsChecked(MultiplePermissionsReport
+                                                             multiplePermissionsReport) {
                         if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
                             Toast.makeText(getContext(),
                                     "Media/files access permissions are required",
@@ -1757,6 +1813,45 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     public void setOnTicketStartListener(OnStatusChangeListener listener) {
         this.listener = listener;
+    }
+
+    private void accessExternalStoragePermissions() {
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport
+                                                             multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_LONG).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openAttachmentOptions();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    private void openAttachmentOptions() {
+        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS)));
+        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
+        llAttachOptions.setVisibility(View.GONE);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setDataAndType(selectedUri, "*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, ATTACH_FILE_REQUEST_CODE);
     }
 
 }

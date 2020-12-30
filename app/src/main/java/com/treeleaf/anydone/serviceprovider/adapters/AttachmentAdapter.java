@@ -26,9 +26,11 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public static final int TYPE_PDF = 2;
     public static final int TYPE_WORD = 3;
     public static final int TYPE_EXCEL = 4;
+    public static final int TYPE_ADD = 5;
 
     private List<Attachment> attachmentList;
     private Context mContext;
+    private AttachmentAdapter.OnAddAttachmentListener onAttachClickListener;
 
     public AttachmentAdapter(List<Attachment> attachmentList, Context mContext) {
         this.attachmentList = attachmentList;
@@ -93,6 +95,10 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             case TYPE_EXCEL:
                 ((ExcelViewHolder) holder).bind(attachment);
                 break;
+
+            case TYPE_ADD:
+                ((AddViewHolder) holder).bind(attachment);
+                break;
         }
     }
 
@@ -116,11 +122,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             rlImage = itemView.findViewById(R.id.rl_image);
             ivClose = itemView.findViewById(R.id.iv_close);
             progress = itemView.findViewById(R.id.pb_progress);
-        }
-
-        void bind(Attachment attachment) {
-            tvTitle.setText(attachment.getTitle());
-            Glide.with(mContext).load(attachment.getUrl()).into(ivImage);
 
             rlImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -135,6 +136,11 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 }
             });
+        }
+
+        void bind(Attachment attachment) {
+            tvTitle.setText(attachment.getTitle());
+            Glide.with(mContext).load(attachment.getUrl()).into(ivImage);
         }
     }
 
@@ -153,11 +159,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             rlExcel = itemView.findViewById(R.id.rl_excel);
             ivClose = itemView.findViewById(R.id.iv_close);
             progress = itemView.findViewById(R.id.pb_progress);
-        }
-
-
-        void bind(Attachment attachment) {
-            tvTitle.setText(attachment.getTitle());
 
             rlExcel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -172,6 +173,11 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 }
             });
+        }
+
+
+        void bind(Attachment attachment) {
+            tvTitle.setText(attachment.getTitle());
         }
     }
 
@@ -190,10 +196,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             rlPdf = itemView.findViewById(R.id.rl_pdf);
             ivClose = itemView.findViewById(R.id.iv_close);
             progress = itemView.findViewById(R.id.pb_progress);
-        }
-
-        void bind(Attachment attachment) {
-            tvTitle.setText(attachment.getTitle());
 
             rlPdf.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -208,6 +210,10 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 }
             });
+        }
+
+        void bind(Attachment attachment) {
+            tvTitle.setText(attachment.getTitle());
         }
 
     }
@@ -227,10 +233,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             rlWord = itemView.findViewById(R.id.rl_word);
             ivClose = itemView.findViewById(R.id.iv_close);
             progress = itemView.findViewById(R.id.pb_progress);
-        }
-
-        void bind(Attachment attachment) {
-            tvTitle.setText(attachment.getTitle());
 
             rlWord.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -247,24 +249,38 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             });
         }
 
+        void bind(Attachment attachment) {
+            tvTitle.setText(attachment.getTitle());
+        }
+
     }
 
-    class AddViewHolder extends RecyclerView.ViewHolder {
-        private TextView rlAdd;
+    public class AddViewHolder extends RecyclerView.ViewHolder {
+        private RelativeLayout rlAdd;
 
         public AddViewHolder(View itemView) {
             super(itemView);
-            rlAdd = itemView.findViewById(R.id.rl_word);
-        }
+            rlAdd = itemView.findViewById(R.id.rl_add);
 
-        void bind(Attachment attachment) {
-            rlAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
+            rlAdd.setOnClickListener(v -> {
+                if (onAttachClickListener != null && getAdapterPosition() !=
+                        RecyclerView.NO_POSITION) {
+                    onAttachClickListener.onAddAttachment();
                 }
             });
         }
+
+        void bind(Attachment attachment) {
+
+        }
+    }
+
+    public interface OnAddAttachmentListener {
+        void onAddAttachment();
+    }
+
+    public void setOnAddAttachmentClickListener(AttachmentAdapter.OnAddAttachmentListener listener) {
+        this.onAttachClickListener = listener;
     }
 
 }

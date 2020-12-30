@@ -60,8 +60,8 @@
                 android:layout_marginStart="@dimen/dimen_10x1"
                 android:layout_marginEnd="@dimen/dimen_10x1"
                 android:layout_marginBottom="@dimen/dimen_2x1"
-                android:text="Anydone Bot"
                 android:fontFamily="@font/bold"
+                android:text="Anydone Bot"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/material_text_body2"
                 android:visibility="visible" />
@@ -70,20 +70,20 @@
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/tv_doc_user"
                 android:layout_marginEnd="@dimen/dimen_10x1"
+                android:layout_toEndOf="@+id/tv_doc_user"
                 android:text="11:00 PM"
                 android:textSize="@dimen/material_text_caption"
                 android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/iv_doc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dimen_10x2"
+                android:layout_height="@dimen/dimen_10x2"
                 android:layout_below="@+id/tv_doc_user"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/dimen_10x1"
-                android:src="@drawable/ic_doc" />
+                android:src="@drawable/ic_file_upload" />
 
 
             <TextView

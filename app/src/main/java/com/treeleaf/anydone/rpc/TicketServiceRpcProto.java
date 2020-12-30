@@ -267,6 +267,24 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.TicketFilter ticketFilter = 27;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.TicketFilter getTicketFilter();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    boolean hasTicketCommentedReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq getTicketCommentedReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    boolean hasAttachmensRequests();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest getAttachmensRequests();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -1877,6 +1895,110 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int TICKETCOMMENTEDREQ_FIELD_NUMBER = 28;
+    private com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq ticketCommentedReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    public boolean hasTicketCommentedReq() {
+      return ticketCommentedReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq getTicketCommentedReq() {
+      return ticketCommentedReq_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq.getDefaultInstance() : ticketCommentedReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    private void setTicketCommentedReq(com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticketCommentedReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    private void setTicketCommentedReq(
+        com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq.Builder builderForValue) {
+      ticketCommentedReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    private void mergeTicketCommentedReq(com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq value) {
+      if (ticketCommentedReq_ != null &&
+          ticketCommentedReq_ != com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq.getDefaultInstance()) {
+        ticketCommentedReq_ =
+          com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq.newBuilder(ticketCommentedReq_).mergeFrom(value).buildPartial();
+      } else {
+        ticketCommentedReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+     */
+    private void clearTicketCommentedReq() {  ticketCommentedReq_ = null;
+      
+    }
+
+    public static final int ATTACHMENSREQUESTS_FIELD_NUMBER = 29;
+    private com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest attachmensRequests_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    public boolean hasAttachmensRequests() {
+      return attachmensRequests_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest getAttachmensRequests() {
+      return attachmensRequests_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest.getDefaultInstance() : attachmensRequests_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    private void setAttachmensRequests(com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      attachmensRequests_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    private void setAttachmensRequests(
+        com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest.Builder builderForValue) {
+      attachmensRequests_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    private void mergeAttachmensRequests(com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest value) {
+      if (attachmensRequests_ != null &&
+          attachmensRequests_ != com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest.getDefaultInstance()) {
+        attachmensRequests_ =
+          com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest.newBuilder(attachmensRequests_).mergeFrom(value).buildPartial();
+      } else {
+        attachmensRequests_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+     */
+    private void clearAttachmensRequests() {  attachmensRequests_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1959,6 +2081,12 @@ public final class TicketServiceRpcProto {
       }
       if (ticketFilter_ != null) {
         output.writeMessage(27, getTicketFilter());
+      }
+      if (ticketCommentedReq_ != null) {
+        output.writeMessage(28, getTicketCommentedReq());
+      }
+      if (attachmensRequests_ != null) {
+        output.writeMessage(29, getAttachmensRequests());
       }
     }
 
@@ -2079,6 +2207,14 @@ public final class TicketServiceRpcProto {
       if (ticketFilter_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(27, getTicketFilter());
+      }
+      if (ticketCommentedReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(28, getTicketCommentedReq());
+      }
+      if (attachmensRequests_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(29, getAttachmensRequests());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3526,6 +3662,96 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+       */
+      public boolean hasTicketCommentedReq() {
+        return instance.hasTicketCommentedReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq getTicketCommentedReq() {
+        return instance.getTicketCommentedReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+       */
+      public Builder setTicketCommentedReq(com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq value) {
+        copyOnWrite();
+        instance.setTicketCommentedReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+       */
+      public Builder setTicketCommentedReq(
+          com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketCommentedReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+       */
+      public Builder mergeTicketCommentedReq(com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq value) {
+        copyOnWrite();
+        instance.mergeTicketCommentedReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketCommentedReq ticketCommentedReq = 28;</code>
+       */
+      public Builder clearTicketCommentedReq() {  copyOnWrite();
+        instance.clearTicketCommentedReq();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+       */
+      public boolean hasAttachmensRequests() {
+        return instance.hasAttachmensRequests();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest getAttachmensRequests() {
+        return instance.getAttachmensRequests();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+       */
+      public Builder setAttachmensRequests(com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest value) {
+        copyOnWrite();
+        instance.setAttachmensRequests(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+       */
+      public Builder setAttachmensRequests(
+          com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAttachmensRequests(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+       */
+      public Builder mergeAttachmensRequests(com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest value) {
+        copyOnWrite();
+        instance.mergeAttachmensRequests(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
+       */
+      public Builder clearAttachmensRequests() {  copyOnWrite();
+        instance.clearAttachmensRequests();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -3588,6 +3814,8 @@ public final class TicketServiceRpcProto {
           ticketParserRequest_ = visitor.visitMessage(ticketParserRequest_, other.ticketParserRequest_);
           ticketSuggestions_= visitor.visitList(ticketSuggestions_, other.ticketSuggestions_);
           ticketFilter_ = visitor.visitMessage(ticketFilter_, other.ticketFilter_);
+          ticketCommentedReq_ = visitor.visitMessage(ticketCommentedReq_, other.ticketCommentedReq_);
+          attachmensRequests_ = visitor.visitMessage(attachmensRequests_, other.attachmensRequests_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3874,6 +4102,32 @@ public final class TicketServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(ticketFilter_);
                     ticketFilter_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 226: {
+                  com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq.Builder subBuilder = null;
+                  if (ticketCommentedReq_ != null) {
+                    subBuilder = ticketCommentedReq_.toBuilder();
+                  }
+                  ticketCommentedReq_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketCommentedReq.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticketCommentedReq_);
+                    ticketCommentedReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 234: {
+                  com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest.Builder subBuilder = null;
+                  if (attachmensRequests_ != null) {
+                    subBuilder = attachmensRequests_.toBuilder();
+                  }
+                  attachmensRequests_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(attachmensRequests_);
+                    attachmensRequests_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -4186,6 +4440,20 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.TicketAutofillSuggestionRes autofillSuggestionRes = 30;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.TicketAutofillSuggestionRes getAutofillSuggestionRes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketAttachment> 
+        getAttachmentsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketAttachment getAttachments(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    int getAttachmentsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -4204,6 +4472,7 @@ public final class TicketServiceRpcProto {
       ticketTypes_ = emptyProtobufList();
       labels_ = emptyProtobufList();
       ticketSuggestions_ = emptyProtobufList();
+      attachments_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -5864,6 +6133,126 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int ATTACHMENTS_FIELD_NUMBER = 31;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.TicketProto.TicketAttachment> attachments_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketAttachment> getAttachmentsList() {
+      return attachments_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.TicketProto.TicketAttachmentOrBuilder> 
+        getAttachmentsOrBuilderList() {
+      return attachments_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    public int getAttachmentsCount() {
+      return attachments_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketAttachment getAttachments(int index) {
+      return attachments_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketAttachmentOrBuilder getAttachmentsOrBuilder(
+        int index) {
+      return attachments_.get(index);
+    }
+    private void ensureAttachmentsIsMutable() {
+      if (!attachments_.isModifiable()) {
+        attachments_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(attachments_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void setAttachments(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAttachmentsIsMutable();
+      attachments_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void setAttachments(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment.Builder builderForValue) {
+      ensureAttachmentsIsMutable();
+      attachments_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void addAttachments(com.treeleaf.anydone.entities.TicketProto.TicketAttachment value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAttachmentsIsMutable();
+      attachments_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void addAttachments(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAttachmentsIsMutable();
+      attachments_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void addAttachments(
+        com.treeleaf.anydone.entities.TicketProto.TicketAttachment.Builder builderForValue) {
+      ensureAttachmentsIsMutable();
+      attachments_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void addAttachments(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment.Builder builderForValue) {
+      ensureAttachmentsIsMutable();
+      attachments_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void addAllAttachments(
+        Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketAttachment> values) {
+      ensureAttachmentsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, attachments_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void clearAttachments() {
+      attachments_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+     */
+    private void removeAttachments(int index) {
+      ensureAttachmentsIsMutable();
+      attachments_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -5946,6 +6335,9 @@ public final class TicketServiceRpcProto {
       }
       if (autofillSuggestionRes_ != null) {
         output.writeMessage(30, getAutofillSuggestionRes());
+      }
+      for (int i = 0; i < attachments_.size(); i++) {
+        output.writeMessage(31, attachments_.get(i));
       }
     }
 
@@ -6061,6 +6453,10 @@ public final class TicketServiceRpcProto {
       if (autofillSuggestionRes_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(30, getAutofillSuggestionRes());
+      }
+      for (int i = 0; i < attachments_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(31, attachments_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -7561,6 +7957,103 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketAttachment> getAttachmentsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getAttachmentsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public int getAttachmentsCount() {
+        return instance.getAttachmentsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketAttachment getAttachments(int index) {
+        return instance.getAttachments(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder setAttachments(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment value) {
+        copyOnWrite();
+        instance.setAttachments(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder setAttachments(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAttachments(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder addAttachments(com.treeleaf.anydone.entities.TicketProto.TicketAttachment value) {
+        copyOnWrite();
+        instance.addAttachments(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder addAttachments(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment value) {
+        copyOnWrite();
+        instance.addAttachments(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder addAttachments(
+          com.treeleaf.anydone.entities.TicketProto.TicketAttachment.Builder builderForValue) {
+        copyOnWrite();
+        instance.addAttachments(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder addAttachments(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketAttachment.Builder builderForValue) {
+        copyOnWrite();
+        instance.addAttachments(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder addAllAttachments(
+          Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketAttachment> values) {
+        copyOnWrite();
+        instance.addAllAttachments(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder clearAttachments() {
+        copyOnWrite();
+        instance.clearAttachments();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
+       */
+      public Builder removeAttachments(int index) {
+        copyOnWrite();
+        instance.removeAttachments(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -7580,6 +8073,7 @@ public final class TicketServiceRpcProto {
           ticketTypes_.makeImmutable();
           labels_.makeImmutable();
           ticketSuggestions_.makeImmutable();
+          attachments_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -7621,6 +8115,7 @@ public final class TicketServiceRpcProto {
           count_ = visitor.visitLong(count_ != 0L, count_,
               other.count_ != 0L, other.count_);
           autofillSuggestionRes_ = visitor.visitMessage(autofillSuggestionRes_, other.autofillSuggestionRes_);
+          attachments_= visitor.visitList(attachments_, other.attachments_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -7911,6 +8406,15 @@ public final class TicketServiceRpcProto {
                     autofillSuggestionRes_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 250: {
+                  if (!attachments_.isModifiable()) {
+                    attachments_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(attachments_);
+                  }
+                  attachments_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketAttachment.parser(), extensionRegistry));
                   break;
                 }
               }

@@ -27,7 +27,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/dimen_10x4"
+                    android:layout_marginEnd="@dimen/dimen_10x3"
+                    android:paddingStart="@dimen/dimen_10x1"
+                    android:paddingTop="@dimen/dimen_5x1"
+                    android:paddingEnd="@dimen/dimen_10x1"
+                    android:paddingBottom="@dimen/dimen_5x1"
                     android:src="@drawable/ic_back" />
 
                 <TextView

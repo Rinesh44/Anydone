@@ -39,6 +39,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/dimen_5x1"
+                        android:paddingEnd="@dimen/dimens_2x"
+                        android:paddingBottom="@dimen/dimen_5x1"
                         android:src="@drawable/ic_back" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
