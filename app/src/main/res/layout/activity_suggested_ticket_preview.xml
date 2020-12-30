@@ -40,8 +40,8 @@
                     <FrameLayout
                         android:id="@+id/fl_user_icon"
                         android:layout_width="wrap_content"
-                        android:layout_toEndOf="@+id/iv_back"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/iv_back">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/civ_customer"
@@ -56,9 +56,9 @@
                             android:layout_width="13dp"
                             android:layout_height="13dp"
                             android:layout_gravity="bottom|right"
-                            android:elevation="4dp"
                             android:layout_marginTop="20dp"
                             android:layout_marginEnd="@dimen/dimen_5x1"
+                            android:elevation="4dp"
                             android:src="@drawable/ic_edit_camera_icon" />
 
                     </FrameLayout>
@@ -72,10 +72,10 @@
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:layout_toEndOf="@+id/fl_user_icon"
                         android:gravity="start"
-                        android:textStyle="bold"
                         android:text="Suggested Tickets"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/iv_back"
@@ -83,6 +83,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x2"
+                        android:paddingStart="@dimen/dimen_10x1"
+                        android:paddingTop="@dimen/dimen_5x1"
+                        android:paddingEnd="@dimen/dimen_10x1"
+                        android:paddingBottom="@dimen/dimen_5x1"
                         android:src="@drawable/ic_back" />
 
 

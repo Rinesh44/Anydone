@@ -690,6 +690,10 @@ public interface AnyDoneService {
                                                                       @Path(value = "ticketId")
                                                                               long ticketId,
                                                                       @Body TicketProto.Ticket ticket);
+
+    @PATCH("ticket/attachments")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> addAttachment(@Header(AUTHORIZATION)
+                                                                               String token);
 }
 
 

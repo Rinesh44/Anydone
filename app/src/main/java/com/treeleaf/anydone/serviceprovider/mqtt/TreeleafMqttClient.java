@@ -149,39 +149,43 @@ public class TreeleafMqttClient {
     }
 
     private static void subscribeConnectionAcknowledge() {
-        String ackTopic = "anydone/mqtt/ack/" + separateResult[0];
-        try {
-            GlobalUtils.showLog(TAG, "ack Topick Check:  " + ackTopic);
-            subscribe(ackTopic, new TreeleafMqttCallback() {
-                @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    GlobalUtils.showLog(TAG, "subscribe ack success");
-                    GlobalUtils.showLog(TAG, "message: " + message);
+        if (separateResult != null) {
+            String ackTopic = "anydone/mqtt/ack/" + separateResult[0];
+            try {
+                GlobalUtils.showLog(TAG, "ack Topick Check:  " + ackTopic);
+                subscribe(ackTopic, new TreeleafMqttCallback() {
+                    @Override
+                    public void messageArrived(String topic, MqttMessage message) throws Exception {
+                        GlobalUtils.showLog(TAG, "subscribe ack success");
+                        GlobalUtils.showLog(TAG, "message: " + message);
 
-                    AuthRpcProto.AuthBaseResponse relayResponse = AuthRpcProto.AuthBaseResponse
-                            .parseFrom(message.getPayload());
+                        AuthRpcProto.AuthBaseResponse relayResponse = AuthRpcProto.AuthBaseResponse
+                                .parseFrom(message.getPayload());
 
-                    GlobalUtils.showLog(TAG, "ack check: " + relayResponse);
-                }
-            });
-        } catch (MqttException e) {
-            GlobalUtils.showLog(TAG, "exception on ack subscribe: " + e.toString());
-            e.printStackTrace();
+                        GlobalUtils.showLog(TAG, "ack check: " + relayResponse);
+                    }
+                });
+            } catch (MqttException e) {
+                GlobalUtils.showLog(TAG, "exception on ack subscribe: " + e.toString());
+                e.printStackTrace();
+            }
         }
     }
 
     private static void publishWillMessage() {
-        AuthProto.ConnectRequest connectRequest = AuthProto.ConnectRequest.newBuilder()
-                .setAccountId(separateResult[0])
-                .setSessionId(separateResult[1])
-                .build();
+        if (separateResult != null) {
+            AuthProto.ConnectRequest connectRequest = AuthProto.ConnectRequest.newBuilder()
+                    .setAccountId(separateResult[0])
+                    .setSessionId(separateResult[1])
+                    .build();
 
-        publish(connectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
-            @Override
-            public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "connect success");
-            }
-        });
+            publish(connectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) {
+                    GlobalUtils.showLog(TAG, "connect success");
+                }
+            });
+        }
 
     }
 

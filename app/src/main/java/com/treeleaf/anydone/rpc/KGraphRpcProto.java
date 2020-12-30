@@ -194,6 +194,15 @@ public final class KGraphRpcProto {
      */
     com.google.protobuf.ByteString
         getPageBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    boolean hasCsvImportRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest getCsvImportRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.KGraphBaseRequest}
@@ -1303,6 +1312,58 @@ public final class KGraphRpcProto {
       page_ = value.toStringUtf8();
     }
 
+    public static final int CSVIMPORTREQUEST_FIELD_NUMBER = 20;
+    private com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest csvImportRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    public boolean hasCsvImportRequest() {
+      return csvImportRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest getCsvImportRequest() {
+      return csvImportRequest_ == null ? com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest.getDefaultInstance() : csvImportRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    private void setCsvImportRequest(com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      csvImportRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    private void setCsvImportRequest(
+        com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest.Builder builderForValue) {
+      csvImportRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    private void mergeCsvImportRequest(com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest value) {
+      if (csvImportRequest_ != null &&
+          csvImportRequest_ != com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest.getDefaultInstance()) {
+        csvImportRequest_ =
+          com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest.newBuilder(csvImportRequest_).mergeFrom(value).buildPartial();
+      } else {
+        csvImportRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+     */
+    private void clearCsvImportRequest() {  csvImportRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1361,6 +1422,9 @@ public final class KGraphRpcProto {
       }
       if (!page_.isEmpty()) {
         output.writeString(19, getPage());
+      }
+      if (csvImportRequest_ != null) {
+        output.writeMessage(20, getCsvImportRequest());
       }
     }
 
@@ -1449,6 +1513,10 @@ public final class KGraphRpcProto {
       if (!page_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(19, getPage());
+      }
+      if (csvImportRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, getCsvImportRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2471,6 +2539,51 @@ public final class KGraphRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+       */
+      public boolean hasCsvImportRequest() {
+        return instance.hasCsvImportRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest getCsvImportRequest() {
+        return instance.getCsvImportRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+       */
+      public Builder setCsvImportRequest(com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest value) {
+        copyOnWrite();
+        instance.setCsvImportRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+       */
+      public Builder setCsvImportRequest(
+          com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCsvImportRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+       */
+      public Builder mergeCsvImportRequest(com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest value) {
+        copyOnWrite();
+        instance.mergeCsvImportRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
+       */
+      public Builder clearCsvImportRequest() {  copyOnWrite();
+        instance.clearCsvImportRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.KGraphBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2522,6 +2635,7 @@ public final class KGraphRpcProto {
           createAndLinkKnowledgeRequest_ = visitor.visitMessage(createAndLinkKnowledgeRequest_, other.createAndLinkKnowledgeRequest_);
           page_ = visitor.visitString(!page_.isEmpty(), page_,
               !other.page_.isEmpty(), other.page_);
+          csvImportRequest_ = visitor.visitMessage(csvImportRequest_, other.csvImportRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2723,6 +2837,19 @@ public final class KGraphRpcProto {
                   String s = input.readStringRequireUtf8();
 
                   page_ = s;
+                  break;
+                }
+                case 162: {
+                  com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest.Builder subBuilder = null;
+                  if (csvImportRequest_ != null) {
+                    subBuilder = csvImportRequest_.toBuilder();
+                  }
+                  csvImportRequest_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(csvImportRequest_);
+                    csvImportRequest_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

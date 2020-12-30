@@ -49,7 +49,7 @@ public final class NLUProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static BotReplyType valueOf(int value) {
       return forNumber(value);
     }
@@ -91,7 +91,7 @@ public final class NLUProto {
     /**
      * <code>optional string text = 1;</code>
      */
-    String getText();
+    java.lang.String getText();
     /**
      * <code>optional string text = 1;</code>
      */
@@ -101,7 +101,7 @@ public final class NLUProto {
     /**
      * <code>optional string timezone = 2;</code>
      */
-    String getTimezone();
+    java.lang.String getTimezone();
     /**
      * <code>optional string timezone = 2;</code>
      */
@@ -111,7 +111,7 @@ public final class NLUProto {
     /**
      * <code>optional string language = 3;</code>
      */
-    String getLanguage();
+    java.lang.String getLanguage();
     /**
      * <code>optional string language = 3;</code>
      */
@@ -121,7 +121,7 @@ public final class NLUProto {
     /**
      * <code>optional string requestId = 4;</code>
      */
-    String getRequestId();
+    java.lang.String getRequestId();
     /**
      * <code>optional string requestId = 4;</code>
      */
@@ -131,7 +131,7 @@ public final class NLUProto {
     /**
      * <code>optional string accountId = 5;</code>
      */
-    String getAccountId();
+    java.lang.String getAccountId();
     /**
      * <code>optional string accountId = 5;</code>
      */
@@ -141,12 +141,17 @@ public final class NLUProto {
     /**
      * <code>optional string serviceId = 6;</code>
      */
-    String getServiceId();
+    java.lang.String getServiceId();
     /**
      * <code>optional string serviceId = 6;</code>
      */
     com.google.protobuf.ByteString
         getServiceIdBytes();
+
+    /**
+     * <code>optional float threshold = 7;</code>
+     */
+    float getThreshold();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.NLUInput}
@@ -165,11 +170,11 @@ public final class NLUProto {
       serviceId_ = "";
     }
     public static final int TEXT_FIELD_NUMBER = 1;
-    private String text_;
+    private java.lang.String text_;
     /**
      * <code>optional string text = 1;</code>
      */
-    public String getText() {
+    public java.lang.String getText() {
       return text_;
     }
     /**
@@ -183,7 +188,7 @@ public final class NLUProto {
      * <code>optional string text = 1;</code>
      */
     private void setText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -211,11 +216,11 @@ public final class NLUProto {
     }
 
     public static final int TIMEZONE_FIELD_NUMBER = 2;
-    private String timezone_;
+    private java.lang.String timezone_;
     /**
      * <code>optional string timezone = 2;</code>
      */
-    public String getTimezone() {
+    public java.lang.String getTimezone() {
       return timezone_;
     }
     /**
@@ -229,7 +234,7 @@ public final class NLUProto {
      * <code>optional string timezone = 2;</code>
      */
     private void setTimezone(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -257,11 +262,11 @@ public final class NLUProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 3;
-    private String language_;
+    private java.lang.String language_;
     /**
      * <code>optional string language = 3;</code>
      */
-    public String getLanguage() {
+    public java.lang.String getLanguage() {
       return language_;
     }
     /**
@@ -275,7 +280,7 @@ public final class NLUProto {
      * <code>optional string language = 3;</code>
      */
     private void setLanguage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -303,11 +308,11 @@ public final class NLUProto {
     }
 
     public static final int REQUESTID_FIELD_NUMBER = 4;
-    private String requestId_;
+    private java.lang.String requestId_;
     /**
      * <code>optional string requestId = 4;</code>
      */
-    public String getRequestId() {
+    public java.lang.String getRequestId() {
       return requestId_;
     }
     /**
@@ -321,7 +326,7 @@ public final class NLUProto {
      * <code>optional string requestId = 4;</code>
      */
     private void setRequestId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -349,11 +354,11 @@ public final class NLUProto {
     }
 
     public static final int ACCOUNTID_FIELD_NUMBER = 5;
-    private String accountId_;
+    private java.lang.String accountId_;
     /**
      * <code>optional string accountId = 5;</code>
      */
-    public String getAccountId() {
+    public java.lang.String getAccountId() {
       return accountId_;
     }
     /**
@@ -367,7 +372,7 @@ public final class NLUProto {
      * <code>optional string accountId = 5;</code>
      */
     private void setAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -395,11 +400,11 @@ public final class NLUProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 6;
-    private String serviceId_;
+    private java.lang.String serviceId_;
     /**
      * <code>optional string serviceId = 6;</code>
      */
-    public String getServiceId() {
+    public java.lang.String getServiceId() {
       return serviceId_;
     }
     /**
@@ -413,7 +418,7 @@ public final class NLUProto {
      * <code>optional string serviceId = 6;</code>
      */
     private void setServiceId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -440,6 +445,29 @@ public final class NLUProto {
       serviceId_ = value.toStringUtf8();
     }
 
+    public static final int THRESHOLD_FIELD_NUMBER = 7;
+    private float threshold_;
+    /**
+     * <code>optional float threshold = 7;</code>
+     */
+    public float getThreshold() {
+      return threshold_;
+    }
+    /**
+     * <code>optional float threshold = 7;</code>
+     */
+    private void setThreshold(float value) {
+      
+      threshold_ = value;
+    }
+    /**
+     * <code>optional float threshold = 7;</code>
+     */
+    private void clearThreshold() {
+      
+      threshold_ = 0F;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!text_.isEmpty()) {
@@ -459,6 +487,9 @@ public final class NLUProto {
       }
       if (!serviceId_.isEmpty()) {
         output.writeString(6, getServiceId());
+      }
+      if (threshold_ != 0F) {
+        output.writeFloat(7, threshold_);
       }
     }
 
@@ -491,64 +522,68 @@ public final class NLUProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(6, getServiceId());
       }
+      if (threshold_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(7, threshold_);
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static NLUInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NLUInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NLUInput parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NLUInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NLUInput parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NLUInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NLUInput parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static NLUInput parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NLUInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NLUInput parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -559,7 +594,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(NLUInput prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.NLUInput prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -568,9 +603,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          NLUInput, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.NLUInput, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.NLUInput)
-        NLUInputOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.NLUInputOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.NLUInput.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -580,7 +615,7 @@ public final class NLUProto {
       /**
        * <code>optional string text = 1;</code>
        */
-      public String getText() {
+      public java.lang.String getText() {
         return instance.getText();
       }
       /**
@@ -594,7 +629,7 @@ public final class NLUProto {
        * <code>optional string text = 1;</code>
        */
       public Builder setText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -620,7 +655,7 @@ public final class NLUProto {
       /**
        * <code>optional string timezone = 2;</code>
        */
-      public String getTimezone() {
+      public java.lang.String getTimezone() {
         return instance.getTimezone();
       }
       /**
@@ -634,7 +669,7 @@ public final class NLUProto {
        * <code>optional string timezone = 2;</code>
        */
       public Builder setTimezone(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTimezone(value);
         return this;
@@ -660,7 +695,7 @@ public final class NLUProto {
       /**
        * <code>optional string language = 3;</code>
        */
-      public String getLanguage() {
+      public java.lang.String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -674,7 +709,7 @@ public final class NLUProto {
        * <code>optional string language = 3;</code>
        */
       public Builder setLanguage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -700,7 +735,7 @@ public final class NLUProto {
       /**
        * <code>optional string requestId = 4;</code>
        */
-      public String getRequestId() {
+      public java.lang.String getRequestId() {
         return instance.getRequestId();
       }
       /**
@@ -714,7 +749,7 @@ public final class NLUProto {
        * <code>optional string requestId = 4;</code>
        */
       public Builder setRequestId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRequestId(value);
         return this;
@@ -740,7 +775,7 @@ public final class NLUProto {
       /**
        * <code>optional string accountId = 5;</code>
        */
-      public String getAccountId() {
+      public java.lang.String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -754,7 +789,7 @@ public final class NLUProto {
        * <code>optional string accountId = 5;</code>
        */
       public Builder setAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -780,7 +815,7 @@ public final class NLUProto {
       /**
        * <code>optional string serviceId = 6;</code>
        */
-      public String getServiceId() {
+      public java.lang.String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -794,7 +829,7 @@ public final class NLUProto {
        * <code>optional string serviceId = 6;</code>
        */
       public Builder setServiceId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -817,14 +852,37 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>optional float threshold = 7;</code>
+       */
+      public float getThreshold() {
+        return instance.getThreshold();
+      }
+      /**
+       * <code>optional float threshold = 7;</code>
+       */
+      public Builder setThreshold(float value) {
+        copyOnWrite();
+        instance.setThreshold(value);
+        return this;
+      }
+      /**
+       * <code>optional float threshold = 7;</code>
+       */
+      public Builder clearThreshold() {
+        copyOnWrite();
+        instance.clearThreshold();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.NLUInput)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new NLUInput();
+          return new com.treeleaf.anydone.entities.NLUProto.NLUInput();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -837,7 +895,7 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          NLUInput other = (NLUInput) arg1;
+          com.treeleaf.anydone.entities.NLUProto.NLUInput other = (com.treeleaf.anydone.entities.NLUProto.NLUInput) arg1;
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           timezone_ = visitor.visitString(!timezone_.isEmpty(), timezone_,
@@ -850,7 +908,9 @@ public final class NLUProto {
               !other.accountId_.isEmpty(), other.accountId_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
-          if (visitor == MergeFromVisitor
+          threshold_ = visitor.visitFloat(threshold_ != 0F, threshold_,
+              other.threshold_ != 0F, other.threshold_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -910,6 +970,11 @@ public final class NLUProto {
                   serviceId_ = s;
                   break;
                 }
+                case 61: {
+
+                  threshold_ = input.readFloat();
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -925,7 +990,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (NLUInput.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.NLUInput.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -939,13 +1004,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.NLUInput)
-    private static final NLUInput DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.NLUInput DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new NLUInput();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static NLUInput getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.NLUInput getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -963,7 +1028,7 @@ public final class NLUProto {
     /**
      * <code>optional string name = 1;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>optional string name = 1;</code>
      */
@@ -987,11 +1052,11 @@ public final class NLUProto {
       name_ = "";
     }
     public static final int NAME_FIELD_NUMBER = 1;
-    private String name_;
+    private java.lang.String name_;
     /**
      * <code>optional string name = 1;</code>
      */
-    public String getName() {
+    public java.lang.String getName() {
       return name_;
     }
     /**
@@ -1005,7 +1070,7 @@ public final class NLUProto {
      * <code>optional string name = 1;</code>
      */
     private void setName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1082,60 +1147,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static Intent parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Intent parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Intent parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Intent parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Intent parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Intent parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Intent parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Intent parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Intent parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Intent parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.Intent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1146,7 +1211,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Intent prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.Intent prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1155,9 +1220,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Intent, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.Intent, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Intent)
-        IntentOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.IntentOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.Intent.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1167,7 +1232,7 @@ public final class NLUProto {
       /**
        * <code>optional string name = 1;</code>
        */
-      public String getName() {
+      public java.lang.String getName() {
         return instance.getName();
       }
       /**
@@ -1181,7 +1246,7 @@ public final class NLUProto {
        * <code>optional string name = 1;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setName(value);
         return this;
@@ -1230,11 +1295,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Intent)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Intent();
+          return new com.treeleaf.anydone.entities.NLUProto.Intent();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1247,12 +1312,12 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Intent other = (Intent) arg1;
+          com.treeleaf.anydone.entities.NLUProto.Intent other = (com.treeleaf.anydone.entities.NLUProto.Intent) arg1;
           name_ = visitor.visitString(!name_.isEmpty(), name_,
               !other.name_.isEmpty(), other.name_);
           confidence_ = visitor.visitDouble(confidence_ != 0D, confidence_,
               other.confidence_ != 0D, other.confidence_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1302,7 +1367,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Intent.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.Intent.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1316,13 +1381,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Intent)
-    private static final Intent DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.Intent DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Intent();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Intent getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.Intent getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1344,17 +1409,17 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
      */
-    Intent getIntent();
+    com.treeleaf.anydone.entities.NLUProto.Intent getIntent();
 
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
-    java.util.List<NLPProto.Entity>
+    java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> 
         getEntitiesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
-    NLPProto.Entity getEntities(int index);
+    com.treeleaf.anydone.entities.NLPProto.Entity getEntities(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
@@ -1373,7 +1438,7 @@ public final class NLUProto {
     }
     private int bitField0_;
     public static final int INTENT_FIELD_NUMBER = 1;
-    private Intent intent_;
+    private com.treeleaf.anydone.entities.NLUProto.Intent intent_;
     /**
      * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
      */
@@ -1383,13 +1448,13 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
      */
-    public Intent getIntent() {
-      return intent_ == null ? Intent.getDefaultInstance() : intent_;
+    public com.treeleaf.anydone.entities.NLUProto.Intent getIntent() {
+      return intent_ == null ? com.treeleaf.anydone.entities.NLUProto.Intent.getDefaultInstance() : intent_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
      */
-    private void setIntent(Intent value) {
+    private void setIntent(com.treeleaf.anydone.entities.NLUProto.Intent value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1400,18 +1465,18 @@ public final class NLUProto {
      * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
      */
     private void setIntent(
-        Intent.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLUProto.Intent.Builder builderForValue) {
       intent_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
      */
-    private void mergeIntent(Intent value) {
+    private void mergeIntent(com.treeleaf.anydone.entities.NLUProto.Intent value) {
       if (intent_ != null &&
-          intent_ != Intent.getDefaultInstance()) {
+          intent_ != com.treeleaf.anydone.entities.NLUProto.Intent.getDefaultInstance()) {
         intent_ =
-          Intent.newBuilder(intent_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NLUProto.Intent.newBuilder(intent_).mergeFrom(value).buildPartial();
       } else {
         intent_ = value;
       }
@@ -1425,17 +1490,17 @@ public final class NLUProto {
     }
 
     public static final int ENTITIES_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<NLPProto.Entity> entities_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.NLPProto.Entity> entities_;
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
-    public java.util.List<NLPProto.Entity> getEntitiesList() {
+    public java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> getEntitiesList() {
       return entities_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
-    public java.util.List<? extends NLPProto.EntityOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.NLPProto.EntityOrBuilder> 
         getEntitiesOrBuilderList() {
       return entities_;
     }
@@ -1448,13 +1513,13 @@ public final class NLUProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
-    public NLPProto.Entity getEntities(int index) {
+    public com.treeleaf.anydone.entities.NLPProto.Entity getEntities(int index) {
       return entities_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
-    public NLPProto.EntityOrBuilder getEntitiesOrBuilder(
+    public com.treeleaf.anydone.entities.NLPProto.EntityOrBuilder getEntitiesOrBuilder(
         int index) {
       return entities_.get(index);
     }
@@ -1469,7 +1534,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
     private void setEntities(
-        int index, NLPProto.Entity value) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1480,14 +1545,14 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
     private void setEntities(
-        int index, NLPProto.Entity.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
       ensureEntitiesIsMutable();
       entities_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
-    private void addEntities(NLPProto.Entity value) {
+    private void addEntities(com.treeleaf.anydone.entities.NLPProto.Entity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1498,7 +1563,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
     private void addEntities(
-        int index, NLPProto.Entity value) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1509,7 +1574,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
     private void addEntities(
-        NLPProto.Entity.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
       ensureEntitiesIsMutable();
       entities_.add(builderForValue.build());
     }
@@ -1517,7 +1582,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
     private void addEntities(
-        int index, NLPProto.Entity.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
       ensureEntitiesIsMutable();
       entities_.add(index, builderForValue.build());
     }
@@ -1525,7 +1590,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
      */
     private void addAllEntities(
-        Iterable<? extends NLPProto.Entity> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLPProto.Entity> values) {
       ensureEntitiesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, entities_);
@@ -1571,60 +1636,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static IntentResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntentResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntentResult parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static IntentResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static IntentResult parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntentResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntentResult parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static IntentResult parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static IntentResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static IntentResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1635,7 +1700,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(IntentResult prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.IntentResult prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1644,9 +1709,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          IntentResult, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.IntentResult, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntentResult)
-        IntentResultOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.IntentResultOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.IntentResult.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1662,13 +1727,13 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
        */
-      public Intent getIntent() {
+      public com.treeleaf.anydone.entities.NLUProto.Intent getIntent() {
         return instance.getIntent();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
        */
-      public Builder setIntent(Intent value) {
+      public Builder setIntent(com.treeleaf.anydone.entities.NLUProto.Intent value) {
         copyOnWrite();
         instance.setIntent(value);
         return this;
@@ -1677,7 +1742,7 @@ public final class NLUProto {
        * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
        */
       public Builder setIntent(
-          Intent.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLUProto.Intent.Builder builderForValue) {
         copyOnWrite();
         instance.setIntent(builderForValue);
         return this;
@@ -1685,7 +1750,7 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Intent intent = 1;</code>
        */
-      public Builder mergeIntent(Intent value) {
+      public Builder mergeIntent(com.treeleaf.anydone.entities.NLUProto.Intent value) {
         copyOnWrite();
         instance.mergeIntent(value);
         return this;
@@ -1701,7 +1766,7 @@ public final class NLUProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
-      public java.util.List<NLPProto.Entity> getEntitiesList() {
+      public java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> getEntitiesList() {
         return java.util.Collections.unmodifiableList(
             instance.getEntitiesList());
       }
@@ -1713,14 +1778,14 @@ public final class NLUProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
-      public NLPProto.Entity getEntities(int index) {
+      public com.treeleaf.anydone.entities.NLPProto.Entity getEntities(int index) {
         return instance.getEntities(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
       public Builder setEntities(
-          int index, NLPProto.Entity value) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
         copyOnWrite();
         instance.setEntities(index, value);
         return this;
@@ -1729,7 +1794,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
       public Builder setEntities(
-          int index, NLPProto.Entity.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
         copyOnWrite();
         instance.setEntities(index, builderForValue);
         return this;
@@ -1737,7 +1802,7 @@ public final class NLUProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
-      public Builder addEntities(NLPProto.Entity value) {
+      public Builder addEntities(com.treeleaf.anydone.entities.NLPProto.Entity value) {
         copyOnWrite();
         instance.addEntities(value);
         return this;
@@ -1746,7 +1811,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
       public Builder addEntities(
-          int index, NLPProto.Entity value) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
         copyOnWrite();
         instance.addEntities(index, value);
         return this;
@@ -1755,7 +1820,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
       public Builder addEntities(
-          NLPProto.Entity.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
         copyOnWrite();
         instance.addEntities(builderForValue);
         return this;
@@ -1764,7 +1829,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
       public Builder addEntities(
-          int index, NLPProto.Entity.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
         copyOnWrite();
         instance.addEntities(index, builderForValue);
         return this;
@@ -1773,7 +1838,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Entity entities = 2;</code>
        */
       public Builder addAllEntities(
-          Iterable<? extends NLPProto.Entity> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLPProto.Entity> values) {
         copyOnWrite();
         instance.addAllEntities(values);
         return this;
@@ -1798,11 +1863,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntentResult)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new IntentResult();
+          return new com.treeleaf.anydone.entities.NLUProto.IntentResult();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1816,10 +1881,10 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          IntentResult other = (IntentResult) arg1;
+          com.treeleaf.anydone.entities.NLUProto.IntentResult other = (com.treeleaf.anydone.entities.NLUProto.IntentResult) arg1;
           intent_ = visitor.visitMessage(intent_, other.intent_);
           entities_= visitor.visitList(entities_, other.entities_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1845,11 +1910,11 @@ public final class NLUProto {
                   break;
                 }
                 case 10: {
-                  Intent.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NLUProto.Intent.Builder subBuilder = null;
                   if (intent_ != null) {
                     subBuilder = intent_.toBuilder();
                   }
-                  intent_ = input.readMessage(Intent.parser(), extensionRegistry);
+                  intent_ = input.readMessage(com.treeleaf.anydone.entities.NLUProto.Intent.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(intent_);
                     intent_ = subBuilder.buildPartial();
@@ -1863,7 +1928,7 @@ public final class NLUProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(entities_);
                   }
                   entities_.add(
-                      input.readMessage(NLPProto.Entity.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.NLPProto.Entity.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -1881,7 +1946,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (IntentResult.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.IntentResult.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1895,13 +1960,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntentResult)
-    private static final IntentResult DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.IntentResult DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new IntentResult();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static IntentResult getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.IntentResult getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1919,7 +1984,7 @@ public final class NLUProto {
     /**
      * <code>optional string text = 1;</code>
      */
-    String getText();
+    java.lang.String getText();
     /**
      * <code>optional string text = 1;</code>
      */
@@ -1929,7 +1994,7 @@ public final class NLUProto {
     /**
      * <code>optional string timezone = 2;</code>
      */
-    String getTimezone();
+    java.lang.String getTimezone();
     /**
      * <code>optional string timezone = 2;</code>
      */
@@ -1939,7 +2004,7 @@ public final class NLUProto {
     /**
      * <code>optional string language = 3;</code>
      */
-    String getLanguage();
+    java.lang.String getLanguage();
     /**
      * <code>optional string language = 3;</code>
      */
@@ -1949,7 +2014,7 @@ public final class NLUProto {
     /**
      * <code>optional string requestId = 4;</code>
      */
-    String getRequestId();
+    java.lang.String getRequestId();
     /**
      * <code>optional string requestId = 4;</code>
      */
@@ -1971,11 +2036,11 @@ public final class NLUProto {
       requestId_ = "";
     }
     public static final int TEXT_FIELD_NUMBER = 1;
-    private String text_;
+    private java.lang.String text_;
     /**
      * <code>optional string text = 1;</code>
      */
-    public String getText() {
+    public java.lang.String getText() {
       return text_;
     }
     /**
@@ -1989,7 +2054,7 @@ public final class NLUProto {
      * <code>optional string text = 1;</code>
      */
     private void setText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2017,11 +2082,11 @@ public final class NLUProto {
     }
 
     public static final int TIMEZONE_FIELD_NUMBER = 2;
-    private String timezone_;
+    private java.lang.String timezone_;
     /**
      * <code>optional string timezone = 2;</code>
      */
-    public String getTimezone() {
+    public java.lang.String getTimezone() {
       return timezone_;
     }
     /**
@@ -2035,7 +2100,7 @@ public final class NLUProto {
      * <code>optional string timezone = 2;</code>
      */
     private void setTimezone(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2063,11 +2128,11 @@ public final class NLUProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 3;
-    private String language_;
+    private java.lang.String language_;
     /**
      * <code>optional string language = 3;</code>
      */
-    public String getLanguage() {
+    public java.lang.String getLanguage() {
       return language_;
     }
     /**
@@ -2081,7 +2146,7 @@ public final class NLUProto {
      * <code>optional string language = 3;</code>
      */
     private void setLanguage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2109,11 +2174,11 @@ public final class NLUProto {
     }
 
     public static final int REQUESTID_FIELD_NUMBER = 4;
-    private String requestId_;
+    private java.lang.String requestId_;
     /**
      * <code>optional string requestId = 4;</code>
      */
-    public String getRequestId() {
+    public java.lang.String getRequestId() {
       return requestId_;
     }
     /**
@@ -2127,7 +2192,7 @@ public final class NLUProto {
      * <code>optional string requestId = 4;</code>
      */
     private void setRequestId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2195,60 +2260,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static SimilarSentenceRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static SimilarSentenceRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static SimilarSentenceRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static SimilarSentenceRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static SimilarSentenceRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static SimilarSentenceRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static SimilarSentenceRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static SimilarSentenceRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static SimilarSentenceRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static SimilarSentenceRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2259,7 +2324,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(SimilarSentenceRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2268,9 +2333,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          SimilarSentenceRequest, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.SimilarSentenceRequest)
-        SimilarSentenceRequestOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2280,7 +2345,7 @@ public final class NLUProto {
       /**
        * <code>optional string text = 1;</code>
        */
-      public String getText() {
+      public java.lang.String getText() {
         return instance.getText();
       }
       /**
@@ -2294,7 +2359,7 @@ public final class NLUProto {
        * <code>optional string text = 1;</code>
        */
       public Builder setText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -2320,7 +2385,7 @@ public final class NLUProto {
       /**
        * <code>optional string timezone = 2;</code>
        */
-      public String getTimezone() {
+      public java.lang.String getTimezone() {
         return instance.getTimezone();
       }
       /**
@@ -2334,7 +2399,7 @@ public final class NLUProto {
        * <code>optional string timezone = 2;</code>
        */
       public Builder setTimezone(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTimezone(value);
         return this;
@@ -2360,7 +2425,7 @@ public final class NLUProto {
       /**
        * <code>optional string language = 3;</code>
        */
-      public String getLanguage() {
+      public java.lang.String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -2374,7 +2439,7 @@ public final class NLUProto {
        * <code>optional string language = 3;</code>
        */
       public Builder setLanguage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -2400,7 +2465,7 @@ public final class NLUProto {
       /**
        * <code>optional string requestId = 4;</code>
        */
-      public String getRequestId() {
+      public java.lang.String getRequestId() {
         return instance.getRequestId();
       }
       /**
@@ -2414,7 +2479,7 @@ public final class NLUProto {
        * <code>optional string requestId = 4;</code>
        */
       public Builder setRequestId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRequestId(value);
         return this;
@@ -2440,11 +2505,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SimilarSentenceRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new SimilarSentenceRequest();
+          return new com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2457,7 +2522,7 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          SimilarSentenceRequest other = (SimilarSentenceRequest) arg1;
+          com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest other = (com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest) arg1;
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           timezone_ = visitor.visitString(!timezone_.isEmpty(), timezone_,
@@ -2466,7 +2531,7 @@ public final class NLUProto {
               !other.language_.isEmpty(), other.language_);
           requestId_ = visitor.visitString(!requestId_.isEmpty(), requestId_,
               !other.requestId_.isEmpty(), other.requestId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2529,7 +2594,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (SimilarSentenceRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2543,13 +2608,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.SimilarSentenceRequest)
-    private static final SimilarSentenceRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new SimilarSentenceRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static SimilarSentenceRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2567,7 +2632,7 @@ public final class NLUProto {
     /**
      * <code>optional string text = 1;</code>
      */
-    String getText();
+    java.lang.String getText();
     /**
      * <code>optional string text = 1;</code>
      */
@@ -2591,11 +2656,11 @@ public final class NLUProto {
       text_ = "";
     }
     public static final int TEXT_FIELD_NUMBER = 1;
-    private String text_;
+    private java.lang.String text_;
     /**
      * <code>optional string text = 1;</code>
      */
-    public String getText() {
+    public java.lang.String getText() {
       return text_;
     }
     /**
@@ -2609,7 +2674,7 @@ public final class NLUProto {
      * <code>optional string text = 1;</code>
      */
     private void setText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2686,60 +2751,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static SimilarSentenceResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static SimilarSentenceResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static SimilarSentenceResult parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static SimilarSentenceResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static SimilarSentenceResult parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static SimilarSentenceResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static SimilarSentenceResult parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static SimilarSentenceResult parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static SimilarSentenceResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static SimilarSentenceResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2750,7 +2815,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(SimilarSentenceResult prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2759,9 +2824,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          SimilarSentenceResult, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.SimilarSentenceResult)
-        SimilarSentenceResultOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResultOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2771,7 +2836,7 @@ public final class NLUProto {
       /**
        * <code>optional string text = 1;</code>
        */
-      public String getText() {
+      public java.lang.String getText() {
         return instance.getText();
       }
       /**
@@ -2785,7 +2850,7 @@ public final class NLUProto {
        * <code>optional string text = 1;</code>
        */
       public Builder setText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setText(value);
         return this;
@@ -2834,11 +2899,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SimilarSentenceResult)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new SimilarSentenceResult();
+          return new com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2851,12 +2916,12 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          SimilarSentenceResult other = (SimilarSentenceResult) arg1;
+          com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult other = (com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult) arg1;
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           score_ = visitor.visitDouble(score_ != 0D, score_,
               other.score_ != 0D, other.score_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2906,7 +2971,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (SimilarSentenceResult.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2920,13 +2985,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.SimilarSentenceResult)
-    private static final SimilarSentenceResult DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new SimilarSentenceResult();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static SimilarSentenceResult getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.SimilarSentenceResult getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2948,7 +3013,7 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    IntentResult getIntentResult();
+    com.treeleaf.anydone.entities.NLUProto.IntentResult getIntentResult();
 
     /**
      * <code>repeated string replyText = 2;</code>
@@ -2962,7 +3027,7 @@ public final class NLUProto {
     /**
      * <code>repeated string replyText = 2;</code>
      */
-    String getReplyText(int index);
+    java.lang.String getReplyText(int index);
     /**
      * <code>repeated string replyText = 2;</code>
      */
@@ -2982,7 +3047,7 @@ public final class NLUProto {
     }
     private int bitField0_;
     public static final int INTENTRESULT_FIELD_NUMBER = 1;
-    private IntentResult intentResult_;
+    private com.treeleaf.anydone.entities.NLUProto.IntentResult intentResult_;
     /**
      * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
@@ -2992,13 +3057,13 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    public IntentResult getIntentResult() {
-      return intentResult_ == null ? IntentResult.getDefaultInstance() : intentResult_;
+    public com.treeleaf.anydone.entities.NLUProto.IntentResult getIntentResult() {
+      return intentResult_ == null ? com.treeleaf.anydone.entities.NLUProto.IntentResult.getDefaultInstance() : intentResult_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    private void setIntentResult(IntentResult value) {
+    private void setIntentResult(com.treeleaf.anydone.entities.NLUProto.IntentResult value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3009,18 +3074,18 @@ public final class NLUProto {
      * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
     private void setIntentResult(
-        IntentResult.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLUProto.IntentResult.Builder builderForValue) {
       intentResult_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
      */
-    private void mergeIntentResult(IntentResult value) {
+    private void mergeIntentResult(com.treeleaf.anydone.entities.NLUProto.IntentResult value) {
       if (intentResult_ != null &&
-          intentResult_ != IntentResult.getDefaultInstance()) {
+          intentResult_ != com.treeleaf.anydone.entities.NLUProto.IntentResult.getDefaultInstance()) {
         intentResult_ =
-          IntentResult.newBuilder(intentResult_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NLUProto.IntentResult.newBuilder(intentResult_).mergeFrom(value).buildPartial();
       } else {
         intentResult_ = value;
       }
@@ -3050,7 +3115,7 @@ public final class NLUProto {
     /**
      * <code>repeated string replyText = 2;</code>
      */
-    public String getReplyText(int index) {
+    public java.lang.String getReplyText(int index) {
       return replyText_.get(index);
     }
     /**
@@ -3071,7 +3136,7 @@ public final class NLUProto {
      * <code>repeated string replyText = 2;</code>
      */
     private void setReplyText(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3082,7 +3147,7 @@ public final class NLUProto {
      * <code>repeated string replyText = 2;</code>
      */
     private void addReplyText(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3093,7 +3158,7 @@ public final class NLUProto {
      * <code>repeated string replyText = 2;</code>
      */
     private void addAllReplyText(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureReplyTextIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, replyText_);
@@ -3149,60 +3214,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static ConversationalReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ConversationalReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ConversationalReply parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ConversationalReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ConversationalReply parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ConversationalReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ConversationalReply parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ConversationalReply parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ConversationalReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ConversationalReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3213,7 +3278,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ConversationalReply prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.ConversationalReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3222,9 +3287,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ConversationalReply, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.ConversationalReply, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationalReply)
-        ConversationalReplyOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.ConversationalReplyOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.ConversationalReply.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3240,13 +3305,13 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public IntentResult getIntentResult() {
+      public com.treeleaf.anydone.entities.NLUProto.IntentResult getIntentResult() {
         return instance.getIntentResult();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public Builder setIntentResult(IntentResult value) {
+      public Builder setIntentResult(com.treeleaf.anydone.entities.NLUProto.IntentResult value) {
         copyOnWrite();
         instance.setIntentResult(value);
         return this;
@@ -3255,7 +3320,7 @@ public final class NLUProto {
        * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
       public Builder setIntentResult(
-          IntentResult.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLUProto.IntentResult.Builder builderForValue) {
         copyOnWrite();
         instance.setIntentResult(builderForValue);
         return this;
@@ -3263,7 +3328,7 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.IntentResult intentResult = 1;</code>
        */
-      public Builder mergeIntentResult(IntentResult value) {
+      public Builder mergeIntentResult(com.treeleaf.anydone.entities.NLUProto.IntentResult value) {
         copyOnWrite();
         instance.mergeIntentResult(value);
         return this;
@@ -3293,7 +3358,7 @@ public final class NLUProto {
       /**
        * <code>repeated string replyText = 2;</code>
        */
-      public String getReplyText(int index) {
+      public java.lang.String getReplyText(int index) {
         return instance.getReplyText(index);
       }
       /**
@@ -3307,7 +3372,7 @@ public final class NLUProto {
        * <code>repeated string replyText = 2;</code>
        */
       public Builder setReplyText(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setReplyText(index, value);
         return this;
@@ -3316,7 +3381,7 @@ public final class NLUProto {
        * <code>repeated string replyText = 2;</code>
        */
       public Builder addReplyText(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addReplyText(value);
         return this;
@@ -3325,7 +3390,7 @@ public final class NLUProto {
        * <code>repeated string replyText = 2;</code>
        */
       public Builder addAllReplyText(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllReplyText(values);
         return this;
@@ -3351,11 +3416,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationalReply)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ConversationalReply();
+          return new com.treeleaf.anydone.entities.NLUProto.ConversationalReply();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3369,10 +3434,10 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ConversationalReply other = (ConversationalReply) arg1;
+          com.treeleaf.anydone.entities.NLUProto.ConversationalReply other = (com.treeleaf.anydone.entities.NLUProto.ConversationalReply) arg1;
           intentResult_ = visitor.visitMessage(intentResult_, other.intentResult_);
           replyText_= visitor.visitList(replyText_, other.replyText_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3398,11 +3463,11 @@ public final class NLUProto {
                   break;
                 }
                 case 10: {
-                  IntentResult.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NLUProto.IntentResult.Builder subBuilder = null;
                   if (intentResult_ != null) {
                     subBuilder = intentResult_.toBuilder();
                   }
-                  intentResult_ = input.readMessage(IntentResult.parser(), extensionRegistry);
+                  intentResult_ = input.readMessage(com.treeleaf.anydone.entities.NLUProto.IntentResult.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(intentResult_);
                     intentResult_ = subBuilder.buildPartial();
@@ -3434,7 +3499,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ConversationalReply.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.ConversationalReply.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3448,13 +3513,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationalReply)
-    private static final ConversationalReply DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.ConversationalReply DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ConversationalReply();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ConversationalReply getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.ConversationalReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3472,7 +3537,7 @@ public final class NLUProto {
     /**
      * <code>optional string id = 2;</code>
      */
-    String getId();
+    java.lang.String getId();
     /**
      * <code>optional string id = 2;</code>
      */
@@ -3482,7 +3547,7 @@ public final class NLUProto {
     /**
      * <code>optional string prev = 3;</code>
      */
-    String getPrev();
+    java.lang.String getPrev();
     /**
      * <code>optional string prev = 3;</code>
      */
@@ -3492,7 +3557,7 @@ public final class NLUProto {
     /**
      * <code>optional string next = 4;</code>
      */
-    String getNext();
+    java.lang.String getNext();
     /**
      * <code>optional string next = 4;</code>
      */
@@ -3502,7 +3567,7 @@ public final class NLUProto {
     /**
      * <code>optional string title = 5;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 5;</code>
      */
@@ -3517,12 +3582,12 @@ public final class NLUProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
-    java.util.List<KGraphProto.Attribute>
+    java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> 
         getAttributeList();
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
-    KGraphProto.Attribute getAttribute(int index);
+    com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
@@ -3545,11 +3610,11 @@ public final class NLUProto {
     }
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 2;
-    private String id_;
+    private java.lang.String id_;
     /**
      * <code>optional string id = 2;</code>
      */
-    public String getId() {
+    public java.lang.String getId() {
       return id_;
     }
     /**
@@ -3563,7 +3628,7 @@ public final class NLUProto {
      * <code>optional string id = 2;</code>
      */
     private void setId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3591,11 +3656,11 @@ public final class NLUProto {
     }
 
     public static final int PREV_FIELD_NUMBER = 3;
-    private String prev_;
+    private java.lang.String prev_;
     /**
      * <code>optional string prev = 3;</code>
      */
-    public String getPrev() {
+    public java.lang.String getPrev() {
       return prev_;
     }
     /**
@@ -3609,7 +3674,7 @@ public final class NLUProto {
      * <code>optional string prev = 3;</code>
      */
     private void setPrev(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3637,11 +3702,11 @@ public final class NLUProto {
     }
 
     public static final int NEXT_FIELD_NUMBER = 4;
-    private String next_;
+    private java.lang.String next_;
     /**
      * <code>optional string next = 4;</code>
      */
-    public String getNext() {
+    public java.lang.String getNext() {
       return next_;
     }
     /**
@@ -3655,7 +3720,7 @@ public final class NLUProto {
      * <code>optional string next = 4;</code>
      */
     private void setNext(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3683,11 +3748,11 @@ public final class NLUProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 5;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 5;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -3701,7 +3766,7 @@ public final class NLUProto {
      * <code>optional string title = 5;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3752,17 +3817,17 @@ public final class NLUProto {
     }
 
     public static final int ATTRIBUTE_FIELD_NUMBER = 7;
-    private com.google.protobuf.Internal.ProtobufList<KGraphProto.Attribute> attribute_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.Attribute> attribute_;
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
-    public java.util.List<KGraphProto.Attribute> getAttributeList() {
+    public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> getAttributeList() {
       return attribute_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
-    public java.util.List<? extends KGraphProto.AttributeOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.KGraphProto.AttributeOrBuilder> 
         getAttributeOrBuilderList() {
       return attribute_;
     }
@@ -3775,13 +3840,13 @@ public final class NLUProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
-    public KGraphProto.Attribute getAttribute(int index) {
+    public com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index) {
       return attribute_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
-    public KGraphProto.AttributeOrBuilder getAttributeOrBuilder(
+    public com.treeleaf.anydone.entities.KGraphProto.AttributeOrBuilder getAttributeOrBuilder(
         int index) {
       return attribute_.get(index);
     }
@@ -3796,7 +3861,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
     private void setAttribute(
-        int index, KGraphProto.Attribute value) {
+        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3807,14 +3872,14 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
     private void setAttribute(
-        int index, KGraphProto.Attribute.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
       ensureAttributeIsMutable();
       attribute_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
-    private void addAttribute(KGraphProto.Attribute value) {
+    private void addAttribute(com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3825,7 +3890,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
     private void addAttribute(
-        int index, KGraphProto.Attribute value) {
+        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3836,7 +3901,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
     private void addAttribute(
-        KGraphProto.Attribute.Builder builderForValue) {
+        com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
       ensureAttributeIsMutable();
       attribute_.add(builderForValue.build());
     }
@@ -3844,7 +3909,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
     private void addAttribute(
-        int index, KGraphProto.Attribute.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
       ensureAttributeIsMutable();
       attribute_.add(index, builderForValue.build());
     }
@@ -3852,7 +3917,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
      */
     private void addAllAttribute(
-        Iterable<? extends KGraphProto.Attribute> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Attribute> values) {
       ensureAttributeIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, attribute_);
@@ -3926,60 +3991,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static KGraphResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphResult parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphResult parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphResult parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static KGraphResult parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphResult parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3990,7 +4055,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(KGraphResult prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.KGraphResult prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3999,9 +4064,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          KGraphResult, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.KGraphResult, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KGraphResult)
-        KGraphResultOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.KGraphResultOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.KGraphResult.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4011,7 +4076,7 @@ public final class NLUProto {
       /**
        * <code>optional string id = 2;</code>
        */
-      public String getId() {
+      public java.lang.String getId() {
         return instance.getId();
       }
       /**
@@ -4025,7 +4090,7 @@ public final class NLUProto {
        * <code>optional string id = 2;</code>
        */
       public Builder setId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setId(value);
         return this;
@@ -4051,7 +4116,7 @@ public final class NLUProto {
       /**
        * <code>optional string prev = 3;</code>
        */
-      public String getPrev() {
+      public java.lang.String getPrev() {
         return instance.getPrev();
       }
       /**
@@ -4065,7 +4130,7 @@ public final class NLUProto {
        * <code>optional string prev = 3;</code>
        */
       public Builder setPrev(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPrev(value);
         return this;
@@ -4091,7 +4156,7 @@ public final class NLUProto {
       /**
        * <code>optional string next = 4;</code>
        */
-      public String getNext() {
+      public java.lang.String getNext() {
         return instance.getNext();
       }
       /**
@@ -4105,7 +4170,7 @@ public final class NLUProto {
        * <code>optional string next = 4;</code>
        */
       public Builder setNext(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setNext(value);
         return this;
@@ -4131,7 +4196,7 @@ public final class NLUProto {
       /**
        * <code>optional string title = 5;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -4145,7 +4210,7 @@ public final class NLUProto {
        * <code>optional string title = 5;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -4194,7 +4259,7 @@ public final class NLUProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
-      public java.util.List<KGraphProto.Attribute> getAttributeList() {
+      public java.util.List<com.treeleaf.anydone.entities.KGraphProto.Attribute> getAttributeList() {
         return java.util.Collections.unmodifiableList(
             instance.getAttributeList());
       }
@@ -4206,14 +4271,14 @@ public final class NLUProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
-      public KGraphProto.Attribute getAttribute(int index) {
+      public com.treeleaf.anydone.entities.KGraphProto.Attribute getAttribute(int index) {
         return instance.getAttribute(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
       public Builder setAttribute(
-          int index, KGraphProto.Attribute value) {
+          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
         copyOnWrite();
         instance.setAttribute(index, value);
         return this;
@@ -4222,7 +4287,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
       public Builder setAttribute(
-          int index, KGraphProto.Attribute.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
         copyOnWrite();
         instance.setAttribute(index, builderForValue);
         return this;
@@ -4230,7 +4295,7 @@ public final class NLUProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
-      public Builder addAttribute(KGraphProto.Attribute value) {
+      public Builder addAttribute(com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
         copyOnWrite();
         instance.addAttribute(value);
         return this;
@@ -4239,7 +4304,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
       public Builder addAttribute(
-          int index, KGraphProto.Attribute value) {
+          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute value) {
         copyOnWrite();
         instance.addAttribute(index, value);
         return this;
@@ -4248,7 +4313,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
       public Builder addAttribute(
-          KGraphProto.Attribute.Builder builderForValue) {
+          com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
         copyOnWrite();
         instance.addAttribute(builderForValue);
         return this;
@@ -4257,7 +4322,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
       public Builder addAttribute(
-          int index, KGraphProto.Attribute.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.KGraphProto.Attribute.Builder builderForValue) {
         copyOnWrite();
         instance.addAttribute(index, builderForValue);
         return this;
@@ -4266,7 +4331,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.Attribute attribute = 7;</code>
        */
       public Builder addAllAttribute(
-          Iterable<? extends KGraphProto.Attribute> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Attribute> values) {
         copyOnWrite();
         instance.addAllAttribute(values);
         return this;
@@ -4291,11 +4356,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KGraphResult)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new KGraphResult();
+          return new com.treeleaf.anydone.entities.NLUProto.KGraphResult();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4309,7 +4374,7 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          KGraphResult other = (KGraphResult) arg1;
+          com.treeleaf.anydone.entities.NLUProto.KGraphResult other = (com.treeleaf.anydone.entities.NLUProto.KGraphResult) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
           prev_ = visitor.visitString(!prev_.isEmpty(), prev_,
@@ -4321,7 +4386,7 @@ public final class NLUProto {
           traversable_ = visitor.visitBoolean(traversable_ != false, traversable_,
               other.traversable_ != false, other.traversable_);
           attribute_= visitor.visitList(attribute_, other.attribute_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -4381,7 +4446,7 @@ public final class NLUProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(attribute_);
                   }
                   attribute_.add(
-                      input.readMessage(KGraphProto.Attribute.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Attribute.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -4399,7 +4464,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (KGraphResult.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.KGraphResult.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4413,13 +4478,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KGraphResult)
-    private static final KGraphResult DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.KGraphResult DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new KGraphResult();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static KGraphResult getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphResult getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4437,12 +4502,12 @@ public final class NLUProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
-    java.util.List<KGraphResult>
+    java.util.List<com.treeleaf.anydone.entities.NLUProto.KGraphResult> 
         getKGraphResultsList();
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
-    KGraphResult getKGraphResults(int index);
+    com.treeleaf.anydone.entities.NLUProto.KGraphResult getKGraphResults(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
@@ -4460,17 +4525,17 @@ public final class NLUProto {
       kGraphResults_ = emptyProtobufList();
     }
     public static final int KGRAPHRESULTS_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<KGraphResult> kGraphResults_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.NLUProto.KGraphResult> kGraphResults_;
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
-    public java.util.List<KGraphResult> getKGraphResultsList() {
+    public java.util.List<com.treeleaf.anydone.entities.NLUProto.KGraphResult> getKGraphResultsList() {
       return kGraphResults_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
-    public java.util.List<? extends KGraphResultOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.NLUProto.KGraphResultOrBuilder> 
         getKGraphResultsOrBuilderList() {
       return kGraphResults_;
     }
@@ -4483,13 +4548,13 @@ public final class NLUProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
-    public KGraphResult getKGraphResults(int index) {
+    public com.treeleaf.anydone.entities.NLUProto.KGraphResult getKGraphResults(int index) {
       return kGraphResults_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
-    public KGraphResultOrBuilder getKGraphResultsOrBuilder(
+    public com.treeleaf.anydone.entities.NLUProto.KGraphResultOrBuilder getKGraphResultsOrBuilder(
         int index) {
       return kGraphResults_.get(index);
     }
@@ -4504,7 +4569,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
     private void setKGraphResults(
-        int index, KGraphResult value) {
+        int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4515,14 +4580,14 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
     private void setKGraphResults(
-        int index, KGraphResult.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult.Builder builderForValue) {
       ensureKGraphResultsIsMutable();
       kGraphResults_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
-    private void addKGraphResults(KGraphResult value) {
+    private void addKGraphResults(com.treeleaf.anydone.entities.NLUProto.KGraphResult value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4533,7 +4598,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
     private void addKGraphResults(
-        int index, KGraphResult value) {
+        int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4544,7 +4609,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
     private void addKGraphResults(
-        KGraphResult.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLUProto.KGraphResult.Builder builderForValue) {
       ensureKGraphResultsIsMutable();
       kGraphResults_.add(builderForValue.build());
     }
@@ -4552,7 +4617,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
     private void addKGraphResults(
-        int index, KGraphResult.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult.Builder builderForValue) {
       ensureKGraphResultsIsMutable();
       kGraphResults_.add(index, builderForValue.build());
     }
@@ -4560,7 +4625,7 @@ public final class NLUProto {
      * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
      */
     private void addAllKGraphResults(
-        Iterable<? extends KGraphResult> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLUProto.KGraphResult> values) {
       ensureKGraphResultsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, kGraphResults_);
@@ -4599,60 +4664,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static KGraphReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphReply parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphReply parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphReply parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static KGraphReply parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4663,7 +4728,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(KGraphReply prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.KGraphReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4672,9 +4737,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          KGraphReply, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.KGraphReply)
-        KGraphReplyOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.KGraphReplyOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.KGraphReply.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4684,7 +4749,7 @@ public final class NLUProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
-      public java.util.List<KGraphResult> getKGraphResultsList() {
+      public java.util.List<com.treeleaf.anydone.entities.NLUProto.KGraphResult> getKGraphResultsList() {
         return java.util.Collections.unmodifiableList(
             instance.getKGraphResultsList());
       }
@@ -4696,14 +4761,14 @@ public final class NLUProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
-      public KGraphResult getKGraphResults(int index) {
+      public com.treeleaf.anydone.entities.NLUProto.KGraphResult getKGraphResults(int index) {
         return instance.getKGraphResults(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
       public Builder setKGraphResults(
-          int index, KGraphResult value) {
+          int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult value) {
         copyOnWrite();
         instance.setKGraphResults(index, value);
         return this;
@@ -4712,7 +4777,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
       public Builder setKGraphResults(
-          int index, KGraphResult.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult.Builder builderForValue) {
         copyOnWrite();
         instance.setKGraphResults(index, builderForValue);
         return this;
@@ -4720,7 +4785,7 @@ public final class NLUProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
-      public Builder addKGraphResults(KGraphResult value) {
+      public Builder addKGraphResults(com.treeleaf.anydone.entities.NLUProto.KGraphResult value) {
         copyOnWrite();
         instance.addKGraphResults(value);
         return this;
@@ -4729,7 +4794,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
       public Builder addKGraphResults(
-          int index, KGraphResult value) {
+          int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult value) {
         copyOnWrite();
         instance.addKGraphResults(index, value);
         return this;
@@ -4738,7 +4803,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
       public Builder addKGraphResults(
-          KGraphResult.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLUProto.KGraphResult.Builder builderForValue) {
         copyOnWrite();
         instance.addKGraphResults(builderForValue);
         return this;
@@ -4747,7 +4812,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
       public Builder addKGraphResults(
-          int index, KGraphResult.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NLUProto.KGraphResult.Builder builderForValue) {
         copyOnWrite();
         instance.addKGraphResults(index, builderForValue);
         return this;
@@ -4756,7 +4821,7 @@ public final class NLUProto {
        * <code>repeated .treeleaf.anydone.entities.KGraphResult kGraphResults = 1;</code>
        */
       public Builder addAllKGraphResults(
-          Iterable<? extends KGraphResult> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLUProto.KGraphResult> values) {
         copyOnWrite();
         instance.addAllKGraphResults(values);
         return this;
@@ -4781,11 +4846,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KGraphReply)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new KGraphReply();
+          return new com.treeleaf.anydone.entities.NLUProto.KGraphReply();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4799,9 +4864,9 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          KGraphReply other = (KGraphReply) arg1;
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply other = (com.treeleaf.anydone.entities.NLUProto.KGraphReply) arg1;
           kGraphResults_= visitor.visitList(kGraphResults_, other.kGraphResults_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4831,7 +4896,7 @@ public final class NLUProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(kGraphResults_);
                   }
                   kGraphResults_.add(
-                      input.readMessage(KGraphResult.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.NLUProto.KGraphResult.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -4849,7 +4914,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (KGraphReply.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.KGraphReply.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4863,13 +4928,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.KGraphReply)
-    private static final KGraphReply DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.KGraphReply DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new KGraphReply();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static KGraphReply getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.KGraphReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4891,7 +4956,7 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    ConversationalReply getConversationalReply();
+    com.treeleaf.anydone.entities.NLUProto.ConversationalReply getConversationalReply();
 
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
@@ -4900,7 +4965,7 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
      */
-    KGraphReply getKgraphReply();
+    com.treeleaf.anydone.entities.NLUProto.KGraphReply getKgraphReply();
 
     /**
      * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
@@ -4909,7 +4974,7 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
      */
-    BotReplyType getReplyType();
+    com.treeleaf.anydone.entities.NLUProto.BotReplyType getReplyType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotReply}
@@ -4922,7 +4987,7 @@ public final class NLUProto {
     private BotReply() {
     }
     public static final int CONVERSATIONALREPLY_FIELD_NUMBER = 1;
-    private ConversationalReply conversationalReply_;
+    private com.treeleaf.anydone.entities.NLUProto.ConversationalReply conversationalReply_;
     /**
      * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
@@ -4932,13 +4997,13 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    public ConversationalReply getConversationalReply() {
-      return conversationalReply_ == null ? ConversationalReply.getDefaultInstance() : conversationalReply_;
+    public com.treeleaf.anydone.entities.NLUProto.ConversationalReply getConversationalReply() {
+      return conversationalReply_ == null ? com.treeleaf.anydone.entities.NLUProto.ConversationalReply.getDefaultInstance() : conversationalReply_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    private void setConversationalReply(ConversationalReply value) {
+    private void setConversationalReply(com.treeleaf.anydone.entities.NLUProto.ConversationalReply value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -4949,18 +5014,18 @@ public final class NLUProto {
      * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
     private void setConversationalReply(
-        ConversationalReply.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLUProto.ConversationalReply.Builder builderForValue) {
       conversationalReply_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
      */
-    private void mergeConversationalReply(ConversationalReply value) {
+    private void mergeConversationalReply(com.treeleaf.anydone.entities.NLUProto.ConversationalReply value) {
       if (conversationalReply_ != null &&
-          conversationalReply_ != ConversationalReply.getDefaultInstance()) {
+          conversationalReply_ != com.treeleaf.anydone.entities.NLUProto.ConversationalReply.getDefaultInstance()) {
         conversationalReply_ =
-          ConversationalReply.newBuilder(conversationalReply_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NLUProto.ConversationalReply.newBuilder(conversationalReply_).mergeFrom(value).buildPartial();
       } else {
         conversationalReply_ = value;
       }
@@ -4974,7 +5039,7 @@ public final class NLUProto {
     }
 
     public static final int KGRAPHREPLY_FIELD_NUMBER = 2;
-    private KGraphReply kgraphReply_;
+    private com.treeleaf.anydone.entities.NLUProto.KGraphReply kgraphReply_;
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
      */
@@ -4984,13 +5049,13 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
      */
-    public KGraphReply getKgraphReply() {
-      return kgraphReply_ == null ? KGraphReply.getDefaultInstance() : kgraphReply_;
+    public com.treeleaf.anydone.entities.NLUProto.KGraphReply getKgraphReply() {
+      return kgraphReply_ == null ? com.treeleaf.anydone.entities.NLUProto.KGraphReply.getDefaultInstance() : kgraphReply_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
      */
-    private void setKgraphReply(KGraphReply value) {
+    private void setKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5001,18 +5066,18 @@ public final class NLUProto {
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
      */
     private void setKgraphReply(
-        KGraphReply.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder builderForValue) {
       kgraphReply_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
      */
-    private void mergeKgraphReply(KGraphReply value) {
+    private void mergeKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
       if (kgraphReply_ != null &&
-          kgraphReply_ != KGraphReply.getDefaultInstance()) {
+          kgraphReply_ != com.treeleaf.anydone.entities.NLUProto.KGraphReply.getDefaultInstance()) {
         kgraphReply_ =
-          KGraphReply.newBuilder(kgraphReply_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply.newBuilder(kgraphReply_).mergeFrom(value).buildPartial();
       } else {
         kgraphReply_ = value;
       }
@@ -5036,9 +5101,9 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
      */
-    public BotReplyType getReplyType() {
-      BotReplyType result = BotReplyType.forNumber(replyType_);
-      return result == null ? BotReplyType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.NLUProto.BotReplyType getReplyType() {
+      com.treeleaf.anydone.entities.NLUProto.BotReplyType result = com.treeleaf.anydone.entities.NLUProto.BotReplyType.forNumber(replyType_);
+      return result == null ? com.treeleaf.anydone.entities.NLUProto.BotReplyType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
@@ -5049,7 +5114,7 @@ public final class NLUProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
      */
-    private void setReplyType(BotReplyType value) {
+    private void setReplyType(com.treeleaf.anydone.entities.NLUProto.BotReplyType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5072,7 +5137,7 @@ public final class NLUProto {
       if (kgraphReply_ != null) {
         output.writeMessage(2, getKgraphReply());
       }
-      if (replyType_ != BotReplyType.UNKNOWN_REPLY.getNumber()) {
+      if (replyType_ != com.treeleaf.anydone.entities.NLUProto.BotReplyType.UNKNOWN_REPLY.getNumber()) {
         output.writeEnum(3, replyType_);
       }
     }
@@ -5090,7 +5155,7 @@ public final class NLUProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getKgraphReply());
       }
-      if (replyType_ != BotReplyType.UNKNOWN_REPLY.getNumber()) {
+      if (replyType_ != com.treeleaf.anydone.entities.NLUProto.BotReplyType.UNKNOWN_REPLY.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, replyType_);
       }
@@ -5098,60 +5163,60 @@ public final class NLUProto {
       return size;
     }
 
-    public static BotReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotReply parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotReply parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotReply parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static BotReply parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotReply parseFrom(
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5162,7 +5227,7 @@ public final class NLUProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BotReply prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.BotReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5171,9 +5236,9 @@ public final class NLUProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          BotReply, Builder> implements
+          com.treeleaf.anydone.entities.NLUProto.BotReply, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotReply)
-        BotReplyOrBuilder {
+        com.treeleaf.anydone.entities.NLUProto.BotReplyOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NLUProto.BotReply.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5189,13 +5254,13 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public ConversationalReply getConversationalReply() {
+      public com.treeleaf.anydone.entities.NLUProto.ConversationalReply getConversationalReply() {
         return instance.getConversationalReply();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public Builder setConversationalReply(ConversationalReply value) {
+      public Builder setConversationalReply(com.treeleaf.anydone.entities.NLUProto.ConversationalReply value) {
         copyOnWrite();
         instance.setConversationalReply(value);
         return this;
@@ -5204,7 +5269,7 @@ public final class NLUProto {
        * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
       public Builder setConversationalReply(
-          ConversationalReply.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLUProto.ConversationalReply.Builder builderForValue) {
         copyOnWrite();
         instance.setConversationalReply(builderForValue);
         return this;
@@ -5212,7 +5277,7 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ConversationalReply conversationalReply = 1;</code>
        */
-      public Builder mergeConversationalReply(ConversationalReply value) {
+      public Builder mergeConversationalReply(com.treeleaf.anydone.entities.NLUProto.ConversationalReply value) {
         copyOnWrite();
         instance.mergeConversationalReply(value);
         return this;
@@ -5234,13 +5299,13 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
        */
-      public KGraphReply getKgraphReply() {
+      public com.treeleaf.anydone.entities.NLUProto.KGraphReply getKgraphReply() {
         return instance.getKgraphReply();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
        */
-      public Builder setKgraphReply(KGraphReply value) {
+      public Builder setKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
         copyOnWrite();
         instance.setKgraphReply(value);
         return this;
@@ -5249,7 +5314,7 @@ public final class NLUProto {
        * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
        */
       public Builder setKgraphReply(
-          KGraphReply.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder builderForValue) {
         copyOnWrite();
         instance.setKgraphReply(builderForValue);
         return this;
@@ -5257,7 +5322,7 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 2;</code>
        */
-      public Builder mergeKgraphReply(KGraphReply value) {
+      public Builder mergeKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
         copyOnWrite();
         instance.mergeKgraphReply(value);
         return this;
@@ -5287,13 +5352,13 @@ public final class NLUProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
        */
-      public BotReplyType getReplyType() {
+      public com.treeleaf.anydone.entities.NLUProto.BotReplyType getReplyType() {
         return instance.getReplyType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
        */
-      public Builder setReplyType(BotReplyType value) {
+      public Builder setReplyType(com.treeleaf.anydone.entities.NLUProto.BotReplyType value) {
         copyOnWrite();
         instance.setReplyType(value);
         return this;
@@ -5310,11 +5375,11 @@ public final class NLUProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotReply)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new BotReply();
+          return new com.treeleaf.anydone.entities.NLUProto.BotReply();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5327,11 +5392,11 @@ public final class NLUProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          BotReply other = (BotReply) arg1;
+          com.treeleaf.anydone.entities.NLUProto.BotReply other = (com.treeleaf.anydone.entities.NLUProto.BotReply) arg1;
           conversationalReply_ = visitor.visitMessage(conversationalReply_, other.conversationalReply_);
           kgraphReply_ = visitor.visitMessage(kgraphReply_, other.kgraphReply_);
           replyType_ = visitor.visitInt(replyType_ != 0, replyType_,    other.replyType_ != 0, other.replyType_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5356,11 +5421,11 @@ public final class NLUProto {
                   break;
                 }
                 case 10: {
-                  ConversationalReply.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NLUProto.ConversationalReply.Builder subBuilder = null;
                   if (conversationalReply_ != null) {
                     subBuilder = conversationalReply_.toBuilder();
                   }
-                  conversationalReply_ = input.readMessage(ConversationalReply.parser(), extensionRegistry);
+                  conversationalReply_ = input.readMessage(com.treeleaf.anydone.entities.NLUProto.ConversationalReply.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(conversationalReply_);
                     conversationalReply_ = subBuilder.buildPartial();
@@ -5369,11 +5434,11 @@ public final class NLUProto {
                   break;
                 }
                 case 18: {
-                  KGraphReply.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder subBuilder = null;
                   if (kgraphReply_ != null) {
                     subBuilder = kgraphReply_.toBuilder();
                   }
-                  kgraphReply_ = input.readMessage(KGraphReply.parser(), extensionRegistry);
+                  kgraphReply_ = input.readMessage(com.treeleaf.anydone.entities.NLUProto.KGraphReply.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(kgraphReply_);
                     kgraphReply_ = subBuilder.buildPartial();
@@ -5402,7 +5467,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (BotReply.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.BotReply.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5416,13 +5481,13 @@ public final class NLUProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotReply)
-    private static final BotReply DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NLUProto.BotReply DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotReply();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static BotReply getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NLUProto.BotReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

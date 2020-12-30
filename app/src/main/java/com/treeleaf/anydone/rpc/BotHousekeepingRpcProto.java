@@ -165,6 +165,24 @@ public final class BotHousekeepingRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotHousekeepingFilter filter = 17;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.BotHousekeepingFilter getFilter();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    boolean hasParaphraseGenerateRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest getParaphraseGenerateRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    boolean hasParaphraseRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest getParaphraseRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseRequest}
@@ -1037,6 +1055,110 @@ public final class BotHousekeepingRpcProto {
       
     }
 
+    public static final int PARAPHRASEGENERATEREQUEST_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest paraphraseGenerateRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    public boolean hasParaphraseGenerateRequest() {
+      return paraphraseGenerateRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest getParaphraseGenerateRequest() {
+      return paraphraseGenerateRequest_ == null ? com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.getDefaultInstance() : paraphraseGenerateRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    private void setParaphraseGenerateRequest(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      paraphraseGenerateRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    private void setParaphraseGenerateRequest(
+        com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.Builder builderForValue) {
+      paraphraseGenerateRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    private void mergeParaphraseGenerateRequest(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest value) {
+      if (paraphraseGenerateRequest_ != null &&
+          paraphraseGenerateRequest_ != com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.getDefaultInstance()) {
+        paraphraseGenerateRequest_ =
+          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.newBuilder(paraphraseGenerateRequest_).mergeFrom(value).buildPartial();
+      } else {
+        paraphraseGenerateRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+     */
+    private void clearParaphraseGenerateRequest() {  paraphraseGenerateRequest_ = null;
+      
+    }
+
+    public static final int PARAPHRASEREQUEST_FIELD_NUMBER = 19;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest paraphraseRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    public boolean hasParaphraseRequest() {
+      return paraphraseRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest getParaphraseRequest() {
+      return paraphraseRequest_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.getDefaultInstance() : paraphraseRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    private void setParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      paraphraseRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    private void setParaphraseRequest(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.Builder builderForValue) {
+      paraphraseRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    private void mergeParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+      if (paraphraseRequest_ != null &&
+          paraphraseRequest_ != com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.getDefaultInstance()) {
+        paraphraseRequest_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.newBuilder(paraphraseRequest_).mergeFrom(value).buildPartial();
+      } else {
+        paraphraseRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     */
+    private void clearParaphraseRequest() {  paraphraseRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1089,6 +1211,12 @@ public final class BotHousekeepingRpcProto {
       }
       if (filter_ != null) {
         output.writeMessage(17, getFilter());
+      }
+      if (paraphraseGenerateRequest_ != null) {
+        output.writeMessage(18, getParaphraseGenerateRequest());
+      }
+      if (paraphraseRequest_ != null) {
+        output.writeMessage(19, getParaphraseRequest());
       }
     }
 
@@ -1169,6 +1297,14 @@ public final class BotHousekeepingRpcProto {
       if (filter_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, getFilter());
+      }
+      if (paraphraseGenerateRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getParaphraseGenerateRequest());
+      }
+      if (paraphraseRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, getParaphraseRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2002,6 +2138,96 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+       */
+      public boolean hasParaphraseGenerateRequest() {
+        return instance.hasParaphraseGenerateRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest getParaphraseGenerateRequest() {
+        return instance.getParaphraseGenerateRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+       */
+      public Builder setParaphraseGenerateRequest(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest value) {
+        copyOnWrite();
+        instance.setParaphraseGenerateRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+       */
+      public Builder setParaphraseGenerateRequest(
+          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setParaphraseGenerateRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+       */
+      public Builder mergeParaphraseGenerateRequest(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest value) {
+        copyOnWrite();
+        instance.mergeParaphraseGenerateRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseGenerateRequest = 18;</code>
+       */
+      public Builder clearParaphraseGenerateRequest() {  copyOnWrite();
+        instance.clearParaphraseGenerateRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       */
+      public boolean hasParaphraseRequest() {
+        return instance.hasParaphraseRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest getParaphraseRequest() {
+        return instance.getParaphraseRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       */
+      public Builder setParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+        copyOnWrite();
+        instance.setParaphraseRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       */
+      public Builder setParaphraseRequest(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setParaphraseRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       */
+      public Builder mergeParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+        copyOnWrite();
+        instance.mergeParaphraseRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       */
+      public Builder clearParaphraseRequest() {  copyOnWrite();
+        instance.clearParaphraseRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2048,6 +2274,8 @@ public final class BotHousekeepingRpcProto {
           trainRequest_ = visitor.visitMessage(trainRequest_, other.trainRequest_);
           botSettings_ = visitor.visitMessage(botSettings_, other.botSettings_);
           filter_ = visitor.visitMessage(filter_, other.filter_);
+          paraphraseGenerateRequest_ = visitor.visitMessage(paraphraseGenerateRequest_, other.paraphraseGenerateRequest_);
+          paraphraseRequest_ = visitor.visitMessage(paraphraseRequest_, other.paraphraseRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2240,6 +2468,32 @@ public final class BotHousekeepingRpcProto {
 
                   break;
                 }
+                case 146: {
+                  com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.Builder subBuilder = null;
+                  if (paraphraseGenerateRequest_ != null) {
+                    subBuilder = paraphraseGenerateRequest_.toBuilder();
+                  }
+                  paraphraseGenerateRequest_ = input.readMessage(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(paraphraseGenerateRequest_);
+                    paraphraseGenerateRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 154: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.Builder subBuilder = null;
+                  if (paraphraseRequest_ != null) {
+                    subBuilder = paraphraseRequest_.toBuilder();
+                  }
+                  paraphraseRequest_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(paraphraseRequest_);
+                    paraphraseRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2420,6 +2674,43 @@ public final class BotHousekeepingRpcProto {
      * <code>optional int64 count = 17;</code>
      */
     long getCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    boolean hasParaphraseResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse getParaphraseResponse();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> 
+        getParaphraseResponsesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse getParaphraseResponses(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    int getParaphraseResponsesCount();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> 
+        getTrainingPhrasesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getTrainingPhrases(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    int getTrainingPhrasesCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseResponse}
@@ -2434,6 +2725,8 @@ public final class BotHousekeepingRpcProto {
       refId_ = "";
       intents_ = emptyProtobufList();
       entities_ = emptyProtobufList();
+      paraphraseResponses_ = emptyProtobufList();
+      trainingPhrases_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -3211,6 +3504,298 @@ public final class BotHousekeepingRpcProto {
       count_ = 0L;
     }
 
+    public static final int PARAPHRASERESPONSE_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse paraphraseResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    public boolean hasParaphraseResponse() {
+      return paraphraseResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse getParaphraseResponse() {
+      return paraphraseResponse_ == null ? com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.getDefaultInstance() : paraphraseResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    private void setParaphraseResponse(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      paraphraseResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    private void setParaphraseResponse(
+        com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+      paraphraseResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    private void mergeParaphraseResponse(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+      if (paraphraseResponse_ != null &&
+          paraphraseResponse_ != com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.getDefaultInstance()) {
+        paraphraseResponse_ =
+          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.newBuilder(paraphraseResponse_).mergeFrom(value).buildPartial();
+      } else {
+        paraphraseResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+     */
+    private void clearParaphraseResponse() {  paraphraseResponse_ = null;
+      
+    }
+
+    public static final int PARAPHRASERESPONSES_FIELD_NUMBER = 19;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> paraphraseResponses_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> getParaphraseResponsesList() {
+      return paraphraseResponses_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponseOrBuilder> 
+        getParaphraseResponsesOrBuilderList() {
+      return paraphraseResponses_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    public int getParaphraseResponsesCount() {
+      return paraphraseResponses_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse getParaphraseResponses(int index) {
+      return paraphraseResponses_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponseOrBuilder getParaphraseResponsesOrBuilder(
+        int index) {
+      return paraphraseResponses_.get(index);
+    }
+    private void ensureParaphraseResponsesIsMutable() {
+      if (!paraphraseResponses_.isModifiable()) {
+        paraphraseResponses_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(paraphraseResponses_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void setParaphraseResponses(
+        int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureParaphraseResponsesIsMutable();
+      paraphraseResponses_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void setParaphraseResponses(
+        int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+      ensureParaphraseResponsesIsMutable();
+      paraphraseResponses_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void addParaphraseResponses(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureParaphraseResponsesIsMutable();
+      paraphraseResponses_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void addParaphraseResponses(
+        int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureParaphraseResponsesIsMutable();
+      paraphraseResponses_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void addParaphraseResponses(
+        com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+      ensureParaphraseResponsesIsMutable();
+      paraphraseResponses_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void addParaphraseResponses(
+        int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+      ensureParaphraseResponsesIsMutable();
+      paraphraseResponses_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void addAllParaphraseResponses(
+        Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> values) {
+      ensureParaphraseResponsesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, paraphraseResponses_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void clearParaphraseResponses() {
+      paraphraseResponses_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+     */
+    private void removeParaphraseResponses(int index) {
+      ensureParaphraseResponsesIsMutable();
+      paraphraseResponses_.remove(index);
+    }
+
+    public static final int TRAININGPHRASES_FIELD_NUMBER = 20;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> trainingPhrases_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getTrainingPhrasesList() {
+      return trainingPhrases_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder> 
+        getTrainingPhrasesOrBuilderList() {
+      return trainingPhrases_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    public int getTrainingPhrasesCount() {
+      return trainingPhrases_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getTrainingPhrases(int index) {
+      return trainingPhrases_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder getTrainingPhrasesOrBuilder(
+        int index) {
+      return trainingPhrases_.get(index);
+    }
+    private void ensureTrainingPhrasesIsMutable() {
+      if (!trainingPhrases_.isModifiable()) {
+        trainingPhrases_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(trainingPhrases_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void setTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void setTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void addTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void addTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void addTrainingPhrases(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void addTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void addAllTrainingPhrases(
+        Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
+      ensureTrainingPhrasesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, trainingPhrases_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void clearTrainingPhrases() {
+      trainingPhrases_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+     */
+    private void removeTrainingPhrases(int index) {
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3257,6 +3842,15 @@ public final class BotHousekeepingRpcProto {
       }
       if (count_ != 0L) {
         output.writeInt64(17, count_);
+      }
+      if (paraphraseResponse_ != null) {
+        output.writeMessage(18, getParaphraseResponse());
+      }
+      for (int i = 0; i < paraphraseResponses_.size(); i++) {
+        output.writeMessage(19, paraphraseResponses_.get(i));
+      }
+      for (int i = 0; i < trainingPhrases_.size(); i++) {
+        output.writeMessage(20, trainingPhrases_.get(i));
       }
     }
 
@@ -3324,6 +3918,18 @@ public final class BotHousekeepingRpcProto {
       if (count_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(17, count_);
+      }
+      if (paraphraseResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getParaphraseResponse());
+      }
+      for (int i = 0; i < paraphraseResponses_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, paraphraseResponses_.get(i));
+      }
+      for (int i = 0; i < trainingPhrases_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, trainingPhrases_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -4084,6 +4690,245 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+       */
+      public boolean hasParaphraseResponse() {
+        return instance.hasParaphraseResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse getParaphraseResponse() {
+        return instance.getParaphraseResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+       */
+      public Builder setParaphraseResponse(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+        copyOnWrite();
+        instance.setParaphraseResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+       */
+      public Builder setParaphraseResponse(
+          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setParaphraseResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+       */
+      public Builder mergeParaphraseResponse(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+        copyOnWrite();
+        instance.mergeParaphraseResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponse = 18;</code>
+       */
+      public Builder clearParaphraseResponse() {  copyOnWrite();
+        instance.clearParaphraseResponse();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> getParaphraseResponsesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getParaphraseResponsesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public int getParaphraseResponsesCount() {
+        return instance.getParaphraseResponsesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse getParaphraseResponses(int index) {
+        return instance.getParaphraseResponses(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder setParaphraseResponses(
+          int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+        copyOnWrite();
+        instance.setParaphraseResponses(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder setParaphraseResponses(
+          int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setParaphraseResponses(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder addParaphraseResponses(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+        copyOnWrite();
+        instance.addParaphraseResponses(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder addParaphraseResponses(
+          int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse value) {
+        copyOnWrite();
+        instance.addParaphraseResponses(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder addParaphraseResponses(
+          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.addParaphraseResponses(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder addParaphraseResponses(
+          int index, com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.addParaphraseResponses(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder addAllParaphraseResponses(
+          Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> values) {
+        copyOnWrite();
+        instance.addAllParaphraseResponses(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder clearParaphraseResponses() {
+        copyOnWrite();
+        instance.clearParaphraseResponses();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 19;</code>
+       */
+      public Builder removeParaphraseResponses(int index) {
+        copyOnWrite();
+        instance.removeParaphraseResponses(index);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getTrainingPhrasesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getTrainingPhrasesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public int getTrainingPhrasesCount() {
+        return instance.getTrainingPhrasesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getTrainingPhrases(int index) {
+        return instance.getTrainingPhrases(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder setTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.setTrainingPhrases(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder setTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTrainingPhrases(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder addTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.addTrainingPhrases(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder addTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.addTrainingPhrases(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder addTrainingPhrases(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTrainingPhrases(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder addTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTrainingPhrases(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder addAllTrainingPhrases(
+          Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
+        copyOnWrite();
+        instance.addAllTrainingPhrases(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder clearTrainingPhrases() {
+        copyOnWrite();
+        instance.clearTrainingPhrases();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 20;</code>
+       */
+      public Builder removeTrainingPhrases(int index) {
+        copyOnWrite();
+        instance.removeTrainingPhrases(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4099,6 +4944,8 @@ public final class BotHousekeepingRpcProto {
         case MAKE_IMMUTABLE: {
           intents_.makeImmutable();
           entities_.makeImmutable();
+          paraphraseResponses_.makeImmutable();
+          trainingPhrases_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -4128,6 +4975,9 @@ public final class BotHousekeepingRpcProto {
           botSettings_ = visitor.visitMessage(botSettings_, other.botSettings_);
           count_ = visitor.visitLong(count_ != 0L, count_,
               other.count_ != 0L, other.count_);
+          paraphraseResponse_ = visitor.visitMessage(paraphraseResponse_, other.paraphraseResponse_);
+          paraphraseResponses_= visitor.visitList(paraphraseResponses_, other.paraphraseResponses_);
+          trainingPhrases_= visitor.visitList(trainingPhrases_, other.trainingPhrases_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4285,6 +5135,37 @@ public final class BotHousekeepingRpcProto {
                 case 136: {
 
                   count_ = input.readInt64();
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.Builder subBuilder = null;
+                  if (paraphraseResponse_ != null) {
+                    subBuilder = paraphraseResponse_.toBuilder();
+                  }
+                  paraphraseResponse_ = input.readMessage(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(paraphraseResponse_);
+                    paraphraseResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 154: {
+                  if (!paraphraseResponses_.isModifiable()) {
+                    paraphraseResponses_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(paraphraseResponses_);
+                  }
+                  paraphraseResponses_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.parser(), extensionRegistry));
+                  break;
+                }
+                case 162: {
+                  if (!trainingPhrases_.isModifiable()) {
+                    trainingPhrases_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(trainingPhrases_);
+                  }
+                  trainingPhrases_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.parser(), extensionRegistry));
                   break;
                 }
               }

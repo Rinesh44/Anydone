@@ -32,6 +32,7 @@ import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
@@ -51,6 +52,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.regex.Matcher;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -77,6 +79,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private CommentAdapter.OnSenderImageClickListener senderImageClickListener;
     private CommentAdapter.OnSuggestionClickListener suggestionClickListener;
     private CommentAdapter.OnBackClickListener onBackClickListener;
+    private CommentAdapter.OnAddAttachmentListener onAddAttachmentListener;
 
     public CommentAdapter(List<Conversation> conversationList, Context mContext) {
         this.conversationList = conversationList;
@@ -106,6 +109,10 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
 
         });
+    }
+
+    public void setCommentVisibility() {
+        notifyItemChanged(conversationList.size());
     }
 
     public void setAcceptedTAG(Conversation conversation) {
@@ -1027,7 +1034,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ticketDesc.setVisibility(View.GONE);
             }
 
-            if (conversationList.isEmpty()) {
+            if (conversationList.size() == 1) {
                 rlCommentHolder.setVisibility(View.GONE);
             } else {
                 rlCommentHolder.setVisibility(View.VISIBLE);
@@ -1051,10 +1058,32 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 if (llLabels.getChildCount() >= 5) {
                     hsvTags.setGravity(Gravity.START);
                 }*/
-
             }
 
+            setupAttachmentRecyclerView(rvAttachments);
         }
+    }
+
+    private void setupAttachmentRecyclerView(RecyclerView rvAttachments) {
+        List<Attachment> attachmentList = new ArrayList<>();
+        Attachment addAttachment = new Attachment();
+        addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
+        addAttachment.setType(0);
+
+        attachmentList.add(addAttachment);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext,
+                LinearLayoutManager.HORIZONTAL, false);
+        rvAttachments.setLayoutManager(layoutManager);
+
+        AttachmentAdapter adapter = new AttachmentAdapter(attachmentList, mContext);
+        rvAttachments.setAdapter(adapter);
+
+        adapter.setOnAddAttachmentClickListener(() -> {
+            if (onAddAttachmentListener != null) {
+                onAddAttachmentListener.onAttachmentAdd();
+            }
+        });
     }
 
 
@@ -1187,6 +1216,14 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void setOnBackClickListener(CommentAdapter.OnBackClickListener listener) {
         this.onBackClickListener = listener;
+    }
+
+    public interface OnAddAttachmentListener {
+        void onAttachmentAdd();
+    }
+
+    public void setOnAddAttachmentClickListener(CommentAdapter.OnAddAttachmentListener listener) {
+        this.onAddAttachmentListener = listener;
     }
 }
 

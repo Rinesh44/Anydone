@@ -119,6 +119,14 @@ public class TicketConversationContract {
 
         void onTaskStartFail(String msg);
 
+        void onUploadImageAttachmentSuccess(String url, String title);
+
+        void onUploadImageAttachmentFail(String msg);
+
+        void onUploadFileAttachmentSuccess(String url, String title);
+
+        void onUploadFileAttachmentFail(String msg);
+
     }
 
     public interface TicketConversationPresenter extends Presenter<TicketConversationView> {
@@ -171,6 +179,10 @@ public class TicketConversationContract {
         void enterMessage(RecyclerView conversation, AREditText etMessage);
 
         void startTask(long ticketId);
+
+        void uploadImageAttachment(Uri uri, Activity activity, String title);
+
+        void uploadFileAttachment(Uri uri, String title);
 
     }
 }
