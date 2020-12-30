@@ -407,16 +407,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
-    public void onImageDrawDiscardLocal() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (drawPadEventListener != null)
-                    drawPadEventListener.onDrawHideProgress();
-            }
-        });
-    }
-
     public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         Log.d(MQTT, "onVideoRoomJoinSuccess");
         if (videoCallListenerServer != null) {

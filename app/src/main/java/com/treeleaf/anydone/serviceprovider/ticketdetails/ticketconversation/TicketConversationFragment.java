@@ -1048,11 +1048,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onImageDrawDiscardLocal() {
-        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardLocal();
-    }
-
-    @Override
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         ((TicketDetailsActivity) getActivity()).onImageDrawDiscardRemote(accountId, imageId);
     }
