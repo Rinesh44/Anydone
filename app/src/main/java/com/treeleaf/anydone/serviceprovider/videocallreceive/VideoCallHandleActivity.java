@@ -340,6 +340,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.serviceProfileUri = uri;
     }
 
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
     public void setReferenceId(long id) {
         refId = id;
     }

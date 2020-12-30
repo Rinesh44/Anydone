@@ -170,6 +170,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
+        super.setAccountType(accountType);
     }
 
     private void disableVideoCall() {
