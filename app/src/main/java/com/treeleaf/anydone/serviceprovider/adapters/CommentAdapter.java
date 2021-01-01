@@ -962,7 +962,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         onBackClickListener
                                 .onBackClick(Objects.requireNonNull(prevKGraph
                                                 .getkGraphList().get(0)).getNext(),
-                                        Objects.requireNonNull(prevKGraph.getkGraphList().get(0)).getId());
+                                        Objects.requireNonNull(prevKGraph.getkGraphList()
+                                                .get(0)).getId());
 
                    /* Conversation current = conversationList.get(position);
                     if (current != null) {

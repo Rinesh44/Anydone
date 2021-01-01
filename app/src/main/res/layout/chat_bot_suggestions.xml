@@ -101,6 +101,7 @@
             android:background="@drawable/chat_bg_incoming"
             android:padding="@dimen/dimen_10x1"
             android:src="@drawable/ic_suggestion_back"
-            android:visibility="visible" />
+            android:visibility="visible"
+            app:tint="@color/colorPrimary" />
     </RelativeLayout>
 </RelativeLayout>
