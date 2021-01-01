@@ -401,7 +401,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 "No",
                 (dialog, id) -> dialog.cancel());
 
-
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
             alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
@@ -430,7 +429,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         llStatusHolder.setVisibility(View.GONE);
         ivAssignEmployee.setVisibility(View.GONE);
         tvContributor.setVisibility(View.GONE);
-        rlBotReplyHolder.setVisibility(View.GONE);
+//        rlBotReplyHolder.setVisibility(View.GONE);
     }
 
     private void setContributorPermissions() {
@@ -653,7 +652,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 addScrollviewMargin();
                 btnReopen.setVisibility(View.GONE);
 
-                rlBotReplyHolder.setVisibility(View.GONE);
+//                rlBotReplyHolder.setVisibility(View.GONE);
                 btnStartTask.setVisibility(View.GONE);
 
                 break;
@@ -745,6 +744,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             tvTicketDesc.setVisibility(View.VISIBLE);
             tvTicketDesc.setText(tickets.getDescription());
         }
+
+        GlobalUtils.showLog(TAG, "created by check: " + tickets.getCreatedByName());
         tvTicketCreatedBy.setText(tickets.getCreatedByName());
 
         String profilePicUrl = tickets.getCreatedByPic();
@@ -1049,8 +1050,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         if (!tickets.getCreatedById().equalsIgnoreCase(userAccount.getAccountId()) &&
                 !tickets.getAssignedEmployee().getAccountId().equalsIgnoreCase
                         (userAccount.getAccountId())) {
-            rlBotReplyHolder.setVisibility(View.GONE);
-            rlBotReplyHolder.setVisibility(View.GONE);
+//            rlBotReplyHolder.setVisibility(View.GONE);
             tvContributor.setVisibility(View.GONE);
             ivAssignEmployee.setVisibility(View.GONE);
         }
@@ -1281,7 +1281,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     private void hideActions() {
         rlSelectedStatus.setVisibility(View.GONE);
-        rlBotReplyHolder.setVisibility(View.GONE);
+//        rlBotReplyHolder.setVisibility(View.GONE);
     }
 
     @SuppressLint("SetTextI18n")
@@ -1406,7 +1406,6 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                     .getColor(R.color.transparent));
             alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
                     .getColor(R.color.colorPrimary));
-
         });
         alert11.show();
     }
@@ -2312,7 +2311,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     public void getTicketByIdSuccess(Tickets ticket) {
         tickets = ticket;
         GlobalUtils.showLog(TAG, "ticket dependency check: " + tickets.getDependentTicket());
-        setTicketDetails();
+//        setTicketDetails();
     }
 
     @Override

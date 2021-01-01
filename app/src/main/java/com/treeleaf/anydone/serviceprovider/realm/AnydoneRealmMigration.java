@@ -48,5 +48,17 @@ public class AnydoneRealmMigration implements RealmMigration {
                     .addField("updatedAt", long.class);
             oldVersion++;
         }
+
+        if (oldVersion == 5) {
+            schema.get("Tickets")
+                    .addRealmListField("attachmentList", schema.get("Attachment"));
+            oldVersion++;
+        }
+
+        if (oldVersion == 6) {
+            schema.get("KGraph")
+                    .addField("prevId", String.class);
+            oldVersion++;
+        }
     }
 }

@@ -7,6 +7,7 @@ public class KGraph extends RealmObject {
     @PrimaryKey
     private String id;
     private String prev;
+    private String prevId;
     private String next;
     private String title;
     private String answerType;
@@ -61,5 +62,13 @@ public class KGraph extends RealmObject {
 
     public void setTraverse(boolean traverse) {
         this.traverse = traverse;
+    }
+
+    public String getPrevId() {
+        return prevId;
+    }
+
+    public void setPrevId(String prevId) {
+        this.prevId = prevId;
     }
 }

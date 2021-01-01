@@ -34,6 +34,7 @@ public class Tickets extends RealmObject {
     int priority;
     boolean botEnabled;
     DependentTicket dependentTicket;
+    RealmList<Attachment> attachmentList;
 
     public Tickets() {
     }
@@ -264,5 +265,13 @@ public class Tickets extends RealmObject {
 
     public void setDependentTicket(DependentTicket dependentTicket) {
         this.dependentTicket = dependentTicket;
+    }
+
+    public RealmList<Attachment> getAttachmentList() {
+        return attachmentList;
+    }
+
+    public void setAttachmentList(RealmList<Attachment> attachmentList) {
+        this.attachmentList = attachmentList;
     }
 }

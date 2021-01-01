@@ -10,6 +10,7 @@ import com.chinalwb.are.AREditText;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -125,6 +126,14 @@ public class TicketConversationContract {
 
         void onUploadFileAttachmentFail(String msg);
 
+        void addAttachmentSuccess(Attachment attachment);
+
+        void addAttachmentFail(String msg);
+
+        void removeAttachmentSuccess(Attachment attachment);
+
+        void removeAttachmentFail(String msg);
+
     }
 
     public interface TicketConversationPresenter extends Presenter<TicketConversationView> {
@@ -170,7 +179,7 @@ public class TicketConversationContract {
 
         void setConversationAsFailed(Conversation conversation);
 
-        void getSuggestions(String nextMessageId, long refId, boolean backClicked);
+        void getSuggestions(String nextMessageId, String knowledgeKey, long refId, boolean backClicked);
 
         void getServiceProviderInfo(Tickets tickets);
 
@@ -182,7 +191,9 @@ public class TicketConversationContract {
 
         void uploadFileAttachment(Uri uri, String title);
 
-//        void addAttachment();
+        void addAttachment(long ticketId, Attachment attachment);
+
+        void removeAttachment(long ticketId, Attachment attachment);
 
     }
 }

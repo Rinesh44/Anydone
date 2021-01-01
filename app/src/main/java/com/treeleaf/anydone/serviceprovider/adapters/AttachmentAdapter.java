@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<Attachment> attachmentList;
     private Context mContext;
     private AttachmentAdapter.OnAddAttachmentListener onAttachClickListener;
+    private OnAttachmentRemoveListener attachmentRemoveListener;
 
     public AttachmentAdapter(List<Attachment> attachmentList, Context mContext) {
         this.attachmentList = attachmentList;
@@ -146,10 +148,9 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
             });
 
-            ivClose.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
+            ivClose.setOnClickListener(v -> {
+                if (attachmentRemoveListener != null) {
+                    attachmentRemoveListener.onRemove(attachmentList.get(getAdapterPosition()));
                 }
             });
         }
@@ -305,6 +306,14 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public void setOnAddAttachmentClickListener(AttachmentAdapter.OnAddAttachmentListener listener) {
         this.onAttachClickListener = listener;
+    }
+
+    public interface OnAttachmentRemoveListener {
+        void onRemove(Attachment attachment);
+    }
+
+    public void setOnAttachmentRemoveListener(OnAttachmentRemoveListener listener) {
+        this.attachmentRemoveListener = listener;
     }
 
 }

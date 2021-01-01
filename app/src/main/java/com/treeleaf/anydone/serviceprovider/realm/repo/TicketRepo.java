@@ -7,6 +7,7 @@ import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
@@ -270,6 +271,15 @@ public class TicketRepo extends Repo {
         });
     }
 
+    public void addAttachments(long ticketId, RealmList<Attachment> attachmentList) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setList("attachmentList", attachmentList);
+        });
+    }
+
     public void changeTicketStatusToStart(long ticketId) {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
@@ -467,6 +477,12 @@ public class TicketRepo extends Repo {
                 dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
                 tickets.setDependentTicket(dependentTicket);
             }
+
+            if (!ticketPb.getAttachmentsList().isEmpty()) {
+                RealmList<Attachment> attachmentList = ProtoMapper
+                        .transformAttachments(ticketPb.getAttachmentsList());
+                tickets.setAttachmentList(attachmentList);
+            }
             ticketsList.add(tickets);
         }
 
@@ -574,6 +590,12 @@ public class TicketRepo extends Repo {
             dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
             tickets.setDependentTicket(dependentTicket);
         }
+
+        if (!ticketPb.getAttachmentsList().isEmpty()) {
+            RealmList<Attachment> attachmentList = ProtoMapper
+                    .transformAttachments(ticketPb.getAttachmentsList());
+            tickets.setAttachmentList(attachmentList);
+        }
         return tickets;
     }
 
@@ -589,6 +611,10 @@ public class TicketRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
+
+    public void setAttachments(List<Attachment> attachmentList) {
+
     }
 
     public List<Tickets> getPendingTickets() {

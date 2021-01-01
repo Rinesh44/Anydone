@@ -6,6 +6,7 @@ import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -129,6 +130,23 @@ public final class ProtoMapper {
             tagsRealmList.add(tags);
         }
         return tagsRealmList;
+    }
+
+    public static RealmList<Attachment> transformAttachments(List<TicketProto.TicketAttachment>
+                                                                     ticketAttachmentsPb) {
+        RealmList<Attachment> attachmentRealmList = new RealmList<>();
+        for (TicketProto.TicketAttachment attachmentPb : ticketAttachmentsPb
+        ) {
+            Attachment attachment = new Attachment();
+            attachment.setId(attachmentPb.getId());
+            attachment.setUrl(attachmentPb.getUrl());
+            attachment.setUpdatedAt(attachmentPb.getUpdatedAt());
+            attachment.setCreatedAt(attachmentPb.getCreatedAt());
+            attachment.setTitle(attachmentPb.getTitle());
+            attachment.setType(attachmentPb.getType().getNumber());
+            attachmentRealmList.add(attachment);
+        }
+        return attachmentRealmList;
     }
 
     public static RealmList<Label> transformLabels(List<TicketProto.Label> labelListPb) {

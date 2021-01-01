@@ -696,7 +696,7 @@ public interface AnyDoneService {
                                                                        @Body TicketProto.TicketAttachmentRequest
                                                                                ticketAttachmentRequest);
 
-    @DELETE("ticket/attachments")
+    @HTTP(method = "DELETE", path = "ticket/attachments", hasBody = true)
     Observable<TicketServiceRpcProto.TicketBaseResponse> removeAttachment(@Header(AUTHORIZATION)
                                                                                   String token,
                                                                           @Body TicketProto.TicketAttachmentRequest

@@ -650,9 +650,9 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
                 if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(threadId))) {
                     if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
-                            .getKGraphResultsList())) {
+                            .getKnowledgesList())) {
                         RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                                .getKGraphReply().getKGraphResultsList());
+                                .getKGraphReply().getKnowledgesList());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
                                 "");
@@ -760,16 +760,16 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         });
     }
 
-    private RealmList<KGraph> getkGraphList(List<NLUProto.KGraphResult> kGraphResultsList) {
+    private RealmList<KGraph> getkGraphList(List<KGraphProto.Knowledge> kGraphResultsList) {
         RealmList<KGraph> kGraphRealmList = new RealmList<>();
-        for (NLUProto.KGraphResult result : kGraphResultsList
+        for (KGraphProto.Knowledge result : kGraphResultsList
         ) {
             KGraph kGraph = new KGraph();
-            kGraph.setId(result.getId());
-            kGraph.setPrev(result.getPrev());
-            kGraph.setNext(result.getNext());
+            kGraph.setId(result.getKnowledgeId());
+            kGraph.setPrev("");
+            kGraph.setNext(result.getKnowledgeKey());
             kGraph.setTitle(result.getTitle());
-            kGraph.setTraverse(result.getTraversable());
+            kGraph.setAnswerType(result.getKnowledgeType().name());
             kGraphRealmList.add(kGraph);
         }
         return kGraphRealmList;

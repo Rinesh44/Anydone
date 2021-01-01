@@ -9,35 +9,32 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.text.Html;
 import android.util.Patterns;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.TextView;
 
 import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
-import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
-import com.treeleaf.anydone.entities.NLUProto;
+import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
+import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
-import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
@@ -49,7 +46,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -406,6 +402,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .setText(textMessage)
                 .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
                 .setRefId(String.valueOf(orderId))
+                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -445,7 +442,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     @Override
-    public void getSuggestions(String nextMessageId, long refId, boolean backClicked) {
+    public void getSuggestions(String nextMessageId, String knowledgeKey, long refId, boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -456,7 +453,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
         BotConversationProto.ConversationRequest conversationRequest = BotConversationProto
                 .ConversationRequest.newBuilder()
-                .setMessageId(nextMessageId)
+//                .setMessageId(nextMessageId)
+                .setKnowledgeId(nextMessageId)
+                .setKnowledgeKey(knowledgeKey)
                 .build();
 
         getBotConversationObservable = service
@@ -484,8 +483,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             return;
                         }
 
-                     /*   RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
-                                .getKgraphResponse().getAnswersList());
+                        RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
+                                        .getKgraphResponse().getKnowledgesList(),
+                                botConversationBaseResponse.getKgraphResponse().getRootKnowledge());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
                                 "");
@@ -499,9 +499,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (!backClicked)
                             conversation.setkGraphTitle(Hawk.get(Constants.KGRAPH_TITLE));
                         else
-                            conversation.setkGraphTitle("");*/
+                            conversation.setkGraphTitle("");
 
-                  /*      ConversationRepo.getInstance().saveConversation(conversation,
+                        ConversationRepo.getInstance().saveConversation(conversation,
                                 new Repo.Callback() {
                                     @Override
                                     public void success(Object o) {
@@ -512,7 +512,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     public void fail() {
                                         GlobalUtils.showLog(TAG, "failed to save k-graph conversation");
                                     }
-                                });*/
+                                });
 
                     }
 
@@ -742,22 +742,163 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         );
     }
 
+    @Override
+    public void addAttachment(long ticketId, Attachment attachment) {
+        TicketProto.TicketAttachment.TicketAttachmentType attachmentType =
+                TicketProto.TicketAttachment.TicketAttachmentType.IMAGE_TYPE;
 
-/*    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
+        if (attachment.getType() == 1) {
+            attachmentType = TicketProto.TicketAttachment.TicketAttachmentType.IMAGE_TYPE;
+        } else if (attachment.getType() == 2) {
+            attachmentType = TicketProto.TicketAttachment.TicketAttachmentType.DOC_TYPE;
+        }
+
+        TicketProto.TicketAttachment ticketAttachment = TicketProto.TicketAttachment.newBuilder()
+                .setCreatedAt(System.currentTimeMillis())
+                .setId(attachment.getId())
+                .setTitle(attachment.getTitle())
+                .setType(attachmentType)
+                .setUrl(attachment.getUrl())
+                .build();
+
+        TicketProto.TicketAttachmentRequest ticketAttachmentRequest = TicketProto
+                .TicketAttachmentRequest.newBuilder()
+                .setTicketId(ticketId)
+                .addTicketAttachments(ticketAttachment)
+                .build();
+
+        getView().showProgressBar("Please wait...");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String token = Hawk.get(Constants.TOKEN);
+        GlobalUtils.showLog(TAG, "sent attachment id: " + attachment.getId());
+
+        ticketObservable = service.addAttachment(token, ticketAttachmentRequest);
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                               response) {
+                        GlobalUtils.showLog(TAG, "add attachment response: " +
+                                response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().addAttachmentFail("Failed to add attachment");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().addAttachmentFail(response.getMsg());
+                            return;
+                        }
+
+                        attachment.setId(response.getAttachmentsList().get(0).getId());
+                        getView().addAttachmentSuccess(attachment);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().getMessageFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+
+
+    }
+
+    @Override
+    public void removeAttachment(long ticketId, Attachment attachment) {
+        getView().showProgressBar("Please wait...");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        TicketProto.TicketAttachment ticketAttachment = TicketProto.TicketAttachment.newBuilder()
+                .setId(attachment.getId())
+                .build();
+
+        TicketProto.TicketAttachmentRequest ticketAttachmentRequest = TicketProto.TicketAttachmentRequest.newBuilder()
+                .setTicketId(ticketId)
+                .addTicketAttachments(ticketAttachment)
+                .build();
+
+        ticketObservable = service.removeAttachment(token,
+                ticketAttachmentRequest);
+
+        GlobalUtils.showLog(TAG, "send attachment proto: " + ticketAttachmentRequest);
+
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                               response) {
+                        GlobalUtils.showLog(TAG, "remove attachment response: " +
+                                response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().removeAttachmentFail("Failed to remove attachment");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().removeAttachmentFail(response.getMsg());
+                            return;
+                        }
+
+                        getView().removeAttachmentSuccess(attachment);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().getMessageFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
+
+    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Knowledge> answersList,
+                                                KGraphProto.Knowledge backKnowledge) {
         RealmList<KGraph> kGraphList = new RealmList<>();
-        for (KGraphProto.Answer answer : answersList
+        for (KGraphProto.Knowledge answer : answersList
         ) {
             KGraph kGraph = new KGraph();
             kGraph.setTitle(answer.getTitle());
-            kGraph.setId(answer.getAnswerId());
-            kGraph.setAnswerType(answer.getAnswerType().name());
+            kGraph.setId(answer.getKnowledgeId());
+            kGraph.setNext(answer.getKnowledgeKey());
+            kGraph.setPrev(backKnowledge.getKnowledgeId());
+            kGraph.setPrevId(backKnowledge.getKnowledgeKey());
+            kGraph.setAnswerType(answer.getKnowledgeType().name());
+            /*kGraph.setAnswerType(answer.getAnswerType().name());
             kGraph.setNext(answer.getOutgoing().getQuestionKey());
-            kGraph.setPrev(answer.getIncoming().getQuestionKey());
+            kGraph.setPrev(answer.getIncoming().getQuestionKey());*/
             kGraphList.add(kGraph);
         }
 
         return kGraphList;
-    }*/
+    }
 
 
     public void publishImage(String imageUrl, long orderId, String clientId, String imageCaption) {
@@ -852,9 +993,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
                     if (true) {//TODO: fix this later
                         if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
-                                .getKGraphResultsList())) {
+                                .getKnowledgesList())) {
                             RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                                    .getKGraphReply().getKGraphResultsList());
+                                    .getKGraphReply().getKnowledgesList());
+
                             Conversation conversation = new Conversation();
                             String kgraphId = UUID.randomUUID().toString().replace("-",
                                     "");
@@ -1205,16 +1347,16 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         });
     }
 
-    private RealmList<KGraph> getkGraphList(List<NLUProto.KGraphResult> kGraphResultsList) {
+    private RealmList<KGraph> getkGraphList(List<KGraphProto.Knowledge> kGraphResultsList) {
         RealmList<KGraph> kGraphRealmList = new RealmList<>();
-        for (NLUProto.KGraphResult result : kGraphResultsList
+        for (KGraphProto.Knowledge result : kGraphResultsList
         ) {
             KGraph kGraph = new KGraph();
-            kGraph.setId(result.getId());
-            kGraph.setPrev(result.getPrev());
-            kGraph.setNext(result.getNext());
+            kGraph.setId(result.getKnowledgeId());
+            kGraph.setPrev("");
+            kGraph.setNext(result.getKnowledgeKey());
             kGraph.setTitle(result.getTitle());
-            kGraph.setTraverse(result.getTraversable());
+            kGraph.setAnswerType(result.getKnowledgeType().name());
             kGraphRealmList.add(kGraph);
         }
         return kGraphRealmList;

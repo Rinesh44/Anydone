@@ -74,6 +74,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -206,6 +207,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     NestedScrollView scrollview;
     @BindView(R.id.rv_attachments)
     RecyclerView rvAttachments;
+    @BindView(R.id.rl_attachments)
+    RelativeLayout rlAttachments;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -236,8 +239,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private OnStatusChangeListener listener;
     private OnVideoCallEventListener videoCallBackListener;
     private Account userAccount;
-    List<Attachment> attachmentList;
+    RealmList<Attachment> attachmentList;
     private AttachmentAdapter attachmentAdapter;
+    private Tickets ticket;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -253,9 +257,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         userAccount = AccountRepo.getInstance().getAccount();
         userAccountId = userAccount.getAccountId();
 
+        GlobalUtils.showLog(TAG, "account idd check: " + userAccountId);
+
         UiUtils.hideKeyboardForced(getActivity());
         initTextModifier();
         ivSend.setEnabled(false);
+
+
 
      /*   etMessage.setContentTypeface(getContentFace());
         etMessage.setHeadingTypeface(getContentFace());*/
@@ -323,9 +331,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         contributed = i.getBooleanExtra("contributed", false);
         subscribed = i.getBooleanExtra("subscribed", false);
 
-        Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
+        ticket = TicketRepo.getInstance().getTicketById(ticketId);
         setTicketInitialDetail(ticket);
         setChatVisibility(ticket);
+        setAttachmentVisibility(ticket);
+
+        GlobalUtils.showLog(TAG, "attachment display: " + ticket.getAttachmentList());
 
         if (ticketId != -1) {
             Hawk.put(Constants.CURRENT_SERVICE_ORDER_ID, ticketId);
@@ -345,7 +356,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             }
 
 //            setInitialTicketDetail(ticket);
-            setupAttachmentRecyclerView(rvAttachments);
             setUpConversationView();
 
             try {
@@ -367,6 +377,25 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
+    }
+
+    private void setAttachmentVisibility(Tickets tickets) {
+//        if (tickets.getAttachmentList().isEmpty()) {
+        //set attachment visibility
+        if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById())
+                || userAccount.getAccountId().equalsIgnoreCase(tickets
+                .getAssignedEmployee().getAccountId())
+                || userAccount.getAccountType().equalsIgnoreCase
+                (AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
+            rlAttachments.setVisibility(View.VISIBLE);
+            rvAttachments.setVisibility(View.VISIBLE);
+        } else {
+            rlAttachments.setVisibility(View.GONE);
+            rvAttachments.setVisibility(View.GONE);
+        }
+//        } else {
+        setupAttachmentRecyclerView(rvAttachments);
+//        }
     }
 
     @Override
@@ -413,6 +442,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void initTextModifier() {
         etMessage.setTextSize(15);
         IARE_ToolItem bold = new ARE_ToolItem_Bold();
@@ -449,18 +479,26 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         llTextModifier.addToolbarItem(bold);
         llTextModifier.addToolbarItem(italic);
         llTextModifier.addToolbarItem(underline);
-       /* llTextModifier.addToolbarItem(strikeThrough);
-        llTextModifier.addToolbarItem(listNumber);
+        llTextModifier.addToolbarItem(strikeThrough);
+/*        llTextModifier.addToolbarItem(listNumber);
         llTextModifier.addToolbarItem(listBullet);*/
 
         etMessage.setToolbar(llTextModifier);
+        bold.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_bold_new));
+        bold.getStyle().getImageView().setPadding(25, 25, 25, 25);
+        italic.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_italic));
+        italic.getStyle().getImageView().setPadding(25, 25, 25, 25);
+        strikeThrough.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_crossthroug));
+        strikeThrough.getStyle().getImageView().setPadding(25, 25, 25, 25);
+        underline.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_underline));
+        underline.getStyle().getImageView().setPadding(25, 25, 25, 25);
 
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
         display.getRealSize(size);
         int width = size.x;
-        int unitWidth = width / 3;
+        int unitWidth = width / 4;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(unitWidth,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -761,7 +799,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     private void setStatusViews(Tickets tickets) {
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CLOSED.name())) {
-            llSearchContainer.setVisibility(View.GONE);
+//            llSearchContainer.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
             tvClosed.setVisibility(View.VISIBLE);
             tvClosed.setText("Closed");
@@ -771,7 +809,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
 
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_RESOLVED.name())) {
-            llSearchContainer.setVisibility(View.GONE);
+//            llSearchContainer.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
             tvClosed.setText("Resolved");
             tvClosed.setVisibility(View.VISIBLE);
@@ -796,9 +834,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         setChatVisibility(tickets);
 
+        boolean isCustomer = tickets.getCustomer().getCustomerId().equalsIgnoreCase(userAccountId);
         //enable chat if user is contributor or assigned
         if (userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())
-                || contributed) {
+                || contributed || isCustomer) {
             llSearchContainer.setVisibility(View.VISIBLE);
             view.setVisibility(View.VISIBLE);
         } else {
@@ -1213,15 +1252,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getNext(), ticketId, false);
+            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), ticketId, false);
         });
 
-
-        adapter.setOnBackClickListener(prevQuestionKey -> {
-            GlobalUtils.showLog(TAG, "on back clicked");
-            presenter.getSuggestions(prevQuestionKey, ticketId, true);
-        });
-
+        adapter.setOnBackClickListener((prevQuestionKey, prevId) ->
+                presenter.getSuggestions(prevId, prevQuestionKey, ticketId, true));
     }
 
     @Override
@@ -1279,7 +1314,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onUploadImageAttachmentSuccess(String url, String title) {
-
         Attachment attachment = new Attachment();
         attachment.setId(UUID.randomUUID().toString().replace("-", ""));
         attachment.setType(1);
@@ -1288,16 +1322,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         attachment.setUpdatedAt(System.currentTimeMillis());
         attachment.setUrl(url);
 
-        if (attachmentList.size() == 1) {
-            attachmentList.add(attachment);
-            Collections.reverse(attachmentList);
-        } else {
-            Collections.reverse(attachmentList);
-            attachmentList.add(attachment);
-            Collections.reverse(attachmentList);
-        }
-
-        attachmentAdapter.setData(attachmentList);
+        presenter.addAttachment(ticketId, attachment);
     }
 
     @Override
@@ -1325,6 +1350,47 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
 
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void addAttachmentSuccess(Attachment attachment) {
+        if (attachmentList.size() == 1) {
+            attachmentList.add(attachment);
+            Collections.reverse(attachmentList);
+        } else {
+            Collections.reverse(attachmentList);
+            attachmentList.add(attachment);
+            Collections.reverse(attachmentList);
+        }
+
+        attachmentAdapter.setData(attachmentList);
+//        TicketRepo.getInstance().addAttachments(ticketId, attachmentList);
+    }
+
+    @Override
+    public void addAttachmentFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), Constants.SERVER_ERROR);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showToast(getActivity(), msg);
+    }
+
+    @Override
+    public void removeAttachmentSuccess(Attachment attachment) {
+        attachmentList.remove(attachment);
+        attachmentAdapter.setData(attachmentList);
+    }
+
+    @Override
+    public void removeAttachmentFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), Constants.SERVER_ERROR);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+        UiUtils.showToast(getActivity(), msg);
     }
 
     @Override
@@ -1373,7 +1439,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             Uri fileUri = data.getData();
             ContentResolver cr = getActivity().getContentResolver();
             String mime = cr.getType(fileUri);
-            Toast.makeText(getContext(), mime, Toast.LENGTH_SHORT).show();
 
 //            File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
             String fileName = "filename";
@@ -1935,12 +2000,21 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     private void setupAttachmentRecyclerView(RecyclerView rvAttachments) {
-        attachmentList = new ArrayList<>();
-        Attachment addAttachment = new Attachment();
-        addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
-        addAttachment.setType(0);
+        if (ticket.getAttachmentList().isEmpty()) {
+            attachmentList = new RealmList<>();
+            Attachment addAttachment = new Attachment();
+            addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
+            addAttachment.setType(0);
 
-        attachmentList.add(addAttachment);
+            attachmentList.add(addAttachment);
+        } else {
+            attachmentList = ticket.getAttachmentList();
+
+            Attachment addAttachment = new Attachment();
+            addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
+            addAttachment.setType(0);
+            attachmentList.add(addAttachment);
+        }
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(new GridLayoutManager());
         rvAttachments.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -1949,6 +2023,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         rvAttachments.setAdapter(attachmentAdapter);
 
         attachmentAdapter.setOnAddAttachmentClickListener(this::accessExternalStoragePermissions);
+        attachmentAdapter.setOnAttachmentRemoveListener(attachment -> presenter.removeAttachment(ticketId, attachment));
     }
 
     public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {
