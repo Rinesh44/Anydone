@@ -15,7 +15,7 @@ public final class TicketParserHousekeepingRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class TicketParserHousekeepingRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    String getStringValue();
+    java.lang.String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class TicketParserHousekeepingRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    String getStringValues(int index);
+    java.lang.String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -137,11 +137,11 @@ public final class TicketParserHousekeepingRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -155,7 +155,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -183,11 +183,11 @@ public final class TicketParserHousekeepingRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private String stringValue_;
+    private java.lang.String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public String getStringValue() {
+    public java.lang.String getStringValue() {
       return stringValue_;
     }
     /**
@@ -201,7 +201,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -245,7 +245,7 @@ public final class TicketParserHousekeepingRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public String getStringValues(int index) {
+    public java.lang.String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -266,7 +266,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -277,7 +277,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -288,7 +288,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -713,7 +713,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 13;</code>
      */
     private void addAllTicketCreateRules(
-        Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
       ensureTicketCreateRulesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, ticketCreateRules_);
@@ -834,60 +834,60 @@ public final class TicketParserHousekeepingRpcProto {
       return size;
     }
 
-    public static TicketParserHousekeepingBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserHousekeepingBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserHousekeepingBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserHousekeepingBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TicketParserHousekeepingBaseRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserHousekeepingBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -898,7 +898,7 @@ public final class TicketParserHousekeepingRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TicketParserHousekeepingBaseRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -907,9 +907,9 @@ public final class TicketParserHousekeepingRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TicketParserHousekeepingBaseRequest, Builder> implements
+          com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.TicketParserHousekeepingBaseRequest)
-        TicketParserHousekeepingBaseRequestOrBuilder {
+        com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -919,7 +919,7 @@ public final class TicketParserHousekeepingRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -933,7 +933,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -959,7 +959,7 @@ public final class TicketParserHousekeepingRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public String getStringValue() {
+      public java.lang.String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -973,7 +973,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1013,7 +1013,7 @@ public final class TicketParserHousekeepingRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public String getStringValues(int index) {
+      public java.lang.String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1027,7 +1027,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1036,7 +1036,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1045,7 +1045,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1415,7 +1415,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 13;</code>
        */
       public Builder addAllTicketCreateRules(
-          Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
         copyOnWrite();
         instance.addAllTicketCreateRules(values);
         return this;
@@ -1440,11 +1440,11 @@ public final class TicketParserHousekeepingRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketParserHousekeepingBaseRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TicketParserHousekeepingBaseRequest();
+          return new com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1459,7 +1459,7 @@ public final class TicketParserHousekeepingRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TicketParserHousekeepingBaseRequest other = (TicketParserHousekeepingBaseRequest) arg1;
+          com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest other = (com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1478,7 +1478,7 @@ public final class TicketParserHousekeepingRpcProto {
           ticketTrainRequest_ = visitor.visitMessage(ticketTrainRequest_, other.ticketTrainRequest_);
           ticketSettings_ = visitor.visitMessage(ticketSettings_, other.ticketSettings_);
           ticketCreateRules_= visitor.visitList(ticketCreateRules_, other.ticketCreateRules_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1620,7 +1620,7 @@ public final class TicketParserHousekeepingRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TicketParserHousekeepingBaseRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1634,13 +1634,13 @@ public final class TicketParserHousekeepingRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.TicketParserHousekeepingBaseRequest)
-    private static final TicketParserHousekeepingBaseRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketParserHousekeepingBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TicketParserHousekeepingBaseRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1663,7 +1663,7 @@ public final class TicketParserHousekeepingRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1753,11 +1753,11 @@ public final class TicketParserHousekeepingRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -1771,7 +1771,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2065,7 +2065,7 @@ public final class TicketParserHousekeepingRpcProto {
      * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 8;</code>
      */
     private void addAllTicketCreateRules(
-        Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
       ensureTicketCreateRulesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, ticketCreateRules_);
@@ -2146,60 +2146,60 @@ public final class TicketParserHousekeepingRpcProto {
       return size;
     }
 
-    public static TicketParserHousekeepingBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserHousekeepingBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static TicketParserHousekeepingBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserHousekeepingBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static TicketParserHousekeepingBaseResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static TicketParserHousekeepingBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static TicketParserHousekeepingBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2210,7 +2210,7 @@ public final class TicketParserHousekeepingRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TicketParserHousekeepingBaseResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2219,9 +2219,9 @@ public final class TicketParserHousekeepingRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          TicketParserHousekeepingBaseResponse, Builder> implements
+          com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.TicketParserHousekeepingBaseResponse)
-        TicketParserHousekeepingBaseResponseOrBuilder {
+        com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2254,7 +2254,7 @@ public final class TicketParserHousekeepingRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2268,7 +2268,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -2516,7 +2516,7 @@ public final class TicketParserHousekeepingRpcProto {
        * <code>repeated .treeleaf.anydone.entities.TicketCreateRule ticketCreateRules = 8;</code>
        */
       public Builder addAllTicketCreateRules(
-          Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketParserHousekeepingProto.TicketCreateRule> values) {
         copyOnWrite();
         instance.addAllTicketCreateRules(values);
         return this;
@@ -2541,11 +2541,11 @@ public final class TicketParserHousekeepingRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketParserHousekeepingBaseResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new TicketParserHousekeepingBaseResponse();
+          return new com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2559,7 +2559,7 @@ public final class TicketParserHousekeepingRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          TicketParserHousekeepingBaseResponse other = (TicketParserHousekeepingBaseResponse) arg1;
+          com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse other = (com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -2570,7 +2570,7 @@ public final class TicketParserHousekeepingRpcProto {
           debug_ = visitor.visitMessage(debug_, other.debug_);
           ticketSettings_ = visitor.visitMessage(ticketSettings_, other.ticketSettings_);
           ticketCreateRules_= visitor.visitList(ticketCreateRules_, other.ticketCreateRules_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2667,7 +2667,7 @@ public final class TicketParserHousekeepingRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (TicketParserHousekeepingBaseResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2681,13 +2681,13 @@ public final class TicketParserHousekeepingRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.TicketParserHousekeepingBaseResponse)
-    private static final TicketParserHousekeepingBaseResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new TicketParserHousekeepingBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static TicketParserHousekeepingBaseResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.TicketParserHousekeepingRpcProto.TicketParserHousekeepingBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

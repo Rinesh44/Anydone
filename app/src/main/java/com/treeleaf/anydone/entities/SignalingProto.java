@@ -18579,6 +18579,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getImageIdBytes();
+
+    /**
+     * <code>optional string drawSessionId = 12;</code>
+     */
+    java.lang.String getDrawSessionId();
+    /**
+     * <code>optional string drawSessionId = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getDrawSessionIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawTouchMove}
@@ -18594,6 +18604,7 @@ public final class SignalingProto {
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       imageId_ = "";
+      drawSessionId_ = "";
     }
     private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
@@ -18985,6 +18996,52 @@ public final class SignalingProto {
       imageId_ = value.toStringUtf8();
     }
 
+    public static final int DRAWSESSIONID_FIELD_NUMBER = 12;
+    private java.lang.String drawSessionId_;
+    /**
+     * <code>optional string drawSessionId = 12;</code>
+     */
+    public java.lang.String getDrawSessionId() {
+      return drawSessionId_;
+    }
+    /**
+     * <code>optional string drawSessionId = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDrawSessionIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(drawSessionId_);
+    }
+    /**
+     * <code>optional string drawSessionId = 12;</code>
+     */
+    private void setDrawSessionId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      drawSessionId_ = value;
+    }
+    /**
+     * <code>optional string drawSessionId = 12;</code>
+     */
+    private void clearDrawSessionId() {
+      
+      drawSessionId_ = getDefaultInstance().getDrawSessionId();
+    }
+    /**
+     * <code>optional string drawSessionId = 12;</code>
+     */
+    private void setDrawSessionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      drawSessionId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0F) {
@@ -19013,6 +19070,9 @@ public final class SignalingProto {
       }
       if (!imageId_.isEmpty()) {
         output.writeString(11, getImageId());
+      }
+      if (!drawSessionId_.isEmpty()) {
+        output.writeString(12, getDrawSessionId());
       }
     }
 
@@ -19061,6 +19121,10 @@ public final class SignalingProto {
       if (!imageId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(11, getImageId());
+      }
+      if (!drawSessionId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getDrawSessionId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19494,6 +19558,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string drawSessionId = 12;</code>
+       */
+      public java.lang.String getDrawSessionId() {
+        return instance.getDrawSessionId();
+      }
+      /**
+       * <code>optional string drawSessionId = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDrawSessionIdBytes() {
+        return instance.getDrawSessionIdBytes();
+      }
+      /**
+       * <code>optional string drawSessionId = 12;</code>
+       */
+      public Builder setDrawSessionId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setDrawSessionId(value);
+        return this;
+      }
+      /**
+       * <code>optional string drawSessionId = 12;</code>
+       */
+      public Builder clearDrawSessionId() {
+        copyOnWrite();
+        instance.clearDrawSessionId();
+        return this;
+      }
+      /**
+       * <code>optional string drawSessionId = 12;</code>
+       */
+      public Builder setDrawSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDrawSessionIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawTouchMove)
     }
     protected final Object dynamicMethod(
@@ -19532,6 +19636,8 @@ public final class SignalingProto {
           recipients_= visitor.visitList(recipients_, other.recipients_);
           imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
               !other.imageId_.isEmpty(), other.imageId_);
+          drawSessionId_ = visitor.visitString(!drawSessionId_.isEmpty(), drawSessionId_,
+              !other.drawSessionId_.isEmpty(), other.drawSessionId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -19616,6 +19722,12 @@ public final class SignalingProto {
                   String s = input.readStringRequireUtf8();
 
                   imageId_ = s;
+                  break;
+                }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  drawSessionId_ = s;
                   break;
                 }
               }
@@ -29767,6 +29879,16 @@ public final class SignalingProto {
      * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 10;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.DrawMetaData getDrawMetaData();
+
+    /**
+     * <code>optional string drawSessionId = 11;</code>
+     */
+    java.lang.String getDrawSessionId();
+    /**
+     * <code>optional string drawSessionId = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getDrawSessionIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawStart}
@@ -29782,6 +29904,7 @@ public final class SignalingProto {
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       imageId_ = "";
+      drawSessionId_ = "";
     }
     private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
@@ -30225,6 +30348,52 @@ public final class SignalingProto {
       
     }
 
+    public static final int DRAWSESSIONID_FIELD_NUMBER = 11;
+    private java.lang.String drawSessionId_;
+    /**
+     * <code>optional string drawSessionId = 11;</code>
+     */
+    public java.lang.String getDrawSessionId() {
+      return drawSessionId_;
+    }
+    /**
+     * <code>optional string drawSessionId = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDrawSessionIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(drawSessionId_);
+    }
+    /**
+     * <code>optional string drawSessionId = 11;</code>
+     */
+    private void setDrawSessionId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      drawSessionId_ = value;
+    }
+    /**
+     * <code>optional string drawSessionId = 11;</code>
+     */
+    private void clearDrawSessionId() {
+      
+      drawSessionId_ = getDefaultInstance().getDrawSessionId();
+    }
+    /**
+     * <code>optional string drawSessionId = 11;</code>
+     */
+    private void setDrawSessionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      drawSessionId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0F) {
@@ -30256,6 +30425,9 @@ public final class SignalingProto {
       }
       if (drawMetaData_ != null) {
         output.writeMessage(10, getDrawMetaData());
+      }
+      if (!drawSessionId_.isEmpty()) {
+        output.writeString(11, getDrawSessionId());
       }
     }
 
@@ -30308,6 +30480,10 @@ public final class SignalingProto {
       if (drawMetaData_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getDrawMetaData());
+      }
+      if (!drawSessionId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getDrawSessionId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -30786,6 +30962,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string drawSessionId = 11;</code>
+       */
+      public java.lang.String getDrawSessionId() {
+        return instance.getDrawSessionId();
+      }
+      /**
+       * <code>optional string drawSessionId = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDrawSessionIdBytes() {
+        return instance.getDrawSessionIdBytes();
+      }
+      /**
+       * <code>optional string drawSessionId = 11;</code>
+       */
+      public Builder setDrawSessionId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setDrawSessionId(value);
+        return this;
+      }
+      /**
+       * <code>optional string drawSessionId = 11;</code>
+       */
+      public Builder clearDrawSessionId() {
+        copyOnWrite();
+        instance.clearDrawSessionId();
+        return this;
+      }
+      /**
+       * <code>optional string drawSessionId = 11;</code>
+       */
+      public Builder setDrawSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDrawSessionIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawStart)
     }
     protected final Object dynamicMethod(
@@ -30825,6 +31041,8 @@ public final class SignalingProto {
           imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
               !other.imageId_.isEmpty(), other.imageId_);
           drawMetaData_ = visitor.visitMessage(drawMetaData_, other.drawMetaData_);
+          drawSessionId_ = visitor.visitString(!drawSessionId_.isEmpty(), drawSessionId_,
+              !other.drawSessionId_.isEmpty(), other.drawSessionId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -30922,6 +31140,12 @@ public final class SignalingProto {
                     drawMetaData_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+
+                  drawSessionId_ = s;
                   break;
                 }
               }
@@ -31046,6 +31270,16 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getImageIdBytes();
+
+    /**
+     * <code>optional string drawSessionId = 8;</code>
+     */
+    java.lang.String getDrawSessionId();
+    /**
+     * <code>optional string drawSessionId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getDrawSessionIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawEnd}
@@ -31061,6 +31295,7 @@ public final class SignalingProto {
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       imageId_ = "";
+      drawSessionId_ = "";
     }
     private int bitField0_;
     public static final int EVENTTIME_FIELD_NUMBER = 1;
@@ -31406,6 +31641,52 @@ public final class SignalingProto {
       imageId_ = value.toStringUtf8();
     }
 
+    public static final int DRAWSESSIONID_FIELD_NUMBER = 8;
+    private java.lang.String drawSessionId_;
+    /**
+     * <code>optional string drawSessionId = 8;</code>
+     */
+    public java.lang.String getDrawSessionId() {
+      return drawSessionId_;
+    }
+    /**
+     * <code>optional string drawSessionId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDrawSessionIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(drawSessionId_);
+    }
+    /**
+     * <code>optional string drawSessionId = 8;</code>
+     */
+    private void setDrawSessionId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      drawSessionId_ = value;
+    }
+    /**
+     * <code>optional string drawSessionId = 8;</code>
+     */
+    private void clearDrawSessionId() {
+      
+      drawSessionId_ = getDefaultInstance().getDrawSessionId();
+    }
+    /**
+     * <code>optional string drawSessionId = 8;</code>
+     */
+    private void setDrawSessionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      drawSessionId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eventTime_ != 0L) {
@@ -31428,6 +31709,9 @@ public final class SignalingProto {
       }
       if (!imageId_.isEmpty()) {
         output.writeString(7, getImageId());
+      }
+      if (!drawSessionId_.isEmpty()) {
+        output.writeString(8, getDrawSessionId());
       }
     }
 
@@ -31468,6 +31752,10 @@ public final class SignalingProto {
       if (!imageId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(7, getImageId());
+      }
+      if (!drawSessionId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getDrawSessionId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -31855,6 +32143,46 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional string drawSessionId = 8;</code>
+       */
+      public java.lang.String getDrawSessionId() {
+        return instance.getDrawSessionId();
+      }
+      /**
+       * <code>optional string drawSessionId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDrawSessionIdBytes() {
+        return instance.getDrawSessionIdBytes();
+      }
+      /**
+       * <code>optional string drawSessionId = 8;</code>
+       */
+      public Builder setDrawSessionId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setDrawSessionId(value);
+        return this;
+      }
+      /**
+       * <code>optional string drawSessionId = 8;</code>
+       */
+      public Builder clearDrawSessionId() {
+        copyOnWrite();
+        instance.clearDrawSessionId();
+        return this;
+      }
+      /**
+       * <code>optional string drawSessionId = 8;</code>
+       */
+      public Builder setDrawSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDrawSessionIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawEnd)
     }
     protected final Object dynamicMethod(
@@ -31889,6 +32217,8 @@ public final class SignalingProto {
           recipients_= visitor.visitList(recipients_, other.recipients_);
           imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
               !other.imageId_.isEmpty(), other.imageId_);
+          drawSessionId_ = visitor.visitString(!drawSessionId_.isEmpty(), drawSessionId_,
+              !other.drawSessionId_.isEmpty(), other.drawSessionId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -31963,6 +32293,12 @@ public final class SignalingProto {
                   String s = input.readStringRequireUtf8();
 
                   imageId_ = s;
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  drawSessionId_ = s;
                   break;
                 }
               }

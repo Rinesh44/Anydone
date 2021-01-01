@@ -32,14 +32,9 @@ public final class ParaphraseProto {
         getTextsBytes(int index);
 
     /**
-     * <code>optional string thresholdNumber = 2;</code>
+     * <code>optional int64 thresholdNumber = 2;</code>
      */
-    java.lang.String getThresholdNumber();
-    /**
-     * <code>optional string thresholdNumber = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getThresholdNumberBytes();
+    long getThresholdNumber();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ParaphraseGenerateRequest}
@@ -51,7 +46,6 @@ public final class ParaphraseProto {
       ParaphraseGenerateRequestOrBuilder {
     private ParaphraseGenerateRequest() {
       texts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-      thresholdNumber_ = "";
     }
     private int bitField0_;
     public static final int TEXTS_FIELD_NUMBER = 1;
@@ -139,49 +133,26 @@ public final class ParaphraseProto {
     }
 
     public static final int THRESHOLDNUMBER_FIELD_NUMBER = 2;
-    private java.lang.String thresholdNumber_;
+    private long thresholdNumber_;
     /**
-     * <code>optional string thresholdNumber = 2;</code>
+     * <code>optional int64 thresholdNumber = 2;</code>
      */
-    public java.lang.String getThresholdNumber() {
+    public long getThresholdNumber() {
       return thresholdNumber_;
     }
     /**
-     * <code>optional string thresholdNumber = 2;</code>
+     * <code>optional int64 thresholdNumber = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getThresholdNumberBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(thresholdNumber_);
-    }
-    /**
-     * <code>optional string thresholdNumber = 2;</code>
-     */
-    private void setThresholdNumber(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    private void setThresholdNumber(long value) {
+      
       thresholdNumber_ = value;
     }
     /**
-     * <code>optional string thresholdNumber = 2;</code>
+     * <code>optional int64 thresholdNumber = 2;</code>
      */
     private void clearThresholdNumber() {
       
-      thresholdNumber_ = getDefaultInstance().getThresholdNumber();
-    }
-    /**
-     * <code>optional string thresholdNumber = 2;</code>
-     */
-    private void setThresholdNumberBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      thresholdNumber_ = value.toStringUtf8();
+      thresholdNumber_ = 0L;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -189,8 +160,8 @@ public final class ParaphraseProto {
       for (int i = 0; i < texts_.size(); i++) {
         output.writeString(1, texts_.get(i));
       }
-      if (!thresholdNumber_.isEmpty()) {
-        output.writeString(2, getThresholdNumber());
+      if (thresholdNumber_ != 0L) {
+        output.writeInt64(2, thresholdNumber_);
       }
     }
 
@@ -208,9 +179,9 @@ public final class ParaphraseProto {
         size += dataSize;
         size += 1 * getTextsList().size();
       }
-      if (!thresholdNumber_.isEmpty()) {
+      if (thresholdNumber_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getThresholdNumber());
+          .computeInt64Size(2, thresholdNumber_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -371,42 +342,25 @@ public final class ParaphraseProto {
       }
 
       /**
-       * <code>optional string thresholdNumber = 2;</code>
+       * <code>optional int64 thresholdNumber = 2;</code>
        */
-      public java.lang.String getThresholdNumber() {
+      public long getThresholdNumber() {
         return instance.getThresholdNumber();
       }
       /**
-       * <code>optional string thresholdNumber = 2;</code>
+       * <code>optional int64 thresholdNumber = 2;</code>
        */
-      public com.google.protobuf.ByteString
-          getThresholdNumberBytes() {
-        return instance.getThresholdNumberBytes();
-      }
-      /**
-       * <code>optional string thresholdNumber = 2;</code>
-       */
-      public Builder setThresholdNumber(
-          java.lang.String value) {
+      public Builder setThresholdNumber(long value) {
         copyOnWrite();
         instance.setThresholdNumber(value);
         return this;
       }
       /**
-       * <code>optional string thresholdNumber = 2;</code>
+       * <code>optional int64 thresholdNumber = 2;</code>
        */
       public Builder clearThresholdNumber() {
         copyOnWrite();
         instance.clearThresholdNumber();
-        return this;
-      }
-      /**
-       * <code>optional string thresholdNumber = 2;</code>
-       */
-      public Builder setThresholdNumberBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setThresholdNumberBytes(value);
         return this;
       }
 
@@ -433,8 +387,8 @@ public final class ParaphraseProto {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest other = (com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest) arg1;
           texts_= visitor.visitList(texts_, other.texts_);
-          thresholdNumber_ = visitor.visitString(!thresholdNumber_.isEmpty(), thresholdNumber_,
-              !other.thresholdNumber_.isEmpty(), other.thresholdNumber_);
+          thresholdNumber_ = visitor.visitLong(thresholdNumber_ != 0L, thresholdNumber_,
+              other.thresholdNumber_ != 0L, other.thresholdNumber_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -469,10 +423,9 @@ public final class ParaphraseProto {
                   texts_.add(s);
                   break;
                 }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
+                case 16: {
 
-                  thresholdNumber_ = s;
+                  thresholdNumber_ = input.readInt64();
                   break;
                 }
               }

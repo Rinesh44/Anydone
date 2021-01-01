@@ -15,7 +15,7 @@ public final class ParaphraseRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class ParaphraseRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    String getStringValue();
+    java.lang.String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class ParaphraseRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    String getStringValues(int index);
+    java.lang.String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -128,11 +128,11 @@ public final class ParaphraseRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -146,7 +146,7 @@ public final class ParaphraseRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -174,11 +174,11 @@ public final class ParaphraseRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private String stringValue_;
+    private java.lang.String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public String getStringValue() {
+    public java.lang.String getStringValue() {
       return stringValue_;
     }
     /**
@@ -192,7 +192,7 @@ public final class ParaphraseRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -236,7 +236,7 @@ public final class ParaphraseRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public String getStringValues(int index) {
+    public java.lang.String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -257,7 +257,7 @@ public final class ParaphraseRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -268,7 +268,7 @@ public final class ParaphraseRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -279,7 +279,7 @@ public final class ParaphraseRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -652,7 +652,7 @@ public final class ParaphraseRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseRequests = 11;</code>
      */
     private void addAllParaphraseRequests(
-        Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest> values) {
       ensureParaphraseRequestsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, paraphraseRequests_);
@@ -766,60 +766,60 @@ public final class ParaphraseRpcProto {
       return size;
     }
 
-    public static ParaphraseBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ParaphraseBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ParaphraseBaseRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ParaphraseBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ParaphraseBaseRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ParaphraseBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ParaphraseBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ParaphraseBaseRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ParaphraseBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ParaphraseBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -830,7 +830,7 @@ public final class ParaphraseRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ParaphraseBaseRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -839,9 +839,9 @@ public final class ParaphraseRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ParaphraseBaseRequest, Builder> implements
+          com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.ParaphraseBaseRequest)
-        ParaphraseBaseRequestOrBuilder {
+        com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -851,7 +851,7 @@ public final class ParaphraseRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -865,7 +865,7 @@ public final class ParaphraseRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -891,7 +891,7 @@ public final class ParaphraseRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public String getStringValue() {
+      public java.lang.String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -905,7 +905,7 @@ public final class ParaphraseRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -945,7 +945,7 @@ public final class ParaphraseRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public String getStringValues(int index) {
+      public java.lang.String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -959,7 +959,7 @@ public final class ParaphraseRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -968,7 +968,7 @@ public final class ParaphraseRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -977,7 +977,7 @@ public final class ParaphraseRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -1302,7 +1302,7 @@ public final class ParaphraseRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateRequest paraphraseRequests = 11;</code>
        */
       public Builder addAllParaphraseRequests(
-          Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest> values) {
         copyOnWrite();
         instance.addAllParaphraseRequests(values);
         return this;
@@ -1327,11 +1327,11 @@ public final class ParaphraseRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ParaphraseBaseRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ParaphraseBaseRequest();
+          return new com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1346,7 +1346,7 @@ public final class ParaphraseRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ParaphraseBaseRequest other = (ParaphraseBaseRequest) arg1;
+          com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest other = (com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -1364,7 +1364,7 @@ public final class ParaphraseRpcProto {
           debug_ = visitor.visitMessage(debug_, other.debug_);
           paraphraseRequest_ = visitor.visitMessage(paraphraseRequest_, other.paraphraseRequest_);
           paraphraseRequests_= visitor.visitList(paraphraseRequests_, other.paraphraseRequests_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1493,7 +1493,7 @@ public final class ParaphraseRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ParaphraseBaseRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1507,13 +1507,13 @@ public final class ParaphraseRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.ParaphraseBaseRequest)
-    private static final ParaphraseBaseRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ParaphraseBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ParaphraseBaseRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1536,7 +1536,7 @@ public final class ParaphraseRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -1631,11 +1631,11 @@ public final class ParaphraseRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -1649,7 +1649,7 @@ public final class ParaphraseRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1966,7 +1966,7 @@ public final class ParaphraseRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 8;</code>
      */
     private void addAllParaphraseResponses(
-        Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> values) {
       ensureParaphraseResponsesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, paraphraseResponses_);
@@ -2054,60 +2054,60 @@ public final class ParaphraseRpcProto {
       return size;
     }
 
-    public static ParaphraseBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ParaphraseBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ParaphraseBaseResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ParaphraseBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ParaphraseBaseResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ParaphraseBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ParaphraseBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ParaphraseBaseResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ParaphraseBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ParaphraseBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2118,7 +2118,7 @@ public final class ParaphraseRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ParaphraseBaseResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2127,9 +2127,9 @@ public final class ParaphraseRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ParaphraseBaseResponse, Builder> implements
+          com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.ParaphraseBaseResponse)
-        ParaphraseBaseResponseOrBuilder {
+        com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2162,7 +2162,7 @@ public final class ParaphraseRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -2176,7 +2176,7 @@ public final class ParaphraseRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -2447,7 +2447,7 @@ public final class ParaphraseRpcProto {
        * <code>repeated .treeleaf.anydone.entities.ParaphraseGenerateResponse paraphraseResponses = 8;</code>
        */
       public Builder addAllParaphraseResponses(
-          Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse> values) {
         copyOnWrite();
         instance.addAllParaphraseResponses(values);
         return this;
@@ -2472,11 +2472,11 @@ public final class ParaphraseRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ParaphraseBaseResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ParaphraseBaseResponse();
+          return new com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2490,7 +2490,7 @@ public final class ParaphraseRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ParaphraseBaseResponse other = (ParaphraseBaseResponse) arg1;
+          com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse other = (com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -2503,7 +2503,7 @@ public final class ParaphraseRpcProto {
           debug_ = visitor.visitMessage(debug_, other.debug_);
           paraphraseResponse_ = visitor.visitMessage(paraphraseResponse_, other.paraphraseResponse_);
           paraphraseResponses_= visitor.visitList(paraphraseResponses_, other.paraphraseResponses_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2605,7 +2605,7 @@ public final class ParaphraseRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ParaphraseBaseResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2619,13 +2619,13 @@ public final class ParaphraseRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.ParaphraseBaseResponse)
-    private static final ParaphraseBaseResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ParaphraseBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ParaphraseBaseResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.ParaphraseRpcProto.ParaphraseBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

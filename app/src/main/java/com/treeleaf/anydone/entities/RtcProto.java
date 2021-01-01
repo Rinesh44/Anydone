@@ -3872,6 +3872,15 @@ public final class RtcProto {
      */
     com.google.protobuf.ByteString
         getMessageBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+     */
+    int getTextMessageTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType getTextMessageType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TextMessage}
@@ -3884,6 +3893,73 @@ public final class RtcProto {
     private TextMessage() {
       message_ = "";
     }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.TextMessage.TextMessageType}
+     */
+    public enum TextMessageType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>TEXT_TYPE = 0;</code>
+       */
+      TEXT_TYPE(0),
+      /**
+       * <code>JSON_TYPE = 1;</code>
+       */
+      JSON_TYPE(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>TEXT_TYPE = 0;</code>
+       */
+      public static final int TEXT_TYPE_VALUE = 0;
+      /**
+       * <code>JSON_TYPE = 1;</code>
+       */
+      public static final int JSON_TYPE_VALUE = 1;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static TextMessageType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static TextMessageType forNumber(int value) {
+        switch (value) {
+          case 0: return TEXT_TYPE;
+          case 1: return JSON_TYPE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<TextMessageType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          TextMessageType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<TextMessageType>() {
+              public TextMessageType findValueByNumber(int number) {
+                return TextMessageType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private TextMessageType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.TextMessage.TextMessageType)
+    }
+
     public static final int MESSAGE_FIELD_NUMBER = 1;
     private java.lang.String message_;
     /**
@@ -3930,10 +4006,52 @@ public final class RtcProto {
       message_ = value.toStringUtf8();
     }
 
+    public static final int TEXTMESSAGETYPE_FIELD_NUMBER = 2;
+    private int textMessageType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+     */
+    public int getTextMessageTypeValue() {
+      return textMessageType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType getTextMessageType() {
+      com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType result = com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType.forNumber(textMessageType_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+     */
+    private void setTextMessageTypeValue(int value) {
+        textMessageType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+     */
+    private void setTextMessageType(com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      textMessageType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+     */
+    private void clearTextMessageType() {
+      
+      textMessageType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!message_.isEmpty()) {
         output.writeString(1, getMessage());
+      }
+      if (textMessageType_ != com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType.TEXT_TYPE.getNumber()) {
+        output.writeEnum(2, textMessageType_);
       }
     }
 
@@ -3945,6 +4063,10 @@ public final class RtcProto {
       if (!message_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getMessage());
+      }
+      if (textMessageType_ != com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType.TEXT_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, textMessageType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -4072,6 +4194,43 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+       */
+      public int getTextMessageTypeValue() {
+        return instance.getTextMessageTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+       */
+      public Builder setTextMessageTypeValue(int value) {
+        copyOnWrite();
+        instance.setTextMessageTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType getTextMessageType() {
+        return instance.getTextMessageType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+       */
+      public Builder setTextMessageType(com.treeleaf.anydone.entities.RtcProto.TextMessage.TextMessageType value) {
+        copyOnWrite();
+        instance.setTextMessageType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TextMessage.TextMessageType textMessageType = 2;</code>
+       */
+      public Builder clearTextMessageType() {
+        copyOnWrite();
+        instance.clearTextMessageType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TextMessage)
     }
     protected final Object dynamicMethod(
@@ -4095,6 +4254,7 @@ public final class RtcProto {
           com.treeleaf.anydone.entities.RtcProto.TextMessage other = (com.treeleaf.anydone.entities.RtcProto.TextMessage) arg1;
           message_ = visitor.visitString(!message_.isEmpty(), message_,
               !other.message_.isEmpty(), other.message_);
+          textMessageType_ = visitor.visitInt(textMessageType_ != 0, textMessageType_,    other.textMessageType_ != 0, other.textMessageType_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -4123,6 +4283,12 @@ public final class RtcProto {
                   String s = input.readStringRequireUtf8();
 
                   message_ = s;
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  textMessageType_ = rawValue;
                   break;
                 }
               }
