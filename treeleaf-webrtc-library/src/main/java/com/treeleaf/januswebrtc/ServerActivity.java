@@ -59,6 +59,7 @@ import org.webrtc.VideoRenderer;
 import java.math.BigInteger;
 import java.util.LinkedHashMap;
 
+import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.TRUE;
@@ -68,15 +69,18 @@ import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.
 import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.SHOW_THIS_VIEW;
 import static com.treeleaf.januswebrtc.Const.CALLEE_NAME;
 import static com.treeleaf.januswebrtc.Const.CALLEE_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
 import static com.treeleaf.januswebrtc.Const.JANUS_API_KEY;
 import static com.treeleaf.januswebrtc.Const.JANUS_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.JANUS_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.JANUS_ROOM_NUMBER;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
+import static com.treeleaf.januswebrtc.Const.KEY_RUNNING_ON;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 import static com.treeleaf.januswebrtc.Const.PICTURE_EXCEED_MSG;
 import static com.treeleaf.januswebrtc.Const.SERVER;
+import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class ServerActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback,
         PeerConnectionEvents, Callback.ConnectionEvents {
@@ -98,12 +102,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private ImageView fabStartDraw;
     private ImageView fabDiscardDraw, fabMinimizeDraw;
     private ImageView imageViewCaptureImage;
-    private ImageView imageAudioToggle, imageScreenShot,
-            imageEndCall, imageAcceptCall, ivScreenShotImage,
-            ibToggleJoineeList, ivSignalStrength;
+    private ImageView imageAudioToggle, imageScreenShot, imageEndCall, imageAcceptCall, ivScreenShotImage,
+            ibToggleJoineeList, ivSignalStrength, imageVideoToggle, imageSwitchCamera;
     private TreeleafDrawPadView treeleafDrawPadView;
     private ForwardTouchesView forwardTouchesView;
-    private ConstraintLayout clCallSettings, clCallOtions, clCallAcceptOptions;
+    private ConstraintLayout clCallAcceptOptions;
+    private LinearLayout clCallSettings, clCallOtions;
     private RelativeLayout rlScreenShotImage;
     private RelativeLayout rlJoineeList, rlServerRoot;
     private View viewVideoCallStart;
@@ -111,6 +115,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private TextView tvCalleeName, tvConnecting, tvIsCalling, tvReconnecting;
     private EglRenderer.FrameListener frameListener;
 
+    private Boolean videoOff = false;
     private Boolean audioOff = false;
     private Boolean justScreenShot = false;
     private Boolean showFullList = false;
@@ -140,6 +145,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private Picture currentPicture;
     private Integer localPicturesCount = 0;
     private LinkedHashMap<String, Picture> mapPictures = new LinkedHashMap<>();
+    public String runningOn = CONSUMER_TYPE;
 
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
@@ -157,7 +163,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, Callback.HostActivityCallback hostActivityCallBack,
-                              Callback.DrawCallBack drawCallBack, String calleeName, String callProfileUrl) {
+                              Callback.DrawCallBack drawCallBack, String calleeName, String callProfileUrl, String runningOn) {
         mhostActivityCallback = hostActivityCallBack;
         mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ServerActivity.class);
@@ -168,6 +174,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         intent.putExtra(JANUS_PARTICIPANT_ID, participantId);
         intent.putExtra(CALLEE_NAME, calleeName);
         intent.putExtra(CALLEE_PROFILE_URL, callProfileUrl);
+        intent.putExtra(KEY_RUNNING_ON, runningOn);
         context.startActivity(intent);
     }
 
@@ -185,9 +192,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         remoteRender = findViewById(R.id.remote_video_view);
         clCallSettings = findViewById(R.id.cl_call_setting);
         clCallOtions = findViewById(R.id.cl_call_options);
+        imageVideoToggle = findViewById(R.id.image_video);
         clCallAcceptOptions = findViewById(R.id.cl_call_accept_options);
         imageAudioToggle = findViewById(R.id.image_mic);
         imageScreenShot = findViewById(R.id.image_screenshot);
+        imageSwitchCamera = findViewById(R.id.image_switch_camera);
         imageEndCall = findViewById(R.id.image_end_call);
         imageAcceptCall = findViewById(R.id.iv_accept_call);
         ivSignalStrength = findViewById(R.id.iv_signal_strength);
@@ -204,8 +213,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         ivCalleeProfile = findViewById(R.id.iv_callee_profile);
         ivTerminateCall = findViewById(R.id.iv_terminate_call);
 
+        imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
         imageScreenShot.setOnClickListener(screenShotClickListener);
+        imageSwitchCamera.setOnClickListener(switchCameraClickListener);
         imageEndCall.setOnClickListener(endCallClickListener);
         imageAcceptCall.setOnClickListener(acceptCallClickListener);
         ivTerminateCall.setOnClickListener(endCallClickListener);
@@ -312,7 +323,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onParticipantLeft() {
-
+                if (runningOn.equals(SERVICE_PROVIDER_TYPE)) {
+                    terminateBroadCast();
+                }
             }
         };
 
@@ -768,6 +781,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         calleeProfile = getIntent().getStringExtra(CALLEE_PROFILE_URL);
         roomNumber = getIntent().getStringExtra(JANUS_ROOM_NUMBER);
         participantId = getIntent().getStringExtra(JANUS_PARTICIPANT_ID);
+        runningOn = (getIntent().getStringExtra(KEY_RUNNING_ON) == null) ? runningOn : getIntent().getStringExtra(KEY_RUNNING_ON);
+
+        checkIfViewNeedstoHide(runningOn);
 
         mRestChannel = new RestChannel(this, baseUrl, apiKey, apiSecret);
         mRestChannel.setDelegate(this);
@@ -894,6 +910,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }, 40000);
     }
 
+    private void checkIfViewNeedstoHide(String runningOn) {
+        imageVideoToggle.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
+        imageSwitchCamera.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
+    }
+
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
         joineeListAdapter.highlightCurrentDrawer(accountId, true, drawColor);
         new Handler().postDelayed(new Runnable() {
@@ -965,6 +986,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         createRemoteRender();
         createLocalRender();
         remoteRender.init(rootEglBase.getEglBaseContext(), null);
+        if (runningOn.equals(CONSUMER_TYPE))
+            remoteRender.setEnableHardwareScaler(true);
         peerConnectionParameters = new PeerConnectionParameters(false, 360, 480, 20, "H264", true, 0, "opus", false, false, false, false, false);
         peerConnectionClient = PeerConnectionClient.getInstance();
         peerConnectionClient.createPeerConnectionFactory(this, peerConnectionParameters, this);
@@ -994,7 +1017,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         // First, try to find front facing camera
         Log.d(TAG, "Looking for front facing cameras.");
         for (String deviceName : deviceNames) {
-            if (enumerator.isFrontFacing(deviceName)) {
+            if (enumerator.isBackFacing(deviceName)) {
                 Log.d(TAG, "Creating front facing camera capturer.");
                 VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, null);
 
@@ -1039,8 +1062,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     private void offerPeerConnection(BigInteger handleId) {
         videoCapturer = createVideoCapturer();
-        peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), null, videoCapturer,
-                handleId, "client", false);
+        if (runningOn.equals(CONSUMER_TYPE)) {
+            peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), remoteRender, videoCapturer,
+                    handleId, "client", true);
+        } else {
+            peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), null, videoCapturer,
+                    handleId, "client", false);
+        }
         peerConnectionClient.createOffer(handleId);
     }
 
@@ -1076,9 +1104,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
          */
 
         videoCapturer = createVideoCapturer();
-        peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), remoteRender, videoCapturer,
-                handleId, "server", true);
-
+        if (runningOn.equals(CONSUMER_TYPE)) {
+            peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), null, videoCapturer,
+                    handleId, SERVER, false);
+        } else {
+            peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), remoteRender, videoCapturer,
+                    handleId, SERVER, true);
+        }
 
         SessionDescription.Type type = SessionDescription.Type.fromCanonicalForm(jsep.optString("type"));
         String sdp = jsep.optString("sdp");
@@ -1417,7 +1449,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 //                remoteRender.init(rootEglBase.getEglBaseContext(), null);
 //                LinearLayout.LayoutParams params  = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 //                rootView.addView(remoteRender, params);
-                connection.videoTrack.addRenderer(new VideoRenderer(remoteRender));
+                if (runningOn.equals(SERVICE_PROVIDER_TYPE))
+                    connection.videoTrack.addRenderer(new VideoRenderer(remoteRender));
             }
         });
     }
@@ -1466,7 +1499,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             joineeListAdapter.makeAllJoineesVisible();
             if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                 mDrawCallback.onDiscardDraw(currentPicture.getPictureId());//TODO: uncomment this later
-                mDrawCallback.onHoldDraw("Cancelling draw...");
             }
         }
     };
@@ -1538,6 +1570,18 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }
     }
 
+    View.OnClickListener videoToggleClickListener = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public void onClick(View v) {
+            videoOff = !videoOff;
+            Toast.makeText(ServerActivity.this, videoOff ? "Video turned off. " : "Video turned on.", Toast.LENGTH_SHORT).show();
+            peerConnectionClient.setVideoEnabled(videoOff);
+            imageVideoToggle.setImageDrawable(videoOff ? getResources().getDrawable(R.drawable.ic_close_video, getApplicationContext().getTheme()) :
+                    getResources().getDrawable(R.drawable.ic_open_video, getApplicationContext().getTheme()));
+        }
+    };
+
     View.OnClickListener audioToggleClickListener = new View.OnClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
@@ -1571,6 +1615,14 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             //update image icon of toggle
             showFullList = !showFullList;
             joineeListAdapter.toggleJoineeList(showFullList);
+        }
+    };
+
+    View.OnClickListener switchCameraClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (peerConnectionClient != null)
+                peerConnectionClient.switchCamera();
         }
     };
 

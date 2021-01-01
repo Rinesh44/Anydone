@@ -100,6 +100,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.OnVideoCallEventListener;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -233,6 +234,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             bulletsFlag = false, numberFlag = false;
     private boolean keyboardShown = false;
     private OnStatusChangeListener listener;
+    private OnVideoCallEventListener videoCallBackListener;
     private Account userAccount;
     List<Attachment> attachmentList;
     private AttachmentAdapter attachmentAdapter;
@@ -1096,23 +1098,18 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
-        ((TicketDetailsActivity) getActivity()).onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+        videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall);
     }
 
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
-        ((TicketDetailsActivity) getActivity()).onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
-    }
-
-    @Override
-    public void onImageDrawDiscardLocal() {
-        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardLocal();
+        videoCallBackListener.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
     }
 
     @Override
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onImageDrawDiscardRemote(accountId, imageId);
+        videoCallBackListener.onImageDrawDiscardRemote(accountId, imageId);
     }
 
     @Override
@@ -1784,7 +1781,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void mqttConnected() {
         if (getActivity() != null) {
-            ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_CONNECTED);
+            videoCallBackListener.onMqttConnectionStatusChange(MQTT_CONNECTED);
             tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
             tvConnectionStatus.setVisibility(View.VISIBLE);
@@ -1801,7 +1798,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void mqttNotConnected() {
         if (getActivity() != null) {
-            ((TicketDetailsActivity) getActivity()).onMqttConnectionStatusChange(MQTT_DISCONNECTED);
+            videoCallBackListener.onMqttConnectionStatusChange(MQTT_DISCONNECTED);
             GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
             tvConnectionStatus.setText(R.string.not_connected);
             tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
@@ -1828,62 +1825,62 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawTouchDown(captureDrawParam, accountId, imageId);
+        videoCallBackListener.onDrawTouchDown(captureDrawParam, accountId, imageId);
     }
 
     @Override
     public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawTouchMove(captureDrawParam, accountId, imageId);
+        videoCallBackListener.onDrawTouchMove(captureDrawParam, accountId, imageId);
     }
 
     @Override
     public void onDrawTouchUp(String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawTouchUp(accountId, imageId);
+        videoCallBackListener.onDrawTouchUp(accountId, imageId);
     }
 
     @Override
     public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId);
+        videoCallBackListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId);
     }
 
     @Override
     public void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawReceiveNewTextChange(text, id, accountId, imageId);
+        videoCallBackListener.onDrawReceiveNewTextChange(text, id, accountId, imageId);
     }
 
     @Override
     public void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
+        videoCallBackListener.onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
     }
 
     @Override
     public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawParamChanged(captureDrawParam, accountId, imageId);
+        videoCallBackListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
     }
 
     @Override
     public void onDrawCanvasCleared(String accountId, String imageId) {
-        ((TicketDetailsActivity) getActivity()).onDrawCanvasCleared(accountId, imageId);
+        videoCallBackListener.onDrawCanvasCleared(accountId, imageId);
     }
 
     @Override
     public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
-        ((TicketDetailsActivity) getActivity()).onDrawCollabInvite(drawCollabResponse);
+        videoCallBackListener.onDrawCollabInvite(drawCollabResponse);
     }
 
     @Override
     public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
-        ((TicketDetailsActivity) getActivity()).onDrawMaximize(drawMaximize);
+        videoCallBackListener.onDrawMaximize(drawMaximize);
     }
 
     @Override
     public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
-        ((TicketDetailsActivity) getActivity()).onDrawMinimize(drawMinize);
+        videoCallBackListener.onDrawMinimize(drawMinize);
     }
 
     @Override
     public void onDrawClose(SignalingProto.DrawClose drawClose) {
-        ((TicketDetailsActivity) getActivity()).onDrawClose(drawClose);
+        videoCallBackListener.onDrawClose(drawClose);
     }
 
     private void openAppSettings() {
@@ -1952,6 +1949,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         rvAttachments.setAdapter(attachmentAdapter);
 
         attachmentAdapter.setOnAddAttachmentClickListener(this::accessExternalStoragePermissions);
+    }
+
+    public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {
+        this.videoCallBackListener = listener;
     }
 
 }

@@ -40,7 +40,7 @@ import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
-        VideoCallReceiveContract.VideoCallReceiveActivityView, Callback.OnDrawEventListener {
+        VideoCallReceiveContract.VideoCallReceiveActivityView, Callback.OnDrawEventListener, OnVideoCallEventListener {
     private static final String MQTT = "MQTT_EVENT_CHECK";
     private static final String TAG = "VideoReceiveActivity";
     private Callback.HostActivityCallback hostActivityCallbackServer;
@@ -340,6 +340,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.serviceProfileUri = uri;
     }
 
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
     public void setReferenceId(long id) {
         refId = id;
     }
@@ -353,6 +357,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     //video room initiation callback client
+    @Override
     public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         rtcMessageId = broadcastVideoCall.getRtcMessageId();
@@ -369,6 +374,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     // video room initiation callback server
+    @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
@@ -385,12 +391,14 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             videoReceiveInitiated = true;
             ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
-                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName, callerProfileUrl);
+                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
+                    callerProfileUrl, accountType);
         }
 
 
     }
 
+    @Override
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
@@ -398,16 +406,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 Log.d(TAG, "onImageReceivedFromConsumer");
                 if (drawPadEventListener != null)
                     drawPadEventListener.onDrawDiscard(accountId, imageId);
-            }
-        });
-    }
-
-    public void onImageDrawDiscardLocal() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (drawPadEventListener != null)
-                    drawPadEventListener.onDrawHideProgress();
             }
         });
     }
@@ -581,6 +579,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     }
 
+    @Override
     public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
         runOnUiThread(new Runnable() {
             @Override
@@ -605,6 +604,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
+    @Override
     public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
         runOnUiThread(new Runnable() {
             @Override
@@ -618,6 +618,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
+    @Override
     public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
         runOnUiThread(new Runnable() {
             @Override
@@ -631,6 +632,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
+    @Override
     public void onDrawClose(SignalingProto.DrawClose drawClose) {
         runOnUiThread(new Runnable() {
             @Override
@@ -721,6 +723,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
     }
 
+    @Override
     public void onMqttConnectionStatusChange(String connection) {
         if (connection.equals(MQTT_CONNECTED)) {
             if (videoCallListenerClient != null) {

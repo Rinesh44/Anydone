@@ -912,7 +912,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + cancelDrawing.getSenderAccount().getAccountId());
                                 if (cancelDrawing.getSenderAccount().getAccountId().
                                         equals(userAccountId)) {
-                                    getView().onImageDrawDiscardLocal();
+//                                    getView().onImageDrawDiscardLocal();
                                 } else
                                     getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId(),
                                             cancelDrawing.getImageId());

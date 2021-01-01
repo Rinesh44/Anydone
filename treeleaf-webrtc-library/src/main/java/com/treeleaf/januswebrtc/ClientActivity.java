@@ -1596,7 +1596,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             joineeListAdapter.makeAllJoineesVisible();
             if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                 mDrawCallback.onDiscardDraw(currentPicture.getPictureId());//TODO: uncomment this later
-                mDrawCallback.onHoldDraw("Cancelling draw...");
             }
         }
     };

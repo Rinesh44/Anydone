@@ -87,8 +87,6 @@ public class TicketConversationContract {
 
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
-        void onImageDrawDiscardLocal();
-
         void onImageDrawDiscardRemote(String accountId, String imageId);
 
         void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId);
