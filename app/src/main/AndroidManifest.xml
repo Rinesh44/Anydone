@@ -29,7 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".alltickets.AllTicketsActivity"></activity>
+        <activity android:name=".ownedtickets.OwnedTicketActivity"></activity>
+        <activity android:name=".opentickets.OpenTicketActivity" />
+        <activity android:name=".alltickets.AllTicketsActivity" />
         <activity android:name=".invoicedetail.InvoiceDetailActivity" />
         <activity
             android:name=".invoice.InvoiceActivity"

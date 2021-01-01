@@ -1075,8 +1075,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         RequestOptions options = new RequestOptions()
                 .fitCenter()
-                .placeholder(R.drawable.ic_profile_icon)
-                .error(R.drawable.ic_profile_icon);
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
 
         Glide.with(this)
                 .load(selectedCustomer.getProfilePic())
@@ -1386,8 +1386,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             civCustomer.setVisibility(View.VISIBLE);
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
             Glide.with(this).load(customerPic).apply(options).into(civCustomer);
         }
 
@@ -1542,10 +1542,11 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         RequestOptions options = new RequestOptions()
                 .fitCenter()
-                .placeholder(R.drawable.ic_profile_icon)
-                .error(R.drawable.ic_profile_icon);
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
 
-        Glide.with(this).load(employee.getEmployeeImageUrl()).apply(options).into(civAssignEmployee);
+        Glide.with(this).load(employee.getEmployeeImageUrl())
+                .apply(options).into(civAssignEmployee);
     }
 
     @Override

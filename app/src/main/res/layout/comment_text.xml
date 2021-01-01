@@ -68,11 +68,21 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/tv_time"
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/tv_title"
                 android:layout_toEndOf="@+id/tv_title"
+                android:textSize="12sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_title"
+                android:layout_marginStart="@dimen/dimen_4x1"
+                android:layout_toEndOf="@+id/tv_date"
                 android:text="11:00 PM"
                 android:textSize="12sp"
                 android:visibility="visible" />
@@ -89,6 +99,16 @@
                 android:longClickable="false"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_text_plain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_alignStart="@id/tv_title"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <!--  <jp.wasabeef.richeditor.RichEditor
                   android:id="@+id/tv_text"

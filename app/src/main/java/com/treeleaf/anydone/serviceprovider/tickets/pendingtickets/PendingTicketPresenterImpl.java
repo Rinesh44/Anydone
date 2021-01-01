@@ -95,6 +95,55 @@ public class PendingTicketPresenterImpl extends BasePresenter<PendingTicketContr
         );
     }
 
+    @Override
+    public void startTicket(long ticketId) {
+        getView().showProgressBar("Please wait...");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        ticketObservable = service.startTicket(token,
+                String.valueOf(ticketId));
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                               startTicketResponse) {
+                        GlobalUtils.showLog(TAG, "start ticket response: " +
+                                startTicketResponse);
+
+                        getView().hideProgressBar();
+                        if (startTicketResponse == null) {
+                            getView().onTicketStartFail("Failed to start ticket");
+                            return;
+                        }
+
+                        if (startTicketResponse.getError()) {
+                            getView().onTicketStartFail(startTicketResponse.getMsg());
+                            return;
+                        }
+
+                        getView().onTicketStartSuccess(ticketId, startTicketResponse.getEstimatedTime());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
 
     private void savePendingTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
         List<Tickets> pendingTickets = TicketRepo.getInstance().getPendingTickets();

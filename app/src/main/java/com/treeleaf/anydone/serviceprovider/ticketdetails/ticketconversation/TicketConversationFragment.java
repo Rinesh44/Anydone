@@ -26,11 +26,13 @@ import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.Display;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -45,7 +47,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,12 +78,15 @@ import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.AttachmentAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.CommentAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
+import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -182,16 +189,22 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     ARE_ToolbarDefault llTextModifier;
     @BindView(R.id.view)
     View view;
-  /*  @BindView(R.id.tv_ticket_id)
-    TextView tvTicketId;*/
-  /*  @BindView(R.id.tv_ticket_title)
+    /*  @BindView(R.id.tv_ticket_id)
+      TextView tvTicketId;*/
+    @BindView(R.id.tv_ticket_title)
     TextView tvTicketTitle;
     @BindView(R.id.tv_ticket_desc)
     TextView tvTicketDesc;
     @BindView(R.id.ll_label_holder)
     LinearLayout llLabels;
     @BindView(R.id.scv_label)
-    HorizontalScrollView hsvTags;*/
+    HorizontalScrollView hsvTags;
+    @BindView(R.id.rl_comments_title)
+    RelativeLayout rlComments;
+    @BindView(R.id.scrollview)
+    NestedScrollView scrollview;
+    @BindView(R.id.rv_attachments)
+    RecyclerView rvAttachments;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -221,6 +234,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private boolean keyboardShown = false;
     private OnStatusChangeListener listener;
     private Account userAccount;
+    List<Attachment> attachmentList;
+    private AttachmentAdapter attachmentAdapter;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -291,6 +306,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         llTextModifier.setVisibility(View.VISIBLE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        scrollview.post(() -> scrollview.fullScroll(View.FOCUS_DOWN));
+                        etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                     } else {
                         llTextModifier.setVisibility(View.GONE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
@@ -305,7 +322,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         subscribed = i.getBooleanExtra("subscribed", false);
 
         Tickets ticket = TicketRepo.getInstance().getTicketById(ticketId);
-//        setTicketInitialDetail(ticket);
+        setTicketInitialDetail(ticket);
         setChatVisibility(ticket);
 
         if (ticketId != -1) {
@@ -325,7 +342,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         lastMessage.getSentAt() + 1, System.currentTimeMillis(), 100);
             }
 
-            setInitialTicketDetail(ticket);
+//            setInitialTicketDetail(ticket);
+            setupAttachmentRecyclerView(rvAttachments);
             setUpConversationView();
 
             try {
@@ -356,8 +374,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         TreeleafMqttClient.disconnectMQTT();
     }
 
-/*    private void setTicketInitialDetail(Tickets ticket) {
-        tvTicketId.setText("#" + ticket.getTicketIndex());
+    private void setTicketInitialDetail(Tickets ticket) {
         tvTicketTitle.setText(ticket.getTitle());
         if (ticket.getDescription() != null && !ticket.getDescription().isEmpty()) {
             tvTicketDesc.setText(ticket.getDescription());
@@ -380,7 +397,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 llLabels.addView(tvTag);
             }
         }
-    }*/
+    }
 
     private void setChatVisibility(Tickets ticket) {
         if (subscribed && !ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccountId)
@@ -430,9 +447,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         llTextModifier.addToolbarItem(bold);
         llTextModifier.addToolbarItem(italic);
         llTextModifier.addToolbarItem(underline);
-        llTextModifier.addToolbarItem(strikeThrough);
+       /* llTextModifier.addToolbarItem(strikeThrough);
         llTextModifier.addToolbarItem(listNumber);
-        llTextModifier.addToolbarItem(listBullet);
+        llTextModifier.addToolbarItem(listBullet);*/
 
         etMessage.setToolbar(llTextModifier);
 
@@ -441,7 +458,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Point size = new Point();
         display.getRealSize(size);
         int width = size.x;
-        int unitWidth = width / 6;
+        int unitWidth = width / 3;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(unitWidth,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -492,7 +509,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
         adapter.setData(conversation);
-        presenter.enterMessage(rvConversation, etMessage);
+        presenter.enterMessage(scrollview, etMessage);
     }
 
     @OnClick(R.id.rl_delete_holder)
@@ -552,7 +569,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         rvConversation.setLayoutManager(layoutManager);
-//        Collections.reverse(conversationList);
+        Collections.reverse(conversationList);
         adapter = new CommentAdapter(conversationList, getContext());
         adapter.setOnItemLongClickListener(message -> {
             longClickedMessage = message;
@@ -600,9 +617,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             }
         });
 
-        adapter.setOnAddAttachmentClickListener(this::accessExternalStoragePermissions);
+//        adapter.setOnAddAttachmentClickListener(this::accessExternalStoragePermissions);
 
         rvConversation.setAdapter(adapter);
+        if (conversationList.size() < 1) {
+            GlobalUtils.showLog(TAG, "comment list empty");
+            rlComments.setVisibility(View.GONE);
+        } else {
+            GlobalUtils.showLog(TAG, "comment list not empty");
+            rlComments.setVisibility(View.VISIBLE);
+        }
 //        rvConversation.scrollToPosition(conversationList.size() - 1);
      /*   rvConversation.postDelayed(() -> {
             if (rvConversation != null)
@@ -919,7 +943,19 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         if (isLink(Objects.requireNonNull(etMessage.getText()).toString().trim())) {
             presenter.publishTextOrUrlMessage(etMessage.getText().toString(), ticketId);
         } else {
-            presenter.publishTextOrUrlMessage(etMessage.getHtml(), ticketId);
+            String resultMsg = etMessage.getHtml();
+            GlobalUtils.showLog(TAG, "resultMsg: " + resultMsg);
+        /*    if (resultMsg.contains("<p>")) {
+                resultMsg = resultMsg.replace("<p>", "");
+                resultMsg = resultMsg.replace("<html>", "");
+                resultMsg = resultMsg.replace("</html>", "");
+                resultMsg = resultMsg.replace("</body>", "");
+                resultMsg = resultMsg.replace("<body>", "");
+                GlobalUtils.showLog(TAG, "result msg check: " + resultMsg);
+                resultMsg = resultMsg.replace("</p>", "");
+            }*/
+            GlobalUtils.showLog(TAG, "final msg check: " + resultMsg);
+            presenter.publishTextOrUrlMessage(resultMsg, ticketId);
         }
     }
 
@@ -951,18 +987,29 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void getMessagesSuccess(List<Conversation> conversationList) {
+        GlobalUtils.showLog(TAG, "comments list size: " + conversationList.size());
+        //show hide comment title
+        if (conversationList.size() < 1) {
+            GlobalUtils.showLog(TAG, "comment list empty");
+            rlComments.setVisibility(View.GONE);
+        } else {
+            GlobalUtils.showLog(TAG, "comment list not empty");
+            rlComments.setVisibility(View.VISIBLE);
+        }
         pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
         Collections.sort(conversationList, (o1, o2) ->
-                Long.compare(o1.getSentAt(), o2.getSentAt()));
+                Long.compare(o2.getSentAt(), o1.getSentAt()));
         adapter.setData(conversationList);
         if (rvConversation != null) {
-            rvConversation.postDelayed(() -> {
+       /*     rvConversation.postDelayed(() -> {
                 if (rvConversation != null)
-                    rvConversation.scrollToPosition(conversationList.size());
-            }, 100);
+                    rvConversation.scrollToPosition(0);
+            }, 100);*/
+         /*   scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                    100);*/
         }
 
         if (fetchRemainingMessages) {
@@ -983,8 +1030,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     public void onImagePreConversationSuccess(Conversation conversation) {
         String imageFileClientId = conversation.getClientId();
         adapter.setData(conversation);
-        rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                (conversationList.size()), 50);
+      /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                (0), 50);*/
+        scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                50);
         presenter.uploadImage(uri, conversation, getActivity());
     }
 
@@ -992,8 +1041,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     public void onDocPreConversationSuccess(Conversation conversation) {
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (conversationList.size()), 50));
+             /*   rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                        (0), 50));*/
+                scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                        50));
         presenter.uploadDoc(selectedFileUri, conversation);
     }
 
@@ -1002,8 +1053,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         GlobalUtils.showLog(TAG, "before post check: " + conversation.isSent());
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
-            rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                    (conversationList.size()), 100);
+        /*    rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                    (0), 100);*/
+            scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                    500);
             etMessage.setText("");
         });
 //        etMessage.setText("");
@@ -1018,6 +1071,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     userAccountId, conversation.getClientId());
         }
 
+        getActivity().runOnUiThread(() -> rlComments.setVisibility(View.VISIBLE));
     }
 
     @Override
@@ -1028,6 +1082,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             adapter.notifyItemRemoved(index);
             ConversationRepo.getInstance().deleteConversationById(longClickedMessage.getClientId());
             hideProgressBar();
+
+            if (conversationList.size() < 2) {
+                rlComments.setVisibility(View.GONE);
+            }
         });
     }
 
@@ -1085,8 +1143,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             @Override
             public void success(Object o) {
                 adapter.setData(conversation);
-                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (conversationList.size()), 50);
+              /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                        (0), 50);*/
+                scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                        50);
             }
 
             @Override
@@ -1098,13 +1158,15 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
+                                                      videoCallJoinResponse) {
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
                 .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
     }
 
     @Override
-    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
+                                                       videoCallJoinResponse) {
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
                 .onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
     }
@@ -1121,8 +1183,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 llBotReplying.setVisibility(View.GONE));
 
         adapter.setData(conversation);
-        rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition(
-                conversationList.size()), 50);
+   /*     rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition(
+                0), 50);*/
+        scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                50);
         adapter.setOnSuggestionClickListener(kGraph -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
@@ -1139,8 +1203,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         @Override
                         public void success(Object o) {
                             adapter.setData(selectedSuggestion);
-                            rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                                    (conversationList.size()), 50);
+                          /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                                    (0), 50);*/
+                            scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                                    50);
                         }
 
                         @Override
@@ -1217,6 +1283,24 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onUploadImageAttachmentSuccess(String url, String title) {
 
+        Attachment attachment = new Attachment();
+        attachment.setId(UUID.randomUUID().toString().replace("-", ""));
+        attachment.setType(1);
+        attachment.setCreatedAt(System.currentTimeMillis());
+        attachment.setTitle(title);
+        attachment.setUpdatedAt(System.currentTimeMillis());
+        attachment.setUrl(url);
+
+        if (attachmentList.size() == 1) {
+            attachmentList.add(attachment);
+            Collections.reverse(attachmentList);
+        } else {
+            Collections.reverse(attachmentList);
+            attachmentList.add(attachment);
+            Collections.reverse(attachmentList);
+        }
+
+        attachmentAdapter.setData(attachmentList);
     }
 
     @Override
@@ -1294,13 +1378,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             String mime = cr.getType(fileUri);
             Toast.makeText(getContext(), mime, Toast.LENGTH_SHORT).show();
 
-            File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
-            String fileName = file.getName();
+//            File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
+            String fileName = "filename";
+            GlobalUtils.showLog(TAG, "file name check: " + fileName);
             if (mime.equalsIgnoreCase("image/jpeg") || mime.equalsIgnoreCase("image/png")
                     || mime.equalsIgnoreCase("image/webp")) {
-
                 presenter.uploadImageAttachment(fileUri, getActivity(), fileName);
-
             } else {
                 presenter.uploadFileAttachment(fileUri, fileName);
             }
@@ -1852,6 +1935,23 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         intent.setDataAndType(selectedUri, "*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, ATTACH_FILE_REQUEST_CODE);
+    }
+
+    private void setupAttachmentRecyclerView(RecyclerView rvAttachments) {
+        attachmentList = new ArrayList<>();
+        Attachment addAttachment = new Attachment();
+        addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
+        addAttachment.setType(0);
+
+        attachmentList.add(addAttachment);
+
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(new GridLayoutManager());
+        rvAttachments.setLayoutManager(new GridLayoutManager(getContext(), 3));
+
+        attachmentAdapter = new AttachmentAdapter(attachmentList, getContext());
+        rvAttachments.setAdapter(attachmentAdapter);
+
+        attachmentAdapter.setOnAddAttachmentClickListener(this::accessExternalStoragePermissions);
     }
 
 }

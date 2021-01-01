@@ -502,8 +502,8 @@
                     android:focusable="false"
                     android:inputType="textVisiblePassword|textFilter"
                     android:maxLength="45"
-                    android:paddingEnd="@dimen/dimens_2x"
                     android:paddingStart="@dimen/dimen_5x1"
+                    android:paddingEnd="@dimen/dimens_2x"
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_body1" />
 

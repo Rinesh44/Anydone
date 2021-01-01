@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 
@@ -37,11 +38,13 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.mContext = mContext;
     }
 
-    public void addData(Attachment attachment) {
-        new Handler(Looper.getMainLooper()).post(() -> {
+    public void setData(List<Attachment> attachmentList) {
+       /* new Handler(Looper.getMainLooper()).post(() -> {
             attachmentList.add(0, attachment);
             notifyItemInserted(0);
-        });
+        });*/
+        this.attachmentList = attachmentList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -73,6 +76,19 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         .inflate(R.layout.attachment_add, parent, false);
                 return new AttachmentAdapter.AddViewHolder(defaultView);
         }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        Attachment attachment = attachmentList.get(position);
+        switch (attachment.getType()) {
+            case 1:
+                return TYPE_IMAGE;
+
+            case 2:
+                return TYPE_PDF;
+        }
+        return super.getItemViewType(position);
     }
 
     @Override
@@ -117,7 +133,7 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         public ImageViewHolder(View itemView) {
             super(itemView);
 
-            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvTitle = itemView.findViewById(R.id.tv_image_title);
             ivImage = itemView.findViewById(R.id.iv_image);
             rlImage = itemView.findViewById(R.id.rl_image);
             ivClose = itemView.findViewById(R.id.iv_close);
@@ -138,9 +154,17 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             });
         }
 
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_imageholder)
+                .error(R.drawable.ic_imageholder);
+
         void bind(Attachment attachment) {
             tvTitle.setText(attachment.getTitle());
-            Glide.with(mContext).load(attachment.getUrl()).into(ivImage);
+            Glide.with(mContext)
+                    .load(attachment.getUrl())
+                    .apply(options)
+                    .into(ivImage);
         }
     }
 

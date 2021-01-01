@@ -41,7 +41,7 @@ import java.util.Objects;
 import butterknife.BindView;
 
 public class ContributedTicketFragment extends BaseFragment<ContributedTicketPresenterImpl>
-        implements ContributedTicketContract.ContributedTicketView{
+        implements ContributedTicketContract.ContributedTicketView {
     private static final String TAG = "ContributedTicketFragme";
     @BindView(R.id.rv_contributed_tickets)
     RecyclerView rvContributedTickets;

@@ -142,6 +142,5 @@ public class TicketTimelineContract {
         void searchTickets(String query);
 
         void updateTicket(long ticketId, DependentTicket dependentTicket);
-
     }
 }

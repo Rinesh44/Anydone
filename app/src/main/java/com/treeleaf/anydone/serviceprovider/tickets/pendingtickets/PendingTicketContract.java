@@ -11,10 +11,16 @@ public class PendingTicketContract {
         void getPendingTicketFail(String msg);
 
         void showEmptyView();
+
+        void onTicketStartSuccess(long ticketId, long estimatedTime);
+
+        void onTicketStartFail(String msg);
     }
 
     public interface PendingTicketPresenter extends Presenter<PendingTicketView> {
 
         void getPendingTickets(boolean showProgress, long from, long to, int page);
+
+        void startTicket(long ticketId);
     }
 }

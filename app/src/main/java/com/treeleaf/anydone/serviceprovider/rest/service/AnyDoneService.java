@@ -336,7 +336,6 @@ public interface AnyDoneService {
                                                                       @Body TicketProto.Ticket
                                                                               employeeAssigned);
 
-
     @POST("ticket")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     createTicket(@Header(AUTHORIZATION)
@@ -693,7 +692,30 @@ public interface AnyDoneService {
 
     @PATCH("ticket/attachments")
     Observable<TicketServiceRpcProto.TicketBaseResponse> addAttachment(@Header(AUTHORIZATION)
-                                                                               String token);
+                                                                               String token,
+                                                                       @Body TicketProto.TicketAttachmentRequest
+                                                                               ticketAttachmentRequest);
+
+    @DELETE("ticket/attachments")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> removeAttachment(@Header(AUTHORIZATION)
+                                                                                  String token,
+                                                                          @Body TicketProto.TicketAttachmentRequest
+                                                                                  ticketAttachmentRequest);
+
+    @GET("ticket/me/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getOpenTickets(@Header(AUTHORIZATION)
+                                                                                String token,
+                                                                        @Path(value = "serviceId")
+                                                                                String serviceId,
+                                                                        @Query("page") int page);
+
+
+    @GET("ticket/created/{serviceId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getOwnedTickets(@Header(AUTHORIZATION)
+                                                                                 String token,
+                                                                         @Path(value = "serviceId")
+                                                                                 String serviceId,
+                                                                         @Query("page") int page);
 }
 
 

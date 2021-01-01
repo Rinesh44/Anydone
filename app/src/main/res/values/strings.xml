@@ -139,7 +139,6 @@
     <string name="gallery">Gallery</string>
     <string name="add_a_caption">Add caption...</string>
     <string name="accepted">Accepted</string>
-    <string name="add">Add</string>
     <string name="not_connected">Not Connected</string>
     <string name="connected">Connected</string>
     <string name="connecting">Connecting...</string>
@@ -350,4 +349,8 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="add_comment">Add Comment</string>
     <string name="plans">Plans</string>
     <string name="depends_on">Depends On</string>
+    <string name="add">Add</string>
+    <string name="add_attachment">Add Attachment</string>
+    <string name="open_for_me">Open for me</string>
+    <string name="owned_by_me">Owned by me</string>
 </resources>

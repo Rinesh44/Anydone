@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.text.format.DateUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.ponnamkarthik.richlinkpreview.MetaData;
 import io.github.ponnamkarthik.richlinkpreview.ResponseListener;
 import io.github.ponnamkarthik.richlinkpreview.RichPreview;
+import jp.wasabeef.richeditor.RichEditor;
 
 public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "MessageAdapter";
@@ -95,9 +97,10 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 conversationList.set(index, conversation);
                 notifyItemChanged(index);
             } else {
-                conversationList.add(conversationList.size() - 1, conversation);
-//                notifyItemInserted(conversationList.size() - 1);
-                notifyDataSetChanged();
+                conversationList.add(0, conversation);
+                notifyItemInserted(0);
+                notifyItemRangeChanged(0, 3);
+//                notifyDataSetChanged();
             }
 
             if (!conversation.getMessageType().equals("MSG_BOT_SUGGESTIONS")) {
@@ -142,8 +145,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (!CollectionUtils.isEmpty(newConversationList)) {
             GlobalUtils.showLog(TAG, "conversation list checkout: " +
                     newConversationList.size());
-            conversationList.addAll(conversationList.size() - 1, newConversationList);
-            notifyItemRangeInserted(conversationList.size() - 1, newConversationList.size());
+            conversationList.addAll(0, newConversationList);
+            notifyItemRangeInserted(0, newConversationList.size());
         }
 
         GlobalUtils.showLog(TAG, "conversation list size check: " + conversationList.size());
@@ -269,22 +272,24 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @SuppressLint("SetTextI18n")
-    private void showDateAndTime(long sentAt, TextView tvSentAt) {
+    private void showDateAndTime(long sentAt, TextView tvSentAt, TextView tvDate) {
         tvSentAt.setVisibility(View.GONE);
         if (DateUtils.isToday(sentAt)) {
             tvSentAt.setText(R.string.today);
-            tvSentAt.setVisibility(View.VISIBLE);
-
+            tvSentAt.setVisibility(View.GONE);
+            tvDate.setText(R.string.today);
         } else if (DateUtils.isToday(sentAt + DateUtils.DAY_IN_MILLIS)) {//check for yesterday
             tvSentAt.setText(R.string.yesterday);
-            tvSentAt.setVisibility(View.VISIBLE);
+            tvSentAt.setVisibility(View.GONE);
+            tvDate.setText(R.string.yesterday);
         } else {
             @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter =
                     new SimpleDateFormat("dd MMM");
 
             String dateString = dateFormatter.format(new Date(sentAt));
             tvSentAt.setText(dateString);
-            tvSentAt.setVisibility(View.VISIBLE);
+            tvSentAt.setVisibility(View.GONE);
+            tvDate.setText(dateString);
         }
     }
 
@@ -408,7 +413,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private class LeftTextHolder extends RecyclerView.ViewHolder {
-        TextView sentAt, senderTitle, time;
+        TextView sentAt, senderTitle, time, date, tvTextPlain;
         AREditor messageText;
         RelativeLayout textHolder;
         ImageView resend;
@@ -425,6 +430,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             senderTitle = itemView.findViewById(R.id.tv_title);
             spacing = itemView.findViewById(R.id.spacing);
             time = itemView.findViewById(R.id.tv_time);
+            date = itemView.findViewById(R.id.tv_date);
+            tvTextPlain = itemView.findViewById(R.id.tv_text_plain);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime) {
@@ -450,17 +457,28 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     0,
                     GlobalUtils.convertDpToPixel(mContext, -25));
 
-            messageText.fromHtml(conversation.getMessage());
+            if (conversation.getMessage().contains("</p>")) {
+                GlobalUtils.showLog(TAG, "msg contains tags");
+                messageText.fromHtml(conversation.getMessage());
+                messageText.setVisibility(View.VISIBLE);
+                tvTextPlain.setVisibility(View.GONE);
+            } else {
+                GlobalUtils.showLog(TAG, "msg doesnt contains tags");
+                GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
+                tvTextPlain.setText(conversation.getMessage());
+                messageText.setVisibility(View.GONE);
+                tvTextPlain.setVisibility(View.VISIBLE);
+            }
 
             textHolder.setClickable(true);
             textHolder.setFocusable(true);
             if (isNewDay) {
-                sentAt.setVisibility(View.VISIBLE);
-                showDateAndTime(conversation.getSentAt(), sentAt);
+                sentAt.setVisibility(View.GONE);
             } else {
                 sentAt.setVisibility(View.GONE);
             }
 
+            showDateAndTime(conversation.getSentAt(), sentAt, date);
             time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
          /*   if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -502,7 +520,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private class LeftLinkHolder extends RecyclerView.ViewHolder {
-        TextView sentAt, senderTitle, urlTitle, urlDesc, url, time;
+        TextView sentAt, senderTitle, urlTitle, urlDesc, url, time, date;
         LinearLayout urlHolder;
         ImageView resend, urlImage;
         CircleImageView civSender;
@@ -522,6 +540,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             urlImage = itemView.findViewById(R.id.iv_url_image);
             spacing = itemView.findViewById(R.id.spacing);
             time = itemView.findViewById(R.id.tv_time);
+            date = itemView.findViewById(R.id.tv_date);
 
         }
 
@@ -587,12 +606,12 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             //Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
-                sentAt.setVisibility(View.VISIBLE);
-                showDateAndTime(conversation.getSentAt(), sentAt);
+                sentAt.setVisibility(View.GONE);
             } else {
                 sentAt.setVisibility(View.GONE);
             }
 
+            showDateAndTime(conversation.getSentAt(), sentAt, date);
             time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
         /*    if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -638,7 +657,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private class LeftImageHolder extends RecyclerView.ViewHolder {
-        TextView sentAt, senderTitle, imageDesc, time;
+        TextView sentAt, senderTitle, imageDesc, time, date;
         MaterialCardView imageHolder;
         ImageView resend, image;
         CircleImageView civSender;
@@ -656,6 +675,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             imageDesc = itemView.findViewById(R.id.tv_image_desc);
             spacing = itemView.findViewById(R.id.spacing);
             time = itemView.findViewById(R.id.tv_time);
+            date = itemView.findViewById(R.id.tv_date);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -691,11 +711,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
-                showDateAndTime(conversation.getSentAt(), sentAt);
             } else {
                 sentAt.setVisibility(View.GONE);
             }
 
+            showDateAndTime(conversation.getSentAt(), sentAt, date);
             time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
          /*   if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -761,7 +781,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private class LeftDocHolder extends RecyclerView.ViewHolder {
-        TextView sentAt, senderTitle, fileName, fileSize, time;
+        TextView sentAt, senderTitle, fileName, fileSize, time, date;
         RelativeLayout docHolder;
         ImageView doc;
         CircleImageView civSender;
@@ -779,6 +799,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             fileSize = itemView.findViewById(R.id.tv_doc_size);
             spacing = itemView.findViewById(R.id.spacing);
             time = itemView.findViewById(R.id.tv_time);
+            date = itemView.findViewById(R.id.tv_date);
 
         }
 
@@ -844,11 +865,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
-                showDateAndTime(conversation.getSentAt(), sentAt);
             } else {
                 sentAt.setVisibility(View.GONE);
             }
 
+            showDateAndTime(conversation.getSentAt(), sentAt, date);
             time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
          /*   if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -1088,7 +1109,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     private class CallViewHolder extends RecyclerView.ViewHolder {
-        TextView callDuration, callTime, sentAt, tvTitle, tvTime;
+        TextView callDuration, callTime, sentAt, tvTitle, tvTime, date;
         View spacing;
         CircleImageView civSender;
 
@@ -1102,6 +1123,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             civSender = itemView.findViewById(R.id.civ_sender);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvTime = itemView.findViewById(R.id.tv_time);
+            date = itemView.findViewById(R.id.tv_date);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -1114,11 +1136,12 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
-                sentAt.setVisibility(View.VISIBLE);
-                showDateAndTime(conversation.getSentAt(), sentAt);
+                sentAt.setVisibility(View.GONE);
             } else {
                 sentAt.setVisibility(View.GONE);
             }
+
+            showDateAndTime(conversation.getSentAt(), sentAt, date);
 
         /*    if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -1167,8 +1190,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 senderTitle.setText(account.getFullName());
 
                 RequestOptions options = new RequestOptions()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon)
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon)
                         .fitCenter();
 
                 Glide.with(AnyDoneServiceProviderApplication.getContext())

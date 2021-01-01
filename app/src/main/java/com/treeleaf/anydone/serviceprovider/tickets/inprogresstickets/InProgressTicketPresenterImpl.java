@@ -18,6 +18,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -91,6 +92,104 @@ public class InProgressTicketPresenterImpl extends BasePresenter<InProgressTicke
                                 getView().hideProgressBar();
                             }
                         })
+        );
+    }
+
+    @Override
+    public void closeTicket(long ticketId) {
+        getView().showProgressBar("Please wait...");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        ticketObservable = service.closeTicket(token,
+                ticketId, "");
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                               closeTicketResponse) {
+                        GlobalUtils.showLog(TAG, "close ticket response: " +
+                                closeTicketResponse);
+
+                        getView().hideProgressBar();
+                        if (closeTicketResponse == null) {
+                            getView().onCloseTicketFail("Failed to close ticket");
+                            return;
+                        }
+
+                        if (closeTicketResponse.getError()) {
+                            getView().onCloseTicketFail(closeTicketResponse.getMsg());
+                            return;
+                        }
+
+                        getView().onCloseTicketSuccess(ticketId);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
+    @Override
+    public void resolveTicket(long ticketId) {
+        getView().showProgressBar("Please wait...");
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String token = Hawk.get(Constants.TOKEN);
+
+        ticketObservable = service.resolveTicket(token,
+                Long.parseLong(String.valueOf(ticketId)));
+        addSubscription(ticketObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                    @Override
+                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                               response) {
+                        GlobalUtils.showLog(TAG, "start ticket response: " +
+                                response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().onResolveTicketFail("Failed to resolve ticket");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().onResolveTicketFail(response.getMsg());
+                            return;
+                        }
+
+                        getView().onResolveTicketSuccess(ticketId);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
         );
     }
 

@@ -9,12 +9,17 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Patterns;
+import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.TextView;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
+import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
@@ -28,6 +33,7 @@ import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
@@ -43,6 +49,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceOrderEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -50,6 +57,7 @@ import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.jsoup.Jsoup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -377,8 +385,19 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                    String userAccountId,
                                    String clientId) {
         GlobalUtils.showLog(TAG, "publish text message");
+        GlobalUtils.showLog(TAG, "check sent rtc message: " + message);
+
+        String plainText;
+        if (message.contains("</b>") || message.contains("</i>") || message.contains("</u>")) {
+            plainText = message;
+        } else {
+            plainText = Jsoup.parse(message).text();
+        }
+
+        GlobalUtils.showLog(TAG, "plain text check: " + plainText);
+
         RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
-                .setMessage((message))
+                .setMessage((plainText))
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
@@ -519,11 +538,14 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @SuppressLint("CheckResult")
     @Override
-    public void enterMessage(RecyclerView conversation, AREditText etMessage) {
+    public void enterMessage(NestedScrollView scrollView, AREditText etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
 //            conversation.smoothScrollToPosition(0);
-            etMessage.setFocusableInTouchMode(true);
+           /* scrollView.postDelayed(() -> scrollView.fullScroll(View.FOCUS_DOWN),
+                    0);*/
+            scrollView.fullScroll(View.FOCUS_DOWN);
+            etMessage.postDelayed(etMessage::requestFocus, 50);
         })
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -534,7 +556,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
 
                     }
 
