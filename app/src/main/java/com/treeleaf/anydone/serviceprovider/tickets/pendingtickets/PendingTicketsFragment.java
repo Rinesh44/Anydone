@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.tickets.pendingtickets;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,7 +17,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -31,7 +31,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -54,8 +53,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_backlog)
-    FloatingActionButton fabAssign;
+    /*    @BindView(R.id.fab_backlog)
+        FloatingActionButton fabAssign;*/
     @BindView(R.id.pb_search)
     ProgressBar progressBar;
     @BindView(R.id.pb_progress)
@@ -69,6 +68,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     private boolean fetchList = false;
     private Account userAccount;
     private String localAccountId;
+    private int startTicketPos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,13 +79,11 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         mFragment.setPendingListListener(this);
         userAccount = AccountRepo.getInstance().getAccount();
         localAccountId = userAccount.getAccountId();
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
 //        if (fetchList) {
         assignedTickets = TicketRepo.getInstance().getPendingTickets();
 
@@ -173,6 +171,13 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                 }
             });
             rvOpenTickets.setAdapter(adapter);
+
+
+            adapter.setOnStartListener((id, pos) -> {
+                startTicketPos = pos;
+                showStartDialog(id);
+            });
+
         } else {
             rvOpenTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
@@ -187,7 +192,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 
         }
 
-        rvOpenTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      /*  rvOpenTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -201,13 +206,51 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                     fabAssign.show();
                 super.onScrollStateChanged(recyclerView, newState);
             }
+        });*/
+    }
+
+    private void showStartDialog(String ticketId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to start this ticket?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                (dialog, id) -> {
+                    adapter.closeSwipeLayout(ticketId);
+                    dialog.dismiss();
+                    presenter.startTicket(Long.parseLong(ticketId));
+//                    presenter.reopenTicket(Long.parseLong(ticketId));
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> {
+                    adapter.closeSwipeLayout(ticketId);
+                    dialog.dismiss();
+                });
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(android.R.color.holo_red_dark));
+
         });
+        alert11.show();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        GlobalUtils.showLog(TAG, "onreume called");
+        GlobalUtils.showLog(TAG, "onresume called");
         boolean fetchChanges = Hawk.get(Constants.FETCH_PENDING_LIST, false);
         boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
         boolean ticketPending = Hawk.get(Constants.TICKET_PENDING, false);
@@ -289,6 +332,27 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     }
 
     @Override
+    public void onTicketStartSuccess(long ticketId, long estTime) {
+        Hawk.put(Constants.TICKET_IN_PROGRESS, true);
+        adapter.deleteItem(startTicketPos, ticketId);
+        TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
+        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
+
+        rvOpenTickets.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onTicketStartFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to start ticket");
+        btnReload.setVisibility(View.VISIBLE);
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+    }
+
+    @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
@@ -315,11 +379,11 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                 Constants.SERVER_ERROR);
     }
 
-    @OnClick(R.id.fab_backlog)
+ /*   @OnClick(R.id.fab_backlog)
     void getBackLogTickets() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
-    }
+    }*/
 
     @OnClick(R.id.btn_reload)
     void reload() {

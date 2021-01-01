@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -31,7 +29,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -42,7 +39,6 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.realm.RealmList;
 
 public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImpl>
         implements ClosedTicketContract.ClosedTicketView,
@@ -62,8 +58,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     RelativeLayout rlRoot;
     @BindView(R.id.btn_reload)
     MaterialButton btnReload;
-    @BindView(R.id.fab_backlog)
-    FloatingActionButton fabBacklog;
+/*    @BindView(R.id.fab_backlog)
+    FloatingActionButton fabBacklog;*/
 
     private Unbinder unbinder;
     private TicketsAdapter adapter;
@@ -363,12 +359,12 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         setUpRecyclerView(closedTicketList);
     }*/
 
-    @OnClick(R.id.fab_backlog)
+ /*   @OnClick(R.id.fab_backlog)
     void getBackLogTickets() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
     }
-
+*/
 
     @Override
     public void onAttach(@NonNull Context context) {

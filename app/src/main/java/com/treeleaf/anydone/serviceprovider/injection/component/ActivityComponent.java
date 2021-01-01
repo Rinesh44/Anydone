@@ -15,6 +15,8 @@ import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.scope.ScopeActivity;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
+import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketActivity;
+import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketActivity;
 import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodActivity;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationActivity;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
@@ -103,4 +105,8 @@ public interface ActivityComponent {
     void inject(SuggestedTicketPreviewActivity suggestedTicketPreviewActivity);
 
     void inject(AllTicketsActivity allTicketsActivity);
+
+    void inject(OpenTicketActivity openTicketActivity);
+
+    void inject(OwnedTicketActivity ownedTicketActivity);
 }

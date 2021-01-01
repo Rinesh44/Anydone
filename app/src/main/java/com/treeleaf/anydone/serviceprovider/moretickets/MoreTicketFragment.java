@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketActivity;
+import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketActivity;
 import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 
@@ -34,6 +36,10 @@ public class MoreTicketFragment extends Fragment {
     RelativeLayout rlBacklog;
     @BindView(R.id.rl_all)
     RelativeLayout rlAll;
+    @BindView(R.id.rl_owned)
+    RelativeLayout rlOwned;
+    @BindView(R.id.rl_open_for_me)
+    RelativeLayout rlOpen;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,6 +87,10 @@ public class MoreTicketFragment extends Fragment {
 
         rlSubscribed.setOnClickListener(v ->
                 startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class)));
+
+        rlOpen.setOnClickListener(v -> startActivity(new Intent(getActivity(), OpenTicketActivity.class)));
+
+        rlOwned.setOnClickListener(v -> startActivity(new Intent(getActivity(), OwnedTicketActivity.class)));
 
     }
 

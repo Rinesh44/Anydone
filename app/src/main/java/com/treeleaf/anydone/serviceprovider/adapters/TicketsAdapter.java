@@ -47,7 +47,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     private OnReopenListener onReopenListener;
     private OnSubscribeListener subscribeListener;
     private OnAssignListener assignListener;
-
+    private OnStartListener onStartListener;
+    private OnCloseListener onCloseListener;
+    private OnResolveListener onResolveListener;
 
     public TicketsAdapter(List<Tickets> ticketsList, Context mContext) {
         this.ticketsList = ticketsList;
@@ -94,6 +96,16 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                         .inflate(R.layout.layout_ticket_row_all, parent, false);
                 return new TicketHolder(itemViewAll);
 
+            case PENDING:
+                View itemViewPending = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_pending_ticket, parent, false);
+                return new TicketHolder(itemViewPending);
+
+            case IN_PROGRESS:
+                View itemViewInProgress = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_in_progress_ticket, parent, false);
+                return new TicketHolder(itemViewInProgress);
+
             default:
                 View itemViewDefault = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_ticket_row_assigned, parent, false);
@@ -107,7 +119,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         Tickets tickets = ticketsList.get(position);
 
         switch (tickets.getTicketType()) {
-            case "ASSIGNED":
+            case "PENDING":
                 return PENDING;
 
             case "IN_PROGRESS":
@@ -225,11 +237,34 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         switch (tickets.getTicketType()) {
             //set click listener on swipe action
             case "PENDING":
-
+                if (holder.tvStart != null) {
+                    holder.tvStart.setOnClickListener(v -> {
+                        if (onStartListener != null) {
+                            onStartListener.onStartClicked(String.valueOf(tickets.getTicketId()),
+                                    ticketsList.indexOf(tickets));
+                        }
+                    });
+                }
                 break;
 
             case "IN_PROGRESS":
+                if (holder.tvResolve != null) {
+                    holder.tvResolve.setOnClickListener(v -> {
+                        if (onResolveListener != null) {
+                            onResolveListener.onResolveClicked(String.valueOf(tickets.getTicketId()),
+                                    ticketsList.indexOf(tickets));
+                        }
+                    });
+                }
 
+                if (holder.tvClosed != null) {
+                    holder.tvClosed.setOnClickListener(v -> {
+                        if (onCloseListener != null) {
+                            onCloseListener.onCloseClicked(String.valueOf(tickets.getTicketId()),
+                                    ticketsList.indexOf(tickets));
+                        }
+                    });
+                }
                 break;
 
             case "SUBSCRIBED":
@@ -378,6 +413,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         private HorizontalScrollView hsvTags;
         private RelativeLayout rlMain;
         private TextView tvSubscribe, tvAssign;
+        private TextView tvStart, tvResolve, tvClosed;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
@@ -399,6 +435,9 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             rlMain = itemView.findViewById(R.id.rl_main);
             tvSubscribe = itemView.findViewById(R.id.tv_subscribe);
             tvAssign = itemView.findViewById(R.id.tv_assign);
+            tvStart = itemView.findViewById(R.id.tv_start);
+            tvResolve = itemView.findViewById(R.id.tv_resolve);
+            tvClosed = itemView.findViewById(R.id.tv_close);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {
@@ -408,7 +447,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(ticketsList.get(position));
                     }
-
                 });
             }
         }
@@ -459,6 +497,32 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     public void setOnAssignListener(OnAssignListener assignListener) {
         this.assignListener = assignListener;
+    }
+
+    public interface OnStartListener {
+        void onStartClicked(String id, int pos);
+    }
+
+    public void setOnStartListener(OnStartListener onStartListener) {
+        this.onStartListener = onStartListener;
+    }
+
+
+    public interface OnCloseListener {
+        void onCloseClicked(String id, int pos);
+    }
+
+    public void setOnCloseListener(OnCloseListener onCloseListener) {
+        this.onCloseListener = onCloseListener;
+    }
+
+
+    public interface OnResolveListener {
+        void onResolveClicked(String id, int pos);
+    }
+
+    public void setOnResolveListener(OnResolveListener onResolveListener) {
+        this.onResolveListener = onResolveListener;
     }
 
     public void deleteItem(int pos, long ticketId) {

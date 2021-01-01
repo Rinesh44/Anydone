@@ -677,6 +677,40 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public List<Tickets> getOpenTickets() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.OPEN)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Tickets> getOwnedTickets() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.OWNED)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
 
     public List<Tickets> getAssignableTickets() {
         final Realm realm = Realm.getDefaultInstance();
@@ -851,6 +885,23 @@ public class TicketRepo extends Repo {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Tickets> results = realm1.where(Tickets.class)
                         .equalTo("ticketType", Constants.CONTRIBUTED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteOpenTickets(final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.OPEN)
                         .findAll();
                 results.deleteAllFromRealm();
             });

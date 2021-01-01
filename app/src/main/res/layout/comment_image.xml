@@ -69,10 +69,21 @@
                     android:visibility="visible" />
 
                 <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_title"
+                    android:layout_toEndOf="@+id/tv_img_user"
+                    android:paddingTop="@dimen/dimen_6x1"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+                <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/tv_img_user"
+                    android:layout_marginStart="@dimen/dimen_4x1"
+                    android:layout_toEndOf="@+id/tv_date"
                     android:paddingTop="@dimen/dimen_6x1"
                     android:text="11:00 PM"
                     android:textSize="@dimen/material_text_caption"

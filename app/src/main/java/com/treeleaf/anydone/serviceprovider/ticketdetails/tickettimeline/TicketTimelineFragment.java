@@ -2242,7 +2242,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             return;
         }
 
-        Banner.make(getActivity().getWindow().getDecorView().getRootView(),
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 

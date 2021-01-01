@@ -51,8 +51,10 @@
                 android:layout_marginTop="@dimen/dimen_10x1"
                 android:layout_marginEnd="@dimen/dimen_10x1"
                 android:layout_marginBottom="@dimen/dimen_10x1"
+                android:background="@drawable/circle_greyish"
+                android:padding="@dimen/dimen_10x1"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_contributed" />
+                android:src="@drawable/ic_contributed_tic" />
 
             <TextView
                 android:id="@+id/tv_contributed"
@@ -158,6 +160,98 @@
 
             <ImageView
                 android:id="@+id/iv_arrow_backlog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/dimens_2x"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_right_arrow" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_owned"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/iv_owned"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:layout_marginBottom="@dimen/dimen_10x1"
+                android:background="@drawable/circle_owned"
+                android:padding="@dimen/dimen_2x4"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_owned_tics" />
+
+            <TextView
+                android:id="@+id/tv_owned_by_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/iv_owned"
+                android:text="@string/owned_by_me"
+                android:textColor="@color/black"
+                android:textSize="@dimen/material_text_body1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_arrow_owned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/dimens_2x"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_right_arrow" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_open_for_me"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/iv_open"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dimens_2x"
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:layout_marginBottom="@dimen/dimen_10x1"
+                android:background="@drawable/circle_dark_green"
+                android:padding="@dimen/dimen_2x4"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_contri_tics" />
+
+            <TextView
+                android:id="@+id/tv_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/iv_open"
+                android:text="@string/open_for_me"
+                android:textColor="@color/black"
+                android:textSize="@dimen/material_text_body1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_arrow_open"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

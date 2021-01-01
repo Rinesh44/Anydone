@@ -188,7 +188,6 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
                     String assignedEmployeeList = builder.toString().trim();
                     String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
 
-
                     Intent i = new Intent(this, TicketDetailsActivity.class);
                     i.putExtra("selected_ticket_id", ticket.getTicketId());
                     i.putExtra("ticket_desc", ticket.getTitle());

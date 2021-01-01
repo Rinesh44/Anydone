@@ -63,6 +63,8 @@ Constants {
     public static final String ASSIGNABLE = "ASSIGNABLE";
     public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
     public static final String ALL = "ALL";
+    public static final String OPEN = "OPEN";
+    public static final String OWNED = "OWNED";
     public static final String LINKED = "LINKED";
     public static final String BOT_REPLY = "BOT_REPLY";
     public static final String RTC_CONTEXT_SERVICE_REQUEST = "RTC_CONTEXT_SERVICE_REQUEST";
@@ -81,6 +83,8 @@ Constants {
     public static final String TICKET_PENDING = "TICKET_PENDING";
     public static final String TICKET_IN_PROGRESS = "TICKET_IN_PROGRESS";
     public static final String TICKET_RESOLVED = "TICKET_RESOLVED";
+    public static final String TICKET_OPEN = "TICKET_OPEN";
+    public static final String TICKET_OWNED = "TICKET_OWNED";
     public static final String DASHBOARD_SERVICE_ID = "DASHBOARD_SERVICE_ID";
     public static final String CONVERSATION_SERVICE_ID = "CONVERSATION_SERVICE_ID";
     public static final String MANUAL_DATE = "MANUAL_DATE";

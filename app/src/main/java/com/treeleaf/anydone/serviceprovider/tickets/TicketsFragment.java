@@ -64,6 +64,7 @@ import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgress
 import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import java.text.SimpleDateFormat;
@@ -83,7 +84,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @BindView(R.id.tabs)
     TabLayout mTabs;
     @BindView(R.id.viewpager)
-    ViewPager mViewpager;
+    NonSwipeableViewPager mViewpager;
     /*    @BindView(R.id.bottom_sheet)
         LinearLayout llBottomSheet;*/
     @BindView(R.id.iv_filter)
@@ -161,11 +162,27 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             public void onTabSelected(TabLayout.Tab tab) {
                 GlobalUtils.showLog(TAG, "tab position: " + tab.getPosition());
                 boolean ticketPending = Hawk.get(Constants.TICKET_PENDING, false);
+                boolean ticketInProgress = Hawk.get(Constants.TICKET_IN_PROGRESS, false);
+                boolean ticketResolved = Hawk.get(Constants.TICKET_RESOLVED, false);
                 if (tab.getPosition() == 0 && ticketPending) {
                     if (pendingListListener != null) {
                         GlobalUtils.showLog(TAG, "interface applied for pending");
                         pendingTicketList = TicketRepo.getInstance().getPendingTickets();
                         pendingListListener.updatePendingList(pendingTicketList);
+                    }
+                }
+
+                if (tab.getPosition() == 1 && ticketInProgress) {
+                    if (inProgressListListener != null) {
+                        inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
+                        inProgressListListener.updateInProgressList(inProgressTicketList);
+                    }
+                }
+
+                if (tab.getPosition() == 2 && ticketResolved) {
+                    if (closedListListener != null) {
+                        closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
+                        closedListListener.updateClosedList(closedTicketList);
                     }
                 }
             }

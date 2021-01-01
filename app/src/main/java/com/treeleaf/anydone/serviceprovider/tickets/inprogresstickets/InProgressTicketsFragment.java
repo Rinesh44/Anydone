@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -48,15 +49,15 @@ import butterknife.Unbinder;
 public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPresenterImpl>
         implements InProgressTicketContract.InProgressTicketsView,
         TicketsFragment.InProgressListListener {
-    private static final String TAG = "SubscribeTicketsFragmen";
+    private static final String TAG = "InProgressTicketsFragme";
     @BindView(R.id.rv_subscribe_tickets)
     RecyclerView rvInProgressTickets;
     @BindView(R.id.swipe_refresh_subscribe_tickets)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_backlog)
-    FloatingActionButton fabSubscribe;
+    /*    @BindView(R.id.fab_backlog)
+        FloatingActionButton fabSubscribe;*/
     @BindView(R.id.pb_search)
     ProgressBar progressBar;
     @BindView(R.id.pb_progress)
@@ -72,6 +73,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     private List<Tickets> inProgressTickets;
     private Account userAccount;
     private String localAccountId;
+    private int closeTicketPos, resolveTicketPos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -177,6 +179,16 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
                 }
             });
 
+            adapter.setOnCloseListener((id, pos) -> {
+                closeTicketPos = pos;
+                showCloseTicket(id);
+            });
+
+            adapter.setOnResolveListener((id, pos) -> {
+                resolveTicketPos = pos;
+                showResolveTicket(id);
+            });
+
             rvInProgressTickets.setAdapter(adapter);
         } else {
             GlobalUtils.showLog(TAG, "data not found");
@@ -185,7 +197,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             btnReload.setVisibility(View.VISIBLE);
         }
 
-        rvInProgressTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
+ /*       rvInProgressTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -199,7 +211,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
                     fabSubscribe.show();
                 super.onScrollStateChanged(recyclerView, newState);
             }
-        });
+        });*/
     }
 
     @Override
@@ -237,11 +249,11 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         setUpRecyclerView(subscribeTicketList);
     }*/
 
-    @OnClick(R.id.fab_backlog)
+/*    @OnClick(R.id.fab_backlog)
     void getBackLogTickets() {
         Intent i = new Intent(getActivity(), UnassignedTicketsActivity.class);
         startActivity(i);
-    }
+    }*/
 
     @Override
     public void getInProgressTicketsSuccess() {
@@ -274,7 +286,50 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 
         if (ivDataNotFound.getVisibility() == View.VISIBLE)
             btnReload.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void onCloseTicketSuccess(long ticketId) {
+        rvInProgressTickets.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.GONE);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
+        adapter.deleteItem(closeTicketPos, ticketId);
+        TicketRepo.getInstance().changeTicketStatusToClosed(ticketId);
+
+        rvInProgressTickets.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onCloseTicketFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to close ticket");
+        btnReload.setVisibility(View.VISIBLE);
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+    }
+
+    @Override
+    public void onResolveTicketSuccess(long ticketId) {
+        rvInProgressTickets.setVisibility(View.VISIBLE);
+        btnReload.setVisibility(View.GONE);
+        Hawk.put(Constants.TICKET_RESOLVED, true);
+        adapter.deleteItem(resolveTicketPos, ticketId);
+        TicketRepo.getInstance().changeTicketStatusToResolved(ticketId);
+
+        rvInProgressTickets.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onResolveTicketFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to close ticket");
+        btnReload.setVisibility(View.VISIBLE);
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
     }
 
     @OnClick(R.id.btn_reload)
@@ -289,6 +344,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     @Override
     public void onResume() {
         super.onResume();
+        GlobalUtils.showLog(TAG, "in progress on resume called");
         boolean fetchChanges = Hawk.get(Constants.FETCH_IN_PROGRESS_LIST, false);
         boolean ticketAssigned = Hawk.get(Constants.TICKET_ASSIGNED, false);
         boolean ticketInProgress = Hawk.get(Constants.TICKET_IN_PROGRESS, false);
@@ -301,11 +357,11 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
             setUpRecyclerView(inProgressTickets);
             Hawk.put(Constants.TICKET_ASSIGNED, false);
-        } else if (ticketInProgress) {
+        } /*else if (ticketInProgress) {
             inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
             setUpRecyclerView(inProgressTickets);
             Hawk.put(Constants.TICKET_IN_PROGRESS, false);
-        }
+        }*/
     }
 
     @Override
@@ -354,6 +410,81 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         btnReload.setVisibility(View.GONE);
         presenter.getInProgressTickets(true, 0,
                 System.currentTimeMillis(), 100);
+    }
+
+    private void showCloseTicket(String ticketId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to close this ticket?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                (dialog, id) -> {
+                    adapter.closeSwipeLayout(ticketId);
+                    dialog.dismiss();
+                    presenter.closeTicket(Long.parseLong(ticketId));
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> {
+                    adapter.closeSwipeLayout(ticketId);
+                    dialog.dismiss();
+                });
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(android.R.color.holo_red_dark));
+
+        });
+        alert11.show();
+    }
+
+    private void showResolveTicket(String ticketId) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to resolve this ticket?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                (dialog, id) -> {
+                    adapter.closeSwipeLayout(ticketId);
+                    dialog.dismiss();
+                    presenter.resolveTicket(Long.parseLong(ticketId));
+//                    presenter.reopenTicket(Long.parseLong(ticketId));
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> {
+                    adapter.closeSwipeLayout(ticketId);
+                    dialog.dismiss();
+                });
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(android.R.color.holo_red_dark));
+
+        });
+        alert11.show();
     }
 }
 
