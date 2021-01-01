@@ -337,7 +337,7 @@ public class VideoCallReceivePresenterImpl extends
     @Override
     public void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
                                           long orderId, Float x, Float y, CaptureDrawParam captureDrawParam,
-                                          long capturedTime, String rtcContext, String imageId) {
+                                          long capturedTime, String rtcContext, String imageId, String touchSessionId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -368,6 +368,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(imageId)
+                .setDrawSessionId(touchSessionId)
                 .setDrawMetaData(drawMetaData)
                 .build();
 
@@ -387,7 +388,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId) {
+                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId, String touchSessionId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -404,6 +405,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(imageId)
+                .setDrawSessionId(touchSessionId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -422,7 +424,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
-                                        long orderId, long capturedTime, String rtcContext, String imageId) {
+                                        long orderId, long capturedTime, String rtcContext, String imageId, String touchSessionId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -437,6 +439,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(imageId)
+                .setDrawSessionId(touchSessionId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()

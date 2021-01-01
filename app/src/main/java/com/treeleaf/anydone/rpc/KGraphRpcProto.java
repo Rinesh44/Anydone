@@ -15,7 +15,7 @@ public final class KGraphRpcProto {
     /**
      * <code>optional string refId = 1;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class KGraphRpcProto {
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    String getStringValue();
+    java.lang.String getStringValue();
     /**
      * <code>optional string stringValue = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class KGraphRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    String getStringValues(int index);
+    java.lang.String getStringValues(int index);
     /**
      * <code>repeated string stringValues = 3;</code>
      */
@@ -188,7 +188,7 @@ public final class KGraphRpcProto {
     /**
      * <code>optional string page = 19;</code>
      */
-    String getPage();
+    java.lang.String getPage();
     /**
      * <code>optional string page = 19;</code>
      */
@@ -223,11 +223,11 @@ public final class KGraphRpcProto {
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 1;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -241,7 +241,7 @@ public final class KGraphRpcProto {
      * <code>optional string refId = 1;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -269,11 +269,11 @@ public final class KGraphRpcProto {
     }
 
     public static final int STRINGVALUE_FIELD_NUMBER = 2;
-    private String stringValue_;
+    private java.lang.String stringValue_;
     /**
      * <code>optional string stringValue = 2;</code>
      */
-    public String getStringValue() {
+    public java.lang.String getStringValue() {
       return stringValue_;
     }
     /**
@@ -287,7 +287,7 @@ public final class KGraphRpcProto {
      * <code>optional string stringValue = 2;</code>
      */
     private void setStringValue(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -331,7 +331,7 @@ public final class KGraphRpcProto {
     /**
      * <code>repeated string stringValues = 3;</code>
      */
-    public String getStringValues(int index) {
+    public java.lang.String getStringValues(int index) {
       return stringValues_.get(index);
     }
     /**
@@ -352,7 +352,7 @@ public final class KGraphRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void setStringValues(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -363,7 +363,7 @@ public final class KGraphRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addStringValues(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -374,7 +374,7 @@ public final class KGraphRpcProto {
      * <code>repeated string stringValues = 3;</code>
      */
     private void addAllStringValues(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureStringValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, stringValues_);
@@ -747,7 +747,7 @@ public final class KGraphRpcProto {
      * <code>repeated .treeleaf.anydone.entities.KGraphQuery kGraphQueries = 11;</code>
      */
     private void addAllKGraphQueries(
-        Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.KGraphQuery> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.KGraphQuery> values) {
       ensureKGraphQueriesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, kGraphQueries_);
@@ -1075,7 +1075,7 @@ public final class KGraphRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Knowledge knowledges = 16;</code>
      */
     private void addAllKnowledges(
-        Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
       ensureKnowledgesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, knowledges_);
@@ -1195,7 +1195,7 @@ public final class KGraphRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Link links = 17;</code>
      */
     private void addAllLinks(
-        Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
       ensureLinksIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, links_);
@@ -1267,11 +1267,11 @@ public final class KGraphRpcProto {
     }
 
     public static final int PAGE_FIELD_NUMBER = 19;
-    private String page_;
+    private java.lang.String page_;
     /**
      * <code>optional string page = 19;</code>
      */
-    public String getPage() {
+    public java.lang.String getPage() {
       return page_;
     }
     /**
@@ -1285,7 +1285,7 @@ public final class KGraphRpcProto {
      * <code>optional string page = 19;</code>
      */
     private void setPage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1522,60 +1522,60 @@ public final class KGraphRpcProto {
       return size;
     }
 
-    public static KGraphBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphBaseRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphBaseRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphBaseRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static KGraphBaseRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphBaseRequest parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1586,7 +1586,7 @@ public final class KGraphRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(KGraphBaseRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1595,9 +1595,9 @@ public final class KGraphRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          KGraphBaseRequest, Builder> implements
+          com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.KGraphBaseRequest)
-        KGraphBaseRequestOrBuilder {
+        com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequestOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1607,7 +1607,7 @@ public final class KGraphRpcProto {
       /**
        * <code>optional string refId = 1;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -1621,7 +1621,7 @@ public final class KGraphRpcProto {
        * <code>optional string refId = 1;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -1647,7 +1647,7 @@ public final class KGraphRpcProto {
       /**
        * <code>optional string stringValue = 2;</code>
        */
-      public String getStringValue() {
+      public java.lang.String getStringValue() {
         return instance.getStringValue();
       }
       /**
@@ -1661,7 +1661,7 @@ public final class KGraphRpcProto {
        * <code>optional string stringValue = 2;</code>
        */
       public Builder setStringValue(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setStringValue(value);
         return this;
@@ -1701,7 +1701,7 @@ public final class KGraphRpcProto {
       /**
        * <code>repeated string stringValues = 3;</code>
        */
-      public String getStringValues(int index) {
+      public java.lang.String getStringValues(int index) {
         return instance.getStringValues(index);
       }
       /**
@@ -1715,7 +1715,7 @@ public final class KGraphRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder setStringValues(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setStringValues(index, value);
         return this;
@@ -1724,7 +1724,7 @@ public final class KGraphRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addStringValues(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addStringValues(value);
         return this;
@@ -1733,7 +1733,7 @@ public final class KGraphRpcProto {
        * <code>repeated string stringValues = 3;</code>
        */
       public Builder addAllStringValues(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllStringValues(values);
         return this;
@@ -2058,7 +2058,7 @@ public final class KGraphRpcProto {
        * <code>repeated .treeleaf.anydone.entities.KGraphQuery kGraphQueries = 11;</code>
        */
       public Builder addAllKGraphQueries(
-          Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.KGraphQuery> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.KGraphQuery> values) {
         copyOnWrite();
         instance.addAllKGraphQueries(values);
         return this;
@@ -2335,7 +2335,7 @@ public final class KGraphRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Knowledge knowledges = 16;</code>
        */
       public Builder addAllKnowledges(
-          Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
         copyOnWrite();
         instance.addAllKnowledges(values);
         return this;
@@ -2432,7 +2432,7 @@ public final class KGraphRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Link links = 17;</code>
        */
       public Builder addAllLinks(
-          Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
         copyOnWrite();
         instance.addAllLinks(values);
         return this;
@@ -2502,7 +2502,7 @@ public final class KGraphRpcProto {
       /**
        * <code>optional string page = 19;</code>
        */
-      public String getPage() {
+      public java.lang.String getPage() {
         return instance.getPage();
       }
       /**
@@ -2516,7 +2516,7 @@ public final class KGraphRpcProto {
        * <code>optional string page = 19;</code>
        */
       public Builder setPage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPage(value);
         return this;
@@ -2587,11 +2587,11 @@ public final class KGraphRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.KGraphBaseRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new KGraphBaseRequest();
+          return new com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2608,7 +2608,7 @@ public final class KGraphRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          KGraphBaseRequest other = (KGraphBaseRequest) arg1;
+          com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest other = (com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest) arg1;
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
@@ -2636,7 +2636,7 @@ public final class KGraphRpcProto {
           page_ = visitor.visitString(!page_.isEmpty(), page_,
               !other.page_.isEmpty(), other.page_);
           csvImportRequest_ = visitor.visitMessage(csvImportRequest_, other.csvImportRequest_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2867,7 +2867,7 @@ public final class KGraphRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (KGraphBaseRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2881,13 +2881,13 @@ public final class KGraphRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.KGraphBaseRequest)
-    private static final KGraphBaseRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new KGraphBaseRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static KGraphBaseRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2910,7 +2910,7 @@ public final class KGraphRpcProto {
     /**
      * <code>optional string msg = 2;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 2;</code>
      */
@@ -2948,7 +2948,7 @@ public final class KGraphRpcProto {
     /**
      * <code>optional string refId = 7;</code>
      */
-    String getRefId();
+    java.lang.String getRefId();
     /**
      * <code>optional string refId = 7;</code>
      */
@@ -3045,7 +3045,7 @@ public final class KGraphRpcProto {
     /**
      * <code>repeated string linkTexts = 15;</code>
      */
-    String getLinkTexts(int index);
+    java.lang.String getLinkTexts(int index);
     /**
      * <code>repeated string linkTexts = 15;</code>
      */
@@ -3093,11 +3093,11 @@ public final class KGraphRpcProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 2;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 2;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -3111,7 +3111,7 @@ public final class KGraphRpcProto {
      * <code>optional string msg = 2;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3276,11 +3276,11 @@ public final class KGraphRpcProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 7;
-    private String refId_;
+    private java.lang.String refId_;
     /**
      * <code>optional string refId = 7;</code>
      */
-    public String getRefId() {
+    public java.lang.String getRefId() {
       return refId_;
     }
     /**
@@ -3294,7 +3294,7 @@ public final class KGraphRpcProto {
      * <code>optional string refId = 7;</code>
      */
     private void setRefId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3474,7 +3474,7 @@ public final class KGraphRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Knowledge knowledges = 9;</code>
      */
     private void addAllKnowledges(
-        Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
       ensureKnowledgesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, knowledges_);
@@ -3646,7 +3646,7 @@ public final class KGraphRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Link links = 11;</code>
      */
     private void addAllLinks(
-        Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
       ensureLinksIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, links_);
@@ -3818,7 +3818,7 @@ public final class KGraphRpcProto {
      * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
      */
     private void addAllQaTuples(
-        Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
       ensureQaTuplesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, qaTuples_);
@@ -3906,7 +3906,7 @@ public final class KGraphRpcProto {
     /**
      * <code>repeated string linkTexts = 15;</code>
      */
-    public String getLinkTexts(int index) {
+    public java.lang.String getLinkTexts(int index) {
       return linkTexts_.get(index);
     }
     /**
@@ -3927,7 +3927,7 @@ public final class KGraphRpcProto {
      * <code>repeated string linkTexts = 15;</code>
      */
     private void setLinkTexts(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3938,7 +3938,7 @@ public final class KGraphRpcProto {
      * <code>repeated string linkTexts = 15;</code>
      */
     private void addLinkTexts(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3949,7 +3949,7 @@ public final class KGraphRpcProto {
      * <code>repeated string linkTexts = 15;</code>
      */
     private void addAllLinkTexts(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureLinkTextsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, linkTexts_);
@@ -4096,60 +4096,60 @@ public final class KGraphRpcProto {
       return size;
     }
 
-    public static KGraphBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphBaseResponse parseFrom(byte[] data)
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static KGraphBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static KGraphBaseResponse parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphBaseResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static KGraphBaseResponse parseDelimitedFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static KGraphBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static KGraphBaseResponse parseFrom(
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4160,7 +4160,7 @@ public final class KGraphRpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(KGraphBaseResponse prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4169,9 +4169,9 @@ public final class KGraphRpcProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          KGraphBaseResponse, Builder> implements
+          com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.rpc.KGraphBaseResponse)
-        KGraphBaseResponseOrBuilder {
+        com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponseOrBuilder {
       // Construct using com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4204,7 +4204,7 @@ public final class KGraphRpcProto {
       /**
        * <code>optional string msg = 2;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -4218,7 +4218,7 @@ public final class KGraphRpcProto {
        * <code>optional string msg = 2;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -4372,7 +4372,7 @@ public final class KGraphRpcProto {
       /**
        * <code>optional string refId = 7;</code>
        */
-      public String getRefId() {
+      public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -4386,7 +4386,7 @@ public final class KGraphRpcProto {
        * <code>optional string refId = 7;</code>
        */
       public Builder setRefId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -4529,7 +4529,7 @@ public final class KGraphRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Knowledge knowledges = 9;</code>
        */
       public Builder addAllKnowledges(
-          Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Knowledge> values) {
         copyOnWrite();
         instance.addAllKnowledges(values);
         return this;
@@ -4671,7 +4671,7 @@ public final class KGraphRpcProto {
        * <code>repeated .treeleaf.anydone.entities.Link links = 11;</code>
        */
       public Builder addAllLinks(
-          Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.Link> values) {
         copyOnWrite();
         instance.addAllLinks(values);
         return this;
@@ -4813,7 +4813,7 @@ public final class KGraphRpcProto {
        * <code>repeated .treeleaf.anydone.entities.QATuple qaTuples = 13;</code>
        */
       public Builder addAllQaTuples(
-          Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.KGraphProto.QATuple> values) {
         copyOnWrite();
         instance.addAllQaTuples(values);
         return this;
@@ -4897,7 +4897,7 @@ public final class KGraphRpcProto {
       /**
        * <code>repeated string linkTexts = 15;</code>
        */
-      public String getLinkTexts(int index) {
+      public java.lang.String getLinkTexts(int index) {
         return instance.getLinkTexts(index);
       }
       /**
@@ -4911,7 +4911,7 @@ public final class KGraphRpcProto {
        * <code>repeated string linkTexts = 15;</code>
        */
       public Builder setLinkTexts(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setLinkTexts(index, value);
         return this;
@@ -4920,7 +4920,7 @@ public final class KGraphRpcProto {
        * <code>repeated string linkTexts = 15;</code>
        */
       public Builder addLinkTexts(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addLinkTexts(value);
         return this;
@@ -4929,7 +4929,7 @@ public final class KGraphRpcProto {
        * <code>repeated string linkTexts = 15;</code>
        */
       public Builder addAllLinkTexts(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllLinkTexts(values);
         return this;
@@ -4955,11 +4955,11 @@ public final class KGraphRpcProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.KGraphBaseResponse)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new KGraphBaseResponse();
+          return new com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4976,7 +4976,7 @@ public final class KGraphRpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          KGraphBaseResponse other = (KGraphBaseResponse) arg1;
+          com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse other = (com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse) arg1;
           error_ = visitor.visitBoolean(error_ != false, error_,
               other.error_ != false, other.error_);
           msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
@@ -4997,7 +4997,7 @@ public final class KGraphRpcProto {
           qaTuples_= visitor.visitList(qaTuples_, other.qaTuples_);
           fetchKnowledgeRespone_ = visitor.visitMessage(fetchKnowledgeRespone_, other.fetchKnowledgeRespone_);
           linkTexts_= visitor.visitList(linkTexts_, other.linkTexts_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -5171,7 +5171,7 @@ public final class KGraphRpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (KGraphBaseResponse.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5185,13 +5185,13 @@ public final class KGraphRpcProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.rpc.KGraphBaseResponse)
-    private static final KGraphBaseResponse DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new KGraphBaseResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static KGraphBaseResponse getDefaultInstance() {
+    public static com.treeleaf.anydone.rpc.KGraphRpcProto.KGraphBaseResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

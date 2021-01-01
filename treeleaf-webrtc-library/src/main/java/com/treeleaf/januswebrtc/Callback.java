@@ -98,7 +98,7 @@ public class Callback {
 
     public interface DrawCallBack {
 
-        void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId);
+        void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId, String touchSessionId);
 
         void onNewImageFrameCaptured(Bitmap bitmap);
 
@@ -110,9 +110,9 @@ public class Callback {
 
         void onDrawParamChanged(CaptureDrawParam captureDrawParam, String imageId);
 
-        void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId);
+        void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId, String touchSessionId);
 
-        void onClientTouchUp(String imageId);
+        void onClientTouchUp(String imageId, String touchSessionId);
 
         void onDrawCanvasCleared(String imageId);
 

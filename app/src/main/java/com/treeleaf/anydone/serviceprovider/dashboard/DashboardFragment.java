@@ -1344,13 +1344,14 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     @Override
     public void getTicketByPrioritySuccess() {
         TicketStatByPriority ticketStatByPriority = TicketStatRepo.getInstance().getTicketStatByPriority();
-        tvHighestValue.setText(String.valueOf(ticketStatByPriority.getHighest()));
-        tvHighValue.setText(String.valueOf(ticketStatByPriority.getHigh()));
-        tvMediumValue.setText(String.valueOf(ticketStatByPriority.getMedium()));
-        tvLowValue.setText(String.valueOf(ticketStatByPriority.getLow()));
-        tvLowestValue.setText(String.valueOf(ticketStatByPriority.getLowest()));
-
-        setUpPieChartByPriority(ticketStatByPriority);
+        if (ticketStatByPriority != null) {
+            tvHighestValue.setText(String.valueOf(ticketStatByPriority.getHighest()));// error here
+            tvHighValue.setText(String.valueOf(ticketStatByPriority.getHigh()));
+            tvMediumValue.setText(String.valueOf(ticketStatByPriority.getMedium()));
+            tvLowValue.setText(String.valueOf(ticketStatByPriority.getLow()));
+            tvLowestValue.setText(String.valueOf(ticketStatByPriority.getLowest()));
+            setUpPieChartByPriority(ticketStatByPriority);
+        }
     }
 
     @Override

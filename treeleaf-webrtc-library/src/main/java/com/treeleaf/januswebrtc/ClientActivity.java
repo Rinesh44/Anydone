@@ -155,6 +155,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     public String runningOn = CONSUMER_TYPE;
     private boolean videoRendered = false;
+    private String touchSessionId;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -779,12 +780,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 Log.d(TAG, "onStartDrawing: " + x + " " + y);
                 drawMetadataLocal.get(currentPicture.getPictureId()).setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {//TODO: uncomment this later
+                    touchSessionId = DrawPadUtil.generateRandomId();
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
                     captureDrawParam.setXCoordinate(VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth));
                     captureDrawParam.setYCoordinate(VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight));
                     mDrawCallback.onStartDraw(VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth),
                             VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight), captureDrawParam,
-                            currentPicture.getPictureId());
+                            currentPicture.getPictureId(), touchSessionId);
                 }
                 if (mLocalAccountId != null)
                     joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, true, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
@@ -793,8 +795,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onEndDrawing() {
                 Log.d(TAG, "onEndDrawing: ");
-                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
-                    mDrawCallback.onClientTouchUp(currentPicture.getPictureId());
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent() && touchSessionId != null) {
+                    mDrawCallback.onClientTouchUp(currentPicture.getPictureId(), touchSessionId);
                 }
                 if (mLocalAccountId != null)
                     joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
@@ -808,7 +810,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 drawMetadataLocal.get(currentPicture.getPictureId()).setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
-                    mDrawCallback.onClientTouchMove(captureDrawParam, currentPicture.getPictureId());
+                    mDrawCallback.onClientTouchMove(captureDrawParam, currentPicture.getPictureId(), touchSessionId);
                 }
 
             }

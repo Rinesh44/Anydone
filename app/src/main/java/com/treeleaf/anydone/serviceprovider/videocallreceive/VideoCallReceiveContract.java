@@ -54,13 +54,13 @@ public class VideoCallReceiveContract {
                                     long orderId, long cancellationTime, String rtcContext, String imageId);
 
         void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, Float x, Float y, CaptureDrawParam captureDrawParam, long capturedTime, String rtcContext, String imageId);
+                                       long orderId, Float x, Float y, CaptureDrawParam captureDrawParam, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId);
+                                       long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
-                                     long orderId, long capturedTime, String rtcContext, String imageId);
+                                     long orderId, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
                                         Float x, Float y, Float brushWidth, Float brushOpacity,
