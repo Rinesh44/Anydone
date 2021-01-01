@@ -110,7 +110,7 @@ public class AnyDoneServiceProviderApplication extends Application {
     private void initializeRealm() {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
-                .schemaVersion(5) // Must be bumped when the schema changes
+                .schemaVersion(7) // Must be bumped when the schema changes
                 .migration(new AnydoneRealmMigration()) // Migration to run
                 .build();
 

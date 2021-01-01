@@ -961,7 +961,15 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     if (prevKGraph != null)
                         onBackClickListener
                                 .onBackClick(Objects.requireNonNull(prevKGraph
-                                        .getkGraphList().get(0)).getPrev());
+                                                .getkGraphList().get(0)).getNext(),
+                                        Objects.requireNonNull(prevKGraph.getkGraphList().get(0)).getId());
+
+                   /* Conversation current = conversationList.get(position);
+                    if (current != null) {
+                        onBackClickListener.onBackClick(
+                                Objects.requireNonNull(current.getkGraphList().get(0)).getPrev(),
+                                Objects.requireNonNull(current.getkGraphList().get(0)).getPrevId());
+                    }*/
                 }
             });
 
@@ -1234,7 +1242,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public interface OnBackClickListener {
-        void onBackClick(String prevQuestionKey);
+        void onBackClick(String prevQuestionKey, String prevId);
     }
 
     public void setOnBackClickListener(CommentAdapter.OnBackClickListener listener) {

@@ -57,6 +57,10 @@ public final class NotificationProto {
      * <code>TICKET_ASSIGNED = 10;</code>
      */
     TICKET_ASSIGNED(10),
+    /**
+     * <code>INVITE_TO_SIGN_UP = 11;</code>
+     */
+    INVITE_TO_SIGN_UP(11),
     UNRECOGNIZED(-1),
     ;
 
@@ -104,6 +108,10 @@ public final class NotificationProto {
      * <code>TICKET_ASSIGNED = 10;</code>
      */
     public static final int TICKET_ASSIGNED_VALUE = 10;
+    /**
+     * <code>INVITE_TO_SIGN_UP = 11;</code>
+     */
+    public static final int INVITE_TO_SIGN_UP_VALUE = 11;
 
 
     public final int getNumber() {
@@ -131,6 +139,7 @@ public final class NotificationProto {
         case 8: return TICKET_STATUS_UPDATED;
         case 9: return TICKET_CONTRIBUTOR_ADDED;
         case 10: return TICKET_ASSIGNED;
+        case 11: return INVITE_TO_SIGN_UP;
         default: return null;
       }
     }

@@ -2008,6 +2008,15 @@ public final class BotConversationProto {
      * <code>repeated .treeleaf.anydone.entities.Knowledge knowledges = 1;</code>
      */
     int getKnowledgesCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    boolean hasRootKnowledge();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.Knowledge getRootKnowledge();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.KGraphResponse}
@@ -2020,6 +2029,7 @@ public final class BotConversationProto {
     private KGraphResponse() {
       knowledges_ = emptyProtobufList();
     }
+    private int bitField0_;
     public static final int KNOWLEDGES_FIELD_NUMBER = 1;
     private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.KGraphProto.Knowledge> knowledges_;
     /**
@@ -2140,10 +2150,65 @@ public final class BotConversationProto {
       knowledges_.remove(index);
     }
 
+    public static final int ROOTKNOWLEDGE_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.KGraphProto.Knowledge rootKnowledge_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    public boolean hasRootKnowledge() {
+      return rootKnowledge_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.Knowledge getRootKnowledge() {
+      return rootKnowledge_ == null ? com.treeleaf.anydone.entities.KGraphProto.Knowledge.getDefaultInstance() : rootKnowledge_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    private void setRootKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      rootKnowledge_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    private void setRootKnowledge(
+        com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder builderForValue) {
+      rootKnowledge_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    private void mergeRootKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+      if (rootKnowledge_ != null &&
+          rootKnowledge_ != com.treeleaf.anydone.entities.KGraphProto.Knowledge.getDefaultInstance()) {
+        rootKnowledge_ =
+          com.treeleaf.anydone.entities.KGraphProto.Knowledge.newBuilder(rootKnowledge_).mergeFrom(value).buildPartial();
+      } else {
+        rootKnowledge_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+     */
+    private void clearRootKnowledge() {  rootKnowledge_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < knowledges_.size(); i++) {
         output.writeMessage(1, knowledges_.get(i));
+      }
+      if (rootKnowledge_ != null) {
+        output.writeMessage(2, getRootKnowledge());
       }
     }
 
@@ -2155,6 +2220,10 @@ public final class BotConversationProto {
       for (int i = 0; i < knowledges_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, knowledges_.get(i));
+      }
+      if (rootKnowledge_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getRootKnowledge());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2339,6 +2408,51 @@ public final class BotConversationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+       */
+      public boolean hasRootKnowledge() {
+        return instance.hasRootKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.Knowledge getRootKnowledge() {
+        return instance.getRootKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+       */
+      public Builder setRootKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+        copyOnWrite();
+        instance.setRootKnowledge(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+       */
+      public Builder setRootKnowledge(
+          com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.setRootKnowledge(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+       */
+      public Builder mergeRootKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+        copyOnWrite();
+        instance.mergeRootKnowledge(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge rootKnowledge = 2;</code>
+       */
+      public Builder clearRootKnowledge() {  copyOnWrite();
+        instance.clearRootKnowledge();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.KGraphResponse)
     }
     protected final Object dynamicMethod(
@@ -2362,8 +2476,10 @@ public final class BotConversationProto {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse other = (com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse) arg1;
           knowledges_= visitor.visitList(knowledges_, other.knowledges_);
+          rootKnowledge_ = visitor.visitMessage(rootKnowledge_, other.rootKnowledge_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -2393,6 +2509,19 @@ public final class BotConversationProto {
                   }
                   knowledges_.add(
                       input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Knowledge.parser(), extensionRegistry));
+                  break;
+                }
+                case 18: {
+                  com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder subBuilder = null;
+                  if (rootKnowledge_ != null) {
+                    subBuilder = rootKnowledge_.toBuilder();
+                  }
+                  rootKnowledge_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Knowledge.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(rootKnowledge_);
+                    rootKnowledge_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

@@ -20590,6 +20590,732 @@ public final class ThirdPartyProto {
     }
   }
 
+  public interface SendReplyRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.SendReplyRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+     */
+    int getSendReplyTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+     */
+    com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType getSendReplyType();
+
+    /**
+     * <code>optional string conversationId = 2;</code>
+     */
+    java.lang.String getConversationId();
+    /**
+     * <code>optional string conversationId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getConversationIdBytes();
+
+    /**
+     * <code>optional string text = 3;</code>
+     */
+    java.lang.String getText();
+    /**
+     * <code>optional string text = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTextBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    boolean hasKgraphReply();
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    com.treeleaf.anydone.entities.NLUProto.KGraphReply getKgraphReply();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.SendReplyRequest}
+   */
+  public  static final class SendReplyRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          SendReplyRequest, SendReplyRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.SendReplyRequest)
+      SendReplyRequestOrBuilder {
+    private SendReplyRequest() {
+      conversationId_ = "";
+      text_ = "";
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.SendReplyRequest.SendReplyType}
+     */
+    public enum SendReplyType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_TYPE = 0;</code>
+       */
+      UNKNOWN_TYPE(0),
+      /**
+       * <code>TEXT_REPLY_TYPE = 1;</code>
+       */
+      TEXT_REPLY_TYPE(1),
+      /**
+       * <code>KGRAPH_REPLY_TYPE = 2;</code>
+       */
+      KGRAPH_REPLY_TYPE(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_TYPE = 0;</code>
+       */
+      public static final int UNKNOWN_TYPE_VALUE = 0;
+      /**
+       * <code>TEXT_REPLY_TYPE = 1;</code>
+       */
+      public static final int TEXT_REPLY_TYPE_VALUE = 1;
+      /**
+       * <code>KGRAPH_REPLY_TYPE = 2;</code>
+       */
+      public static final int KGRAPH_REPLY_TYPE_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static SendReplyType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static SendReplyType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_TYPE;
+          case 1: return TEXT_REPLY_TYPE;
+          case 2: return KGRAPH_REPLY_TYPE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<SendReplyType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          SendReplyType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<SendReplyType>() {
+              public SendReplyType findValueByNumber(int number) {
+                return SendReplyType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private SendReplyType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.SendReplyRequest.SendReplyType)
+    }
+
+    public static final int SENDREPLYTYPE_FIELD_NUMBER = 1;
+    private int sendReplyType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+     */
+    public int getSendReplyTypeValue() {
+      return sendReplyType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType getSendReplyType() {
+      com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType result = com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType.forNumber(sendReplyType_);
+      return result == null ? com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+     */
+    private void setSendReplyTypeValue(int value) {
+        sendReplyType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+     */
+    private void setSendReplyType(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      sendReplyType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+     */
+    private void clearSendReplyType() {
+      
+      sendReplyType_ = 0;
+    }
+
+    public static final int CONVERSATIONID_FIELD_NUMBER = 2;
+    private java.lang.String conversationId_;
+    /**
+     * <code>optional string conversationId = 2;</code>
+     */
+    public java.lang.String getConversationId() {
+      return conversationId_;
+    }
+    /**
+     * <code>optional string conversationId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConversationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(conversationId_);
+    }
+    /**
+     * <code>optional string conversationId = 2;</code>
+     */
+    private void setConversationId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      conversationId_ = value;
+    }
+    /**
+     * <code>optional string conversationId = 2;</code>
+     */
+    private void clearConversationId() {
+      
+      conversationId_ = getDefaultInstance().getConversationId();
+    }
+    /**
+     * <code>optional string conversationId = 2;</code>
+     */
+    private void setConversationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      conversationId_ = value.toStringUtf8();
+    }
+
+    public static final int TEXT_FIELD_NUMBER = 3;
+    private java.lang.String text_;
+    /**
+     * <code>optional string text = 3;</code>
+     */
+    public java.lang.String getText() {
+      return text_;
+    }
+    /**
+     * <code>optional string text = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTextBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(text_);
+    }
+    /**
+     * <code>optional string text = 3;</code>
+     */
+    private void setText(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      text_ = value;
+    }
+    /**
+     * <code>optional string text = 3;</code>
+     */
+    private void clearText() {
+      
+      text_ = getDefaultInstance().getText();
+    }
+    /**
+     * <code>optional string text = 3;</code>
+     */
+    private void setTextBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      text_ = value.toStringUtf8();
+    }
+
+    public static final int KGRAPHREPLY_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.NLUProto.KGraphReply kgraphReply_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    public boolean hasKgraphReply() {
+      return kgraphReply_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.NLUProto.KGraphReply getKgraphReply() {
+      return kgraphReply_ == null ? com.treeleaf.anydone.entities.NLUProto.KGraphReply.getDefaultInstance() : kgraphReply_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    private void setKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      kgraphReply_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    private void setKgraphReply(
+        com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder builderForValue) {
+      kgraphReply_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    private void mergeKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
+      if (kgraphReply_ != null &&
+          kgraphReply_ != com.treeleaf.anydone.entities.NLUProto.KGraphReply.getDefaultInstance()) {
+        kgraphReply_ =
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply.newBuilder(kgraphReply_).mergeFrom(value).buildPartial();
+      } else {
+        kgraphReply_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+     */
+    private void clearKgraphReply() {  kgraphReply_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (sendReplyType_ != com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType.UNKNOWN_TYPE.getNumber()) {
+        output.writeEnum(1, sendReplyType_);
+      }
+      if (!conversationId_.isEmpty()) {
+        output.writeString(2, getConversationId());
+      }
+      if (!text_.isEmpty()) {
+        output.writeString(3, getText());
+      }
+      if (kgraphReply_ != null) {
+        output.writeMessage(4, getKgraphReply());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (sendReplyType_ != com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType.UNKNOWN_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, sendReplyType_);
+      }
+      if (!conversationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getConversationId());
+      }
+      if (!text_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getText());
+      }
+      if (kgraphReply_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getKgraphReply());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.SendReplyRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.SendReplyRequest)
+        com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+       */
+      public int getSendReplyTypeValue() {
+        return instance.getSendReplyTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+       */
+      public Builder setSendReplyTypeValue(int value) {
+        copyOnWrite();
+        instance.setSendReplyTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType getSendReplyType() {
+        return instance.getSendReplyType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+       */
+      public Builder setSendReplyType(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType value) {
+        copyOnWrite();
+        instance.setSendReplyType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest.SendReplyType sendReplyType = 1;</code>
+       */
+      public Builder clearSendReplyType() {
+        copyOnWrite();
+        instance.clearSendReplyType();
+        return this;
+      }
+
+      /**
+       * <code>optional string conversationId = 2;</code>
+       */
+      public java.lang.String getConversationId() {
+        return instance.getConversationId();
+      }
+      /**
+       * <code>optional string conversationId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConversationIdBytes() {
+        return instance.getConversationIdBytes();
+      }
+      /**
+       * <code>optional string conversationId = 2;</code>
+       */
+      public Builder setConversationId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setConversationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string conversationId = 2;</code>
+       */
+      public Builder clearConversationId() {
+        copyOnWrite();
+        instance.clearConversationId();
+        return this;
+      }
+      /**
+       * <code>optional string conversationId = 2;</code>
+       */
+      public Builder setConversationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setConversationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string text = 3;</code>
+       */
+      public java.lang.String getText() {
+        return instance.getText();
+      }
+      /**
+       * <code>optional string text = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTextBytes() {
+        return instance.getTextBytes();
+      }
+      /**
+       * <code>optional string text = 3;</code>
+       */
+      public Builder setText(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setText(value);
+        return this;
+      }
+      /**
+       * <code>optional string text = 3;</code>
+       */
+      public Builder clearText() {
+        copyOnWrite();
+        instance.clearText();
+        return this;
+      }
+      /**
+       * <code>optional string text = 3;</code>
+       */
+      public Builder setTextBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTextBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+       */
+      public boolean hasKgraphReply() {
+        return instance.hasKgraphReply();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.NLUProto.KGraphReply getKgraphReply() {
+        return instance.getKgraphReply();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+       */
+      public Builder setKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
+        copyOnWrite();
+        instance.setKgraphReply(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+       */
+      public Builder setKgraphReply(
+          com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder builderForValue) {
+        copyOnWrite();
+        instance.setKgraphReply(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+       */
+      public Builder mergeKgraphReply(com.treeleaf.anydone.entities.NLUProto.KGraphReply value) {
+        copyOnWrite();
+        instance.mergeKgraphReply(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
+       */
+      public Builder clearKgraphReply() {  copyOnWrite();
+        instance.clearKgraphReply();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SendReplyRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest other = (com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest) arg1;
+          sendReplyType_ = visitor.visitInt(sendReplyType_ != 0, sendReplyType_,    other.sendReplyType_ != 0, other.sendReplyType_);
+          conversationId_ = visitor.visitString(!conversationId_.isEmpty(), conversationId_,
+              !other.conversationId_.isEmpty(), other.conversationId_);
+          text_ = visitor.visitString(!text_.isEmpty(), text_,
+              !other.text_.isEmpty(), other.text_);
+          kgraphReply_ = visitor.visitMessage(kgraphReply_, other.kgraphReply_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  int rawValue = input.readEnum();
+
+                  sendReplyType_ = rawValue;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  conversationId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  text_ = s;
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.NLUProto.KGraphReply.Builder subBuilder = null;
+                  if (kgraphReply_ != null) {
+                    subBuilder = kgraphReply_.toBuilder();
+                  }
+                  kgraphReply_ = input.readMessage(com.treeleaf.anydone.entities.NLUProto.KGraphReply.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(kgraphReply_);
+                    kgraphReply_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.SendReplyRequest)
+    private static final com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new SendReplyRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<SendReplyRequest> PARSER;
+
+    public static com.google.protobuf.Parser<SendReplyRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

@@ -125,6 +125,15 @@ public final class ThirdPartyRpcProto {
      * <code>optional .treeleaf.anydone.entities.IncomingMailMessage mailMessage = 11;</code>
      */
     com.treeleaf.anydone.entities.ThirdPartyProto.IncomingMailMessage getMailMessage();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    boolean hasSendReplyRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest getSendReplyRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ThirdPartyBaseRequest}
@@ -717,6 +726,58 @@ public final class ThirdPartyRpcProto {
       
     }
 
+    public static final int SENDREPLYREQUEST_FIELD_NUMBER = 12;
+    private com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest sendReplyRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    public boolean hasSendReplyRequest() {
+      return sendReplyRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest getSendReplyRequest() {
+      return sendReplyRequest_ == null ? com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.getDefaultInstance() : sendReplyRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    private void setSendReplyRequest(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      sendReplyRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    private void setSendReplyRequest(
+        com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.Builder builderForValue) {
+      sendReplyRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    private void mergeSendReplyRequest(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest value) {
+      if (sendReplyRequest_ != null &&
+          sendReplyRequest_ != com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.getDefaultInstance()) {
+        sendReplyRequest_ =
+          com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.newBuilder(sendReplyRequest_).mergeFrom(value).buildPartial();
+      } else {
+        sendReplyRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+     */
+    private void clearSendReplyRequest() {  sendReplyRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -751,6 +812,9 @@ public final class ThirdPartyRpcProto {
       }
       if (mailMessage_ != null) {
         output.writeMessage(11, getMailMessage());
+      }
+      if (sendReplyRequest_ != null) {
+        output.writeMessage(12, getSendReplyRequest());
       }
     }
 
@@ -807,6 +871,10 @@ public final class ThirdPartyRpcProto {
       if (mailMessage_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getMailMessage());
+      }
+      if (sendReplyRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getSendReplyRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1391,6 +1459,51 @@ public final class ThirdPartyRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+       */
+      public boolean hasSendReplyRequest() {
+        return instance.hasSendReplyRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest getSendReplyRequest() {
+        return instance.getSendReplyRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+       */
+      public Builder setSendReplyRequest(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest value) {
+        copyOnWrite();
+        instance.setSendReplyRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+       */
+      public Builder setSendReplyRequest(
+          com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSendReplyRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+       */
+      public Builder mergeSendReplyRequest(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest value) {
+        copyOnWrite();
+        instance.mergeSendReplyRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SendReplyRequest sendReplyRequest = 12;</code>
+       */
+      public Builder clearSendReplyRequest() {  copyOnWrite();
+        instance.clearSendReplyRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ThirdPartyBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1429,6 +1542,7 @@ public final class ThirdPartyRpcProto {
               !other.serviceId_.isEmpty(), other.serviceId_);
           slackWebhook_ = visitor.visitMessage(slackWebhook_, other.slackWebhook_);
           mailMessage_ = visitor.visitMessage(mailMessage_, other.mailMessage_);
+          sendReplyRequest_ = visitor.visitMessage(sendReplyRequest_, other.sendReplyRequest_);
           if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1554,6 +1668,19 @@ public final class ThirdPartyRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(mailMessage_);
                     mailMessage_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 98: {
+                  com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.Builder subBuilder = null;
+                  if (sendReplyRequest_ != null) {
+                    subBuilder = sendReplyRequest_.toBuilder();
+                  }
+                  sendReplyRequest_ = input.readMessage(com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(sendReplyRequest_);
+                    sendReplyRequest_ = subBuilder.buildPartial();
                   }
 
                   break;

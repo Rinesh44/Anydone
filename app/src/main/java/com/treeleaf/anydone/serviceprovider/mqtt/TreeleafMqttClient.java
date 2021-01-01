@@ -191,18 +191,19 @@ public class TreeleafMqttClient {
 
 
     public static void disconnectMQTT() {
-        AuthProto.ConnectRequest connectRequest = AuthProto.ConnectRequest.newBuilder()
-                .setAccountId(separateResult[0])
-                .setSessionId(separateResult[1])
-                .build();
+        if (separateResult != null) {
+            AuthProto.ConnectRequest connectRequest = AuthProto.ConnectRequest.newBuilder()
+                    .setAccountId(separateResult[0])
+                    .setSessionId(separateResult[1])
+                    .build();
 
-        publish(disconnectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
-            @Override
-            public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "disconnect success");
-            }
-        });
-
+            publish(disconnectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) {
+                    GlobalUtils.showLog(TAG, "disconnect success");
+                }
+            });
+        }
     }
 
     public static MqttAndroidClient getMqttClient() {
