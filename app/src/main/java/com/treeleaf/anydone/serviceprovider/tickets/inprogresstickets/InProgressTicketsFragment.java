@@ -297,6 +297,12 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         TicketRepo.getInstance().changeTicketStatusToClosed(ticketId);
 
         rvInProgressTickets.setVisibility(View.VISIBLE);
+
+        if (inProgressTickets.isEmpty()) {
+            ivDataNotFound.setVisibility(View.VISIBLE);
+        } else {
+            ivDataNotFound.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -319,6 +325,12 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         TicketRepo.getInstance().changeTicketStatusToResolved(ticketId);
 
         rvInProgressTickets.setVisibility(View.VISIBLE);
+
+        if (inProgressTickets.isEmpty()) {
+            ivDataNotFound.setVisibility(View.VISIBLE);
+        } else {
+            ivDataNotFound.setVisibility(View.GONE);
+        }
     }
 
     @Override

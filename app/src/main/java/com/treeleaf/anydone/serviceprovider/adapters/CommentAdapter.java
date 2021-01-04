@@ -591,15 +591,15 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
             if (!conversation.getMessage().isEmpty()) {
-                String[] extractedLink = extractLinks(conversation.getMessage());
+                String[] extractedLink = extractLinks(conversation.getMessage().trim());
 //                GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
 
                 if (extractedLink.length != 0) {
                     if (!extractedLink[0].contains("https://")) {
-                        String linkWithHttps = "https://" + extractedLink[0];
+                        String linkWithHttps = "https://" + extractedLink[0].trim();
                         richPreview.getPreview(linkWithHttps);
                     } else {
-                        richPreview.getPreview(conversation.getMessage());
+                        richPreview.getPreview(conversation.getMessage().trim());
                     }
                 }
             }

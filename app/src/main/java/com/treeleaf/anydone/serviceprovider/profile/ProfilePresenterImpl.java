@@ -126,6 +126,7 @@ public class ProfilePresenterImpl extends BasePresenter<ProfileContract.ProfileV
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         resendCodeObservable = service.resendCode(emailPhone);
+        GlobalUtils.showLog(TAG, "resend code check: " + emailPhone);
 
         addSubscription(resendCodeObservable
                 .subscribeOn(Schedulers.io())

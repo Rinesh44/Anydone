@@ -100,6 +100,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
     private Dialog dialog;
     private BottomSheetBehavior sheetBehavior;
     String currentPhotoPath = "";
+    String phone, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +140,6 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
                 presenter.resendCode(account.getEmail());
             }
         });
-
 
         tvGender.setOnClickListener(v -> openProfileEditActivity());
 
@@ -287,11 +287,13 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             assert imm != null;
             imm.hideSoftInputFromWindow(btnVerify.getWindowToken(), 0);
             if (isPhone) {
-                presenter.addEmail(UiUtils.getString(etEmail));
+                email = UiUtils.getString(etEmail);
+                presenter.addEmail(email);
             } else {
                 String numberOnly = UiUtils.getString(etPhone).replaceAll("[^0-9]",
                         "");
-                presenter.addPhone(tvAreaCode.getText().toString() + numberOnly);
+                phone = tvAreaCode.getText().toString() + numberOnly;
+                presenter.addPhone(phone);
             }
         });
 
@@ -478,11 +480,15 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             Hawk.put(Constants.EMAIL_PHONE, account.getPhone());
             Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
             i.putExtra("edit_profile", true);
+            i.putExtra("phone_verification", true);
+            i.putExtra("phone", phone);
             startActivityForResult(i, ADD_PHONE_REQUEST);
         } else {
             Hawk.put(Constants.EMAIL_PHONE, account.getEmail());
             Intent i = new Intent(ProfileActivity.this, VerificationActivity.class);
+            i.putExtra("email_verification", true);
             i.putExtra("edit_profile", true);
+            i.putExtra("email", email);
             startActivityForResult(i, ADD_EMAIL_REQUEST);
         }
     }

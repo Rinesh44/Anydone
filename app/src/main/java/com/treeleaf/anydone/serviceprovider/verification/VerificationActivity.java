@@ -61,7 +61,6 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         startTimerCountDown();
         String emailPhone = Hawk.get(Constants.EMAIL_PHONE);
         String countryCode = Hawk.get(Constants.COUNTRY_CODE);
@@ -79,6 +78,22 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
             tvUserEmailPhone.setText(emailPhone);
         }
 
+        boolean isPhoneVerification = checkIfPhoneVerification();
+        boolean isEmailVerification = checkifEmailVerification();
+
+        if (editProfile && isPhoneVerification) {
+            String phone = getIntent().getStringExtra("phone");
+            if (phone != null && !phone.isEmpty()) {
+                tvUserEmailPhone.setText(phone);
+            }
+        }
+
+        if (editProfile && isEmailVerification) {
+            String email = getIntent().getStringExtra("email");
+            if (email != null && !email.isEmpty()) {
+                tvUserEmailPhone.setText(email);
+            }
+        }
 
         etPin.requestFocus();
 
@@ -110,6 +125,17 @@ public class VerificationActivity extends MvpBaseActivity<VerificationPresenterI
         Intent i = getIntent();
         return i.getBooleanExtra("edit_profile", false);
     }
+
+    private boolean checkIfPhoneVerification() {
+        Intent i = getIntent();
+        return i.getBooleanExtra("phone_verification", false);
+    }
+
+    private boolean checkifEmailVerification() {
+        Intent i = getIntent();
+        return i.getBooleanExtra("email_verification", false);
+    }
+
 
     private String getPasswordFromIntent() {
         Intent i = getIntent();

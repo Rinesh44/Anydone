@@ -938,6 +938,24 @@ public class TicketRepo extends Repo {
         }
     }
 
+
+    public void deleteOwnedTickets(final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.OWNED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void enableBotReply(String ticketId) {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
