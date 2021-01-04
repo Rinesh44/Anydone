@@ -311,6 +311,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             removeScrollviewMargin();
         }
 
+        Account userAccount = AccountRepo.getInstance().getAccount();
+        boolean isCustomer = tickets.getCustomer().getCustomerId().equalsIgnoreCase(userAccount.getAccountId());
+        if (isCustomer) {
+            llStatusHolder.setVisibility(View.GONE);
+        }
+
         createEmployeeBottomSheet();
         if (ticketId != -1) {
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);

@@ -102,7 +102,7 @@ public class OwnedTicketPresenterImpl extends BasePresenter<OwnedTicketContract.
     private void saveOwnedTicket(List<TicketProto.Ticket> ticketsList) {
         List<Tickets> ownedTickets = TicketRepo.getInstance().getOwnedTickets();
         if (!CollectionUtils.isEmpty(ownedTickets)) {
-            TicketRepo.getInstance().deleteOpenTickets(new Repo.Callback() {
+            TicketRepo.getInstance().deleteOwnedTickets(new Repo.Callback() {
                 @Override
                 public void success(Object o) {
 

@@ -183,8 +183,9 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     }
 
     private void setVideoCallVisibility() {
+        boolean isCustomer = ticket.getCustomer().getCustomerId().equalsIgnoreCase(userAccount.getAccountId());
         if (ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
-                || contributed) {
+                || contributed || isCustomer) {
             DrawableCompat.setTint(
                     DrawableCompat.wrap(ivVideoCall.getDrawable()),
                     ContextCompat.getColor(getContext(), R.color.colorPrimary)
