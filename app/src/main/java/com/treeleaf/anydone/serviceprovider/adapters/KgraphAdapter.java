@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 
@@ -66,17 +69,16 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
             tvSuggestion.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 KGraph selectedKGraph = kGraphList.get(position);
-             /*   if ((selectedKGraph.getAnswerType() != null &&
+                if (!(selectedKGraph.getAnswerType() != null &&
                         selectedKGraph.getAnswerType()
-                                .equalsIgnoreCase(KGraphProto.AnswerType.OPTION_TYPE.name()))
-                        || (selectedKGraph.isTraverse())) {
+                                .equalsIgnoreCase(KGraphProto.KnowledgeType.ANSWER_TYPE.name()))) {
                     tvSuggestion.setBackgroundColor(mContext.getResources()
                             .getColor(R.color.colorPrimary));
                     tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.white));
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(kGraphList.get(position));
                     }
-                }*/
+                }
             });
         }
     }
