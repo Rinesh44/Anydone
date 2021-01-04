@@ -48,6 +48,7 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
+import com.treeleaf.januswebrtc.Const;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -1000,14 +1001,16 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             Conversation conversation = new Conversation();
                             String kgraphId = UUID.randomUUID().toString().replace("-",
                                     "");
+                            String kgraphPlainTitle = Hawk.get(Constants.KGRAPH_TITLE);
+                            kgraphPlainTitle = Jsoup.parse(kgraphPlainTitle).text();
+
                             conversation.setClientId(kgraphId);
                             conversation.setMessageType("MSG_BOT_SUGGESTIONS");
                             conversation.setkGraphList(kGraphList);
                             conversation.setSenderId("Anydone bot 101");
                             conversation.setSentAt(System.currentTimeMillis());
                             conversation.setkGraphBack(false);
-                            conversation.setkGraphTitle(relayResponse.getRtcMessage()
-                                    .getText().getMessage());
+                            conversation.setkGraphTitle(kgraphPlainTitle);
                             conversation.setRefId((relayResponse
                                     .getRtcMessage().getRefId()));
 

@@ -524,8 +524,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @OnClick(R.id.iv_send)
     void sendMessageClick() {
         if (!etMessage.getHtml().isEmpty()) {
-            Hawk.put(Constants.KGRAPH_TITLE,
-                    etMessage.getHtml());
+
+            Hawk.put(Constants.KGRAPH_TITLE, etMessage.getHtml());
             presenter.checkConnection(TreeleafMqttClient.mqttClient);
         }
     }

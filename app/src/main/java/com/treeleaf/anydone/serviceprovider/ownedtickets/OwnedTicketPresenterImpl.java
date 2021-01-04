@@ -105,6 +105,7 @@ public class OwnedTicketPresenterImpl extends BasePresenter<OwnedTicketContract.
             TicketRepo.getInstance().deleteOpenTickets(new Repo.Callback() {
                 @Override
                 public void success(Object o) {
+
                 }
 
                 @Override
