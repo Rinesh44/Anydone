@@ -98,9 +98,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 notifyItemChanged(index);
             } else {
                 conversationList.add(0, conversation);
-                notifyItemInserted(0);
-                notifyItemRangeChanged(0, 3);
-//                notifyDataSetChanged();
+            /*    notifyItemInserted(0);
+                notifyItemRangeChanged(0, 3);*/
+                notifyDataSetChanged();
             }
 
             if (!conversation.getMessageType().equals("MSG_BOT_SUGGESTIONS")) {

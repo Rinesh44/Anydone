@@ -543,10 +543,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
 //            conversation.smoothScrollToPosition(0);
-           /* scrollView.postDelayed(() -> scrollView.fullScroll(View.FOCUS_DOWN),
-                    0);*/
-            scrollView.fullScroll(View.FOCUS_DOWN);
-            etMessage.postDelayed(etMessage::requestFocus, 50);
+            scrollView.postDelayed(() -> scrollView.fullScroll(View.FOCUS_DOWN),
+                    50);
+//            scrollView.fullScroll(View.FOCUS_DOWN);
+            etMessage.postDelayed(etMessage::requestFocus, 75);
         })
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())

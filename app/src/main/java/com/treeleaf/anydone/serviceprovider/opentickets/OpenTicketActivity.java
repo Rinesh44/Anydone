@@ -228,7 +228,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvOpenTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            ticketAdapter = new TicketsAdapter(ticketsList, getContext());
+            ticketAdapter = new TicketsAdapter(ticketsList, getContext(), rvOpenTickets);
             ticketAdapter.setOnItemClickListener(ticket -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 

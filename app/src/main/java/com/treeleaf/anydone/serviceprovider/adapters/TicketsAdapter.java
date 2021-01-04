@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +51,12 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     private OnStartListener onStartListener;
     private OnCloseListener onCloseListener;
     private OnResolveListener onResolveListener;
+    private RecyclerView recyclerView;
 
-    public TicketsAdapter(List<Tickets> ticketsList, Context mContext) {
+    public TicketsAdapter(List<Tickets> ticketsList, Context mContext, RecyclerView recyclerView) {
         this.ticketsList = ticketsList;
         this.mContext = mContext;
+        this.recyclerView = recyclerView;
         viewBinderHelper.setOpenOnlyOne(true);
     }
 
@@ -155,6 +158,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             viewBinderHelper.bind(holder.swipeRevealLayout,
                     String.valueOf(tickets.getTicketId()));
         }
+
 
         String date = GlobalUtils.getDateDigits(tickets.getCreatedAt());
         holder.tvDate.setText(date);
@@ -447,6 +451,19 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(ticketsList.get(position));
                     }
+
+                    recyclerView.setEnabled(false);
+                    rlTicketHolder.setClickable(false);
+                    new CountDownTimer(1000, 10) { //Set Timer for 1 seconds
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            rlTicketHolder.setClickable(true);
+                            recyclerView.setEnabled(true);
+                        }
+                    }.start();
                 });
             }
         }

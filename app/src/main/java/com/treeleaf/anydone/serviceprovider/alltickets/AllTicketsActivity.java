@@ -413,7 +413,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvAllTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            ticketsAdapter = new TicketsAdapter(ticketsList, getContext());
+            ticketsAdapter = new TicketsAdapter(ticketsList, getContext(), rvAllTickets);
 
             ticketsAdapter.setOnSubscribeListener((id, pos) -> {
                 subscribeTicketPos = pos;

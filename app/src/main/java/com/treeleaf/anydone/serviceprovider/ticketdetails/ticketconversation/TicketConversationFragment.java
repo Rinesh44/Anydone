@@ -54,6 +54,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chinalwb.are.AREditText;
 import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
@@ -550,6 +551,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
         adapter.setData(conversation);
         presenter.enterMessage(scrollview, etMessage);
+        scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN), 50);
     }
 
     @OnClick(R.id.rl_delete_holder)
@@ -760,9 +762,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             Glide.with(this)
                     .load(imageUrl)
                     .apply(options)
+                    .error(R.drawable.ic_empty_profile_holder_icon)
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
                     .into(profileImage);
         }
-
     }
 
     @Override
