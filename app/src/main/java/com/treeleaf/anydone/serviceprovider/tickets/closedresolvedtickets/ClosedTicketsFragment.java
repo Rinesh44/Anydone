@@ -126,7 +126,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             rvClosedTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
-            adapter = new TicketsAdapter(ticketsList, getContext());
+            adapter = new TicketsAdapter(ticketsList, getContext(), rvClosedTickets);
             adapter.setOnItemClickListener(ticket -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
@@ -265,7 +265,6 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void getClosedTicketFail(String msg) {
-
         GlobalUtils.showLog(TAG, "failed on closed tickets");
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);

@@ -36,8 +36,8 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
     RadioGroup rgLanguages;
     @BindView(R.id.rb_english)
     RadioButton rbEnglish;
-    @BindView(R.id.rb_nepali)
-    RadioButton rbNepali;
+    /*    @BindView(R.id.rb_nepali)
+        RadioButton rbNepali;*/
     /*   @BindView(R.id.rb_hebrew)
        RadioButton rbHebrew;*/
     @BindView(R.id.pb_progress)
@@ -61,7 +61,7 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
         selectedLanguage = Hawk.get(Constants.SELECTED_LANGUAGE);
         if (LocaleHelper.getLanguage(LanguagesActivity.this)
                 .equalsIgnoreCase("ne")) {
-            rbNepali.setChecked(true);
+//            rbNepali.setChecked(true);
         } else if (LocaleHelper.getLanguage(LanguagesActivity.this)
                 .equalsIgnoreCase("en")) {
             rbEnglish.setChecked(true);
@@ -76,18 +76,18 @@ public class LanguagesActivity extends MvpBaseActivity<LanguagePresenterImpl> im
         rgLanguages.setOnCheckedChangeListener((radioGroup, i) -> {
             languageChange = true;
             int englishLangId = rbEnglish.getId();
-            int nepaliLangId = rbNepali.getId();
+//            int nepaliLangId = rbNepali.getId();
 //            int hebrewLangId = rbHebrew.getId();
 
             if (i == englishLangId) {
                 presenter.changeLanguage("en");
 
-            } else if (i == nepaliLangId) {
+            } /*else if (i == nepaliLangId) {
                 presenter.changeLanguage("ne");
             } else {
                 //hebrew
 
-            }
+            }*/
 
         });
 

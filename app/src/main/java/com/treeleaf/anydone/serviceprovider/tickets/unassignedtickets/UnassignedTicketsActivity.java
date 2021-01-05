@@ -625,7 +625,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvAssignableTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            adapter = new TicketsAdapter(ticketsList, getContext());
+            adapter = new TicketsAdapter(ticketsList, getContext(), rvAssignableTickets);
       /*      adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(this, TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());

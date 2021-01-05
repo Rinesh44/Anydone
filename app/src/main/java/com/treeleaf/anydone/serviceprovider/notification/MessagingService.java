@@ -65,6 +65,7 @@ public class MessagingService extends FirebaseMessagingService {
     private void setupNotification(Map<String, String> jsonObject) {
         String ticketId = jsonObject.get("ticketId");
         String notificationId = jsonObject.get("notificationId");
+        String senderId = jsonObject.get("senderAccountId");
         Tickets ticket = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));
 
         if (ticket != null) {
@@ -96,7 +97,10 @@ public class MessagingService extends FirebaseMessagingService {
 
             notificationBuilder.setContentIntent(contentIntent);
             assert notificationManager != null;
-            notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+
+            if (!localAccountId.equalsIgnoreCase(senderId)) {
+                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+            }
         }
     }
 

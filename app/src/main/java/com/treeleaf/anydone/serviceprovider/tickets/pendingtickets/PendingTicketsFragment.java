@@ -119,9 +119,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
             rvOpenTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
-            adapter = new TicketsAdapter(ticketsList, getContext());
+            adapter = new TicketsAdapter(ticketsList, getContext(), rvOpenTickets);
             adapter.setOnItemClickListener(ticket -> {
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     ArrayList<String> employeeProfileUris = new ArrayList<>();
                     StringBuilder builder = new StringBuilder();
@@ -340,6 +339,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 
         rvOpenTickets.setVisibility(View.VISIBLE);
 
+//        assignedTickets = TicketRepo.getInstance().getPendingTickets();
         if (assignedTickets.isEmpty()) {
             ivDataNotFound.setVisibility(View.VISIBLE);
         } else {

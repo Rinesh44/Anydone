@@ -380,7 +380,7 @@ public class UnSubscribedTicketsActivity extends MvpBaseActivity<UnsubscribedTic
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvSubscribeableTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            ticketsAdapter = new TicketsAdapter(ticketsList, getContext());
+            ticketsAdapter = new TicketsAdapter(ticketsList, getContext(), rvSubscribeableTickets);
        /*     adapter.setOnItemClickListener(ticket -> {
                 Intent i = new Intent(this, TicketDetailsActivity.class);
                 i.putExtra("selected_ticket_id", ticket.getTicketId());

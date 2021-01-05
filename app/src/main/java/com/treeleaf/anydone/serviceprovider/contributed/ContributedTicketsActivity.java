@@ -382,7 +382,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvContributedTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            ticketsAdapter = new TicketsAdapter(ticketsList, getContext());
+            ticketsAdapter = new TicketsAdapter(ticketsList, getContext(),rvContributedTickets);
             ticketsAdapter.setOnItemClickListener(ticket -> {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

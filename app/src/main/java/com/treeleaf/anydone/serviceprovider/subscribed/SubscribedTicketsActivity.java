@@ -154,7 +154,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvSubscribeTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            ticketsAdapter = new TicketsAdapter(ticketsList, getContext());
+            ticketsAdapter = new TicketsAdapter(ticketsList, getContext(), rvSubscribeTickets);
             ticketsAdapter.setOnItemClickListener(ticket -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 

@@ -125,7 +125,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             rvInProgressTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
-            adapter = new TicketsAdapter(ticketsList, getContext());
+            adapter = new TicketsAdapter(ticketsList, getContext(), rvInProgressTickets);
             adapter.setOnItemClickListener(ticket -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
@@ -290,17 +290,16 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 
     @Override
     public void onCloseTicketSuccess(long ticketId) {
-        rvInProgressTickets.setVisibility(View.VISIBLE);
         btnReload.setVisibility(View.GONE);
         Hawk.put(Constants.TICKET_RESOLVED, true);
         adapter.deleteItem(closeTicketPos, ticketId);
         TicketRepo.getInstance().changeTicketStatusToClosed(ticketId);
 
-        rvInProgressTickets.setVisibility(View.VISIBLE);
-
         if (inProgressTickets.isEmpty()) {
+            rvInProgressTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
         } else {
+            rvInProgressTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
         }
     }
@@ -318,7 +317,6 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 
     @Override
     public void onResolveTicketSuccess(long ticketId) {
-        rvInProgressTickets.setVisibility(View.VISIBLE);
         btnReload.setVisibility(View.GONE);
         Hawk.put(Constants.TICKET_RESOLVED, true);
         adapter.deleteItem(resolveTicketPos, ticketId);
@@ -326,9 +324,12 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 
         rvInProgressTickets.setVisibility(View.VISIBLE);
 
+        inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
         if (inProgressTickets.isEmpty()) {
+            rvInProgressTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
         } else {
+            rvInProgressTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
         }
     }

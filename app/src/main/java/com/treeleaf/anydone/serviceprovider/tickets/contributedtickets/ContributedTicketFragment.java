@@ -103,7 +103,7 @@ public class ContributedTicketFragment extends BaseFragment<ContributedTicketPre
         if (!CollectionUtils.isEmpty(ticketsList)) {
             rvContributedTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
-            adapter = new TicketsAdapter(ticketsList, getContext());
+            adapter = new TicketsAdapter(ticketsList, getContext(), rvContributedTickets);
             adapter.setOnItemClickListener(ticket -> {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
