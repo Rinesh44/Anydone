@@ -54,7 +54,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chinalwb.are.AREditText;
 import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
@@ -1136,6 +1135,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onMqttResponseReceivedChecked(String mqttResponseType) {
+        videoCallBackListener.onMqttReponseArrived(mqttResponseType);
     }
 
     @Override

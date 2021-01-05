@@ -5,6 +5,8 @@ import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 public interface OnVideoCallEventListener {
 
+    void onMqttReponseArrived(String mqttReponseType);
+
     void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall);
 
     void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall, boolean videoBroadcastPublish);

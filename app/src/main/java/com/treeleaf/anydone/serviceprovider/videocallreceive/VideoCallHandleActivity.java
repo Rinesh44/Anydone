@@ -356,6 +356,16 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.rtcContext = context;
     }
 
+    @Override
+    public void onMqttReponseArrived(String mqttReponseType) {
+        if (videoCallListenerClient != null) {
+            videoCallListenerClient.onMqttReponseArrived(mqttReponseType);
+        }
+        if (videoCallListenerServer != null) {
+            videoCallListenerServer.onMqttReponseArrived(mqttReponseType);
+        }
+    }
+
     //video room initiation callback client
     @Override
     public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {

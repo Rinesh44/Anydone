@@ -134,6 +134,8 @@ public class TicketConversationContract {
 
         void removeAttachmentFail(String msg);
 
+        void onMqttResponseReceivedChecked(String mqttResponseType);
+
     }
 
     public interface TicketConversationPresenter extends Presenter<TicketConversationView> {
