@@ -1100,7 +1100,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         /*    rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                     (0), 100);*/
             scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
-                    500);
+                    50);
             etMessage.setText("");
         });
 //        etMessage.setText("");

@@ -60,7 +60,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.ponnamkarthik.richlinkpreview.MetaData;
 import io.github.ponnamkarthik.richlinkpreview.ResponseListener;
 import io.github.ponnamkarthik.richlinkpreview.RichPreview;
-import jp.wasabeef.richeditor.RichEditor;
 
 public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "MessageAdapter";
@@ -110,7 +109,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     notifyItemChanged(prevIndex);
                 }
             }
-
         });
     }
 
@@ -680,7 +678,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
                   boolean isContinuous) {
-
             if (!isContinuous) {
                 spacing.setVisibility(View.VISIBLE);
             } else {
