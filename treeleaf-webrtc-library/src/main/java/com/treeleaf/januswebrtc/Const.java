@@ -5,8 +5,10 @@ import java.math.BigInteger;
 public class Const {
     public static final String CLIENT = "client";
     public static final String SERVER = "server";
-    public static final String BASE_URL = "https://mediaserver.anydone.net/janus/";
-    public static String API_SECRET = "anydone@321123!@#";
+//    public static final String BASE_URL = "https://mediaserver.anydone.net/janus/";
+    public static final String BASE_URL = "https://mediaserver-a.anydone.com/janus/";//TODO: for prod
+//    public static String API_SECRET = "anydone@321123!@#";
+    public static String API_SECRET = "A$#@2hsggsJHS0123GSA";//TODO: for prod
     public static BigInteger ROOM_NUMBER;
 
     public static final String JANUS_URL = "janus_base_url";

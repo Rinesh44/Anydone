@@ -14,10 +14,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionEvents;
 import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionParameters;
 import com.treeleaf.januswebrtc.audio.AppRTCAudioManager;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
+import com.treeleaf.januswebrtc.rest.ApiClient;
 
 import org.json.JSONObject;
 import org.webrtc.Camera1Enumerator;
@@ -148,7 +151,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     public String runningOn = CONSUMER_TYPE;
     private boolean videoRendered = false;
     private String touchSessionId;
-    private TextView mqttResponseType;
+    private LinearLayout llMqttLog;
+    private Button btnClearMqttLogs;
+    private ScrollView svMqttLog;
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -214,7 +219,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         tvReconnecting = findViewById(R.id.tv_reconnecting);
         ivCalleeProfile = findViewById(R.id.iv_callee_profile);
         ivTerminateCall = findViewById(R.id.iv_terminate_call);
-        mqttResponseType = findViewById(R.id.tv_mqtt_log_latest);
+        llMqttLog = findViewById(R.id.ll_mqtt_log);
+        btnClearMqttLogs = findViewById(R.id.btn_clear_mqtt_logs);
+        svMqttLog = findViewById(R.id.sv_mqtt_log);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -224,6 +231,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         imageAcceptCall.setOnClickListener(acceptCallClickListener);
         ivTerminateCall.setOnClickListener(endCallClickListener);
         ibToggleJoineeList.setOnClickListener(joineeListToggleListener);
+        btnClearMqttLogs.setOnClickListener(clearMqttLogsClickListener);
 
         forwardTouchesView = findViewById(R.id.forward_touch);
 
@@ -286,12 +294,25 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onMqttReponseArrived(String responseType) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mqttResponseType.setText(responseType);
-                    }
-                });
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        TextView textView = new TextView(ServerActivity.this);
+//                        textView.setText(responseType);
+//                        textView.setTextColor(Color.WHITE);
+//                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+//                        llMqttLog.addView(textView, llMqttLog.getChildCount());
+//
+//
+//                        svMqttLog.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                svMqttLog.fullScroll(ScrollView.FOCUS_DOWN);
+//                            }
+//                        });
+//
+//                    }
+//                });
             }
 
             @Override
@@ -1561,6 +1582,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }
     };
 
+    View.OnClickListener clearMqttLogsClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            llMqttLog.removeAllViews();
+        }
+    };
+
     private void minimizeCurrentDrawing() {
         switchDrawModeAndVideoMode(false);
         VideoCallUtil.materialContainerTransformVisibility(layoutDraw,
@@ -1708,6 +1736,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         audioManager = null;
                     }
                     callTerminated = true;
+                    ApiClient.retrofit = null;
                     finish();
                 }
             }

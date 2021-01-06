@@ -1044,7 +1044,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (broadcastVideoCall != null) {
                                 if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
                                     getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
-                                    getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                    getView().onMqttResponseReceivedChecked("BROADCAST");
                                 } else {
                                     getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
                                 }
@@ -1058,7 +1058,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 if (cancelDrawing.getSenderAccount().getAccountId().
                                         equals(userAccountId)) {
 //                                    getView().onImageDrawDiscardLocal();
-                                    getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                    getView().onMqttResponseReceivedChecked("CANCEL DRAW");
                                 } else
                                     getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId(),
                                             cancelDrawing.getImageId());
@@ -1072,7 +1072,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (participantLeft != null) {
                                 getView().onParticipantLeft(participantLeft);
                                 if (userAccountId.equals(participantLeft.getSenderAccount().getAccountId()))
-                                    getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                    getView().onMqttResponseReceivedChecked("PARTICIPANT_LEFT");
                             }
                         }
 
@@ -1087,7 +1087,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 } else {
                                     getView().onLocalVideoRoomJoinedSuccess(videoCallJoinResponse);
                                     if (userAccountId.equals(videoCallJoinResponse.getSenderAccountId()))
-                                        getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                        getView().onMqttResponseReceivedChecked("JOIN");
                                 }
                             }
                         }
@@ -1100,7 +1100,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
                                 getView().onHostHangUp(videoRoomHostLeft);
                             } else if (videoRoomHostLeft != null && userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("HOST_LEFT");
                             }
                         }
 
@@ -1130,7 +1130,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         drawStartResponse.getImageId());
                             } else if (drawStartResponse != null &&
                                     drawStartResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("DRAW START " + drawStartResponse.getX() + " " +
+                                        drawStartResponse.getY());
                             }
                         }
 
@@ -1150,7 +1151,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         drawTouchMove.getImageId());
                             } else if (drawTouchMove != null &&
                                     drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("DRAW MOVE " + drawTouchMove.getX() + " " +
+                                        drawTouchMove.getY());
                             }
                         }
 
@@ -1164,7 +1166,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 getView().onDrawTouchUp(drawEndResponse.getSenderAccount().getAccountId(), drawEndResponse.getImageId());
                             } else if (drawEndResponse != null &&
                                     drawEndResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("DRAW END");
                             }
                         }
 
@@ -1180,7 +1182,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         receiveNewTextField.getSenderAccount().getAccountId(), receiveNewTextField.getImageId());
                             } else if (receiveNewTextField != null &&
                                     receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("NEW TEXT");
                             }
                         }
 
@@ -1196,7 +1198,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         textFieldChange.getImageId());
                             } else if (textFieldChange != null &&
                                     textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("TEXT CHANGE");
                             }
                         }
 
@@ -1211,7 +1213,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         textFieldRemove.getSenderAccount().getAccountId(), textFieldRemove.getImageId());
                             } else if (textFieldRemove != null &&
                                     textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("TEXT REMOVE");
                             }
                         }
 
@@ -1232,7 +1234,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         drawMetaDataChange.getImageId());
                             } else if (drawMetaDataChange != null &&
                                     drawMetaDataChange.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("META CHANGE");
                             }
                         }
 
@@ -1247,7 +1249,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         drawCanvasClear.getImageId());
                             } else if (drawCanvasClear != null &&
                                     drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                getView().onMqttResponseReceivedChecked("CANVAS CLEAR");
                             }
                         }
 
@@ -1258,7 +1260,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (drawCollabResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
-                                    getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                    getView().onMqttResponseReceivedChecked("COLLAB");
                                 } else {
                                     //sent and received id is different
                                     if (drawCollabResponse.getToAccountId().equals(userAccountId)) {
@@ -1277,7 +1279,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (drawMaximizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
-                                    getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                    getView().onMqttResponseReceivedChecked("MAXIMIZE");
                                 } else {
                                     //sent and received id is different
                                     getView().onDrawMaximize(drawMaximizeResponse);
@@ -1292,7 +1294,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (drawMinimizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
-                                    getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                    getView().onMqttResponseReceivedChecked("MINIMIZE");
                                 } else {
                                     //sent and received id is different
                                     getView().onDrawMinimize(drawMinimizeResponse);
@@ -1307,7 +1309,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (drawClose != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
-                                    getView().onMqttResponseReceivedChecked(relayResponse.getResponseType().toString());
+                                    getView().onMqttResponseReceivedChecked("DRAW CLOSE");
                                 } else {
                                     //sent and received id is different
                                     getView().onDrawClose(drawClose);
