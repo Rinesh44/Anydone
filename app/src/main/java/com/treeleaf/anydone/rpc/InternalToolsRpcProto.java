@@ -1474,6 +1474,20 @@ public final class InternalToolsRpcProto {
      * <code>optional .treeleaf.anydone.entities.OnboardingSettings onboardingSettings = 8;</code>
      */
     com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings getOnboardingSettings();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> 
+        getServiceProvidersList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getServiceProviders(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    int getServiceProvidersCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseResponse}
@@ -1486,6 +1500,7 @@ public final class InternalToolsRpcProto {
     private InternalToolsBaseResponse() {
       msg_ = "";
       invitees_ = emptyProtobufList();
+      serviceProviders_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -1895,6 +1910,126 @@ public final class InternalToolsRpcProto {
       
     }
 
+    public static final int SERVICEPROVIDERS_FIELD_NUMBER = 9;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> serviceProviders_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> getServiceProvidersList() {
+      return serviceProviders_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.UserProto.ServiceProviderProfileOrBuilder> 
+        getServiceProvidersOrBuilderList() {
+      return serviceProviders_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    public int getServiceProvidersCount() {
+      return serviceProviders_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getServiceProviders(int index) {
+      return serviceProviders_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.ServiceProviderProfileOrBuilder getServiceProvidersOrBuilder(
+        int index) {
+      return serviceProviders_.get(index);
+    }
+    private void ensureServiceProvidersIsMutable() {
+      if (!serviceProviders_.isModifiable()) {
+        serviceProviders_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceProviders_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void setServiceProviders(
+        int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceProvidersIsMutable();
+      serviceProviders_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void setServiceProviders(
+        int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+      ensureServiceProvidersIsMutable();
+      serviceProviders_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void addServiceProviders(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceProvidersIsMutable();
+      serviceProviders_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void addServiceProviders(
+        int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceProvidersIsMutable();
+      serviceProviders_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void addServiceProviders(
+        com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+      ensureServiceProvidersIsMutable();
+      serviceProviders_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void addServiceProviders(
+        int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+      ensureServiceProvidersIsMutable();
+      serviceProviders_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void addAllServiceProviders(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> values) {
+      ensureServiceProvidersIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, serviceProviders_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void clearServiceProviders() {
+      serviceProviders_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+     */
+    private void removeServiceProviders(int index) {
+      ensureServiceProvidersIsMutable();
+      serviceProviders_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -1920,6 +2055,9 @@ public final class InternalToolsRpcProto {
       }
       if (onboardingSettings_ != null) {
         output.writeMessage(8, getOnboardingSettings());
+      }
+      for (int i = 0; i < serviceProviders_.size(); i++) {
+        output.writeMessage(9, serviceProviders_.get(i));
       }
     }
 
@@ -1959,6 +2097,10 @@ public final class InternalToolsRpcProto {
       if (onboardingSettings_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, getOnboardingSettings());
+      }
+      for (int i = 0; i < serviceProviders_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, serviceProviders_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -2401,6 +2543,103 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> getServiceProvidersList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getServiceProvidersList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public int getServiceProvidersCount() {
+        return instance.getServiceProvidersCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getServiceProviders(int index) {
+        return instance.getServiceProviders(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder setServiceProviders(
+          int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+        copyOnWrite();
+        instance.setServiceProviders(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder setServiceProviders(
+          int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+        copyOnWrite();
+        instance.setServiceProviders(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder addServiceProviders(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+        copyOnWrite();
+        instance.addServiceProviders(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder addServiceProviders(
+          int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+        copyOnWrite();
+        instance.addServiceProviders(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder addServiceProviders(
+          com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+        copyOnWrite();
+        instance.addServiceProviders(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder addServiceProviders(
+          int index, com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+        copyOnWrite();
+        instance.addServiceProviders(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder addAllServiceProviders(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile> values) {
+        copyOnWrite();
+        instance.addAllServiceProviders(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder clearServiceProviders() {
+        copyOnWrite();
+        instance.clearServiceProviders();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
+       */
+      public Builder removeServiceProviders(int index) {
+        copyOnWrite();
+        instance.removeServiceProviders(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2415,6 +2654,7 @@ public final class InternalToolsRpcProto {
         }
         case MAKE_IMMUTABLE: {
           invitees_.makeImmutable();
+          serviceProviders_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2434,6 +2674,7 @@ public final class InternalToolsRpcProto {
           invitee_ = visitor.visitMessage(invitee_, other.invitee_);
           invitees_= visitor.visitList(invitees_, other.invitees_);
           onboardingSettings_ = visitor.visitMessage(onboardingSettings_, other.onboardingSettings_);
+          serviceProviders_= visitor.visitList(serviceProviders_, other.serviceProviders_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2527,6 +2768,15 @@ public final class InternalToolsRpcProto {
                     onboardingSettings_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 74: {
+                  if (!serviceProviders_.isModifiable()) {
+                    serviceProviders_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceProviders_);
+                  }
+                  serviceProviders_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.parser(), extensionRegistry));
                   break;
                 }
               }
