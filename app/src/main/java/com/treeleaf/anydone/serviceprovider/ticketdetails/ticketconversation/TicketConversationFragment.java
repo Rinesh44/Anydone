@@ -377,6 +377,41 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
+        adapter.setOnSuggestionClickListener(kGraph -> {
+            Conversation selectedSuggestion = new Conversation();
+            selectedSuggestion.setClientId(UUID.randomUUID().toString()
+                    .replace("-", ""));
+            selectedSuggestion.setSenderId(userAccountId);
+            selectedSuggestion.setMessage(kGraph.getTitle());
+            selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
+            selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+            selectedSuggestion.setSentAt(System.currentTimeMillis());
+            selectedSuggestion.setRefId(String.valueOf(ticketId));
+
+            ConversationRepo.getInstance().saveConversation(selectedSuggestion,
+                    new Repo.Callback() {
+                        @Override
+                        public void success(Object o) {
+                            adapter.setData(selectedSuggestion);
+                          /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                                    (0), 50);*/
+                            scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                                    50);
+                        }
+
+                        @Override
+                        public void fail() {
+                            GlobalUtils.showLog(TAG, "failed to save dummy user msg");
+                        }
+                    });
+
+            GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
+            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), ticketId, false);
+        });
+
+        adapter.setOnBackClickListener((prevQuestionKey, prevId) ->
+                presenter.getSuggestions(prevId, prevQuestionKey, ticketId, true));
+
     }
 
     private void setAttachmentVisibility(Tickets tickets) {
@@ -1230,6 +1265,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 0), 50);*/
         scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
                 50);
+
         adapter.setOnSuggestionClickListener(kGraph -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()

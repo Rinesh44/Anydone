@@ -117,7 +117,7 @@ public class ThreadConversationContract {
 
         void setConversationAsFailed(Conversation conversation);
 
-        void getSuggestions(String nextMessageId, String refId, boolean backClicked);
+        void getSuggestions(String nextMessageId, String nextMessageKey, String refId, boolean backClicked);
 
         void getServiceProviderInfo(Tickets tickets);
 

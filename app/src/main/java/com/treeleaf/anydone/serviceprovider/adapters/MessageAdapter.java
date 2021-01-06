@@ -17,8 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +29,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.card.MaterialCardView;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -40,8 +44,13 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
@@ -277,8 +286,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT:
-                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
-                        isContinuous);
+                try {
+                    ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
+                            isContinuous);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
 
             case MSG_TEXT_RIGHT:
@@ -1078,7 +1091,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 });
             }
-
         }
     }
 
@@ -1088,6 +1100,17 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ImageView resend;
         CircleImageView civSender;
         View spacing;
+        RelativeLayout rlMessageHolder;
+        RelativeLayout rlKgraphHolder;
+        View kgraphSpacing;
+        RelativeLayout rlKgraphHolderAligned;
+        CircleImageView civKgraphSender;
+        LinearLayout llKgraphTextHolder;
+        TextView tvBot;
+        TextView tvKgraphTitle;
+        CardView cvSuggestions;
+        RecyclerView rvSuggestions;
+        ImageView ivBack;
 
         LeftTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -1099,65 +1122,159 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             civSender = itemView.findViewById(R.id.civ_sender);
             senderTitle = itemView.findViewById(R.id.tv_title);
             spacing = itemView.findViewById(R.id.spacing);
+            rlMessageHolder = itemView.findViewById(R.id.rl_message_holder);
+            rlKgraphHolder = itemView.findViewById(R.id.rl_kgraph_holder);
+            kgraphSpacing = itemView.findViewById(R.id.kgraph_spacing);
+            rlKgraphHolderAligned = itemView.findViewById(R.id.rl_kgraph_holder_aligned);
+            civKgraphSender = itemView.findViewById(R.id.civ_kgraph_sender);
+            llKgraphTextHolder = itemView.findViewById(R.id.ll_kgraph_text_holder);
+            tvBot = itemView.findViewById(R.id.tv_bot);
+            tvKgraphTitle = itemView.findViewById(R.id.tv_kgraph_title);
+            cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
+            rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
+            ivBack = itemView.findViewById(R.id.iv_back);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
-                  boolean isContinuous) {
-            //show additional padding if not continuous
-            if (!isContinuous) {
-                spacing.setVisibility(View.VISIBLE);
+                  boolean isContinuous) throws JSONException {
+
+            boolean isReplyInJson = GlobalUtils.isJSONValid(conversation.getMessage());
+
+            //show messeage accoring to type of message(JSON or normal string)
+            if (!isReplyInJson) {
+                //reply is normal text message
+                //show additional padding if not continuous
+                rlMessageHolder.setVisibility(View.VISIBLE);
+                rlKgraphHolder.setVisibility(View.GONE);
+                if (!isContinuous) {
+                    spacing.setVisibility(View.VISIBLE);
+                } else {
+                    spacing.setVisibility(View.GONE);
+                    GlobalUtils.showLog(TAG, "spacing deleted");
+                }
+                // Show the date if the message was sent on a different date than the previous message.
+                messageText.setText(conversation.getMessage());
+                if (isNewDay) {
+                    sentAt.setVisibility(View.VISIBLE);
+                    showDateAndTime(conversation.getSentAt(), sentAt);
+                }
+                if (showTime) {
+                    sentAt.setVisibility(View.VISIBLE);
+                    showTime(conversation.getSentAt(), sentAt);
+                }
+                if (!isNewDay && !showTime) {
+                    sentAt.setVisibility(View.GONE);
+                }
+
+
+                // Hide profile image and name if the previous message was also sent by current sender.
+                if (isContinuous && !showTime && !isNewDay) {
+                    civSender.setVisibility(View.INVISIBLE);
+                    senderTitle.setVisibility(View.GONE);
+                } else {
+                    //check for bot name and image
+                    displayBotOrUserMessage(senderTitle, civSender, conversation);
+                }
+
+                if (civSender != null) {
+                    civSender.setOnClickListener(v -> {
+                        if (senderImageClickListener != null && getAdapterPosition() !=
+                                RecyclerView.NO_POSITION) {
+                            senderImageClickListener.onSenderImageClick(
+                                    conversationList.get(getAdapterPosition()));
+                        }
+                    });
+                }
+
+                //click listeners
+                textHolder.setOnLongClickListener(v -> {
+                    int position = getAdapterPosition();
+                    GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                    GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                            .getSenderId());
+                    if (listener != null && position != RecyclerView.NO_POSITION
+                            && !conversationList.get(position).getSenderId().isEmpty()) {
+                        listener.onItemLongClick(conversationList.get(position));
+                    }
+                    return true;
+                });
             } else {
-                spacing.setVisibility(View.GONE);
-                GlobalUtils.showLog(TAG, "spacing deleted");
-            }
-            // Show the date if the message was sent on a different date than the previous message.
-            messageText.setText(conversation.getMessage());
-            if (isNewDay) {
-                sentAt.setVisibility(View.VISIBLE);
-                showDateAndTime(conversation.getSentAt(), sentAt);
-            }
-            if (showTime) {
-                sentAt.setVisibility(View.VISIBLE);
-                showTime(conversation.getSentAt(), sentAt);
-            }
-            if (!isNewDay && !showTime) {
-                sentAt.setVisibility(View.GONE);
-            }
+                rlMessageHolder.setVisibility(View.GONE);
+                rlKgraphHolder.setVisibility(View.VISIBLE);
+                //reply is in json, so bot suggestion
+                if (!isContinuous) {
+                    kgraphSpacing.setVisibility(View.VISIBLE);
+                } else {
+                    kgraphSpacing.setVisibility(View.GONE);
+                }
 
+                if (conversation.iskGraphBack()) {
+                    ivBack.setVisibility(View.VISIBLE);
+                } else {
+                    ivBack.setVisibility(View.GONE);
+                }
 
-            // Hide profile image and name if the previous message was also sent by current sender.
-            if (isContinuous && !showTime && !isNewDay) {
-                civSender.setVisibility(View.INVISIBLE);
-                senderTitle.setVisibility(View.GONE);
-            } else {
-                //check for bot name and image
-                displayBotOrUserMessage(senderTitle, civSender, conversation);
-            }
+                JSONObject kGraphObj = new JSONObject(conversation.getMessage());
+                JSONArray kGraphArray = kGraphObj.getJSONArray("knowledges");
+                List<KGraph> kGraphList = new ArrayList<>();
+                for (int i = 0; i < kGraphArray.length(); i++) {
+                    JSONObject kGraphJSONObj = (JSONObject) kGraphArray.get(i);
+                    KGraph kGraph = new KGraph();
+                    kGraph.setAnswerType(kGraphJSONObj.getString("knowledgeType"));
+                    kGraph.setNext(kGraphJSONObj.getString("knowledgeKey"));
+                    kGraph.setId(kGraphJSONObj.getString("knowledgeId"));
+                    kGraph.setTitle(kGraphJSONObj.getString("title"));
+                    kGraphList.add(kGraph);
+                }
 
-            if (civSender != null) {
-                civSender.setOnClickListener(v -> {
-                    if (senderImageClickListener != null && getAdapterPosition() !=
-                            RecyclerView.NO_POSITION) {
-                        senderImageClickListener.onSenderImageClick(
-                                conversationList.get(getAdapterPosition()));
+                ivBack.setOnClickListener(v -> {
+                /*    int position = getAdapterPosition();
+                    if (onBackClickListener != null && position != RecyclerView.NO_POSITION) {
+                        Conversation prevKGraph = null;
+                        int prevIndex = position + 1;
+                        GlobalUtils.showLog(TAG, "prev index;" + prevIndex);
+                        //get prev k-graph message
+                        for (int i = prevIndex; prevIndex >= 0; prevIndex++) {
+                            if (conversationList.get(i).getMessageType()
+                                    .equals("MSG_BOT_SUGGESTIONS")) {
+                                GlobalUtils.showLog(TAG, "prev k-graph found");
+                                prevKGraph = conversationList.get(i);
+                                break;
+                            }
+                        }
+
+                        if (prevKGraph != null)
+                            onBackClickListener
+                                    .onBackClick(Objects.requireNonNull(prevKGraph
+                                                    .getkGraphList().get(0)).getPrev(),
+                                            prevKGraph.getkGraphList().get(0).getPrevId());
+                    }*/
+                });
+
+                if (conversation.getkGraphTitle() != null && conversation.getkGraphTitle().isEmpty()) {
+                    tvKgraphTitle.setVisibility(View.GONE);
+                    llKgraphTextHolder.setVisibility(View.GONE);
+                } else {
+                    tvKgraphTitle.setText(conversation.getkGraphTitle());
+                    llKgraphTextHolder.setVisibility(View.GONE);
+                }
+                LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+                rvSuggestions.setLayoutManager(layoutManager);
+                GlobalUtils.showLog(TAG, "conversation kgraph: " +
+                        kGraphList.size());
+                KgraphAdapter adapter = new KgraphAdapter(kGraphList, mContext);
+                adapter.setOnItemClickListener(kGraph -> {
+                    GlobalUtils.showLog(TAG, "adapter click listened");
+                    Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
+                    int position = getAdapterPosition();
+                    if (suggestionClickListener != null && position != RecyclerView.NO_POSITION) {
+                        GlobalUtils.showLog(TAG, "suggestion click listener not null");
+                        suggestionClickListener.onSuggestionClick(kGraph);
                     }
                 });
+                rvSuggestions.setAdapter(adapter);
             }
-
-            //click listeners
-            textHolder.setOnLongClickListener(v -> {
-                int position = getAdapterPosition();
-                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
-                        .getSenderId());
-                if (listener != null && position != RecyclerView.NO_POSITION
-                        && !conversationList.get(position).getSenderId().isEmpty()) {
-                    listener.onItemLongClick(conversationList.get(position));
-                }
-                return true;
-            });
         }
-
     }
 
     private class LeftLinkHolder extends RecyclerView.ViewHolder {
@@ -1547,7 +1664,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             suggestionTitle = itemView.findViewById(R.id.tv_title);
             suggestions = itemView.findViewById(R.id.rv_suggestions);
             back = itemView.findViewById(R.id.iv_back);
-
         }
 
         void bind(final Conversation conversation, boolean isContinuous) {
@@ -1566,23 +1682,15 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             back.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (onBackClickListener != null && position != RecyclerView.NO_POSITION) {
-                    Conversation prevKGraph = null;
-                    int prevIndex = position + 1;
-                    GlobalUtils.showLog(TAG, "prev index;" + prevIndex);
-                    //get prev k-graph message
-                    for (int i = prevIndex; prevIndex >= 0; prevIndex++) {
-                        if (conversationList.get(i).getMessageType()
-                                .equals("MSG_BOT_SUGGESTIONS")) {
-                            GlobalUtils.showLog(TAG, "prev k-graph found");
-                            prevKGraph = conversationList.get(i);
-                            break;
-                        }
-                    }
+                    String prevId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrevId();
+                    String prevKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrev();
 
-                    if (prevKGraph != null)
+                    if (prevId != null && prevKey != null) {
                         onBackClickListener
-                                .onBackClick(Objects.requireNonNull(prevKGraph
-                                        .getkGraphList().get(0)).getPrev());
+                                .onBackClick(prevKey, prevId);
+                    } else {
+                        Toast.makeText(mContext, "empty back data", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
@@ -1885,12 +1993,15 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         String currentUserID = currentMsg.getSenderId();
         String precedingUserId = precedingMsg.getSenderId();
+        String currentSenderType = currentMsg.getSenderType();
+        String precedingSenderType = precedingMsg.getSenderType();
 
-        if (currentUserID != null && precedingUserId != null) {
+        if (currentUserID != null && precedingUserId != null && currentSenderType != null
+                && precedingSenderType != null) {
             GlobalUtils.showLog(TAG, "both not null");
             return !currentUserID.isEmpty() && !precedingUserId.isEmpty() &&
                     currentUserID.equalsIgnoreCase(precedingUserId) &&
-                    currentMsg.getSenderType().equals(precedingMsg.getSenderType());
+                    currentSenderType.equals(precedingSenderType);
         } else {
             GlobalUtils.showLog(TAG, "last one");
             return false;
@@ -1907,7 +2018,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public interface OnBackClickListener {
-        void onBackClick(String prevQuestionKey);
+        void onBackClick(String prevQuestionKey, String prevQuestionId);
     }
 
     public void setOnBackClickListener(MessageAdapter.OnBackClickListener listener) {

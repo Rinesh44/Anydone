@@ -17,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +42,10 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -238,7 +244,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT:
-                ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime);
+                try {
+                    ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
 
             case MSG_IMG_LEFT:
@@ -417,6 +427,17 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ImageView resend;
         CircleImageView civSender;
         View spacing;
+        RelativeLayout rlKgraphHolder;
+        View kgraphSpacing;
+        RelativeLayout rlKgraphHolderAligned;
+        CircleImageView civKgraphSender;
+        LinearLayout llKgraphTextHolder;
+        TextView tvBot;
+        TextView tvKgraphTitle;
+        CardView cvSuggestions;
+        RecyclerView rvSuggestions;
+        ImageView ivBack;
+        RelativeLayout rlMessageHolder;
 
         LeftTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -430,89 +451,163 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             time = itemView.findViewById(R.id.tv_time);
             date = itemView.findViewById(R.id.tv_date);
             tvTextPlain = itemView.findViewById(R.id.tv_text_plain);
+
+            rlMessageHolder = itemView.findViewById(R.id.rl_message_holder);
+            rlKgraphHolder = itemView.findViewById(R.id.rl_kgraph_holder);
+            kgraphSpacing = itemView.findViewById(R.id.kgraph_spacing);
+            rlKgraphHolderAligned = itemView.findViewById(R.id.rl_kgraph_holder_aligned);
+            civKgraphSender = itemView.findViewById(R.id.civ_kgraph_sender);
+            llKgraphTextHolder = itemView.findViewById(R.id.ll_kgraph_text_holder);
+            tvBot = itemView.findViewById(R.id.tv_bot);
+            tvKgraphTitle = itemView.findViewById(R.id.tv_kgraph_title);
+            cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
+            rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
+            ivBack = itemView.findViewById(R.id.iv_back);
         }
 
-        void bind(final Conversation conversation, boolean isNewDay, boolean showTime) {
-            //show additional padding if not continuous
-            spacing.setVisibility(View.VISIBLE);
-            // Show the date if the message was sent on a different date than the previous message.
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime) throws JSONException {
+
+            boolean isReplyInJson = GlobalUtils.isJSONValid(conversation.getMessage());
+
+            if (!isReplyInJson) {
+                //show additional padding if not continuous
+                spacing.setVisibility(View.VISIBLE);
+                // Show the date if the message was sent on a different date than the previous message.
 
          /*   messageText.setHtml(conversation.getMessage());
             messageText.setEditorFontSize(15);*/
 
-            messageText.setHideToolbar(true);
-            messageText.getARE().setTextSize(14);
-            messageText.getARE().setLongClickable(false);
-            GlobalUtils.showLog(TAG, "html msgs: " + conversation.getMessage());
-            if (conversation.getMessage().toLowerCase().contains("<ol>") ||
-                    conversation.getMessage().toLowerCase().contains("<ul>")) {
-                messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -18),
+                messageText.setHideToolbar(true);
+                messageText.getARE().setTextSize(14);
+                messageText.getARE().setLongClickable(false);
+                GlobalUtils.showLog(TAG, "html msgs: " + conversation.getMessage());
+                if (conversation.getMessage().toLowerCase().contains("<ol>") ||
+                        conversation.getMessage().toLowerCase().contains("<ul>")) {
+                    messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -18),
+                            GlobalUtils.convertDpToPixel(mContext, -10),
+                            0,
+                            GlobalUtils.convertDpToPixel(mContext, -45));
+                } else messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -8),
                         GlobalUtils.convertDpToPixel(mContext, -10),
                         0,
-                        GlobalUtils.convertDpToPixel(mContext, -45));
-            } else messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, -8),
-                    GlobalUtils.convertDpToPixel(mContext, -10),
-                    0,
-                    GlobalUtils.convertDpToPixel(mContext, -25));
+                        GlobalUtils.convertDpToPixel(mContext, -25));
 
-            if (conversation.getMessage().contains("</p>")) {
-                GlobalUtils.showLog(TAG, "msg contains tags");
-                messageText.fromHtml(conversation.getMessage());
-                messageText.setVisibility(View.VISIBLE);
-                tvTextPlain.setVisibility(View.GONE);
-            } else {
-                GlobalUtils.showLog(TAG, "msg doesnt contains tags");
-                GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
-                tvTextPlain.setText(conversation.getMessage());
-                messageText.setVisibility(View.GONE);
-                tvTextPlain.setVisibility(View.VISIBLE);
-            }
+                if (conversation.getMessage().contains("</p>")) {
+                    GlobalUtils.showLog(TAG, "msg contains tags");
+                    messageText.fromHtml(conversation.getMessage());
+                    messageText.setVisibility(View.VISIBLE);
+                    tvTextPlain.setVisibility(View.GONE);
+                } else {
+                    GlobalUtils.showLog(TAG, "msg doesnt contains tags");
+                    GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
+                    tvTextPlain.setText(conversation.getMessage());
+                    messageText.setVisibility(View.GONE);
+                    tvTextPlain.setVisibility(View.VISIBLE);
+                }
 
-            textHolder.setClickable(true);
-            textHolder.setFocusable(true);
-            if (isNewDay) {
-                sentAt.setVisibility(View.GONE);
-            } else {
-                sentAt.setVisibility(View.GONE);
-            }
+                textHolder.setClickable(true);
+                textHolder.setFocusable(true);
+                if (isNewDay) {
+                    sentAt.setVisibility(View.GONE);
+                } else {
+                    sentAt.setVisibility(View.GONE);
+                }
 
-            showDateAndTime(conversation.getSentAt(), sentAt, date);
-            time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
+                showDateAndTime(conversation.getSentAt(), sentAt, date);
+                time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
          /*   if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }*/
-            if (!isNewDay && !showTime) {
-                sentAt.setVisibility(View.GONE);
-            }
+                if (!isNewDay && !showTime) {
+                    sentAt.setVisibility(View.GONE);
+                }
 
 
-            // Hide profile image and name if the previous message was also sent by current sender.
-            //check for bot name and image
-            displayBotOrUserMessage(senderTitle, civSender, conversation);
+                // Hide profile image and name if the previous message was also sent by current sender.
+                //check for bot name and image
+                displayBotOrUserMessage(senderTitle, civSender, conversation);
 
-            if (civSender != null) {
-                civSender.setOnClickListener(v -> {
-                    if (senderImageClickListener != null && getAdapterPosition() !=
-                            RecyclerView.NO_POSITION) {
-                        senderImageClickListener.onSenderImageClick(
-                                conversationList.get(getAdapterPosition()));
+                if (civSender != null) {
+                    civSender.setOnClickListener(v -> {
+                        if (senderImageClickListener != null && getAdapterPosition() !=
+                                RecyclerView.NO_POSITION) {
+                            senderImageClickListener.onSenderImageClick(
+                                    conversationList.get(getAdapterPosition()));
+                        }
+                    });
+                }
+
+                //click listeners
+                textHolder.setOnLongClickListener(v -> {
+                    int position = getAdapterPosition();
+                    GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                    GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                            .getSenderId());
+                    if (listener != null && position != RecyclerView.NO_POSITION
+                            && !conversationList.get(position).getSenderId().isEmpty()) {
+                        listener.onItemLongClick(conversationList.get(position));
+                    }
+                    return true;
+                });
+            } else {
+                rlMessageHolder.setVisibility(View.GONE);
+                rlKgraphHolder.setVisibility(View.VISIBLE);
+                //reply is in json, so bot suggestion
+             /*   if (!isContinuous) {
+                    kgraphSpacing.setVisibility(View.VISIBLE);
+                } else {
+                    kgraphSpacing.setVisibility(View.GONE);
+                }*/
+
+                kgraphSpacing.setVisibility(View.VISIBLE);
+
+                if (conversation.iskGraphBack()) {
+                    ivBack.setVisibility(View.VISIBLE);
+                } else {
+                    ivBack.setVisibility(View.GONE);
+                }
+
+                JSONObject kGraphObj = new JSONObject(conversation.getMessage());
+                JSONArray kGraphArray = kGraphObj.getJSONArray("knowledges");
+                List<KGraph> kGraphList = new ArrayList<>();
+                for (int i = 0; i < kGraphArray.length(); i++) {
+                    JSONObject kGraphJSONObj = (JSONObject) kGraphArray.get(i);
+                    KGraph kGraph = new KGraph();
+                    kGraph.setAnswerType(kGraphJSONObj.getString("knowledgeType"));
+                    kGraph.setNext(kGraphJSONObj.getString("knowledgeKey"));
+                    kGraph.setId(kGraphJSONObj.getString("knowledgeId"));
+                    kGraph.setTitle(kGraphJSONObj.getString("title"));
+                    kGraphList.add(kGraph);
+                }
+
+                ivBack.setOnClickListener(v -> {
+
+                });
+
+                if (conversation.getkGraphTitle() != null && conversation.getkGraphTitle().isEmpty()) {
+                    tvKgraphTitle.setVisibility(View.GONE);
+                    llKgraphTextHolder.setVisibility(View.GONE);
+                } else {
+                    tvKgraphTitle.setText(conversation.getkGraphTitle());
+                    llKgraphTextHolder.setVisibility(View.GONE);
+                }
+                LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+                rvSuggestions.setLayoutManager(layoutManager);
+                GlobalUtils.showLog(TAG, "conversation kgraph: " +
+                        kGraphList.size());
+                KgraphAdapter adapter = new KgraphAdapter(kGraphList, mContext);
+                adapter.setOnItemClickListener(kGraph -> {
+                    GlobalUtils.showLog(TAG, "adapter click listened");
+                    Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
+                    int position = getAdapterPosition();
+                    if (suggestionClickListener != null && position != RecyclerView.NO_POSITION) {
+                        GlobalUtils.showLog(TAG, "suggestion click listener not null");
+                        suggestionClickListener.onSuggestionClick(kGraph);
                     }
                 });
+                rvSuggestions.setAdapter(adapter);
             }
-
-            //click listeners
-            textHolder.setOnLongClickListener(v -> {
-                int position = getAdapterPosition();
-                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
-                        .getSenderId());
-                if (listener != null && position != RecyclerView.NO_POSITION
-                        && !conversationList.get(position).getSenderId().isEmpty()) {
-                    listener.onItemLongClick(conversationList.get(position));
-                }
-                return true;
-            });
         }
 
     }
@@ -923,7 +1018,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             suggestionTitle = itemView.findViewById(R.id.tv_title);
             suggestions = itemView.findViewById(R.id.rv_suggestions);
             back = itemView.findViewById(R.id.iv_back);
-
         }
 
         void bind(final Conversation conversation, boolean isContinuous) {
@@ -942,32 +1036,15 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             back.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (onBackClickListener != null && position != RecyclerView.NO_POSITION) {
-                    Conversation prevKGraph = null;
-                    int prevIndex = position + 1;
-                    GlobalUtils.showLog(TAG, "prev index;" + prevIndex);
-                    //get prev k-graph message
-                    for (int i = prevIndex; prevIndex >= 0; prevIndex++) {
-                        if (conversationList.get(i).getMessageType()
-                                .equals("MSG_BOT_SUGGESTIONS")) {
-                            GlobalUtils.showLog(TAG, "prev k-graph found");
-                            prevKGraph = conversationList.get(i);
-                            break;
-                        }
-                    }
+                    String prevId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrevId();
+                    String prevKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrev();
 
-                    if (prevKGraph != null)
+                    if (prevId != null && prevKey != null) {
                         onBackClickListener
-                                .onBackClick(Objects.requireNonNull(prevKGraph
-                                                .getkGraphList().get(0)).getNext(),
-                                        Objects.requireNonNull(prevKGraph.getkGraphList()
-                                                .get(0)).getId());
-
-                   /* Conversation current = conversationList.get(position);
-                    if (current != null) {
-                        onBackClickListener.onBackClick(
-                                Objects.requireNonNull(current.getkGraphList().get(0)).getPrev(),
-                                Objects.requireNonNull(current.getkGraphList().get(0)).getPrevId());
-                    }*/
+                                .onBackClick(prevId, prevKey);
+                    } else {
+                        Toast.makeText(mContext, "empty back data", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
